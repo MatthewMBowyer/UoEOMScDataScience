@@ -31,7 +31,10 @@
     		text-align: center;
     		width: 49%; 
     		margin-bottom: 20px; 
-    		height: auto;
+		display: flex;
+    		flex-direction: column;
+    		justify-content: space-between; /* This spreads out the content and aligns the button at the bottom */
+    		height: 100%;
 	}
 	.container {
     		display: flex;
@@ -41,9 +44,17 @@
 	.large-box {
 		text-align: center;
     		width: 100%; 
+		display: flex;
+    		flex-direction: column;
+    		justify-content: space-between; /* This spreads out the content and aligns the button at the bottom */
+    		height: 100%;
 	}
-
-
+	.box footer {
+    		margin-top: auto; /* This pushes the footer to the bottom */
+}
+	.large-box footer {
+    		margin-top: auto; /* This pushes the footer to the bottom */
+}
     </style>
 
 			<!-- Header -->
@@ -72,7 +83,7 @@
 										<header>
 											<h3>The Data Professional (20 credits)</h3>
 										</header>
-										<p>The Data Professional explores and investigates the critical theoretical concepts in the discipline of data science, starting from data collection and 
+										<p>The Data Professional module explores and investigates the critical theoretical concepts in the discipline of data science, starting from data collection and 
 											then gradually leading to the stage where data is transformed into knowledge to support business decisions.</p>
 										<footer>
 											<a href="#" class="button alt">See more</a>
@@ -83,7 +94,7 @@
 										<header>
 											<h3>Numerical Analysis (20 credits)</h3>
 										</header>
-										<p>Numerical Analysis introduces key aspects of mathematics and statistics for data science and artificial intelligence.</p>
+										<p>The Numerical Analysis module introduces key aspects of mathematics and statistics for data science and artificial intelligence.</p>
 										<footer>
 											<a href="#" class="button alt">Not yet Started</a>
 										</footer>
@@ -93,7 +104,7 @@
 										<header>
 											<h3>Deciphering Big Data (20 credits)</h3>
 										</header>
-										<p>Deciphering Big Data introduces students to the underpinning concepts and skills of data wrangling, with an emphasis on big data.</p>
+										<p>The Deciphering Big Data module introduces the underpinning concepts and skills of data wrangling, with an emphasis on big data.</p>
 										<footer>
 											<a href="#" class="button alt">Not yet Started</a>
 										</footer>
@@ -103,8 +114,8 @@
 										<header>
 											<h3>Visualising Data (20 credits)</h3>
 										</header>
-										<p>Visualising Data introduces the underpinning concepts for processing and analysing datasets. It also provides data visualisation and 
-											presentation skills essential for a data scientist and helps to make decisions using data.</p>
+										<p>The Visualising Data module introduces the underpinning concepts for processing and analysing datasets. It also provides data visualisation and 
+											presentation skills essential for a data scientist while improving decision making using data.</p>
 										<footer>
 											<a href="#" class="button alt">Not yet Started</a>
 										</footer>
@@ -114,7 +125,7 @@
 										<header>
 											<h3>Machine Learning (20 credits)</h3>
 										</header>
-										<p>Machine Learning introduces machine learning with a practical approach, providing hands-on cases of real-world data analytics.</p>
+										<p>The Machine Learning module introduces machine learning with a practical approach, providing hands-on cases of real-world data analytics.</p>
 										<footer>
 											<a href="#" class="button alt">Not yet Started</a>
 										</footer>
@@ -124,7 +135,7 @@
 										<header>
 											<h3>Research Methods and Professional Practice(20 credits)</h3>
 										</header>
-										<p>Research Methods and Professional Practice provides a practical foundation in research methods that enables research in practical settings.</p>
+										<p>The Research Methods and Professional Practice module provides a practical foundation in research methods that enables research in practical settings.</p>
 										<footer>
 											<a href="#" class="button alt">Not yet Started</a>
 										</footer>
@@ -134,8 +145,7 @@
 										<header>
 											<h3>MSc Computing Project (60 credits)</h3>
 										</header>
-										<p>MSc Computing Project provides a systematic method for planning, executing, writing, and defending a dissertation for a research project on a selected topic of interest. 
-											Accounting for a third of the course credit, where a topic of interest is studied in greater depth.</p>
+										<p>The MSc Computing Project module provides a systematic method for planning, executing, writing, and defending a dissertation for a research project on a selected topic of interest.</p>
 										<footer>
 											<a href="#" class="button alt">Not yet Started</a>
 										</footer>
