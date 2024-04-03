@@ -49,10 +49,15 @@
     		justify-content: space-between; /* This spreads out the content and aligns the button at the bottom */
     		height: auto;
   		align-items: stretch;
+	}	
+	.box .image.featured {
+   		 position: absolute;
+    		top: 0;
+   		left: 0;
+    		width: 100%; /* This will now refer to the .box dimensions */
+    		height: 100%; /* Adjust based on desired aspect ratio or content */
 	}
-	.image featured img {
-   		 object-fit: cover; /* This makes the image cover the available space */
-	}
+	
 
 	.container {
     		display: flex;
