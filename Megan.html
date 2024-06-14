@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megans Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        #message {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose Your Message</h1>
+    <div>
+        <button onclick="displayMessage('badDay')">Are you having a bad day?</button>
+        <button onclick="displayMessage('pumpedUp')">Do you need to be pumped up?</button>
+        <button onclick="displayMessage('missMe')">Do you miss me?</button>
+        <button onclick="displayMessage('loveYou')">Do you want to hear how much I love you?</button>
+        <button onclick="displayMessage('special')">Do you want to know how special you are?</button>
+    </div>
+    <div id="message"></div>
+    <script>
+        const messages = {
+            badDay: [
+                "It's okay to have a bad day. You're still amazing!",
+                "Even the darkest night will end, and the sun will rise.",
+                "Take a deep breath and remember you're loved."
+            ],
+            pumpedUp: [
+                "You've got this! Nothing can stop you!",
+                "Believe in yourself and all that you are.",
+                "You are stronger than you think."
+            ],
+            missMe: [
+                "I miss you more than words can express.",
+                "Can't wait to be with you again.",
+                "Thinking of you every moment we're apart."
+            ],
+            loveYou: [
+                "I love you to the moon and back.",
+                "You are my everything.",
+                "My love for you grows stronger every day."
+            ],
+            special: [
+                "You are so special to me.",
+                "There's no one like you in the whole world.",
+                "You brighten up every room you enter."
+            ]
+        };
+
+        function displayMessage(category) {
+            const categoryMessages = messages[category];
+            const message = categoryMessages[Math.floor(Math.random() * categoryMessages.length)];
+            document.getElementById('message').innerText = message;
+        }
+    </script>
+</body>
+</html>
