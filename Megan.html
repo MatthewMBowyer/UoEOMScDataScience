@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cute Messages</title>
+    <title>Megan's Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #ffccff 0%, #ff99ff 100%);
             margin: 0;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #ff66ff;
         }
         #message {
             font-size: 24px;
@@ -25,6 +32,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             margin-top: 20px;
+            max-width: 80%;
         }
         button {
             font-size: 16px;
@@ -33,13 +41,19 @@
             cursor: pointer;
             border: none;
             border-radius: 5px;
-            background-color: #007BFF;
+            background-color: #ff66ff;
             color: white;
             display: flex;
             align-items: center;
+            box-shadow: 0 4px #cc33cc;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #ff33ff;
+        }
+        button:active {
+            background-color: #ff33ff;
+            box-shadow: 0 2px #cc33cc;
+            transform: translateY(2px);
         }
         .icon {
             margin-right: 10px;
@@ -47,7 +61,7 @@
     </style>
 </head>
 <body>
-    <h1>Choose Your Message</h1>
+    <h1>Megan's Page</h1>
     <div>
         <button onclick="displayMessage('badDay')">
             <i class="fas fa-heart icon"></i>Are you having a bad day?
