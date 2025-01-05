@@ -71,15 +71,18 @@
                 const response = await fetch(SHEET_URL);
                 const text = await response.text();
 
-                // Display the full raw response for debugging
+                // Log the raw response to the console for inspection
+                console.log("Raw Response:", text);
                 document.getElementById('debugOutput').innerText = text;
 
-                // Use regex to extract valid JSON
-                const jsonStringMatch = text.match(/\{.*\}/s);
-                if (!jsonStringMatch) {
-                    throw new Error("Unable to extract JSON from response");
+                // Try to extract the JSON part of the response
+                const startIndex = text.indexOf('{');
+                const endIndex = text.lastIndexOf('}') + 1;
+                if (startIndex === -1 || endIndex === -1) {
+                    throw new Error("JSON structure not found in response");
                 }
-                const jsonString = jsonStringMatch[0];
+
+                const jsonString = text.slice(startIndex, endIndex);
                 const json = JSON.parse(jsonString);
 
                 const rows = json.table.rows;
@@ -101,7 +104,7 @@
 
                 updateCharts();
             } catch (error) {
-                console.error("Error fetching data from Google Sheets:", error);
+                console.error("Error processing data:", error);
                 document.getElementById('debugOutput').innerText = `Error: ${error.message}`;
             }
         }
