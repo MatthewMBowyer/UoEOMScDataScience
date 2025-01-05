@@ -4,49 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goals Tracker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
         body {
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: linear-gradient(135deg, #ffccff 0%, #ff99ff 100%);
+            background: linear-gradient(135deg, #004d7a 0%, #008793 50%, #00bf72 100%);
             margin: 0;
             padding: 20px;
+            color: white;
         }
         h1 {
-            font-family: 'Pacifico', cursive;
-            color: #fff;
             margin-bottom: 20px;
-            text-shadow: 2px 2px #ff66ff;
+            text-shadow: 2px 2px #006f8d;
         }
-        .input-container, .graph-container {
-            background: white;
+        .graph-container {
+            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
             width: 90%;
             max-width: 800px;
-        }
-        .input-container input, .input-container button {
-            font-size: 16px;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: 100%;
-        }
-        button {
-            background-color: #ff66ff;
             color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #ff33ff;
         }
         canvas {
             max-width: 100%;
@@ -55,18 +37,6 @@
 </head>
 <body>
     <h1>Goals Tracker</h1>
-    <div class="input-container">
-        <h2>Input Data</h2>
-        <label for="sleep">Average Sleep (Hours):</label>
-        <input type="number" id="sleep" step="0.1" placeholder="e.g., 7.5">
-        <label for="stretch">Times Stretched This Week:</label>
-        <input type="number" id="stretch" placeholder="e.g., 3">
-        <label for="training">Training Sessions This Week:</label>
-        <input type="number" id="training" placeholder="e.g., 5">
-        <label for="running">Kilometers Run (Today):</label>
-        <input type="number" id="running" step="0.1" placeholder="e.g., 2.5">
-        <button onclick="addData()">Add Data</button>
-    </div>
     <div class="graph-container">
         <h2>Trends</h2>
         <canvas id="sleepChart"></canvas>
@@ -76,29 +46,40 @@
     </div>
 
     <script>
-        const sleepData = JSON.parse(localStorage.getItem('sleepData')) || [];
-        const stretchData = JSON.parse(localStorage.getItem('stretchData')) || [];
-        const trainingData = JSON.parse(localStorage.getItem('trainingData')) || [];
-        const runningData = JSON.parse(localStorage.getItem('runningData')) || [];
+        const SHEET_ID = "2PACX-1vQg84TjR0Q-MpqqGEMaY3CSnkp5DDBpvGK-abLBMgCEfVhKIHk3Fq9rZ_U8kGDMgHxvTM-JACNtWQln";
+        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
-        function addData() {
-            const sleep = parseFloat(document.getElementById('sleep').value) || 0;
-            const stretch = parseInt(document.getElementById('stretch').value) || 0;
-            const training = parseInt(document.getElementById('training').value) || 0;
-            const running = parseFloat(document.getElementById('running').value) || 0;
+        const sleepData = [];
+        const stretchData = [];
+        const trainingData = [];
+        const runningData = [];
 
-            const today = new Date().toISOString().split('T')[0];
-            sleepData.push({ date: today, value: sleep });
-            stretchData.push({ date: today, value: stretch });
-            trainingData.push({ date: today, value: training });
-            runningData.push({ date: today, value: running });
+        async function fetchData() {
+            try {
+                const response = await fetch(SHEET_URL);
+                const text = await response.text();
+                const json = JSON.parse(text.slice(47, -2));
+                const rows = json.table.rows;
 
-            localStorage.setItem('sleepData', JSON.stringify(sleepData));
-            localStorage.setItem('stretchData', JSON.stringify(stretchData));
-            localStorage.setItem('trainingData', JSON.stringify(trainingData));
-            localStorage.setItem('runningData', JSON.stringify(runningData));
+                rows.forEach(row => {
+                    const date = row.c[0]?.v || '';
+                    const sleep = parseFloat(row.c[1]?.v) || 0;
+                    const stretch = parseInt(row.c[2]?.v) || 0;
+                    const training = parseInt(row.c[3]?.v) || 0;
+                    const running = parseFloat(row.c[4]?.v) || 0;
 
-            updateCharts();
+                    if (date) {
+                        sleepData.push({ date, value: sleep });
+                        stretchData.push({ date, value: stretch });
+                        trainingData.push({ date, value: training });
+                        runningData.push({ date, value: running });
+                    }
+                });
+
+                updateCharts();
+            } catch (error) {
+                console.error("Error fetching data from Google Sheets:", error);
+            }
         }
 
         function updateCharts() {
@@ -122,7 +103,7 @@
                         {
                             label: label,
                             data: values,
-                            borderColor: '#ff66ff',
+                            borderColor: '#00bf72',
                             borderWidth: 2,
                             fill: false
                         },
@@ -130,7 +111,7 @@
                             ? [{
                                 label: 'Goal',
                                 data: goalLine,
-                                borderColor: '#ff9999',
+                                borderColor: '#004d7a',
                                 borderWidth: 1,
                                 borderDash: [5, 5],
                                 fill: false
@@ -148,7 +129,7 @@
             });
         }
 
-        updateCharts();
+        fetchData();
     </script>
 </body>
 </html>
