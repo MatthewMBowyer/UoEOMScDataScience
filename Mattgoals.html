@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Goals Tracker (HTML Parsing)</title>
+  <title>Goals Tracker (HTML Parsing with Stats)</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
@@ -19,22 +19,48 @@
     }
     h1 {
       margin-bottom: 20px;
-      /* Subtle text shadow to keep it readable, not too harsh */
       text-shadow: 1px 1px #999;
     }
-    .graph-container, .debug-container {
-      /* Light background to contrast with pastel body */
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .graph-container {
+      width: 90%;
+      max-width: 800px;
+      margin-bottom: 40px; /* Extra spacing between graph sections */
       background: #ffffff;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-      width: 90%;
-      max-width: 800px;
       color: black;
     }
+    .chart-title {
+      margin-bottom: 20px;
+    }
     canvas {
+      display: block;
+      margin: 0 auto 30px auto; /* More space under the graph */
       max-width: 100%;
+    }
+    .stats-container {
+      margin-top: 20px;
+      background: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .stats-container h3 {
+      margin-top: 0;
+    }
+    .debug-container {
+      width: 90%;
+      max-width: 800px;
+      background: #ffffff;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
     }
     pre {
       white-space: pre-wrap;
@@ -48,13 +74,42 @@
   </style>
 </head>
 <body>
-  <h1>Goals Tracker (HTML Parsing)</h1>
+  <h1>Goals Tracker (HTML Parsing with Stats)</h1>
+
   <div class="graph-container">
-    <h2>Trends</h2>
+    <h2 class="chart-title">Sleep (Daily Data)</h2>
     <canvas id="sleepChart"></canvas>
+    <div class="stats-container" id="sleepStats">
+      <h3>Sleep Stats</h3>
+      <!-- Sleep stats will be injected here -->
+    </div>
+  </div>
+
+  <div class="graph-container">
+    <h2 class="chart-title">Stretch Sessions (Weekly)</h2>
     <canvas id="stretchChart"></canvas>
+    <div class="stats-container" id="stretchStats">
+      <h3>Stretch Stats</h3>
+      <!-- Stretch stats will be injected here -->
+    </div>
+  </div>
+
+  <div class="graph-container">
+    <h2 class="chart-title">Training Sessions (Weekly)</h2>
     <canvas id="trainingChart"></canvas>
+    <div class="stats-container" id="trainingStats">
+      <h3>Training Stats</h3>
+      <!-- Training stats will be injected here -->
+    </div>
+  </div>
+
+  <div class="graph-container">
+    <h2 class="chart-title">Running Distance (Daily)</h2>
     <canvas id="runningChart"></canvas>
+    <div class="stats-container" id="runningStats">
+      <h3>Running Stats</h3>
+      <!-- Running stats will be injected here -->
+    </div>
   </div>
 
   <div class="debug-container">
@@ -63,85 +118,139 @@
   </div>
 
   <script>
-    // Keep your existing link
+    // Your pubhtml link:
     const HTML_LINK = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQg84TjR0Q-MpqqGEMaY3CSnkp5DDBpvGK-abLBMgCEfVhKIHk3Fq9rZ_U8kGDMgHxvTM-JACNtWQln/pubhtml?gid=0&single=true";
 
-    const sleepData = [];
-    const stretchData = [];
-    const trainingData = [];
-    const runningData = [];
+    const sleepDataDaily = [];     // Will remain daily
+    const stretchDataDaily = [];   // We'll group it to weekly
+    const trainingDataDaily = [];  // We'll group it to weekly
+    const runningDataDaily = [];   // Will remain daily
 
+    // ========== FETCH & PARSE HTML TABLE ==========
     async function fetchData() {
       try {
         const response = await fetch(HTML_LINK);
         const htmlText = await response.text();
 
+        // Display raw HTML in debug section
         document.getElementById("debugOutput").innerText = htmlText;
 
+        // Parse as HTML
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlText, "text/html");
 
-        // Query all tables
+        // Grab tables
         const tables = doc.querySelectorAll("table");
         if (!tables.length) {
           throw new Error("No <table> found in the fetched HTML.");
         }
 
-        // Adjust index if needed; right now we assume the first table is your data
+        // Assume first table is the data
         const dataTable = tables[0];
-
         const rows = dataTable.querySelectorAll("tr");
 
-        // Skip the header row
+        // Skip header (row 0)
         for (let i = 1; i < rows.length; i++) {
           const cols = rows[i].querySelectorAll("td");
-          // Ensure we have at least 5 columns
-          if (cols.length < 5) continue;
+          if (cols.length < 5) continue; // skip if not enough columns
 
-          const date = cols[0].innerText.trim();
-          const sleep = parseFloat(cols[1].innerText) || 0;
-          const stretch = parseInt(cols[2].innerText) || 0;
-          const training = parseInt(cols[3].innerText) || 0;
-          const running = parseFloat(cols[4].innerText) || 0;
+          const dateStr = cols[0].innerText.trim();
+          const sleepVal = parseFloat(cols[1].innerText) || 0;
+          const stretchVal = parseInt(cols[2].innerText) || 0;
+          const trainingVal = parseInt(cols[3].innerText) || 0;
+          const runningVal = parseFloat(cols[4].innerText) || 0;
 
-          if (date) {
-            sleepData.push({ date, value: sleep });
-            stretchData.push({ date, value: stretch });
-            trainingData.push({ date, value: training });
-            runningData.push({ date, value: running });
+          if (dateStr) {
+            sleepDataDaily.push({ date: dateStr, value: sleepVal });
+            stretchDataDaily.push({ date: dateStr, value: stretchVal });
+            trainingDataDaily.push({ date: dateStr, value: trainingVal });
+            runningDataDaily.push({ date: dateStr, value: runningVal });
           }
         }
 
-        updateCharts();
+        // Process data for charts + stats
+        updateChartsAndStats();
+
       } catch (error) {
         console.error("Error fetching/parsing HTML:", error);
         document.getElementById("debugOutput").innerText = `Error: ${error.message}`;
       }
     }
 
-    function updateCharts() {
-      createChart("sleepChart", sleepData, "Average Sleep", 8);
-      createChart("stretchChart", stretchData, "Stretching Sessions", 5);
-      createChart("trainingChart", trainingData, "Training Sessions", 6);
-      createChart("runningChart", runningData, "Running Distance");
+    // ========== DATE UTILITIES ==========
+    function parseDateYYYYMMDD(dateStr) {
+      // dateStr like "2025-01-05"
+      // this returns a JS Date object in local time
+      return new Date(dateStr + "T00:00:00");
     }
 
-    function createChart(canvasId, data, label, goal) {
+    // ISO week (approx) or a custom approach: we'll do
+    // year + "-" + "W" + weekNumber as the aggregator key
+    function getYearWeek(dateObj) {
+      // Create a copy of dateObj so we don't mutate the original
+      const d = new Date(dateObj.getTime());
+      // Set to Thursday in the current week
+      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+      // ISO week year
+      const yearStart = new Date(d.getFullYear(), 0, 1);
+      // Calculate full weeks to the date
+      const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+      return d.getFullYear() + "-W" + weekNo;
+    }
+
+    // Summation aggregator from daily data → weekly
+    function groupDailyToWeekly(dailyData) {
+      const weeklyMap = {}; 
+      dailyData.forEach(item => {
+        const dateObj = parseDateYYYYMMDD(item.date);
+        const yw = getYearWeek(dateObj); // e.g. "2025-W1"
+        if (!weeklyMap[yw]) weeklyMap[yw] = 0;
+        weeklyMap[yw] += item.value;
+      });
+      // Convert map to array sorted by the key
+      const weeklyArray = Object.keys(weeklyMap)
+        .sort() // "2025-W1", "2025-W2", etc.
+        .map(weekStr => ({ date: weekStr, value: weeklyMap[weekStr] }));
+      return weeklyArray;
+    }
+
+    // ========== MAIN UPDATE FUNCTION ==========
+    function updateChartsAndStats() {
+      // 1) Sleep chart (daily)
+      createChart("sleepChart", sleepDataDaily, "Average Sleep (hrs)", 8, false);
+      renderSleepStats(sleepDataDaily);
+
+      // 2) Stretch chart => weekly
+      const stretchDataWeekly = groupDailyToWeekly(stretchDataDaily);
+      createChart("stretchChart", stretchDataWeekly, "Stretch Sessions/Week", 5, true);
+      renderStretchStats(stretchDataWeekly);
+
+      // 3) Training chart => weekly
+      const trainingDataWeekly = groupDailyToWeekly(trainingDataDaily);
+      createChart("trainingChart", trainingDataWeekly, "Training Sessions/Week", 6, true);
+      renderTrainingStats(trainingDataWeekly);
+
+      // 4) Running chart => daily
+      createChart("runningChart", runningDataDaily, "Running (km) / Day", null, false);
+      renderRunningStats(runningDataDaily);
+    }
+
+    // ========== CHART CREATION ==========
+    function createChart(canvasId, data, label, goal, isWeekly) {
       const ctx = document.getElementById(canvasId).getContext("2d");
-      const dates = data.map(entry => entry.date);
+      const labels = data.map(entry => entry.date);
       const values = data.map(entry => entry.value);
       const goalLine = goal ? Array(values.length).fill(goal) : null;
 
       new Chart(ctx, {
         type: "line",
         data: {
-          labels: dates,
+          labels,
           datasets: [
             {
-              label: label,
+              label,
               data: values,
-              // Dark blue for the main line
-              borderColor: "#003366",
+              borderColor: "#003366", // Dark blue
               borderWidth: 2,
               fill: false
             },
@@ -149,7 +258,7 @@
               ? [{
                   label: "Goal",
                   data: goalLine,
-                  borderColor: "#777777", // Gray
+                  borderColor: "#777777",
                   borderWidth: 2,
                   borderDash: [5, 5],
                   fill: false
@@ -160,11 +269,112 @@
         options: {
           scales: {
             y: { beginAtZero: true }
+          },
+          plugins: {
+            title: {
+              display: false
+            }
           }
         }
       });
     }
 
+    // ========== RENDER STATS ==========
+    // Helper to safely compute stats
+    function computeStats(data) {
+      // data is array of { date, value }
+      if (!data.length) return null;
+
+      const values = data.map(d => d.value);
+      const total = values.reduce((acc, val) => acc + val, 0);
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const avg = total / values.length;
+
+      return {
+        total,
+        min,
+        max,
+        avg,
+        count: data.length
+      };
+    }
+
+    function renderSleepStats(dailyData) {
+      const stats = computeStats(dailyData);
+      if (!stats) {
+        document.getElementById("sleepStats").innerHTML += "<p>No sleep data available.</p>";
+        return;
+      }
+      const { total, min, max, avg, count } = stats;
+      // total is sum of hours over all days
+      // avg is average daily sleep
+      // min / max are daily extremes
+      const html = `
+        <p><strong>Days Tracked:</strong> ${count}</p>
+        <p><strong>Total Sleep (hrs):</strong> ${total.toFixed(1)}</p>
+        <p><strong>Average Sleep (hrs/day):</strong> ${avg.toFixed(2)}</p>
+        <p><strong>Minimum Sleep (hrs/day):</strong> ${min.toFixed(1)}</p>
+        <p><strong>Maximum Sleep (hrs/day):</strong> ${max.toFixed(1)}</p>
+      `;
+      document.getElementById("sleepStats").innerHTML += html;
+    }
+
+    function renderStretchStats(weeklyData) {
+      const stats = computeStats(weeklyData);
+      if (!stats) {
+        document.getElementById("stretchStats").innerHTML += "<p>No stretch data available.</p>";
+        return;
+      }
+      const { total, min, max, avg, count } = stats;
+      // Here, each row is a week
+      // total is sum over all weeks, min is smallest weekly total, etc.
+      const html = `
+        <p><strong>Weeks Tracked:</strong> ${count}</p>
+        <p><strong>Total Stretch Sessions (year):</strong> ${total}</p>
+        <p><strong>Average Stretch Sessions/Week:</strong> ${avg.toFixed(2)}</p>
+        <p><strong>Lowest Weekly Stretch:</strong> ${min}</p>
+        <p><strong>Highest Weekly Stretch:</strong> ${max}</p>
+      `;
+      document.getElementById("stretchStats").innerHTML += html;
+    }
+
+    function renderTrainingStats(weeklyData) {
+      const stats = computeStats(weeklyData);
+      if (!stats) {
+        document.getElementById("trainingStats").innerHTML += "<p>No training data available.</p>";
+        return;
+      }
+      const { total, min, max, avg, count } = stats;
+      const html = `
+        <p><strong>Weeks Tracked:</strong> ${count}</p>
+        <p><strong>Total Training Sessions (year):</strong> ${total}</p>
+        <p><strong>Average Training Sessions/Week:</strong> ${avg.toFixed(2)}</p>
+        <p><strong>Lowest Weekly Training:</strong> ${min}</p>
+        <p><strong>Highest Weekly Training:</strong> ${max}</p>
+      `;
+      document.getElementById("trainingStats").innerHTML += html;
+    }
+
+    function renderRunningStats(dailyData) {
+      const stats = computeStats(dailyData);
+      if (!stats) {
+        document.getElementById("runningStats").innerHTML += "<p>No running data available.</p>";
+        return;
+      }
+      const { total, min, max, avg, count } = stats;
+      // total is total km, average is km/day, etc.
+      const html = `
+        <p><strong>Days Tracked:</strong> ${count}</p>
+        <p><strong>Total Running (km):</strong> ${total.toFixed(2)}</p>
+        <p><strong>Average Running (km/day):</strong> ${avg.toFixed(2)}</p>
+        <p><strong>Shortest Daily Run (km):</strong> ${min.toFixed(2)}</p>
+        <p><strong>Longest Daily Run (km):</strong> ${max.toFixed(2)}</p>
+      `;
+      document.getElementById("runningStats").innerHTML += html;
+    }
+
+    // Fetch data on load
     fetchData();
   </script>
 </body>
