@@ -70,9 +70,14 @@
             try {
                 const response = await fetch(SHEET_URL);
                 const text = await response.text();
-                document.getElementById('debugOutput').innerText = text; // Display raw data
 
-                const json = JSON.parse(text.slice(47, -2));
+                // Display the full raw response for debugging
+                document.getElementById('debugOutput').innerText = text;
+
+                // Remove leading metadata
+                const jsonString = text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
+                const json = JSON.parse(jsonString);
+
                 const rows = json.table.rows;
 
                 rows.forEach(row => {
