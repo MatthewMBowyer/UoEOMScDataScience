@@ -11,24 +11,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: linear-gradient(135deg, #004d7a 0%, #008793 50%, #00bf72 100%);
+      /* Softer, pastel gradient background */
+      background: linear-gradient(135deg, #d1f7ff 0%, #b3f0ff 70%, #e1ffff 100%);
       margin: 0;
       padding: 20px;
-      color: white;
+      color: black; /* Dark text for readability */
     }
     h1 {
       margin-bottom: 20px;
-      text-shadow: 2px 2px #006f8d;
+      /* Subtle text shadow to keep it readable, not too harsh */
+      text-shadow: 1px 1px #999;
     }
     .graph-container, .debug-container {
-      background: rgba(255,255,255,0.1);
+      /* Light background to contrast with pastel body */
+      background: #ffffff;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       width: 90%;
       max-width: 800px;
-      color: white;
+      color: black;
     }
     canvas {
       max-width: 100%;
@@ -36,7 +39,7 @@
     pre {
       white-space: pre-wrap;
       word-wrap: break-word;
-      background: rgba(0,0,0,0.8);
+      background: #f2f2f2;
       padding: 10px;
       border-radius: 5px;
       overflow: auto;
@@ -60,7 +63,7 @@
   </div>
 
   <script>
-    // Your pubhtml link:
+    // Keep your existing link
     const HTML_LINK = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQg84TjR0Q-MpqqGEMaY3CSnkp5DDBpvGK-abLBMgCEfVhKIHk3Fq9rZ_U8kGDMgHxvTM-JACNtWQln/pubhtml?gid=0&single=true";
 
     const sleepData = [];
@@ -70,50 +73,30 @@
 
     async function fetchData() {
       try {
-        // 1. Fetch the HTML
         const response = await fetch(HTML_LINK);
         const htmlText = await response.text();
 
-        // 2. Display the raw HTML in debug section
         document.getElementById("debugOutput").innerText = htmlText;
 
-        // 3. Parse the fetched HTML
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlText, "text/html");
 
-        /**
-         * The structure of the published HTML can vary, 
-         * but typically there's at least one table element with your data.
-         * We need to locate the correct table and parse the rows/columns. 
-         */
-
-        // Let's assume the first or second <table> is your actual data table.
-        // We can refine the selector if needed. For instance:
-        //    doc.querySelectorAll("table")[0], 
-        // or we can search for a more specific CSS class or attribute 
-        // if you see one in the debug output.
-
+        // Query all tables
         const tables = doc.querySelectorAll("table");
         if (!tables.length) {
           throw new Error("No <table> found in the fetched HTML.");
         }
 
-        // You might need to adjust the index here if the first table is not your data:
+        // Adjust index if needed; right now we assume the first table is your data
         const dataTable = tables[0];
 
-        // 4. Extract rows from the table
         const rows = dataTable.querySelectorAll("tr");
 
-        // If the first row is headers, e.g.:
-        //  Date | Sleep | Stretch | Training | Running
-        // We'll start from row index 1 to skip the header row.
+        // Skip the header row
         for (let i = 1; i < rows.length; i++) {
           const cols = rows[i].querySelectorAll("td");
-          // We expect 5 columns: date, sleep, stretch, training, running
-          if (cols.length < 5) {
-            // might be an empty row or something else
-            continue;
-          }
+          // Ensure we have at least 5 columns
+          if (cols.length < 5) continue;
 
           const date = cols[0].innerText.trim();
           const sleep = parseFloat(cols[1].innerText) || 0;
@@ -129,7 +112,6 @@
           }
         }
 
-        // 5. Now that we have our data arrays, let's build the charts
         updateCharts();
       } catch (error) {
         console.error("Error fetching/parsing HTML:", error);
@@ -158,35 +140,31 @@
             {
               label: label,
               data: values,
-              borderColor: "#00bf72",
+              // Dark blue for the main line
+              borderColor: "#003366",
               borderWidth: 2,
               fill: false
             },
             ...(goalLine
-              ? [
-                  {
-                    label: "Goal",
-                    data: goalLine,
-                    borderColor: "#004d7a",
-                    borderWidth: 1,
-                    borderDash: [5, 5],
-                    fill: false
-                  }
-                ]
+              ? [{
+                  label: "Goal",
+                  data: goalLine,
+                  borderColor: "#777777", // Gray
+                  borderWidth: 2,
+                  borderDash: [5, 5],
+                  fill: false
+                }]
               : [])
           ]
         },
         options: {
           scales: {
-            y: {
-              beginAtZero: true
-            }
+            y: { beginAtZero: true }
           }
         }
       });
     }
 
-    // Fetch the HTML and parse
     fetchData();
   </script>
 </body>
