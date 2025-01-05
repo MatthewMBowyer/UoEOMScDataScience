@@ -1,162 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goals Tracker</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: linear-gradient(135deg, #004d7a 0%, #008793 50%, #00bf72 100%);
-            margin: 0;
-            padding: 20px;
-            color: white;
-        }
-        h1 {
-            margin-bottom: 20px;
-            text-shadow: 2px 2px #006f8d;
-        }
-        .graph-container, .debug-container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            width: 90%;
-            max-width: 800px;
-            color: white;
-        }
-        canvas {
-            max-width: 100%;
-        }
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            border-radius: 5px;
-            overflow: auto;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Goals Tracker (HTML Parsing)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #004d7a 0%, #008793 50%, #00bf72 100%);
+      margin: 0;
+      padding: 20px;
+      color: white;
+    }
+    h1 {
+      margin-bottom: 20px;
+      text-shadow: 2px 2px #006f8d;
+    }
+    .graph-container, .debug-container {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      width: 90%;
+      max-width: 800px;
+      color: white;
+    }
+    canvas {
+      max-width: 100%;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: rgba(0,0,0,0.8);
+      padding: 10px;
+      border-radius: 5px;
+      overflow: auto;
+      max-height: 300px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Goals Tracker</h1>
-    <div class="graph-container">
-        <h2>Trends</h2>
-        <canvas id="sleepChart"></canvas>
-        <canvas id="stretchChart"></canvas>
-        <canvas id="trainingChart"></canvas>
-        <canvas id="runningChart"></canvas>
-    </div>
-    <div class="debug-container">
-        <h2>Debug Data</h2>
-        <pre id="debugOutput">Loading...</pre>
-    </div>
+  <h1>Goals Tracker (HTML Parsing)</h1>
+  <div class="graph-container">
+    <h2>Trends</h2>
+    <canvas id="sleepChart"></canvas>
+    <canvas id="stretchChart"></canvas>
+    <canvas id="trainingChart"></canvas>
+    <canvas id="runningChart"></canvas>
+  </div>
 
-    <script>
-        const SHEET_ID = "2PACX-1vQg84TjR0Q-MpqqGEMaY3CSnkp5DDBpvGK-abLBMgCEfVhKIHk3Fq9rZ_U8kGDMgHxvTM-JACNtWQln";
-        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+  <div class="debug-container">
+    <h2>Debug Data (Raw HTML)</h2>
+    <pre id="debugOutput">Loading...</pre>
+  </div>
 
-        const sleepData = [];
-        const stretchData = [];
-        const trainingData = [];
-        const runningData = [];
+  <script>
+    // Your pubhtml link:
+    const HTML_LINK = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQg84TjR0Q-MpqqGEMaY3CSnkp5DDBpvGK-abLBMgCEfVhKIHk3Fq9rZ_U8kGDMgHxvTM-JACNtWQln/pubhtml?gid=0&single=true";
 
-        async function fetchData() {
-            try {
-                const response = await fetch(SHEET_URL);
-                const text = await response.text();
+    const sleepData = [];
+    const stretchData = [];
+    const trainingData = [];
+    const runningData = [];
 
-                // Log the raw response to the console for inspection
-                console.log("Raw Response:", text);
-                document.getElementById('debugOutput').innerText = text;
+    async function fetchData() {
+      try {
+        // 1. Fetch the HTML
+        const response = await fetch(HTML_LINK);
+        const htmlText = await response.text();
 
-                // Try to extract the JSON part of the response
-                const startIndex = text.indexOf('{');
-                const endIndex = text.lastIndexOf('}') + 1;
-                if (startIndex === -1 || endIndex === -1) {
-                    throw new Error("JSON structure not found in response");
-                }
+        // 2. Display the raw HTML in debug section
+        document.getElementById("debugOutput").innerText = htmlText;
 
-                const jsonString = text.slice(startIndex, endIndex);
-                const json = JSON.parse(jsonString);
+        // 3. Parse the fetched HTML
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, "text/html");
 
-                const rows = json.table.rows;
+        /**
+         * The structure of the published HTML can vary, 
+         * but typically there's at least one table element with your data.
+         * We need to locate the correct table and parse the rows/columns. 
+         */
 
-                rows.forEach(row => {
-                    const date = row.c[0]?.v || '';
-                    const sleep = parseFloat(row.c[1]?.v) || 0;
-                    const stretch = parseInt(row.c[2]?.v) || 0;
-                    const training = parseInt(row.c[3]?.v) || 0;
-                    const running = parseFloat(row.c[4]?.v) || 0;
+        // Let's assume the first or second <table> is your actual data table.
+        // We can refine the selector if needed. For instance:
+        //    doc.querySelectorAll("table")[0], 
+        // or we can search for a more specific CSS class or attribute 
+        // if you see one in the debug output.
 
-                    if (date) {
-                        sleepData.push({ date, value: sleep });
-                        stretchData.push({ date, value: stretch });
-                        trainingData.push({ date, value: training });
-                        runningData.push({ date, value: running });
-                    }
-                });
+        const tables = doc.querySelectorAll("table");
+        if (!tables.length) {
+          throw new Error("No <table> found in the fetched HTML.");
+        }
 
-                updateCharts();
-            } catch (error) {
-                console.error("Error processing data:", error);
-                document.getElementById('debugOutput').innerText = `Error: ${error.message}`;
+        // You might need to adjust the index here if the first table is not your data:
+        const dataTable = tables[0];
+
+        // 4. Extract rows from the table
+        const rows = dataTable.querySelectorAll("tr");
+
+        // If the first row is headers, e.g.:
+        //  Date | Sleep | Stretch | Training | Running
+        // We'll start from row index 1 to skip the header row.
+        for (let i = 1; i < rows.length; i++) {
+          const cols = rows[i].querySelectorAll("td");
+          // We expect 5 columns: date, sleep, stretch, training, running
+          if (cols.length < 5) {
+            // might be an empty row or something else
+            continue;
+          }
+
+          const date = cols[0].innerText.trim();
+          const sleep = parseFloat(cols[1].innerText) || 0;
+          const stretch = parseInt(cols[2].innerText) || 0;
+          const training = parseInt(cols[3].innerText) || 0;
+          const running = parseFloat(cols[4].innerText) || 0;
+
+          if (date) {
+            sleepData.push({ date, value: sleep });
+            stretchData.push({ date, value: stretch });
+            trainingData.push({ date, value: training });
+            runningData.push({ date, value: running });
+          }
+        }
+
+        // 5. Now that we have our data arrays, let's build the charts
+        updateCharts();
+      } catch (error) {
+        console.error("Error fetching/parsing HTML:", error);
+        document.getElementById("debugOutput").innerText = `Error: ${error.message}`;
+      }
+    }
+
+    function updateCharts() {
+      createChart("sleepChart", sleepData, "Average Sleep", 8);
+      createChart("stretchChart", stretchData, "Stretching Sessions", 5);
+      createChart("trainingChart", trainingData, "Training Sessions", 6);
+      createChart("runningChart", runningData, "Running Distance");
+    }
+
+    function createChart(canvasId, data, label, goal) {
+      const ctx = document.getElementById(canvasId).getContext("2d");
+      const dates = data.map(entry => entry.date);
+      const values = data.map(entry => entry.value);
+      const goalLine = goal ? Array(values.length).fill(goal) : null;
+
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: dates,
+          datasets: [
+            {
+              label: label,
+              data: values,
+              borderColor: "#00bf72",
+              borderWidth: 2,
+              fill: false
+            },
+            ...(goalLine
+              ? [
+                  {
+                    label: "Goal",
+                    data: goalLine,
+                    borderColor: "#004d7a",
+                    borderWidth: 1,
+                    borderDash: [5, 5],
+                    fill: false
+                  }
+                ]
+              : [])
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
             }
+          }
         }
+      });
+    }
 
-        function updateCharts() {
-            createChart('sleepChart', sleepData, 'Average Sleep', 8);
-            createChart('stretchChart', stretchData, 'Stretching Sessions', 5);
-            createChart('trainingChart', trainingData, 'Training Sessions', 6);
-            createChart('runningChart', runningData, 'Running Distance');
-        }
-
-        function createChart(canvasId, data, label, goal) {
-            const ctx = document.getElementById(canvasId).getContext('2d');
-            const dates = data.map(entry => entry.date);
-            const values = data.map(entry => entry.value);
-            const goalLine = goal ? Array(values.length).fill(goal) : null;
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [
-                        {
-                            label: label,
-                            data: values,
-                            borderColor: '#00bf72',
-                            borderWidth: 2,
-                            fill: false
-                        },
-                        ...(goalLine
-                            ? [{
-                                label: 'Goal',
-                                data: goalLine,
-                                borderColor: '#004d7a',
-                                borderWidth: 1,
-                                borderDash: [5, 5],
-                                fill: false
-                            }]
-                            : [])
-                    ]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-
-        fetchData();
-    </script>
+    // Fetch the HTML and parse
+    fetchData();
+  </script>
 </body>
 </html>
