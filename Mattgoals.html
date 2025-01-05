@@ -74,8 +74,12 @@
                 // Display the full raw response for debugging
                 document.getElementById('debugOutput').innerText = text;
 
-                // Remove leading metadata
-                const jsonString = text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
+                // Use regex to extract valid JSON
+                const jsonStringMatch = text.match(/\{.*\}/s);
+                if (!jsonStringMatch) {
+                    throw new Error("Unable to extract JSON from response");
+                }
+                const jsonString = jsonStringMatch[0];
                 const json = JSON.parse(jsonString);
 
                 const rows = json.table.rows;
