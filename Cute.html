@@ -12,14 +12,14 @@
       font-family: 'Arial', sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
       background-image: url('images/Chloe background.png');
       background-size: cover;
       background-position: center;
       margin: 0;
-      position: relative;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     h1 {
@@ -56,6 +56,9 @@
       display: flex;
       align-items: center;
       box-shadow: 0 4px #cc33cc;
+      flex-wrap: wrap;
+      text-align: center;
+      max-width: 90vw;
     }
 
     button:hover {
@@ -72,7 +75,6 @@
       margin-right: 10px;
     }
 
-    /* NEW IMAGE STYLING */
     #relationship-image {
       position: fixed;
       top: 50%;
@@ -86,6 +88,17 @@
       background-size: cover;
       background-position: center;
       transition: background-image 0.5s ease-in-out;
+    }
+
+    @media screen and (max-width: 768px) {
+      #relationship-image {
+        display: none;
+      }
+
+      #message {
+        font-size: 18px;
+        max-width: 95%;
+      }
     }
   </style>
 </head>
@@ -113,16 +126,21 @@
   </div>
 
   <div id="message"></div>
-  <div id="relationship-image"></div> <!-- NEW IMAGE CONTAINER -->
+  <div id="relationship-image"></div>
 
   <script>
-    // RANDOM IMAGE ARRAY
     const relationshipImages = [
-      'images/Relationship/image1.jpg',
-      'images/Relationship/image2.jpg',
-      'images/Relationship/image3.jpg',
-      'images/Relationship/image4.jpg',
-      'images/Relationship/image5.jpg'
+      'images/RelationshipImage1.jpg',
+      'images/RelationshipImage2.jpg',
+      'images/RelationshipImage3.jpg',
+      'images/RelationshipImage4.jpg',
+      'images/RelationshipImage5.jpg',
+      'images/RelationshipImage6.jpg',
+      'images/RelationshipImage7.jpg',
+      'images/RelationshipImage8.jpg',
+      'images/RelationshipImage9.jpg',
+      'images/RelationshipImage10.jpg',
+      'images/RelationshipImage11.jpg'
     ];
     
     const messages = {
@@ -330,16 +348,21 @@
         ]
 };
 
+function displayMessage(category) {
+      if (!messages[category]) return;
 
-    function displayMessage(category) {
       const categoryMessages = messages[category];
       const message = categoryMessages[Math.floor(Math.random() * categoryMessages.length)];
       document.getElementById('message').innerText = message;
 
-      // SET A RANDOM IMAGE
       const randomImage = relationshipImages[Math.floor(Math.random() * relationshipImages.length)];
       document.getElementById('relationship-image').style.backgroundImage = `url('${randomImage}')`;
     }
   </script>
 </body>
 </html>
+
+  
+
+
+
