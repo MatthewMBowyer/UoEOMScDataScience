@@ -10,16 +10,15 @@
 
     body {
       font-family: 'Arial', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       background-image: url('images/Chloe background.png');
       background-size: cover;
       background-position: center;
       margin: 0;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 20px;
-      box-sizing: border-box;
     }
 
     h1 {
@@ -30,6 +29,24 @@
       background: rgba(255, 255, 255, 0.3);
       padding: 10px 20px;
       border-radius: 15px;
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 250px;
     }
 
     #message {
@@ -56,8 +73,6 @@
       display: flex;
       align-items: center;
       box-shadow: 0 4px #cc33cc;
-      flex-wrap: wrap;
-      text-align: center;
       max-width: 90vw;
     }
 
@@ -76,12 +91,11 @@
     }
 
     #relationship-image {
-      position: fixed;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      width: 220px;
-      height: 220px;
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+      height: 250px;
+      margin-left: 40px;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -91,8 +105,15 @@
     }
 
     @media screen and (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+
       #relationship-image {
-        display: none;
+        margin-left: 0;
+        margin-top: 20px;
+        width: 80%;
+        height: 200px;
       }
 
       #message {
@@ -104,29 +125,33 @@
 </head>
 <body>
   <h1>Cute Page</h1>
-  <div>
-    <button onclick="displayMessage('badDay')">
-      <i class="fas fa-heart icon"></i>Are you having a bad day?
-    </button>
-    <button onclick="displayMessage('pumpedUp')">
-      <i class="fas fa-heart icon"></i>Do you need to be pumped up?
-    </button>
-    <button onclick="displayMessage('missMe')">
-      <i class="fas fa-heart icon"></i>Do you miss me?
-    </button>
-    <button onclick="displayMessage('loveYou')">
-      <i class="fas fa-heart icon"></i>Do you want to hear how much I love you?
-    </button>
-    <button onclick="displayMessage('special')">
-      <i class="fas fa-heart icon"></i>Do you want to know how special you are?
-    </button>
-    <button onclick="displayMessage('badBody')">
-      <i class="fas fa-heart icon"></i>Having a bad body day? :(
-    </button>
+
+  <div class="main-container">
+    <div class="button-container">
+      <button onclick="displayMessage('badDay')">
+        <i class="fas fa-heart icon"></i>Are you having a bad day?
+      </button>
+      <button onclick="displayMessage('pumpedUp')">
+        <i class="fas fa-heart icon"></i>Do you need to be pumped up?
+      </button>
+      <button onclick="displayMessage('missMe')">
+        <i class="fas fa-heart icon"></i>Do you miss me?
+      </button>
+      <button onclick="displayMessage('loveYou')">
+        <i class="fas fa-heart icon"></i>Do you want to hear how much I love you?
+      </button>
+      <button onclick="displayMessage('special')">
+        <i class="fas fa-heart icon"></i>Do you want to know how special you are?
+      </button>
+      <button onclick="displayMessage('badBody')">
+        <i class="fas fa-heart icon"></i>Having a bad body day? :(
+      </button>
+    </div>
+
+    <div id="relationship-image"></div>
   </div>
 
   <div id="message"></div>
-  <div id="relationship-image"></div>
 
   <script>
     const relationshipImages = [
@@ -142,6 +167,7 @@
       'images/RelationshipImage10.jpg',
       'images/RelationshipImage11.jpg'
     ];
+
     
     const messages = {
     badDay: [
@@ -348,7 +374,8 @@
         ]
 };
 
-function displayMessage(category) {
+
+    function displayMessage(category) {
       if (!messages[category]) return;
 
       const categoryMessages = messages[category];
@@ -361,8 +388,3 @@ function displayMessage(category) {
   </script>
 </body>
 </html>
-
-  
-
-
-
