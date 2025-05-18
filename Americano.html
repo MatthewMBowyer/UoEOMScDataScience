@@ -10,176 +10,82 @@
     .is-pro { color:#e63946; }
     .is-intermediate { color:#ff9f1c; }
     .is-beginner { color:#2a9d8f; }
+    input.score { width: 3.5rem; display:inline-block; }
   </style>
 </head>
 <body>
   <section class="section">
     <h1 class="title">Padel Americano Manager</h1>
     <div class="columns">
+      <!-- Player entry -->
       <div class="column is-half">
         <h2 class="subtitle">Add Player</h2>
-        <div class="field">
-          <label class="label">Name</label>
-          <div class="control"><input id="playerName" class="input" placeholder="Player name" /></div>
-        </div>
-        <div class="field">
-          <label class="label">Level</label>
-          <div class="control"><div class="select"><select id="playerLevel"><option>Beginner</option><option>Intermediate</option><option>Pro</option></select></div></div>
-        </div>
+        <div class="field"><label class="label">Name</label><input id="playerName" class="input" placeholder="Player name"></div>
+        <div class="field"><label class="label">Level</label><div class="select"><select id="playerLevel"><option>Beginner</option><option>Intermediate</option><option>Pro</option></select></div></div>
         <button id="addBtn" class="button is-link">Add Player</button>
         <hr>
         <h2 class="subtitle">Players (<span id="playerCount">0</span>)</h2>
-        <table class="table is-fullwidth" id="playerTable"><thead><tr><th>Name</th><th>Level</th><th>Remove</th></tr></thead><tbody></tbody></table>
+        <table class="table is-fullwidth" id="playerTable"><thead><tr><th>Name</th><th>Level</th><th></th></tr></thead><tbody></tbody></table>
       </div>
+      <!-- Settings + leaderboard -->
       <div class="column is-half">
         <h2 class="subtitle">Settings</h2>
-        <div class="field"><label class="label">Pairing mode</label>
-          <label class="radio"><input type="radio" name="mode" value="group"> Keep Levels Separate</label>
+        <div class="field"><label class="label">Pairing</label>
+          <label class="radio"><input type="radio" name="mode" value="group"> Levels Separate</label>
           <label class="radio"><input type="radio" name="mode" value="mixed" checked> Mixed Balanced</label>
         </div>
-        <div class="field">
-          <label class="label">Courts available</label>
-          <div class="control"><input id="courtCount" type="number" class="input" min="1" max="4" value="1" /></div>
-        </div>
-        <button id="scheduleBtn" class="button is-primary">Generate Schedule</button>
-        <button id="resetBtn" class="button is-danger is-light">Reset All</button>
+        <div class="field"><label class="label">Courts Available</label><input id="courtCount" type="number" class="input" min="1" max="6" value="1"></div>
+        <button id="scheduleBtn" class="button is-primary">Generate</button>
+        <button id="resetBtn" class="button is-danger is-light">Reset</button>
         <hr>
         <h2 class="subtitle">Leaderboard</h2>
-        <table class="table is-fullwidth" id="leaderboard"><thead><tr><th>Player</th><th>Level</th><th>Pts</th><th>GP</th></tr></thead><tbody></tbody></table>
+        <table class="table is-fullwidth" id="leaderboard"><thead><tr><th>Player</th><th>Lvl</th><th>Pts</th><th>GP</th></tr></thead><tbody></tbody></table>
       </div>
     </div>
-    <hr>
-    <h2 class="subtitle">Matches</h2>
+    <hr><h2 class="subtitle">Matches</h2>
     <div id="matches"></div>
   </section>
-
 <script>
-// ─── Storage helpers ───────────────────────────────────────────
-let players     = JSON.parse(localStorage.getItem('players')     || '[]');
-let matches     = JSON.parse(localStorage.getItem('matches')     || '[]');
-let leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '{}');
-let mode        = localStorage.getItem('mode') || 'mixed';
-function save(){
-  localStorage.setItem('players'    ,JSON.stringify(players));
-  localStorage.setItem('matches'    ,JSON.stringify(matches));
-  localStorage.setItem('leaderboard',JSON.stringify(leaderboard));
-  localStorage.setItem('mode'       ,mode);
-}
-// ─── DOM references ───────────────────────────────────────────
-const $tblBody = document.querySelector('#playerTable tbody');
-const $count   = document.getElementById('playerCount');
-const $ldBody  = document.querySelector('#leaderboard tbody');
-const $matches = document.getElementById('matches');
-// ─── Utility functions ────────────────────────────────────────
+// persistent state
+let players=JSON.parse(localStorage.getItem('players')||'[]');
+let matches=JSON.parse(localStorage.getItem('matches')||'[]');
+let mode=localStorage.getItem('mode')||'mixed';
+let leaderboard=JSON.parse(localStorage.getItem('leaderboard')||'{}');
 const rank={Pro:3,Intermediate:2,Beginner:1};
-function cls(l){return l==='Pro'?'is-pro':l==='Intermediate'?'is-intermediate':'is-beginner';}
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
-// ─── Renderers ────────────────────────────────────────────────
-function drawPlayers(){
-  $tblBody.innerHTML='';
-  players.forEach((p,i)=>$tblBody.insertAdjacentHTML('beforeend',`<tr><td>${p.name}</td><td class="${cls(p.level)}">${p.level}</td><td><button class="button is-small" onclick="delPlayer(${i})">X</button></td></tr>`));
-  $count.textContent=players.length;
+// helpers
+const save=()=>{localStorage.setItem('players',JSON.stringify(players));localStorage.setItem('matches',JSON.stringify(matches));localStorage.setItem('mode',mode);localStorage.setItem('leaderboard',JSON.stringify(leaderboard));};
+const cls=l=>l==='Pro'?'is-pro':l==='Intermediate'?'is-intermediate':'is-beginner';
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}};
+// UI refs
+const tblBody=document.querySelector('#playerTable tbody');
+const countSpan=document.getElementById('playerCount');
+const ldBody=document.querySelector('#leaderboard tbody');
+const matchDiv=document.getElementById('matches');
+// renderers
+function drawPlayers(){tblBody.innerHTML='';players.forEach((p,i)=>tblBody.insertAdjacentHTML('beforeend',`<tr><td>${p.name}</td><td class="${cls(p.level)}">${p.level}</td><td><button class="delete is-small" onclick="delPlayer(${i})"></button></td></tr>`));countSpan.textContent=players.length;}
+function drawLeader(){ldBody.innerHTML='';Object.entries(leaderboard).sort((a,b)=>b[1].pts-a[1].pts).forEach(([n,o])=>ldBody.insertAdjacentHTML('beforeend',`<tr><td>${n}</td><td class="${cls(o.level)}">${o.level[0]}</td><td>${o.pts}</td><td>${o.gp}</td></tr>`));}
+function drawMatches(){matchDiv.innerHTML='';const byRound={};matches.forEach(m=>{byRound[m.round]=byRound[m.round]||[];byRound[m.round].push(m);});Object.keys(byRound).sort((a,b)=>a-b).forEach(r=>{matchDiv.insertAdjacentHTML('beforeend',`<h3 class="title is-6">Round ${r}</h3>`);const row=document.createElement('div');row.className='columns';byRound[r].forEach(m=>{const col=document.createElement('div');col.className='column';col.innerHTML=`<div class="box"><p><strong>Court ${m.court}</strong></p><p>${m.t1.join(' & ')}<br>vs<br>${m.t2.join(' & ')}</p><input class="input score" placeholder="${m.s1??''}" onchange="score(${m.id},'s1',this.value)"> - <input class="input score" placeholder="${m.s2??''}" onchange="score(${m.id},'s2',this.value)"></div>`;row.appendChild(col);});matchDiv.appendChild(row);});}
+// CRUD
+function addPlayer(){const name=document.getElementById('playerName').value.trim();if(!name)return;const level=document.getElementById('playerLevel').value;players.push({name,level});leaderboard[name]={pts:0,gp:0,level};document.getElementById('playerName').value='';save();drawPlayers();drawLeader();}
+function delPlayer(i){const n=players[i].name;players.splice(i,1);delete leaderboard[n];save();drawPlayers();drawLeader();}
+// scheduling
+function ringSchedule(levelPlayers,courts,startRound){let n=levelPlayers.length;shuffle(levelPlayers);let rounds=[];let offset=0;let round=startRound;while(rounds.length< n){ // ensure each sits max once
+  const chosen=[];let idx=offset;while(chosen.length<4*courts&&chosen.length<n){chosen.push(levelPlayers[idx% n]);idx++;}
+  // if <4 players → break
+  if(chosen.length<4)break;
+  for(let c=0;c<Math.floor(chosen.length/4);c++){const block=chosen.slice(c*4,c*4+4);const [A,B,C,D]=block;rounds.push({round,court:c+1,t1:[A.name,B.name],t2:[C.name,D.name]});}
+  offset=(offset+4)%n;round++;if(offset===0)break;}
+  return rounds;
 }
-function drawLeader(){
-  $ldBody.innerHTML='';
-  Object.entries(leaderboard).sort((a,b)=>b[1].pts-a[1].pts).forEach(([n,o])=>$ldBody.insertAdjacentHTML('beforeend',`<tr><td>${n}</td><td class="${cls(o.level)}">${o.level}</td><td>${o.pts}</td><td>${o.gp}</td></tr>`));
-}
-function drawMatches(){
-  $matches.innerHTML='';
-  // group by round -> courts
-  const grouped = {};
-  matches.forEach(m=>{ grouped[m.round]=grouped[m.round]||[]; grouped[m.round].push(m); });
-  Object.keys(grouped).sort((a,b)=>a-b).forEach(r=>{
-    $matches.insertAdjacentHTML('beforeend',`<h3 class="title is-5">Round ${r}</h3>`);
-    const row=document.createElement('div'); row.className='columns';
-    grouped[r].forEach((m,idx)=>{
-      const col=document.createElement('div'); col.className='column';
-      col.innerHTML=`<div class="box"><strong>Court ${idx+1}</strong><br>${m.t1.join(' & ')}<br>vs<br>${m.t2.join(' & ')}<br><input type="number" min="0" class="input" style="margin-top:4px" placeholder="${m.s1??''}-${m.s2??''}" onchange="scoreEntry(${m.id},this.value)"></div>`;
-      row.appendChild(col);
-    });
-    $matches.appendChild(row);
-  });
-}
-// ─── CRUD actions ────────────────────────────────────────────
-function addPlayer(){
-  const name=document.getElementById('playerName').value.trim(); if(!name)return;
-  const level=document.getElementById('playerLevel').value;
-  players.push({name,level}); leaderboard[name]={pts:0,gp:0,level};
-  document.getElementById('playerName').value=''; save(); drawPlayers(); drawLeader();
-}
-function delPlayer(i){ const n=players[i].name; players.splice(i,1); delete leaderboard[n]; save(); drawPlayers(); drawLeader(); }
-// ─── Core scheduling helpers ─────────────────────────────────
-function americano(group,start){
-  const [A,B,C,D]=group;
-  return [
-    {round:start,   t1:[A.name,B.name], t2:[C.name,D.name]},
-    {round:start+1, t1:[A.name,C.name], t2:[B.name,D.name]},
-    {round:start+2, t1:[A.name,D.name], t2:[B.name,C.name]}
-  ];
-}
-function scheduleGroup(courts){
-  const levelBuckets={Pro:[],Intermediate:[],Beginner:[]}; players.forEach(p=>levelBuckets[p.level].push(p));
-  let round=1, result=[];
-  for(const lvl of ['Pro','Intermediate','Beginner']){
-    const pool=[...levelBuckets[lvl]]; shuffle(pool);
-    while(pool.length>=4){
-      const group=pool.splice(0,4);
-      const rounds=americano(group,round);
-      rounds.forEach(r=>{ r.level=lvl; r.court=1; });
-      result=result.concat(rounds);
-      round+=3;
-    }
-    if(pool.length>0) alert(`Leftover ${lvl}s not scheduled: ${pool.map(p=>p.name).join(', ')}`);
-  }
-  // assign courts per round respecting count
-  const courtsPerRound=courts;
-  const byRound={};
-  result.forEach((m,idx)=>{byRound[m.round]=byRound[m.round]||[]; byRound[m.round].push(m);} );
-  Object.values(byRound).forEach(list=> list.forEach((m,i)=> m.court=(i%courtsPerRound)+1));
-  return result;
-}
-function balancedGroupsMixed(){
-  // hi‑lo pairing inside each group of 4
-  const sorted=[...players].sort((a,b)=>rank[b.level]-rank[a.level]);
-  const groups=[]; while(sorted.length>=4){ groups.push([sorted.shift(), sorted.pop(), sorted.shift(), sorted.pop()]); }
-  let r=1,out=[]; groups.forEach(g=>{ out=out.concat(americano(g,r)); r+=3;});
-  // annotate court 1 for all (will be re‑set later)
-  out.forEach(m=>m.court=1);
-  return out;
-}
-function applyCourts(matchList,courts){
-  const grouped={}; matchList.forEach(m=>{grouped[m.round]=grouped[m.round]||[]; grouped[m.round].push(m);});
-  Object.values(grouped).forEach(arr=> arr.forEach((m,i)=> m.court=(i%courts)+1));
-  // add unique ids for score tracking
-  matchList.forEach((m,i)=> m.id=i);
-  return matchList;
-}
-// ─── Generate schedule ───────────────────────────────────────
-function gen(){
-  matches=[]; Object.values(leaderboard).forEach(o=>{o.pts=0;o.gp=0});
-  mode=document.querySelector('input[name="mode"]:checked').value;
-  const courts=Math.max(1,parseInt(document.getElementById('courtCount').value)||1);
-  matches= mode==='group' ? scheduleGroup(courts) : balancedGroupsMixed();
-  matches=applyCourts(matches,courts);
-  save(); drawMatches(); drawLeader();
-}
-// ─── Scoring ─────────────────────────────────────────────────
-function scoreEntry(matchId,val){
-  const m=matches.find(x=>x.id===matchId); if(!m) return;
-  const parts=val.split('-').map(x=>parseInt(x.trim())); if(parts.length!==2||parts.some(isNaN)) return;
-  m.s1=parts[0]; m.s2=parts[1];
-  m.t1.forEach(n=>{ leaderboard[n].pts+=m.s1; leaderboard[n].gp++; });
-  m.t2.forEach(n=>{ leaderboard[n].pts+=m.s2; leaderboard[n].gp++; });
-  save(); drawLeader();
-}
-function reset(){ if(!confirm('Clear all data?')) return; players=[]; matches=[]; leaderboard={}; mode='mixed'; save(); drawPlayers(); drawLeader(); drawMatches(); }
-// ─── Listeners ───────────────────────────────────────────────
-document.getElementById('addBtn').onclick=addPlayer;
-document.getElementById('scheduleBtn').onclick=gen;
-document.getElementById('resetBtn').onclick=reset;
-Array.from(document.querySelectorAll('input[name="mode"]')).forEach(r=>{ r.checked=r.value===mode; r.onchange=e=>{ mode=e.target.value; save(); }; });
-// ─── Initial paint ───────────────────────────────────────────
-drawPlayers(); drawLeader(); drawMatches();
+function generateSchedule(){matches=[];for(const k in leaderboard){leaderboard[k].pts=0;leaderboard[k].gp=0;}mode=document.querySelector('input[name="mode"]:checked').value;const courts=Math.max(1,parseInt(document.getElementById('courtCount').value)||1);let id=0;let roundStart=1;if(mode==='group'){['Pro','Intermediate','Beginner'].forEach(lvl=>{const lvlPlayers=players.filter(p=>p.level===lvl);if(lvlPlayers.length>=4){const lvRounds=ringSchedule(lvlPlayers,courts,roundStart);lvRounds.forEach(m=>{m.id=id++;});matches=matches.concat(lvRounds);roundStart+=lvRounds.length;}else if(lvlPlayers.length>0){alert(`Only ${lvlPlayers.length} ${lvl}s. Need at least 4 to schedule.`);}});}else{ // mixed
+  const lvRounds=ringSchedule(players,courts,1);lvRounds.forEach(m=>{m.id=id++;});matches=matches.concat(lvRounds);}save();drawMatches();drawLeader();}
+// scoring
+function score(id,field,val){const num=parseInt(val);if(isNaN(num))return;const m=matches.find(x=>x.id===id);m[field]=num;if(m.s1!=null&&m.s2!=null){m.t1.forEach(n=>{leaderboard[n].pts+=m.s1;leaderboard[n].gp++;});m.t2.forEach(n=>{leaderboard[n].pts+=m.s2;leaderboard[n].gp++;});save();drawLeader();}}
+function resetAll(){if(!confirm('Clear all?'))return;players=[];matches=[];leaderboard={};mode='mixed';save();drawPlayers();drawLeader();drawMatches();}
+// listeners
+document.getElementById('addBtn').onclick=addPlayer;document.getElementById('scheduleBtn').onclick=generateSchedule;document.getElementById('resetBtn').onclick=resetAll;Array.from(document.querySelectorAll('input[name="mode"]')).forEach(r=>{r.checked=r.value===mode;r.onchange=e=>{mode=e.target.value;save();}});
+// initial
+drawPlayers();drawLeader();drawMatches();
 </script>
 </body>
 </html>
