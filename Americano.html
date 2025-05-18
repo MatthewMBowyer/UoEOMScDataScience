@@ -2,90 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Padel Americano Manager</title>
+  <title>Padel Americano Planner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
   <style>
-    body { padding: 2rem; }
-    .is-pro { color:#e63946; }
-    .is-intermediate { color:#ff9f1c; }
-    .is-beginner { color:#2a9d8f; }
-    input.score { width: 3.5rem; display:inline-block; }
+    body { padding:2rem; }
+    .is-pro{color:#e63946}.is-intermediate{color:#ff9f1c}.is-beginner{color:#2a9d8f}
+    input.score{width:3rem;display:inline-block;text-align:center}
   </style>
 </head>
 <body>
-  <section class="section">
-    <h1 class="title">Padel Americano Manager</h1>
-    <div class="columns">
-      <!-- Player entry -->
-      <div class="column is-half">
-        <h2 class="subtitle">Add Player</h2>
-        <div class="field"><label class="label">Name</label><input id="playerName" class="input" placeholder="Player name"></div>
-        <div class="field"><label class="label">Level</label><div class="select"><select id="playerLevel"><option>Beginner</option><option>Intermediate</option><option>Pro</option></select></div></div>
-        <button id="addBtn" class="button is-link">Add Player</button>
-        <hr>
-        <h2 class="subtitle">Players (<span id="playerCount">0</span>)</h2>
-        <table class="table is-fullwidth" id="playerTable"><thead><tr><th>Name</th><th>Level</th><th></th></tr></thead><tbody></tbody></table>
-      </div>
-      <!-- Settings + leaderboard -->
-      <div class="column is-half">
-        <h2 class="subtitle">Settings</h2>
-        <div class="field"><label class="label">Pairing</label>
-          <label class="radio"><input type="radio" name="mode" value="group"> Levels Separate</label>
-          <label class="radio"><input type="radio" name="mode" value="mixed" checked> Mixed Balanced</label>
-        </div>
-        <div class="field"><label class="label">Courts Available</label><input id="courtCount" type="number" class="input" min="1" max="6" value="1"></div>
-        <button id="scheduleBtn" class="button is-primary">Generate</button>
-        <button id="resetBtn" class="button is-danger is-light">Reset</button>
-        <hr>
-        <h2 class="subtitle">Leaderboard</h2>
-        <table class="table is-fullwidth" id="leaderboard"><thead><tr><th>Player</th><th>Lvl</th><th>Pts</th><th>GP</th></tr></thead><tbody></tbody></table>
-      </div>
+<section class="section">
+  <h1 class="title">Padel Americano Planner</h1>
+  <div class="columns">
+    <!-- Player list -->
+    <div class="column is-half">
+      <h2 class="subtitle">Add Player</h2>
+      <div class="field"><label class="label">Name</label><input id="name" class="input" placeholder="Player name"></div>
+      <div class="field"><label class="label">Level</label><div class="select"><select id="level"><option>Beginner</option><option>Intermediate</option><option>Pro</option></select></div></div>
+      <button id="addBtn" class="button is-link">Add</button>
+      <hr>
+      <h2 class="subtitle">Players (<span id="pCount">0</span>)</h2>
+      <table class="table is-fullwidth" id="pTable"><thead><tr><th>Name</th><th>Lvl</th><th></th></tr></thead><tbody></tbody></table>
     </div>
-    <hr><h2 class="subtitle">Matches</h2>
-    <div id="matches"></div>
-  </section>
+    <!-- Settings & leaderboard -->
+    <div class="column is-half">
+      <h2 class="subtitle">Settings</h2>
+      <div class="field"><label class="label">Courts (max 5)</label><input id="courts" type="number" min="1" max="5" value="1" class="input"></div>
+      <button id="genBtn" class="button is-primary">Generate Americano</button>
+      <button id="reset" class="button is-light is-danger">Reset</button>
+      <hr>
+      <h2 class="subtitle">Leaderboard</h2>
+      <table class="table is-fullwidth" id="board"><thead><tr><th>Player</th><th>Pts</th><th>GP</th></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+  <hr>
+  <h2 class="subtitle">Matches</h2>
+  <div id="matches"></div>
+</section>
 <script>
-// persistent state
-let players=JSON.parse(localStorage.getItem('players')||'[]');
-let matches=JSON.parse(localStorage.getItem('matches')||'[]');
-let mode=localStorage.getItem('mode')||'mixed';
-let leaderboard=JSON.parse(localStorage.getItem('leaderboard')||'{}');
-const rank={Pro:3,Intermediate:2,Beginner:1};
+const players=[];            // {name,level}
+const leaderboard={};        // name -> {pts,gp}
+let matches=[];              // {round,court,t1,t2,s1,s2,id}
 // helpers
-const save=()=>{localStorage.setItem('players',JSON.stringify(players));localStorage.setItem('matches',JSON.stringify(matches));localStorage.setItem('mode',mode);localStorage.setItem('leaderboard',JSON.stringify(leaderboard));};
 const cls=l=>l==='Pro'?'is-pro':l==='Intermediate'?'is-intermediate':'is-beginner';
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}};
-// UI refs
-const tblBody=document.querySelector('#playerTable tbody');
-const countSpan=document.getElementById('playerCount');
-const ldBody=document.querySelector('#leaderboard tbody');
+// DOM refs
+const nameInput=document.getElementById('name');
+const levelSel=document.getElementById('level');
+const pTable=document.querySelector('#pTable tbody');
+const pCount=document.getElementById('pCount');
+const boardBody=document.querySelector('#board tbody');
 const matchDiv=document.getElementById('matches');
 // renderers
-function drawPlayers(){tblBody.innerHTML='';players.forEach((p,i)=>tblBody.insertAdjacentHTML('beforeend',`<tr><td>${p.name}</td><td class="${cls(p.level)}">${p.level}</td><td><button class="delete is-small" onclick="delPlayer(${i})"></button></td></tr>`));countSpan.textContent=players.length;}
-function drawLeader(){ldBody.innerHTML='';Object.entries(leaderboard).sort((a,b)=>b[1].pts-a[1].pts).forEach(([n,o])=>ldBody.insertAdjacentHTML('beforeend',`<tr><td>${n}</td><td class="${cls(o.level)}">${o.level[0]}</td><td>${o.pts}</td><td>${o.gp}</td></tr>`));}
-function drawMatches(){matchDiv.innerHTML='';const byRound={};matches.forEach(m=>{byRound[m.round]=byRound[m.round]||[];byRound[m.round].push(m);});Object.keys(byRound).sort((a,b)=>a-b).forEach(r=>{matchDiv.insertAdjacentHTML('beforeend',`<h3 class="title is-6">Round ${r}</h3>`);const row=document.createElement('div');row.className='columns';byRound[r].forEach(m=>{const col=document.createElement('div');col.className='column';col.innerHTML=`<div class="box"><p><strong>Court ${m.court}</strong></p><p>${m.t1.join(' & ')}<br>vs<br>${m.t2.join(' & ')}</p><input class="input score" placeholder="${m.s1??''}" onchange="score(${m.id},'s1',this.value)"> - <input class="input score" placeholder="${m.s2??''}" onchange="score(${m.id},'s2',this.value)"></div>`;row.appendChild(col);});matchDiv.appendChild(row);});}
-// CRUD
-function addPlayer(){const name=document.getElementById('playerName').value.trim();if(!name)return;const level=document.getElementById('playerLevel').value;players.push({name,level});leaderboard[name]={pts:0,gp:0,level};document.getElementById('playerName').value='';save();drawPlayers();drawLeader();}
-function delPlayer(i){const n=players[i].name;players.splice(i,1);delete leaderboard[n];save();drawPlayers();drawLeader();}
-// scheduling
-function ringSchedule(levelPlayers,courts,startRound){let n=levelPlayers.length;shuffle(levelPlayers);let rounds=[];let offset=0;let round=startRound;while(rounds.length< n){ // ensure each sits max once
-  const chosen=[];let idx=offset;while(chosen.length<4*courts&&chosen.length<n){chosen.push(levelPlayers[idx% n]);idx++;}
-  // if <4 players → break
-  if(chosen.length<4)break;
-  for(let c=0;c<Math.floor(chosen.length/4);c++){const block=chosen.slice(c*4,c*4+4);const [A,B,C,D]=block;rounds.push({round,court:c+1,t1:[A.name,B.name],t2:[C.name,D.name]});}
-  offset=(offset+4)%n;round++;if(offset===0)break;}
-  return rounds;
-}
-function generateSchedule(){matches=[];for(const k in leaderboard){leaderboard[k].pts=0;leaderboard[k].gp=0;}mode=document.querySelector('input[name="mode"]:checked').value;const courts=Math.max(1,parseInt(document.getElementById('courtCount').value)||1);let id=0;let roundStart=1;if(mode==='group'){['Pro','Intermediate','Beginner'].forEach(lvl=>{const lvlPlayers=players.filter(p=>p.level===lvl);if(lvlPlayers.length>=4){const lvRounds=ringSchedule(lvlPlayers,courts,roundStart);lvRounds.forEach(m=>{m.id=id++;});matches=matches.concat(lvRounds);roundStart+=lvRounds.length;}else if(lvlPlayers.length>0){alert(`Only ${lvlPlayers.length} ${lvl}s. Need at least 4 to schedule.`);}});}else{ // mixed
-  const lvRounds=ringSchedule(players,courts,1);lvRounds.forEach(m=>{m.id=id++;});matches=matches.concat(lvRounds);}save();drawMatches();drawLeader();}
-// scoring
-function score(id,field,val){const num=parseInt(val);if(isNaN(num))return;const m=matches.find(x=>x.id===id);m[field]=num;if(m.s1!=null&&m.s2!=null){m.t1.forEach(n=>{leaderboard[n].pts+=m.s1;leaderboard[n].gp++;});m.t2.forEach(n=>{leaderboard[n].pts+=m.s2;leaderboard[n].gp++;});save();drawLeader();}}
-function resetAll(){if(!confirm('Clear all?'))return;players=[];matches=[];leaderboard={};mode='mixed';save();drawPlayers();drawLeader();drawMatches();}
+function drawPlayers(){pTable.innerHTML='';players.forEach((p,i)=>pTable.insertAdjacentHTML('beforeend',`<tr><td>${p.name}</td><td class="${cls(p.level)}">${p.level[0]}</td><td><button class="delete is-small" onclick="delPlayer(${i})"></button></td></tr>`));pCount.textContent=players.length;}
+function drawBoard(){boardBody.innerHTML='';Object.entries(leaderboard).sort((a,b)=>b[1].pts-a[1].pts).forEach(([n,o])=>boardBody.insertAdjacentHTML('beforeend',`<tr><td>${n}</td><td>${o.pts}</td><td>${o.gp}</td></tr>`));}
+function drawMatches(){matchDiv.innerHTML='';const rounds=[...new Set(matches.map(m=>m.round))].sort((a,b)=>a-b);rounds.forEach(r=>{matchDiv.insertAdjacentHTML('beforeend',`<h3 class="title is-6">Round ${r}</h3>`);const row=document.createElement('div');row.className='columns';matches.filter(m=>m.round===r).forEach(m=>{const col=document.createElement('div');col.className='column';col.innerHTML=`<div class="box"><strong>Court ${m.court}</strong><br>${m.t1.join(' & ')}<br>vs<br>${m.t2.join(' & ')}<br><input class="input score" onchange="sc(${m.id},'s1',this.value)" placeholder="${m.s1??''}"> - <input class="input score" onchange="sc(${m.id},'s2',this.value)" placeholder="${m.s2??''}"></div>`;row.appendChild(col);});matchDiv.appendChild(row);});}
+// actions
+function addPlayer(){const n=nameInput.value.trim();if(!n)return;const l=levelSel.value;players.push({name:n,level:l});leaderboard[n]={pts:0,gp:0};nameInput.value='';drawPlayers();drawBoard();}
+function delPlayer(i){const n=players[i].name;players.splice(i,1);delete leaderboard[n];drawPlayers();drawBoard();}
+function americanoGroup(group){const [A,B,C,D]=group;return[[A,B,C,D],[A,C,B,D],[A,D,B,C]].map(arr=>({t1:[arr[0].name,arr[1].name],t2:[arr[2].name,arr[3].name]}));}
+function generate(){const courtNum=Math.min(5,Math.max(1,parseInt(document.getElementById('courts').value)||1));matches=[];Object.values(leaderboard).forEach(o=>{o.pts=0;o.gp=0});
+  const pool=[...players];shuffle(pool);
+  const groups=[];while(pool.length>=4){groups.push(pool.splice(0,4));}
+  if(pool.length)alert(`Left out (not multiple of 4): ${pool.map(p=>p.name).join(', ')}`);
+  if(groups.length>courtNum)alert('More groups than courts – some rounds will overlap.');
+  let id=0;[1,2,3].forEach(roundNo=>{groups.forEach((g,idx)=>{const pattern=americanoGroup(g)[roundNo-1];matches.push({round:roundNo,court:(idx%courtNum)+1,t1:pattern.t1,t2:pattern.t2,id:id++});});});
+  drawMatches();drawBoard();}
+function sc(id,f,val){const num=parseInt(val);if(isNaN(num))return;const m=matches.find(x=>x.id===id);m[f]=num;if(m.s1!=null&&m.s2!=null){m.t1.forEach(n=>{leaderboard[n].pts+=m.s1;leaderboard[n].gp++;});m.t2.forEach(n=>{leaderboard[n].pts+=m.s2;leaderboard[n].gp++;});drawBoard();}}
+function reset(){if(!confirm('Clear all?'))return;players.length=0;matches.length=0;for(const k in leaderboard)delete leaderboard[k];drawPlayers();drawBoard();matchDiv.innerHTML='';}
 // listeners
-document.getElementById('addBtn').onclick=addPlayer;document.getElementById('scheduleBtn').onclick=generateSchedule;document.getElementById('resetBtn').onclick=resetAll;Array.from(document.querySelectorAll('input[name="mode"]')).forEach(r=>{r.checked=r.value===mode;r.onchange=e=>{mode=e.target.value;save();}});
-// initial
-drawPlayers();drawLeader();drawMatches();
+document.getElementById('addBtn').onclick=addPlayer;document.getElementById('genBtn').addEventListener('click',generate);document.getElementById('reset').onclick=reset;
+// init
+drawPlayers();drawBoard();
 </script>
 </body>
 </html>
