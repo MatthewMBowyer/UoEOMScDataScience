@@ -18,29 +18,11 @@
     <div class="columns">
       <div class="column is-half">
         <h2 class="subtitle">Add Player</h2>
-        <div class="field">
-          <label class="label">Name</label>
-          <div class="control"><input id="playerName" class="input" placeholder="Player name" /></div>
-        </div>
-        <div class="field">
-          <label class="label">Level</label>
-          <div class="control">
-            <div class="select">
-              <select id="playerLevel">
-                <option>Beginner</option>
-                <option>Intermediate</option>
-                <option>Pro</option>
-              </select>
-            </div>
-          </div>
-        </div>
+        <div class="field"><label class="label">Name</label><div class="control"><input id="playerName" class="input" placeholder="Player name"></div></div>
+        <div class="field"><label class="label">Level</label><div class="control"><div class="select"><select id="playerLevel"><option>Beginner</option><option>Intermediate</option><option>Pro</option></select></div></div></div>
         <button id="addBtn" class="button is-link">Add Player</button>
-        <hr />
-        <h2 class="subtitle">Players (<span id="playerCount">0</span>)</h2>
-        <table class="table is-fullwidth" id="playerTable">
-          <thead><tr><th>Name</th><th>Level</th><th>Remove</th></tr></thead>
-          <tbody></tbody>
-        </table>
+        <hr><h2 class="subtitle">Players (<span id="playerCount">0</span>)</h2>
+        <table class="table is-fullwidth" id="playerTable"><thead><tr><th>Name</th><th>Level</th><th>Remove</th></tr></thead><tbody></tbody></table>
       </div>
       <div class="column is-half">
         <h2 class="subtitle">Settings</h2>
@@ -49,46 +31,39 @@
         <br><br>
         <button id="scheduleBtn" class="button is-primary">Generate Schedule</button>
         <button id="resetBtn" class="button is-danger is-light">Reset All</button>
-        <hr />
-        <h2 class="subtitle">Leaderboard</h2>
-        <table class="table is-fullwidth" id="leaderboard">
-          <thead><tr><th>Player</th><th>Pts</th><th>GP</th></tr></thead>
-          <tbody></tbody>
-        </table>
+        <hr><h2 class="subtitle">Leaderboard</h2>
+        <table class="table is-fullwidth" id="leaderboard"><thead><tr><th>Player</th><th>Pts</th><th>GP</th></tr></thead><tbody></tbody></table>
       </div>
     </div>
-    <hr />
-    <h2 class="subtitle">Matches</h2>
+    <hr><h2 class="subtitle">Matches</h2>
     <div id="matches"></div>
   </section>
 
 <script>
-/***** STORAGE *****/
-let players     = JSON.parse(localStorage.getItem('players')||'[]');
-let matches     = JSON.parse(localStorage.getItem('matches')||'[]');
-let leaderboard = JSON.parse(localStorage.getItem('leaderboard')||'{}');
-let mode        = localStorage.getItem('mode')||'mixed';
+// ─── Data persistence ───────────────────────────────────────────
+let players     = JSON.parse(localStorage.getItem('players')     || '[]');
+let matches     = JSON.parse(localStorage.getItem('matches')     || '[]');
+let leaderboard = JSON.parse(localStorage.getItem('leaderboard') || '{}');
+let mode        = localStorage.getItem('mode') || 'mixed';
 function save(){
-  localStorage.setItem('players',JSON.stringify(players));
-  localStorage.setItem('matches',JSON.stringify(matches));
+  localStorage.setItem('players'    ,JSON.stringify(players));
+  localStorage.setItem('matches'    ,JSON.stringify(matches));
   localStorage.setItem('leaderboard',JSON.stringify(leaderboard));
-  localStorage.setItem('mode',mode);
+  localStorage.setItem('mode'       ,mode);
 }
-/***** DOM *****/
+// ─── DOM refs ───────────────────────────────────────────────────
 const $tblBody = document.querySelector('#playerTable tbody');
 const $count   = document.getElementById('playerCount');
 const $ldBody  = document.querySelector('#leaderboard tbody');
 const $matches = document.getElementById('matches');
-/***** HELPERS *****/
+// ─── Helpers ────────────────────────────────────────────────────
 const rank={Pro:3,Intermediate:2,Beginner:1};
-function cls(l){return l==='Pro'?'is-pro':l==='Intermediate'?'is-intermediate':'is-beginner'}
+function cls(l){return l==='Pro'?'is-pro':l==='Intermediate'?'is-intermediate':'is-beginner';}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
-/***** RENDER *****/
+// ─── Renderers ─────────────────────────────────────────────────
 function drawPlayers(){
   $tblBody.innerHTML='';
-  players.forEach((p,i)=>{
-    $tblBody.insertAdjacentHTML('beforeend',`<tr><td>${p.name}</td><td class="${cls(p.level)}">${p.level}</td><td><button class="button is-small" onclick="delPlayer(${i})">X</button></td></tr>`);
-  });
+  players.forEach((p,i)=>$tblBody.insertAdjacentHTML('beforeend',`<tr><td>${p.name}</td><td class="${cls(p.level)}">${p.level}</td><td><button class="button is-small" onclick="delPlayer(${i})">X</button></td></tr>`));
   $count.textContent=players.length;
 }
 function drawLeader(){
@@ -103,9 +78,9 @@ function drawMatches(){
     $matches.insertAdjacentHTML('beforeend',`<div class="box"><h3 class="title is-6">Round ${m.round}</h3><div class="columns"><div class="column"><strong>${m.t1.join(' & ')}</strong><input type="number" min="0" class="input" value="${m.s1??''}" onchange="upd(${i},'s1',this.value)"></div><div class="column"><strong>${m.t2.join(' & ')}</strong><input type="number" min="0" class="input" value="${m.s2??''}" onchange="upd(${i},'s2',this.value)"></div></div></div>`);
   });
 }
-/***** CRUD *****/
+// ─── CRUD ──────────────────────────────────────────────────────
 function addPlayer(){
-  const name=document.getElementById('playerName').value.trim(); if(!name)return;
+  const name=document.getElementById('playerName').value.trim(); if(!name) return;
   const level=document.getElementById('playerLevel').value;
   players.push({name,level}); leaderboard[name]={pts:0,gp:0};
   document.getElementById('playerName').value=''; save(); drawPlayers(); drawLeader();
@@ -113,41 +88,48 @@ function addPlayer(){
 function delPlayer(i){
   const n=players[i].name; players.splice(i,1); delete leaderboard[n]; save(); drawPlayers(); drawLeader();
 }
-/***** SCHEDULING CORE *****/
-function americanoRounds(group,start){
-  const [A,B,C,D]=group;
-  return [
-    {round:start,t1:[A.name,B.name],t2:[C.name,D.name]},
-    {round:start+1,t1:[A.name,C.name],t2:[B.name,D.name]},
-    {round:start+2,t1:[A.name,D.name],t2:[B.name,C.name]}
-  ];
+// ─── Classic Americano generator for any N (≥4) ────────────────
+function genAmericanoOrder(n){
+  // returns array of length n containing indexes 0..n-1 rotated hi/lo pattern
+  const hi=[...Array(Math.ceil(n/2)).keys()].map(i=>i*2);      // even indexes
+  const lo=[...Array(Math.floor(n/2)).keys()].map(i=>i*2+1);   // odd indexes
+  return hi.concat(lo.reverse());
 }
-function balancedGroupsMix(pl){
-  const sorted=[...pl].sort((a,b)=>rank[b.level]-rank[a.level]); // high→low
-  const groups=[];
-  while(sorted.length>=4){
-    const g=[ sorted.shift(), sorted.pop(), sorted.shift(), sorted.pop() ]; // hi,lo,hi,lo pattern
-    groups.push(g);
-  }
-  if(sorted.length>0){ alert('Leftover players not scheduled (need multiples of 4).'); }
-  return groups;
+function buildTeams(orderedPlayers){
+  // hi-lo-hi-lo pair → balance level on each team
+  const team1=[orderedPlayers[0], orderedPlayers[orderedPlayers.length-1]];
+  const team2=[orderedPlayers[1], orderedPlayers[orderedPlayers.length-2]];
+  return [team1,team2];
 }
 function scheduleMixed(){
-  const groups=balancedGroupsMix(players);
-  let r=1,out=[]; groups.forEach(g=>{out=out.concat(americanoRounds(g,r)); r+=3;});
-  return out;
+  const n=players.length; if(n<4){alert('Need at least 4 players'); return [];}  
+  const rotations=n-1;               // each player sits out at most 1 round when n=5..7
+  const orderIdx=genAmericanoOrder(n); // fixed order once
+  const arr=orderIdx.map(i=>players[i]); // ordered by hi/lo pattern
+  const rounds=[];
+  // circular queue of players
+  let ring=[...arr];
+  for(let r=1; r<=rotations; r++){
+    const playing=ring.slice(0,4);           // take first 4
+    if(playing.length<4) break;
+    const [t1,t2]=buildTeams(playing);
+    rounds.push({round:r,t1:t1.map(p=>p.name),t2:t2.map(p=>p.name),s1:null,s2:null});
+    // rotate ring: move first element to end (everyone shifts)
+    ring.push(ring.shift());
+  }
+  return rounds;
 }
 function scheduleGroup(){
   const buckets={Pro:[],Intermediate:[],Beginner:[]}; players.forEach(p=>buckets[p.level].push(p));
   let r=1,out=[];
   for(const lvl of ['Pro','Intermediate','Beginner']){
-    const pool=buckets[lvl]; shuffle(pool);
-    while(pool.length>=4){ out=out.concat(americanoRounds(pool.splice(0,4),r)); r+=3; }
-    if(pool.length>0) alert(`Not enough ${lvl}s to form another court (left out: ${pool.map(p=>p.name).join(', ')})`);
+    const pool=buckets[lvl]; if(pool.length<4){ if(pool.length) alert(`${lvl} group needs 4+, currently ${pool.length}`); continue; }
+    shuffle(pool);
+    out=out.concat(americanoRounds(pool.slice(0,4),r)); r+=3; // only first 4 of that level play
   }
   return out;
 }
-/***** MAIN *****/
+// ─── Main orchestrator ────────────────────────────────────────
 function gen(){
   matches=[]; for(const k in leaderboard){leaderboard[k].pts=0; leaderboard[k].gp=0;}
   mode=document.querySelector('input[name="mode"]:checked').value;
@@ -156,16 +138,16 @@ function gen(){
   save(); drawMatches(); drawLeader();
 }
 function upd(i,f,val){
-  val=parseInt(val); if(isNaN(val))return; matches[i][f]=val;
-  const m=matches[i]; if(m.s1!=null&&m.s2!=null){ m.t1.forEach(n=>{leaderboard[n].pts+=m.s1; leaderboard[n].gp++;}); m.t2.forEach(n=>{leaderboard[n].pts+=m.s2; leaderboard[n].gp++;}); }
+  val=parseInt(val); if(isNaN(val)) return; matches[i][f]=val;
+  const m=matches[i]; if(m.s1!=null && m.s2!=null){ m.t1.forEach(n=>{leaderboard[n].pts+=m.s1; leaderboard[n].gp++;}); m.t2.forEach(n=>{leaderboard[n].pts+=m.s2; leaderboard[n].gp++;}); }
   save(); drawLeader();
 }
-function reset(){ if(!confirm('Clear all data?'))return; players=[];matches=[];leaderboard={}; mode='mixed'; save(); drawPlayers(); drawLeader(); drawMatches(); }
-/***** INIT *****/
+function reset(){ if(!confirm('Clear all data?')) return; players=[]; matches=[]; leaderboard={}; mode='mixed'; save(); drawPlayers(); drawLeader(); drawMatches(); }
+// ─── Init listeners ───────────────────────────────────────────
 document.getElementById('addBtn').onclick=addPlayer;
 document.getElementById('scheduleBtn').onclick=gen;
 document.getElementById('resetBtn').onclick=reset;
-Array.from(document.querySelectorAll('input[name="mode"]')).forEach(r=>{r.checked=r.value===mode; r.onchange=e=>{mode=e.target.value; save();}});
+Array.from(document.querySelectorAll('input[name="mode"]')).forEach(r=>{ r.checked=r.value===mode; r.onchange=e=>{ mode=e.target.value; save(); }; });
 
 drawPlayers(); drawLeader(); drawMatches();
 </script>
