@@ -145,7 +145,7 @@ function addPlayer() {
   const level = document.getElementById('playerLevel').value;
   if(!name) return;
   players.push({name, level});
-  leaderboard[name] = 0;
+  leaderboard[name] = leaderboard[name] || 0;
   document.getElementById('playerName').value='';
   saveState();
   renderPlayers();
@@ -165,40 +165,52 @@ function shuffle(arr){ for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.r
 function generateSchedule() {
   if(players.length < 4) { alert('Need at least 4 players'); return;}
   matches=[];
-  // clear leaderboard points
   Object.keys(leaderboard).forEach(k=>leaderboard[k]=0);
 
-  if(mode === 'group') {
-    const groups = {'Pro':[], 'Intermediate':[], 'Beginner':[]};
-    players.forEach(p=>groups[p.level].push(p));
-    Object.values(groups).forEach(group=>{
-      shuffle(group);
-      for(let r=0; r<Math.floor(group.length/4); r++){
-        const slice = group.slice(r*4, r*4+4);
-        if(slice.length===4){
-          matches.push(makeMatch(slice, matches.length+1));
-        }
-      }
-    });
+  // divide into groups of 4 ensuring requested mode
+  let poolPlayers = [...players];
+  if(mode==='mixed'){
+    poolPlayers.sort((a,b)=> levelRank(b.level)-levelRank(a.level));
   } else {
-    // mixed balanced
-    const copy = [...players];
-    shuffle(copy);
-    copy.sort((a,b)=> levelRank(b.level)-levelRank(a.level));
-    while(copy.length>=4){
-      const p1 = copy.shift();
-      const p4 = copy.pop();
-      const p2 = copy.shift() || p1;
-      const p3 = copy.pop() || p4;
-      matches.push({round:matches.length+1, team1:[p1.name, p4.name], team2:[p2.name, p3.name], score1:null, score2:null});
-    }
+    shuffle(poolPlayers);
   }
+
+  const groups=[];
+  while(poolPlayers.length>=4){
+    let group;
+    if(mode==='mixed'){
+      // balance group by alternating highest & lowest
+      group=[ poolPlayers.shift(), poolPlayers.pop(), poolPlayers.shift(), poolPlayers.pop() ];
+    } else if(mode==='group'){
+      // take 4 from same level where possible, otherwise any
+      const levelWanted = poolPlayers[0].level;
+      group = poolPlayers.filter(p=>p.level===levelWanted).slice(0,4);
+      if(group.length<4){
+        group = poolPlayers.slice(0,4);
+      }
+      group.forEach(p=> poolPlayers.splice(poolPlayers.indexOf(p),1));
+    }
+    groups.push(group.filter(Boolean));
+  }
+
+  // create americano rounds within each group
+  let round = 1;
+  groups.forEach(group=>{
+    if(group.length!==4) return; // skip incomplete
+    const [A,B,C,D] = group;
+    matches.push(makeMatch([A,B,C,D], round++ , [0,1,2,3])); // AB vs CD
+    matches.push(makeMatch([A,B,C,D], round++ , [0,2,1,3])); // AC vs BD
+    matches.push(makeMatch([A,B,C,D], round++ , [0,3,1,2])); // AD vs BC
+  });
+
   saveState();
   renderMatches();
   renderLeaderboard();
 }
-function makeMatch(arr, round){
-  return {round, team1:[arr[0].name, arr[1].name], team2:[arr[2].name, arr[3].name], score1:null, score2:null};
+
+function makeMatch(group, round, order){
+  const g=order.map(i=>group[i]);
+  return {round, team1:[g[0].name, g[1].name], team2:[g[2].name, g[3].name], score1:null, score2:null};
 }
 function levelRank(l){ return l==='Pro'?3 : l==='Intermediate'?2:1;}
 
@@ -210,7 +222,7 @@ function updateScore(idx, field, val){
     const {team1, team2, score1, score2}=matches[idx];
     team1.forEach(n=>leaderboard[n]+=score1);
     team2.forEach(n=>leaderboard[n]+=score2);
-    matches[idx].score1=null; matches[idx].score2=null; // prevent double count
+    matches[idx].final=true;
   }
   saveState();
   renderLeaderboard();
