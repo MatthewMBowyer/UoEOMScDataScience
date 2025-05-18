@@ -87,109 +87,77 @@ function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random
 function drawPlayers(){
   $tblBody.innerHTML='';
   players.forEach((p,i)=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${p.name}</td><td class="${cls(p.level)}">${p.level}</td><td><button class="button is-small" onclick="delPlayer(${i})">X</button></td>`;
-    $tblBody.appendChild(tr);
+    $tblBody.insertAdjacentHTML('beforeend',`<tr><td>${p.name}</td><td class="${cls(p.level)}">${p.level}</td><td><button class="button is-small" onclick="delPlayer(${i})">X</button></td></tr>`);
   });
   $count.textContent=players.length;
 }
 function drawLeader(){
   $ldBody.innerHTML='';
-  const rows=Object.entries(leaderboard).sort((a,b)=>b[1].pts-a[1].pts);
-  rows.forEach(([n,obj])=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${n}</td><td>${obj.pts}</td><td>${obj.gp}</td>`;
-    $ldBody.appendChild(tr);
+  Object.entries(leaderboard).sort((a,b)=>b[1].pts-a[1].pts).forEach(([n,o])=>{
+    $ldBody.insertAdjacentHTML('beforeend',`<tr><td>${n}</td><td>${o.pts}</td><td>${o.gp}</td></tr>`);
   });
 }
 function drawMatches(){
   $matches.innerHTML='';
-  matches.forEach((m,idx)=>{
-    const box=document.createElement('div'); box.className='box';
-    box.innerHTML=`<h3 class="title is-6">Round ${m.round}</h3>
-    <div class="columns">
-      <div class="column"><strong>${m.t1.join(' & ')}</strong><input type="number" min="0" class="input" value="${m.s1??''}" onchange="upd(${idx},'s1',this.value)"></div>
-      <div class="column"><strong>${m.t2.join(' & ')}</strong><input type="number" min="0" class="input" value="${m.s2??''}" onchange="upd(${idx},'s2',this.value)"></div>
-    </div>`;
-    $matches.appendChild(box);
+  matches.forEach((m,i)=>{
+    $matches.insertAdjacentHTML('beforeend',`<div class="box"><h3 class="title is-6">Round ${m.round}</h3><div class="columns"><div class="column"><strong>${m.t1.join(' & ')}</strong><input type="number" min="0" class="input" value="${m.s1??''}" onchange="upd(${i},'s1',this.value)"></div><div class="column"><strong>${m.t2.join(' & ')}</strong><input type="number" min="0" class="input" value="${m.s2??''}" onchange="upd(${i},'s2',this.value)"></div></div></div>`);
   });
 }
 /***** CRUD *****/
 function addPlayer(){
-  const name=document.getElementById('playerName').value.trim();
-  if(!name)return;
+  const name=document.getElementById('playerName').value.trim(); if(!name)return;
   const level=document.getElementById('playerLevel').value;
-  players.push({name,level});
-  leaderboard[name]={pts:0,gp:0};
-  document.getElementById('playerName').value='';
-  save(); drawPlayers(); drawLeader();
+  players.push({name,level}); leaderboard[name]={pts:0,gp:0};
+  document.getElementById('playerName').value=''; save(); drawPlayers(); drawLeader();
 }
 function delPlayer(i){
-  const n=players[i].name;
-  players.splice(i,1);
-  delete leaderboard[n];
-  save(); drawPlayers(); drawLeader();
+  const n=players[i].name; players.splice(i,1); delete leaderboard[n]; save(); drawPlayers(); drawLeader();
 }
-/***** SCHEDULING *****/
-function scheduleMixed(){
-  const n=players.length; if(n<4){alert('Need at least 4 players');return[];}
-  const plays={}, lastRnd={}; players.forEach(p=>{plays[p.name]=0; lastRnd[p.name]=-2;});
-  const rounds=[]; let roundNo=1; let guard=1000;
-  while(guard--){
-    // order by least games then longest wait
-    const sorted=[...players].sort((a,b)=>{
-      if(plays[a.name]!==plays[b.name]) return plays[a.name]-plays[b.name];
-      return lastRnd[a.name]-lastRnd[b.name];
-    });
-    let pick=[];
-    // 1️⃣ try players who sat out last round
-    for(const p of sorted){ if(lastRnd[p.name]<roundNo-1){ pick.push(p); if(pick.length===4) break; } }
-    // 2️⃣ if not enough, allow recent players (low games first)
-    if(pick.length<4){
-      for(const p of sorted){ if(!pick.includes(p)){ pick.push(p); if(pick.length===4) break; } }
-    }
-    if(pick.length<4) break; // cannot form more rounds
-    // balance teams
-    pick.sort((a,b)=>rank[b.level]-rank[a.level]);
-    const team1=[pick[0].name,pick[3].name];
-    const team2=[pick[1].name,pick[2].name];
-    // fairness check – no one exceeds +1 games after adding this round
-    const hypo={...plays}; team1.concat(team2).forEach(nm=>hypo[nm]++);
-    const vals=Object.values(hypo); if(Math.max(...vals)-Math.min(...vals)>1) break;
-    // commit round
-    rounds.push({round:roundNo,t1:team1,t2:team2,s1:null,s2:null});
-    team1.concat(team2).forEach(nm=>{plays[nm]++; lastRnd[nm]=roundNo;});
-    roundNo++;
+/***** SCHEDULING CORE *****/
+function americanoRounds(group,start){
+  const [A,B,C,D]=group;
+  return [
+    {round:start,t1:[A.name,B.name],t2:[C.name,D.name]},
+    {round:start+1,t1:[A.name,C.name],t2:[B.name,D.name]},
+    {round:start+2,t1:[A.name,D.name],t2:[B.name,C.name]}
+  ];
+}
+function balancedGroupsMix(pl){
+  const sorted=[...pl].sort((a,b)=>rank[b.level]-rank[a.level]); // high→low
+  const groups=[];
+  while(sorted.length>=4){
+    const g=[ sorted.shift(), sorted.pop(), sorted.shift(), sorted.pop() ]; // hi,lo,hi,lo pattern
+    groups.push(g);
   }
-  return rounds;
+  if(sorted.length>0){ alert('Leftover players not scheduled (need multiples of 4).'); }
+  return groups;
 }
-function buildGroups(arr){const g=[], pool=[...arr];shuffle(pool);while(pool.length>=4)g.push(pool.splice(0,4));return g;}
-function americano(g,r){const[A,B,C,D]=g;return[
-  {round:r,t1:[A.name,B.name],t2:[C.name,D.name]},
-  {round:r+1,t1:[A.name,C.name],t2:[B.name,D.name]},
-  {round:r+2,t1:[A.name,D.name],t2:[B.name,C.name]}
-];}
+function scheduleMixed(){
+  const groups=balancedGroupsMix(players);
+  let r=1,out=[]; groups.forEach(g=>{out=out.concat(americanoRounds(g,r)); r+=3;});
+  return out;
+}
 function scheduleGroup(){
-  let r=1,out=[]; const levels={Pro:[],Intermediate:[],Beginner:[]}; players.forEach(p=>levels[p.level].push(p));
+  const buckets={Pro:[],Intermediate:[],Beginner:[]}; players.forEach(p=>buckets[p.level].push(p));
+  let r=1,out=[];
   for(const lvl of ['Pro','Intermediate','Beginner']){
-    const groups=buildGroups(levels[lvl]); groups.forEach(g=>{out=out.concat(americano(g,r)); r+=3;});
+    const pool=buckets[lvl]; shuffle(pool);
+    while(pool.length>=4){ out=out.concat(americanoRounds(pool.splice(0,4),r)); r+=3; }
+    if(pool.length>0) alert(`Not enough ${lvl}s to form another court (left out: ${pool.map(p=>p.name).join(', ')})`);
   }
   return out;
 }
 /***** MAIN *****/
 function gen(){
-  matches=[]; Object.values(leaderboard).forEach(o=>{o.pts=0;o.gp=0});
+  matches=[]; for(const k in leaderboard){leaderboard[k].pts=0; leaderboard[k].gp=0;}
   mode=document.querySelector('input[name="mode"]:checked').value;
   matches= mode==='mixed'?scheduleMixed():scheduleGroup();
-  if(matches.length===0){alert('Could not build matches with current settings');}
+  if(matches.length===0){alert('No matches created – check player count.');}
   save(); drawMatches(); drawLeader();
 }
 function upd(i,f,val){
   val=parseInt(val); if(isNaN(val))return; matches[i][f]=val;
-  const m=matches[i]; if(m.s1!=null&&m.s2!=null){
-    m.t1.forEach(nm=>{leaderboard[nm].pts+=m.s1; leaderboard[nm].gp++;});
-    m.t2.forEach(nm=>{leaderboard[nm].pts+=m.s2; leaderboard[nm].gp++;});
-  }
+  const m=matches[i]; if(m.s1!=null&&m.s2!=null){ m.t1.forEach(n=>{leaderboard[n].pts+=m.s1; leaderboard[n].gp++;}); m.t2.forEach(n=>{leaderboard[n].pts+=m.s2; leaderboard[n].gp++;}); }
   save(); drawLeader();
 }
 function reset(){ if(!confirm('Clear all data?'))return; players=[];matches=[];leaderboard={}; mode='mixed'; save(); drawPlayers(); drawLeader(); drawMatches(); }
@@ -199,7 +167,6 @@ document.getElementById('scheduleBtn').onclick=gen;
 document.getElementById('resetBtn').onclick=reset;
 Array.from(document.querySelectorAll('input[name="mode"]')).forEach(r=>{r.checked=r.value===mode; r.onchange=e=>{mode=e.target.value; save();}});
 
-// Initial draw
 drawPlayers(); drawLeader(); drawMatches();
 </script>
 </body>
