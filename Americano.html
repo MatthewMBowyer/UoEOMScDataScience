@@ -130,50 +130,49 @@ function delPlayer(i){
   delete leaderboard[n];
   save(); drawPlayers(); drawLeader();
 }
-/***** SCHEDULING ALGORITHM *****/
+/***** SCHEDULING *****/
 function scheduleMixed(){
-  const n=players.length; if(n<4){alert('Need at least 4');return[];}
-  const plays={}; const last=-1; players.forEach(p=>plays[p.name]=0);
-  const lastRnd={}; players.forEach(p=>lastRnd[p.name]=-2); // so everyone eligible round1
-  let rounds=[]; let roundNo=1; let limit=n*3; // fail‑safe cap
-  while(true){
-    // sort by fewest games played, then longest waiting
+  const n=players.length; if(n<4){alert('Need at least 4 players');return[];}
+  const plays={}, lastRnd={}; players.forEach(p=>{plays[p.name]=0; lastRnd[p.name]=-2;});
+  const rounds=[]; let roundNo=1; let guard=1000;
+  while(guard--){
+    // order by least games then longest wait
     const sorted=[...players].sort((a,b)=>{
       if(plays[a.name]!==plays[b.name]) return plays[a.name]-plays[b.name];
       return lastRnd[a.name]-lastRnd[b.name];
     });
-    // pick first 4 that didn't just play last round
-    const pick=[]; for(const p of sorted){ if(lastRnd[p.name]<roundNo-1) {pick.push(p);} if(pick.length===4) break; }
-    if(pick.length<4) break; // no more feasible rounds
-    // team balance: highest+lowest vs middle pair
+    let pick=[];
+    // 1️⃣ try players who sat out last round
+    for(const p of sorted){ if(lastRnd[p.name]<roundNo-1){ pick.push(p); if(pick.length===4) break; } }
+    // 2️⃣ if not enough, allow recent players (low games first)
+    if(pick.length<4){
+      for(const p of sorted){ if(!pick.includes(p)){ pick.push(p); if(pick.length===4) break; } }
+    }
+    if(pick.length<4) break; // cannot form more rounds
+    // balance teams
     pick.sort((a,b)=>rank[b.level]-rank[a.level]);
     const team1=[pick[0].name,pick[3].name];
     const team2=[pick[1].name,pick[2].name];
+    // fairness check – no one exceeds +1 games after adding this round
+    const hypo={...plays}; team1.concat(team2).forEach(nm=>hypo[nm]++);
+    const vals=Object.values(hypo); if(Math.max(...vals)-Math.min(...vals)>1) break;
+    // commit round
     rounds.push({round:roundNo,t1:team1,t2:team2,s1:null,s2:null});
-    team1.concat(team2).forEach(nm=>{plays[nm]++;lastRnd[nm]=roundNo;});
-    roundNo++; if(roundNo>limit)break;
-    // stop when fairness reached
-    const vals=Object.values(plays);
-    if(Math.max(...vals)-Math.min(...vals)<=1){ // diff <=1 for everyone
-      // also ensure nobody waited more than 1 last round (guaranteed by pick rule)
-      const leastPlay=Math.min(...vals);
-      if(vals.every(v=>v>=leastPlay+1)) break; // everyone played at least minimal cycle
-    }
+    team1.concat(team2).forEach(nm=>{plays[nm]++; lastRnd[nm]=roundNo;});
+    roundNo++;
   }
   return rounds;
 }
-function buildGroups(arr){const g=[];const p=[...arr];shuffle(p);while(p.length>=4)g.push(p.splice(0,4));return g;}
+function buildGroups(arr){const g=[], pool=[...arr];shuffle(pool);while(pool.length>=4)g.push(pool.splice(0,4));return g;}
 function americano(g,r){const[A,B,C,D]=g;return[
- {round:r,t1:[A.name,B.name],t2:[C.name,D.name]},
- {round:r+1,t1:[A.name,C.name],t2:[B.name,D.name]},
- {round:r+2,t1:[A.name,D.name],t2:[B.name,C.name]}
+  {round:r,t1:[A.name,B.name],t2:[C.name,D.name]},
+  {round:r+1,t1:[A.name,C.name],t2:[B.name,D.name]},
+  {round:r+2,t1:[A.name,D.name],t2:[B.name,C.name]}
 ];}
 function scheduleGroup(){
-  let r=1, out=[]; const levels={Pro:[],Intermediate:[],Beginner:[]};
-  players.forEach(p=>levels[p.level].push(p));
+  let r=1,out=[]; const levels={Pro:[],Intermediate:[],Beginner:[]}; players.forEach(p=>levels[p.level].push(p));
   for(const lvl of ['Pro','Intermediate','Beginner']){
-    const groups=buildGroups(levels[lvl]);
-    groups.forEach(g=>{out=out.concat(americano(g,r)); r+=3;});
+    const groups=buildGroups(levels[lvl]); groups.forEach(g=>{out=out.concat(americano(g,r)); r+=3;});
   }
   return out;
 }
@@ -188,18 +187,20 @@ function gen(){
 function upd(i,f,val){
   val=parseInt(val); if(isNaN(val))return; matches[i][f]=val;
   const m=matches[i]; if(m.s1!=null&&m.s2!=null){
-    m.t1.forEach(n=>{leaderboard[n].pts+=m.s1; leaderboard[n].gp++;});
-    m.t2.forEach(n=>{leaderboard[n].pts+=m.s2; leaderboard[n].gp++;});
+    m.t1.forEach(nm=>{leaderboard[nm].pts+=m.s1; leaderboard[nm].gp++;});
+    m.t2.forEach(nm=>{leaderboard[nm].pts+=m.s2; leaderboard[nm].gp++;});
   }
   save(); drawLeader();
 }
-function reset(){ if(!confirm('Clear all?'))return; players=[];matches=[];leaderboard={}; mode='mixed'; save(); drawPlayers(); drawLeader(); drawMatches(); }
+function reset(){ if(!confirm('Clear all data?'))return; players=[];matches=[];leaderboard={}; mode='mixed'; save(); drawPlayers(); drawLeader(); drawMatches(); }
 /***** INIT *****/
 document.getElementById('addBtn').onclick=addPlayer;
 document.getElementById('scheduleBtn').onclick=gen;
 document.getElementById('resetBtn').onclick=reset;
 Array.from(document.querySelectorAll('input[name="mode"]')).forEach(r=>{r.checked=r.value===mode; r.onchange=e=>{mode=e.target.value; save();}});
-drawPlayers();drawLeader();drawMatches();
+
+// Initial draw
+drawPlayers(); drawLeader(); drawMatches();
 </script>
 </body>
 </html>
