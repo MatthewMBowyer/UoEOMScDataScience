@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Padel Americano – Team Scheduler</title>
@@ -154,13 +155,19 @@
     <div id="standings"></div>
   </div>
 
-   <script>
+  <script>
 window.addEventListener('DOMContentLoaded', () => {
   let teamsList = [];
   let roundsGlobal = [];
   let currentRoundIndex = 0;
   const MAX_ROUNDS = 100;
-  const scoreStore = {}; // Format: { roundIdx: { teamName: points } }
+  const scoreStore = {};
+  const roundCounter = document.createElement('div');
+  roundCounter.id = 'roundCounter';
+  roundCounter.style.textAlign = 'center';
+  roundCounter.style.marginTop = '1rem';
+  roundCounter.style.fontWeight = '600';
+  document.getElementById('schedule').before(roundCounter);
 
   function roundRobin(arr) {
     const t = [...arr];
@@ -251,6 +258,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const schedule = document.getElementById('schedule');
     schedule.innerHTML = '';
     schedule.appendChild(createRound(roundsGlobal[i], i));
+    roundCounter.textContent = `Round ${i + 1} of ${roundsGlobal.length}`;
     document.querySelectorAll('.pts').forEach((inp) =>
       inp.addEventListener('input', () => {
         saveInputsFromDOM();
@@ -292,7 +300,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     roundsGlobal = rounds;
     currentRoundIndex = 0;
-    Object.keys(scoreStore).forEach(k => delete scoreStore[k]); // reset scores
+    Object.keys(scoreStore).forEach(k => delete scoreStore[k]);
     renderSchedule();
   }
 
@@ -303,6 +311,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('standings').innerHTML = '';
     document.getElementById('nav').style.display = 'none';
     document.getElementById('msg').textContent = '';
+    roundCounter.textContent = '';
     teamsList = [];
     roundsGlobal = [];
     currentRoundIndex = 0;
@@ -311,34 +320,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function exportAllRoundsToPDF() {
     saveInputsFromDOM();
-    const schedule = document.getElementById('schedule');
-    const original = schedule.innerHTML;
-    schedule.innerHTML = '';
-    roundsGlobal.forEach((round, idx) => {
-      schedule.appendChild(createRound(round, idx));
+    const tempContainer = document.createElement('div');
+    tempContainer.style.padding = '1rem';
+
+    roundsGlobal.forEach((matches, idx) => {
+      const round = createRound(matches, idx);
+      round.style.marginBottom = '2rem';
+      tempContainer.appendChild(round);
     });
-    setTimeout(() => {
-      window.print();
-      schedule.innerHTML = original;
-      showRound(currentRoundIndex);
-    }, 100);
+
+    const standingsClone = document.getElementById('standings').cloneNode(true);
+    tempContainer.appendChild(standingsClone);
+
+    html2pdf().from(tempContainer).save('Padel_Schedule.pdf');
   }
 
   document.getElementById('generate').addEventListener('click', buildScheduleUI);
   document.getElementById('reset').addEventListener('click', softReset);
   document.getElementById('downloadPdf').addEventListener('click', exportAllRoundsToPDF);
   document.getElementById('prev').addEventListener('click', () => {
-    if (currentRoundIndex > 0) {
-      showRound(--currentRoundIndex);
-    }
+    if (currentRoundIndex > 0) showRound(--currentRoundIndex);
   });
   document.getElementById('next').addEventListener('click', () => {
-    if (currentRoundIndex < roundsGlobal.length - 1) {
-      showRound(++currentRoundIndex);
-    }
+    if (currentRoundIndex < roundsGlobal.length - 1) showRound(++currentRoundIndex);
   });
 
-  // Swipe navigation
   let startX = 0;
   window.addEventListener('touchstart', (e) => startX = e.changedTouches[0].screenX, { passive: true });
   window.addEventListener('touchend', (e) => {
@@ -349,6 +355,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 });
 </script>
+
 
 
 </body>
