@@ -154,12 +154,13 @@
     <div id="standings"></div>
   </div>
 
-    <script>
+   <script>
 window.addEventListener('DOMContentLoaded', () => {
   let teamsList = [];
   let roundsGlobal = [];
   let currentRoundIndex = 0;
   const MAX_ROUNDS = 100;
+  const scoreStore = {}; // Format: { roundIdx: { teamName: points } }
 
   function roundRobin(arr) {
     const t = [...arr];
@@ -210,9 +211,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function recalc() {
     const pts = Object.fromEntries(teamsList.map((t) => [t, 0]));
-    document.querySelectorAll('.pts').forEach((el) => {
-      const val = parseInt(el.value, 10);
-      if (!isNaN(val)) pts[el.dataset.team] += val;
+    Object.values(scoreStore).forEach((roundScores) => {
+      Object.entries(roundScores).forEach(([team, val]) => {
+        pts[team] += parseInt(val) || 0;
+      });
     });
     renderStandings(pts);
   }
@@ -221,25 +223,39 @@ window.addEventListener('DOMContentLoaded', () => {
     const d = document.createElement('div');
     d.className = 'round';
     d.innerHTML = `<h2>Round ${idx + 1}</h2>` +
-      matches
-        .map(
-          ([a, b]) =>
-            `<div class="match">
-              <span>${a} vs ${b}</span>
-              <input type="number" class="pts" data-team="${a}" placeholder="${a} pts">
-              <input type="number" class="pts" data-team="${b}" placeholder="${b} pts">
-            </div>`
-        )
-        .join('');
+      matches.map(([a, b]) => {
+        const va = scoreStore[idx]?.[a] || '';
+        const vb = scoreStore[idx]?.[b] || '';
+        return `
+        <div class="match">
+          <span>${a} vs ${b}</span>
+          <input type="number" class="pts" data-team="${a}" data-round="${idx}" value="${va}" placeholder="${a} pts">
+          <input type="number" class="pts" data-team="${b}" data-round="${idx}" value="${vb}" placeholder="${b} pts">
+        </div>`;
+      }).join('');
     return d;
   }
 
+  function saveInputsFromDOM() {
+    document.querySelectorAll('.pts').forEach((el) => {
+      const round = el.dataset.round;
+      const team = el.dataset.team;
+      const val = el.value;
+      if (!scoreStore[round]) scoreStore[round] = {};
+      scoreStore[round][team] = val;
+    });
+  }
+
   function showRound(i) {
+    saveInputsFromDOM();
     const schedule = document.getElementById('schedule');
     schedule.innerHTML = '';
     schedule.appendChild(createRound(roundsGlobal[i], i));
     document.querySelectorAll('.pts').forEach((inp) =>
-      inp.addEventListener('input', recalc)
+      inp.addEventListener('input', () => {
+        saveInputsFromDOM();
+        recalc();
+      })
     );
     recalc();
     document.getElementById('prev').disabled = i === 0;
@@ -276,6 +292,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     roundsGlobal = rounds;
     currentRoundIndex = 0;
+    Object.keys(scoreStore).forEach(k => delete scoreStore[k]); // reset scores
     renderSchedule();
   }
 
@@ -289,35 +306,50 @@ window.addEventListener('DOMContentLoaded', () => {
     teamsList = [];
     roundsGlobal = [];
     currentRoundIndex = 0;
+    for (const key in scoreStore) delete scoreStore[key];
+  }
+
+  function exportAllRoundsToPDF() {
+    saveInputsFromDOM();
+    const schedule = document.getElementById('schedule');
+    const original = schedule.innerHTML;
+    schedule.innerHTML = '';
+    roundsGlobal.forEach((round, idx) => {
+      schedule.appendChild(createRound(round, idx));
+    });
+    setTimeout(() => {
+      window.print();
+      schedule.innerHTML = original;
+      showRound(currentRoundIndex);
+    }, 100);
   }
 
   document.getElementById('generate').addEventListener('click', buildScheduleUI);
   document.getElementById('reset').addEventListener('click', softReset);
-  document.getElementById('downloadPdf').addEventListener('click', () => window.print());
+  document.getElementById('downloadPdf').addEventListener('click', exportAllRoundsToPDF);
   document.getElementById('prev').addEventListener('click', () => {
     if (currentRoundIndex > 0) {
-      currentRoundIndex--;
-      renderSchedule();
+      showRound(--currentRoundIndex);
     }
   });
   document.getElementById('next').addEventListener('click', () => {
     if (currentRoundIndex < roundsGlobal.length - 1) {
-      currentRoundIndex++;
-      renderSchedule();
+      showRound(++currentRoundIndex);
     }
   });
 
+  // Swipe navigation
   let startX = 0;
-  window.addEventListener('touchstart', (e) => (startX = e.changedTouches[0].screenX), { passive: true });
+  window.addEventListener('touchstart', (e) => startX = e.changedTouches[0].screenX, { passive: true });
   window.addEventListener('touchend', (e) => {
     const dx = e.changedTouches[0].screenX - startX;
     if (Math.abs(dx) < 50) return;
-    if (dx < 0 && currentRoundIndex < roundsGlobal.length - 1) currentRoundIndex++;
-    if (dx > 0 && currentRoundIndex > 0) currentRoundIndex--;
-    renderSchedule();
+    if (dx < 0 && currentRoundIndex < roundsGlobal.length - 1) showRound(++currentRoundIndex);
+    if (dx > 0 && currentRoundIndex > 0) showRound(--currentRoundIndex);
   }, { passive: true });
 });
 </script>
+
 
 </body>
 </html>
