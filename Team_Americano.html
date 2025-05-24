@@ -340,6 +340,14 @@ window.addEventListener('DOMContentLoaded', () => {
     if (dx < 0 && currentRoundIndex < roundsGlobal.length - 1) showRound(++currentRoundIndex);
     if (dx > 0 && currentRoundIndex > 0) showRound(--currentRoundIndex);
   }, { passive: true });
+
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  e.returnValue = ''; // Chrome requires returnValue to be set
+});
+
+  
 });
 </script>
 </body>
