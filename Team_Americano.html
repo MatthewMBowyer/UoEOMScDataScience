@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Padel Americano – Team Scheduler</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     :root {
       --accent: #5c7aff;
@@ -147,6 +147,7 @@
       <button id="downloadPdf">Export PDF</button>
     </div>
     <div id="msg" class="error"></div>
+    <div id="roundCounter" style="text-align:center;margin-top:1rem;font-weight:600"></div>
     <div id="schedule"></div>
     <div id="nav" style="display:none;">
       <button id="prev">⬅ Prev</button>
@@ -155,19 +156,12 @@
     <div id="standings"></div>
   </div>
 
-  <script>
+<script>
 window.addEventListener('DOMContentLoaded', () => {
-  let teamsList = [];
-  let roundsGlobal = [];
-  let currentRoundIndex = 0;
+  let teamsList = [], roundsGlobal = [], currentRoundIndex = 0;
   const MAX_ROUNDS = 100;
   const scoreStore = {};
-  const roundCounter = document.createElement('div');
-  roundCounter.id = 'roundCounter';
-  roundCounter.style.textAlign = 'center';
-  roundCounter.style.marginTop = '1rem';
-  roundCounter.style.fontWeight = '600';
-  document.getElementById('schedule').before(roundCounter);
+  const roundCounter = document.getElementById('roundCounter');
 
   function roundRobin(arr) {
     const t = [...arr];
@@ -186,8 +180,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function buildScheduleData(teams, reps) {
-    const all = [];
-    let base = [...teams];
+    const all = [], base = [...teams];
     for (let i = 0; i < reps; i++) {
       let r = roundRobin(base);
       if (i % 2 === 1) r.reverse();
@@ -206,20 +199,15 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="scoreboard">
         <h2>Standings</h2>
         <table><thead><tr><th>Team</th><th>Points</th></tr></thead><tbody>
-        ${list
-          .map(
-            ([t, p]) =>
-              `<tr class="${p === best ? 'winner' : ''}"><td>${t}</td><td>${p}</td></tr>`
-          )
-          .join('')}
+        ${list.map(([t, p]) => `<tr class="${p === best ? 'winner' : ''}"><td>${t}</td><td>${p}</td></tr>`).join('')}
         </tbody></table>
       </div>`;
   }
 
   function recalc() {
-    const pts = Object.fromEntries(teamsList.map((t) => [t, 0]));
-    Object.values(scoreStore).forEach((roundScores) => {
-      Object.entries(roundScores).forEach(([team, val]) => {
+    const pts = Object.fromEntries(teamsList.map(t => [t, 0]));
+    Object.values(scoreStore).forEach(r => {
+      Object.entries(r).forEach(([team, val]) => {
         pts[team] += parseInt(val) || 0;
       });
     });
@@ -231,10 +219,8 @@ window.addEventListener('DOMContentLoaded', () => {
     d.className = 'round';
     d.innerHTML = `<h2>Round ${idx + 1}</h2>` +
       matches.map(([a, b]) => {
-        const va = scoreStore[idx]?.[a] || '';
-        const vb = scoreStore[idx]?.[b] || '';
-        return `
-        <div class="match">
+        const va = scoreStore[idx]?.[a] || '', vb = scoreStore[idx]?.[b] || '';
+        return `<div class="match">
           <span>${a} vs ${b}</span>
           <input type="number" class="pts" data-team="${a}" data-round="${idx}" value="${va}" placeholder="${a} pts">
           <input type="number" class="pts" data-team="${b}" data-round="${idx}" value="${vb}" placeholder="${b} pts">
@@ -244,10 +230,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function saveInputsFromDOM() {
-    document.querySelectorAll('.pts').forEach((el) => {
-      const round = el.dataset.round;
-      const team = el.dataset.team;
-      const val = el.value;
+    document.querySelectorAll('.pts').forEach(el => {
+      const round = el.dataset.round, team = el.dataset.team, val = el.value;
       if (!scoreStore[round]) scoreStore[round] = {};
       scoreStore[round][team] = val;
     });
@@ -255,16 +239,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function showRound(i) {
     saveInputsFromDOM();
-    const schedule = document.getElementById('schedule');
-    schedule.innerHTML = '';
-    schedule.appendChild(createRound(roundsGlobal[i], i));
+    const sched = document.getElementById('schedule');
+    sched.innerHTML = '';
+    sched.appendChild(createRound(roundsGlobal[i], i));
     roundCounter.textContent = `Round ${i + 1} of ${roundsGlobal.length}`;
-    document.querySelectorAll('.pts').forEach((inp) =>
-      inp.addEventListener('input', () => {
-        saveInputsFromDOM();
-        recalc();
-      })
-    );
+    document.querySelectorAll('.pts').forEach(inp => inp.addEventListener('input', () => {
+      saveInputsFromDOM(); recalc();
+    }));
     recalc();
     document.getElementById('prev').disabled = i === 0;
     document.getElementById('next').disabled = i === roundsGlobal.length - 1;
@@ -272,32 +253,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function renderSchedule() {
     if (!roundsGlobal.length) return;
-    document.getElementById('nav').style.display =
-      roundsGlobal.length > 1 ? 'flex' : 'none';
+    document.getElementById('nav').style.display = roundsGlobal.length > 1 ? 'flex' : 'none';
     showRound(currentRoundIndex);
   }
 
   function buildScheduleUI() {
     const raw = document.getElementById('teams').value.trim();
-    const lines = raw.split(/[\r\n]+/).map((l) => l.trim()).filter(Boolean);
+    const lines = raw.split(/[\r\n]+/).map(l => l.trim()).filter(Boolean);
     const repeat = parseInt(document.getElementById('repeat').value, 10) || 1;
     const msg = document.getElementById('msg');
     msg.textContent = '';
-
-    if (lines.length < 3) {
-      msg.textContent = 'Please enter at least 3 team names.';
-      return;
-    }
-
+    if (lines.length < 3) return msg.textContent = 'Please enter at least 3 team names.';
     teamsList = lines;
     let rounds = buildScheduleData(lines, repeat);
-    rounds.forEach((r) => r.sort(() => Math.random() - 0.5));
-
+    rounds.forEach(r => r.sort(() => Math.random() - 0.5));
     if (rounds.length > MAX_ROUNDS) {
       msg.textContent = `Round limit reached (first ${MAX_ROUNDS} shown of ${rounds.length}).`;
       rounds = rounds.slice(0, MAX_ROUNDS);
     }
-
     roundsGlobal = rounds;
     currentRoundIndex = 0;
     Object.keys(scoreStore).forEach(k => delete scoreStore[k]);
@@ -320,19 +293,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function exportAllRoundsToPDF() {
     saveInputsFromDOM();
-    const tempContainer = document.createElement('div');
-    tempContainer.style.padding = '1rem';
-
+    const container = document.createElement('div');
+    container.style.padding = '1rem';
     roundsGlobal.forEach((matches, idx) => {
       const round = createRound(matches, idx);
       round.style.marginBottom = '2rem';
-      tempContainer.appendChild(round);
+      container.appendChild(round);
     });
-
     const standingsClone = document.getElementById('standings').cloneNode(true);
-    tempContainer.appendChild(standingsClone);
-
-    html2pdf().from(tempContainer).save('Padel_Schedule.pdf');
+    container.appendChild(standingsClone);
+    html2pdf().from(container).save('Padel_Schedule.pdf');
   }
 
   document.getElementById('generate').addEventListener('click', buildScheduleUI);
@@ -355,8 +325,5 @@ window.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 });
 </script>
-
-
-
 </body>
 </html>
