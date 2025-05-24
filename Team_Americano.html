@@ -1,164 +1,162 @@
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  let teamsList = [];
-  let roundsGlobal = [];
-  let currentRoundIndex = 0;
-  const MAX_ROUNDS = 100;
-
-  function roundRobin(arr) {
-    const t = [...arr];
-    if (t.length % 2 !== 0) t.push('BYE');
-    const res = [];
-    for (let r = 0; r < t.length - 1; r++) {
-      const m = [];
-      for (let i = 0; i < t.length / 2; i++) {
-        const a = t[i], b = t[t.length - 1 - i];
-        if (a !== 'BYE' && b !== 'BYE') m.push([a, b]);
-      }
-      t.splice(1, 0, t.pop());
-      res.push(m);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Padel Americano – Team Scheduler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --accent: #5c7aff;
+      --bg: #f5f7ff;
+      --card: #ffffff;
+      --text: #222;
+      --winner: #c5ffba;
     }
-    return res;
-  }
-
-  function buildScheduleData(teams, reps) {
-    const all = [];
-    let base = [...teams];
-    for (let i = 0; i < reps; i++) {
-      let r = roundRobin(base);
-      if (i % 2 === 1) r.reverse();
-      all.push(...r);
-      base.push(base.shift());
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
-    return all;
-  }
-
-  function renderStandings(points) {
-    const div = document.getElementById('standings');
-    const list = Object.entries(points).sort((a, b) => b[1] - a[1]);
-    if (!list.length) return (div.innerHTML = '');
-    const best = list[0][1];
-    div.innerHTML = `
-      <div class="scoreboard">
-        <h2>Standings</h2>
-        <table><thead><tr><th>Team</th><th>Points</th></tr></thead><tbody>
-        ${list
-          .map(
-            ([t, p]) =>
-              `<tr class="${p === best ? 'winner' : ''}"><td>${t}</td><td>${p}</td></tr>`
-          )
-          .join('')}
-        </tbody></table>
-      </div>`;
-  }
-
-  function recalc() {
-    const pts = Object.fromEntries(teamsList.map((t) => [t, 0]));
-    document.querySelectorAll('.pts').forEach((el) => {
-      const val = parseInt(el.value, 10);
-      if (!isNaN(val)) pts[el.dataset.team] += val;
-    });
-    renderStandings(pts);
-  }
-
-  function createRound(matches, idx) {
-    const d = document.createElement('div');
-    d.className = 'round';
-    d.innerHTML = `<h2>Round ${idx + 1}</h2>` +
-      matches
-        .map(
-          ([a, b]) =>
-            `<div class="match">
-              <span>${a} vs ${b}</span>
-              <input type="number" class="pts" data-team="${a}" placeholder="${a} pts">
-              <input type="number" class="pts" data-team="${b}" placeholder="${b} pts">
-            </div>`
-        )
-        .join('');
-    return d;
-  }
-
-  function showRound(i) {
-    const schedule = document.getElementById('schedule');
-    schedule.innerHTML = '';
-    schedule.appendChild(createRound(roundsGlobal[i], i));
-    document.querySelectorAll('.pts').forEach((inp) =>
-      inp.addEventListener('input', recalc)
-    );
-    recalc();
-    document.getElementById('prev').disabled = i === 0;
-    document.getElementById('next').disabled = i === roundsGlobal.length - 1;
-  }
-
-  function renderSchedule() {
-    if (!roundsGlobal.length) return;
-    document.getElementById('nav').style.display =
-      roundsGlobal.length > 1 ? 'flex' : 'none';
-    showRound(currentRoundIndex);
-  }
-
-  function buildScheduleUI() {
-    const raw = document.getElementById('teams').value.trim();
-    const lines = raw.split(/[\r\n]+/).map((l) => l.trim()).filter(Boolean);
-    const repeat = parseInt(document.getElementById('repeat').value, 10) || 1;
-    const msg = document.getElementById('msg');
-    msg.textContent = '';
-
-    if (lines.length < 3) {
-      msg.textContent = 'Please enter at least 3 team names.';
-      return;
+    body {
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      margin: 0;
     }
-
-    teamsList = lines;
-    let rounds = buildScheduleData(lines, repeat);
-    rounds.forEach((r) => r.sort(() => Math.random() - 0.5));
-
-    if (rounds.length > MAX_ROUNDS) {
-      msg.textContent = `Round limit reached (first ${MAX_ROUNDS} shown of ${rounds.length}).`;
-      rounds = rounds.slice(0, MAX_ROUNDS);
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--accent);
     }
-
-    roundsGlobal = rounds;
-    currentRoundIndex = 0;
-    renderSchedule();
-  }
-
-  function softReset() {
-    document.getElementById('teams').value = '';
-    document.getElementById('repeat').value = '1';
-    document.getElementById('schedule').innerHTML = '';
-    document.getElementById('standings').innerHTML = '';
-    document.getElementById('nav').style.display = 'none';
-    document.getElementById('msg').textContent = '';
-    teamsList = [];
-    roundsGlobal = [];
-    currentRoundIndex = 0;
-  }
-
-  document.getElementById('generate').addEventListener('click', buildScheduleUI);
-  document.getElementById('reset').addEventListener('click', softReset);
-  document.getElementById('downloadPdf').addEventListener('click', () => window.print());
-  document.getElementById('prev').addEventListener('click', () => {
-    if (currentRoundIndex > 0) {
-      currentRoundIndex--;
-      renderSchedule();
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
     }
-  });
-  document.getElementById('next').addEventListener('click', () => {
-    if (currentRoundIndex < roundsGlobal.length - 1) {
-      currentRoundIndex++;
-      renderSchedule();
+    textarea, input[type="number"] {
+      width: 100%;
+      padding: .75rem;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      font-size: 1rem;
+      resize: vertical;
     }
-  });
+    textarea {
+      height: 120px;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: .25rem;
+      font-weight: 500;
+    }
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: .75rem 1.25rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: .75rem;
+      transition: background .2s ease;
+    }
+    button:hover {
+      background: #435deb;
+    }
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+    .round, .scoreboard {
+      background: var(--card);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,.05);
+      margin-top: 1rem;
+    }
+    .match {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem 0;
+      border-bottom: 1px solid #eee;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+    .match:last-child {
+      border-bottom: none;
+    }
+    .match span {
+      flex: 1 1 auto;
+    }
+    .match input {
+      width: 60px;
+      padding: .25rem .4rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .error {
+      color: #e84d4d;
+      margin-top: .5rem;
+      font-weight: 500;
+    }
+    .scoreboard table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .scoreboard th, .scoreboard td {
+      padding: .5rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(92,122,255,.6); }
+      70% { box-shadow: 0 0 0 10px rgba(92,122,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(92,122,255,0); }
+    }
+    .scoreboard tr.winner {
+      background: var(--winner);
+      font-weight: 600;
+      animation: pulse 2s infinite;
+    }
+    #nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      button { width: 100%; }
+      .match { flex-direction: column; align-items: flex-start; }
+      .match input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Padel Americano – Team Scheduler</h1>
+    <label for="teams">Enter team names (one per line, minimum 3):</label>
+    <textarea id="teams" placeholder="Team A&#10;Team B&#10;Team C"></textarea>
+    <label for="repeat">How many times should each team play every other team?</label>
+    <input type="number" id="repeat" min="1" value="1" />
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+      <button id="generate">Generate Schedule</button>
+      <button id="reset" style="background:#999;">Reset</button>
+      <button id="downloadPdf">Export PDF</button>
+    </div>
+    <div id="msg" class="error"></div>
+    <div id="schedule"></div>
+    <div id="nav" style="display:none;">
+      <button id="prev">⬅ Prev</button>
+      <button id="next">Next ➡</button>
+    </div>
+    <div id="standings"></div>
+  </div>
 
-  let startX = 0;
-  window.addEventListener('touchstart', (e) => (startX = e.changedTouches[0].screenX), { passive: true });
-  window.addEventListener('touchend', (e) => {
-    const dx = e.changedTouches[0].screenX - startX;
-    if (Math.abs(dx) < 50) return;
-    if (dx < 0 && currentRoundIndex < roundsGlobal.length - 1) currentRoundIndex++;
-    if (dx > 0 && currentRoundIndex > 0) currentRoundIndex--;
-    renderSchedule();
-  }, { passive: true });
-});
-</script>
+  <script>
+    // Paste your entire <script> block here (the one you already have)
+    // Or include it from your external file if you prefer
+  </script>
+</body>
+</html>
