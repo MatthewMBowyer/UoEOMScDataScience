@@ -24,9 +24,10 @@ textarea { height: 120px; }
 label { display:block; margin-top:1rem; margin-bottom:.25rem; font-weight:500; }
 button { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: .75rem 1.25rem; font-size: 1rem; cursor: pointer; margin-top: .75rem; transition: background .2s ease; }
 button:hover { background: #435deb; }
+button:disabled{opacity:.5;cursor:not-allowed;}
 #schedule, #standings { margin-top: 2rem; display: grid; gap: 1rem; }
 .round, .scoreboard { background: var(--card); padding: 1rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,.05); }
-.round h2 { margin-bottom: .5rem; font-size: 1.1rem; color: var(--accent); }
+.round h2 { margin-bottom: .5rem; font-size: 1.1rem; color: var(--accent); text-align:center;}
 .match { display: flex; align-items: center; gap: .5rem; padding: .5rem 0; border-bottom: 1px solid #eee; font-weight: 500; flex-wrap: wrap; }
 .match:last-child { border-bottom: none; }
 .match span { flex: 1 1 auto; }
@@ -34,12 +35,20 @@ button:hover { background: #435deb; }
 .error { color: #e84d4d; margin-top: .5rem; font-weight: 500; }
 .scoreboard table { width: 100%; border-collapse: collapse; }
 .scoreboard th, .scoreboard td { padding: .5rem; text-align: left; border-bottom: 1px solid #eee; }
-.scoreboard tr.winner { background: var(--winner); font-weight: 600; }
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(92,122,255,.6);}70%{box-shadow:0 0 0 10px rgba(92,122,255,0);}100%{box-shadow:0 0 0 0 rgba(92,122,255,0);}}
+.scoreboard tr.winner { background: var(--winner); font-weight: 600; animation:pulse 2s infinite; }
+#nav {display:flex;justify-content:center;gap:1rem;margin-top:1rem;}
 @media (max-width: 600px) { button { width: 100%; } .match { flex-direction: column; align-items: flex-start; } .match input { width: 100%; } }
+/* Print styles for PDF */
+@media print{
+  body{padding:0;}
+  #controls, #nav, .pts{display:none!important;}
+  .round{page-break-inside:avoid;}
+}
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container" id="controls">
   <h1>Padel Americano – Team Scheduler</h1>
   <label for="teams">Enter team names (one per line, minimum 3):</label>
   <textarea id="teams" placeholder="Team A&#10;Team B&#10;Team C"></textarea>
@@ -48,93 +57,111 @@ button:hover { background: #435deb; }
   <div style="display:flex;gap:.75rem;flex-wrap:wrap">
     <button id="generate">Generate Schedule</button>
     <button id="reset" style="background:#999;">Reset</button>
+    <button id="downloadPdf" title="Save / Print PDF">Export PDF</button>
   </div>
   <div id="msg" class="error"></div>
-  <div id="schedule"></div>
-  <div id="standings"></div>
 </div>
+
+<div id="schedule"></div>
+<div id="nav" style="display:none;">
+  <button id="prev">⬅ Prev</button>
+  <button id="next">Next ➡</button>
+</div>
+<div id="standings"></div>
 
 <script>
 let teamsList = [];
+let roundsGlobal = [];
+let currentRoundIndex = 0;
+const MAX_ROUNDS = 100; // safety cap
 
 function roundRobin(teamArr){
-  const teams=[...teamArr];
-  const isOdd=teams.length%2!==0;
+  const teams = [...teamArr];
+  const isOdd = teams.length % 2 !== 0;
   if(isOdd) teams.push('BYE');
-  const n=teams.length;
-  const rounds=n-1;
-  const roundsArr=[];
-  for(let r=0;r<rounds;r++){
-    const matches=[];
+  const n = teams.length;
+  const totalRounds = n - 1;
+  const res = [];
+  for(let r=0; r<totalRounds; r++){
+    const matches = [];
     for(let i=0;i<n/2;i++){
       const home=teams[i];
       const away=teams[n-1-i];
-      if(home!=='BYE'&&away!=='BYE') matches.push([home,away]);
+      if(home!=='BYE' && away!=='BYE') matches.push([home, away]);
     }
     teams.splice(1,0,teams.pop());
-    roundsArr.push(matches);
+    res.push(matches);
   }
-  return roundsArr;
+  return res;
 }
 
 function buildSchedule(teams,repeats){
   const schedules=[];
-  let baseTeams=[...teams];
+  let base=[...teams];
   for(let k=0;k<repeats;k++){
-    const rr=roundRobin(baseTeams);
-    // alternate ordering every repeat to reduce consecutive repeats
+    let rr = roundRobin(base);
     if(k%2===1) rr.reverse();
     schedules.push(...rr);
-    // rotate teams for next iteration to change order
-    baseTeams.push(baseTeams.shift());
+    base.push(base.shift());
   }
   return schedules;
 }
 
 function renderStandings(points){
-  const standingsDiv=document.getElementById('standings');
-  const entries=Object.entries(points).sort((a,b)=>b[1]-a[1]);
-  if(!entries.length){standingsDiv.innerHTML='';return;}
-  let html='<div class="scoreboard"><h2>Standings</h2><table><thead><tr><th>Team</th><th>Points</th></tr></thead><tbody>';
-  const max=entries[0][1];
+  const div = document.getElementById('standings');
+  const entries = Object.entries(points).sort((a,b)=>b[1]-a[1]);
+  if(!entries.length){div.innerHTML='';return;}
+  let html = '<div class="scoreboard"><h2>Standings</h2><table><thead><tr><th>Team</th><th>Points</th></tr></thead><tbody>';
+  const top=entries[0][1];
   entries.forEach(([team,pts])=>{
-    const cls=pts===max?'winner':'';
-    html+=`<tr class="${cls}"><td>${team}</td><td>${pts}</td></tr>`;
+    const cls = pts===top?'winner':'';
+    html += `<tr class="${cls}"><td>${team}</td><td>${pts}</td></tr>`;
   });
-  html+='</tbody></table></div>';
-  standingsDiv.innerHTML=html;
+  html += '</tbody></table></div>';
+  div.innerHTML = html;
 }
 
 function recalc(){
-  const points=Object.fromEntries(teamsList.map(t=>[t,0]));
+  const points = Object.fromEntries(teamsList.map(t=>[t,0]));
   document.querySelectorAll('.pts').forEach(inp=>{
-    const team=inp.dataset.team;
-    const val=parseInt(inp.value,10);
+    const team = inp.dataset.team;
+    const val = parseInt(inp.value,10);
     if(!isNaN(val)) points[team]+=val;
   });
   renderStandings(points);
 }
 
-function renderSchedule(rounds){
-  const scheduleDiv=document.getElementById('schedule');
-  scheduleDiv.innerHTML='';
-  rounds.forEach((matches,idx)=>{
-    const roundDiv=document.createElement('div');
-    roundDiv.className='round';
-    roundDiv.innerHTML=`<h2>Round ${idx+1}</h2>`;
-    matches.forEach(m=>{
-      const matchEl=document.createElement('div');
-      matchEl.className='match';
-      matchEl.innerHTML=`<span>${m[0]} vs ${m[1]}</span><input type="number" min="0" class="pts" data-team="${m[0]}" placeholder="${m[0]} pts"><input type="number" min="0" class="pts" data-team="${m[1]}" placeholder="${m[1]} pts">`;
-      roundDiv.appendChild(matchEl);
-    });
-    scheduleDiv.appendChild(roundDiv);
+function createRoundElement(matches,index){
+  const roundDiv=document.createElement('div');
+  roundDiv.className='round';
+  roundDiv.dataset.idx=index;
+  roundDiv.innerHTML=`<h2>Round ${index+1}</h2>`;
+  matches.forEach(m=>{
+    const matchEl=document.createElement('div');
+    matchEl.className='match';
+    matchEl.innerHTML=`<span>${m[0]} vs ${m[1]}</span><input type="number" min="0" class="pts" data-team="${m[0]}" placeholder="${m[0]} pts"><input type="number" min="0" class="pts" data-team="${m[1]}" placeholder="${m[1]} pts">`;
+    roundDiv.appendChild(matchEl);
   });
-  document.querySelectorAll('.pts').forEach(inp=>inp.addEventListener('input',recalc));
-  recalc();
+  return roundDiv;
 }
 
-document.getElementById('generate').addEventListener('click',()=>{
+function showRound(idx){
+  const scheduleDiv=document.getElementById('schedule');
+  scheduleDiv.innerHTML='';
+  scheduleDiv.appendChild(createRoundElement(roundsGlobal[idx],idx));
+  document.querySelectorAll('.pts').forEach(inp=>inp.addEventListener('input', recalc));
+  recalc();
+  document.getElementById('prev').disabled = idx===0;
+  document.getElementById('next').disabled = idx===roundsGlobal.length-1;
+}
+
+function renderSchedule(){
+  if(roundsGlobal.length===0){document.getElementById('schedule').innerHTML='';return;}
+  document.getElementById('nav').style.display = roundsGlobal.length>1?'flex':'none';
+  showRound(currentRoundIndex);
+}
+
+function generate(){
   const raw=document.getElementById('teams').value.trim();
   const lines=raw.split(/[\r\n]+/).map(t=>t.trim()).filter(Boolean);
   const msg=document.getElementById('msg');
@@ -142,20 +169,35 @@ document.getElementById('generate').addEventListener('click',()=>{
   if(lines.length<3){msg.textContent='Please enter at least 3 team names.';return;}
   const repeat=parseInt(document.getElementById('repeat').value,10)||1;
   teamsList=lines;
-  const rounds=buildSchedule(lines,repeat);
-  // shuffle matches inside each round for variety
-  rounds.forEach(matches=>matches.sort(()=>Math.random()-0.5));
-  renderSchedule(rounds);
-});
+  let rounds=buildSchedule(lines,repeat);
+  rounds.forEach(r=>r.sort(()=>Math.random()-0.5));
+  if(rounds.length>MAX_ROUNDS){
+    msg.textContent=`Round limit reached (showing first ${MAX_ROUNDS} of ${rounds.length}).`;
+    rounds=rounds.slice(0,MAX_ROUNDS);
+  }
+  roundsGlobal=rounds;
+  currentRoundIndex=0;
+  renderSchedule();
+}
 
-document.getElementById('reset').addEventListener('click',()=>{
-  document.getElementById('teams').value='';
-  document.getElementById('repeat').value='1';
-  document.getElementById('schedule').innerHTML='';
-  document.getElementById('standings').innerHTML='';
-  document.getElementById('msg').textContent='';
-  teamsList=[];
-});
-</script>
-</body>
-</html>
+// Event listeners
+
+document.getElementById('generate').addEventListener('click',generate);
+document.getElementById('reset').addEventListener('click',()=>location.reload());
+document.getElementById('prev').addEventListener('click',()=>{if(currentRoundIndex>0){currentRoundIndex--;renderSchedule();}});
+document.getElementById('next').addEventListener('click',()=>{if(currentRoundIndex<roundsGlobal.length-1){currentRoundIndex++;renderSchedule();}});
+
+// Swipe detection
+let touchStartX=0;
+window.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
+window.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].screenX-touchStartX;
+  if(Math.abs(dx)<50) return; // ignore small swipes
+  if(dx<0){ // swipe left
+    if(currentRoundIndex<roundsGlobal.length-1){currentRoundIndex++;renderSchedule();}
+  } else {
+    if(currentRoundIndex>0){currentRoundIndex--;renderSchedule();}
+  }
+},{passive:true});
+
+// Export PDF
