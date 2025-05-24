@@ -292,18 +292,35 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function exportAllRoundsToPDF() {
-    saveInputsFromDOM();
-    const container = document.createElement('div');
-    container.style.padding = '1rem';
-    roundsGlobal.forEach((matches, idx) => {
-      const round = createRound(matches, idx);
-      round.style.marginBottom = '2rem';
-      container.appendChild(round);
-    });
-    const standingsClone = document.getElementById('standings').cloneNode(true);
+  saveInputsFromDOM();
+  const container = document.createElement('div');
+  container.style.padding = '1rem';
+
+  const title = document.createElement('h1');
+  title.textContent = 'Padel Americano – Full Schedule';
+  title.style.textAlign = 'center';
+  title.style.marginBottom = '2rem';
+  container.appendChild(title);
+
+  roundsGlobal.forEach((matches, idx) => {
+    const round = createRound(matches, idx);
+    round.style.marginBottom = '2rem';
+    container.appendChild(round);
+  });
+
+  const standings = document.getElementById('standings');
+  if (standings.innerHTML.trim()) {
+    const standingsClone = standings.cloneNode(true);
+    standingsClone.style.marginTop = '2rem';
     container.appendChild(standingsClone);
-    html2pdf().from(container).save('Padel_Schedule.pdf');
   }
+
+  document.body.appendChild(container);
+  html2pdf().from(container).save('Padel_Schedule.pdf').then(() => {
+    document.body.removeChild(container);
+  });
+}
+
 
   document.getElementById('generate').addEventListener('click', buildScheduleUI);
   document.getElementById('reset').addEventListener('click', softReset);
