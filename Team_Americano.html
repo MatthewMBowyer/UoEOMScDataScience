@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Padel Americano – Team Scheduler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#5c7aff;
+  --bg:#f5f7ff;
+  --card:#ffffff;
+  --text:#222;
+}
+*{box-sizing:border-box;font-family:'Poppins',sans-serif;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);padding:2rem;}
+h1{text-align:center;margin-bottom:1rem;color:var(--accent);}
+.container{max-width:800px;margin:0 auto;}
+textarea{width:100%;height:120px;padding:.75rem;border:2px solid var(--accent);border-radius:8px;font-size:1rem;resize:vertical;}
+button{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:.75rem 1.25rem;font-size:1rem;cursor:pointer;margin-top:.75rem;transition:background .2s ease;}
+button:hover{background:#435deb;}
+#schedule{margin-top:2rem;display:grid;gap:1rem;}
+.round{background:var(--card);padding:1rem;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,.05);}
+.round h2{margin-bottom:.5rem;font-size:1.1rem;color:var(--accent);}
+.match{padding:.5rem 0;border-bottom:1px solid #eee;font-weight:500;}
+.match:last-child{border-bottom:none;}
+.error{color:#e84d4d;margin-top:.5rem;font-weight:500;}
+@media (max-width:600px){
+  button{width:100%;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Padel Americano – Team Scheduler</h1>
+  <label for="teams">Enter team names (one per line, minimum 3):</label>
+  <textarea id="teams" placeholder="Team A&#10;Team B&#10;Team C"></textarea>
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+    <button id="generate">Generate Schedule</button>
+    <button id="reset" style="background:#999;">Reset</button>
+  </div>
+  <div id="msg" class="error"></div>
+  <div id="schedule"></div>
+</div>
+
+<script>
+function roundRobin(teamList){
+  const teams=[...teamList];
+  const isOdd=teams.length%2!==0;
+  if(isOdd) teams.push('BYE');
+  const n=teams.length;
+  const rounds=n-1;
+  const roundsArr=[];
+  for(let r=0;r<rounds;r++){
+    const matches=[];
+    for(let i=0;i<n/2;i++){
+      const home=teams[i];
+      const away=teams[n-1-i];
+      if(home!=='BYE' && away!=='BYE') matches.push([home,away]);
+    }
+    // rotate (except first team)
+    teams.splice(1,0,teams.pop());
+    roundsArr.push(matches);
+  }
+  return roundsArr;
+}
+
+function renderSchedule(rounds){
+  const scheduleDiv=document.getElementById('schedule');
+  scheduleDiv.innerHTML='';
+  rounds.forEach((matches,idx)=>{
+    const roundDiv=document.createElement('div');
+    roundDiv.className='round';
+    roundDiv.innerHTML=`<h2>Round ${idx+1}</h2>`;
+    matches.forEach(m=>{
+      const matchEl=document.createElement('div');
+      matchEl.className='match';
+      matchEl.textContent=`${m[0]}  vs  ${m[1]}`;
+      roundDiv.appendChild(matchEl);
+    });
+    scheduleDiv.appendChild(roundDiv);
+  });
+}
+
+document.getElementById('generate').addEventListener('click',()=>{
+  const raw=document.getElementById('teams').value.trim();
+  const lines=raw.split(/[\r\n]+/).map(t=>t.trim()).filter(Boolean);
+  const msg=document.getElementById('msg');
+  msg.textContent='';
+  if(lines.length<3){
+    msg.textContent='Please enter at least 3 team names.';
+    return;
+  }
+  const rounds=roundRobin(lines);
+  // Shuffle matches inside each round to avoid back-to-back repeats where possible
+  rounds.forEach(matches=>{
+    matches.sort(()=>Math.random()-0.5);
+  });
+  renderSchedule(rounds);
+});
+
+document.getElementById('reset').addEventListener('click',()=>{
+  document.getElementById('teams').value='';
+  document.getElementById('schedule').innerHTML='';
+  document.getElementById('msg').textContent='';
+});
+</script>
+</body>
+</html>
