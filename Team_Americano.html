@@ -19,7 +19,9 @@
 body { background: var(--bg); color: var(--text); padding: 2rem; }
 h1 { text-align: center; margin-bottom: 1rem; color: var(--accent); }
 .container { max-width: 900px; margin: 0 auto; }
-textarea { width: 100%; height: 120px; padding: .75rem; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem; resize: vertical; }
+textarea, input[type="number"] { width: 100%; padding: .75rem; border: 2px solid var(--accent); border-radius: 8px; font-size: 1rem; resize: vertical; }
+textarea { height: 120px; }
+label { display:block; margin-top:1rem; margin-bottom:.25rem; font-weight:500; }
 button { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: .75rem 1.25rem; font-size: 1rem; cursor: pointer; margin-top: .75rem; transition: background .2s ease; }
 button:hover { background: #435deb; }
 #schedule, #standings { margin-top: 2rem; display: grid; gap: 1rem; }
@@ -40,7 +42,9 @@ button:hover { background: #435deb; }
 <div class="container">
   <h1>Padel Americano – Team Scheduler</h1>
   <label for="teams">Enter team names (one per line, minimum 3):</label>
-  <textarea id="teams" placeholder="Team A\nTeam B\nTeam C"></textarea>
+  <textarea id="teams" placeholder="Team A&#10;Team B&#10;Team C"></textarea>
+  <label for="repeat">How many times should each team play every other team?</label>
+  <input type="number" id="repeat" min="1" value="1">
   <div style="display:flex;gap:.75rem;flex-wrap:wrap">
     <button id="generate">Generate Schedule</button>
     <button id="reset" style="background:#999;">Reset</button>
@@ -53,102 +57,104 @@ button:hover { background: #435deb; }
 <script>
 let teamsList = [];
 
-function roundRobin(teamArr) {
-  const teams = [...teamArr];
-  const isOdd = teams.length % 2 !== 0;
-  if (isOdd) teams.push('BYE');
-  const n = teams.length;
-  const rounds = n - 1;
-  const roundsArr = [];
-  for (let r = 0; r < rounds; r++) {
-    const matches = [];
-    for (let i = 0; i < n / 2; i++) {
-      const home = teams[i];
-      const away = teams[n - 1 - i];
-      if (home !== 'BYE' && away !== 'BYE') matches.push([home, away]);
+function roundRobin(teamArr){
+  const teams=[...teamArr];
+  const isOdd=teams.length%2!==0;
+  if(isOdd) teams.push('BYE');
+  const n=teams.length;
+  const rounds=n-1;
+  const roundsArr=[];
+  for(let r=0;r<rounds;r++){
+    const matches=[];
+    for(let i=0;i<n/2;i++){
+      const home=teams[i];
+      const away=teams[n-1-i];
+      if(home!=='BYE'&&away!=='BYE') matches.push([home,away]);
     }
-    teams.splice(1, 0, teams.pop()); // rotate (except first team)
+    teams.splice(1,0,teams.pop());
     roundsArr.push(matches);
   }
   return roundsArr;
 }
 
-function renderStandings(points) {
-  const standingsDiv = document.getElementById('standings');
-  const entries = Object.entries(points).sort((a, b) => b[1] - a[1]);
-  if (!entries.length) { standingsDiv.innerHTML = ''; return; }
-  let html = '<div class="scoreboard"><h2>Standings</h2><table><thead><tr><th>Team</th><th>Points</th></tr></thead><tbody>';
-  const max = entries[0][1];
-  entries.forEach(([team, pts]) => {
-    const cls = pts === max ? 'winner' : '';
-    html += `<tr class="${cls}"><td>${team}</td><td>${pts}</td></tr>`;
-  });
-  html += '</tbody></table></div>';
-  standingsDiv.innerHTML = html;
+function buildSchedule(teams,repeats){
+  const schedules=[];
+  let baseTeams=[...teams];
+  for(let k=0;k<repeats;k++){
+    const rr=roundRobin(baseTeams);
+    // alternate ordering every repeat to reduce consecutive repeats
+    if(k%2===1) rr.reverse();
+    schedules.push(...rr);
+    // rotate teams for next iteration to change order
+    baseTeams.push(baseTeams.shift());
+  }
+  return schedules;
 }
 
-function recalc() {
-  const points = Object.fromEntries(teamsList.map(t => [t, 0]));
-  document.querySelectorAll('.pts').forEach(inp => {
-    const team = inp.dataset.team;
-    const val = parseInt(inp.value, 10);
-    if (!isNaN(val)) points[team] += val;
+function renderStandings(points){
+  const standingsDiv=document.getElementById('standings');
+  const entries=Object.entries(points).sort((a,b)=>b[1]-a[1]);
+  if(!entries.length){standingsDiv.innerHTML='';return;}
+  let html='<div class="scoreboard"><h2>Standings</h2><table><thead><tr><th>Team</th><th>Points</th></tr></thead><tbody>';
+  const max=entries[0][1];
+  entries.forEach(([team,pts])=>{
+    const cls=pts===max?'winner':'';
+    html+=`<tr class="${cls}"><td>${team}</td><td>${pts}</td></tr>`;
+  });
+  html+='</tbody></table></div>';
+  standingsDiv.innerHTML=html;
+}
+
+function recalc(){
+  const points=Object.fromEntries(teamsList.map(t=>[t,0]));
+  document.querySelectorAll('.pts').forEach(inp=>{
+    const team=inp.dataset.team;
+    const val=parseInt(inp.value,10);
+    if(!isNaN(val)) points[team]+=val;
   });
   renderStandings(points);
 }
 
-function renderSchedule(rounds) {
-  const scheduleDiv = document.getElementById('schedule');
-  scheduleDiv.innerHTML = '';
-
-  rounds.forEach((matches, idx) => {
-    const roundDiv = document.createElement('div');
-    roundDiv.className = 'round';
-    roundDiv.innerHTML = `<h2>Round ${idx + 1}</h2>`;
-    matches.forEach(m => {
-      const matchEl = document.createElement('div');
-      matchEl.className = 'match';
-      matchEl.innerHTML = `
-        <span>${m[0]} vs ${m[1]}</span>
-        <input type="number" min="0" class="pts" data-team="${m[0]}" placeholder="${m[0]} pts">
-        <input type="number" min="0" class="pts" data-team="${m[1]}" placeholder="${m[1]} pts">
-      `;
+function renderSchedule(rounds){
+  const scheduleDiv=document.getElementById('schedule');
+  scheduleDiv.innerHTML='';
+  rounds.forEach((matches,idx)=>{
+    const roundDiv=document.createElement('div');
+    roundDiv.className='round';
+    roundDiv.innerHTML=`<h2>Round ${idx+1}</h2>`;
+    matches.forEach(m=>{
+      const matchEl=document.createElement('div');
+      matchEl.className='match';
+      matchEl.innerHTML=`<span>${m[0]} vs ${m[1]}</span><input type="number" min="0" class="pts" data-team="${m[0]}" placeholder="${m[0]} pts"><input type="number" min="0" class="pts" data-team="${m[1]}" placeholder="${m[1]} pts">`;
       roundDiv.appendChild(matchEl);
     });
     scheduleDiv.appendChild(roundDiv);
   });
-
-  // Attach listeners for recalculation
-  document.querySelectorAll('.pts').forEach(inp => {
-    inp.addEventListener('input', recalc);
-  });
-
-  // initialise standings
+  document.querySelectorAll('.pts').forEach(inp=>inp.addEventListener('input',recalc));
   recalc();
 }
 
-document.getElementById('generate').addEventListener('click', () => {
-  const raw = document.getElementById('teams').value.trim();
-  const lines = raw.split(/[\r\n]+/).map(t => t.trim()).filter(Boolean);
-  const msg = document.getElementById('msg');
-  msg.textContent = '';
-  if (lines.length < 3) {
-    msg.textContent = 'Please enter at least 3 team names.';
-    return;
-  }
-  teamsList = lines; // store globally for points mapping
-  const rounds = roundRobin(lines);
-  // Shuffle match order within each round to reduce consecutive plays
-  rounds.forEach(matches => matches.sort(() => Math.random() - 0.5));
+document.getElementById('generate').addEventListener('click',()=>{
+  const raw=document.getElementById('teams').value.trim();
+  const lines=raw.split(/[\r\n]+/).map(t=>t.trim()).filter(Boolean);
+  const msg=document.getElementById('msg');
+  msg.textContent='';
+  if(lines.length<3){msg.textContent='Please enter at least 3 team names.';return;}
+  const repeat=parseInt(document.getElementById('repeat').value,10)||1;
+  teamsList=lines;
+  const rounds=buildSchedule(lines,repeat);
+  // shuffle matches inside each round for variety
+  rounds.forEach(matches=>matches.sort(()=>Math.random()-0.5));
   renderSchedule(rounds);
 });
 
-document.getElementById('reset').addEventListener('click', () => {
-  document.getElementById('teams').value = '';
-  document.getElementById('schedule').innerHTML = '';
-  document.getElementById('standings').innerHTML = '';
-  document.getElementById('msg').textContent = '';
-  teamsList = [];
+document.getElementById('reset').addEventListener('click',()=>{
+  document.getElementById('teams').value='';
+  document.getElementById('repeat').value='1';
+  document.getElementById('schedule').innerHTML='';
+  document.getElementById('standings').innerHTML='';
+  document.getElementById('msg').textContent='';
+  teamsList=[];
 });
 </script>
 </body>
