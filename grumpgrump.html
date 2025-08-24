@@ -8,38 +8,53 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
+    :root{
+      --maxw: 1200px;        /* wider on laptops */
+      --panel-pad: 22px;
+      --text: 18px;          /* bigger base text */
+      --text-lg: 20px;
+    }
+
     body{
       font-family:'Arial',sans-serif;
-      background-image:url('images/Chloe background.png'); /* keep your bg */
+      background-image:url('images/grumpgrump.png'); /* your bg */
       background-size:cover;background-position:center;margin:0;min-height:100vh;
-      display:flex;flex-direction:column;align-items:center;padding:80px 16px 40px
+      display:flex;flex-direction:column;align-items:center;padding:80px 24px 48px;
     }
     h1{
       font-family:'Pacifico',cursive;color:#fff;margin:0 0 18px;text-shadow:2px 2px #ff66ff;
       background:rgba(255,255,255,.3);padding:10px 20px;border-radius:15px
     }
-    .sub{color:#2b2b2b;background:rgba(255,255,255,.85);padding:10px 16px;border-radius:10px;
-      font-size:14px;max-width:980px;text-align:center;margin-bottom:14px}
-    .main-container{display:flex;flex-direction:column;align-items:center;width:100%;max-width:1000px;gap:14px}
-    .button-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%}
-    button{font-size:15px;padding:10px 14px;cursor:pointer;border:none;border-radius:8px;background:#ff66ff;color:#fff;
-      display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px #cc33cc}
+    .sub{
+      color:#2b2b2b;background:rgba(255,255,255,.85);padding:12px 18px;border-radius:12px;
+      font-size:14px;max-width:var(--maxw);text-align:center;margin-bottom:16px
+    }
+    .main-container{display:flex;flex-direction:column;align-items:center;width:100%;max-width:var(--maxw);gap:16px}
+    .button-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:100%}
+    button{
+      font-size:16px;padding:12px 16px;cursor:pointer;border:none;border-radius:10px;background:#ff66ff;color:#fff;
+      display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px #cc33cc
+    }
     button:hover{background:#ff33ff}
     button:active{background:#ff33ff;box-shadow:0 2px #cc33cc;transform:translateY(2px)}
-    .panel{width:100%;max-width:1000px;background:#fff;border-radius:12px;box-shadow:0 0 12px rgba(0,0,0,.12);padding:18px}
-    .pill{display:inline-block;font-size:12px;background:#ffe6ff;color:#8a2be2;border:1px solid #ffb3ff;
-      border-radius:999px;padding:4px 10px;margin-right:6px;margin-bottom:6px}
-    .meta{font-size:13px;color:#444;line-height:1.5;margin-top:6px}
-    .section-title{font-weight:bold;margin-top:12px;margin-bottom:6px;color:#222}
-    ul{margin:6px 0 10px 20px} li{margin:4px 0}
-    #message{white-space:pre-wrap;font-size:16px;line-height:1.55;color:#222}
-    .note{font-size:12px;color:#666;margin-top:8px}
-    .inputs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
-    input[type="date"], input[type="number"]{padding:8px;border:1px solid #ddd;border-radius:8px}
-    .small{font-size:12px;color:#555}
-    .row-split{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .list{font-size:13px;color:#333;margin-top:8px}
-    .list code{background:#f7f2f7;padding:2px 6px;border-radius:6px}
+
+    .panel{
+      width:100%;
+      max-width:var(--maxw);
+      background:#fff;border-radius:14px;box-shadow:0 0 14px rgba(0,0,0,.12);padding:var(--panel-pad)
+    }
+
+    .pill{display:inline-block;font-size:13px;background:#ffe6ff;color:#8a2be2;border:1px solid #ffb3ff;
+      border-radius:999px;padding:6px 12px;margin-right:8px;margin-bottom:8px}
+    .meta{font-size:15px;color:#444;line-height:1.6;margin-top:4px}
+    #message{white-space:pre-wrap;font-size:var(--text);line-height:1.65;color:#222}
+
+    @media (min-width: 1200px){
+      :root{ --text: var(--text-lg); }
+      #message{line-height:1.7}
+      .sub{font-size:15px}
+      button{font-size:17px}
+    }
   </style>
 </head>
 <body>
@@ -60,35 +75,8 @@
     <div class="panel" id="status">
       <div id="statusHeader" class="meta"></div>
       <div id="chips"></div>
-      <div class="note">
-        Tip: add each new period start below to keep the guess accurate the whole year. Data saves in your browser only.
-      </div>
-
-      <div class="section-title">Update cycle data</div>
-      <div class="inputs row-split">
-        <label class="small">New period start:
-          <input type="date" id="startDateInput"/>
-        </label>
-        <label class="small">Bleeding days (optional):
-          <input type="number" id="periodLenInput" min="1" max="10" placeholder="e.g. 5"/>
-        </label>
-        <button id="addStartBtn"><i class="fas fa-plus"></i> Add start</button>
-      </div>
-      <div class="inputs row-split">
-        <label class="small">Override avg cycle length (days, optional):
-          <input type="number" id="avgLenInput" min="20" max="60" placeholder="e.g. 31"/>
-        </label>
-        <button id="saveAvgBtn"><i class="fas fa-save"></i> Save</button>
-        <button id="clearOverridesBtn" title="Remove custom average length only"><i class="fas fa-undo"></i> Clear avg</button>
-      </div>
-      <div class="inputs">
-        <button id="clearAllBtn" title="Remove all saved dates (keeps defaults below)"><i class="fas fa-trash"></i> Clear saved dates</button>
-      </div>
-
-      <div class="list" id="historyList"></div>
-
-      <div class="note">
-        Defaults loaded from you: Jun 2–7, Jul 2–5, Aug 1–6, Sep 2–7 (expected). You can add Oct/Nov/Dec as they happen.
+      <div class="meta" style="margin-top:6px;">
+        Using your dates: Jun 2–7, Jul 2–5, Aug 1–6, Sep 2–7 (expected). Average cycle is estimated from these starts.
       </div>
     </div>
 
@@ -99,7 +87,7 @@
   </div>
 
   <script>
-    // ===== Defaults from you =====
+    // ===== Fixed defaults from you (no adding/removing) =====
     const defaultStarts = [
       { date: '2025-06-02', periodLen: 6 },
       { date: '2025-07-02', periodLen: 4 },
@@ -107,65 +95,27 @@
       { date: '2025-09-02', periodLen: 6 } // expected
     ];
 
-    // ===== Storage Keys =====
-    const LS_STARTS = 'gg_starts';
-    const LS_AVG = 'gg_cycle_override';
-
     // ===== Utilities =====
     const fmt = (d) => d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
     const daysBetween = (a,b) => Math.round((b - a)/(1000*60*60*24));
     const clamp = (x,min,max)=>Math.max(min,Math.min(max,x));
 
-    function loadStarts(){
-      const raw = localStorage.getItem(LS_STARTS);
-      let arr = raw ? JSON.parse(raw) : [...defaultStarts];
-      // normalize + sort
-      arr = arr
-        .filter(x => x?.date)
-        .map(x => ({ date: x.date, periodLen: Number(x.periodLen)||undefined }))
-        .sort((a,b)=> new Date(a.date)-new Date(b.date));
-      return arr;
-    }
-    function saveStarts(arr){ localStorage.setItem(LS_STARTS, JSON.stringify(arr)); }
-
-    function loadAvgOverride(){
-      const v = localStorage.getItem(LS_AVG);
-      return v ? Number(v) : null;
-    }
-    function saveAvgOverride(v){
-      if(v===null || v===undefined || isNaN(v)) localStorage.removeItem(LS_AVG);
-      else localStorage.setItem(LS_AVG, String(v));
-    }
-
-    function startsAsDates(starts){
-      return starts.map(s => new Date(s.date));
-    }
-
-    function averageCycleLength(starts){
-      const override = loadAvgOverride();
-      if (override && override>=20 && override<=60) return Math.round(override);
-
-      const dates = startsAsDates(starts);
-      if (dates.length < 2) return 31; // fallback default
+    function averageCycleLength(){
+      // Use gaps between fixed starts
+      const dates = defaultStarts.map(s=>new Date(s.date));
       const gaps = [];
-      for (let i=0;i<dates.length-1;i++){
-        const g = daysBetween(dates[i], dates[i+1]);
-        if (g>10 && g<80) gaps.push(g);
-      }
-      if (!gaps.length) return 31;
-      return Math.round(gaps.reduce((s,x)=>s+x,0)/gaps.length);
+      for (let i=0;i<dates.length-1;i++) gaps.push(daysBetween(dates[i], dates[i+1]));
+      const avg = gaps.length ? gaps.reduce((s,x)=>s+x,0)/gaps.length : 31;
+      return Math.round(avg);
     }
 
-    function estimateCurrent(starts){
+    function estimateCurrent(){
       const today = new Date();
-      const dates = startsAsDates(starts).filter(d=>!isNaN(d));
-      if (!dates.length) return null;
-
-      // most recent start not in the future
+      const dates = defaultStarts.map(s=>new Date(s.date));
       let lastStart = dates[0];
       for (const d of dates){ if (d<=today) lastStart = d; }
 
-      const avgLen = averageCycleLength(starts);
+      const avgLen = averageCycleLength();
       const cycleDay = daysBetween(lastStart, today) + 1;
       const nextStart = new Date(lastStart.getTime() + avgLen*24*3600*1000);
       const daysToNext = daysBetween(today, nextStart);
@@ -173,32 +123,30 @@
       const ovuDay = clamp(avgLen - 14, 10, 20);
       const ovuWindow = { start: ovuDay-2, peak: ovuDay, end: ovuDay+2 };
 
+      const found = defaultStarts.find(s=> new Date(s.date).getTime()===lastStart.getTime());
+      const bleedLen = found?.periodLen || 6;
+
       let phase = '';
-      if (cycleDay <= (starts.find(s=>new Date(s.date).getTime()===lastStart.getTime())?.periodLen || 6)) {
-        phase = 'menstruation';
-      } else if (cycleDay < ovuWindow.start) {
-        phase = 'follicular';
-      } else if (cycleDay >= ovuWindow.start && cycleDay <= ovuWindow.end) {
-        phase = 'ovulation';
-      } else {
-        phase = 'luteal';
-      }
+      if (cycleDay <= bleedLen)      phase = 'menstruation';
+      else if (cycleDay < ovuWindow.start)                 phase = 'follicular';
+      else if (cycleDay >= ovuWindow.start && cycleDay <= ovuWindow.end) phase = 'ovulation';
+      else                           phase = 'luteal';
 
       return { today, lastStart, nextStart, avgLen, cycleDay, daysToNext, ovuWindow, phase };
     }
 
     function titleFor(p){
       if (p==='menstruation') return 'Menstruation';
-      if (p==='follicular') return 'Follicular';
-      if (p==='ovulation') return 'Ovulation Window';
-      if (p==='luteal') return 'Luteal';
+      if (p==='follicular')   return 'Follicular';
+      if (p==='ovulation')    return 'Ovulation Window';
+      if (p==='luteal')       return 'Luteal';
       return 'Phase';
     }
     function vibeLine(phase){
       if (phase==='menstruation') return 'This week I might be extra grump-grump. Warm hugs > loud plans.';
-      if (phase==='follicular') return 'This week I’m extra lovey-lovey and sparky. Book the cute date!';
-      if (phase==='ovulation') return 'This week I’m main-character lovey-lovey. Flirty & fun, handle with care. 😘';
-      if (phase==='luteal') return 'This week can swing grump-grump. Snacks, structure, and reassurance please.';
+      if (phase==='follicular')   return 'This week I’m extra lovey-lovey and sparky. Book the cute date!';
+      if (phase==='ovulation')    return 'This week I’m main-character lovey-lovey. Flirty & fun, handle with care. 😘';
+      if (phase==='luteal')       return 'This week can swing grump-grump. Snacks, structure, and reassurance please.';
       return '';
     }
 
@@ -212,15 +160,6 @@
       add(`Next start est: ${fmt(info.nextStart)} (${info.daysToNext} days)`);
       add(`Ovulation window: ~CD ${info.ovuWindow.start}-${info.ovuWindow.end}`);
       add(`Today’s guess: ${titleFor(info.phase)}`);
-      const ov = loadAvgOverride();
-      if (ov) add(`Override avg: ${ov}d`);
-    }
-
-    function renderHistory(starts){
-      const el = document.getElementById('historyList');
-      if (!starts.length){ el.textContent = 'No starts yet.'; return; }
-      const items = starts.map(s=>`${s.date}${s.periodLen?` (len ${s.periodLen}d)`:''}`);
-      el.innerHTML = `<div><b>Saved starts:</b> <code>${items.join('</code>, <code>')}</code></div>`;
     }
 
     // ===== Content (cute + factual) =====
@@ -286,14 +225,14 @@ I might be **extra grump-grump** or just nesting with snacks.
     // ===== UI Actions =====
     function showPhase(phase){
       document.getElementById('message').textContent = content[phase] || 'Pick a phase, silly goose. – Grump Grump';
-      const info = estimateCurrent(loadStarts());
+      const info = estimateCurrent();
       document.getElementById('statusHeader').innerHTML =
         `<b>Viewing:</b> ${titleFor(phase)} • <i>“${vibeLine(phase)}”</i>`;
       if (info) renderChips(info);
     }
 
     function showGuess(){
-      const info = estimateCurrent(loadStarts());
+      const info = estimateCurrent();
       if (!info) return;
       document.getElementById('statusHeader').innerHTML =
         `<b>Guess for today:</b> ${titleFor(info.phase)} • <i>“${vibeLine(info.phase)}”</i>`;
@@ -307,58 +246,15 @@ I might be **extra grump-grump** or just nesting with snacks.
       b.addEventListener('click', ()=> showPhase(b.getAttribute('data-phase')));
     });
 
-    document.getElementById('addStartBtn').addEventListener('click', ()=>{
-      const dt = document.getElementById('startDateInput').value;
-      const pl = Number(document.getElementById('periodLenInput').value);
-      if (!dt){ alert('Pick a start date.'); return; }
-      const arr = loadStarts();
-      arr.push({ date: dt, periodLen: pl||undefined });
-      arr.sort((a,b)=> new Date(a.date)-new Date(b.date));
-      saveStarts(arr);
-      document.getElementById('startDateInput').value = '';
-      document.getElementById('periodLenInput').value = '';
-      const info = estimateCurrent(arr);
-      if (info){ renderChips(info); }
-      renderHistory(arr);
-    });
-
-    document.getElementById('saveAvgBtn').addEventListener('click', ()=>{
-      const v = Number(document.getElementById('avgLenInput').value);
-      if (!v || v<20 || v>60){ alert('Enter a number 20–60.'); return; }
-      saveAvgOverride(v);
-      const info = estimateCurrent(loadStarts());
-      if (info){ renderChips(info); }
-    });
-
-    document.getElementById('clearOverridesBtn').addEventListener('click', ()=>{
-      saveAvgOverride(null);
-      document.getElementById('avgLenInput').value = '';
-      const info = estimateCurrent(loadStarts());
-      if (info){ renderChips(info); }
-    });
-
-    document.getElementById('clearAllBtn').addEventListener('click', ()=>{
-      if (!confirm('Clear all saved dates? (Defaults remain)')) return;
-      localStorage.removeItem(LS_STARTS);
-      renderHistory(loadStarts());
-      const info = estimateCurrent(loadStarts());
-      if (info){ renderChips(info); }
-    });
-
     // ===== Init =====
     (function init(){
-      // Seed defaults if nothing saved yet
-      if (!localStorage.getItem(LS_STARTS)){
-        saveStarts(defaultStarts);
-      }
-      renderHistory(loadStarts());
-      const info = estimateCurrent(loadStarts());
+      const info = estimateCurrent();
       if (info){
         document.getElementById('statusHeader').innerHTML =
           `<b>Guess for today:</b> ${titleFor(info.phase)} • <i>“${vibeLine(info.phase)}”</i>`;
         renderChips(info);
       } else {
-        document.getElementById('statusHeader').textContent = 'Add a period start date to begin.';
+        document.getElementById('statusHeader').textContent = 'Unable to estimate phase.';
       }
     })();
   </script>
