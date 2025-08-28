@@ -9,15 +9,15 @@
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
     :root{
-      --maxw: 1200px;        /* wider on laptops */
+      --maxw: 1200px;
       --panel-pad: 22px;
-      --text: 18px;          /* bigger base text */
+      --text: 18px;
       --text-lg: 20px;
     }
 
     body{
       font-family:'Arial',sans-serif;
-      background-image:url('images/grumpgrump.png'); /* your bg */
+      background-image:url('images/grumpgrump.png');
       background-size:cover;background-position:center;margin:0;min-height:100vh;
       display:flex;flex-direction:column;align-items:center;padding:80px 24px 48px;
     }
@@ -101,7 +101,6 @@
     const clamp = (x,min,max)=>Math.max(min,Math.min(max,x));
 
     function averageCycleLength(){
-      // Use gaps between fixed starts
       const dates = defaultStarts.map(s=>new Date(s.date));
       const gaps = [];
       for (let i=0;i<dates.length-1;i++) gaps.push(daysBetween(dates[i], dates[i+1]));
@@ -162,63 +161,78 @@
       add(`Today’s guess: ${titleFor(info.phase)}`);
     }
 
-    // ===== Content (cute + factual) =====
+    // ===== Content (kept same structure; expanded with gym-specific guidance) =====
     const content = {
       menstruation: `Hi, it’s your Grump Grump on **Menstruation** (Days 1–6-ish). 💗
 This week I might be **extra grump-grump** but also secretly wanting cuddles…
 
-**What’s cooking hormonally (facts):**
+What’s cooking hormonally (facts):
 • Estrogen & progesterone drop → lower mood/energy; prostaglandins = cramps.
 • Iron loss can add fatigue/headaches; temperature at baseline.
 
-**How to love me best:**
-• Heat pack, gentle walks, stretching. Iron + Vit C, magnesium help.
-• Lower-intensity training or technique work; I’ll decide if heavier is okay.
+Gym quick guide:
+• How I’ll likely feel: lower energy, crampy, maybe heavy legs. Day 1–2 the toughest; Day 3–6 usually improves.
+• Push level: RPE 5–6 early (technique, mobility, easy accessories). If pain/fatigue ease, build to RPE 6–7 by later days.
+• Training focus: technique work, tempo/restricted-range squats, light pulls/presses, steady zone-2 cardio, walking.
+• Recovery: heat pack 10–20 min pre-session, long warm-ups, gentle core (dead bug, pallof). 7–9 h sleep > everything.
+• Fuel: protein 1.6–2.2 g/kg/day; iron-rich foods + vitamin C; hydrate + electrolytes if flow is heavy.
+• Red flags: flooding, >8 days bleeding, severe pain, dizziness → clinician chat.
 
-**Mood & cuddles:** blanket burrito mode is valid. If I’m short, it’s the endometrium’s farewell party.
-
-**Red flags:** flooding, >8 days, severe pain, dizziness → clinician chat.
+Mood & cuddles: blanket burrito mode is valid. If I’m short, it’s the endometrium’s farewell party.
 `,
 
       follicular: `Grump Grump in **Follicular** (post-period → pre-ovulation). 🌱
 I’m **extra lovey-lovey**, brighter, and ready to plan cute things.
 
-**Hormone facts:**
+Hormone facts:
 • Rising estrogen (FSH follicles) → energy, mood, verbal sparkle.
 • Cervical mucus: dry/sticky → creamy → more fluid nearing ovulation.
 
-**Love me like this:**
-• Socials/projects now. Training: volume, speed, learning blocks thrive.
-• Protein + complex carbs; omega-3s for recovery.
+Gym quick guide:
+• How I’ll likely feel: energy climbs day by day; coordination feels snappy.
+• Push level: RPE 7–8 most sessions; tolerate higher volume and new skills.
+• Training focus: progression blocks shine (hypertrophy sets, complexes, speed pulls, plyos). Add new drills/positional work.
+• Day-to-day: add a set or +2.5 kg when bar speed is good; keep 1–3 reps in reserve (RIR) to bank recovery.
+• Recovery: cool-down + light mobility; protein timing around sessions; short HIIT ok if sleep is good.
+• Fuel: carbs pre-lift for power; keep hydration consistent.
 
-**Why it tracks:** estradiol boosts serotonin/dopamine and adaptation to training.
+Why it tracks: estradiol supports training adaptation and chipper mood.
 `,
 
       ovulation: `**Ovulation Window** 💫
 I’m **main-character lovey-lovey** and a little feral (in a cute way).
 
-**Hormone fireworks:**
+Hormone fireworks:
 • LH surge triggers ovulation; estrogen peaks; mucus is clear + stretchy (fertile).
 
-**Do’s:**
-• Dates/compliments/play. Power/PRs if my body says yes (warm joints well).
-• If avoiding pregnancy, note: this is the fertile zone.
+Gym quick guide:
+• How I’ll likely feel: powerful, confident, fast. Joints feel mobile.
+• Push level: strength/power days can touch RPE 8–9 if warm-up is thorough and technique stays crisp.
+• Training focus: heavy singles/doubles (leave 1 rep in reserve), bar speed work, short sprints, jumps.
+• Caution: high estrogen can mean a touch more ligament laxity—prioritise bracing, landing mechanics, and longer warm-ups.
+• Recovery: contrast showers or light flush bike; sleep on time to ride the wave again tomorrow.
+• Fuel: carbs + protein pre/post; don’t under-eat on big days.
 
-**Why it tracks:** estrogen peak + LH surge = social drive + fertile signs.
+Do’s:
+• Dates/compliments/play. If avoiding pregnancy, remember: this is the fertile zone.
 `,
 
       luteal: `**Luteal** 🌙
 I might be **extra grump-grump** or just nesting with snacks.
 
-**Hormone rhythm:**
+Hormone rhythm:
 • Progesterone rises (temp slightly up); near the end both hormones drop → PMS.
 • Bloating, tenderness, sleep changes possible.
 
-**Care plan:**
-• Structure, reassurance, magnesium, B-vits, fiber, electrolytes.
-• Training: keep intensity, trim volume if recovery slows.
+Gym quick guide:
+• How I’ll likely feel: early luteal = steady; late luteal (pre-period) = lower pop, more effort for same load.
+• Push level: early luteal RPE 7 fine; late luteal trim volume 10–20% or keep RPE 6–7 with same weights.
+• Training focus: keep main lifts but reduce junk volume; choose controlled tempo, pauses, and technique-first work.
+• Day-to-day: if sleep/cramps/bloat spike, swap max-out for EMOM technique, light accessories, or zone-2 cardio.
+• Recovery: magnesium, B-vit support; electrolytes; gentle walks for cramps/bloat; aim for consistent bedtimes.
+• Fuel: fiber + balanced carbs to steady energy; don’t slash calories—recovery needs fuel.
 
-**Why it tracks:** progesterone thermogenic/sedating; premenstrual withdrawal affects mood & water balance.
+Why it tracks: progesterone is mildly thermogenic/sedating; premenstrual withdrawal affects mood & water balance.
 `
     };
 
