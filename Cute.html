@@ -93,18 +93,20 @@
     }
 
     #relationship-image {
-      flex: 1;
-      min-width: 200px;
-      max-width: 250px;
-      height: 250px;
-      margin-left: 40px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      background-size: cover;
-      background-position: center;
-      transition: background-image 0.5s ease-in-out;
-    }
+  flex: 1;
+  min-width: 300px;     /* bigger minimum */
+  max-width: 500px;     /* allow larger width */
+  height: 500px;        /* increase height */
+  margin-left: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background-size: contain;  /* show full image */
+  background-position: center;
+  background-repeat: no-repeat; /* avoid tiling */
+  transition: background-image 0.5s ease-in-out;
+}
+
 
     @media screen and (max-width: 768px) {
   .main-container {
