@@ -4,38 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>100-Day Burpee Challenge</title>
-  <!-- TailwindCSS (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <!-- Papa Parse for CSV -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
-  <!-- ===== CONFIG ===== -->
-  <!--
-    1) Google Sheet: Share (Anyone with link - Viewer)
-    2) File → Publish to the web → select the tab → CSV → Publish
-    3) Set SHEET_ID and GID below
-    Header row: Date, 23 September, 24 September, …, 31 December
-    Col A (rows 2+): Names; data cells: numbers (>0 counts as DONE)
-  -->
   <script>
     const CONFIG = {
+      // Your published IDs (works with CSV or HTML)
       SHEET_ID: "2PACX-1vRCuxbkV6GpGjHWnQIOx2YAudYpM9tCnGgDdUcw-Mp1beUXp_m4SqNkkVMqUtN4uMCHXDnKIv2e9ZTE",
       GID: "0",
       YEAR: new Date().getFullYear(),
       TIMEZONE: "Africa/Johannesburg",
-};
+    };
   </script>
 
-  <!-- ===== HEADER ===== -->
   <header class="max-w-7xl mx-auto px-4 py-6">
     <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">100-Day Burpee Challenge</h1>
-    <p class="text-sm text-gray-600 mt-2">Live dashboard powered by Google Sheets. Any number &gt; 0 counts as completed for the day.</p>
+    <p class="text-sm text-gray-600 mt-2">Any number &gt; 0 counts as completed for the day.</p>
   </header>
 
-  <!-- ===== SUMMARY CARDS ===== -->
   <section class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="summary">
     <div class="bg-white rounded-2xl shadow p-4"><div class="text-gray-500 text-xs">Participants</div><div id="cardParticipants" class="text-2xl font-bold">–</div></div>
     <div class="bg-white rounded-2xl shadow p-4"><div class="text-gray-500 text-xs">Days So Far</div><div id="cardDays" class="text-2xl font-bold">–</div></div>
@@ -43,7 +31,7 @@
     <div class="bg-white rounded-2xl shadow p-4"><div class="text-gray-500 text-xs">Perfect Attendance</div><div id="cardPerfect" class="text-2xl font-bold">–</div></div>
   </section>
 
-  <!-- ===== PROGRESS TO 100 DAYS ===== -->
+  <!-- Progress to 100 days -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
     <div class="bg-white rounded-2xl shadow p-4">
       <div class="flex items-center justify-between mb-3">
@@ -57,7 +45,7 @@
     </div>
   </section>
 
-  <!-- ===== CHART: TOTAL BURPEES PER DAY ===== -->
+  <!-- Total burpees per day -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
     <div class="bg-white rounded-2xl shadow p-4">
       <div class="flex items-center justify-between mb-3">
@@ -68,18 +56,18 @@
     </div>
   </section>
 
-  <!-- ===== CHART: DAILY COMPLETION RATE ===== -->
+  <!-- Daily completion rate -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
     <div class="bg-white rounded-2xl shadow p-4">
       <div class="flex items-center justify-between mb-3">
         <h2 class="text-lg font-semibold">Daily Completion Rate</h2>
-        <div class="text-xs text-gray-500">% of participants with &gt;0 burpees each day</div>
+        <div class="text-xs text-gray-500">% with &gt;0 burpees each day</div>
       </div>
       <canvas id="completionChart" height="120"></canvas>
     </div>
   </section>
 
-  <!-- ===== LEADERBOARDS ===== -->
+  <!-- Leaderboard -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
     <div class="bg-white rounded-2xl shadow p-4">
       <h3 class="text-lg font-semibold mb-2">Top Burpees (Total)</h3>
@@ -87,7 +75,7 @@
     </div>
   </section>
 
-  <!-- ===== PERFECT ATTENDANCE (BOTTOM) ===== -->
+  <!-- Perfect attendance at bottom -->
   <section class="max-w-7xl mx-auto px-4 mt-6 mb-10">
     <div class="bg-white rounded-2xl shadow p-4">
       <h3 class="text-lg font-semibold mb-2">Perfect Attendance (so far)</h3>
@@ -96,23 +84,12 @@
     </div>
   </section>
 
-  <section class="max-w-7xl mx-auto px-4 mt-6 mb-10">
-    <div class="bg-white rounded-2xl shadow p-4">
-      <h3 class="text-lg font-semibold mb-2">Extra ideas</h3>
-      <ul class="list-disc pl-6 text-sm space-y-1">
-        <li>Cumulative burpees vs goal per person (e.g., aiming for 10,000 over 100 days).</li>
-        <li>Make-up days tracker (who caught up on missed days).</li>
-        <li>Personal pages (click a name to view their trend + streak history).</li>
-        <li>Hall of Fame badges: 7-day, 30-day, 50-day streaks, etc.</li>
-      </ul>
-    </div>
-  </section>
-
   <script>
     // ---------- Utilities ----------
     const monthMap = {
-      january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
-      july: 6, august: 7, september: 8, october: 9, november: 10, december: 11
+      january:0,february:1,march:2,april:3,may:4,june:5,
+      july:6,august:7,september:8,october:9,november:10,december:11,
+      jan:0,feb:1,mar:2,apr:3,may2:4,jun:5,jul:6,aug:7,sep:8,sept:8,oct:9,nov:10,dec:11
     };
 
     function parseHeaderDate(h, assumedYear) {
@@ -121,36 +98,65 @@
       const parts = t.split(/\s+/);
       if (parts.length < 2) return null;
       const day = parseInt(parts[0], 10);
-      const monthName = parts[1].toLowerCase();
+      const monthName = parts[1].toLowerCase().replace('.', '');
       const m = monthMap[monthName];
       if (Number.isNaN(day) || m === undefined) return null;
       return new Date(assumedYear, m, day);
     }
 
-    function formatDateDMon(d) {
-      return d.toLocaleDateString(undefined, { day: '2-digit', month: 'short' });
-    }
-
-    function isPastOrToday(d) {
-      const now = new Date();
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const fmtDMo = d => d.toLocaleDateString(undefined, { day:'2-digit', month:'short' });
+    const isPastOrToday = d => {
+      const now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       const dd = new Date(d.getFullYear(), d.getMonth(), d.getDate());
       return dd <= today;
-    }
-
+    };
     const sum = arr => arr.reduce((a,b)=>a + (Number(b)||0), 0);
 
-    // ---------- Data Fetch ----------
-    async function loadCSV() {
-      const url = `https://docs.google.com/spreadsheets/d/${CONFIG.SHEET_ID}/export?format=csv&gid=${CONFIG.GID}&cachebust=${Date.now()}`;
-      return new Promise((resolve, reject) => {
-        Papa.parse(url, {
-          download: true,
-          dynamicTyping: false,
-          complete: results => resolve(results.data),
-          error: err => reject(err)
+    // ---------- Loaders: CSV first, then HTML fallback ----------
+    async function fetchText(url) {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.text();
+    }
+
+    function parseCsvTextToRows(text) {
+      const parsed = Papa.parse(text.trim(), { dynamicTyping: false });
+      return parsed.data;
+    }
+
+    function parseHtmlTableToRows(html) {
+      // Parse published HTML (pubhtml) and read the first .waffle table
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const table = doc.querySelector("table.waffle");
+      if (!table) throw new Error("No table found in published HTML.");
+      const rows = [];
+      table.querySelectorAll("tr").forEach(tr => {
+        const row = [];
+        tr.querySelectorAll("th,td").forEach(td => {
+          // get text, preserving simple <br> as space
+          const s = td.innerText.replace(/\u00A0/g, " ").trim();
+          row.push(s);
         });
+        // keep row if any cell present
+        if (row.length) rows.push(row);
       });
+      return rows;
+    }
+
+    async function loadSheetRows() {
+      // Try CSV
+      const csvUrl = `https://docs.google.com/spreadsheets/d/e/${CONFIG.SHEET_ID}/pub?gid=${CONFIG.GID}&single=true&output=csv&cachebust=${Date.now()}`;
+      try {
+        const csv = await fetchText(csvUrl);
+        const rows = parseCsvTextToRows(csv);
+        if (rows && rows.length && rows[0].length) return rows;
+        throw new Error("CSV empty");
+      } catch (e) {
+        // Fallback to published HTML
+        const htmlUrl = `https://docs.google.com/spreadsheets/d/e/${CONFIG.SHEET_ID}/pubhtml?gid=${CONFIG.GID}&single=true&cachebust=${Date.now()}`;
+        const html = await fetchText(htmlUrl);
+        return parseHtmlTableToRows(html);
+      }
     }
 
     // ---------- Processing ----------
@@ -159,6 +165,7 @@
       const headers = rows[0];
       const nameAndDataRows = rows.slice(1).filter(r => r && r.length && String(r[0]).trim() !== "");
 
+      // Header dates start at col1
       const rawDates = headers.slice(1);
       const dates = rawDates.map(h => parseHeaderDate(h, CONFIG.YEAR));
       const validIdx = dates.map((d, i) => (d && isPastOrToday(d) ? i : null)).filter(i => i !== null);
@@ -185,14 +192,14 @@
         });
       });
 
-      const labels = validIdx.map(i => dates[i]).map(formatDateDMon);
+      const labels = validIdx.map(i => dates[i]).map(fmtDMo);
       const participantsCount = participants.length;
       const completionRate = perDayCompleters.map(c => participantsCount ? Math.round((c/participantsCount)*100) : 0);
 
       return { labels, perDayTotals, completionRate, perPerson, participantsCount, daysSoFar: validIdx.length };
     }
 
-    // ---------- UI Renderers ----------
+    // ---------- UI ----------
     function renderSummary({participantsCount, daysSoFar, perPerson}) {
       const totalAll = perPerson.reduce((a,p)=>a+p.totalSoFar,0);
       const perfectCount = perPerson.filter(p=>p.perfect).length;
@@ -202,12 +209,8 @@
       document.getElementById('cardPerfect').textContent = perfectCount;
 
       const pct = Math.min(100, Math.round((daysSoFar/100)*100));
-      const bar = document.getElementById('progressBar');
-      const txt = document.getElementById('progressText');
-      if (bar && txt) {
-        bar.style.width = pct + '%';
-        txt.textContent = `${pct}% (${daysSoFar} / 100 days)`;
-      }
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressText').textContent = `${pct}% (${daysSoFar} / 100 days)`;
     }
 
     let burpeesChart, completionChart;
@@ -241,12 +244,10 @@
     }
 
     function renderLeaderboards(perPerson) {
-      // Top totals
       const topTotals = [...perPerson].sort((a,b)=>b.totalSoFar - a.totalSoFar).slice(0, 15);
       document.getElementById('topTotalList').innerHTML =
         topTotals.map(p=>`<li><span class="font-medium">${p.name}</span> — ${p.totalSoFar.toLocaleString()}</li>`).join('');
 
-      // Perfect attendance (alphabetical) at the bottom
       const perfect = perPerson.filter(p=>p.perfect).sort((a,b)=>a.name.localeCompare(b.name));
       document.getElementById('perfectList').innerHTML =
         perfect.length ? perfect.map(p=>`<li>${p.name}</li>`).join('') : '<li class="text-gray-500">No one (yet!)</li>';
@@ -255,7 +256,7 @@
     // ---------- Boot ----------
     async function init() {
       try {
-        const rows = await loadCSV();
+        const rows = await loadSheetRows();
         const ds = processData(rows);
         renderSummary(ds);
         renderBurpeesChart(ds.labels, ds.perDayTotals);
@@ -263,10 +264,9 @@
         renderLeaderboards(ds.perPerson);
       } catch (e) {
         console.error(e);
-        alert('Failed to load data. Please check SHEET_ID/GID and publish settings.');
+        alert('Failed to load data. Check publish settings and header/date formats.');
       }
     }
-
     document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
