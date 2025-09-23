@@ -85,189 +85,220 @@
   </section>
 
   <script>
-    // ---------- Utilities ----------
-    const monthMap = {
-      january:0,february:1,march:2,april:3,may:4,june:5,
-      july:6,august:7,september:8,october:9,november:10,december:11,
-      jan:0,feb:1,mar:2,apr:3,may2:4,jun:5,jul:6,aug:7,sep:8,sept:8,oct:9,nov:10,dec:11
-    };
+  const CONFIG = {
+    SHEET_ID: "2PACX-1vRCuxbkV6GpGjHWnQIOx2YAudYpM9tCnGgDdUcw-Mp1beUXp_m4SqNkkVMqUtN4uMCHXDnKIv2e9ZTE",
+    GID: "0",
+    YEAR: new Date().getFullYear(),
+    TIMEZONE: "Africa/Johannesburg",
+  };
 
-    function parseHeaderDate(h, assumedYear) {
-      if (!h) return null;
-      const t = String(h).trim();
-      const parts = t.split(/\s+/);
-      if (parts.length < 2) return null;
-      const day = parseInt(parts[0], 10);
-      const monthName = parts[1].toLowerCase().replace('.', '');
-      const m = monthMap[monthName];
-      if (Number.isNaN(day) || m === undefined) return null;
-      return new Date(assumedYear, m, day);
-    }
+  // ----- Re-init guard -----
+  if (window.__burpeeInit) {
+    console.warn("Burpee dashboard already initialised.");
+  } else {
+    window.__burpeeInit = true;
+  }
 
-    const fmtDMo = d => d.toLocaleDateString(undefined, { day:'2-digit', month:'short' });
-    const isPastOrToday = d => {
-      const now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const dd = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-      return dd <= today;
-    };
-    const sum = arr => arr.reduce((a,b)=>a + (Number(b)||0), 0);
+  // ----- Date parsing (robust) -----
+  const monthMap = {
+    january:0,february:1,march:2,april:3,may:4,june:5,
+    july:6,august:7,september:8,october:9,november:10,december:11,
+    jan:0,feb:1,mar:2,apr:3,may2:4,jun:5,jul:6,aug:7,sep:8,sept:8,oct:9,nov:10,dec:11
+  };
 
-    // ---------- Loaders: CSV first, then HTML fallback ----------
-    async function fetchText(url) {
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return await res.text();
-    }
+  function parseHeaderDate(h, assumedYear) {
+    if (!h) return null;
+    const t = String(h).replace(/\u00A0/g,' ').trim();     // normalize nbsp
+    const parts = t.split(/\s+/);
+    if (parts.length < 2) return null;
+    const day = parseInt(parts[0], 10);
+    const monthName = parts[1].toLowerCase().replace('.', '');
+    const m = monthMap[monthName];
+    if (!Number.isFinite(day) || m === undefined) return null;
+    const d = new Date(assumedYear, m, day);
+    if (isNaN(d.getTime())) return null;
+    return d;
+  }
+  const fmtDMo = d => d.toLocaleDateString(undefined, { day:'2-digit', month:'short' });
+  const isPastOrToday = d => {
+    const now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const dd = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    return dd <= today;
+  };
 
-    function parseCsvTextToRows(text) {
-      const parsed = Papa.parse(text.trim(), { dynamicTyping: false });
-      return parsed.data;
-    }
+  // ----- Numeric sanitiser -----
+  function toNum(x) {
+    if (x === null || x === undefined) return 0;
+    const s = String(x).replace(/,/g,'').trim();
+    const n = Number(s);
+    return Number.isFinite(n) ? n : 0;
+  }
+  const sum = arr => arr.reduce((a,b)=>a + (toNum(b)||0), 0);
 
-    function parseHtmlTableToRows(html) {
-      // Parse published HTML (pubhtml) and read the first .waffle table
-      const doc = new DOMParser().parseFromString(html, "text/html");
-      const table = doc.querySelector("table.waffle");
-      if (!table) throw new Error("No table found in published HTML.");
-      const rows = [];
-      table.querySelectorAll("tr").forEach(tr => {
-        const row = [];
-        tr.querySelectorAll("th,td").forEach(td => {
-          // get text, preserving simple <br> as space
-          const s = td.innerText.replace(/\u00A0/g, " ").trim();
-          row.push(s);
-        });
-        // keep row if any cell present
-        if (row.length) rows.push(row);
+  // ----- Loaders: CSV first, fallback to pubhtml -----
+  async function fetchText(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.text();
+  }
+  function parseCsvTextToRows(text) {
+    const parsed = Papa.parse(text.trim(), { dynamicTyping: false });
+    return parsed.data;
+  }
+  function parseHtmlTableToRows(html) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const table = doc.querySelector("table.waffle");
+    if (!table) throw new Error("No table found in published HTML.");
+    const rows = [];
+    table.querySelectorAll("tr").forEach(tr => {
+      const row = [];
+      tr.querySelectorAll("th,td").forEach(td => {
+        row.push(td.innerText.replace(/\u00A0/g, " ").trim());
       });
-      return rows;
+      // keep row only if it has any non-empty cell
+      if (row.some(c => c !== "")) rows.push(row);
+    });
+    return rows;
+  }
+  async function loadSheetRows() {
+    const csvUrl  = `https://docs.google.com/spreadsheets/d/e/${CONFIG.SHEET_ID}/pub?gid=${CONFIG.GID}&single=true&output=csv&cachebust=${Date.now()}`;
+    try {
+      const csv = await fetchText(csvUrl);
+      const rows = parseCsvTextToRows(csv);
+      if (rows && rows.length && rows[0].length) return rows;
+      throw new Error("CSV empty");
+    } catch {
+      const htmlUrl = `https://docs.google.com/spreadsheets/d/e/${CONFIG.SHEET_ID}/pubhtml?gid=${CONFIG.GID}&single=true&cachebust=${Date.now()}`;
+      const html = await fetchText(htmlUrl);
+      return parseHtmlTableToRows(html);
     }
+  }
 
-    async function loadSheetRows() {
-      // Try CSV
-      const csvUrl = `https://docs.google.com/spreadsheets/d/e/${CONFIG.SHEET_ID}/pub?gid=${CONFIG.GID}&single=true&output=csv&cachebust=${Date.now()}`;
-      try {
-        const csv = await fetchText(csvUrl);
-        const rows = parseCsvTextToRows(csv);
-        if (rows && rows.length && rows[0].length) return rows;
-        throw new Error("CSV empty");
-      } catch (e) {
-        // Fallback to published HTML
-        const htmlUrl = `https://docs.google.com/spreadsheets/d/e/${CONFIG.SHEET_ID}/pubhtml?gid=${CONFIG.GID}&single=true&cachebust=${Date.now()}`;
-        const html = await fetchText(htmlUrl);
-        return parseHtmlTableToRows(html);
+  // ----- Processing (clamped to MAX_DAYS = 100) -----
+  const MAX_DAYS = 100;
+  function processData(rows) {
+    if (!rows || rows.length === 0) throw new Error("No data");
+    const headers = rows[0].map(h => String(h || "").trim());
+    const nameAndDataRows = rows.slice(1).filter(r => r && r.length && String(r[0]||"").trim() !== "");
+
+    const rawDates = headers.slice(1);
+    const parsedDates = rawDates.map(h => parseHeaderDate(h, CONFIG.YEAR));
+
+    // Valid day indexes: real date, not in future
+    let validIdx = [];
+    for (let i = 0; i < parsedDates.length; i++) {
+      const d = parsedDates[i];
+      if (d && isPastOrToday(d)) validIdx.push(i);
+    }
+    // Clamp to 100 days max
+    validIdx = validIdx.slice(0, MAX_DAYS);
+
+    const participants = [];
+    const perDayTotals = Array(validIdx.length).fill(0);
+    const perDayCompleters = Array(validIdx.length).fill(0);
+    const perPerson = [];
+
+    nameAndDataRows.forEach(r => {
+      const name = String(r[0]).trim();
+      const vals = rawDates.map((_, i) => toNum(r[i+1]));
+      const valsSoFar = validIdx.map(i => vals[i]);
+      const didDays = valsSoFar.map(v => v > 0);
+      const totalSoFar = sum(valsSoFar);
+      const perfect = didDays.length > 0 && didDays.every(Boolean);
+
+      perPerson.push({ name, totalSoFar, perfect, didDays });
+      participants.push(name);
+
+      validIdx.forEach((i, j) => {
+        perDayTotals[j] += vals[i];
+        if (vals[i] > 0) perDayCompleters[j] += 1;
+      });
+    });
+
+    const labels = validIdx.map(i => parsedDates[i]).map(fmtDMo);
+    const participantsCount = participants.length;
+    const completionRate = perDayCompleters.map(c => participantsCount ? Math.round((c/participantsCount)*100) : 0);
+
+    return { labels, perDayTotals, completionRate, perPerson, participantsCount, daysSoFar: validIdx.length };
+  }
+
+  // ----- UI -----
+  function renderSummary({participantsCount, daysSoFar, perPerson}) {
+    const totalAll = perPerson.reduce((a,p)=>a+p.totalSoFar,0);
+    const perfectCount = perPerson.filter(p=>p.perfect).length;
+    document.getElementById('cardParticipants').textContent = participantsCount;
+    document.getElementById('cardDays').textContent = daysSoFar;
+    document.getElementById('cardTotal').textContent = totalAll.toLocaleString();
+    document.getElementById('cardPerfect').textContent = perfectCount;
+
+    const pct = Math.min(100, Math.max(0, Math.round((daysSoFar/100)*100)));
+    const bar = document.getElementById('progressBar');
+    const txt = document.getElementById('progressText');
+    if (bar && txt) {
+      bar.style.width = pct + '%';
+      txt.textContent = `${pct}% (${daysSoFar} / 100 days)`;
+    }
+  }
+
+  let burpeesChart, completionChart;
+  function renderBurpeesChart(labels, data) {
+    const ctx = document.getElementById('burpeesChart');
+    if (burpeesChart) burpeesChart.destroy();
+    burpeesChart = new Chart(ctx, {
+      type: 'bar',
+      data: { labels, datasets: [{ label: 'Total Burpees', data, borderWidth: 1 }] },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.parsed.y.toLocaleString()} burpees` } } },
+        scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
       }
-    }
-
-    // ---------- Processing ----------
-    function processData(rows) {
-      if (!rows || rows.length === 0) throw new Error("No data");
-      const headers = rows[0];
-      const nameAndDataRows = rows.slice(1).filter(r => r && r.length && String(r[0]).trim() !== "");
-
-      // Header dates start at col1
-      const rawDates = headers.slice(1);
-      const dates = rawDates.map(h => parseHeaderDate(h, CONFIG.YEAR));
-      const validIdx = dates.map((d, i) => (d && isPastOrToday(d) ? i : null)).filter(i => i !== null);
-
-      const participants = [];
-      const perDayTotals = Array(validIdx.length).fill(0);
-      const perDayCompleters = Array(validIdx.length).fill(0);
-      const perPerson = [];
-
-      nameAndDataRows.forEach(r => {
-        const name = String(r[0]).trim();
-        const vals = rawDates.map((_, i) => Number(r[i+1]) || 0);
-        const valsSoFar = validIdx.map(i => vals[i]);
-        const totalSoFar = sum(valsSoFar);
-        const didDays = valsSoFar.map(v => v > 0);
-        const perfect = didDays.every(Boolean) && didDays.length > 0;
-
-        perPerson.push({ name, totalSoFar, perfect, didDays });
-        participants.push(name);
-
-        validIdx.forEach((i, j) => {
-          perDayTotals[j] += vals[i];
-          if (vals[i] > 0) perDayCompleters[j] += 1;
-        });
-      });
-
-      const labels = validIdx.map(i => dates[i]).map(fmtDMo);
-      const participantsCount = participants.length;
-      const completionRate = perDayCompleters.map(c => participantsCount ? Math.round((c/participantsCount)*100) : 0);
-
-      return { labels, perDayTotals, completionRate, perPerson, participantsCount, daysSoFar: validIdx.length };
-    }
-
-    // ---------- UI ----------
-    function renderSummary({participantsCount, daysSoFar, perPerson}) {
-      const totalAll = perPerson.reduce((a,p)=>a+p.totalSoFar,0);
-      const perfectCount = perPerson.filter(p=>p.perfect).length;
-      document.getElementById('cardParticipants').textContent = participantsCount;
-      document.getElementById('cardDays').textContent = daysSoFar;
-      document.getElementById('cardTotal').textContent = totalAll.toLocaleString();
-      document.getElementById('cardPerfect').textContent = perfectCount;
-
-      const pct = Math.min(100, Math.round((daysSoFar/100)*100));
-      document.getElementById('progressBar').style.width = pct + '%';
-      document.getElementById('progressText').textContent = `${pct}% (${daysSoFar} / 100 days)`;
-    }
-
-    let burpeesChart, completionChart;
-
-    function renderBurpeesChart(labels, data) {
-      const ctx = document.getElementById('burpeesChart');
-      if (burpeesChart) burpeesChart.destroy();
-      burpeesChart = new Chart(ctx, {
-        type: 'bar',
-        data: { labels, datasets: [{ label: 'Total Burpees', data, borderWidth: 1 }] },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.parsed.y.toLocaleString()} burpees` } } },
-          scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
-        }
-      });
-    }
-
-    function renderCompletionChart(labels, pct) {
-      const ctx = document.getElementById('completionChart');
-      if (completionChart) completionChart.destroy();
-      completionChart = new Chart(ctx, {
-        type: 'line',
-        data: { labels, datasets: [{ label: 'Completion %', data: pct, tension: 0.3, fill: false }] },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.parsed.y}%` } } },
-          scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } }
-        }
-      });
-    }
-
-    function renderLeaderboards(perPerson) {
-      const topTotals = [...perPerson].sort((a,b)=>b.totalSoFar - a.totalSoFar).slice(0, 15);
-      document.getElementById('topTotalList').innerHTML =
-        topTotals.map(p=>`<li><span class="font-medium">${p.name}</span> — ${p.totalSoFar.toLocaleString()}</li>`).join('');
-
-      const perfect = perPerson.filter(p=>p.perfect).sort((a,b)=>a.name.localeCompare(b.name));
-      document.getElementById('perfectList').innerHTML =
-        perfect.length ? perfect.map(p=>`<li>${p.name}</li>`).join('') : '<li class="text-gray-500">No one (yet!)</li>';
-    }
-
-    // ---------- Boot ----------
-    async function init() {
-      try {
-        const rows = await loadSheetRows();
-        const ds = processData(rows);
-        renderSummary(ds);
-        renderBurpeesChart(ds.labels, ds.perDayTotals);
-        renderCompletionChart(ds.labels, ds.completionRate);
-        renderLeaderboards(ds.perPerson);
-      } catch (e) {
-        console.error(e);
-        alert('Failed to load data. Check publish settings and header/date formats.');
+    });
+  }
+  function renderCompletionChart(labels, pct) {
+    const ctx = document.getElementById('completionChart');
+    if (completionChart) completionChart.destroy();
+    completionChart = new Chart(ctx, {
+      type: 'line',
+      data: { labels, datasets: [{ label: 'Completion %', data: pct, tension: 0.3, fill: false }] },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.parsed.y}%` } } },
+        scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } } }
       }
+    });
+  }
+  function renderLeaderboards(perPerson) {
+    const topTotals = [...perPerson].sort((a,b)=>b.totalSoFar - a.totalSoFar).slice(0, 15);
+    document.getElementById('topTotalList').innerHTML =
+      topTotals.map(p=>`<li><span class="font-medium">${p.name}</span> — ${p.totalSoFar.toLocaleString()}</li>`).join('');
+
+    const perfect = perPerson.filter(p=>p.perfect).sort((a,b)=>a.name.localeCompare(b.name));
+    document.getElementById('perfectList').innerHTML =
+      perfect.length ? perfect.map(p=>`<li>${p.name}</li>`).join('') : '<li class="text-gray-500">No one (yet!)</li>';
+  }
+
+  // ----- Boot (safe) -----
+  async function init() {
+    try {
+      const rows = await loadSheetRows();
+      const ds = processData(rows);
+      renderSummary(ds);
+      renderBurpeesChart(ds.labels, ds.perDayTotals);
+      renderCompletionChart(ds.labels, ds.completionRate);
+      renderLeaderboards(ds.perPerson);
+    } catch (e) {
+      console.error(e);
+      alert('Failed to load data. Check publish settings and header/date formats.');
     }
-    document.addEventListener('DOMContentLoaded', init);
-  </script>
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!window.__burpeeStarted) {
+      window.__burpeeStarted = true;
+      init();
+    }
+  });
+</script>
+
+
 </body>
 </html>
