@@ -58,11 +58,11 @@
     </div>
   </section>
 
-  <!-- Leaderboard -->
+    <!-- Leaderboard -->
   <section class="max-w-7xl mx-auto px-4 mt-6">
     <div class="bg-white rounded-2xl shadow p-4">
       <h3 class="text-lg font-semibold mb-2">Top Burpees (Total)</h3>
-      <ol id="topTotalList" class="list-decimal list-inside text-sm space-y-1"></ol>
+      <ul id="topTotalList" class="list-disc pl-5 text-sm space-y-1"></ul>
     </div>
   </section>
 
@@ -71,9 +71,10 @@
     <div class="bg-white rounded-2xl shadow p-4">
       <h3 class="text-lg font-semibold mb-2">Perfect Attendance (so far)</h3>
       <p class="text-xs text-gray-500 mb-2">Alphabetical • Any value &gt; 0 counts as completed for that day</p>
-      <ol id="perfectList" class="columns-1 sm:columns-2 lg:columns-3 list-decimal list-inside text-sm"></ol>
+      <ul id="perfectList" class="columns-1 sm:columns-2 lg:columns-3 list-disc pl-5 text-sm"></ul>
     </div>
   </section>
+
 
   <script>
     // ===== CONFIG =====
@@ -256,13 +257,15 @@
     }
 
     function renderLeaderboards(perPerson) {
-      const topTotals = [...perPerson].sort((a,b)=>b.totalSoFar - a.totalSoFar).slice(0, 15);
-      document.getElementById('topTotalList').innerHTML =
-        topTotals.map(p=>`<li><span class="font-medium">${p.name}</span> — ${p.totalSoFar.toLocaleString()}</li>`).join('');
-      const perfect = perPerson.filter(p=>p.perfect).sort((a,b)=>a.name.localeCompare(b.name));
-      document.getElementById('perfectList').innerHTML =
-        perfect.length ? perfect.map(p=>`<li>${p.name}</li>`).join('') : '<li class="text-gray-500">No one (yet!)</li>';
-    }
+  const topTotals = [...perPerson].sort((a,b)=>b.totalSoFar - a.totalSoFar).slice(0, 15);
+  document.getElementById('topTotalList').innerHTML =
+    topTotals.map(p=>`<li><span class="font-medium">${p.name}</span> — ${p.totalSoFar.toLocaleString()}</li>`).join('');
+
+  const perfect = perPerson.filter(p=>p.perfect).sort((a,b)=>a.name.localeCompare(b.name));
+  document.getElementById('perfectList').innerHTML =
+    perfect.length ? perfect.map(p=>`<li>${p.name}</li>`).join('') : '<li class="text-gray-500">No one (yet!)</li>';
+}
+
 
     // ===== Boot =====
     async function init() {
