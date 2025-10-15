@@ -15,6 +15,21 @@
 		<div id="page-wrapper">
 
 <style>
+	.image.featured img {
+    width: 100%;
+    height: 250px; /* adjust this for preferred height */
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 5px; /* optional, matches theme aesthetics */
+}
+
+/* Mobile adjustment */
+@media (max-width: 767px) {
+    .image.featured img {
+        height: 180px;
+    }
+}
+
 	#nav {
    	 	text-align: center; /* Centers the inline-block elements within the nav */
 		}
@@ -199,4 +214,5 @@
 
 	</body>
 </html>
+
 
