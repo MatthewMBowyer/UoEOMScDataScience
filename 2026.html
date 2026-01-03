@@ -422,25 +422,7 @@
 }
 
 
-    const s = String(v).trim();
-    // try yyyy/mm/dd or yyyy-mm-dd
-    const m = s.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
-    if (m){
-      const y = Number(m[1]);
-      const mo = Number(m[2]) - 1;
-      const d = Number(m[3]);
-      const out = new Date(y, mo, d);
-      out.setHours(0,0,0,0);
-      return isNaN(out) ? null : out;
-    }
-
-    const d2 = new Date(s);
-    if (!isNaN(d2)){
-      d2.setHours(0,0,0,0);
-      return d2;
-    }
-    return null;
-  }
+  
 
   function mondayOf(d){
     const x = new Date(d);
