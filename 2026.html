@@ -1,146 +1,1032 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Training Tracker</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2026 Tracker</title>
 
-<style>
-body { font-family: system-ui, Arial, sans-serif; max-width: 1100px; margin: 20px; }
-.card { border: 1px solid #ddd; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
-.row { display: flex; gap: 12px; flex-wrap: wrap; }
-.pill { padding: 6px 10px; border-radius: 999px; font-weight: 700; }
-.good { background: #d4f8d4; color: #0b5d0b; }
-.bad { background: #ffd6d6; color: #7a0000; }
-.muted { color: #666; }
-table { border-collapse: collapse; width: 100%; }
-th, td { border-bottom: 1px solid #eee; padding: 6px; text-align: left; }
-</style>
+  <style>
+    :root{
+      --bg:#070A12;
+      --card:#0D1222;
+      --card2:#0B1020;
+      --text:#E9EEFF;
+      --muted:#A9B2D6;
+      --line:rgba(255,255,255,.08);
+      --good:#28d17c;
+      --bad:#ff4d6d;
+      --warn:#f7c948;
+      --accent:#7c5cff;
+      --accent2:#22d3ee;
+      --shadow: 0 14px 40px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1000px 500px at 10% -10%, rgba(124,92,255,.35), transparent 55%),
+        radial-gradient(900px 450px at 110% 10%, rgba(34,211,238,.25), transparent 55%),
+        radial-gradient(900px 450px at 40% 120%, rgba(40,209,124,.18), transparent 60%),
+        var(--bg);
+      color:var(--text);
+    }
+
+    a{color:inherit}
+
+    .wrap{
+      max-width:1100px;
+      margin: 0 auto;
+      padding: 18px 14px 30px;
+    }
+
+    header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    h1{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:.2px;
+    }
+
+    .subtitle{
+      color:var(--muted);
+      font-size: 13px;
+      line-height:1.35;
+    }
+
+    .controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+
+    .chip{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(13,18,34,.75);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.2);
+      color:var(--text);
+      font-size:13px;
+    }
+
+    .chip input[type="date"]{
+      background:transparent;
+      border: none;
+      color:var(--text);
+      font-size:13px;
+      outline:none;
+    }
+    .chip input[type="date"]::-webkit-calendar-picker-indicator{
+      filter: invert(1);
+      opacity:.75;
+    }
+
+    button{
+      appearance:none;
+      border:1px solid var(--line);
+      background: linear-gradient(135deg, rgba(124,92,255,.25), rgba(34,211,238,.15));
+      color:var(--text);
+      padding:10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight: 650;
+      letter-spacing:.2px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.25);
+      transition: transform .12s ease, filter .12s ease, border-color .12s ease;
+      font-size:13px;
+    }
+    button:hover{ transform: translateY(-1px); filter: brightness(1.07); border-color: rgba(255,255,255,.14); }
+    button:active{ transform: translateY(0px); filter: brightness(.98); }
+
+    .grid{
+      display:grid;
+      gap:14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 940px){
+      .grid{ grid-template-columns: 1.15fr .85fr; }
+    }
+
+    .card{
+      background: rgba(13,18,34,.78);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      backdrop-filter: blur(12px);
+      overflow:hidden;
+    }
+
+    .card h2{
+      margin:0 0 10px 0;
+      font-size: 15px;
+      letter-spacing:.2px;
+    }
+
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:stretch;
+    }
+
+    .stat{
+      flex: 1 1 180px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(11,16,32,.9), rgba(11,16,32,.55));
+      min-width: 180px;
+    }
+    .stat .k{
+      font-size:12px;
+      color: var(--muted);
+      margin-bottom:6px;
+    }
+    .stat .v{
+      font-size:18px;
+      font-weight: 800;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+    }
+    .stat .s{
+      font-size:12px;
+      color: var(--muted);
+      margin-top:8px;
+      line-height: 1.3;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.20);
+      white-space:nowrap;
+    }
+    .good{ color: var(--good); }
+    .bad{ color: var(--bad); }
+    .warn{ color: var(--warn); }
+
+    .bar{
+      margin-top:10px;
+      height:10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .bar > div{
+      height:100%;
+      width:0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(124,92,255,.95), rgba(34,211,238,.95));
+      box-shadow: 0 0 18px rgba(124,92,255,.35);
+    }
+
+    .canvasWrap{
+      margin-top: 10px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(11,16,32,.55);
+      padding: 10px;
+    }
+    canvas{ width:100%; height:240px; display:block; }
+
+    .tableWrap{
+      margin-top:10px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(11,16,32,.45);
+      overflow:auto;
+      max-height: 460px;
+    }
+
+    table{
+      width:100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    th, td{
+      padding: 10px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      text-align:left;
+      font-size: 12.5px;
+      color: var(--text);
+    }
+    th{
+      position: sticky;
+      top: 0;
+      background: rgba(11,16,32,.95);
+      z-index: 2;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing:.2px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.20);
+      font-weight:800;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .dot{
+      width:10px;height:10px;border-radius:999px;display:inline-block;
+      background: var(--muted);
+      box-shadow: 0 0 14px rgba(255,255,255,.06);
+    }
+    .dot.good{ background: var(--good); box-shadow: 0 0 14px rgba(40,209,124,.25); }
+    .dot.bad{ background: var(--bad); box-shadow: 0 0 14px rgba(255,77,109,.25); }
+    .dot.warn{ background: var(--warn); box-shadow: 0 0 14px rgba(247,201,72,.25); }
+
+    .footer{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height:1.35;
+    }
+  </style>
 </head>
 
 <body>
-<h1>Training Tracker</h1>
-<p class="muted">Live from Google Sheets</p>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>2026 Program Tracker</h1>
+        <div class="subtitle">
+          Program day 1 is <b>2026-01-01</b>. Multiple sessions per date supported. Missing metrics are ignored.
+        </div>
+      </div>
 
-<div class="card">
-  <div class="row">
-    <div>
-      <div class="muted">Week starting Monday</div>
-      <input type="date" id="weekPicker">
+      <div class="controls">
+        <div class="chip">
+          <span style="opacity:.9">Week start</span>
+          <input id="weekPicker" type="date" />
+        </div>
+        <button id="refreshBtn">Refresh</button>
+        <div class="chip" id="status">Loading…</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Weekly overview</h2>
+        <div class="row" id="weeklyStats"></div>
+        <div class="canvasWrap">
+          <canvas id="weeklyChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Goals and progression</h2>
+        <div class="row" id="goalStats"></div>
+        <div class="canvasWrap">
+          <canvas id="pagesChart"></canvas>
+        </div>
+      </div>
     </div>
-    <button onclick="loadData()">Refresh</button>
-    <div id="status" class="muted"></div>
+
+    <div class="card" style="margin-top:14px;">
+      <h2>All dates in sheet</h2>
+      <div class="subtitle" id="rangeText"></div>
+      <div class="tableWrap" id="overviewTable"></div>
+      <div class="footer">
+        Tips: Add more rows forever. The dashboard always recalculates from your sheet.
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="card">
-  <h2>This week</h2>
-  <div id="weekStats" class="row"></div>
-</div>
-
-<div class="card">
-  <h2>Reading progress</h2>
-  <div id="readingStats"></div>
-</div>
-
-<div class="card">
-  <h2>Latest body metrics</h2>
-  <div id="metricsStats" class="row"></div>
-</div>
 
 <script>
-const SHEET_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOU7k_ijGNI538FP5Bo44Ir-r4cUndNvSF2Pl6mZ6tAurTswM3aFYTImhhfaAe6NYqEd5VDmGczyGx/gviz/tq?tqx=out:json&gid=57696475";
+  // =========================
+  // CONFIG
+  // =========================
+  const PROGRAM_START_ISO = "2026-01-01";   // Day 1
+  const WEEKLY_SESSIONS_GOAL = 11;
+  const PAGES_PER_DAY_GOAL = 3;
 
-const WEEKLY_TARGET = 11;
+  // Metric goals
+  const GOALS = {
+    visceral_fat_max: 8,      // under 8
+    muscle_mass_min: 65,      // above 65
+    body_fat_max: 25,         // below 25
+    weight_max: 65            // under 65
+  };
 
-function monday(d) {
-  d = new Date(d);
-  const day = d.getDay() || 7;
-  if (day !== 1) d.setDate(d.getDate() - day + 1);
-  d.setHours(0,0,0,0);
-  return d;
-}
+  // Your public sheet gviz JSON endpoint (already correct)
+  const SHEET_GVIZ_URL =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOU7k_ijGNI538FP5Bo44Ir-r4cUndNvSF2Pl6mZ6tAurTswM3aFYTImhhfaAe6NYqEd5VDmGczyGx/gviz/tq?tqx=out:json&gid=57696475";
 
-function parseGViz(text) {
-  const json = text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1);
-  const data = JSON.parse(json);
-  const cols = data.table.cols.map(c => c.label);
-  const rows = data.table.rows.map(r =>
-    Object.fromEntries(r.c.map((v,i) => [cols[i], v ? v.v : null]))
-  );
-  return rows;
-}
+  // =========================
+  // Helpers
+  // =========================
+  function pad2(n){ return String(n).padStart(2,"0"); }
+  function toISO(d){ return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`; }
 
-function dayOfYear(d) {
-  const start = new Date(d.getFullYear(), 0, 0);
-  return Math.floor((d - start) / 86400000);
-}
+  function parseGViz(text){
+    const start = text.indexOf("{");
+    const end = text.lastIndexOf("}");
+    if (start < 0 || end < 0) throw new Error("Could not parse GViz response.");
+    const json = JSON.parse(text.slice(start, end + 1));
+    const cols = json.table.cols.map(c => (c.label || "").trim());
+    const rows = json.table.rows.map(r => (r.c || []).map(cell => cell ? cell.v : null));
+    return { cols, rows };
+  }
 
-async function loadData() {
-  document.getElementById("status").textContent = "Loading…";
+  function rowsToObjects(cols, rows){
+    return rows.map(r => {
+      const o = {};
+      for (let i=0;i<cols.length;i++){
+        const key = cols[i] || `col_${i}`;
+        o[key] = r[i];
+      }
+      return o;
+    });
+  }
 
-  const res = await fetch(SHEET_URL);
-  const rows = parseGViz(await res.text());
+  function safeNum(x){
+    const n = Number(x);
+    return Number.isFinite(n) ? n : null;
+  }
 
-  const weekStart = new Date(document.getElementById("weekPicker").value);
-  const weekEnd = new Date(weekStart);
-  weekEnd.setDate(weekEnd.getDate() + 7);
+  // Sheet date can be "2026/01/01" or "2026-01-01" or a Date-ish thing
+  function parseSheetDate(v){
+    if (v == null) return null;
 
-  const weekRows = rows.filter(r => {
-    const d = new Date(r.Date);
-    return d >= weekStart && d < weekEnd;
-  });
+    if (v instanceof Date && !isNaN(v)) {
+      const d = new Date(v);
+      d.setHours(0,0,0,0);
+      return d;
+    }
 
-  const sessionCount = weekRows.length;
-  const sessionPill = sessionCount >= WEEKLY_TARGET ? "good" : "bad";
+    const s = String(v).trim();
+    // try yyyy/mm/dd or yyyy-mm-dd
+    const m = s.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+    if (m){
+      const y = Number(m[1]);
+      const mo = Number(m[2]) - 1;
+      const d = Number(m[3]);
+      const out = new Date(y, mo, d);
+      out.setHours(0,0,0,0);
+      return isNaN(out) ? null : out;
+    }
 
-  document.getElementById("weekStats").innerHTML = `
-    <div class="pill ${sessionPill}">
-      Sessions: ${sessionCount} / ${WEEKLY_TARGET}
-    </div>
-  `;
-
-  const totalPages = rows.reduce((a,r) => a + (Number(r.Pages_read) || 0), 0);
-  const today = new Date();
-  const expectedPages = dayOfYear(today) * 3;
-  const pagesGood = totalPages >= expectedPages;
-
-  document.getElementById("readingStats").innerHTML = `
-    <div class="pill ${pagesGood ? "good" : "bad"}">
-      Pages read: ${totalPages} / ${expectedPages}
-    </div>
-  `;
-
-  function latestNonNull(col) {
-    for (let i = rows.length - 1; i >= 0; i--) {
-      if (rows[i][col] != null) return rows[i][col];
+    const d2 = new Date(s);
+    if (!isNaN(d2)){
+      d2.setHours(0,0,0,0);
+      return d2;
     }
     return null;
   }
 
-  const metrics = [
-    { name: "Visceral fat", val: latestNonNull("Visceral_fat"), ok: v => v < 8 },
-    { name: "Muscle %", val: latestNonNull("Muscle_mass_pct"), ok: v => v > 65 },
-    { name: "Body fat %", val: latestNonNull("Body_fat_pct"), ok: v => v < 25 },
-    { name: "Weight kg", val: latestNonNull("Weight_kg"), ok: v => v < 65 }
-  ];
+  function mondayOf(d){
+    const x = new Date(d);
+    x.setHours(0,0,0,0);
+    const day = x.getDay() || 7; // Sun=7
+    x.setDate(x.getDate() - (day - 1));
+    return x;
+  }
 
-  document.getElementById("metricsStats").innerHTML = metrics
-    .filter(m => m.val != null)
-    .map(m => `
-      <div class="pill ${m.ok(m.val) ? "good" : "bad"}">
-        ${m.name}: ${m.val}
+  function diffDays(a,b){
+    const ms = 24*60*60*1000;
+    return Math.floor((a.getTime() - b.getTime()) / ms);
+  }
+
+  function statusPill(ok){
+    return ok ? "good" : "bad";
+  }
+
+  function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+
+  // =========================
+  // Aggregations
+  // =========================
+  function buildAggregations(rows){
+    // Expect columns:
+    // Date, Session_type, Intensity_1_to_5, Pages_read, Visceral_fat, Muscle_mass_pct, Body_fat_pct, Weight_kg
+
+    const cleaned = [];
+    for (const r of rows){
+      const d = parseSheetDate(r.Date);
+      if (!d) continue;
+
+      cleaned.push({
+        date: d,
+        iso: toISO(d),
+        session_type: (r.Session_type ?? "").toString().trim(),
+        intensity: safeNum(r.Intensity_1_to_5),
+        pages: safeNum(r.Pages_read) ?? 0,
+        visceral: safeNum(r.Visceral_fat),
+        muscle: safeNum(r.Muscle_mass_pct),
+        bodyfat: safeNum(r.Body_fat_pct),
+        weight: safeNum(r.Weight_kg),
+      });
+    }
+
+    cleaned.sort((a,b) => a.date - b.date);
+
+    // Daily aggregation
+    const dailyMap = new Map();
+    for (const r of cleaned){
+      if (!dailyMap.has(r.iso)){
+        dailyMap.set(r.iso, {
+          iso: r.iso,
+          date: r.date,
+          sessions: 0,
+          intensitySum: 0,
+          intensityCount: 0,
+          pagesSum: 0,
+          types: new Map(),
+          // latest non-null metrics for that day
+          visceral: null,
+          muscle: null,
+          bodyfat: null,
+          weight: null
+        });
+      }
+      const d = dailyMap.get(r.iso);
+      d.sessions += 1;
+      if (r.intensity != null){
+        d.intensitySum += r.intensity;
+        d.intensityCount += 1;
+      }
+      d.pagesSum += (r.pages || 0);
+      const t = r.session_type || "Unknown";
+      d.types.set(t, (d.types.get(t) || 0) + 1);
+
+      // metrics: keep last non-null within day
+      if (r.visceral != null) d.visceral = r.visceral;
+      if (r.muscle != null) d.muscle = r.muscle;
+      if (r.bodyfat != null) d.bodyfat = r.bodyfat;
+      if (r.weight != null) d.weight = r.weight;
+    }
+
+    const daily = Array.from(dailyMap.values()).sort((a,b) => a.date - b.date);
+
+    // Weekly aggregation (weekStart Monday)
+    const weeklyMap = new Map();
+    for (const d of daily){
+      const ws = mondayOf(d.date);
+      const wsISO = toISO(ws);
+      if (!weeklyMap.has(wsISO)){
+        weeklyMap.set(wsISO, {
+          weekStart: ws,
+          weekISO: wsISO,
+          sessions: 0,
+          intensitySum: 0,
+          intensityCount: 0,
+          pagesSum: 0
+        });
+      }
+      const w = weeklyMap.get(wsISO);
+      w.sessions += d.sessions;
+      w.pagesSum += d.pagesSum;
+      w.intensitySum += d.intensitySum;
+      w.intensityCount += d.intensityCount;
+    }
+
+    const weekly = Array.from(weeklyMap.values()).sort((a,b) => a.weekStart - b.weekStart)
+      .map(w => ({
+        ...w,
+        intensityAvg: w.intensityCount ? (w.intensitySum / w.intensityCount) : 0
+      }));
+
+    // Latest non-null metrics across all rows
+    function latestMetric(key){
+      for (let i = daily.length - 1; i >= 0; i--){
+        const v = daily[i][key];
+        if (v != null) return { value: v, date: daily[i].date };
+      }
+      return { value: null, date: null };
+    }
+
+    return {
+      cleaned,
+      daily,
+      weekly,
+      firstDate: daily.length ? daily[0].date : null,
+      lastDate: daily.length ? daily[daily.length - 1].date : null,
+      latest: {
+        visceral: latestMetric("visceral"),
+        muscle: latestMetric("muscle"),
+        bodyfat: latestMetric("bodyfat"),
+        weight: latestMetric("weight"),
+      }
+    };
+  }
+
+  // =========================
+  // Rendering
+  // =========================
+  function drawLineChart(canvas, series, opts){
+    // series: [{x:Date, y:Number}]
+    const ctx = canvas.getContext("2d");
+
+    const cssW = canvas.clientWidth;
+    const cssH = canvas.clientHeight;
+    canvas.width = Math.max(1, Math.floor(cssW * devicePixelRatio));
+    canvas.height = Math.max(1, Math.floor(cssH * devicePixelRatio));
+
+    const w = canvas.width;
+    const h = canvas.height;
+
+    ctx.clearRect(0,0,w,h);
+
+    const pad = 34 * devicePixelRatio;
+
+    // background grid
+    ctx.strokeStyle = "rgba(255,255,255,.08)";
+    ctx.lineWidth = 1 * devicePixelRatio;
+    ctx.beginPath();
+    for (let i=0;i<=4;i++){
+      const y = pad + (h - pad*2) * (i/4);
+      ctx.moveTo(pad, y);
+      ctx.lineTo(w - pad, y);
+    }
+    ctx.stroke();
+
+    if (!series.length){
+      ctx.fillStyle = "rgba(255,255,255,.55)";
+      ctx.font = `${12*devicePixelRatio}px system-ui`;
+      ctx.fillText("No data yet", pad, pad + 10*devicePixelRatio);
+      return;
+    }
+
+    const xs = series.map(p => p.x.getTime());
+    const ys = series.map(p => p.y);
+
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    let minY = opts.minY ?? Math.min(...ys);
+    let maxY = opts.maxY ?? Math.max(...ys);
+
+    if (minY === maxY){
+      minY -= 1;
+      maxY += 1;
+    }
+
+    const xScale = (t) => {
+      if (minX === maxX) return pad;
+      return pad + (t - minX) / (maxX - minX) * (w - pad*2);
+    };
+    const yScale = (v) => {
+      return (h - pad) - (v - minY) / (maxY - minY) * (h - pad*2);
+    };
+
+    // goal line
+    if (opts.goalY != null){
+      const gy = yScale(opts.goalY);
+      ctx.strokeStyle = "rgba(255,255,255,.18)";
+      ctx.setLineDash([6*devicePixelRatio, 6*devicePixelRatio]);
+      ctx.beginPath();
+      ctx.moveTo(pad, gy);
+      ctx.lineTo(w - pad, gy);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // line
+    ctx.lineWidth = 2.2 * devicePixelRatio;
+    const grad = ctx.createLinearGradient(pad, pad, w-pad, h-pad);
+    grad.addColorStop(0, "rgba(124,92,255,.95)");
+    grad.addColorStop(1, "rgba(34,211,238,.95)");
+    ctx.strokeStyle = grad;
+
+    ctx.beginPath();
+    series.forEach((p, i) => {
+      const x = xScale(p.x.getTime());
+      const y = yScale(p.y);
+      if (i === 0) ctx.moveTo(x,y);
+      else ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+
+    // points
+    ctx.fillStyle = "rgba(255,255,255,.9)";
+    series.forEach((p) => {
+      const x = xScale(p.x.getTime());
+      const y = yScale(p.y);
+      ctx.beginPath();
+      ctx.arc(x, y, 2.8*devicePixelRatio, 0, Math.PI*2);
+      ctx.fill();
+    });
+
+    // title
+    ctx.fillStyle = "rgba(255,255,255,.75)";
+    ctx.font = `${12*devicePixelRatio}px system-ui`;
+    ctx.fillText(opts.title || "", pad, pad - 10*devicePixelRatio);
+
+    // last value
+    const last = series[series.length - 1];
+    ctx.fillStyle = "rgba(255,255,255,.85)";
+    ctx.font = `${12*devicePixelRatio}px system-ui`;
+    ctx.fillText(opts.lastLabel ? opts.lastLabel(last) : `Latest: ${last.y}`, pad, h - 10*devicePixelRatio);
+  }
+
+  function setStatus(text){
+    document.getElementById("status").textContent = text;
+  }
+
+  function renderWeeklyStats(agg, weekStart){
+    const ws = new Date(weekStart);
+    const we = new Date(ws); we.setDate(we.getDate() + 7);
+
+    const thisWeekDaily = agg.daily.filter(d => d.date >= ws && d.date < we);
+    const thisWeekSessions = thisWeekDaily.reduce((a,d) => a + d.sessions, 0);
+    const thisWeekIntensityCount = thisWeekDaily.reduce((a,d) => a + d.intensityCount, 0);
+    const thisWeekIntensitySum = thisWeekDaily.reduce((a,d) => a + d.intensitySum, 0);
+    const thisWeekIntensityAvg = thisWeekIntensityCount ? (thisWeekIntensitySum / thisWeekIntensityCount) : 0;
+
+    const okSessions = thisWeekSessions >= WEEKLY_SESSIONS_GOAL;
+
+    // program day and pages
+    const programStart = parseSheetDate(PROGRAM_START_ISO);
+    const lastDate = agg.lastDate || new Date();
+    const programDay = Math.max(0, diffDays(lastDate, programStart) + 1);
+    const expectedPages = programDay * PAGES_PER_DAY_GOAL;
+    const totalPages = agg.daily.reduce((a,d) => a + d.pagesSum, 0);
+    const okPages = totalPages >= expectedPages;
+
+    // totals
+    const totalSessions = agg.cleaned.length;
+    const avgIntensityAll = (() => {
+      const c = agg.cleaned.filter(r => r.intensity != null);
+      if (!c.length) return 0;
+      return c.reduce((a,r)=>a+r.intensity,0) / c.length;
+    })();
+
+    const el = document.getElementById("weeklyStats");
+    el.innerHTML = `
+      <div class="stat">
+        <div class="k">This week sessions</div>
+        <div class="v">
+          ${thisWeekSessions} <span class="badge ${okSessions ? "good" : "bad"}">
+            <span class="dot ${okSessions ? "good" : "bad"}"></span>${okSessions ? "Goal hit" : "Goal not hit"}
+          </span>
+        </div>
+        <div class="s">Goal: ${WEEKLY_SESSIONS_GOAL} sessions per week</div>
+        <div class="bar"><div style="width:${clamp((thisWeekSessions/WEEKLY_SESSIONS_GOAL)*100,0,160)}%"></div></div>
       </div>
-    `).join("");
 
-  document.getElementById("status").textContent =
-    "Updated " + new Date().toLocaleString();
-}
+      <div class="stat">
+        <div class="k">This week intensity avg</div>
+        <div class="v">
+          ${thisWeekIntensityAvg.toFixed(2)} <span class="badge warn">
+            <span class="dot warn"></span>out of 5
+          </span>
+        </div>
+        <div class="s">Based on all sessions logged this week with intensity</div>
+      </div>
 
-const ws = monday(new Date());
-document.getElementById("weekPicker").value = ws.toISOString().slice(0,10);
-loadData();
+      <div class="stat">
+        <div class="k">All-time sessions</div>
+        <div class="v">${totalSessions}</div>
+        <div class="s">All rows in your sheet counted as sessions</div>
+      </div>
+
+      <div class="stat">
+        <div class="k">All-time intensity avg</div>
+        <div class="v">${avgIntensityAll.toFixed(2)} <span class="badge warn"><span class="dot warn"></span>out of 5</span></div>
+        <div class="s">Only sessions with an intensity value are included</div>
+      </div>
+    `;
+
+    // weekly chart: sessions and intensity combined as two lines using scaling
+    // Draw sessions line, then intensity on secondary scale by mapping intensity* (WEEKLY_SESSIONS_GOAL/5) for comparable range
+    const wSeriesSessions = agg.weekly.map(w => ({ x: w.weekStart, y: w.sessions }));
+    const wSeriesIntensityScaled = agg.weekly.map(w => ({ x: w.weekStart, y: w.intensityAvg * (WEEKLY_SESSIONS_GOAL/5) }));
+
+    const canvas = document.getElementById("weeklyChart");
+    drawLineChart(canvas, wSeriesSessions, {
+      title: "Weekly sessions (goal line at 11)",
+      goalY: WEEKLY_SESSIONS_GOAL,
+      minY: 0,
+      maxY: Math.max(WEEKLY_SESSIONS_GOAL + 2, ...wSeriesSessions.map(p => p.y) ) ,
+      lastLabel: (p) => `Latest week sessions: ${p.y} (intensity shown in overview table)`
+    });
+
+    return { expectedPages, totalPages, okPages, programDay };
+  }
+
+  function renderGoals(agg, pagesInfo){
+    const programStart = parseSheetDate(PROGRAM_START_ISO);
+
+    // reading progress
+    const totalPages = pagesInfo.totalPages;
+    const expectedPages = pagesInfo.expectedPages;
+    const okPages = pagesInfo.okPages;
+
+    // latest metrics (ignore missing)
+    const latest = agg.latest;
+
+    const vf = latest.visceral.value;
+    const mm = latest.muscle.value;
+    const bf = latest.bodyfat.value;
+    const wt = latest.weight.value;
+
+    const metrics = [
+      {
+        label: "Visceral fat",
+        val: vf,
+        ok: (v) => v < GOALS.visceral_fat_max,
+        goalText: `Goal: under ${GOALS.visceral_fat_max}`
+      },
+      {
+        label: "Muscle mass %",
+        val: mm,
+        ok: (v) => v > GOALS.muscle_mass_min,
+        goalText: `Goal: above ${GOALS.muscle_mass_min}%`
+      },
+      {
+        label: "Body fat %",
+        val: bf,
+        ok: (v) => v < GOALS.body_fat_max,
+        goalText: `Goal: below ${GOALS.body_fat_max}%`
+      },
+      {
+        label: "Weight",
+        val: wt,
+        ok: (v) => v < GOALS.weight_max,
+        goalText: `Goal: under ${GOALS.weight_max} kg`
+      }
+    ];
+
+    const goalEl = document.getElementById("goalStats");
+
+    const readingPct = expectedPages > 0 ? (totalPages/expectedPages)*100 : 0;
+
+    goalEl.innerHTML = `
+      <div class="stat">
+        <div class="k">Reading progression</div>
+        <div class="v">
+          ${totalPages} <span class="badge ${okPages ? "good" : "bad"}">
+            <span class="dot ${okPages ? "good" : "bad"}"></span>${okPages ? "On track" : "Behind"}
+          </span>
+        </div>
+        <div class="s">Expected by program day ${pagesInfo.programDay}: ${expectedPages} pages (3 per day)</div>
+        <div class="bar"><div style="width:${clamp(readingPct,0,160)}%"></div></div>
+      </div>
+
+      ${metrics.map(m => {
+        if (m.val == null){
+          return `
+            <div class="stat">
+              <div class="k">${m.label}</div>
+              <div class="v">No data <span class="badge warn"><span class="dot warn"></span>ignored</span></div>
+              <div class="s">${m.goalText}. Log it weekly or whenever.</div>
+            </div>
+          `;
+        }
+        const ok = m.ok(m.val);
+        return `
+          <div class="stat">
+            <div class="k">${m.label}</div>
+            <div class="v">
+              ${m.val}
+              <span class="badge ${ok ? "good" : "bad"}">
+                <span class="dot ${ok ? "good" : "bad"}"></span>${ok ? "Good" : "Bad"}
+              </span>
+            </div>
+            <div class="s">${m.goalText}</div>
+          </div>
+        `;
+      }).join("")}
+    `;
+
+    // pages chart: cumulative actual vs expected across all dates in sheet
+    const daily = agg.daily;
+    let cum = 0;
+    const seriesActual = [];
+    const seriesExpected = [];
+
+    for (const d of daily){
+      cum += d.pagesSum;
+      const progDay = Math.max(0, diffDays(d.date, programStart) + 1);
+      const exp = progDay * PAGES_PER_DAY_GOAL;
+
+      seriesActual.push({ x: d.date, y: cum });
+      seriesExpected.push({ x: d.date, y: exp });
+    }
+
+    // Draw actual first, then overlay expected as a faint second line
+    const canvas = document.getElementById("pagesChart");
+    // Base draw with actual
+    drawLineChart(canvas, seriesActual, {
+      title: "Cumulative pages read",
+      minY: 0,
+      maxY: Math.max(10, ...seriesExpected.map(p => p.y), ...seriesActual.map(p => p.y)),
+      lastLabel: (p) => `Latest pages total: ${p.y} (expected line shown subtly)`
+    });
+
+    // Overlay expected
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width;
+    const h = canvas.height;
+    const pad = 34 * devicePixelRatio;
+
+    if (seriesExpected.length){
+      const xs = seriesExpected.map(p => p.x.getTime());
+      const ysA = seriesActual.map(p => p.y);
+      const ysE = seriesExpected.map(p => p.y);
+
+      const minX = Math.min(...xs);
+      const maxX = Math.max(...xs);
+      const maxY = Math.max(1, ...ysA, ...ysE);
+      const minY = 0;
+
+      const xScale = (t) => (minX===maxX) ? pad : pad + (t - minX) / (maxX - minX) * (w - pad*2);
+      const yScale = (v) => (h - pad) - (v - minY) / (maxY - minY) * (h - pad*2);
+
+      ctx.lineWidth = 2.1 * devicePixelRatio;
+      ctx.strokeStyle = "rgba(255,255,255,.20)";
+      ctx.setLineDash([7*devicePixelRatio, 7*devicePixelRatio]);
+      ctx.beginPath();
+      seriesExpected.forEach((p, i) => {
+        const x = xScale(p.x.getTime());
+        const y = yScale(p.y);
+        if (i===0) ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = "rgba(255,255,255,.70)";
+      ctx.font = `${12*devicePixelRatio}px system-ui`;
+      ctx.fillText("Expected (3/day)", w - pad - 140*devicePixelRatio, pad - 10*devicePixelRatio);
+    }
+  }
+
+  function renderAllDatesTable(agg){
+    const daily = agg.daily;
+
+    if (!daily.length){
+      document.getElementById("overviewTable").innerHTML = `<div class="subtitle">No rows found.</div>`;
+      return;
+    }
+
+    const first = agg.firstDate;
+    const last = agg.lastDate;
+    document.getElementById("rangeText").textContent =
+      `Dates found: ${toISO(first)} to ${toISO(last)}. Showing one row per date (daily totals).`;
+
+    // cumulative pages + expected
+    const programStart = parseSheetDate(PROGRAM_START_ISO);
+    let cumPages = 0;
+
+    const rowsHtml = daily.map(d => {
+      cumPages += d.pagesSum;
+      const progDay = Math.max(0, diffDays(d.date, programStart) + 1);
+      const expected = progDay * PAGES_PER_DAY_GOAL;
+      const pagesOk = cumPages >= expected;
+
+      const intensityAvg = d.intensityCount ? (d.intensitySum / d.intensityCount) : null;
+
+      const sessionsPill = d.sessions >= 2 ? "good" : "warn"; // just a vibe indicator per day
+      const intensityPill = intensityAvg == null ? "warn" : (intensityAvg >= 3.5 ? "good" : (intensityAvg >= 2.5 ? "warn" : "bad"));
+
+      // session types summary
+      const typeSummary = Array.from(d.types.entries())
+        .sort((a,b) => b[1] - a[1])
+        .slice(0,4)
+        .map(([k,v]) => `${k}(${v})`)
+        .join(", ");
+
+      return `
+        <tr>
+          <td><span class="pill"><span class="dot"></span>${d.iso}</span></td>
+          <td><span class="pill ${sessionsPill}"><span class="dot ${sessionsPill}"></span>${d.sessions}</span></td>
+          <td>
+            ${intensityAvg == null
+              ? `<span class="pill warn"><span class="dot warn"></span>n/a</span>`
+              : `<span class="pill ${intensityPill}"><span class="dot ${intensityPill}"></span>${intensityAvg.toFixed(2)}</span>`
+            }
+          </td>
+          <td>${d.pagesSum}</td>
+          <td>
+            <span class="pill ${pagesOk ? "good" : "bad"}">
+              <span class="dot ${pagesOk ? "good" : "bad"}"></span>${cumPages} / ${expected}
+            </span>
+          </td>
+          <td>${d.visceral == null ? "" : d.visceral}</td>
+          <td>${d.muscle == null ? "" : d.muscle}</td>
+          <td>${d.bodyfat == null ? "" : d.bodyfat}</td>
+          <td>${d.weight == null ? "" : d.weight}</td>
+          <td style="color:var(--muted)">${typeSummary}</td>
+        </tr>
+      `;
+    }).join("");
+
+    document.getElementById("overviewTable").innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Sessions</th>
+            <th>Intensity avg</th>
+            <th>Pages (day)</th>
+            <th>Pages (cum vs expected)</th>
+            <th>Visceral</th>
+            <th>Muscle %</th>
+            <th>Body fat %</th>
+            <th>Weight</th>
+            <th>Session types (top)</th>
+          </tr>
+        </thead>
+        <tbody>${rowsHtml}</tbody>
+      </table>
+    `;
+  }
+
+  // =========================
+  // Main
+  // =========================
+  async function load(){
+    setStatus("Loading…");
+
+    const res = await fetch(SHEET_GVIZ_URL, { method: "GET" });
+    if (!res.ok) throw new Error(`Fetch failed (${res.status}). Check your publish link.`);
+
+    const text = await res.text();
+    const parsed = parseGViz(text);
+    const rows = rowsToObjects(parsed.cols, parsed.rows);
+
+    // Validate required columns exist
+    const needed = ["Date","Session_type","Intensity_1_to_5","Pages_read","Visceral_fat","Muscle_mass_pct","Body_fat_pct","Weight_kg"];
+    const keys = Object.keys(rows[0] || {});
+    const missing = needed.filter(k => !keys.includes(k));
+    if (rows.length && missing.length){
+      throw new Error(`Sheet columns mismatch. Missing: ${missing.join(", ")}`);
+    }
+
+    const agg = buildAggregations(rows);
+
+    // Week picker
+    const weekPicker = document.getElementById("weekPicker");
+    const chosen = parseSheetDate(weekPicker.value) || mondayOf(new Date());
+    const ws = mondayOf(chosen);
+    weekPicker.value = toISO(ws);
+
+    const pagesInfo = renderWeeklyStats(agg, ws);
+    renderGoals(agg, pagesInfo);
+    renderAllDatesTable(agg);
+
+    setStatus(`Updated ${new Date().toLocaleString()}`);
+  }
+
+  document.getElementById("refreshBtn").addEventListener("click", () => {
+    load().catch(err => {
+      console.error(err);
+      setStatus("Error. Open console.");
+      alert(err.message);
+    });
+  });
+
+  // init weekPicker to current Monday (or program start if earlier)
+  (function init(){
+    const today = new Date(); today.setHours(0,0,0,0);
+    const ws = mondayOf(today);
+    document.getElementById("weekPicker").value = toISO(ws);
+
+    load().catch(err => {
+      console.error(err);
+      setStatus("Error. Open console.");
+      alert(err.message);
+    });
+  })();
 </script>
 </body>
 </html>
