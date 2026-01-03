@@ -383,15 +383,44 @@
     return Number.isFinite(n) ? n : null;
   }
 
-  // Sheet date can be "2026/01/01" or "2026-01-01" or a Date-ish thing
   function parseSheetDate(v){
-    if (v == null) return null;
+  if (v == null) return null;
 
-    if (v instanceof Date && !isNaN(v)) {
-      const d = new Date(v);
-      d.setHours(0,0,0,0);
-      return d;
+  // Case 1: GViz Date(2026,0,1)
+  if (typeof v === "string") {
+    const gviz = v.match(/^Date\((\d{4}),(\d{1,2}),(\d{1,2})\)$/);
+    if (gviz) {
+      const y = Number(gviz[1]);
+      const m = Number(gviz[2]);     // already 0-based
+      const d = Number(gviz[3]);
+      const out = new Date(y, m, d);
+      out.setHours(0,0,0,0);
+      return out;
     }
+  }
+
+  // Case 2: yyyy/mm/dd or yyyy-mm-dd
+  const s = String(v).trim();
+  const m = s.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+  if (m){
+    const y = Number(m[1]);
+    const mo = Number(m[2]) - 1;
+    const d = Number(m[3]);
+    const out = new Date(y, mo, d);
+    out.setHours(0,0,0,0);
+    return out;
+  }
+
+  // Case 3: native Date or parseable string
+  const d2 = new Date(v);
+  if (!isNaN(d2)){
+    d2.setHours(0,0,0,0);
+    return d2;
+  }
+
+  return null;
+}
+
 
     const s = String(v).trim();
     // try yyyy/mm/dd or yyyy-mm-dd
