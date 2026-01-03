@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sheet Fetch Test</title>
+</head>
+<body>
+  <h1>Google Sheet Fetch Test</h1>
+  <pre id="out">Loading…</pre>
+
+<script>
+const URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOU7k_ijGNI538FP5Bo44Ir-r4cUndNvSF2Pl6mZ6tAurTswM3aFYTImhhfaAe6NYqEd5VDmGczyGx/gviz/tq?tqx=out:json&gid=57696475";
+
+function parseGViz(text) {
+  const start = text.indexOf("{");
+  const end = text.lastIndexOf("}");
+  return JSON.parse(text.slice(start, end + 1));
+}
+
+fetch(URL)
+  .then(r => {
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.text();
+  })
+  .then(text => {
+    const json = parseGViz(text);
+    const cols = json.table.cols.map(c => c.label);
+    const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : null));
+    document.getElementById("out").textContent =
+      JSON.stringify({ cols, rows }, null, 2);
+  })
+  .catch(err => {
+    document.getElementById("out").textContent =
+      "ERROR:\n" + err.message;
+  });
+</script>
+</body>
+</html>
