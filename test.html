@@ -2,15 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Sheet Fetch Test</title>
+  <title>Google Sheet Fetch Test</title>
 </head>
 <body>
-  <h1>Google Sheet Fetch Test</h1>
-  <pre id="out">Loading…</pre>
+<h1>Google Sheet Fetch Test</h1>
+<pre id="out">Loading…</pre>
 
 <script>
+const SPREADSHEET_ID = "1p2lairH9uUA8aThmsPxug8tylb-AlE9HELzLmQFjRPw";
+const GID = "57696475";
+
 const URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOU7k_ijGNI538FP5Bo44Ir-r4cUndNvSF2Pl6mZ6tAurTswM3aFYTImhhfaAe6NYqEd5VDmGczyGx/gviz/tq?tqx=out:json&gid=57696475";
+  `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&gid=${GID}`;
 
 function parseGViz(text) {
   const start = text.indexOf("{");
@@ -27,6 +30,7 @@ fetch(URL)
     const json = parseGViz(text);
     const cols = json.table.cols.map(c => c.label);
     const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : null));
+
     document.getElementById("out").textContent =
       JSON.stringify({ cols, rows }, null, 2);
   })
