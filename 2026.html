@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Training Tracker</title>
+
+<style>
+body { font-family: system-ui, Arial, sans-serif; max-width: 1100px; margin: 20px; }
+.card { border: 1px solid #ddd; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; }
+.pill { padding: 6px 10px; border-radius: 999px; font-weight: 700; }
+.good { background: #d4f8d4; color: #0b5d0b; }
+.bad { background: #ffd6d6; color: #7a0000; }
+.muted { color: #666; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border-bottom: 1px solid #eee; padding: 6px; text-align: left; }
+</style>
+</head>
+
+<body>
+<h1>Training Tracker</h1>
+<p class="muted">Live from Google Sheets</p>
+
+<div class="card">
+  <div class="row">
+    <div>
+      <div class="muted">Week starting Monday</div>
+      <input type="date" id="weekPicker">
+    </div>
+    <button onclick="loadData()">Refresh</button>
+    <div id="status" class="muted"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>This week</h2>
+  <div id="weekStats" class="row"></div>
+</div>
+
+<div class="card">
+  <h2>Reading progress</h2>
+  <div id="readingStats"></div>
+</div>
+
+<div class="card">
+  <h2>Latest body metrics</h2>
+  <div id="metricsStats" class="row"></div>
+</div>
+
+<script>
+const SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOU7k_ijGNI538FP5Bo44Ir-r4cUndNvSF2Pl6mZ6tAurTswM3aFYTImhhfaAe6NYqEd5VDmGczyGx/gviz/tq?tqx=out:json&gid=57696475";
+
+const WEEKLY_TARGET = 11;
+
+function monday(d) {
+  d = new Date(d);
+  const day = d.getDay() || 7;
+  if (day !== 1) d.setDate(d.getDate() - day + 1);
+  d.setHours(0,0,0,0);
+  return d;
+}
+
+function parseGViz(text) {
+  const json = text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1);
+  const data = JSON.parse(json);
+  const cols = data.table.cols.map(c => c.label);
+  const rows = data.table.rows.map(r =>
+    Object.fromEntries(r.c.map((v,i) => [cols[i], v ? v.v : null]))
+  );
+  return rows;
+}
+
+function dayOfYear(d) {
+  const start = new Date(d.getFullYear(), 0, 0);
+  return Math.floor((d - start) / 86400000);
+}
+
+async function loadData() {
+  document.getElementById("status").textContent = "Loading…";
+
+  const res = await fetch(SHEET_URL);
+  const rows = parseGViz(await res.text());
+
+  const weekStart = new Date(document.getElementById("weekPicker").value);
+  const weekEnd = new Date(weekStart);
+  weekEnd.setDate(weekEnd.getDate() + 7);
+
+  const weekRows = rows.filter(r => {
+    const d = new Date(r.Date);
+    return d >= weekStart && d < weekEnd;
+  });
+
+  const sessionCount = weekRows.length;
+  const sessionPill = sessionCount >= WEEKLY_TARGET ? "good" : "bad";
+
+  document.getElementById("weekStats").innerHTML = `
+    <div class="pill ${sessionPill}">
+      Sessions: ${sessionCount} / ${WEEKLY_TARGET}
+    </div>
+  `;
+
+  const totalPages = rows.reduce((a,r) => a + (Number(r.Pages_read) || 0), 0);
+  const today = new Date();
+  const expectedPages = dayOfYear(today) * 3;
+  const pagesGood = totalPages >= expectedPages;
+
+  document.getElementById("readingStats").innerHTML = `
+    <div class="pill ${pagesGood ? "good" : "bad"}">
+      Pages read: ${totalPages} / ${expectedPages}
+    </div>
+  `;
+
+  function latestNonNull(col) {
+    for (let i = rows.length - 1; i >= 0; i--) {
+      if (rows[i][col] != null) return rows[i][col];
+    }
+    return null;
+  }
+
+  const metrics = [
+    { name: "Visceral fat", val: latestNonNull("Visceral_fat"), ok: v => v < 8 },
+    { name: "Muscle %", val: latestNonNull("Muscle_mass_pct"), ok: v => v > 65 },
+    { name: "Body fat %", val: latestNonNull("Body_fat_pct"), ok: v => v < 25 },
+    { name: "Weight kg", val: latestNonNull("Weight_kg"), ok: v => v < 65 }
+  ];
+
+  document.getElementById("metricsStats").innerHTML = metrics
+    .filter(m => m.val != null)
+    .map(m => `
+      <div class="pill ${m.ok(m.val) ? "good" : "bad"}">
+        ${m.name}: ${m.val}
+      </div>
+    `).join("");
+
+  document.getElementById("status").textContent =
+    "Updated " + new Date().toLocaleString();
+}
+
+const ws = monday(new Date());
+document.getElementById("weekPicker").value = ws.toISOString().slice(0,10);
+loadData();
+</script>
+</body>
+</html>
