@@ -233,7 +233,7 @@
     table{
       width:100%;
       border-collapse: collapse;
-      min-width: 760px;
+      min-width: 860px;
     }
     th, td{
       padding: 10px 10px;
@@ -344,12 +344,12 @@
     visceral_fat_max: 8,      // under 8
     muscle_mass_min: 65,      // above 65
     body_fat_max: 25,         // below 25
-    weight_max: 65            // under 65
+    weight_max: 95            // under 65
   };
 
   // Your public sheet gviz JSON endpoint (already correct)
- const SHEET_GVIZ_URL =
-  "https://docs.google.com/spreadsheets/d/1p2lairH9uUA8aThmsPxug8tylb-AlE9HELzLmQFjRPw/gviz/tq?tqx=out:json&gid=57696475";
+  const SHEET_GVIZ_URL =
+    "https://docs.google.com/spreadsheets/d/1p2lairH9uUA8aThmsPxug8tylb-AlE9HELzLmQFjRPw/gviz/tq?tqx=out:json&gid=57696475";
 
   // =========================
   // Helpers
@@ -384,45 +384,42 @@
   }
 
   function parseSheetDate(v){
-  if (v == null) return null;
+    if (v == null) return null;
 
-  // Case 1: GViz Date(2026,0,1)
-  if (typeof v === "string") {
-    const gviz = v.match(/^Date\((\d{4}),(\d{1,2}),(\d{1,2})\)$/);
-    if (gviz) {
-      const y = Number(gviz[1]);
-      const m = Number(gviz[2]);     // already 0-based
-      const d = Number(gviz[3]);
-      const out = new Date(y, m, d);
+    // Case 1: GViz Date(2026,0,1)
+    if (typeof v === "string") {
+      const gviz = v.match(/^Date\((\d{4}),(\d{1,2}),(\d{1,2})\)$/);
+      if (gviz) {
+        const y = Number(gviz[1]);
+        const m = Number(gviz[2]);     // already 0-based
+        const d = Number(gviz[3]);
+        const out = new Date(y, m, d);
+        out.setHours(0,0,0,0);
+        return out;
+      }
+    }
+
+    // Case 2: yyyy/mm/dd or yyyy-mm-dd
+    const s = String(v).trim();
+    const m = s.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+    if (m){
+      const y = Number(m[1]);
+      const mo = Number(m[2]) - 1;
+      const d = Number(m[3]);
+      const out = new Date(y, mo, d);
       out.setHours(0,0,0,0);
       return out;
     }
+
+    // Case 3: native Date or parseable string
+    const d2 = new Date(v);
+    if (!isNaN(d2)){
+      d2.setHours(0,0,0,0);
+      return d2;
+    }
+
+    return null;
   }
-
-  // Case 2: yyyy/mm/dd or yyyy-mm-dd
-  const s = String(v).trim();
-  const m = s.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
-  if (m){
-    const y = Number(m[1]);
-    const mo = Number(m[2]) - 1;
-    const d = Number(m[3]);
-    const out = new Date(y, mo, d);
-    out.setHours(0,0,0,0);
-    return out;
-  }
-
-  // Case 3: native Date or parseable string
-  const d2 = new Date(v);
-  if (!isNaN(d2)){
-    d2.setHours(0,0,0,0);
-    return d2;
-  }
-
-  return null;
-}
-
-
-  
 
   function mondayOf(d){
     const x = new Date(d);
@@ -437,18 +434,22 @@
     return Math.floor((a.getTime() - b.getTime()) / ms);
   }
 
-  function statusPill(ok){
-    return ok ? "good" : "bad";
-  }
-
   function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+
+  // FEELING: map to a pill color
+  function feelingPill(avg){
+    if (avg == null) return "warn";
+    if (avg >= 2.5) return "good";      // mostly great
+    if (avg >= 1.75) return "warn";     // ok-ish
+    return "bad";                       // trending bad
+  }
 
   // =========================
   // Aggregations
   // =========================
   function buildAggregations(rows){
     // Expect columns:
-    // Date, Session_type, Intensity_1_to_5, Pages_read, Visceral_fat, Muscle_mass_pct, Body_fat_pct, Weight_kg
+    // Date, Session_type, Intensity_1_to_5, Feeling_1_to_3, Pages_read, Visceral_fat, Muscle_mass_pct, Body_fat_pct, Weight_kg
 
     const cleaned = [];
     for (const r of rows){
@@ -460,6 +461,7 @@
         iso: toISO(d),
         session_type: (r.Session_type ?? "").toString().trim(),
         intensity: safeNum(r.Intensity_1_to_5),
+        feeling: safeNum(r.Feeling_1_to_3), // FEELING
         pages: safeNum(r.Pages_read) ?? 0,
         visceral: safeNum(r.Visceral_fat),
         muscle: safeNum(r.Muscle_mass_pct),
@@ -480,6 +482,8 @@
           sessions: 0,
           intensitySum: 0,
           intensityCount: 0,
+          feelingSum: 0,          // FEELING
+          feelingCount: 0,        // FEELING
           pagesSum: 0,
           types: new Map(),
           // latest non-null metrics for that day
@@ -491,10 +495,18 @@
       }
       const d = dailyMap.get(r.iso);
       d.sessions += 1;
+
       if (r.intensity != null){
         d.intensitySum += r.intensity;
         d.intensityCount += 1;
       }
+
+      // FEELING
+      if (r.feeling != null){
+        d.feelingSum += r.feeling;
+        d.feelingCount += 1;
+      }
+
       d.pagesSum += (r.pages || 0);
       const t = r.session_type || "Unknown";
       d.types.set(t, (d.types.get(t) || 0) + 1);
@@ -520,6 +532,8 @@
           sessions: 0,
           intensitySum: 0,
           intensityCount: 0,
+          feelingSum: 0,       // FEELING
+          feelingCount: 0,     // FEELING
           pagesSum: 0
         });
       }
@@ -528,12 +542,17 @@
       w.pagesSum += d.pagesSum;
       w.intensitySum += d.intensitySum;
       w.intensityCount += d.intensityCount;
+
+      // FEELING
+      w.feelingSum += d.feelingSum;
+      w.feelingCount += d.feelingCount;
     }
 
     const weekly = Array.from(weeklyMap.values()).sort((a,b) => a.weekStart - b.weekStart)
       .map(w => ({
         ...w,
-        intensityAvg: w.intensityCount ? (w.intensitySum / w.intensityCount) : 0
+        intensityAvg: w.intensityCount ? (w.intensitySum / w.intensityCount) : 0,
+        feelingAvg: w.feelingCount ? (w.feelingSum / w.feelingCount) : null // FEELING
       }));
 
     // Latest non-null metrics across all rows
@@ -564,7 +583,6 @@
   // Rendering
   // =========================
   function drawLineChart(canvas, series, opts){
-    // series: [{x:Date, y:Number}]
     const ctx = canvas.getContext("2d");
 
     const cssW = canvas.clientWidth;
@@ -579,7 +597,6 @@
 
     const pad = 34 * devicePixelRatio;
 
-    // background grid
     ctx.strokeStyle = "rgba(255,255,255,.08)";
     ctx.lineWidth = 1 * devicePixelRatio;
     ctx.beginPath();
@@ -618,7 +635,6 @@
       return (h - pad) - (v - minY) / (maxY - minY) * (h - pad*2);
     };
 
-    // goal line
     if (opts.goalY != null){
       const gy = yScale(opts.goalY);
       ctx.strokeStyle = "rgba(255,255,255,.18)";
@@ -630,7 +646,6 @@
       ctx.setLineDash([]);
     }
 
-    // line
     ctx.lineWidth = 2.2 * devicePixelRatio;
     const grad = ctx.createLinearGradient(pad, pad, w-pad, h-pad);
     grad.addColorStop(0, "rgba(124,92,255,.95)");
@@ -646,7 +661,6 @@
     });
     ctx.stroke();
 
-    // points
     ctx.fillStyle = "rgba(255,255,255,.9)";
     series.forEach((p) => {
       const x = xScale(p.x.getTime());
@@ -656,12 +670,10 @@
       ctx.fill();
     });
 
-    // title
     ctx.fillStyle = "rgba(255,255,255,.75)";
     ctx.font = `${12*devicePixelRatio}px system-ui`;
     ctx.fillText(opts.title || "", pad, pad - 10*devicePixelRatio);
 
-    // last value
     const last = series[series.length - 1];
     ctx.fillStyle = "rgba(255,255,255,.85)";
     ctx.font = `${12*devicePixelRatio}px system-ui`;
@@ -678,13 +690,18 @@
 
     const thisWeekDaily = agg.daily.filter(d => d.date >= ws && d.date < we);
     const thisWeekSessions = thisWeekDaily.reduce((a,d) => a + d.sessions, 0);
+
     const thisWeekIntensityCount = thisWeekDaily.reduce((a,d) => a + d.intensityCount, 0);
     const thisWeekIntensitySum = thisWeekDaily.reduce((a,d) => a + d.intensitySum, 0);
     const thisWeekIntensityAvg = thisWeekIntensityCount ? (thisWeekIntensitySum / thisWeekIntensityCount) : 0;
 
+    // FEELING
+    const thisWeekFeelingCount = thisWeekDaily.reduce((a,d) => a + d.feelingCount, 0);
+    const thisWeekFeelingSum = thisWeekDaily.reduce((a,d) => a + d.feelingSum, 0);
+    const thisWeekFeelingAvg = thisWeekFeelingCount ? (thisWeekFeelingSum / thisWeekFeelingCount) : null;
+
     const okSessions = thisWeekSessions >= WEEKLY_SESSIONS_GOAL;
 
-    // program day and pages
     const programStart = parseSheetDate(PROGRAM_START_ISO);
     const lastDate = agg.lastDate || new Date();
     const programDay = Math.max(0, diffDays(lastDate, programStart) + 1);
@@ -692,7 +709,6 @@
     const totalPages = agg.daily.reduce((a,d) => a + d.pagesSum, 0);
     const okPages = totalPages >= expectedPages;
 
-    // totals
     const totalSessions = agg.cleaned.length;
     const avgIntensityAll = (() => {
       const c = agg.cleaned.filter(r => r.intensity != null);
@@ -701,6 +717,9 @@
     })();
 
     const el = document.getElementById("weeklyStats");
+
+    const feelingClass = feelingPill(thisWeekFeelingAvg);
+
     el.innerHTML = `
       <div class="stat">
         <div class="k">This week sessions</div>
@@ -724,6 +743,17 @@
       </div>
 
       <div class="stat">
+        <div class="k">This week feeling avg</div>
+        <div class="v">
+          ${thisWeekFeelingAvg == null ? "n/a" : thisWeekFeelingAvg.toFixed(2)}
+          <span class="badge ${thisWeekFeelingAvg == null ? "warn" : feelingClass}">
+            <span class="dot ${thisWeekFeelingAvg == null ? "warn" : feelingClass}"></span>out of 3
+          </span>
+        </div>
+        <div class="s">1 bad, 2 ok, 3 great. Leave blank to ignore.</div>
+      </div>
+
+      <div class="stat">
         <div class="k">All-time sessions</div>
         <div class="v">${totalSessions}</div>
         <div class="s">All rows in your sheet counted as sessions</div>
@@ -736,10 +766,7 @@
       </div>
     `;
 
-    // weekly chart: sessions and intensity combined as two lines using scaling
-    // Draw sessions line, then intensity on secondary scale by mapping intensity* (WEEKLY_SESSIONS_GOAL/5) for comparable range
     const wSeriesSessions = agg.weekly.map(w => ({ x: w.weekStart, y: w.sessions }));
-    const wSeriesIntensityScaled = agg.weekly.map(w => ({ x: w.weekStart, y: w.intensityAvg * (WEEKLY_SESSIONS_GOAL/5) }));
 
     const canvas = document.getElementById("weeklyChart");
     drawLineChart(canvas, wSeriesSessions, {
@@ -747,7 +774,7 @@
       goalY: WEEKLY_SESSIONS_GOAL,
       minY: 0,
       maxY: Math.max(WEEKLY_SESSIONS_GOAL + 2, ...wSeriesSessions.map(p => p.y) ) ,
-      lastLabel: (p) => `Latest week sessions: ${p.y} (intensity shown in overview table)`
+      lastLabel: (p) => `Latest week sessions: ${p.y}`
     });
 
     return { expectedPages, totalPages, okPages, programDay };
@@ -756,12 +783,10 @@
   function renderGoals(agg, pagesInfo){
     const programStart = parseSheetDate(PROGRAM_START_ISO);
 
-    // reading progress
     const totalPages = pagesInfo.totalPages;
     const expectedPages = pagesInfo.expectedPages;
     const okPages = pagesInfo.okPages;
 
-    // latest metrics (ignore missing)
     const latest = agg.latest;
 
     const vf = latest.visceral.value;
@@ -770,34 +795,13 @@
     const wt = latest.weight.value;
 
     const metrics = [
-      {
-        label: "Visceral fat",
-        val: vf,
-        ok: (v) => v < GOALS.visceral_fat_max,
-        goalText: `Goal: under ${GOALS.visceral_fat_max}`
-      },
-      {
-        label: "Muscle mass %",
-        val: mm,
-        ok: (v) => v > GOALS.muscle_mass_min,
-        goalText: `Goal: above ${GOALS.muscle_mass_min}%`
-      },
-      {
-        label: "Body fat %",
-        val: bf,
-        ok: (v) => v < GOALS.body_fat_max,
-        goalText: `Goal: below ${GOALS.body_fat_max}%`
-      },
-      {
-        label: "Weight",
-        val: wt,
-        ok: (v) => v < GOALS.weight_max,
-        goalText: `Goal: under ${GOALS.weight_max} kg`
-      }
+      { label: "Visceral fat", val: vf, ok: (v) => v < GOALS.visceral_fat_max, goalText: `Goal: under ${GOALS.visceral_fat_max}` },
+      { label: "Muscle mass %", val: mm, ok: (v) => v > GOALS.muscle_mass_min, goalText: `Goal: above ${GOALS.muscle_mass_min}%` },
+      { label: "Body fat %", val: bf, ok: (v) => v < GOALS.body_fat_max, goalText: `Goal: below ${GOALS.body_fat_max}%` },
+      { label: "Weight", val: wt, ok: (v) => v < GOALS.weight_max, goalText: `Goal: under ${GOALS.weight_max} kg` }
     ];
 
     const goalEl = document.getElementById("goalStats");
-
     const readingPct = expectedPages > 0 ? (totalPages/expectedPages)*100 : 0;
 
     goalEl.innerHTML = `
@@ -838,7 +842,6 @@
       }).join("")}
     `;
 
-    // pages chart: cumulative actual vs expected across all dates in sheet
     const daily = agg.daily;
     let cum = 0;
     const seriesActual = [];
@@ -853,9 +856,7 @@
       seriesExpected.push({ x: d.date, y: exp });
     }
 
-    // Draw actual first, then overlay expected as a faint second line
     const canvas = document.getElementById("pagesChart");
-    // Base draw with actual
     drawLineChart(canvas, seriesActual, {
       title: "Cumulative pages read",
       minY: 0,
@@ -863,7 +864,6 @@
       lastLabel: (p) => `Latest pages total: ${p.y} (expected line shown subtly)`
     });
 
-    // Overlay expected
     const ctx = canvas.getContext("2d");
     const w = canvas.width;
     const h = canvas.height;
@@ -914,7 +914,6 @@
     document.getElementById("rangeText").textContent =
       `Dates found: ${toISO(first)} to ${toISO(last)}. Showing one row per date (daily totals).`;
 
-    // cumulative pages + expected
     const programStart = parseSheetDate(PROGRAM_START_ISO);
     let cumPages = 0;
 
@@ -926,10 +925,13 @@
 
       const intensityAvg = d.intensityCount ? (d.intensitySum / d.intensityCount) : null;
 
-      const sessionsPill = d.sessions >= 2 ? "good" : "warn"; // just a vibe indicator per day
+      // FEELING
+      const feelingAvg = d.feelingCount ? (d.feelingSum / d.feelingCount) : null;
+      const feelingCls = feelingPill(feelingAvg);
+
+      const sessionsPill = d.sessions >= 2 ? "good" : "warn";
       const intensityPill = intensityAvg == null ? "warn" : (intensityAvg >= 3.5 ? "good" : (intensityAvg >= 2.5 ? "warn" : "bad"));
 
-      // session types summary
       const typeSummary = Array.from(d.types.entries())
         .sort((a,b) => b[1] - a[1])
         .slice(0,4)
@@ -944,6 +946,12 @@
             ${intensityAvg == null
               ? `<span class="pill warn"><span class="dot warn"></span>n/a</span>`
               : `<span class="pill ${intensityPill}"><span class="dot ${intensityPill}"></span>${intensityAvg.toFixed(2)}</span>`
+            }
+          </td>
+          <td>
+            ${feelingAvg == null
+              ? `<span class="pill warn"><span class="dot warn"></span>n/a</span>`
+              : `<span class="pill ${feelingCls}"><span class="dot ${feelingCls}"></span>${feelingAvg.toFixed(2)}</span>`
             }
           </td>
           <td>${d.pagesSum}</td>
@@ -968,6 +976,7 @@
             <th>Date</th>
             <th>Sessions</th>
             <th>Intensity avg</th>
+            <th>Feeling avg (1-3)</th>
             <th>Pages (day)</th>
             <th>Pages (cum vs expected)</th>
             <th>Visceral</th>
@@ -996,7 +1005,7 @@
     const rows = rowsToObjects(parsed.cols, parsed.rows);
 
     // Validate required columns exist
-    const needed = ["Date","Session_type","Intensity_1_to_5","Pages_read","Visceral_fat","Muscle_mass_pct","Body_fat_pct","Weight_kg"];
+    const needed = ["Date","Session_type","Intensity_1_to_5","Feeling_1_to_3","Pages_read","Visceral_fat","Muscle_mass_pct","Body_fat_pct","Weight_kg"];
     const keys = Object.keys(rows[0] || {});
     const missing = needed.filter(k => !keys.includes(k));
     if (rows.length && missing.length){
@@ -1005,7 +1014,6 @@
 
     const agg = buildAggregations(rows);
 
-    // Week picker
     const weekPicker = document.getElementById("weekPicker");
     const chosen = parseSheetDate(weekPicker.value) || mondayOf(new Date());
     const ws = mondayOf(chosen);
@@ -1026,7 +1034,6 @@
     });
   });
 
-  // init weekPicker to current Monday (or program start if earlier)
   (function init(){
     const today = new Date(); today.setHours(0,0,0,0);
     const ws = mondayOf(today);
