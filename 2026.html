@@ -379,9 +379,10 @@
   }
 
   function safeNum(x){
-    const n = Number(x);
-    return Number.isFinite(n) ? n : null;
-  }
+  if (x === "" || x == null) return null;
+  const n = Number(x);
+  return Number.isFinite(n) ? n : null;
+}
 
   function parseSheetDate(v){
     if (v == null) return null;
@@ -456,18 +457,23 @@
       const d = parseSheetDate(r.Date);
       if (!d) continue;
 
-      cleaned.push({
-        date: d,
-        iso: toISO(d),
-        session_type: (r.Session_type ?? "").toString().trim(),
-        intensity: safeNum(r.Intensity_1_to_5),
-        feeling: safeNum(r.Feeling_1_to_3), // FEELING
-        pages: safeNum(r.Pages_read) ?? 0,
-        visceral: safeNum(r.Visceral_fat),
-        muscle: safeNum(r.Muscle_mass_pct),
-        bodyfat: safeNum(r.Body_fat_pct),
-        weight: safeNum(r.Weight_kg),
-      });
+      const fRaw = safeNum(r.Feeling_1_to_3);
+const feeling = (fRaw != null && fRaw >= 1 && fRaw <= 3) ? fRaw : null;
+
+cleaned.push({
+  date: d,
+  iso: toISO(d),
+  session_type: (r.Session_type ?? "").toString().trim(),
+  intensity: safeNum(r.Intensity_1_to_5),
+  feeling: feeling,
+  pages: safeNum(r.Pages_read) ?? 0,
+  visceral: safeNum(r.Visceral_fat),
+  muscle: safeNum(r.Muscle_mass_pct),
+  bodyfat: safeNum(r.Body_fat_pct),
+  weight: safeNum(r.Weight_kg),
+});
+
+
     }
 
     cleaned.sort((a,b) => a.date - b.date);
