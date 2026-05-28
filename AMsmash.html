@@ -327,8 +327,6 @@
         <div class="legend-item">2-set win: 3 points</div>
         <div class="legend-item">3-set win: winner 2, loser 1</div>
         <div class="legend-item">2-set loss: 0 points</div>
-        <div class="legend-item">Pending older than 14 days: red</div>
-        <div class="legend-item">Waiting approval older than 7 days: red</div>
       </div>
     </header>
 
@@ -726,9 +724,6 @@
                 <th>P</th>
                 <th>W</th>
                 <th>L</th>
-                <th>SF</th>
-                <th>SA</th>
-                <th>SD</th>
                 <th>GF</th>
                 <th>GA</th>
                 <th>GD</th>
@@ -743,9 +738,7 @@
                   <td>${formatValue(row.played)}</td>
                   <td>${formatValue(row.won)}</td>
                   <td>${formatValue(row.lost)}</td>
-                  <td>${formatValue(row.sets_for)}</td>
-                  <td>${formatValue(row.sets_against)}</td>
-                  <td>${formatValue(row.set_difference)}</td>
+                 
                   <td>${formatValue(row.games_for)}</td>
                   <td>${formatValue(row.games_against)}</td>
                   <td>${formatValue(row.game_difference)}</td>
