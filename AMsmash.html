@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Padel League Standings</title>
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --dark: #111827;
+      --danger-bg: #fee2e2;
+      --danger-text: #7f1d1d;
+      --green-bg: #dcfce7;
+      --green-text: #14532d;
+      --orange-bg: #ffedd5;
+      --orange-text: #7c2d12;
+      --blue-bg: #dbeafe;
+      --blue-text: #1e3a8a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    .main-header {
+      background: linear-gradient(135deg, #111827, #374151);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .main-header h1 {
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: -0.6px;
+    }
+
+    .main-header p {
+      margin: 8px 0 0 0;
+      color: #d1d5db;
+      font-size: 15px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .legend-item {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+
+    .division-section {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 26px rgba(17, 24, 39, 0.08);
+    }
+
+    .division-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    .division-header h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .division-header p {
+      margin: 4px 0 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .season-pill {
+      background: var(--blue-bg);
+      color: var(--blue-text);
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .summary-card {
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .summary-label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 800;
+    }
+
+    .summary-value {
+      font-size: 30px;
+      font-weight: 900;
+      margin-top: 4px;
+    }
+
+    .summary-note {
+      font-size: 13px;
+      color: var(--danger-text);
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    .table-block {
+      margin-top: 24px;
+    }
+
+    .table-title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .table-block h3 {
+      margin: 0;
+      font-size: 21px;
+    }
+
+    .table-note {
+      margin: 4px 0 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    thead {
+      background: var(--dark);
+      color: white;
+    }
+
+    th {
+      padding: 12px 10px;
+      text-align: left;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 11px 10px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    .overdue-row {
+      background: var(--danger-bg) !important;
+      color: var(--danger-text);
+      font-weight: 800;
+    }
+
+    .position {
+      font-weight: 900;
+      text-align: center;
+      width: 55px;
+    }
+
+    .team-name {
+      font-weight: 800;
+    }
+
+    .points {
+      font-weight: 900;
+      font-size: 16px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .badge-pending {
+      background: var(--orange-bg);
+      color: var(--orange-text);
+    }
+
+    .badge-invalid {
+      background: var(--danger-bg);
+      color: var(--danger-text);
+    }
+
+    .empty-box {
+      border: 1px dashed #d1d5db;
+      background: #f9fafb;
+      color: var(--muted);
+      padding: 16px;
+      border-radius: 16px;
+      font-size: 14px;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 18px 0 8px 0;
+    }
+
+    @media screen and (max-width: 900px) {
+      .page {
+        padding: 12px;
+      }
+
+      .main-header {
+        padding: 22px;
+        border-radius: 18px;
+      }
+
+      .main-header h1 {
+        font-size: 26px;
+      }
+
+      .division-section {
+        padding: 16px;
+        border-radius: 18px;
+      }
+
+      .division-header {
+        display: block;
+      }
+
+      .season-pill {
+        display: inline-block;
+        margin-top: 12px;
+      }
+
+      .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      th,
+      td {
+        font-size: 12px;
+        padding: 9px 8px;
+      }
+    }
+
+    @media screen and (max-width: 520px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .main-header h1 {
+        font-size: 23px;
+      }
+
+      .division-header h2 {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="main-header">
+      <h1>Padel League Current Standings</h1>
+      <p id="generated-date">Generated report</p>
+
+      <div class="legend">
+        <div class="legend-item">2-set win: 3 points</div>
+        <div class="legend-item">3-set win: winner 2, loser 1</div>
+        <div class="legend-item">2-set loss: 0 points</div>
+        <div class="legend-item">Pending older than 14 days: red</div>
+        <div class="legend-item">Waiting approval older than 7 days: red</div>
+      </div>
+    </header>
+
+    <div id="report-root"></div>
+
+    <div class="footer">
+      Automated league report based on current website results.
+    </div>
+  </main>
+
+  <script>
+    /*
+      Paste your data here.
+
+      statuses:
+      - Pending
+      - Waiting Approval
+      - Validated
+
+      Only pending and waiting approval need to be included below.
+      Standings should come from your Python output.
+    */
+
+    const LEAGUE_DATA = [
+      {
+        division: "Africa Padel",
+        season: "Season 2 (Current)",
+        standings: [
+          {
+            position: 1,
+            team: "Graeme Te Brake/ Shaun Te Brake",
+            played: 1,
+            won: 1,
+            lost: 0,
+            sets_for: 2,
+            sets_against: 0,
+            set_difference: 2,
+            games_for: 12,
+            games_against: 2,
+            game_difference: 10,
+            points: 3
+          },
+          {
+            position: 2,
+            team: "Riaan du Toit / Liam du Toit",
+            played: 1,
+            won: 1,
+            lost: 0,
+            sets_for: 2,
+            sets_against: 0,
+            set_difference: 2,
+            games_for: 12,
+            games_against: 1,
+            game_difference: 11,
+            points: 3
+          }
+        ],
+        pending: [
+          {
+            date: "Saturday, 16 May 2026",
+            team_1: "Gordon Dunbar / Kurt Herman",
+            team_2: "Stanton Fredericks / Zaid Moihdin",
+            status: "Pending"
+          }
+        ],
+        invalid: []
+      },
+
+      {
+        division: "Honeydew DIV 4",
+        season: "Season 1 (Current)",
+        standings: [
+          {
+            position: 1,
+            team: "Moe Variave / Andriano Dello Lacono",
+            played: 4,
+            won: 4,
+            lost: 0,
+            sets_for: 8,
+            sets_against: 2,
+            set_difference: 6,
+            games_for: 44,
+            games_against: 21,
+            game_difference: 23,
+            points: 11
+          },
+          {
+            position: 2,
+            team: "Darryl Vince / Martin Kanka",
+            played: 4,
+            won: 3,
+            lost: 1,
+            sets_for: 6,
+            sets_against: 2,
+            set_difference: 4,
+            games_for: 40,
+            games_against: 24,
+            game_difference: 16,
+            points: 9
+          }
+        ],
+        pending: [
+          {
+            date: "Saturday, 16 May 2026",
+            team_1: "Papatso Mopaka (Mr Mops) / Mthokozisi Dlamini",
+            team_2: "Dineshan Mariah / Brian Pillay",
+            status: "Pending"
+          },
+          {
+            date: "Saturday, 2 May 2026",
+            team_1: "Tony Ferguson / Mauritz Boshoff",
+            team_2: "Dineshan Mariah / Brian Pillay",
+            status: "Pending"
+          }
+        ],
+        invalid: []
+      }
+    ];
+
+    const PENDING_OVERDUE_DAYS = 14;
+    const INVALID_OVERDUE_DAYS = 7;
+
+    function parseFixtureDate(dateText) {
+      const cleaned = String(dateText || "").replace(/^[A-Za-z]+,\s*/, "");
+      const parsed = new Date(cleaned);
+
+      if (Number.isNaN(parsed.getTime())) {
+        return null;
+      }
+
+      return parsed;
+    }
+
+    function getDaysOld(dateText) {
+      const fixtureDate = parseFixtureDate(dateText);
+
+      if (!fixtureDate) {
+        return null;
+      }
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      fixtureDate.setHours(0, 0, 0, 0);
+
+      const diffMs = today - fixtureDate;
+      return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    }
+
+    function isOverdue(dateText, status) {
+      const daysOld = getDaysOld(dateText);
+
+      if (daysOld === null) {
+        return false;
+      }
+
+      if (status === "Pending") {
+        return daysOld > PENDING_OVERDUE_DAYS;
+      }
+
+      if (status === "Waiting Approval") {
+        return daysOld > INVALID_OVERDUE_DAYS;
+      }
+
+      return false;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function formatValue(value) {
+      if (value === null || value === undefined || value === "") {
+        return "";
+      }
+
+      return escapeHtml(value);
+    }
+
+    function getBadge(status) {
+      if (status === "Pending") {
+        return `<span class="badge badge-pending">Pending</span>`;
+      }
+
+      if (status === "Waiting Approval") {
+        return `<span class="badge badge-invalid">Waiting Approval</span>`;
+      }
+
+      return escapeHtml(status);
+    }
+
+    function buildStandingsTable(rows) {
+      if (!rows || rows.length === 0) {
+        return `<div class="empty-box">No standings available.</div>`;
+      }
+
+      return `
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Pos</th>
+                <th>Team</th>
+                <th>P</th>
+                <th>W</th>
+                <th>L</th>
+                <th>SF</th>
+                <th>SA</th>
+                <th>SD</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th>Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map(row => `
+                <tr>
+                  <td class="position">${formatValue(row.position)}</td>
+                  <td class="team-name">${formatValue(row.team)}</td>
+                  <td>${formatValue(row.played)}</td>
+                  <td>${formatValue(row.won)}</td>
+                  <td>${formatValue(row.lost)}</td>
+                  <td>${formatValue(row.sets_for)}</td>
+                  <td>${formatValue(row.sets_against)}</td>
+                  <td>${formatValue(row.set_difference)}</td>
+                  <td>${formatValue(row.games_for)}</td>
+                  <td>${formatValue(row.games_against)}</td>
+                  <td>${formatValue(row.game_difference)}</td>
+                  <td class="points">${formatValue(row.points)}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function buildIssueTable(rows, emptyText) {
+      if (!rows || rows.length === 0) {
+        return `<div class="empty-box">${emptyText}</div>`;
+      }
+
+      return `
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Team 1</th>
+                <th>Team 2</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Days Old</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map(row => {
+                const daysOld = getDaysOld(row.date);
+                const overdue = isOverdue(row.date, row.status);
+
+                return `
+                  <tr class="${overdue ? "overdue-row" : ""}">
+                    <td>${formatValue(row.date)}</td>
+                    <td class="team-name">${formatValue(row.team_1)}</td>
+                    <td class="team-name">${formatValue(row.team_2)}</td>
+                    <td>${formatValue(row.score)}</td>
+                    <td>${getBadge(row.status)}</td>
+                    <td>${daysOld === null ? "" : daysOld}</td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function countOverdue(rows, status) {
+      return (rows || []).filter(row => isOverdue(row.date, status)).length;
+    }
+
+    function buildDivisionSection(divisionData) {
+      const standings = divisionData.standings || [];
+      const pending = divisionData.pending || [];
+      const invalid = divisionData.invalid || [];
+
+      const pendingOverdue = countOverdue(pending, "Pending");
+      const invalidOverdue = countOverdue(invalid, "Waiting Approval");
+
+      return `
+        <section class="division-section">
+          <div class="division-header">
+            <div>
+              <h2>${escapeHtml(divisionData.division)}</h2>
+              <p>Current league summary and fixture monitoring</p>
+            </div>
+            <div class="season-pill">${escapeHtml(divisionData.season)}</div>
+          </div>
+
+          <div class="summary-grid">
+            <div class="summary-card">
+              <div class="summary-label">Teams</div>
+              <div class="summary-value">${standings.length}</div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-label">Pending Fixtures</div>
+              <div class="summary-value">${pending.length}</div>
+              <div class="summary-note">${pendingOverdue} overdue</div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-label">Waiting Approval</div>
+              <div class="summary-value">${invalid.length}</div>
+              <div class="summary-note">${invalidOverdue} overdue</div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-label">Leader</div>
+              <div class="summary-value" style="font-size: 18px;">
+                ${standings[0] ? escapeHtml(standings[0].team) : "N/A"}
+              </div>
+            </div>
+          </div>
+
+          <div class="table-block">
+            <div class="table-title-row">
+              <div>
+                <h3>Current Standings</h3>
+                <p class="table-note">Ranked by points, wins, set difference, game difference, and games for.</p>
+              </div>
+            </div>
+            ${buildStandingsTable(standings)}
+          </div>
+
+          <div class="table-block">
+            <div class="table-title-row">
+              <div>
+                <h3>Pending Fixtures</h3>
+                <p class="table-note">Fixtures older than ${PENDING_OVERDUE_DAYS} days are highlighted in red.</p>
+              </div>
+            </div>
+            ${buildIssueTable(pending, "No pending fixtures.")}
+          </div>
+
+          <div class="table-block">
+            <div class="table-title-row">
+              <div>
+                <h3>Waiting Approval / Invalid Results</h3>
+                <p class="table-note">Results older than ${INVALID_OVERDUE_DAYS} days are highlighted in red.</p>
+              </div>
+            </div>
+            ${buildIssueTable(invalid, "No results waiting approval.")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderReport() {
+      const root = document.getElementById("report-root");
+      const generatedDate = document.getElementById("generated-date");
+
+      const now = new Date();
+
+      generatedDate.textContent = `Generated on ${now.toLocaleDateString("en-ZA", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      })}`;
+
+      root.innerHTML = LEAGUE_DATA.map(buildDivisionSection).join("");
+    }
+
+    renderReport();
+  </script>
+</body>
+</html>
