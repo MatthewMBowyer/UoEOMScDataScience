@@ -741,27 +741,33 @@
       `;
     }
 
-    function renderFilters() {
-      const filterRoot = document.getElementById("filter-root");
+  function renderFilters() {
+    const filterRoot = document.getElementById("filter-root");
 
-      const categories = [
-        "All",
-        ...Array.from(new Set(ALL_DIVISIONS.map(row => row.category).filter(Boolean)))
-      ];
+    const categories = [
+      "All",
+      ...Array.from(new Set(ALL_DIVISIONS.map(row => row.category).filter(Boolean)))
+    ];
 
-      filterRoot.innerHTML = `
-        <div class="filter-bar">
-          ${categories.map(category => `
-            <button
-              class="filter-button ${category === ACTIVE_CATEGORY ? "active" : ""}"
-              onclick='setActiveCategory(${JSON.stringify(category)})'
-            >
-              ${escapeHtml(category)}
-            </button>
-          `).join("")}
-        </div>
-      `;
-    }
+    filterRoot.innerHTML = `
+      <div class="filter-bar">
+        ${categories.map(category => `
+          <button
+            class="filter-button ${category === ACTIVE_CATEGORY ? "active" : ""}"
+            data-category="${escapeHtml(category)}"
+          >
+            ${escapeHtml(category)}
+          </button>
+        `).join("")}
+      </div>
+    `;
+
+  filterRoot.querySelectorAll(".filter-button").forEach(button => {
+    button.addEventListener("click", () => {
+      setActiveCategory(button.dataset.category);
+    });
+  });
+}
 
     function setActiveCategory(category) {
       ACTIVE_CATEGORY = category;
