@@ -756,7 +756,7 @@
           ${categories.map(category => `
             <button
               class="filter-button ${category === ACTIVE_CATEGORY ? "active" : ""}"
-              onclick="setActiveCategory(${JSON.stringify(category)})"
+              onclick='setActiveCategory(${JSON.stringify(category)})'
             >
               ${escapeHtml(category)}
             </button>
