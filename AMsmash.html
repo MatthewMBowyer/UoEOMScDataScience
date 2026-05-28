@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Padel League Standings</title>
+
+  <title>AM Smash League Standings</title>
 
   <style>
     :root {
@@ -19,8 +20,6 @@
       --orange-text: #7c2d12;
       --blue-bg: #dbeafe;
       --blue-text: #1e3a8a;
-      --green-bg: #dcfce7;
-      --green-text: #14532d;
     }
 
     * {
@@ -178,7 +177,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 760px;
+      min-width: 680px;
     }
 
     thead {
@@ -320,13 +319,15 @@
 <body>
   <main class="page">
     <header class="main-header">
-      <h1>Padel League Current Standings</h1>
-      <p id="generated-date">Generated report</p>
+      <h1>AM Smash League Current Standings</h1>
+      <p id="generated-date">Loading latest data...</p>
 
       <div class="legend">
         <div class="legend-item">2-set win: 3 points</div>
         <div class="legend-item">3-set win: winner 2, loser 1</div>
         <div class="legend-item">2-set loss: 0 points</div>
+        <div class="legend-item">Pending older than 14 days: red</div>
+        <div class="legend-item">Waiting approval older than 7 days: red</div>
       </div>
     </header>
 
@@ -338,155 +339,7 @@
   </main>
 
   <script>
-    const LEAGUE_DATA = [
-      {
-        division: "Africa Padel",
-        season: "Season 2 (Current)",
-        fixtures: [
-          {
-            date: "Saturday, 16 May 2026",
-            team_1: "Gordon Dunbar / Kurt Herman",
-            team_2: "Stanton Fredericks / Zaid Moihdin",
-            score: "",
-            status: "Pending"
-          },
-          {
-            date: "Saturday, 16 May 2026",
-            team_1: "Charlie Castle / Chris Paton",
-            team_2: "Wesley Visser / Amien Sarlie",
-            score: "4-6 6-7",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 16 May 2026",
-            team_1: "Graeme Te Brake/ Shaun Te Brake",
-            team_2: "Divan Koekemoer / Stephan Olivier",
-            score: "6-1 6-1",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 16 May 2026",
-            team_1: "Justin Weldon / Warren Melneck",
-            team_2: "Riaan du Toit / Liam du Toit",
-            score: "1-6 0-6",
-            status: "Validated"
-          }
-        ]
-      },
-
-      {
-        division: "Honeydew DIV 4",
-        season: "Season 1 (Current)",
-        fixtures: [
-          {
-            date: "Saturday, 30 May 2026",
-            team_1: "Moe Variave / Andriano Dello Lacono",
-            team_2: "Darryl Vince / Martin Kanka",
-            score: "6-2 6-1",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 16 May 2026",
-            team_1: "Akhil Naik / Akshay Ranchod",
-            team_2: "Matt Bowyer / Henk Slabber",
-            score: "4-6 4-6",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 16 May 2026",
-            team_1: "Papatso Mopaka (Mr Mops) / Mthokozisi Dlamini",
-            team_2: "Dineshan Mariah / Brian Pillay",
-            score: "",
-            status: "Pending"
-          },
-          {
-            date: "Saturday, 16 May 2026",
-            team_1: "Tony Ferguson / Mauritz Boshoff",
-            team_2: "CamRondi /Luke Bailey",
-            score: "4-6 1-6",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 16 May 2026",
-            team_1: "Moe Variave / Andriano Dello Lacono",
-            team_2: "Gysbert Groenwald/ Johan Dercksen",
-            score: "6-2 6-0",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 16 May 2026",
-            team_1: "Nelson De Freitas / Sholin Siva",
-            team_2: "Darryl Vince / Martin Kanka",
-            score: "6-4 6-2",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 2 May 2026",
-            team_1: "Akhil Naik / Akshay Ranchod",
-            team_2: "Moe Variave / Andriano Dello Lacono",
-            score: "6-1 1-6 2-6",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 2 May 2026",
-            team_1: "CamRondi /Luke Bailey",
-            team_2: "Darryl Vince / Martin Kanka",
-            score: "1-6 3-6",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 2 May 2026",
-            team_1: "Papatso Mopaka (Mr Mops) / Mthokozisi Dlamini",
-            team_2: "Matt Bowyer / Henk Slabber",
-            score: "6-2 6-1",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 2 May 2026",
-            team_1: "Nelson De Freitas / Sholin Siva",
-            team_2: "Gysbert Groenwald/ Johan Dercksen",
-            score: "6-4 6-2",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 2 May 2026",
-            team_1: "Tony Ferguson / Mauritz Boshoff",
-            team_2: "Dineshan Mariah / Brian Pillay",
-            score: "",
-            status: "Pending"
-          },
-          {
-            date: "Saturday, 18 April 2026",
-            team_1: "Darryl Vince / Martin Kanka",
-            team_2: "Dineshan Mariah / Brian Pillay",
-            score: "6-1 7-5",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 18 April 2026",
-            team_1: "Tony Ferguson / Mauritz Boshoff",
-            team_2: "Matt Bowyer / Henk Slabber",
-            score: "3-6 3-6",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 18 April 2026",
-            team_1: "CamRondi /Luke Bailey",
-            team_2: "Gysbert Groenwald/ Johan Dercksen",
-            score: "5-7 7-5 6-4",
-            status: "Validated"
-          },
-          {
-            date: "Saturday, 18 April 2026",
-            team_1: "Nelson De Freitas / Sholin Siva",
-            team_2: "Moe Variave / Andriano Dello Lacono",
-            score: "6-2 2-6 2-6",
-            status: "Validated"
-          }
-        ]
-      }
-    ];
-
+    const DATA_URL = "assets/league_data.json";
     const PENDING_OVERDUE_DAYS = 14;
     const INVALID_OVERDUE_DAYS = 7;
 
@@ -509,20 +362,14 @@
         team1Games += set.team1;
         team2Games += set.team2;
 
-        if (set.team1 > set.team2) {
-          team1Sets += 1;
-        } else if (set.team2 > set.team1) {
-          team2Sets += 1;
-        }
+        if (set.team1 > set.team2) team1Sets += 1;
+        if (set.team2 > set.team1) team2Sets += 1;
       });
 
       let winner = "unknown";
 
-      if (team1Sets > team2Sets) {
-        winner = "team_1";
-      } else if (team2Sets > team1Sets) {
-        winner = "team_2";
-      }
+      if (team1Sets > team2Sets) winner = "team_1";
+      if (team2Sets > team1Sets) winner = "team_2";
 
       return {
         team1Sets,
@@ -558,9 +405,6 @@
         played: 0,
         won: 0,
         lost: 0,
-        sets_for: 0,
-        sets_against: 0,
-        set_difference: 0,
         games_for: 0,
         games_against: 0,
         game_difference: 0,
@@ -572,6 +416,8 @@
       const standings = {};
 
       fixtures.forEach(fixture => {
+        if (!fixture.team_1 || !fixture.team_2) return;
+
         if (!standings[fixture.team_1]) {
           standings[fixture.team_1] = createBlankStanding(fixture.team_1);
         }
@@ -590,17 +436,15 @@
           const team1 = standings[fixture.team_1];
           const team2 = standings[fixture.team_2];
 
+          if (!team1 || !team2) return;
+
           team1.played += 1;
           team2.played += 1;
 
-          team1.sets_for += score.team1Sets;
-          team1.sets_against += score.team2Sets;
           team1.games_for += score.team1Games;
           team1.games_against += score.team2Games;
           team1.points += points.team1;
 
-          team2.sets_for += score.team2Sets;
-          team2.sets_against += score.team1Sets;
           team2.games_for += score.team2Games;
           team2.games_against += score.team1Games;
           team2.points += points.team2;
@@ -608,14 +452,15 @@
           if (score.winner === "team_1") {
             team1.won += 1;
             team2.lost += 1;
-          } else if (score.winner === "team_2") {
+          }
+
+          if (score.winner === "team_2") {
             team2.won += 1;
             team1.lost += 1;
           }
         });
 
       const rows = Object.values(standings).map(row => {
-        row.set_difference = row.sets_for - row.sets_against;
         row.game_difference = row.games_for - row.games_against;
         return row;
       });
@@ -624,7 +469,6 @@
         return (
           b.points - a.points ||
           b.won - a.won ||
-          b.set_difference - a.set_difference ||
           b.game_difference - a.game_difference ||
           b.games_for - a.games_for ||
           a.team.localeCompare(b.team)
@@ -641,9 +485,7 @@
       const cleaned = String(dateText || "").replace(/^[A-Za-z]+,\s*/, "");
       const parsed = new Date(cleaned);
 
-      if (Number.isNaN(parsed.getTime())) {
-        return null;
-      }
+      if (Number.isNaN(parsed.getTime())) return null;
 
       return parsed;
     }
@@ -651,9 +493,7 @@
     function getDaysOld(dateText) {
       const fixtureDate = parseFixtureDate(dateText);
 
-      if (!fixtureDate) {
-        return null;
-      }
+      if (!fixtureDate) return null;
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -665,17 +505,10 @@
     function isOverdue(dateText, status) {
       const daysOld = getDaysOld(dateText);
 
-      if (daysOld === null) {
-        return false;
-      }
+      if (daysOld === null) return false;
 
-      if (status === "Pending") {
-        return daysOld > PENDING_OVERDUE_DAYS;
-      }
-
-      if (status === "Waiting Approval") {
-        return daysOld > INVALID_OVERDUE_DAYS;
-      }
+      if (status === "Pending") return daysOld > PENDING_OVERDUE_DAYS;
+      if (status === "Waiting Approval") return daysOld > INVALID_OVERDUE_DAYS;
 
       return false;
     }
@@ -690,10 +523,7 @@
     }
 
     function formatValue(value) {
-      if (value === null || value === undefined || value === "") {
-        return "";
-      }
-
+      if (value === null || value === undefined || value === "") return "";
       return escapeHtml(value);
     }
 
@@ -738,7 +568,6 @@
                   <td>${formatValue(row.played)}</td>
                   <td>${formatValue(row.won)}</td>
                   <td>${formatValue(row.lost)}</td>
-                 
                   <td>${formatValue(row.games_for)}</td>
                   <td>${formatValue(row.games_against)}</td>
                   <td>${formatValue(row.game_difference)}</td>
@@ -862,20 +691,37 @@
       `;
     }
 
-    function renderReport() {
+    async function renderReport() {
       const root = document.getElementById("report-root");
       const generatedDate = document.getElementById("generated-date");
 
-      const now = new Date();
+      try {
+        const response = await fetch(DATA_URL, { cache: "no-store" });
 
-      generatedDate.textContent = `Generated on ${now.toLocaleDateString("en-ZA", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      })}`;
+        if (!response.ok) {
+          throw new Error(`Could not load ${DATA_URL}`);
+        }
 
-      root.innerHTML = LEAGUE_DATA.map(buildDivisionSection).join("");
+        const payload = await response.json();
+        const divisions = payload.divisions || [];
+
+        const generatedAt = payload.generated_at_utc
+          ? new Date(payload.generated_at_utc)
+          : new Date();
+
+        generatedDate.textContent = `Latest scrape: ${generatedAt.toLocaleString("en-ZA")}`;
+
+        root.innerHTML = divisions.map(buildDivisionSection).join("");
+
+      } catch (error) {
+        generatedDate.textContent = "Could not load latest data.";
+        root.innerHTML = `
+          <section class="division-section">
+            <h2>Data loading error</h2>
+            <p>${escapeHtml(error.message)}</p>
+          </section>
+        `;
+      }
     }
 
     renderReport();
