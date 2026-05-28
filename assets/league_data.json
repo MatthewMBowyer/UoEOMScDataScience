@@ -1,12 +1,19 @@
 {
-  "generated_at_utc": "2026-05-28T14:33:03.058229+00:00",
+  "generated_at_utc": "2026-05-28T15:17:04.974918+00:00",
   "source_url": "https://ampadel.co.za/results",
+  "categories_requested": [
+    "Men's",
+    "Ladies",
+    "Mixed"
+  ],
   "divisions": [
     {
+      "category": "Men's",
       "division": "Africa Padel",
       "season": "Season 2 (Current)",
       "fixtures": [
         {
+          "category": "Men's",
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
@@ -18,6 +25,7 @@
           "status": "Pending"
         },
         {
+          "category": "Men's",
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
@@ -29,6 +37,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
@@ -40,6 +49,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
@@ -53,10 +63,1077 @@
       ]
     },
     {
+      "category": "Men's",
+      "division": "Honeydew DIV 1",
+      "season": "Season 2 (Current)",
+      "fixtures": [
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 20 June 2026",
+          "team_1": "Ryno Arangies / Willie Kompagnie",
+          "team_2": "Mark Rondi / Anton Davel",
+          "team_1_alias": "Willie, Ryno",
+          "team_2_alias": "Anton, Mark",
+          "score": "4-6 6-7",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Ryno Arangies / Willie Kompagnie",
+          "team_2": "J.C / Riaz Varachia",
+          "team_1_alias": "Willie, Ryno",
+          "team_2_alias": "J.C, Riaz",
+          "score": "3-6 5-7",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Mark Rondi / Anton Davel",
+          "team_2": "Iain Lindsay / Garth Forsyth",
+          "team_1_alias": "Anton, Mark",
+          "team_2_alias": "Iain, Garth",
+          "score": "2-6 2-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Rowan Budhram / Srini Govender",
+          "team_2": "Micheal Edwards / Junior Van Rooyen",
+          "team_1_alias": "Rowy, Srini",
+          "team_2_alias": "Michael, Wikus",
+          "score": "3-6 2-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Trevor Smith / Alex Smith",
+          "team_2": "Ziad lambada / Ebrahim Bilal (BME)",
+          "team_1_alias": "Trevor, Alex",
+          "team_2_alias": "Ziad, Ebrahim",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "David Samuel / Johan Brune",
+          "team_2": "Preash Govender / Andres Varas",
+          "team_1_alias": "David, Johan",
+          "team_2_alias": "Preash, Andy",
+          "score": "0-6 0-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Ryno Arangies / Willie Kompagnie",
+          "team_2": "Preash Govender / Andres Varas",
+          "team_1_alias": "Willie, Ryno",
+          "team_2_alias": "Preash, Andy",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
+          "team_2": "Iain Lindsay / Garth Forsyth",
+          "team_1_alias": "Ziad, Ebrahim",
+          "team_2_alias": "Iain, Garth",
+          "score": "4-6 3-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Trevor Smith / Alex Smith",
+          "team_2": "J.C / Riaz Varachia",
+          "team_1_alias": "Trevor, Alex",
+          "team_2_alias": "J.C, Riaz",
+          "score": "6-3 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "David Samuel / Johan Brune",
+          "team_2": "Rowan Budhram / Srini Govender",
+          "team_1_alias": "David, Johan",
+          "team_2_alias": "Rowy, Srini",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Mark Rondi / Anton Davel",
+          "team_2": "Micheal Edwards / Junior Van Rooyen",
+          "team_1_alias": "Anton, Mark",
+          "team_2_alias": "Michael, Wikus",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "David Samuel / Johan Brune",
+          "team_2": "Ryno Arangies / Willie Kompagnie",
+          "team_1_alias": "David, Johan",
+          "team_2_alias": "Willie, Ryno",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Trevor Smith / Alex Smith",
+          "team_2": "Preash Govender / Andres Varas",
+          "team_1_alias": "Trevor, Alex",
+          "team_2_alias": "Preash, Andy",
+          "score": "7-6 4-6 2-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
+          "team_2": "Micheal Edwards / Junior Van Rooyen",
+          "team_1_alias": "Ziad, Ebrahim",
+          "team_2_alias": "Michael, Wikus",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Iain Lindsay / Garth Forsyth",
+          "team_2": "J.C / Riaz Varachia",
+          "team_1_alias": "Iain, Garth",
+          "team_2_alias": "J.C, Riaz",
+          "score": "7-5 7-5",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Mark Rondi / Anton Davel",
+          "team_2": "Rowan Budhram / Srini Govender",
+          "team_1_alias": "Anton, Mark",
+          "team_2_alias": "Rowy, Srini",
+          "score": "6-4 6-4",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "J.C / Riaz Varachia",
+          "team_2": "Micheal Edwards / Junior Van Rooyen",
+          "team_1_alias": "J.C, Riaz",
+          "team_2_alias": "Michael, Wikus",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Trevor Smith / Alex Smith",
+          "team_2": "Ryno Arangies / Willie Kompagnie",
+          "team_1_alias": "Trevor, Alex",
+          "team_2_alias": "Willie, Ryno",
+          "score": "6-3 7-5",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
+          "team_2": "Rowan Budhram / Srini Govender",
+          "team_1_alias": "Ziad, Ebrahim",
+          "team_2_alias": "Rowy, Srini",
+          "score": "7-5 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Iain Lindsay / Garth Forsyth",
+          "team_2": "Preash Govender / Andres Varas",
+          "team_1_alias": "Iain, Garth",
+          "team_2_alias": "Preash, Andy",
+          "score": "6-2 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "David Samuel / Johan Brune",
+          "team_2": "Mark Rondi / Anton Davel",
+          "team_1_alias": "David, Johan",
+          "team_2_alias": "Anton, Mark",
+          "score": "3-6 4-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "J.C / Riaz Varachia",
+          "team_2": "Rowan Budhram / Srini Govender",
+          "team_1_alias": "J.C, Riaz",
+          "team_2_alias": "Rowy, Srini",
+          "score": "6-3 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Iain Lindsay / Garth Forsyth",
+          "team_2": "Ryno Arangies / Willie Kompagnie",
+          "team_1_alias": "Iain, Garth",
+          "team_2_alias": "Willie, Ryno",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "David Samuel / Johan Brune",
+          "team_2": "Trevor Smith / Alex Smith",
+          "team_1_alias": "David, Johan",
+          "team_2_alias": "Trevor, Alex",
+          "score": "5-7 6-4 3-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
+          "team_2": "Mark Rondi / Anton Davel",
+          "team_1_alias": "Ziad, Ebrahim",
+          "team_2_alias": "Anton, Mark",
+          "score": "2-6 6-3 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Micheal Edwards / Junior Van Rooyen",
+          "team_2": "Preash Govender / Andres Varas",
+          "team_1_alias": "Michael, Wikus",
+          "team_2_alias": "Preash, Andy",
+          "score": "6-3 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "David Samuel / Johan Brune",
+          "team_2": "Ziad lambada / Ebrahim Bilal (BME)",
+          "team_1_alias": "David, Johan",
+          "team_2_alias": "Ziad, Ebrahim",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "J.C / Riaz Varachia",
+          "team_2": "Mark Rondi / Anton Davel",
+          "team_1_alias": "J.C, Riaz",
+          "team_2_alias": "Anton, Mark",
+          "score": "3-6 6-3 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Preash Govender / Andres Varas",
+          "team_2": "Rowan Budhram / Srini Govender",
+          "team_1_alias": "Preash, Andy",
+          "team_2_alias": "Rowy, Srini",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Iain Lindsay / Garth Forsyth",
+          "team_2": "Trevor Smith / Alex Smith",
+          "team_1_alias": "Iain, Garth",
+          "team_2_alias": "Trevor, Alex",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Micheal Edwards / Junior Van Rooyen",
+          "team_2": "Ryno Arangies / Willie Kompagnie",
+          "team_1_alias": "Michael, Wikus",
+          "team_2_alias": "Willie, Ryno",
+          "score": "",
+          "status": "Pending"
+        }
+      ]
+    },
+    {
+      "category": "Men's",
+      "division": "Honeydew DIV 2",
+      "season": "Season 2 (Current)",
+      "fixtures": [
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Richard Lilford / Tristan Lilford",
+          "team_2": "Muzaffar Mohamed / Will Young",
+          "team_1_alias": "Richard, Tristan",
+          "team_2_alias": "Will, Muzaffar",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "team_2": "Matthew Phillips / Jason Mclaren",
+          "team_1_alias": "Tiaan, Rayno",
+          "team_2_alias": "Jason, Matthew",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Garreth Raath / Brendan Beech",
+          "team_2": "Morgan Wentzel / Steven",
+          "team_1_alias": "Garreth, Brendan",
+          "team_2_alias": "Steve, Morgan",
+          "score": "6-3 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Ryan Purdon / Wes Bothwell",
+          "team_2": "Peter Panczyk/ Alfred Visagie",
+          "team_1_alias": "Wes, Ryan",
+          "team_2_alias": "Alfred, Peter",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Malcom Dengler / Noah Sked",
+          "team_2": "Pieter Venter / Hennie Erasmus",
+          "team_1_alias": "Malcom, Noah",
+          "team_2_alias": "Hennie, Pieter",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Malcom Dengler / Noah Sked",
+          "team_2": "Richard Lilford / Tristan Lilford",
+          "team_1_alias": "Malcom, Noah",
+          "team_2_alias": "Richard, Tristan",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "team_2": "Peter Panczyk/ Alfred Visagie",
+          "team_1_alias": "Tiaan, Rayno",
+          "team_2_alias": "Alfred, Peter",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Garreth Raath / Brendan Beech",
+          "team_2": "Muzaffar Mohamed / Will Young",
+          "team_1_alias": "Garreth, Brendan",
+          "team_2_alias": "Will, Muzaffar",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Ryan Purdon / Wes Bothwell",
+          "team_2": "Pieter Venter / Hennie Erasmus",
+          "team_1_alias": "Wes, Ryan",
+          "team_2_alias": "Hennie, Pieter",
+          "score": "2-6 2-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Matthew Phillips / Jason Mclaren",
+          "team_2": "Morgan Wentzel / Steven",
+          "team_1_alias": "Jason, Matthew",
+          "team_2_alias": "Steve, Morgan",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 18 April 2026",
+          "team_1": "Morgan Wentzel / Steven",
+          "team_2": "Peter Panczyk/ Alfred Visagie",
+          "team_1_alias": "Steve, Morgan",
+          "team_2_alias": "Alfred, Peter",
+          "score": "5-7 6-4 2-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 18 April 2026",
+          "team_1": "Malcom Dengler / Noah Sked",
+          "team_2": "Ryan Purdon / Wes Bothwell",
+          "team_1_alias": "Malcom, Noah",
+          "team_2_alias": "Wes, Ryan",
+          "score": "6-2 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 18 April 2026",
+          "team_1": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "team_2": "Pieter Venter / Hennie Erasmus",
+          "team_1_alias": "Tiaan, Rayno",
+          "team_2_alias": "Hennie, Pieter",
+          "score": "7-5 6-1",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 18 April 2026",
+          "team_1": "Garreth Raath / Brendan Beech",
+          "team_2": "Richard Lilford / Tristan Lilford",
+          "team_1_alias": "Garreth, Brendan",
+          "team_2_alias": "Richard, Tristan",
+          "score": "6-0 7-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 18 April 2026",
+          "team_1": "Matthew Phillips / Jason Mclaren",
+          "team_2": "Muzaffar Mohamed / Will Young",
+          "team_1_alias": "Jason, Matthew",
+          "team_2_alias": "Will, Muzaffar",
+          "score": "6-1 7-5",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 4 April 2026",
+          "team_1": "Matthew Phillips / Jason Mclaren",
+          "team_2": "Richard Lilford / Tristan Lilford",
+          "team_1_alias": "Jason, Matthew",
+          "team_2_alias": "Richard, Tristan",
+          "score": "6-3 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 4 April 2026",
+          "team_1": "Malcom Dengler / Noah Sked",
+          "team_2": "Garreth Raath / Brendan Beech",
+          "team_1_alias": "Malcom, Noah",
+          "team_2_alias": "Garreth, Brendan",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 4 April 2026",
+          "team_1": "Peter Panczyk/ Alfred Visagie",
+          "team_2": "Muzaffar Mohamed / Will Young",
+          "team_1_alias": "Alfred, Peter",
+          "team_2_alias": "Will, Muzaffar",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 4 April 2026",
+          "team_1": "Morgan Wentzel / Steven",
+          "team_2": "Pieter Venter / Hennie Erasmus",
+          "team_1_alias": "Steve, Morgan",
+          "team_2_alias": "Hennie, Pieter",
+          "score": "6-3 6-4",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 4 April 2026",
+          "team_1": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "team_2": "Ryan Purdon / Wes Bothwell",
+          "team_1_alias": "Tiaan, Rayno",
+          "team_2_alias": "Wes, Ryan",
+          "score": "6-2 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 21 March 2026",
+          "team_1": "Matthew Phillips / Jason Mclaren",
+          "team_2": "Garreth Raath / Brendan Beech",
+          "team_1_alias": "Jason, Matthew",
+          "team_2_alias": "Garreth, Brendan",
+          "score": "3-6 3-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 21 March 2026",
+          "team_1": "Muzaffar Mohamed / Will Young",
+          "team_2": "Pieter Venter / Hennie Erasmus",
+          "team_1_alias": "Will, Muzaffar",
+          "team_2_alias": "Hennie, Pieter",
+          "score": "1-6 2-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 21 March 2026",
+          "team_1": "Morgan Wentzel / Steven",
+          "team_2": "Ryan Purdon / Wes Bothwell",
+          "team_1_alias": "Steve, Morgan",
+          "team_2_alias": "Wes, Ryan",
+          "score": "6-3 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 21 March 2026",
+          "team_1": "Malcom Dengler / Noah Sked",
+          "team_2": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "team_1_alias": "Malcom, Noah",
+          "team_2_alias": "Tiaan, Rayno",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 21 March 2026",
+          "team_1": "Peter Panczyk/ Alfred Visagie",
+          "team_2": "Richard Lilford / Tristan Lilford",
+          "team_1_alias": "Alfred, Peter",
+          "team_2_alias": "Richard, Tristan",
+          "score": "6-0 6-0",
+          "status": "Validated"
+        }
+      ]
+    },
+    {
+      "category": "Men's",
+      "division": "Honeydew DIV 3",
+      "season": "Season 2 (Current)",
+      "fixtures": [
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 4 July 2026",
+          "team_1": "Morne Glover / Yidher Chang",
+          "team_2": "Wolfi Maralik / Richard Garrard",
+          "team_1_alias": "Morne, Braam",
+          "team_2_alias": "Wolfi",
+          "score": "7-5 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Viven Keaton / Gavin Govender",
+          "team_2": "Wolfi Maralik / Richard Garrard",
+          "team_1_alias": "Viven, Gavin",
+          "team_2_alias": "Wolfi",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Ashwin Naidu / Monty Lowe",
+          "team_2": "Jarrod Rohland / Brad Edwards",
+          "team_1_alias": "Ashwin, Monty",
+          "team_2_alias": "Brad, Jarrod",
+          "score": "4-6 6-4 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_2": "Rowan Baisley / Calvin King",
+          "team_1_alias": "Mohhammed, Muhhammed",
+          "team_2_alias": "Calvin, Rowan",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Pieter Bekker / Nathan Venter",
+          "team_2": "Morne Glover / Yidher Chang",
+          "team_1_alias": "Nathan, Pieter",
+          "team_2_alias": "Morne, Braam",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Strini Govender / Dale Rouquette",
+          "team_2": "Bevin Laidlow / Zane Daniels",
+          "team_1_alias": "Strini, Dale",
+          "team_2_alias": "Zain, Bevin, Bevin",
+          "score": "6-2 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Strini Govender / Dale Rouquette",
+          "team_2": "Rowan Baisley / Calvin King",
+          "team_1_alias": "Strini, Dale",
+          "team_2_alias": "Calvin, Rowan",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Pieter Bekker / Nathan Venter",
+          "team_2": "Jarrod Rohland / Brad Edwards",
+          "team_1_alias": "Nathan, Pieter",
+          "team_2_alias": "Brad, Jarrod",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Wolfi Maralik / Richard Garrard",
+          "team_2": "Bevin Laidlow / Zane Daniels",
+          "team_1_alias": "Wolfi",
+          "team_2_alias": "Zain, Bevin, Bevin",
+          "score": "6-3 3-6 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Viven Keaton / Gavin Govender",
+          "team_2": "Morne Glover / Yidher Chang",
+          "team_1_alias": "Viven, Gavin",
+          "team_2_alias": "Morne, Braam",
+          "score": "0-6 0-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Ashwin Naidu / Monty Lowe",
+          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_1_alias": "Ashwin, Monty",
+          "team_2_alias": "Mohhammed, Muhhammed",
+          "score": "7-6 6-4",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Wolfi Maralik / Richard Garrard",
+          "team_2": "Rowan Baisley / Calvin King",
+          "team_1_alias": "Wolfi",
+          "team_2_alias": "Calvin, Rowan",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Viven Keaton / Gavin Govender",
+          "team_2": "Jarrod Rohland / Brad Edwards",
+          "team_1_alias": "Viven, Gavin",
+          "team_2_alias": "Brad, Jarrod",
+          "score": "0-6 6-4 1-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Ashwin Naidu / Monty Lowe",
+          "team_2": "Pieter Bekker / Nathan Venter",
+          "team_1_alias": "Ashwin, Monty",
+          "team_2_alias": "Nathan, Pieter",
+          "score": "6-0 6-1",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Bevin Laidlow / Zane Daniels",
+          "team_2": "Morne Glover / Yidher Chang",
+          "team_1_alias": "Zain, Bevin, Bevin",
+          "team_2_alias": "Morne, Braam",
+          "score": "1-6 3-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Strini Govender / Dale Rouquette",
+          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_1_alias": "Strini, Dale",
+          "team_2_alias": "Mohhammed, Muhhammed",
+          "score": "6-7 0-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Wolfi Maralik / Richard Garrard",
+          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_1_alias": "Wolfi",
+          "team_2_alias": "Mohhammed, Muhhammed",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Ashwin Naidu / Monty Lowe",
+          "team_2": "Strini Govender / Dale Rouquette",
+          "team_1_alias": "Ashwin, Monty",
+          "team_2_alias": "Strini, Dale",
+          "score": "6-2 6-1",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Morne Glover / Yidher Chang",
+          "team_2": "Rowan Baisley / Calvin King",
+          "team_1_alias": "Morne, Braam",
+          "team_2_alias": "Calvin, Rowan",
+          "score": "6-2 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Bevin Laidlow / Zane Daniels",
+          "team_2": "Jarrod Rohland / Brad Edwards",
+          "team_1_alias": "Zain, Bevin, Bevin",
+          "team_2_alias": "Brad, Jarrod",
+          "score": "4-6 3-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Viven Keaton / Gavin Govender",
+          "team_2": "Pieter Bekker / Nathan Venter",
+          "team_1_alias": "Viven, Gavin",
+          "team_2_alias": "Nathan, Pieter",
+          "score": "6-4 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Rowan Baisley / Calvin King",
+          "team_2": "Jarrod Rohland / Brad Edwards",
+          "team_1_alias": "Calvin, Rowan",
+          "team_2_alias": "Brad, Jarrod",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Bevin Laidlow / Zane Daniels",
+          "team_2": "Pieter Bekker / Nathan Venter",
+          "team_1_alias": "Zain, Bevin, Bevin",
+          "team_2_alias": "Nathan, Pieter",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Ashwin Naidu / Monty Lowe",
+          "team_2": "Viven Keaton / Gavin Govender",
+          "team_1_alias": "Ashwin, Monty",
+          "team_2_alias": "Viven, Gavin",
+          "score": "6-0 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Morne Glover / Yidher Chang",
+          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_1_alias": "Morne, Braam",
+          "team_2_alias": "Mohhammed, Muhhammed",
+          "score": "6-0 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Wolfi Maralik / Richard Garrard",
+          "team_2": "Strini Govender / Dale Rouquette",
+          "team_1_alias": "Wolfi",
+          "team_2_alias": "Strini, Dale",
+          "score": "3-6 7-5 4-5",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Morne Glover / Yidher Chang",
+          "team_2": "Strini Govender / Dale Rouquette",
+          "team_1_alias": "Morne, Braam",
+          "team_2_alias": "Strini, Dale",
+          "score": "6-4 6-4",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Rowan Baisley / Calvin King",
+          "team_2": "Pieter Bekker / Nathan Venter",
+          "team_1_alias": "Calvin, Rowan",
+          "team_2_alias": "Nathan, Pieter",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Ashwin Naidu / Monty Lowe",
+          "team_2": "Wolfi Maralik / Richard Garrard",
+          "team_1_alias": "Ashwin, Monty",
+          "team_2_alias": "Wolfi",
+          "score": "6-3 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Jarrod Rohland / Brad Edwards",
+          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_1_alias": "Brad, Jarrod",
+          "team_2_alias": "Mohhammed, Muhhammed",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Bevin Laidlow / Zane Daniels",
+          "team_2": "Viven Keaton / Gavin Govender",
+          "team_1_alias": "Zain, Bevin, Bevin",
+          "team_2_alias": "Viven, Gavin",
+          "score": "4-6 4-6",
+          "status": "Validated"
+        }
+      ]
+    },
+    {
+      "category": "Men's",
       "division": "Honeydew DIV 4",
       "season": "Season 1 (Current)",
       "fixtures": [
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 30 May 2026",
@@ -68,6 +1145,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 16 May 2026",
@@ -79,6 +1157,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 16 May 2026",
@@ -90,6 +1169,7 @@
           "status": "Pending"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 16 May 2026",
@@ -101,6 +1181,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 16 May 2026",
@@ -112,6 +1193,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 16 May 2026",
@@ -123,6 +1205,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 2 May 2026",
@@ -134,6 +1217,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 2 May 2026",
@@ -145,6 +1229,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 2 May 2026",
@@ -156,6 +1241,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 2 May 2026",
@@ -167,6 +1253,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 2 May 2026",
@@ -178,6 +1265,7 @@
           "status": "Pending"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 18 April 2026",
@@ -189,6 +1277,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 18 April 2026",
@@ -200,6 +1289,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 18 April 2026",
@@ -211,6 +1301,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 18 April 2026",
@@ -222,6 +1313,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 18 April 2026",
@@ -233,6 +1325,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 4 April 2026",
@@ -244,6 +1337,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 4 April 2026",
@@ -255,6 +1349,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 4 April 2026",
@@ -266,6 +1361,7 @@
           "status": "Pending"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 4 April 2026",
@@ -277,6 +1373,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 4 April 2026",
@@ -288,6 +1385,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 21 March 2026",
@@ -299,6 +1397,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 21 March 2026",
@@ -310,6 +1409,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 21 March 2026",
@@ -321,6 +1421,7 @@
           "status": "Validated"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 21 March 2026",
@@ -332,6 +1433,7 @@
           "status": "Pending"
         },
         {
+          "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 21 March 2026",
@@ -345,351 +1447,481 @@
       ]
     },
     {
-      "division": "Honeydew DIV 1",
-      "season": "Season 2 (Current)",
+      "category": "Men's",
+      "division": "Krugersdorp",
+      "season": "Season 1 (Current)",
       "fixtures": [
         {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 20 June 2026",
-          "team_1": "Ryno Arangies / Willie Kompagnie",
-          "team_2": "Mark Rondi / Anton Davel",
-          "team_1_alias": "Willie, Ryno",
-          "team_2_alias": "Anton, Mark",
-          "score": "4-6 6-7",
+          "category": "Men's",
+          "division": "Krugersdorp",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Erik Viviers/ Ruan Lategan",
+          "team_2": "Neil Barnard Calden de Jager",
+          "team_1_alias": "Erik, Ruan",
+          "team_2_alias": "Neil, Calden",
+          "score": "6-1 7-5",
           "status": "Validated"
         },
         {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Ryno Arangies / Willie Kompagnie",
-          "team_2": "J.C / Riaz Varachia",
-          "team_1_alias": "Willie, Ryno",
-          "team_2_alias": "J.C, Riaz",
-          "score": "3-6 5-7",
+          "category": "Men's",
+          "division": "Krugersdorp",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Janu Pienaar / Joshua Drabble",
+          "team_2": "Matthew Tarr / Johan Greylin",
+          "team_1_alias": "Janu, Joshua",
+          "team_2_alias": "Johan, Matthew",
+          "score": "7-5 6-1",
           "status": "Validated"
         },
         {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Mark Rondi / Anton Davel",
-          "team_2": "Iain Lindsay / Garth Forsyth",
-          "team_1_alias": "Anton, Mark",
-          "team_2_alias": "Iain, Garth",
-          "score": "2-6 2-6",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Rowan Budhram / Srini Govender",
-          "team_2": "Micheal Edwards / Junior Van Rooyen",
-          "team_1_alias": "Rowy, Srini",
-          "team_2_alias": "Michael, Wikus",
-          "score": "3-6 2-6",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Trevor Smith / Alex Smith",
-          "team_2": "Ziad lambada / Ebrahim Bilal (BME)",
-          "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "Ziad, Ebrahim",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "David Samuel / Johan Brune",
-          "team_2": "Preash Govender / Andres Varas",
-          "team_1_alias": "David, Johan",
-          "team_2_alias": "Preash, Andy",
-          "score": "0-6 0-6",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Ryno Arangies / Willie Kompagnie",
-          "team_2": "Preash Govender / Andres Varas",
-          "team_1_alias": "Willie, Ryno",
-          "team_2_alias": "Preash, Andy",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
-          "team_2": "Iain Lindsay / Garth Forsyth",
-          "team_1_alias": "Ziad, Ebrahim",
-          "team_2_alias": "Iain, Garth",
-          "score": "4-6 3-6",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Trevor Smith / Alex Smith",
-          "team_2": "J.C / Riaz Varachia",
-          "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "J.C, Riaz",
-          "score": "6-3 6-3",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "David Samuel / Johan Brune",
-          "team_2": "Rowan Budhram / Srini Govender",
-          "team_1_alias": "David, Johan",
-          "team_2_alias": "Rowy, Srini",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Mark Rondi / Anton Davel",
-          "team_2": "Micheal Edwards / Junior Van Rooyen",
-          "team_1_alias": "Anton, Mark",
-          "team_2_alias": "Michael, Wikus",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "David Samuel / Johan Brune",
-          "team_2": "Ryno Arangies / Willie Kompagnie",
-          "team_1_alias": "David, Johan",
-          "team_2_alias": "Willie, Ryno",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Trevor Smith / Alex Smith",
-          "team_2": "Preash Govender / Andres Varas",
-          "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "Preash, Andy",
-          "score": "7-6 4-6 2-2",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
-          "team_2": "Micheal Edwards / Junior Van Rooyen",
-          "team_1_alias": "Ziad, Ebrahim",
-          "team_2_alias": "Michael, Wikus",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Iain Lindsay / Garth Forsyth",
-          "team_2": "J.C / Riaz Varachia",
-          "team_1_alias": "Iain, Garth",
-          "team_2_alias": "J.C, Riaz",
-          "score": "7-5 7-5",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Mark Rondi / Anton Davel",
-          "team_2": "Rowan Budhram / Srini Govender",
-          "team_1_alias": "Anton, Mark",
-          "team_2_alias": "Rowy, Srini",
-          "score": "6-4 6-4",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "J.C / Riaz Varachia",
-          "team_2": "Micheal Edwards / Junior Van Rooyen",
-          "team_1_alias": "J.C, Riaz",
-          "team_2_alias": "Michael, Wikus",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Trevor Smith / Alex Smith",
-          "team_2": "Ryno Arangies / Willie Kompagnie",
-          "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "Willie, Ryno",
+          "category": "Men's",
+          "division": "Krugersdorp",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Ebrahim Dindar/ Muhammad Dindar",
+          "team_2": "Paul Els / Johan Maritz",
+          "team_1_alias": "Ebrahim, Muhhammad",
+          "team_2_alias": "Paul, Johan",
           "score": "6-3 7-5",
           "status": "Validated"
         },
         {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
-          "team_2": "Rowan Budhram / Srini Govender",
-          "team_1_alias": "Ziad, Ebrahim",
-          "team_2_alias": "Rowy, Srini",
-          "score": "7-5 6-3",
+          "category": "Men's",
+          "division": "Krugersdorp",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Johan Wilters / Hano Taljard",
+          "team_2": "Martin Miog / Christoph van der Linde",
+          "team_1_alias": "Johan, Hano",
+          "team_2_alias": "No players",
+          "score": "4-6 3-6",
           "status": "Validated"
-        },
+        }
+      ]
+    },
+    {
+      "category": "Men's",
+      "division": "Padel Lab",
+      "season": "Season 2 (Current)",
+      "fixtures": [
         {
-          "division": "Honeydew DIV 1",
+          "category": "Men's",
+          "division": "Padel Lab",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Iain Lindsay / Garth Forsyth",
-          "team_2": "Preash Govender / Andres Varas",
-          "team_1_alias": "Iain, Garth",
-          "team_2_alias": "Preash, Andy",
-          "score": "6-2 6-3",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "David Samuel / Johan Brune",
-          "team_2": "Mark Rondi / Anton Davel",
-          "team_1_alias": "David, Johan",
-          "team_2_alias": "Anton, Mark",
-          "score": "3-6 4-6",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "J.C / Riaz Varachia",
-          "team_2": "Rowan Budhram / Srini Govender",
-          "team_1_alias": "J.C, Riaz",
-          "team_2_alias": "Rowy, Srini",
-          "score": "6-3 6-2",
-          "status": "Validated"
-        },
-        {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Iain Lindsay / Garth Forsyth",
-          "team_2": "Ryno Arangies / Willie Kompagnie",
-          "team_1_alias": "Iain, Garth",
-          "team_2_alias": "Willie, Ryno",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Marius Jacobs / Andrew Fairlie",
+          "team_2": "Michael Proctor / Brett Proctor",
+          "team_1_alias": "Andrew, Marius",
+          "team_2_alias": "Brett, Micheal",
           "score": "",
           "status": "Pending"
         },
         {
-          "division": "Honeydew DIV 1",
+          "category": "Men's",
+          "division": "Padel Lab",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "David Samuel / Johan Brune",
-          "team_2": "Trevor Smith / Alex Smith",
-          "team_1_alias": "David, Johan",
-          "team_2_alias": "Trevor, Alex",
-          "score": "5-7 6-4 3-6",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Keetan Naidoo / Shaylin Nundahraj",
+          "team_2": "Paul Jacobie / Keegan Van Den Heever",
+          "team_1_alias": "Keetan, Shaylin",
+          "team_2_alias": "Keegan, Paul",
+          "score": "6-4 4-6 6-4",
           "status": "Validated"
         },
         {
-          "division": "Honeydew DIV 1",
+          "category": "Men's",
+          "division": "Padel Lab",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
-          "team_2": "Mark Rondi / Anton Davel",
-          "team_1_alias": "Ziad, Ebrahim",
-          "team_2_alias": "Anton, Mark",
-          "score": "2-6 6-3 6-3",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Johan Van Achterberg / Julian Achterberg",
+          "team_2": "Reenen Burger / Gareth Dreyer",
+          "team_1_alias": "Johan, Julian",
+          "team_2_alias": "Reenen, Gareth",
+          "score": "6-2 6-0",
           "status": "Validated"
         },
         {
-          "division": "Honeydew DIV 1",
+          "category": "Men's",
+          "division": "Padel Lab",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Micheal Edwards / Junior Van Rooyen",
-          "team_2": "Preash Govender / Andres Varas",
-          "team_1_alias": "Michael, Wikus",
-          "team_2_alias": "Preash, Andy",
-          "score": "6-3 6-2",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
+          "team_2": "Ruari Jansen / Noah Jansen",
+          "team_1_alias": "Johan, Lehlogonolo",
+          "team_2_alias": "Ruari",
+          "score": "6-4 6-3",
           "status": "Validated"
-        },
+        }
+      ]
+    },
+    {
+      "category": "Men's",
+      "division": "Syringa",
+      "season": "Season 1 (Current)",
+      "fixtures": [
         {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 14 March 2026",
-          "team_1": "David Samuel / Johan Brune",
-          "team_2": "Ziad lambada / Ebrahim Bilal (BME)",
-          "team_1_alias": "David, Johan",
-          "team_2_alias": "Ziad, Ebrahim",
+          "category": "Men's",
+          "division": "Syringa",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Adam Fillmore / Casey Fillmore",
+          "team_2": "Tiaan Holtzhausen / Juann de Waal",
+          "team_1_alias": "Casey, Adam",
+          "team_2_alias": "No players",
           "score": "",
           "status": "Pending"
         },
         {
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 14 March 2026",
-          "team_1": "J.C / Riaz Varachia",
-          "team_2": "Mark Rondi / Anton Davel",
-          "team_1_alias": "J.C, Riaz",
-          "team_2_alias": "Anton, Mark",
-          "score": "3-6 6-3 6-3",
+          "category": "Men's",
+          "division": "Syringa",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Brian Seymour / Dirk Loggerenberg",
+          "team_2": "Team Syringa",
+          "team_1_alias": "Dirk, Brian",
+          "team_2_alias": "No players",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Syringa",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Ian Visser / Wian Lamprech",
+          "team_2": "Steven Sienaert / Aaron Leach",
+          "team_1_alias": "Ian, Wian",
+          "team_2_alias": "No players",
+          "score": "0-6 6-7",
           "status": "Validated"
         },
         {
-          "division": "Honeydew DIV 1",
+          "category": "Men's",
+          "division": "Syringa",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Riaz Varachia / Ayman Varachia",
+          "team_2": "Ryno Arangies / HP Toerien",
+          "team_1_alias": "Riaz, Ayman",
+          "team_2_alias": "Hp, Ryno",
+          "score": "6-2 6-2",
+          "status": "Validated"
+        }
+      ]
+    },
+    {
+      "category": "Mixed",
+      "division": "Ruimsig Mixed Div 1",
+      "season": "Season 2 (Current)",
+      "fixtures": [
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 14 March 2026",
-          "team_1": "Preash Govender / Andres Varas",
-          "team_2": "Rowan Budhram / Srini Govender",
-          "team_1_alias": "Preash, Andy",
-          "team_2_alias": "Rowy, Srini",
+          "date": "Monday, 18 May 2026",
+          "team_1": "Alex Smith / Lea Smith",
+          "team_2": "Nicks Bothwell / Richard Garrard",
+          "team_1_alias": "Alex, Lea",
+          "team_2_alias": "Nicks, Richard",
           "score": "",
           "status": "Pending"
         },
         {
-          "division": "Honeydew DIV 1",
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 14 March 2026",
-          "team_1": "Iain Lindsay / Garth Forsyth",
-          "team_2": "Trevor Smith / Alex Smith",
-          "team_1_alias": "Iain, Garth",
-          "team_2_alias": "Trevor, Alex",
+          "date": "Monday, 18 May 2026",
+          "team_1": "Noah Sked / Madison Sked",
+          "team_2": "Meghan Warby / Houston Warby",
+          "team_1_alias": "Madison",
+          "team_2_alias": "Houston, Meghan",
+          "score": "7-6 6-4",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 2 (Current)",
+          "date": "Monday, 18 May 2026",
+          "team_1": "Chantelle Usmar / Dean Lindecke",
+          "team_2": "Lalique Du Toit / Liam Du Toit",
+          "team_1_alias": "Chantelle, Dean",
+          "team_2_alias": "Liam, Lalique",
+          "score": "1-6 6-2 6-1",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 2 (Current)",
+          "date": "Monday, 18 May 2026",
+          "team_1": "Beverly Stace / Wahldo Van der Merwe",
+          "team_2": "Louise Nel / Anthonetta Nel",
+          "team_1_alias": "Beverly, Wahldo",
+          "team_2_alias": "Louise, Anthonetta",
+          "score": "2-6 4-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 2 (Current)",
+          "date": "Monday, 4 May 2026",
+          "team_1": "Beverly Stace / Wahldo Van der Merwe",
+          "team_2": "Nicks Bothwell / Richard Garrard",
+          "team_1_alias": "Beverly, Wahldo",
+          "team_2_alias": "Nicks, Richard",
+          "score": "6-3 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 2 (Current)",
+          "date": "Monday, 4 May 2026",
+          "team_1": "Chantelle Usmar / Dean Lindecke",
+          "team_2": "Meghan Warby / Houston Warby",
+          "team_1_alias": "Chantelle, Dean",
+          "team_2_alias": "Houston, Meghan",
+          "score": "6-4 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 2 (Current)",
+          "date": "Monday, 4 May 2026",
+          "team_1": "Alex Smith / Lea Smith",
+          "team_2": "Noah Sked / Madison Sked",
+          "team_1_alias": "Alex, Lea",
+          "team_2_alias": "Madison",
+          "score": "6-2 6-4",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 2 (Current)",
+          "date": "Monday, 4 May 2026",
+          "team_1": "Lalique Du Toit / Liam Du Toit",
+          "team_2": "Louise Nel / Anthonetta Nel",
+          "team_1_alias": "Liam, Lalique",
+          "team_2_alias": "Louise, Anthonetta",
+          "score": "2-6 1-6",
+          "status": "Validated"
+        }
+      ]
+    },
+    {
+      "category": "Mixed",
+      "division": "Ruimsig Mixed Div 2",
+      "season": "Season 2 (Current)",
+      "fixtures": [
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 19 May 2026",
+          "team_1": "Steven Sienart / Maryna Welman",
+          "team_2": "Rowan Budhram / Nicole Sheingold",
+          "team_1_alias": "Steven",
+          "team_2_alias": "Nicole, Rowan",
           "score": "",
           "status": "Pending"
         },
         {
-          "division": "Honeydew DIV 1",
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 14 March 2026",
-          "team_1": "Micheal Edwards / Junior Van Rooyen",
-          "team_2": "Ryno Arangies / Willie Kompagnie",
-          "team_1_alias": "Michael, Wikus",
-          "team_2_alias": "Willie, Ryno",
+          "date": "Tuesday, 19 May 2026",
+          "team_1": "Hermanus Du Preez / Eunita Du Preez",
+          "team_2": "Liyah Limbada / Ziad Limbada",
+          "team_1_alias": "Hermanus, Eunita",
+          "team_2_alias": "Ziad, Liyah",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 19 May 2026",
+          "team_1": "Kyle Prescott /Nadine Mansour",
+          "team_2": "Karen Dengler / Malcom Dengler",
+          "team_1_alias": "Kyle, Nadine",
+          "team_2_alias": "Malcom, Karen",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 19 May 2026",
+          "team_1": "Wolfi Maralik / Kerryn Maralik",
+          "team_2": "Sandrika Gajraj / Ashwin Naidu",
+          "team_1_alias": "Wolfi, Kerryn",
+          "team_2_alias": "Ashwin, Sandrika",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 5 May 2026",
+          "team_1": "Hermanus Du Preez / Eunita Du Preez",
+          "team_2": "Sandrika Gajraj / Ashwin Naidu",
+          "team_1_alias": "Hermanus, Eunita",
+          "team_2_alias": "Ashwin, Sandrika",
+          "score": "2-6 3-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 5 May 2026",
+          "team_1": "Kyle Prescott /Nadine Mansour",
+          "team_2": "Rowan Budhram / Nicole Sheingold",
+          "team_1_alias": "Kyle, Nadine",
+          "team_2_alias": "Nicole, Rowan",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 5 May 2026",
+          "team_1": "Karen Dengler / Malcom Dengler",
+          "team_2": "Liyah Limbada / Ziad Limbada",
+          "team_1_alias": "Malcom, Karen",
+          "team_2_alias": "Ziad, Liyah",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 5 May 2026",
+          "team_1": "Wolfi Maralik / Kerryn Maralik",
+          "team_2": "Steven Sienart / Maryna Welman",
+          "team_1_alias": "Wolfi, Kerryn",
+          "team_2_alias": "Steven",
           "score": "",
           "status": "Pending"
         }
       ]
+    },
+    {
+      "category": "Mixed",
+      "division": "Ruimsig Mixed Div 3",
+      "season": "Season 1 (Current)",
+      "fixtures": [
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 25 May 2026",
+          "team_1": "Zané Jacobs / Marius Jacobs",
+          "team_2": "Warren Melnick/ Ianthé Honiball",
+          "team_1_alias": "Marius, Zané",
+          "team_2_alias": "Ianthé, Warren",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 25 May 2026",
+          "team_1": "Matthew Bower / Chloe Smith",
+          "team_2": "Mops / Angela Molomo",
+          "team_1_alias": "Chloe, Matthew",
+          "team_2_alias": "Angela, Mops",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 25 May 2026",
+          "team_1": "Lee-Ann Smith / Reenen Burger",
+          "team_2": "Ronel Laubscher/ Willie Vd",
+          "team_1_alias": "Lee-Ann, Reenen",
+          "team_2_alias": "Ronel, Willie",
+          "score": "6-4 4-6 2-6",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 25 May 2026",
+          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_2": "Martin Miog / Daniella Mitchell",
+          "team_1_alias": "Hendriette, Morne",
+          "team_2_alias": "Nadine, Martin, Daniella, Kyle",
+          "score": "6-1 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 11 May 2026",
+          "team_1": "Lee-Ann Smith / Reenen Burger",
+          "team_2": "Martin Miog / Daniella Mitchell",
+          "team_1_alias": "Lee-Ann, Reenen",
+          "team_2_alias": "Nadine, Martin, Daniella, Kyle",
+          "score": "6-2 6-1",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 11 May 2026",
+          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_2": "Zané Jacobs / Marius Jacobs",
+          "team_1_alias": "Hendriette, Morne",
+          "team_2_alias": "Marius, Zané",
+          "score": "6-4 2-6 6-4",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 11 May 2026",
+          "team_1": "Mops / Angela Molomo",
+          "team_2": "Ronel Laubscher/ Willie Vd",
+          "team_1_alias": "Angela, Mops",
+          "team_2_alias": "Ronel, Willie",
+          "score": "6-2 6-1",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 11 May 2026",
+          "team_1": "Matthew Bower / Chloe Smith",
+          "team_2": "Warren Melnick/ Ianthé Honiball",
+          "team_1_alias": "Chloe, Matthew",
+          "team_2_alias": "Ianthé, Warren",
+          "score": "1-6 4-6",
+          "status": "Validated"
+        }
+      ]
     }
+  ],
+  "errors": [
+    "Failed category: Ladies | Could not find selected division dropdown."
   ]
 }
