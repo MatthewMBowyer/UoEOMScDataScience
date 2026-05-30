@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-05-29T06:52:38.192557+00:00",
+  "generated_at_utc": "2026-05-30T06:22:16.674673+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -1566,10 +1566,10 @@
           "division": "Syringa",
           "season": "Season 1 (Current)",
           "date": "Saturday, 16 May 2026",
-          "team_1": "Adam Fillmore / Casey Fillmore",
-          "team_2": "Tiaan Holtzhausen / Juann de Waal",
-          "team_1_alias": "Casey, Adam",
-          "team_2_alias": "No players",
+          "team_1": "Brian Seymour / Dirk Loggerenberg",
+          "team_2": "Willie and Alwyn",
+          "team_1_alias": "Dirk, Brian",
+          "team_2_alias": "Alwyn, Willie",
           "score": "",
           "status": "Pending"
         },
@@ -1578,12 +1578,12 @@
           "division": "Syringa",
           "season": "Season 1 (Current)",
           "date": "Saturday, 16 May 2026",
-          "team_1": "Brian Seymour / Dirk Loggerenberg",
-          "team_2": "Team Syringa",
-          "team_1_alias": "Dirk, Brian",
-          "team_2_alias": "No players",
-          "score": "",
-          "status": "Pending"
+          "team_1": "Adam Fillmore / Casey Fillmore",
+          "team_2": "Tiaan Holtzhausen / Juann de Waal",
+          "team_1_alias": "Casey, Adam",
+          "team_2_alias": "Tiaan, Juaan",
+          "score": "7-5 5-7 6-7",
+          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
