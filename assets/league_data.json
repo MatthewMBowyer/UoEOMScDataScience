@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-05-31T06:54:49.577418+00:00",
+  "generated_at_utc": "2026-06-01T08:31:40.717742+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -17,22 +17,10 @@
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 30 May 2026",
-          "team_1": "Wesley Visser / Amien Sarlie",
-          "team_2": "Riaan du Toit / Liam du Toit",
-          "team_1_alias": "Wesley, Amien",
-          "team_2_alias": "Riaan, Liam",
-          "score": "2-6 2-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 30 May 2026",
-          "team_1": "Charlie Castle / Chris Paton",
-          "team_2": "Stanton Fredericks / Zaid Moihdin",
-          "team_1_alias": "Charlie, Chris",
-          "team_2_alias": "Zaid, Stanton",
+          "team_1": "Gordon Dunbar / Kurt Herman",
+          "team_2": "Divan Koekemoer / Stephan Olivier",
+          "team_1_alias": "Kurt, Gordon",
+          "team_2_alias": "Divan, Stephan",
           "score": "",
           "status": "Pending"
         },
@@ -41,10 +29,10 @@
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 30 May 2026",
-          "team_1": "Gordon Dunbar / Kurt Herman",
-          "team_2": "Divan Koekemoer / Stephan Olivier",
-          "team_1_alias": "Kurt, Gordon",
-          "team_2_alias": "Divan, Stephan",
+          "team_1": "Charlie Castle / Chris Paton",
+          "team_2": "Stanton Fredericks / Zaid Moihdin",
+          "team_1_alias": "Chris, Charlie",
+          "team_2_alias": "Zaid, Stanton",
           "score": "",
           "status": "Pending"
         },
@@ -56,32 +44,20 @@
           "team_1": "Justin Weldon / Warren Melneck",
           "team_2": "Graeme Te Brake/ Shaun Te Brake",
           "team_1_alias": "Justin, Warren",
-          "team_2_alias": "Shaun, Graeme",
-          "score": "",
-          "status": "Pending"
+          "team_2_alias": "Graeme, Shaun",
+          "score": "6-2 6-2",
+          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
-          "team_1": "Justin Weldon / Warren Melneck",
+          "date": "Saturday, 30 May 2026",
+          "team_1": "Wesley Visser / Amien Sarlie",
           "team_2": "Riaan du Toit / Liam du Toit",
-          "team_1_alias": "Justin, Warren",
-          "team_2_alias": "Riaan, Liam",
-          "score": "1-6 0-6",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
-          "team_1": "Charlie Castle / Chris Paton",
-          "team_2": "Wesley Visser / Amien Sarlie",
-          "team_1_alias": "Charlie, Chris",
-          "team_2_alias": "Wesley, Amien",
-          "score": "4-6 6-7",
+          "team_1_alias": "Amien, Wesley",
+          "team_2_alias": "Liam, Riaan",
+          "score": "2-6 2-6",
           "status": "Validated"
         },
         {
@@ -91,9 +67,21 @@
           "date": "Saturday, 16 May 2026",
           "team_1": "Graeme Te Brake/ Shaun Te Brake",
           "team_2": "Divan Koekemoer / Stephan Olivier",
-          "team_1_alias": "Shaun, Graeme",
+          "team_1_alias": "Graeme, Shaun",
           "team_2_alias": "Divan, Stephan",
           "score": "6-1 6-1",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Charlie Castle / Chris Paton",
+          "team_2": "Wesley Visser / Amien Sarlie",
+          "team_1_alias": "Chris, Charlie",
+          "team_2_alias": "Amien, Wesley",
+          "score": "4-6 6-7",
           "status": "Validated"
         },
         {
@@ -107,6 +95,18 @@
           "team_2_alias": "Zaid, Stanton",
           "score": "",
           "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Justin Weldon / Warren Melneck",
+          "team_2": "Riaan du Toit / Liam du Toit",
+          "team_1_alias": "Justin, Warren",
+          "team_2_alias": "Liam, Riaan",
+          "score": "1-6 0-6",
+          "status": "Validated"
         }
       ]
     },
@@ -511,22 +511,10 @@
           "division": "Honeydew DIV 2",
           "season": "Season 2 (Current)",
           "date": "Saturday, 30 May 2026",
-          "team_1": "Pieter Venter / Hennie Erasmus",
-          "team_2": "Peter Panczyk/ Alfred Visagie",
-          "team_1_alias": "Hennie, Pieter",
-          "team_2_alias": "Alfred, Peter",
-          "score": "1-6 1-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 30 May 2026",
           "team_1": "Ryan Purdon / Wes Bothwell",
           "team_2": "Matthew Phillips / Jason Mclaren",
-          "team_1_alias": "Wes, Ryan",
-          "team_2_alias": "Jason, Matthew",
+          "team_1_alias": "Ryan, Wes",
+          "team_2_alias": "Matthew, Jason",
           "score": "2-6 2-6",
           "status": "Validated"
         },
@@ -538,7 +526,7 @@
           "team_1": "Malcom Dengler / Noah Sked",
           "team_2": "Muzaffar Mohamed / Will Young",
           "team_1_alias": "Malcom, Noah",
-          "team_2_alias": "Will, Muzaffar",
+          "team_2_alias": "Muzaffar, Will",
           "score": "",
           "status": "Pending"
         },
@@ -549,10 +537,22 @@
           "date": "Saturday, 30 May 2026",
           "team_1": "Richard Lilford / Tristan Lilford",
           "team_2": "Morgan Wentzel / Steven",
-          "team_1_alias": "Richard, Tristan",
+          "team_1_alias": "Tristan, Richard",
           "team_2_alias": "Steve, Morgan",
           "score": "",
           "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 30 May 2026",
+          "team_1": "Pieter Venter / Hennie Erasmus",
+          "team_2": "Peter Panczyk/ Alfred Visagie",
+          "team_1_alias": "Hennie, Pieter",
+          "team_2_alias": "Peter, Alfred",
+          "score": "1-6 1-6",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -585,8 +585,8 @@
           "date": "Saturday, 16 May 2026",
           "team_1": "Richard Lilford / Tristan Lilford",
           "team_2": "Muzaffar Mohamed / Will Young",
-          "team_1_alias": "Richard, Tristan",
-          "team_2_alias": "Will, Muzaffar",
+          "team_1_alias": "Tristan, Richard",
+          "team_2_alias": "Muzaffar, Will",
           "score": "",
           "status": "Pending"
         },
@@ -598,7 +598,7 @@
           "team_1": "Tiaan Van Niekerk / Rayno Dippenaar",
           "team_2": "Matthew Phillips / Jason Mclaren",
           "team_1_alias": "Tiaan, Rayno",
-          "team_2_alias": "Jason, Matthew",
+          "team_2_alias": "Matthew, Jason",
           "score": "",
           "status": "Pending"
         },
@@ -609,8 +609,8 @@
           "date": "Saturday, 16 May 2026",
           "team_1": "Ryan Purdon / Wes Bothwell",
           "team_2": "Peter Panczyk/ Alfred Visagie",
-          "team_1_alias": "Wes, Ryan",
-          "team_2_alias": "Alfred, Peter",
+          "team_1_alias": "Ryan, Wes",
+          "team_2_alias": "Peter, Alfred",
           "score": "",
           "status": "Pending"
         },
@@ -622,7 +622,7 @@
           "team_1": "Malcom Dengler / Noah Sked",
           "team_2": "Richard Lilford / Tristan Lilford",
           "team_1_alias": "Malcom, Noah",
-          "team_2_alias": "Richard, Tristan",
+          "team_2_alias": "Tristan, Richard",
           "score": "",
           "status": "Pending"
         },
@@ -633,7 +633,7 @@
           "date": "Saturday, 2 May 2026",
           "team_1": "Matthew Phillips / Jason Mclaren",
           "team_2": "Morgan Wentzel / Steven",
-          "team_1_alias": "Jason, Matthew",
+          "team_1_alias": "Matthew, Jason",
           "team_2_alias": "Steve, Morgan",
           "score": "",
           "status": "Pending"
@@ -646,9 +646,9 @@
           "team_1": "Garreth Raath / Brendan Beech",
           "team_2": "Muzaffar Mohamed / Will Young",
           "team_1_alias": "Garreth, Brendan",
-          "team_2_alias": "Will, Muzaffar",
+          "team_2_alias": "Muzaffar, Will",
           "score": "6-0 6-3",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -657,7 +657,7 @@
           "date": "Saturday, 2 May 2026",
           "team_1": "Ryan Purdon / Wes Bothwell",
           "team_2": "Pieter Venter / Hennie Erasmus",
-          "team_1_alias": "Wes, Ryan",
+          "team_1_alias": "Ryan, Wes",
           "team_2_alias": "Hennie, Pieter",
           "score": "2-6 2-6",
           "status": "Validated"
@@ -670,7 +670,7 @@
           "team_1": "Tiaan Van Niekerk / Rayno Dippenaar",
           "team_2": "Peter Panczyk/ Alfred Visagie",
           "team_1_alias": "Tiaan, Rayno",
-          "team_2_alias": "Alfred, Peter",
+          "team_2_alias": "Peter, Alfred",
           "score": "",
           "status": "Pending"
         },
@@ -681,8 +681,8 @@
           "date": "Saturday, 18 April 2026",
           "team_1": "Matthew Phillips / Jason Mclaren",
           "team_2": "Muzaffar Mohamed / Will Young",
-          "team_1_alias": "Jason, Matthew",
-          "team_2_alias": "Will, Muzaffar",
+          "team_1_alias": "Matthew, Jason",
+          "team_2_alias": "Muzaffar, Will",
           "score": "6-1 7-5",
           "status": "Validated"
         },
@@ -694,7 +694,7 @@
           "team_1": "Morgan Wentzel / Steven",
           "team_2": "Peter Panczyk/ Alfred Visagie",
           "team_1_alias": "Steve, Morgan",
-          "team_2_alias": "Alfred, Peter",
+          "team_2_alias": "Peter, Alfred",
           "score": "5-7 6-4 2-6",
           "status": "Validated"
         },
@@ -706,7 +706,7 @@
           "team_1": "Malcom Dengler / Noah Sked",
           "team_2": "Ryan Purdon / Wes Bothwell",
           "team_1_alias": "Malcom, Noah",
-          "team_2_alias": "Wes, Ryan",
+          "team_2_alias": "Ryan, Wes",
           "score": "6-2 6-2",
           "status": "Validated"
         },
@@ -730,7 +730,7 @@
           "team_1": "Garreth Raath / Brendan Beech",
           "team_2": "Richard Lilford / Tristan Lilford",
           "team_1_alias": "Garreth, Brendan",
-          "team_2_alias": "Richard, Tristan",
+          "team_2_alias": "Tristan, Richard",
           "score": "6-0 7-6",
           "status": "Validated"
         },
@@ -766,7 +766,7 @@
           "team_1": "Tiaan Van Niekerk / Rayno Dippenaar",
           "team_2": "Ryan Purdon / Wes Bothwell",
           "team_1_alias": "Tiaan, Rayno",
-          "team_2_alias": "Wes, Ryan",
+          "team_2_alias": "Ryan, Wes",
           "score": "6-2 6-2",
           "status": "Validated"
         },
@@ -777,8 +777,8 @@
           "date": "Saturday, 4 April 2026",
           "team_1": "Peter Panczyk/ Alfred Visagie",
           "team_2": "Muzaffar Mohamed / Will Young",
-          "team_1_alias": "Alfred, Peter",
-          "team_2_alias": "Will, Muzaffar",
+          "team_1_alias": "Peter, Alfred",
+          "team_2_alias": "Muzaffar, Will",
           "score": "",
           "status": "Pending"
         },
@@ -789,8 +789,8 @@
           "date": "Saturday, 4 April 2026",
           "team_1": "Matthew Phillips / Jason Mclaren",
           "team_2": "Richard Lilford / Tristan Lilford",
-          "team_1_alias": "Jason, Matthew",
-          "team_2_alias": "Richard, Tristan",
+          "team_1_alias": "Matthew, Jason",
+          "team_2_alias": "Tristan, Richard",
           "score": "6-3 6-3",
           "status": "Validated"
         },
@@ -801,8 +801,8 @@
           "date": "Saturday, 21 March 2026",
           "team_1": "Peter Panczyk/ Alfred Visagie",
           "team_2": "Richard Lilford / Tristan Lilford",
-          "team_1_alias": "Alfred, Peter",
-          "team_2_alias": "Richard, Tristan",
+          "team_1_alias": "Peter, Alfred",
+          "team_2_alias": "Tristan, Richard",
           "score": "6-0 6-0",
           "status": "Validated"
         },
@@ -825,7 +825,7 @@
           "date": "Saturday, 21 March 2026",
           "team_1": "Matthew Phillips / Jason Mclaren",
           "team_2": "Garreth Raath / Brendan Beech",
-          "team_1_alias": "Jason, Matthew",
+          "team_1_alias": "Matthew, Jason",
           "team_2_alias": "Garreth, Brendan",
           "score": "3-6 3-6",
           "status": "Validated"
@@ -837,7 +837,7 @@
           "date": "Saturday, 21 March 2026",
           "team_1": "Muzaffar Mohamed / Will Young",
           "team_2": "Pieter Venter / Hennie Erasmus",
-          "team_1_alias": "Will, Muzaffar",
+          "team_1_alias": "Muzaffar, Will",
           "team_2_alias": "Hennie, Pieter",
           "score": "1-6 2-6",
           "status": "Validated"
@@ -850,7 +850,7 @@
           "team_1": "Morgan Wentzel / Steven",
           "team_2": "Ryan Purdon / Wes Bothwell",
           "team_1_alias": "Steve, Morgan",
-          "team_2_alias": "Wes, Ryan",
+          "team_2_alias": "Ryan, Wes",
           "score": "6-3 6-2",
           "status": "Validated"
         }
@@ -883,7 +883,7 @@
           "team_1_alias": "Nathan, Pieter",
           "team_2_alias": "Wolfi",
           "score": "4-6 2-6",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -929,7 +929,7 @@
           "team_1": "Mohhamed Rezaan / Muhhamed Rashid",
           "team_2": "Rowan Baisley / Calvin King",
           "team_1_alias": "Mohhammed, Muhhammed",
-          "team_2_alias": "Calvin, Rowan",
+          "team_2_alias": "Rowan, Calvin",
           "score": "",
           "status": "Pending"
         },
@@ -941,7 +941,7 @@
           "team_1": "Strini Govender / Dale Rouquette",
           "team_2": "Bevin Laidlow / Zane Daniels",
           "team_1_alias": "Strini, Dale",
-          "team_2_alias": "Zain, Bevin, Bevin",
+          "team_2_alias": "Bevin, Bevin, Zain",
           "score": "6-2 6-2",
           "status": "Validated"
         },
@@ -965,7 +965,7 @@
           "team_1": "Wolfi Maralik / Richard Garrard",
           "team_2": "Bevin Laidlow / Zane Daniels",
           "team_1_alias": "Wolfi",
-          "team_2_alias": "Zain, Bevin, Bevin",
+          "team_2_alias": "Bevin, Bevin, Zain",
           "score": "6-3 3-6 6-3",
           "status": "Validated"
         },
@@ -1001,7 +1001,7 @@
           "team_1": "Strini Govender / Dale Rouquette",
           "team_2": "Rowan Baisley / Calvin King",
           "team_1_alias": "Strini, Dale",
-          "team_2_alias": "Calvin, Rowan",
+          "team_2_alias": "Rowan, Calvin",
           "score": "",
           "status": "Pending"
         },
@@ -1013,7 +1013,7 @@
           "team_1": "Wolfi Maralik / Richard Garrard",
           "team_2": "Rowan Baisley / Calvin King",
           "team_1_alias": "Wolfi",
-          "team_2_alias": "Calvin, Rowan",
+          "team_2_alias": "Rowan, Calvin",
           "score": "",
           "status": "Pending"
         },
@@ -1048,7 +1048,7 @@
           "date": "Saturday, 25 April 2026",
           "team_1": "Bevin Laidlow / Zane Daniels",
           "team_2": "Morne Glover / Yidher Chang",
-          "team_1_alias": "Zain, Bevin, Bevin",
+          "team_1_alias": "Bevin, Bevin, Zain",
           "team_2_alias": "Morne, Braam",
           "score": "1-6 3-6",
           "status": "Validated"
@@ -1097,7 +1097,7 @@
           "team_1": "Morne Glover / Yidher Chang",
           "team_2": "Rowan Baisley / Calvin King",
           "team_1_alias": "Morne, Braam",
-          "team_2_alias": "Calvin, Rowan",
+          "team_2_alias": "Rowan, Calvin",
           "score": "6-2 6-3",
           "status": "Validated"
         },
@@ -1108,7 +1108,7 @@
           "date": "Saturday, 11 April 2026",
           "team_1": "Bevin Laidlow / Zane Daniels",
           "team_2": "Jarrod Rohland / Brad Edwards",
-          "team_1_alias": "Zain, Bevin, Bevin",
+          "team_1_alias": "Bevin, Bevin, Zain",
           "team_2_alias": "Brad, Jarrod",
           "score": "4-6 3-6",
           "status": "Validated"
@@ -1132,7 +1132,7 @@
           "date": "Saturday, 28 March 2026",
           "team_1": "Rowan Baisley / Calvin King",
           "team_2": "Jarrod Rohland / Brad Edwards",
-          "team_1_alias": "Calvin, Rowan",
+          "team_1_alias": "Rowan, Calvin",
           "team_2_alias": "Brad, Jarrod",
           "score": "",
           "status": "Pending"
@@ -1144,7 +1144,7 @@
           "date": "Saturday, 28 March 2026",
           "team_1": "Bevin Laidlow / Zane Daniels",
           "team_2": "Pieter Bekker / Nathan Venter",
-          "team_1_alias": "Zain, Bevin, Bevin",
+          "team_1_alias": "Bevin, Bevin, Zain",
           "team_2_alias": "Nathan, Pieter",
           "score": "",
           "status": "Pending"
@@ -1228,7 +1228,7 @@
           "date": "Saturday, 14 March 2026",
           "team_1": "Rowan Baisley / Calvin King",
           "team_2": "Pieter Bekker / Nathan Venter",
-          "team_1_alias": "Calvin, Rowan",
+          "team_1_alias": "Rowan, Calvin",
           "team_2_alias": "Nathan, Pieter",
           "score": "",
           "status": "Pending"
@@ -1240,7 +1240,7 @@
           "date": "Saturday, 14 March 2026",
           "team_1": "Bevin Laidlow / Zane Daniels",
           "team_2": "Viven Keaton / Gavin Govender",
-          "team_1_alias": "Zain, Bevin, Bevin",
+          "team_1_alias": "Bevin, Bevin, Zain",
           "team_2_alias": "Viven, Gavin",
           "score": "4-6 4-6",
           "status": "Validated"
@@ -1259,7 +1259,7 @@
           "date": "Saturday, 30 May 2026",
           "team_1": "Matt Bowyer / Henk Slabber",
           "team_2": "Dineshan Mariah / Brian Pillay",
-          "team_1_alias": "Henk, Matt",
+          "team_1_alias": "Matt, Henk",
           "team_2_alias": "Dineshan, Brian",
           "score": "",
           "status": "Pending"
@@ -1283,8 +1283,8 @@
           "date": "Saturday, 30 May 2026",
           "team_1": "Nelson De Freitas / Sholin Siva",
           "team_2": "Tony Ferguson / Mauritz Boshoff",
-          "team_1_alias": "Nelson, Sholin",
-          "team_2_alias": "Tony, Mauritz",
+          "team_1_alias": "Sholin, Nelson",
+          "team_2_alias": "Mauritz, Tony",
           "score": "6-4 6-4",
           "status": "Validated"
         },
@@ -1308,7 +1308,7 @@
           "team_1": "Papatso Mopaka (Mr Mops) /Mthokozisi Dlamini",
           "team_2": "CamRondi /Luke Bailey",
           "team_1_alias": "Mthokozisi, Mops",
-          "team_2_alias": "Luke, Cam",
+          "team_2_alias": "Cam, Luke",
           "score": "",
           "status": "Pending"
         },
@@ -1344,7 +1344,7 @@
           "team_1": "Akhil Naik / Akshay Ranchod",
           "team_2": "Matt Bowyer / Henk Slabber",
           "team_1_alias": "Akhil, Akshay",
-          "team_2_alias": "Henk, Matt",
+          "team_2_alias": "Matt, Henk",
           "score": "4-6 4-6",
           "status": "Validated"
         },
@@ -1355,7 +1355,7 @@
           "date": "Saturday, 16 May 2026",
           "team_1": "Nelson De Freitas / Sholin Siva",
           "team_2": "Darryl Vince / Martin Kanka",
-          "team_1_alias": "Nelson, Sholin",
+          "team_1_alias": "Sholin, Nelson",
           "team_2_alias": "Martin, Darryl",
           "score": "6-4 6-2",
           "status": "Validated"
@@ -1367,8 +1367,8 @@
           "date": "Saturday, 16 May 2026",
           "team_1": "Tony Ferguson / Mauritz Boshoff",
           "team_2": "CamRondi /Luke Bailey",
-          "team_1_alias": "Tony, Mauritz",
-          "team_2_alias": "Luke, Cam",
+          "team_1_alias": "Mauritz, Tony",
+          "team_2_alias": "Cam, Luke",
           "score": "4-6 1-6",
           "status": "Validated"
         },
@@ -1380,7 +1380,7 @@
           "team_1": "Papatso Mopaka (Mr Mops) /Mthokozisi Dlamini",
           "team_2": "Matt Bowyer / Henk Slabber",
           "team_1_alias": "Mthokozisi, Mops",
-          "team_2_alias": "Henk, Matt",
+          "team_2_alias": "Matt, Henk",
           "score": "6-2 6-1",
           "status": "Validated"
         },
@@ -1403,7 +1403,7 @@
           "date": "Saturday, 2 May 2026",
           "team_1": "Tony Ferguson / Mauritz Boshoff",
           "team_2": "Dineshan Mariah / Brian Pillay",
-          "team_1_alias": "Tony, Mauritz",
+          "team_1_alias": "Mauritz, Tony",
           "team_2_alias": "Dineshan, Brian",
           "score": "",
           "status": "Pending"
@@ -1415,7 +1415,7 @@
           "date": "Saturday, 2 May 2026",
           "team_1": "Nelson De Freitas / Sholin Siva",
           "team_2": "Gysbert Groenwald/ Johan Dercksen",
-          "team_1_alias": "Nelson, Sholin",
+          "team_1_alias": "Sholin, Nelson",
           "team_2_alias": "Gys, Johan",
           "score": "6-4 6-2",
           "status": "Validated"
@@ -1427,7 +1427,7 @@
           "date": "Saturday, 2 May 2026",
           "team_1": "CamRondi /Luke Bailey",
           "team_2": "Darryl Vince / Martin Kanka",
-          "team_1_alias": "Luke, Cam",
+          "team_1_alias": "Cam, Luke",
           "team_2_alias": "Martin, Darryl",
           "score": "1-6 3-6",
           "status": "Validated"
@@ -1439,8 +1439,8 @@
           "date": "Saturday, 18 April 2026",
           "team_1": "Tony Ferguson / Mauritz Boshoff",
           "team_2": "Matt Bowyer / Henk Slabber",
-          "team_1_alias": "Tony, Mauritz",
-          "team_2_alias": "Henk, Matt",
+          "team_1_alias": "Mauritz, Tony",
+          "team_2_alias": "Matt, Henk",
           "score": "3-6 3-6",
           "status": "Validated"
         },
@@ -1463,7 +1463,7 @@
           "date": "Saturday, 18 April 2026",
           "team_1": "Nelson De Freitas / Sholin Siva",
           "team_2": "Moe Variave / Andriano Dello Lacono",
-          "team_1_alias": "Nelson, Sholin",
+          "team_1_alias": "Sholin, Nelson",
           "team_2_alias": "Moe, Jacques, Dello",
           "score": "6-2 2-6 2-6",
           "status": "Validated"
@@ -1487,7 +1487,7 @@
           "date": "Saturday, 18 April 2026",
           "team_1": "CamRondi /Luke Bailey",
           "team_2": "Gysbert Groenwald/ Johan Dercksen",
-          "team_1_alias": "Luke, Cam",
+          "team_1_alias": "Cam, Luke",
           "team_2_alias": "Gys, Johan",
           "score": "5-7 7-5 6-4",
           "status": "Validated"
@@ -1512,7 +1512,7 @@
           "team_1": "Akhil Naik / Akshay Ranchod",
           "team_2": "Nelson De Freitas / Sholin Siva",
           "team_1_alias": "Akhil, Akshay",
-          "team_2_alias": "Nelson, Sholin",
+          "team_2_alias": "Sholin, Nelson",
           "score": "",
           "status": "Pending"
         },
@@ -1523,7 +1523,7 @@
           "date": "Saturday, 4 April 2026",
           "team_1": "Tony Ferguson / Mauritz Boshoff",
           "team_2": "Papatso Mopaka (Mr Mops) /Mthokozisi Dlamini",
-          "team_1_alias": "Tony, Mauritz",
+          "team_1_alias": "Mauritz, Tony",
           "team_2_alias": "Mthokozisi, Mops",
           "score": "2-6 6-4 4-6",
           "status": "Validated"
@@ -1536,7 +1536,7 @@
           "team_1": "Darryl Vince / Martin Kanka",
           "team_2": "Matt Bowyer / Henk Slabber",
           "team_1_alias": "Martin, Darryl",
-          "team_2_alias": "Henk, Matt",
+          "team_2_alias": "Matt, Henk",
           "score": "4-6 5-7",
           "status": "Validated"
         },
@@ -1547,7 +1547,7 @@
           "date": "Saturday, 4 April 2026",
           "team_1": "CamRondi /Luke Bailey",
           "team_2": "Moe Variave / Andriano Dello Lacono",
-          "team_1_alias": "Luke, Cam",
+          "team_1_alias": "Cam, Luke",
           "team_2_alias": "Moe, Jacques, Dello",
           "score": "5-7 0-6",
           "status": "Validated"
@@ -1560,7 +1560,7 @@
           "team_1": "Gysbert Groenwald/ Johan Dercksen",
           "team_2": "Matt Bowyer / Henk Slabber",
           "team_1_alias": "Gys, Johan",
-          "team_2_alias": "Henk, Matt",
+          "team_2_alias": "Matt, Henk",
           "score": "2-6 2-6",
           "status": "Validated"
         },
@@ -1596,7 +1596,7 @@
           "team_1": "Akhil Naik / Akshay Ranchod",
           "team_2": "Tony Ferguson / Mauritz Boshoff",
           "team_1_alias": "Akhil, Akshay",
-          "team_2_alias": "Tony, Mauritz",
+          "team_2_alias": "Mauritz, Tony",
           "score": "",
           "status": "Pending"
         },
@@ -1607,8 +1607,8 @@
           "date": "Saturday, 21 March 2026",
           "team_1": "CamRondi /Luke Bailey",
           "team_2": "Nelson De Freitas / Sholin Siva",
-          "team_1_alias": "Luke, Cam",
-          "team_2_alias": "Nelson, Sholin",
+          "team_1_alias": "Cam, Luke",
+          "team_2_alias": "Sholin, Nelson",
           "score": "4-6 2-6",
           "status": "Validated"
         }
@@ -1639,7 +1639,7 @@
           "team_1": "Janu Pienaar / Joshua Drabble",
           "team_2": "Johan Wilters / Hano Taljard",
           "team_1_alias": "Janu, Joshua",
-          "team_2_alias": "Johan, Hano",
+          "team_2_alias": "Hano, Johan",
           "score": "6-1 6-2",
           "status": "Validated"
         },
@@ -1651,7 +1651,7 @@
           "team_1": "Ebrahim Dindar/ Muhammad Dindar",
           "team_2": "Neil Barnard Calden de Jager",
           "team_1_alias": "Ebrahim, Muhhammad",
-          "team_2_alias": "Neil, Calden",
+          "team_2_alias": "Calden, Neil",
           "score": "",
           "status": "Pending"
         },
@@ -1663,7 +1663,7 @@
           "team_1": "Paul Els / Johan Maritz",
           "team_2": "Matthew Tarr / Johan Greylin",
           "team_1_alias": "Paul, Johan",
-          "team_2_alias": "Johan, Matthew",
+          "team_2_alias": "Matthew, Johan",
           "score": "",
           "status": "Pending"
         },
@@ -1675,7 +1675,7 @@
           "team_1": "Erik Viviers/ Ruan Lategan",
           "team_2": "Neil Barnard Calden de Jager",
           "team_1_alias": "Erik, Ruan",
-          "team_2_alias": "Neil, Calden",
+          "team_2_alias": "Calden, Neil",
           "score": "6-1 7-5",
           "status": "Validated"
         },
@@ -1687,7 +1687,7 @@
           "team_1": "Janu Pienaar / Joshua Drabble",
           "team_2": "Matthew Tarr / Johan Greylin",
           "team_1_alias": "Janu, Joshua",
-          "team_2_alias": "Johan, Matthew",
+          "team_2_alias": "Matthew, Johan",
           "score": "7-5 6-1",
           "status": "Validated"
         },
@@ -1710,7 +1710,7 @@
           "date": "Saturday, 16 May 2026",
           "team_1": "Johan Wilters / Hano Taljard",
           "team_2": "Martin Miog / Christoph van der Linde",
-          "team_1_alias": "Johan, Hano",
+          "team_1_alias": "Hano, Johan",
           "team_2_alias": "No players",
           "score": "4-6 3-6",
           "status": "Validated"
@@ -1933,11 +1933,11 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 18 July 2026",
-          "team_1": "Team YY",
-          "team_2": "Ronel Laubscher/ Marita Degener",
-          "team_1_alias": "No players",
-          "team_2_alias": "Ronel, Marita",
-          "score": "0-6 0-6",
+          "team_1": "Jamee Sampson / Nicks Bothwell",
+          "team_2": "Team XX",
+          "team_1_alias": "Nicks, Jamee",
+          "team_2_alias": "No players",
+          "score": "6-0 6-0",
           "status": "Validated"
         },
         {
@@ -1945,11 +1945,11 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 18 July 2026",
-          "team_1": "Jamee Sampson / Nicks Bothwell",
-          "team_2": "Team XX",
-          "team_1_alias": "Nicks, Jamee",
-          "team_2_alias": "No players",
-          "score": "6-0 6-0",
+          "team_1": "Team YY",
+          "team_2": "Ronel Laubscher/ Marita Degener",
+          "team_1_alias": "No players",
+          "team_2_alias": "Ronel, Marita",
+          "score": "0-6 0-6",
           "status": "Validated"
         },
         {
@@ -1998,7 +1998,31 @@
           "team_1_alias": "Nicks, Jamee",
           "team_2_alias": "Chantelle, Corlia",
           "score": "6-4 6-3",
-          "status": "Waiting Approval"
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Madison Sked / Karen Dengler",
+          "team_2": "Chantelle Vermeulen / Corlia Coetzee",
+          "team_1_alias": "Karen, Madison",
+          "team_2_alias": "Chantelle, Corlia",
+          "score": "7-6 6-2",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Team XX",
+          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
+          "team_1_alias": "No players",
+          "team_2_alias": "Marriette, Hendriette",
+          "score": "0-6 0-6",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2029,36 +2053,12 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 23 May 2026",
-          "team_1": "Team XX",
-          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
-          "team_1_alias": "No players",
-          "team_2_alias": "Marriette, Hendriette",
-          "score": "0-6 0-6",
-          "status": "Validated"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
           "team_1": "Ronel Laubscher/ Marita Degener",
           "team_2": "Calli Fargi/ Melanie Brimson",
           "team_1_alias": "Ronel, Marita",
           "team_2_alias": "Calli, Melanie",
           "score": "",
           "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Madison Sked / Karen Dengler",
-          "team_2": "Chantelle Vermeulen / Corlia Coetzee",
-          "team_1_alias": "Karen, Madison",
-          "team_2_alias": "Chantelle, Corlia",
-          "score": "7-6 6-2",
-          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2101,11 +2101,11 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 9 May 2026",
-          "team_1": "Ronel Laubscher/ Marita Degener",
-          "team_2": "Chantelle Vermeulen / Corlia Coetzee",
-          "team_1_alias": "Ronel, Marita",
-          "team_2_alias": "Chantelle, Corlia",
-          "score": "1-6 2-6",
+          "team_1": "Anna Tzimas / Stephanie",
+          "team_2": "Team XX",
+          "team_1_alias": "Stephanie, Anna",
+          "team_2_alias": "No players",
+          "score": "6-0 6-0",
           "status": "Validated"
         },
         {
@@ -2113,11 +2113,11 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 9 May 2026",
-          "team_1": "Anna Tzimas / Stephanie",
-          "team_2": "Team XX",
-          "team_1_alias": "Stephanie, Anna",
-          "team_2_alias": "No players",
-          "score": "6-0 6-0",
+          "team_1": "Ronel Laubscher/ Marita Degener",
+          "team_2": "Chantelle Vermeulen / Corlia Coetzee",
+          "team_1_alias": "Ronel, Marita",
+          "team_2_alias": "Chantelle, Corlia",
+          "score": "1-6 2-6",
           "status": "Validated"
         },
         {
@@ -2197,11 +2197,11 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 11 April 2026",
-          "team_1": "Team YY",
-          "team_2": "Jamee Sampson / Nicks Bothwell",
-          "team_1_alias": "No players",
-          "team_2_alias": "Nicks, Jamee",
-          "score": "0-6 0-6",
+          "team_1": "Chantelle Vermeulen / Corlia Coetzee",
+          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
+          "team_1_alias": "Chantelle, Corlia",
+          "team_2_alias": "Marriette, Hendriette",
+          "score": "6-4 6-4",
           "status": "Validated"
         },
         {
@@ -2209,11 +2209,11 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 11 April 2026",
-          "team_1": "Chantelle Vermeulen / Corlia Coetzee",
-          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
-          "team_1_alias": "Chantelle, Corlia",
-          "team_2_alias": "Marriette, Hendriette",
-          "score": "6-4 6-4",
+          "team_1": "Team YY",
+          "team_2": "Jamee Sampson / Nicks Bothwell",
+          "team_1_alias": "No players",
+          "team_2_alias": "Nicks, Jamee",
+          "score": "0-6 0-6",
           "status": "Validated"
         },
         {
@@ -2314,7 +2314,7 @@
           "date": "Saturday, 30 May 2026",
           "team_1": "Janine john/Pauline Collinson",
           "team_2": "Robyn Rondi / Jackie Niewoudt",
-          "team_1_alias": "Janine, Pauline",
+          "team_1_alias": "Pauline, Janine",
           "team_2_alias": "Robyn, Jackie",
           "score": "6-1 7-5",
           "status": "Validated"
@@ -2340,8 +2340,8 @@
           "team_2": "Juanita Pienaar / Zanele Katende",
           "team_1_alias": "Angela, Venita",
           "team_2_alias": "Zanele, Juanita",
-          "score": "",
-          "status": "Pending"
+          "score": "4-6 1-6",
+          "status": "Waiting Approval"
         },
         {
           "category": "Ladies",
@@ -2363,7 +2363,7 @@
           "team_1": "Sharon Poyner/ Sam Page",
           "team_2": "Kerry Panczyk/ Annelore Wheeler",
           "team_1_alias": "Sharon, Sam",
-          "team_2_alias": "Annelore, Kerry",
+          "team_2_alias": "Kerry, Annelore",
           "score": "",
           "status": "Pending"
         },
@@ -2375,7 +2375,7 @@
           "team_1": "Venita Davidow / Angela Tyson",
           "team_2": "Kerry Panczyk/ Annelore Wheeler",
           "team_1_alias": "Angela, Venita",
-          "team_2_alias": "Annelore, Kerry",
+          "team_2_alias": "Kerry, Annelore",
           "score": "4-6 2-6",
           "status": "Validated"
         },
@@ -2398,7 +2398,7 @@
           "date": "Saturday, 16 May 2026",
           "team_1": "Janine john/Pauline Collinson",
           "team_2": "Sandrika Gajraj / Zane Jacobs (Zee)",
-          "team_1_alias": "Janine, Pauline",
+          "team_1_alias": "Pauline, Janine",
           "team_2_alias": "Sandrika, Zane",
           "score": "6-2 3-6 3-6",
           "status": "Validated"
@@ -2470,7 +2470,7 @@
           "date": "Saturday, 2 May 2026",
           "team_1": "Janine john/Pauline Collinson",
           "team_2": "Sharon Poyner/ Sam Page",
-          "team_1_alias": "Janine, Pauline",
+          "team_1_alias": "Pauline, Janine",
           "team_2_alias": "Sharon, Sam",
           "score": "6-3 6-3",
           "status": "Validated"
@@ -2483,7 +2483,7 @@
           "team_1": "Carol Gossman / Comfort Shaba",
           "team_2": "Kerry Panczyk/ Annelore Wheeler",
           "team_1_alias": "Carol, Comfort",
-          "team_2_alias": "Annelore, Kerry",
+          "team_2_alias": "Kerry, Annelore",
           "score": "1-6 3-6",
           "status": "Validated"
         },
@@ -2494,7 +2494,7 @@
           "date": "Saturday, 18 April 2026",
           "team_1": "Kerry Panczyk/ Annelore Wheeler",
           "team_2": "Kerryn Maralik/ Nicola Pratley",
-          "team_1_alias": "Annelore, Kerry",
+          "team_1_alias": "Kerry, Annelore",
           "team_2_alias": "Nicola, Kerryn",
           "score": "6-4 1-6 6-1",
           "status": "Validated"
@@ -2518,7 +2518,7 @@
           "date": "Saturday, 18 April 2026",
           "team_1": "Janine john/Pauline Collinson",
           "team_2": "Siobhan Chadinha / Debbie Fol",
-          "team_1_alias": "Janine, Pauline",
+          "team_1_alias": "Pauline, Janine",
           "team_2_alias": "Siobhan, Debbie",
           "score": "",
           "status": "Pending"
@@ -2554,7 +2554,7 @@
           "date": "Saturday, 4 April 2026",
           "team_1": "Janine john/Pauline Collinson",
           "team_2": "Venita Davidow / Angela Tyson",
-          "team_1_alias": "Janine, Pauline",
+          "team_1_alias": "Pauline, Janine",
           "team_2_alias": "Angela, Venita",
           "score": "6-1 6-4",
           "status": "Validated"
@@ -2590,7 +2590,7 @@
           "date": "Saturday, 4 April 2026",
           "team_1": "Kerry Panczyk/ Annelore Wheeler",
           "team_2": "Sandrika Gajraj / Zane Jacobs (Zee)",
-          "team_1_alias": "Annelore, Kerry",
+          "team_1_alias": "Kerry, Annelore",
           "team_2_alias": "Sandrika, Zane",
           "score": "4-6 3-6",
           "status": "Validated"
@@ -2926,21 +2926,9 @@
           "division": "Ladies Beginner League",
           "season": "Season 2 (Current)",
           "date": "Saturday, 30 May 2026",
-          "team_1": "Lauren De Freitas / Liane Budhram",
-          "team_2": "Isabella Purdon / Nina Le Cordeur",
-          "team_1_alias": "Liane, Lauren",
-          "team_2_alias": "Isabella, Nina",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Ladies Beginner League",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 30 May 2026",
           "team_1": "Tyler Bartlett / Cayla Strauss",
           "team_2": "Estea Kloppers / Henriette De Ridder",
-          "team_1_alias": "Tyler, Cayla",
+          "team_1_alias": "Cayla, Tyler",
           "team_2_alias": "Estea, Henriette",
           "score": "",
           "status": "Pending"
@@ -2961,6 +2949,18 @@
           "category": "Ladies",
           "division": "Ladies Beginner League",
           "season": "Season 2 (Current)",
+          "date": "Saturday, 30 May 2026",
+          "team_1": "Lauren De Freitas / Liane Budhram",
+          "team_2": "Isabella Purdon / Nina Le Cordeur",
+          "team_1_alias": "Lauren, Liane",
+          "team_2_alias": "Isabella, Nina",
+          "score": "6-4 4-6 6-0",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Ladies",
+          "division": "Ladies Beginner League",
+          "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
           "team_1": "Estea Kloppers / Henriette De Ridder",
           "team_2": "Isabella Purdon / Nina Le Cordeur",
@@ -2976,7 +2976,7 @@
           "date": "Saturday, 16 May 2026",
           "team_1": "Tyler Bartlett / Cayla Strauss",
           "team_2": "Vanessa Butler / Mariana Cornelius",
-          "team_1_alias": "Tyler, Cayla",
+          "team_1_alias": "Cayla, Tyler",
           "team_2_alias": "Vanessa, Mariana",
           "score": "",
           "status": "Pending"
@@ -2989,7 +2989,7 @@
           "team_1": "Candice O Sullivan / Sue Cillers",
           "team_2": "Lauren De Freitas / Liane Budhram",
           "team_1_alias": "Sue, Candice",
-          "team_2_alias": "Liane, Lauren",
+          "team_2_alias": "Lauren, Liane",
           "score": "2-6 5-6",
           "status": "Validated"
         },
@@ -3001,7 +3001,7 @@
           "team_1": "Candice O Sullivan / Sue Cillers",
           "team_2": "Tyler Bartlett / Cayla Strauss",
           "team_1_alias": "Sue, Candice",
-          "team_2_alias": "Tyler, Cayla",
+          "team_2_alias": "Cayla, Tyler",
           "score": "6-0 6-0",
           "status": "Validated"
         },
@@ -3013,7 +3013,7 @@
           "team_1": "Estea Kloppers / Henriette De Ridder",
           "team_2": "Lauren De Freitas / Liane Budhram",
           "team_1_alias": "Estea, Henriette",
-          "team_2_alias": "Liane, Lauren",
+          "team_2_alias": "Lauren, Liane",
           "score": "3-6 2-6",
           "status": "Validated"
         },
@@ -3056,7 +3056,7 @@
           "team_1": "Noah Sked / Madison Sked",
           "team_2": "Meghan Warby / Houston Warby",
           "team_1_alias": "Madison",
-          "team_2_alias": "Houston, Meghan",
+          "team_2_alias": "Meghan, Houston",
           "score": "7-6 6-4",
           "status": "Validated"
         },
@@ -3067,7 +3067,7 @@
           "date": "Monday, 18 May 2026",
           "team_1": "Chantelle Usmar / Dean Lindecke",
           "team_2": "Lalique Du Toit / Liam Du Toit",
-          "team_1_alias": "Chantelle, Dean",
+          "team_1_alias": "Dean, Chantelle",
           "team_2_alias": "Liam, Lalique",
           "score": "1-6 6-2 6-1",
           "status": "Validated"
@@ -3103,8 +3103,8 @@
           "date": "Monday, 4 May 2026",
           "team_1": "Chantelle Usmar / Dean Lindecke",
           "team_2": "Meghan Warby / Houston Warby",
-          "team_1_alias": "Chantelle, Dean",
-          "team_2_alias": "Houston, Meghan",
+          "team_1_alias": "Dean, Chantelle",
+          "team_2_alias": "Meghan, Houston",
           "score": "6-4 6-3",
           "status": "Validated"
         },
@@ -3148,6 +3148,18 @@
           "team_2": "Rowan Budhram / Nicole Sheingold",
           "team_1_alias": "Steven",
           "team_2_alias": "Nicole, Rowan",
+          "score": "7-5 6-2",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 19 May 2026",
+          "team_1": "Wolfi Maralik / Kerryn Maralik",
+          "team_2": "Sandrika Gajraj / Ashwin Naidu",
+          "team_1_alias": "Wolfi, Kerryn",
+          "team_2_alias": "Ashwin, Sandrika",
           "score": "",
           "status": "Pending"
         },
@@ -3179,18 +3191,6 @@
           "category": "Mixed",
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 2 (Current)",
-          "date": "Tuesday, 19 May 2026",
-          "team_1": "Wolfi Maralik / Kerryn Maralik",
-          "team_2": "Sandrika Gajraj / Ashwin Naidu",
-          "team_1_alias": "Wolfi, Kerryn",
-          "team_2_alias": "Ashwin, Sandrika",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 2",
-          "season": "Season 2 (Current)",
           "date": "Tuesday, 5 May 2026",
           "team_1": "Hermanus Du Preez / Eunita Du Preez",
           "team_2": "Sandrika Gajraj / Ashwin Naidu",
@@ -3198,6 +3198,18 @@
           "team_2_alias": "Ashwin, Sandrika",
           "score": "2-6 3-6",
           "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 5 May 2026",
+          "team_1": "Wolfi Maralik / Kerryn Maralik",
+          "team_2": "Steven Sienart / Maryna Welman",
+          "team_1_alias": "Wolfi, Kerryn",
+          "team_2_alias": "Steven",
+          "score": "",
+          "status": "Pending"
         },
         {
           "category": "Mixed",
@@ -3222,18 +3234,6 @@
           "team_2_alias": "Ziad, Liyah",
           "score": "",
           "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Tuesday, 5 May 2026",
-          "team_1": "Wolfi Maralik / Kerryn Maralik",
-          "team_2": "Steven Sienart / Maryna Welman",
-          "team_1_alias": "Wolfi, Kerryn",
-          "team_2_alias": "Steven",
-          "score": "",
-          "status": "Pending"
         }
       ]
     },
@@ -3251,8 +3251,8 @@
           "team_2": "Warren Melnick/ Ianthé Honiball",
           "team_1_alias": "Marius, Zané",
           "team_2_alias": "Ianthé, Warren",
-          "score": "",
-          "status": "Pending"
+          "score": "2-6 7-5 6-7",
+          "status": "Waiting Approval"
         },
         {
           "category": "Mixed",
@@ -3261,7 +3261,7 @@
           "date": "Monday, 25 May 2026",
           "team_1": "Matthew Bower / Chloe Smith",
           "team_2": "Mops / Angela Molomo",
-          "team_1_alias": "Chloe, Matthew",
+          "team_1_alias": "Matthew, Chloe",
           "team_2_alias": "Angela, Mops",
           "score": "",
           "status": "Pending"
@@ -3286,7 +3286,7 @@
           "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
           "team_2": "Martin Miog / Daniella Mitchell",
           "team_1_alias": "Hendriette, Morne",
-          "team_2_alias": "Nadine, Martin, Daniella, Kyle",
+          "team_2_alias": "Daniella, Martin, Nadine, Kyle",
           "score": "6-1 6-3",
           "status": "Validated"
         },
@@ -3298,7 +3298,7 @@
           "team_1": "Lee-Ann Smith / Reenen Burger",
           "team_2": "Martin Miog / Daniella Mitchell",
           "team_1_alias": "Lee-Ann, Reenen",
-          "team_2_alias": "Nadine, Martin, Daniella, Kyle",
+          "team_2_alias": "Daniella, Martin, Nadine, Kyle",
           "score": "6-2 6-1",
           "status": "Validated"
         },
@@ -3333,7 +3333,7 @@
           "date": "Monday, 11 May 2026",
           "team_1": "Matthew Bower / Chloe Smith",
           "team_2": "Warren Melnick/ Ianthé Honiball",
-          "team_1_alias": "Chloe, Matthew",
+          "team_1_alias": "Matthew, Chloe",
           "team_2_alias": "Ianthé, Warren",
           "score": "1-6 4-6",
           "status": "Validated"
