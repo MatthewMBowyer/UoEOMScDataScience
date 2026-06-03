@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-02T07:23:49.134681+00:00",
+  "generated_at_utc": "2026-06-03T07:38:28.852438+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -1775,30 +1775,6 @@
           "division": "Padel Lab",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
-          "team_1": "Keetan Naidoo / Shaylin Nundahraj",
-          "team_2": "Paul Jacobie / Keegan Van Den Heever",
-          "team_1_alias": "Keetan, Shaylin",
-          "team_2_alias": "Keegan, Paul",
-          "score": "6-4 4-6 6-4",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Padel Lab",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
-          "team_1": "Marius Jacobs / Andrew Fairlie",
-          "team_2": "Michael Proctor / Brett Proctor",
-          "team_1_alias": "Andrew, Marius",
-          "team_2_alias": "Brett, Micheal",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Padel Lab",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
           "team_1": "Johan Van Achterberg / Julian Achterberg",
           "team_2": "Reenen Burger / Gareth Dreyer",
           "team_1_alias": "Johan, Julian",
@@ -1811,11 +1787,35 @@
           "division": "Padel Lab",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
+          "team_1": "Marius Jacobs / Andrew Fairlie",
+          "team_2": "Michael Proctor / Brett Proctor",
+          "team_1_alias": "Andrew, Marius",
+          "team_2_alias": "Brett, Micheal",
+          "score": "6-3 6-4",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Men's",
+          "division": "Padel Lab",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
           "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
           "team_2": "Ruari Jansen / Noah Jansen",
           "team_1_alias": "Johan, Lehlogonolo",
           "team_2_alias": "Ruari",
           "score": "6-4 6-3",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Padel Lab",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Keetan Naidoo / Shaylin Nundahraj",
+          "team_2": "Paul Jacobie / Keegan Van Den Heever",
+          "team_1_alias": "Keetan, Shaylin",
+          "team_2_alias": "Keegan, Paul",
+          "score": "6-4 4-6 6-4",
           "status": "Validated"
         }
       ]
@@ -1854,23 +1854,23 @@
           "division": "Syringa",
           "season": "Season 1 (Current)",
           "date": "Saturday, 30 May 2026",
-          "team_1": "Adam Fillmore / Casey Fillmore",
-          "team_2": "Willie and Alwyn",
-          "team_1_alias": "Casey, Adam",
-          "team_2_alias": "Alwyn, Willie",
-          "score": "6-3 3-6 6-2",
-          "status": "Waiting Approval"
+          "team_1": "Ian Visser / Wian Lamprech",
+          "team_2": "Riaz Varachia / Ayman Varachia",
+          "team_1_alias": "Ian, Wian",
+          "team_2_alias": "Riaz, Ayman",
+          "score": "6-4 3-6 1-6",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Syringa",
           "season": "Season 1 (Current)",
           "date": "Saturday, 30 May 2026",
-          "team_1": "Ian Visser / Wian Lamprech",
-          "team_2": "Riaz Varachia / Ayman Varachia",
-          "team_1_alias": "Ian, Wian",
-          "team_2_alias": "Riaz, Ayman",
-          "score": "6-4 3-6 1-6",
+          "team_1": "Adam Fillmore / Casey Fillmore",
+          "team_2": "Willie and Alwyn",
+          "team_1_alias": "Casey, Adam",
+          "team_2_alias": "Alwyn, Willie",
+          "score": "6-3 3-6 6-2",
           "status": "Validated"
         },
         {
@@ -2189,8 +2189,8 @@
           "team_2": "Adrienne Donaldson / Stephanie Kotze",
           "team_1_alias": "Stephanie, Anna",
           "team_2_alias": "Stephanie, Adrienne",
-          "score": "",
-          "status": "Pending"
+          "score": "6-0 6-1",
+          "status": "Waiting Approval"
         },
         {
           "category": "Ladies",
@@ -2202,6 +2202,18 @@
           "team_1_alias": "Chantelle, Corlia",
           "team_2_alias": "Marriette, Hendriette",
           "score": "6-4 6-4",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Ronel Laubscher/ Marita Degener",
+          "team_2": "Madison Sked / Karen Dengler",
+          "team_1_alias": "Ronel, Marita",
+          "team_2_alias": "Karen, Madison",
+          "score": "2-6 4-6",
           "status": "Validated"
         },
         {
@@ -2226,18 +2238,6 @@
           "team_1_alias": "Calli, Melanie",
           "team_2_alias": "No players",
           "score": "6-0 6-0",
-          "status": "Validated"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Ronel Laubscher/ Marita Degener",
-          "team_2": "Madison Sked / Karen Dengler",
-          "team_1_alias": "Ronel, Marita",
-          "team_2_alias": "Karen, Madison",
-          "score": "2-6 4-6",
           "status": "Validated"
         },
         {
@@ -3082,7 +3082,19 @@
           "team_1_alias": "Nicks, Richard",
           "team_2_alias": "Louise, Anthonetta",
           "score": "6-4 4-6 3-6",
-          "status": "Waiting Approval"
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 2 (Current)",
+          "date": "Monday, 18 May 2026",
+          "team_1": "Alex Smith / Lea Smith",
+          "team_2": "Nicks Bothwell / Richard Garrard",
+          "team_1_alias": "Alex, Lea",
+          "team_2_alias": "Nicks, Richard",
+          "score": "6-0 6-0",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3094,18 +3106,6 @@
           "team_1_alias": "Dean, Chantelle",
           "team_2_alias": "Liam, Lalique",
           "score": "1-6 6-2 6-1",
-          "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Monday, 18 May 2026",
-          "team_1": "Noah Sked / Madison Sked",
-          "team_2": "Meghan Warby / Houston Warby",
-          "team_1_alias": "Madison",
-          "team_2_alias": "Meghan, Houston",
-          "score": "7-6 6-4",
           "status": "Validated"
         },
         {
@@ -3125,12 +3125,12 @@
           "division": "Ruimsig Mixed Div 1",
           "season": "Season 2 (Current)",
           "date": "Monday, 18 May 2026",
-          "team_1": "Alex Smith / Lea Smith",
-          "team_2": "Nicks Bothwell / Richard Garrard",
-          "team_1_alias": "Alex, Lea",
-          "team_2_alias": "Nicks, Richard",
-          "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "team_1": "Noah Sked / Madison Sked",
+          "team_2": "Meghan Warby / Houston Warby",
+          "team_1_alias": "Madison",
+          "team_2_alias": "Meghan, Houston",
+          "score": "7-6 6-4",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3191,11 +3191,47 @@
           "category": "Mixed",
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 2 (Current)",
-          "date": "Tuesday, 19 May 2026",
+          "date": "Tuesday, 2 June 2026",
           "team_1": "Hermanus Du Preez / Eunita Du Preez",
-          "team_2": "Liyah Limbada / Ziad Limbada",
+          "team_2": "Kyle Prescott /Nadine Mansour",
           "team_1_alias": "Hermanus, Eunita",
+          "team_2_alias": "Kyle, Nadine",
+          "score": "6-2 6-4",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 2 June 2026",
+          "team_1": "Sandrika Gajraj / Ashwin Naidu",
+          "team_2": "Liyah Limbada / Ziad Limbada",
+          "team_1_alias": "Ashwin, Sandrika",
           "team_2_alias": "Ziad, Liyah",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 2 June 2026",
+          "team_1": "Steven Sienart / Maryna Welman",
+          "team_2": "Karen Dengler / Malcom Dengler",
+          "team_1_alias": "Steven",
+          "team_2_alias": "Malcom, Karen",
+          "score": "6-7 0-6",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 2 June 2026",
+          "team_1": "Wolfi Maralik / Kerryn Maralik",
+          "team_2": "Rowan Budhram / Nicole Sheingold",
+          "team_1_alias": "Wolfi, Kerryn",
+          "team_2_alias": "Nicole, Rowan",
           "score": "",
           "status": "Pending"
         },
@@ -3216,6 +3252,30 @@
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 2 (Current)",
           "date": "Tuesday, 19 May 2026",
+          "team_1": "Wolfi Maralik / Kerryn Maralik",
+          "team_2": "Sandrika Gajraj / Ashwin Naidu",
+          "team_1_alias": "Wolfi, Kerryn",
+          "team_2_alias": "Ashwin, Sandrika",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 19 May 2026",
+          "team_1": "Hermanus Du Preez / Eunita Du Preez",
+          "team_2": "Liyah Limbada / Ziad Limbada",
+          "team_1_alias": "Hermanus, Eunita",
+          "team_2_alias": "Ziad, Liyah",
+          "score": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 19 May 2026",
           "team_1": "Steven Sienart / Maryna Welman",
           "team_2": "Rowan Budhram / Nicole Sheingold",
           "team_1_alias": "Steven",
@@ -3227,11 +3287,11 @@
           "category": "Mixed",
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 2 (Current)",
-          "date": "Tuesday, 19 May 2026",
-          "team_1": "Wolfi Maralik / Kerryn Maralik",
-          "team_2": "Sandrika Gajraj / Ashwin Naidu",
-          "team_1_alias": "Wolfi, Kerryn",
-          "team_2_alias": "Ashwin, Sandrika",
+          "date": "Tuesday, 5 May 2026",
+          "team_1": "Kyle Prescott /Nadine Mansour",
+          "team_2": "Rowan Budhram / Nicole Sheingold",
+          "team_1_alias": "Kyle, Nadine",
+          "team_2_alias": "Nicole, Rowan",
           "score": "",
           "status": "Pending"
         },
@@ -3252,10 +3312,10 @@
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 2 (Current)",
           "date": "Tuesday, 5 May 2026",
-          "team_1": "Kyle Prescott /Nadine Mansour",
-          "team_2": "Rowan Budhram / Nicole Sheingold",
-          "team_1_alias": "Kyle, Nadine",
-          "team_2_alias": "Nicole, Rowan",
+          "team_1": "Wolfi Maralik / Kerryn Maralik",
+          "team_2": "Steven Sienart / Maryna Welman",
+          "team_1_alias": "Wolfi, Kerryn",
+          "team_2_alias": "Steven",
           "score": "",
           "status": "Pending"
         },
@@ -3268,18 +3328,6 @@
           "team_2": "Liyah Limbada / Ziad Limbada",
           "team_1_alias": "Malcom, Karen",
           "team_2_alias": "Ziad, Liyah",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Tuesday, 5 May 2026",
-          "team_1": "Wolfi Maralik / Kerryn Maralik",
-          "team_2": "Steven Sienart / Maryna Welman",
-          "team_1_alias": "Wolfi, Kerryn",
-          "team_2_alias": "Steven",
           "score": "",
           "status": "Pending"
         }
