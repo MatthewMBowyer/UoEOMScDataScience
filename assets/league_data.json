@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-06T06:28:42.856336+00:00",
+  "generated_at_utc": "2026-06-06T18:52:56.369823+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -22,7 +22,8 @@
           "team_1_alias": "Justin, Warren",
           "team_2_alias": "Graeme, Shaun",
           "score": "6-2 6-2",
-          "status": "Waiting Approval"
+          "balls": "Justin Weldon / Warren Melneck",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -34,6 +35,7 @@
           "team_1_alias": "Kurt, Gordon",
           "team_2_alias": "Divan, Stephan",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -46,7 +48,8 @@
           "team_1_alias": "Amien, Wesley",
           "team_2_alias": "Liam, Riaan",
           "score": "2-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Wesley Visser / Amien Sarlie",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -58,7 +61,8 @@
           "team_1_alias": "Chris, Charlie",
           "team_2_alias": "Zaid, Stanton",
           "score": "4-6 6-3 4-6",
-          "status": "Waiting Approval"
+          "balls": "Stanton Fredericks / Zaid Moihdin",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -70,7 +74,8 @@
           "team_1_alias": "Graeme, Shaun",
           "team_2_alias": "Divan, Stephan",
           "score": "6-1 6-1",
-          "status": "Waiting Approval"
+          "balls": "Graeme Te Brake/ Shaun Te Brake",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -82,7 +87,8 @@
           "team_1_alias": "Chris, Charlie",
           "team_2_alias": "Amien, Wesley",
           "score": "4-6 6-7",
-          "status": "Waiting Approval"
+          "balls": "Charlie Castle / Chris Paton",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -94,6 +100,7 @@
           "team_1_alias": "Kurt, Gordon",
           "team_2_alias": "Zaid, Stanton",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -106,7 +113,8 @@
           "team_1_alias": "Justin, Warren",
           "team_2_alias": "Liam, Riaan",
           "score": "1-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Justin Weldon / Warren Melneck",
+          "status": "Validated"
         }
       ]
     },
@@ -125,7 +133,34 @@
           "team_1_alias": "Willie, Ryno",
           "team_2_alias": "Anton, Mark",
           "score": "4-6 6-7",
-          "status": "Waiting Approval"
+          "balls": "Ryno Arangies / Willie Kompagnie",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 6 June 2026",
+          "team_1": "Preash Govender / Andres Varas",
+          "team_2": "J.C / Riaz Varachia",
+          "team_1_alias": "Preash, Andy",
+          "team_2_alias": "J.C, Riaz",
+          "score": "4-6 3-6",
+          "balls": "Preash Govender / Andres Varas",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 6 June 2026",
+          "team_1": "David Samuel / Johan Brune",
+          "team_2": "Micheal Edwards / Junior Van Rooyen",
+          "team_1_alias": "David, Johan",
+          "team_2_alias": "Micheal, Junior",
+          "score": "0-6 0-6",
+          "balls": "Micheal Edwards / Junior Van Rooyen",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -137,19 +172,8 @@
           "team_1_alias": "Anton, Mark",
           "team_2_alias": "Iain, Garth",
           "score": "2-6 2-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "David Samuel / Johan Brune",
-          "team_2": "Preash Govender / Andres Varas",
-          "team_1_alias": "David, Johan",
-          "team_2_alias": "Preash, Andy",
-          "score": "0-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Mark Rondi / Anton Davel",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -161,6 +185,7 @@
           "team_1_alias": "Trevor, Alex",
           "team_2_alias": "Ziad, Ebrahim",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -173,7 +198,8 @@
           "team_1_alias": "Willie, Ryno",
           "team_2_alias": "J.C, Riaz",
           "score": "3-6 5-7",
-          "status": "Waiting Approval"
+          "balls": "Ryno Arangies / Willie Kompagnie",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -183,57 +209,23 @@
           "team_1": "Rowan Budhram / Srini Govender",
           "team_2": "Micheal Edwards / Junior Van Rooyen",
           "team_1_alias": "Rowy, Srini",
-          "team_2_alias": "Michael, Wikus",
+          "team_2_alias": "Micheal, Junior",
           "score": "3-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Rowan Budhram / Srini Govender",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 1",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Mark Rondi / Anton Davel",
-          "team_2": "Micheal Edwards / Junior Van Rooyen",
-          "team_1_alias": "Anton, Mark",
-          "team_2_alias": "Michael, Wikus",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
-          "team_2": "Iain Lindsay / Garth Forsyth",
-          "team_1_alias": "Ziad, Ebrahim",
-          "team_2_alias": "Iain, Garth",
-          "score": "4-6 3-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Trevor Smith / Alex Smith",
-          "team_2": "J.C / Riaz Varachia",
-          "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "J.C, Riaz",
-          "score": "6-3 6-3",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
+          "date": "Saturday, 23 May 2026",
           "team_1": "David Samuel / Johan Brune",
-          "team_2": "Rowan Budhram / Srini Govender",
+          "team_2": "Preash Govender / Andres Varas",
           "team_1_alias": "David, Johan",
-          "team_2_alias": "Rowy, Srini",
+          "team_2_alias": "Preash, Andy",
           "score": "0-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "David Samuel / Johan Brune",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -245,55 +237,60 @@
           "team_1_alias": "Willie, Ryno",
           "team_2_alias": "Preash, Andy",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 1",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Mark Rondi / Anton Davel",
-          "team_2": "Rowan Budhram / Srini Govender",
-          "team_1_alias": "Anton, Mark",
-          "team_2_alias": "Rowy, Srini",
-          "score": "6-4 6-4",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "David Samuel / Johan Brune",
-          "team_2": "Ryno Arangies / Willie Kompagnie",
-          "team_1_alias": "David, Johan",
-          "team_2_alias": "Willie, Ryno",
-          "score": "0-6 0-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
-          "team_2": "Micheal Edwards / Junior Van Rooyen",
-          "team_1_alias": "Ziad, Ebrahim",
-          "team_2_alias": "Michael, Wikus",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
+          "date": "Saturday, 9 May 2026",
           "team_1": "Trevor Smith / Alex Smith",
-          "team_2": "Preash Govender / Andres Varas",
+          "team_2": "J.C / Riaz Varachia",
           "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "Preash, Andy",
-          "score": "7-6 4-6 2-2",
-          "status": "Waiting Approval"
+          "team_2_alias": "J.C, Riaz",
+          "score": "6-3 6-3",
+          "balls": "Trevor Smith / Alex Smith",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
+          "team_2": "Iain Lindsay / Garth Forsyth",
+          "team_1_alias": "Ziad, Ebrahim",
+          "team_2_alias": "Iain, Garth",
+          "score": "4-6 3-6",
+          "balls": "Ziad lambada / Ebrahim Bilal (BME)",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "David Samuel / Johan Brune",
+          "team_2": "Rowan Budhram / Srini Govender",
+          "team_1_alias": "David, Johan",
+          "team_2_alias": "Rowy, Srini",
+          "score": "0-6 0-6",
+          "balls": "Rowan Budhram / Srini Govender",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Mark Rondi / Anton Davel",
+          "team_2": "Micheal Edwards / Junior Van Rooyen",
+          "team_1_alias": "Anton, Mark",
+          "team_2_alias": "Micheal, Junior",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -305,43 +302,60 @@
           "team_1_alias": "Iain, Garth",
           "team_2_alias": "J.C, Riaz",
           "score": "7-5 7-5",
-          "status": "Waiting Approval"
+          "balls": "Iain Lindsay / Garth Forsyth",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 1",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Trevor Smith / Alex Smith",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "David Samuel / Johan Brune",
           "team_2": "Ryno Arangies / Willie Kompagnie",
-          "team_1_alias": "Trevor, Alex",
+          "team_1_alias": "David, Johan",
           "team_2_alias": "Willie, Ryno",
-          "score": "6-3 7-5",
-          "status": "Waiting Approval"
+          "score": "0-6 0-6",
+          "balls": "David Samuel / Johan Brune",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 1",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Iain Lindsay / Garth Forsyth",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Trevor Smith / Alex Smith",
           "team_2": "Preash Govender / Andres Varas",
-          "team_1_alias": "Iain, Garth",
+          "team_1_alias": "Trevor, Alex",
           "team_2_alias": "Preash, Andy",
-          "score": "6-2 6-3",
-          "status": "Waiting Approval"
+          "score": "7-6 4-6 2-2",
+          "balls": "Preash Govender / Andres Varas",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 1",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "J.C / Riaz Varachia",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Ziad lambada / Ebrahim Bilal (BME)",
           "team_2": "Micheal Edwards / Junior Van Rooyen",
-          "team_1_alias": "J.C, Riaz",
-          "team_2_alias": "Michael, Wikus",
-          "score": "",
-          "status": "Pending"
+          "team_1_alias": "Ziad, Ebrahim",
+          "team_2_alias": "Micheal, Junior",
+          "score": "3-6 4-6",
+          "balls": "Ziad lambada / Ebrahim Bilal (BME)",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Mark Rondi / Anton Davel",
+          "team_2": "Rowan Budhram / Srini Govender",
+          "team_1_alias": "Anton, Mark",
+          "team_2_alias": "Rowy, Srini",
+          "score": "6-4 6-4",
+          "balls": "Mark Rondi / Anton Davel",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -353,7 +367,8 @@
           "team_1_alias": "David, Johan",
           "team_2_alias": "Anton, Mark",
           "score": "3-6 4-6",
-          "status": "Waiting Approval"
+          "balls": "Mark Rondi / Anton Davel",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -365,19 +380,47 @@
           "team_1_alias": "Ziad, Ebrahim",
           "team_2_alias": "Rowy, Srini",
           "score": "7-5 6-3",
-          "status": "Waiting Approval"
+          "balls": "Ziad lambada / Ebrahim Bilal (BME)",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 1",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Micheal Edwards / Junior Van Rooyen",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Trevor Smith / Alex Smith",
+          "team_2": "Ryno Arangies / Willie Kompagnie",
+          "team_1_alias": "Trevor, Alex",
+          "team_2_alias": "Willie, Ryno",
+          "score": "6-3 7-5",
+          "balls": "Trevor Smith / Alex Smith",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "J.C / Riaz Varachia",
+          "team_2": "Micheal Edwards / Junior Van Rooyen",
+          "team_1_alias": "J.C, Riaz",
+          "team_2_alias": "Micheal, Junior",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Iain Lindsay / Garth Forsyth",
           "team_2": "Preash Govender / Andres Varas",
-          "team_1_alias": "Michael, Wikus",
+          "team_1_alias": "Iain, Garth",
           "team_2_alias": "Preash, Andy",
-          "score": "6-3 6-2",
-          "status": "Waiting Approval"
+          "score": "6-2 6-3",
+          "balls": "Iain Lindsay / Garth Forsyth",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -389,6 +432,7 @@
           "team_1_alias": "Iain, Garth",
           "team_2_alias": "Willie, Ryno",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -401,19 +445,8 @@
           "team_1_alias": "David, Johan",
           "team_2_alias": "Trevor, Alex",
           "score": "5-7 6-4 3-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "J.C / Riaz Varachia",
-          "team_2": "Rowan Budhram / Srini Govender",
-          "team_1_alias": "J.C, Riaz",
-          "team_2_alias": "Rowy, Srini",
-          "score": "6-3 6-2",
-          "status": "Waiting Approval"
+          "balls": "Trevor Smith / Alex Smith",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -425,7 +458,34 @@
           "team_1_alias": "Ziad, Ebrahim",
           "team_2_alias": "Anton, Mark",
           "score": "2-6 6-3 6-3",
-          "status": "Waiting Approval"
+          "balls": "Ziad lambada / Ebrahim Bilal (BME)",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Micheal Edwards / Junior Van Rooyen",
+          "team_2": "Preash Govender / Andres Varas",
+          "team_1_alias": "Micheal, Junior",
+          "team_2_alias": "Preash, Andy",
+          "score": "6-3 6-2",
+          "balls": "Micheal Edwards / Junior Van Rooyen",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "J.C / Riaz Varachia",
+          "team_2": "Rowan Budhram / Srini Govender",
+          "team_1_alias": "J.C, Riaz",
+          "team_2_alias": "Rowy, Srini",
+          "score": "6-3 6-2",
+          "balls": "Rowan Budhram / Srini Govender",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -437,31 +497,8 @@
           "team_1_alias": "Preash, Andy",
           "team_2_alias": "Rowy, Srini",
           "score": "6-1 6-4",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 14 March 2026",
-          "team_1": "David Samuel / Johan Brune",
-          "team_2": "Ziad lambada / Ebrahim Bilal (BME)",
-          "team_1_alias": "David, Johan",
-          "team_2_alias": "Ziad, Ebrahim",
-          "score": "6-0 6-0",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 14 March 2026",
-          "team_1": "J.C / Riaz Varachia",
-          "team_2": "Mark Rondi / Anton Davel",
-          "team_1_alias": "J.C, Riaz",
-          "team_2_alias": "Anton, Mark",
-          "score": "3-6 6-3 6-3",
-          "status": "Waiting Approval"
+          "balls": "Preash Govender / Andres Varas",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -473,7 +510,34 @@
           "team_1_alias": "Iain, Garth",
           "team_2_alias": "Trevor, Alex",
           "score": "6-2 6-1",
-          "status": "Waiting Approval"
+          "balls": "Iain Lindsay / Garth Forsyth",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "David Samuel / Johan Brune",
+          "team_2": "Ziad lambada / Ebrahim Bilal (BME)",
+          "team_1_alias": "David, Johan",
+          "team_2_alias": "Ziad, Ebrahim",
+          "score": "6-0 6-0",
+          "balls": "David Samuel / Johan Brune",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "J.C / Riaz Varachia",
+          "team_2": "Mark Rondi / Anton Davel",
+          "team_1_alias": "J.C, Riaz",
+          "team_2_alias": "Anton, Mark",
+          "score": "3-6 6-3 6-3",
+          "balls": "J.C / Riaz Varachia",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -482,9 +546,10 @@
           "date": "Saturday, 14 March 2026",
           "team_1": "Micheal Edwards / Junior Van Rooyen",
           "team_2": "Ryno Arangies / Willie Kompagnie",
-          "team_1_alias": "Michael, Wikus",
+          "team_1_alias": "Micheal, Junior",
           "team_2_alias": "Willie, Ryno",
           "score": "",
+          "balls": "",
           "status": "Pending"
         }
       ]
@@ -504,6 +569,7 @@
           "team_1_alias": "Malcom, Noah",
           "team_2_alias": "Muzaffar, Will",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -516,6 +582,7 @@
           "team_1_alias": "Garreth, Brendan",
           "team_2_alias": "Tiaan, Rayno",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -528,7 +595,8 @@
           "team_1_alias": "Hennie, Pieter",
           "team_2_alias": "Peter, Alfred",
           "score": "1-6 1-6",
-          "status": "Waiting Approval"
+          "balls": "Pieter Venter / Hennie Erasmus",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -540,7 +608,8 @@
           "team_1_alias": "Tristan, Richard",
           "team_2_alias": "Steve, Morgan",
           "score": "0-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Richard Lilford / Tristan Lilford",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -552,7 +621,8 @@
           "team_1_alias": "Ryan, Wes",
           "team_2_alias": "Matthew, Jason",
           "score": "2-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Ryan Purdon / Wes Bothwell",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -564,6 +634,7 @@
           "team_1_alias": "Malcom, Noah",
           "team_2_alias": "Hennie, Pieter",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -576,7 +647,8 @@
           "team_1_alias": "Garreth, Brendan",
           "team_2_alias": "Steve, Morgan",
           "score": "6-3 6-2",
-          "status": "Waiting Approval"
+          "balls": "Garreth Raath / Brendan Beech",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -588,7 +660,8 @@
           "team_1_alias": "Tristan, Richard",
           "team_2_alias": "Muzaffar, Will",
           "score": "0-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Richard Lilford / Tristan Lilford",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -600,6 +673,7 @@
           "team_1_alias": "Tiaan, Rayno",
           "team_2_alias": "Matthew, Jason",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -612,6 +686,7 @@
           "team_1_alias": "Ryan, Wes",
           "team_2_alias": "Peter, Alfred",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -624,6 +699,7 @@
           "team_1_alias": "Matthew, Jason",
           "team_2_alias": "Steve, Morgan",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -636,6 +712,7 @@
           "team_1_alias": "Tiaan, Rayno",
           "team_2_alias": "Peter, Alfred",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -648,7 +725,8 @@
           "team_1_alias": "Malcom, Noah",
           "team_2_alias": "Tristan, Richard",
           "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "balls": "Malcom Dengler / Noah Sked",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -660,7 +738,8 @@
           "team_1_alias": "Garreth, Brendan",
           "team_2_alias": "Muzaffar, Will",
           "score": "6-0 6-3",
-          "status": "Waiting Approval"
+          "balls": "Muzaffar Mohamed / Will Young",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -672,7 +751,8 @@
           "team_1_alias": "Ryan, Wes",
           "team_2_alias": "Hennie, Pieter",
           "score": "2-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Ryan Purdon / Wes Bothwell",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -684,7 +764,8 @@
           "team_1_alias": "Garreth, Brendan",
           "team_2_alias": "Tristan, Richard",
           "score": "6-0 7-6",
-          "status": "Waiting Approval"
+          "balls": "Garreth Raath / Brendan Beech",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -696,7 +777,8 @@
           "team_1_alias": "Malcom, Noah",
           "team_2_alias": "Ryan, Wes",
           "score": "6-2 6-2",
-          "status": "Waiting Approval"
+          "balls": "Ryan Purdon / Wes Bothwell",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -708,7 +790,8 @@
           "team_1_alias": "Tiaan, Rayno",
           "team_2_alias": "Hennie, Pieter",
           "score": "7-5 6-1",
-          "status": "Waiting Approval"
+          "balls": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -720,7 +803,8 @@
           "team_1_alias": "Matthew, Jason",
           "team_2_alias": "Muzaffar, Will",
           "score": "6-1 7-5",
-          "status": "Waiting Approval"
+          "balls": "Matthew Phillips / Jason Mclaren",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -732,7 +816,8 @@
           "team_1_alias": "Steve, Morgan",
           "team_2_alias": "Peter, Alfred",
           "score": "5-7 6-4 2-6",
-          "status": "Waiting Approval"
+          "balls": "Morgan Wentzel / Steven",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -744,6 +829,7 @@
           "team_1_alias": "Peter, Alfred",
           "team_2_alias": "Muzaffar, Will",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -756,6 +842,7 @@
           "team_1_alias": "Malcom, Noah",
           "team_2_alias": "Garreth, Brendan",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -768,7 +855,8 @@
           "team_1_alias": "Matthew, Jason",
           "team_2_alias": "Tristan, Richard",
           "score": "6-3 6-3",
-          "status": "Waiting Approval"
+          "balls": "Richard Lilford / Tristan Lilford",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -780,7 +868,8 @@
           "team_1_alias": "Tiaan, Rayno",
           "team_2_alias": "Ryan, Wes",
           "score": "6-2 6-2",
-          "status": "Waiting Approval"
+          "balls": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -792,7 +881,8 @@
           "team_1_alias": "Steve, Morgan",
           "team_2_alias": "Hennie, Pieter",
           "score": "6-3 6-4",
-          "status": "Waiting Approval"
+          "balls": "Pieter Venter / Hennie Erasmus",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -804,6 +894,7 @@
           "team_1_alias": "Malcom, Noah",
           "team_2_alias": "Tiaan, Rayno",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -816,7 +907,8 @@
           "team_1_alias": "Matthew, Jason",
           "team_2_alias": "Garreth, Brendan",
           "score": "3-6 3-6",
-          "status": "Waiting Approval"
+          "balls": "Matthew Phillips / Jason Mclaren",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -828,7 +920,8 @@
           "team_1_alias": "Peter, Alfred",
           "team_2_alias": "Tristan, Richard",
           "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "balls": "Peter Panczyk/ Alfred Visagie",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -840,7 +933,8 @@
           "team_1_alias": "Steve, Morgan",
           "team_2_alias": "Ryan, Wes",
           "score": "6-3 6-2",
-          "status": "Waiting Approval"
+          "balls": "Morgan Wentzel / Steven",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -852,7 +946,8 @@
           "team_1_alias": "Muzaffar, Will",
           "team_2_alias": "Hennie, Pieter",
           "score": "1-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Muzaffar Mohamed / Will Young",
+          "status": "Validated"
         }
       ]
     },
@@ -871,7 +966,21 @@
           "team_1_alias": "Morne, Braam",
           "team_2_alias": "Wolfi",
           "score": "7-5 6-2",
-          "status": "Waiting Approval"
+          "balls": "Morne Glover / Yidher Chang",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 6 June 2026",
+          "team_1": "Jarrod Rohland / Brad Edwards",
+          "team_2": "Morne Glover / Yidher Chang",
+          "team_1_alias": "Brad, Jarrod",
+          "team_2_alias": "Morne, Braam",
+          "score": "4-6 6-7",
+          "balls": "Jarrod Rohland / Brad Edwards",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -883,19 +992,34 @@
           "team_1_alias": "Nathan, Pieter",
           "team_2_alias": "Wolfi",
           "score": "4-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Pieter Bekker / Nathan Venter",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Pieter Bekker / Nathan Venter",
-          "team_2": "Morne Glover / Yidher Chang",
-          "team_1_alias": "Nathan, Pieter",
-          "team_2_alias": "Morne, Braam",
-          "score": "",
-          "status": "Pending"
+          "date": "Saturday, 6 June 2026",
+          "team_1": "Strini Govender / Dale Rouquette",
+          "team_2": "Viven Keaton / Gavin Govender",
+          "team_1_alias": "Strini, Dale",
+          "team_2_alias": "Viven, Gavin",
+          "score": "4-6 6-3 7-6",
+          "balls": "Strini Govender / Dale Rouquette",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 6 June 2026",
+          "team_1": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_2": "Bevin Laidlow / Zane Daniels",
+          "team_1_alias": "Mohhammed, Muhhammed",
+          "team_2_alias": "Bevin, Bevin, Zane",
+          "score": "6-2 5-7 6-2",
+          "balls": "Mohhamed Rezaan / Muhhamed Rashid",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -907,7 +1031,8 @@
           "team_1_alias": "Ashwin, Monty",
           "team_2_alias": "Brad, Jarrod",
           "score": "4-6 6-4 6-3",
-          "status": "Waiting Approval"
+          "balls": "Ashwin Naidu / Monty Lowe",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -919,6 +1044,20 @@
           "team_1_alias": "Viven, Gavin",
           "team_2_alias": "Wolfi",
           "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Pieter Bekker / Nathan Venter",
+          "team_2": "Morne Glover / Yidher Chang",
+          "team_1_alias": "Nathan, Pieter",
+          "team_2_alias": "Morne, Braam",
+          "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -931,6 +1070,7 @@
           "team_1_alias": "Mohhammed, Muhhammed",
           "team_2_alias": "Rowan, Calvin",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -941,45 +1081,23 @@
           "team_1": "Strini Govender / Dale Rouquette",
           "team_2": "Bevin Laidlow / Zane Daniels",
           "team_1_alias": "Strini, Dale",
-          "team_2_alias": "Bevin, Bevin, Zain",
+          "team_2_alias": "Bevin, Bevin, Zane",
           "score": "6-2 6-2",
-          "status": "Waiting Approval"
+          "balls": "Strini Govender / Dale Rouquette",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
           "date": "Saturday, 9 May 2026",
-          "team_1": "Viven Keaton / Gavin Govender",
-          "team_2": "Morne Glover / Yidher Chang",
-          "team_1_alias": "Viven, Gavin",
-          "team_2_alias": "Morne, Braam",
-          "score": "0-6 0-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 3",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Wolfi Maralik / Richard Garrard",
-          "team_2": "Bevin Laidlow / Zane Daniels",
-          "team_1_alias": "Wolfi",
-          "team_2_alias": "Bevin, Bevin, Zain",
-          "score": "6-3 3-6 6-3",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 3",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Ashwin Naidu / Monty Lowe",
-          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
-          "team_1_alias": "Ashwin, Monty",
-          "team_2_alias": "Mohhammed, Muhhammed",
-          "score": "7-6 6-4",
-          "status": "Waiting Approval"
+          "team_1": "Strini Govender / Dale Rouquette",
+          "team_2": "Rowan Baisley / Calvin King",
+          "team_1_alias": "Strini, Dale",
+          "team_2_alias": "Rowan, Calvin",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -991,6 +1109,7 @@
           "team_1_alias": "Nathan, Pieter",
           "team_2_alias": "Brad, Jarrod",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -998,36 +1117,39 @@
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
           "date": "Saturday, 9 May 2026",
-          "team_1": "Strini Govender / Dale Rouquette",
-          "team_2": "Rowan Baisley / Calvin King",
-          "team_1_alias": "Strini, Dale",
-          "team_2_alias": "Rowan, Calvin",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 3",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Wolfi Maralik / Richard Garrard",
-          "team_2": "Rowan Baisley / Calvin King",
-          "team_1_alias": "Wolfi",
-          "team_2_alias": "Rowan, Calvin",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 3",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
           "team_1": "Viven Keaton / Gavin Govender",
-          "team_2": "Jarrod Rohland / Brad Edwards",
+          "team_2": "Morne Glover / Yidher Chang",
           "team_1_alias": "Viven, Gavin",
-          "team_2_alias": "Brad, Jarrod",
-          "score": "0-6 6-4 1-6",
-          "status": "Waiting Approval"
+          "team_2_alias": "Morne, Braam",
+          "score": "0-6 0-6",
+          "balls": "Viven Keaton / Gavin Govender",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Ashwin Naidu / Monty Lowe",
+          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_1_alias": "Ashwin, Monty",
+          "team_2_alias": "Mohhammed, Muhhammed",
+          "score": "7-6 6-4",
+          "balls": "Mohhamed Rezaan / Muhhamed Rashid",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Wolfi Maralik / Richard Garrard",
+          "team_2": "Bevin Laidlow / Zane Daniels",
+          "team_1_alias": "Wolfi",
+          "team_2_alias": "Bevin, Bevin, Zane",
+          "score": "6-3 3-6 6-3",
+          "balls": "Wolfi Maralik / Richard Garrard",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1039,7 +1161,8 @@
           "team_1_alias": "Ashwin, Monty",
           "team_2_alias": "Nathan, Pieter",
           "score": "6-0 6-1",
-          "status": "Waiting Approval"
+          "balls": "Ashwin Naidu / Monty Lowe",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1048,10 +1171,24 @@
           "date": "Saturday, 25 April 2026",
           "team_1": "Bevin Laidlow / Zane Daniels",
           "team_2": "Morne Glover / Yidher Chang",
-          "team_1_alias": "Bevin, Bevin, Zain",
+          "team_1_alias": "Bevin, Bevin, Zane",
           "team_2_alias": "Morne, Braam",
           "score": "1-6 3-6",
-          "status": "Waiting Approval"
+          "balls": "Bevin Laidlow / Zane Daniels",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Viven Keaton / Gavin Govender",
+          "team_2": "Jarrod Rohland / Brad Edwards",
+          "team_1_alias": "Viven, Gavin",
+          "team_2_alias": "Brad, Jarrod",
+          "score": "0-6 6-4 1-6",
+          "balls": "Jarrod Rohland / Brad Edwards",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1063,31 +1200,21 @@
           "team_1_alias": "Strini, Dale",
           "team_2_alias": "Mohhammed, Muhhammed",
           "score": "6-7 0-6",
-          "status": "Waiting Approval"
+          "balls": "Strini Govender / Dale Rouquette",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
+          "date": "Saturday, 25 April 2026",
           "team_1": "Wolfi Maralik / Richard Garrard",
-          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_2": "Rowan Baisley / Calvin King",
           "team_1_alias": "Wolfi",
-          "team_2_alias": "Mohhammed, Muhhammed",
+          "team_2_alias": "Rowan, Calvin",
           "score": "",
+          "balls": "",
           "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 3",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Ashwin Naidu / Monty Lowe",
-          "team_2": "Strini Govender / Dale Rouquette",
-          "team_1_alias": "Ashwin, Monty",
-          "team_2_alias": "Strini, Dale",
-          "score": "6-2 6-1",
-          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
@@ -1099,7 +1226,34 @@
           "team_1_alias": "Morne, Braam",
           "team_2_alias": "Rowan, Calvin",
           "score": "6-2 6-3",
-          "status": "Waiting Approval"
+          "balls": "Morne Glover / Yidher Chang",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Ashwin Naidu / Monty Lowe",
+          "team_2": "Strini Govender / Dale Rouquette",
+          "team_1_alias": "Ashwin, Monty",
+          "team_2_alias": "Strini, Dale",
+          "score": "6-2 6-1",
+          "balls": "Strini Govender / Dale Rouquette",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Wolfi Maralik / Richard Garrard",
+          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_1_alias": "Wolfi",
+          "team_2_alias": "Mohhammed, Muhhammed",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -1108,10 +1262,11 @@
           "date": "Saturday, 11 April 2026",
           "team_1": "Bevin Laidlow / Zane Daniels",
           "team_2": "Jarrod Rohland / Brad Edwards",
-          "team_1_alias": "Bevin, Bevin, Zain",
+          "team_1_alias": "Bevin, Bevin, Zane",
           "team_2_alias": "Brad, Jarrod",
           "score": "4-6 3-6",
-          "status": "Waiting Approval"
+          "balls": "Bevin Laidlow / Zane Daniels",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1123,31 +1278,8 @@
           "team_1_alias": "Viven, Gavin",
           "team_2_alias": "Nathan, Pieter",
           "score": "6-4 6-3",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 3",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Rowan Baisley / Calvin King",
-          "team_2": "Jarrod Rohland / Brad Edwards",
-          "team_1_alias": "Rowan, Calvin",
-          "team_2_alias": "Brad, Jarrod",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 3",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Bevin Laidlow / Zane Daniels",
-          "team_2": "Pieter Bekker / Nathan Venter",
-          "team_1_alias": "Bevin, Bevin, Zain",
-          "team_2_alias": "Nathan, Pieter",
-          "score": "",
-          "status": "Pending"
+          "balls": "Viven Keaton / Gavin Govender",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1159,19 +1291,8 @@
           "team_1_alias": "Ashwin, Monty",
           "team_2_alias": "Viven, Gavin",
           "score": "6-0 6-2",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 3",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Wolfi Maralik / Richard Garrard",
-          "team_2": "Strini Govender / Dale Rouquette",
-          "team_1_alias": "Wolfi",
-          "team_2_alias": "Strini, Dale",
-          "score": "3-6 7-5 4-5",
-          "status": "Waiting Approval"
+          "balls": "Viven Keaton / Gavin Govender",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1183,30 +1304,46 @@
           "team_1_alias": "Morne, Braam",
           "team_2_alias": "Mohhammed, Muhhammed",
           "score": "6-0 6-2",
-          "status": "Waiting Approval"
+          "balls": "Mohhamed Rezaan / Muhhamed Rashid",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 14 March 2026",
-          "team_1": "Morne Glover / Yidher Chang",
-          "team_2": "Strini Govender / Dale Rouquette",
-          "team_1_alias": "Morne, Braam",
-          "team_2_alias": "Strini, Dale",
-          "score": "6-4 6-4",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 3",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 14 March 2026",
-          "team_1": "Jarrod Rohland / Brad Edwards",
-          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
-          "team_1_alias": "Brad, Jarrod",
-          "team_2_alias": "Mohhammed, Muhhammed",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Rowan Baisley / Calvin King",
+          "team_2": "Jarrod Rohland / Brad Edwards",
+          "team_1_alias": "Rowan, Calvin",
+          "team_2_alias": "Brad, Jarrod",
           "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Wolfi Maralik / Richard Garrard",
+          "team_2": "Strini Govender / Dale Rouquette",
+          "team_1_alias": "Wolfi",
+          "team_2_alias": "Strini, Dale",
+          "score": "3-6 7-5 4-5",
+          "balls": "Wolfi Maralik / Richard Garrard",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Bevin Laidlow / Zane Daniels",
+          "team_2": "Pieter Bekker / Nathan Venter",
+          "team_1_alias": "Bevin, Bevin, Zane",
+          "team_2_alias": "Nathan, Pieter",
+          "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1219,7 +1356,21 @@
           "team_1_alias": "Ashwin, Monty",
           "team_2_alias": "Wolfi",
           "score": "6-3 6-2",
-          "status": "Waiting Approval"
+          "balls": "Ashwin Naidu / Monty Lowe",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Morne Glover / Yidher Chang",
+          "team_2": "Strini Govender / Dale Rouquette",
+          "team_1_alias": "Morne, Braam",
+          "team_2_alias": "Strini, Dale",
+          "score": "6-4 6-4",
+          "balls": "Morne Glover / Yidher Chang",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1231,6 +1382,20 @@
           "team_1_alias": "Rowan, Calvin",
           "team_2_alias": "Nathan, Pieter",
           "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 14 March 2026",
+          "team_1": "Jarrod Rohland / Brad Edwards",
+          "team_2": "Mohhamed Rezaan / Muhhamed Rashid",
+          "team_1_alias": "Brad, Jarrod",
+          "team_2_alias": "Mohhammed, Muhhammed",
+          "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1240,10 +1405,11 @@
           "date": "Saturday, 14 March 2026",
           "team_1": "Bevin Laidlow / Zane Daniels",
           "team_2": "Viven Keaton / Gavin Govender",
-          "team_1_alias": "Bevin, Bevin, Zain",
+          "team_1_alias": "Bevin, Bevin, Zane",
           "team_2_alias": "Viven, Gavin",
           "score": "4-6 4-6",
-          "status": "Waiting Approval"
+          "balls": "Bevin Laidlow / Zane Daniels",
+          "status": "Validated"
         }
       ]
     },
@@ -1262,6 +1428,7 @@
           "team_1_alias": "Matt, Henk",
           "team_2_alias": "Dineshan, Brian",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1274,7 +1441,8 @@
           "team_1_alias": "Mthokozisi, Mops",
           "team_2_alias": "Cam, Luke",
           "score": "6-0 6-4",
-          "status": "Waiting Approval"
+          "balls": "Papatso Mopaka (Mr Mops) /Mthokozisi Dlamini",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1286,7 +1454,8 @@
           "team_1_alias": "Moe, Jacques, Dello",
           "team_2_alias": "Martin, Darryl",
           "score": "6-2 6-1",
-          "status": "Waiting Approval"
+          "balls": "Moe Variave / Andriano Dello Lacono",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1298,7 +1467,8 @@
           "team_1_alias": "Sholin, Nelson",
           "team_2_alias": "Mauritz, Tony",
           "score": "6-4 6-4",
-          "status": "Waiting Approval"
+          "balls": "Nelson De Freitas / Sholin Siva",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1310,6 +1480,7 @@
           "team_1_alias": "Akhil, Akshay",
           "team_2_alias": "Gys, Johan",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1322,7 +1493,8 @@
           "team_1_alias": "Mauritz, Tony",
           "team_2_alias": "Cam, Luke",
           "score": "4-6 1-6",
-          "status": "Waiting Approval"
+          "balls": "Tony Ferguson / Mauritz Boshoff",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1334,7 +1506,8 @@
           "team_1_alias": "Akhil, Akshay",
           "team_2_alias": "Matt, Henk",
           "score": "4-6 4-6",
-          "status": "Waiting Approval"
+          "balls": "Matt Bowyer / Henk Slabber",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1346,6 +1519,7 @@
           "team_1_alias": "Mthokozisi, Mops",
           "team_2_alias": "Dineshan, Brian",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1358,7 +1532,8 @@
           "team_1_alias": "Sholin, Nelson",
           "team_2_alias": "Martin, Darryl",
           "score": "6-4 6-2",
-          "status": "Waiting Approval"
+          "balls": "Nelson De Freitas / Sholin Siva",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1370,7 +1545,8 @@
           "team_1_alias": "Moe, Jacques, Dello",
           "team_2_alias": "Gys, Johan",
           "score": "6-2 6-0",
-          "status": "Waiting Approval"
+          "balls": "Moe Variave / Andriano Dello Lacono",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1382,7 +1558,8 @@
           "team_1_alias": "Cam, Luke",
           "team_2_alias": "Martin, Darryl",
           "score": "1-6 3-6",
-          "status": "Waiting Approval"
+          "balls": "CamRondi /Luke Bailey",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1394,7 +1571,8 @@
           "team_1_alias": "Mthokozisi, Mops",
           "team_2_alias": "Matt, Henk",
           "score": "6-2 6-1",
-          "status": "Waiting Approval"
+          "balls": "Papatso Mopaka (Mr Mops) /Mthokozisi Dlamini",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1406,7 +1584,8 @@
           "team_1_alias": "Sholin, Nelson",
           "team_2_alias": "Gys, Johan",
           "score": "6-4 6-2",
-          "status": "Waiting Approval"
+          "balls": "Gysbert Groenwald/ Johan Dercksen",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1418,6 +1597,7 @@
           "team_1_alias": "Mauritz, Tony",
           "team_2_alias": "Dineshan, Brian",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1430,7 +1610,8 @@
           "team_1_alias": "Akhil, Akshay",
           "team_2_alias": "Moe, Jacques, Dello",
           "score": "6-1 1-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Akhil Naik / Akshay Ranchod",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1442,7 +1623,8 @@
           "team_1_alias": "Martin, Darryl",
           "team_2_alias": "Dineshan, Brian",
           "score": "6-1 7-5",
-          "status": "Waiting Approval"
+          "balls": "Darryl Vince / Martin Kanka",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1454,7 +1636,8 @@
           "team_1_alias": "Sholin, Nelson",
           "team_2_alias": "Moe, Jacques, Dello",
           "score": "6-2 2-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Nelson De Freitas / Sholin Siva",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1466,7 +1649,8 @@
           "team_1_alias": "Akhil, Akshay",
           "team_2_alias": "Mthokozisi, Mops",
           "score": "3-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Papatso Mopaka (Mr Mops) /Mthokozisi Dlamini",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1478,7 +1662,8 @@
           "team_1_alias": "Cam, Luke",
           "team_2_alias": "Gys, Johan",
           "score": "5-7 7-5 6-4",
-          "status": "Waiting Approval"
+          "balls": "CamRondi /Luke Bailey",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1490,7 +1675,8 @@
           "team_1_alias": "Mauritz, Tony",
           "team_2_alias": "Matt, Henk",
           "score": "3-6 3-6",
-          "status": "Waiting Approval"
+          "balls": "Tony Ferguson / Mauritz Boshoff",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1502,7 +1688,8 @@
           "team_1_alias": "Mauritz, Tony",
           "team_2_alias": "Mthokozisi, Mops",
           "score": "2-6 6-4 4-6",
-          "status": "Waiting Approval"
+          "balls": "Tony Ferguson / Mauritz Boshoff",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1514,7 +1701,8 @@
           "team_1_alias": "Martin, Darryl",
           "team_2_alias": "Matt, Henk",
           "score": "4-6 5-7",
-          "status": "Waiting Approval"
+          "balls": "Matt Bowyer / Henk Slabber",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1526,6 +1714,7 @@
           "team_1_alias": "Akhil, Akshay",
           "team_2_alias": "Sholin, Nelson",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1538,7 +1727,8 @@
           "team_1_alias": "Dineshan, Brian",
           "team_2_alias": "Gys, Johan",
           "score": "5-7 2-6",
-          "status": "Waiting Approval"
+          "balls": "Dineshan Mariah / Brian Pillay",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1550,7 +1740,8 @@
           "team_1_alias": "Cam, Luke",
           "team_2_alias": "Moe, Jacques, Dello",
           "score": "5-7 0-6",
-          "status": "Waiting Approval"
+          "balls": "Moe Variave / Andriano Dello Lacono",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1562,7 +1753,8 @@
           "team_1_alias": "Gys, Johan",
           "team_2_alias": "Matt, Henk",
           "score": "2-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Gysbert Groenwald/ Johan Dercksen",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1574,7 +1766,8 @@
           "team_1_alias": "Martin, Darryl",
           "team_2_alias": "Mthokozisi, Mops",
           "score": "3-6 1-6",
-          "status": "Waiting Approval"
+          "balls": "Darryl Vince / Martin Kanka",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1586,7 +1779,8 @@
           "team_1_alias": "Dineshan, Brian",
           "team_2_alias": "Moe, Jacques, Dello",
           "score": "1-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Dineshan Mariah / Brian Pillay",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1598,6 +1792,7 @@
           "team_1_alias": "Akhil, Akshay",
           "team_2_alias": "Mauritz, Tony",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1610,7 +1805,8 @@
           "team_1_alias": "Cam, Luke",
           "team_2_alias": "Sholin, Nelson",
           "score": "4-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "CamRondi /Luke Bailey",
+          "status": "Validated"
         }
       ]
     },
@@ -1629,7 +1825,8 @@
           "team_1_alias": "Janu, Joshua",
           "team_2_alias": "Hano, Johan",
           "score": "6-1 6-2",
-          "status": "Waiting Approval"
+          "balls": "Janu Pienaar / Joshua Drabble",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1641,7 +1838,8 @@
           "team_1_alias": "Erik, Ruan",
           "team_2_alias": "Christoph, Martin",
           "score": "5-7 6-1 6-1",
-          "status": "Waiting Approval"
+          "balls": "Martin Miog / Christoph van der Linde",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1653,6 +1851,7 @@
           "team_1_alias": "Ebrahim, Muhhammad",
           "team_2_alias": "Calden, Neil",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1665,6 +1864,7 @@
           "team_1_alias": "Paul, Johan",
           "team_2_alias": "Matthew, Johan",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1677,7 +1877,8 @@
           "team_1_alias": "Erik, Ruan",
           "team_2_alias": "Calden, Neil",
           "score": "6-1 7-5",
-          "status": "Waiting Approval"
+          "balls": "Erik Viviers/ Ruan Lategan",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1689,7 +1890,8 @@
           "team_1_alias": "Janu, Joshua",
           "team_2_alias": "Matthew, Johan",
           "score": "7-5 6-1",
-          "status": "Waiting Approval"
+          "balls": "Janu Pienaar / Joshua Drabble",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1701,7 +1903,8 @@
           "team_1_alias": "Ebrahim, Muhhammad",
           "team_2_alias": "Paul, Johan",
           "score": "6-3 7-5",
-          "status": "Waiting Approval"
+          "balls": "Ebrahim Dindar/ Muhammad Dindar",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1713,7 +1916,8 @@
           "team_1_alias": "Hano, Johan",
           "team_2_alias": "Christoph, Martin",
           "score": "4-6 3-6",
-          "status": "Waiting Approval"
+          "balls": "Johan Wilters / Hano Taljard",
+          "status": "Validated"
         }
       ]
     },
@@ -1732,6 +1936,7 @@
           "team_1_alias": "Johan, Lehlogonolo",
           "team_2_alias": "Reenen, Gareth",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1744,6 +1949,7 @@
           "team_1_alias": "Ruari",
           "team_2_alias": "Keegan, Paul",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1756,6 +1962,7 @@
           "team_1_alias": "Johan, Julian",
           "team_2_alias": "Brett, Micheal",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1768,7 +1975,8 @@
           "team_1_alias": "Keetan, Shaylin",
           "team_2_alias": "Andrew, Marius",
           "score": "3-6 4-6",
-          "status": "Waiting Approval"
+          "balls": "Keetan Naidoo / Shaylin Nundahraj",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1780,7 +1988,8 @@
           "team_1_alias": "Johan, Julian",
           "team_2_alias": "Reenen, Gareth",
           "score": "6-2 6-0",
-          "status": "Waiting Approval"
+          "balls": "Johan Van Achterberg / Julian Achterberg",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1792,7 +2001,8 @@
           "team_1_alias": "Andrew, Marius",
           "team_2_alias": "Brett, Micheal",
           "score": "6-3 6-4",
-          "status": "Waiting Approval"
+          "balls": "Marius Jacobs / Andrew Fairlie",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1804,7 +2014,8 @@
           "team_1_alias": "Johan, Lehlogonolo",
           "team_2_alias": "Ruari",
           "score": "6-4 6-3",
-          "status": "Waiting Approval"
+          "balls": "Johan fourie / Lehlogonolo Jerome Mampane",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1816,7 +2027,8 @@
           "team_1_alias": "Keetan, Shaylin",
           "team_2_alias": "Keegan, Paul",
           "score": "6-4 4-6 6-4",
-          "status": "Waiting Approval"
+          "balls": "Keetan Naidoo / Shaylin Nundahraj",
+          "status": "Validated"
         }
       ]
     },
@@ -1835,6 +2047,7 @@
           "team_1_alias": "Dirk, Brian",
           "team_2_alias": "Hp, Ryno",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -1847,7 +2060,8 @@
           "team_1_alias": "Tiaan, Juaan",
           "team_2_alias": "Steven, Aaron",
           "score": "2-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Tiaan Holtzhausen / Juann de Waal",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1859,7 +2073,8 @@
           "team_1_alias": "Ian, Wian",
           "team_2_alias": "Riaz, Ayman",
           "score": "6-4 3-6 1-6",
-          "status": "Waiting Approval"
+          "balls": "Ian Visser / Wian Lamprech",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1871,7 +2086,8 @@
           "team_1_alias": "Casey, Adam",
           "team_2_alias": "Alwyn, Willie",
           "score": "6-3 3-6 6-2",
-          "status": "Waiting Approval"
+          "balls": "Willie and Alwyn",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1883,7 +2099,8 @@
           "team_1_alias": "Riaz, Ayman",
           "team_2_alias": "Hp, Ryno",
           "score": "6-2 6-2",
-          "status": "Waiting Approval"
+          "balls": "Riaz Varachia / Ayman Varachia",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1895,7 +2112,8 @@
           "team_1_alias": "Ian, Wian",
           "team_2_alias": "Steven, Aaron",
           "score": "0-6 6-7",
-          "status": "Waiting Approval"
+          "balls": "Ian Visser / Wian Lamprech",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1907,7 +2125,8 @@
           "team_1_alias": "Casey, Adam",
           "team_2_alias": "Tiaan, Juaan",
           "score": "7-5 5-7 6-7",
-          "status": "Waiting Approval"
+          "balls": "Adam Fillmore / Casey Fillmore",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1919,6 +2138,7 @@
           "team_1_alias": "Dirk, Brian",
           "team_2_alias": "Alwyn, Willie",
           "score": "",
+          "balls": "",
           "status": "Pending"
         }
       ]
@@ -1933,24 +2153,39 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 18 July 2026",
-          "team_1": "Jamee Sampson / Nicks Bothwell",
-          "team_2": "Team XX",
-          "team_1_alias": "Nicks, Jamee",
-          "team_2_alias": "No players",
-          "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "team_1": "Team YY",
+          "team_2": "Ronel Laubscher/ Marita Degener",
+          "team_1_alias": "No players",
+          "team_2_alias": "Ronel, Marita",
+          "score": "0-6 0-6",
+          "balls": "Team YY",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 18 July 2026",
-          "team_1": "Team YY",
-          "team_2": "Ronel Laubscher/ Marita Degener",
-          "team_1_alias": "No players",
-          "team_2_alias": "Ronel, Marita",
-          "score": "0-6 0-6",
-          "status": "Waiting Approval"
+          "team_1": "Jamee Sampson / Nicks Bothwell",
+          "team_2": "Team XX",
+          "team_1_alias": "Nicks, Jamee",
+          "team_2_alias": "No players",
+          "score": "6-0 6-0",
+          "balls": "Jamee Sampson / Nicks Bothwell",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 4 July 2026",
+          "team_1": "Anna Tzimas / Stephanie",
+          "team_2": "Team YY",
+          "team_1_alias": "Stephanie, Anna",
+          "team_2_alias": "No players",
+          "score": "6-0 6-0",
+          "balls": "Team YY",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -1962,7 +2197,8 @@
           "team_1_alias": "No players",
           "team_2_alias": "Karen, Madison",
           "score": "0-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Team XX",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -1974,7 +2210,21 @@
           "team_1_alias": "Stephanie, Anna",
           "team_2_alias": "Chantelle, Corlia",
           "score": "4-6 6-4",
-          "status": "Waiting Approval"
+          "balls": "Chantelle Vermeulen / Corlia Coetzee",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 20 June 2026",
+          "team_1": "Hendriette Vd Merwe/ Mariette Meyer",
+          "team_2": "Team YY",
+          "team_1_alias": "Marriette, Hendriette",
+          "team_2_alias": "No players",
+          "score": "6-0 6-0",
+          "balls": "Hendriette Vd Merwe/ Mariette Meyer",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -1986,7 +2236,34 @@
           "team_1_alias": "No players",
           "team_2_alias": "Ronel, Marita",
           "score": "0-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Team XX",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 6 June 2026",
+          "team_1": "Adrienne Donaldson / Stephanie Kotze",
+          "team_2": "Ronel Laubscher/ Marita Degener",
+          "team_1_alias": "Stephanie, Adrienne",
+          "team_2_alias": "Ronel, Marita",
+          "score": "1-6 2-6",
+          "balls": "Adrienne Donaldson / Stephanie Kotze",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 6 June 2026",
+          "team_1": "Team XX",
+          "team_2": "Team YY",
+          "team_1_alias": "No players",
+          "team_2_alias": "No players",
+          "score": "6-5 5-6 4-4",
+          "balls": "Team XX",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -1998,7 +2275,8 @@
           "team_1_alias": "Nicks, Jamee",
           "team_2_alias": "Chantelle, Corlia",
           "score": "6-4 6-3",
-          "status": "Waiting Approval"
+          "balls": "Jamee Sampson / Nicks Bothwell",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2010,7 +2288,8 @@
           "team_1_alias": "Karen, Madison",
           "team_2_alias": "Chantelle, Corlia",
           "score": "7-6 6-2",
-          "status": "Waiting Approval"
+          "balls": "Madison Sked / Karen Dengler",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2022,31 +2301,8 @@
           "team_1_alias": "No players",
           "team_2_alias": "Marriette, Hendriette",
           "score": "0-6 0-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Anna Tzimas / Stephanie",
-          "team_2": "Jamee Sampson / Nicks Bothwell",
-          "team_1_alias": "Stephanie, Anna",
-          "team_2_alias": "Nicks, Jamee",
-          "score": "6-7 0-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Adrienne Donaldson / Stephanie Kotze",
-          "team_2": "Team YY",
-          "team_1_alias": "Stephanie, Adrienne",
-          "team_2_alias": "No players",
-          "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "balls": "Team XX",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2058,7 +2314,47 @@
           "team_1_alias": "Ronel, Marita",
           "team_2_alias": "Calli, Melanie",
           "score": "",
+          "balls": "",
           "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Adrienne Donaldson / Stephanie Kotze",
+          "team_2": "Team YY",
+          "team_1_alias": "Stephanie, Adrienne",
+          "team_2_alias": "No players",
+          "score": "6-0 6-0",
+          "balls": "Adrienne Donaldson / Stephanie Kotze",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Anna Tzimas / Stephanie",
+          "team_2": "Jamee Sampson / Nicks Bothwell",
+          "team_1_alias": "Stephanie, Anna",
+          "team_2_alias": "Nicks, Jamee",
+          "score": "6-7 0-6",
+          "balls": "Jamee Sampson / Nicks Bothwell",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Anna Tzimas / Stephanie",
+          "team_2": "Team XX",
+          "team_1_alias": "Stephanie, Anna",
+          "team_2_alias": "No players",
+          "score": "6-0 6-0",
+          "balls": "Anna Tzimas / Stephanie",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2070,18 +2366,7 @@
           "team_1_alias": "Karen, Madison",
           "team_2_alias": "Nicks, Jamee",
           "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Adrienne Donaldson / Stephanie Kotze",
-          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
-          "team_1_alias": "Stephanie, Adrienne",
-          "team_2_alias": "Marriette, Hendriette",
-          "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -2094,19 +2379,21 @@
           "team_1_alias": "Calli, Melanie",
           "team_2_alias": "No players",
           "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "balls": "Calli Fargi/ Melanie Brimson",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
           "date": "Saturday, 9 May 2026",
-          "team_1": "Anna Tzimas / Stephanie",
-          "team_2": "Team XX",
-          "team_1_alias": "Stephanie, Anna",
-          "team_2_alias": "No players",
-          "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "team_1": "Adrienne Donaldson / Stephanie Kotze",
+          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
+          "team_1_alias": "Stephanie, Adrienne",
+          "team_2_alias": "Marriette, Hendriette",
+          "score": "1-6 1-6",
+          "balls": "Hendriette Vd Merwe/ Mariette Meyer",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2118,7 +2405,8 @@
           "team_1_alias": "Ronel, Marita",
           "team_2_alias": "Chantelle, Corlia",
           "score": "1-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Ronel Laubscher/ Marita Degener",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2130,31 +2418,8 @@
           "team_1_alias": "Ronel, Marita",
           "team_2_alias": "Nicks, Jamee",
           "score": "0-6 2-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Team YY",
-          "team_2": "Chantelle Vermeulen / Corlia Coetzee",
-          "team_1_alias": "No players",
-          "team_2_alias": "Chantelle, Corlia",
-          "score": "0-6 0-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Calli Fargi/ Melanie Brimson",
-          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
-          "team_1_alias": "Calli, Melanie",
-          "team_2_alias": "Marriette, Hendriette",
-          "score": "",
-          "status": "Pending"
+          "balls": "Ronel Laubscher/ Marita Degener",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2166,7 +2431,34 @@
           "team_1_alias": "Stephanie, Anna",
           "team_2_alias": "Karen, Madison",
           "score": "6-3 1-6 6-1",
-          "status": "Waiting Approval"
+          "balls": "Madison Sked / Karen Dengler",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Calli Fargi/ Melanie Brimson",
+          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
+          "team_1_alias": "Calli, Melanie",
+          "team_2_alias": "Marriette, Hendriette",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Team YY",
+          "team_2": "Chantelle Vermeulen / Corlia Coetzee",
+          "team_1_alias": "No players",
+          "team_2_alias": "Chantelle, Corlia",
+          "score": "0-6 0-6",
+          "balls": "Team YY",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2178,7 +2470,8 @@
           "team_1_alias": "Stephanie, Adrienne",
           "team_2_alias": "No players",
           "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "balls": "Adrienne Donaldson / Stephanie Kotze",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2190,19 +2483,8 @@
           "team_1_alias": "Stephanie, Anna",
           "team_2_alias": "Stephanie, Adrienne",
           "score": "6-0 6-1",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Chantelle Vermeulen / Corlia Coetzee",
-          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
-          "team_1_alias": "Chantelle, Corlia",
-          "team_2_alias": "Marriette, Hendriette",
-          "score": "6-4 6-4",
-          "status": "Waiting Approval"
+          "balls": "Adrienne Donaldson / Stephanie Kotze",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2214,7 +2496,8 @@
           "team_1_alias": "Ronel, Marita",
           "team_2_alias": "Karen, Madison",
           "score": "2-6 4-6",
-          "status": "Waiting Approval"
+          "balls": "Ronel Laubscher/ Marita Degener",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2226,7 +2509,8 @@
           "team_1_alias": "No players",
           "team_2_alias": "Nicks, Jamee",
           "score": "0-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Jamee Sampson / Nicks Bothwell",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2238,55 +2522,21 @@
           "team_1_alias": "Calli, Melanie",
           "team_2_alias": "No players",
           "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "balls": "Team XX",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Team YY",
-          "team_2": "Madison Sked / Karen Dengler",
-          "team_1_alias": "No players",
-          "team_2_alias": "Karen, Madison",
-          "score": "0-6 0-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
+          "date": "Saturday, 11 April 2026",
           "team_1": "Chantelle Vermeulen / Corlia Coetzee",
-          "team_2": "Team XX",
+          "team_2": "Hendriette Vd Merwe/ Mariette Meyer",
           "team_1_alias": "Chantelle, Corlia",
-          "team_2_alias": "No players",
-          "score": "6-0 6-0",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Hendriette Vd Merwe/ Mariette Meyer",
-          "team_2": "Jamee Sampson / Nicks Bothwell",
-          "team_1_alias": "Marriette, Hendriette",
-          "team_2_alias": "Nicks, Jamee",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Anna Tzimas / Stephanie",
-          "team_2": "Ronel Laubscher/ Marita Degener",
-          "team_1_alias": "Stephanie, Anna",
-          "team_2_alias": "Ronel, Marita",
-          "score": "6-2 6-4",
-          "status": "Waiting Approval"
+          "team_2_alias": "Marriette, Hendriette",
+          "score": "6-4 6-4",
+          "balls": "Chantelle Vermeulen / Corlia Coetzee",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2298,7 +2548,60 @@
           "team_1_alias": "Calli, Melanie",
           "team_2_alias": "Stephanie, Adrienne",
           "score": "6-2 6-2",
-          "status": "Waiting Approval"
+          "balls": "Calli Fargi/ Melanie Brimson",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Anna Tzimas / Stephanie",
+          "team_2": "Ronel Laubscher/ Marita Degener",
+          "team_1_alias": "Stephanie, Anna",
+          "team_2_alias": "Ronel, Marita",
+          "score": "6-2 6-4",
+          "balls": "Anna Tzimas / Stephanie",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Hendriette Vd Merwe/ Mariette Meyer",
+          "team_2": "Jamee Sampson / Nicks Bothwell",
+          "team_1_alias": "Marriette, Hendriette",
+          "team_2_alias": "Nicks, Jamee",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Team YY",
+          "team_2": "Madison Sked / Karen Dengler",
+          "team_1_alias": "No players",
+          "team_2_alias": "Karen, Madison",
+          "score": "0-6 0-6",
+          "balls": "Team YY",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Chantelle Vermeulen / Corlia Coetzee",
+          "team_2": "Team XX",
+          "team_1_alias": "Chantelle, Corlia",
+          "team_2_alias": "No players",
+          "score": "6-0 6-0",
+          "balls": "Chantelle Vermeulen / Corlia Coetzee",
+          "status": "Validated"
         }
       ]
     },
@@ -2312,35 +2615,38 @@
           "division": "Honeydew Ladies Div 2",
           "season": "Season 2 (Current)",
           "date": "Saturday, 30 May 2026",
-          "team_1": "Sandrika Gajraj / Zane Jacobs (Zee)",
-          "team_2": "Kerryn Maralik/ Nicola Pratley",
-          "team_1_alias": "Sandrika, Zane",
-          "team_2_alias": "Nicola, Kerryn",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 30 May 2026",
-          "team_1": "Sharon Poyner/ Sam Page",
-          "team_2": "Kerry Panczyk/ Annelore Wheeler",
-          "team_1_alias": "Sharon, Sam",
-          "team_2_alias": "Kerry, Annelore",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 30 May 2026",
           "team_1": "Siobhan Chadinha / Debbie Fol",
           "team_2": "Carol Gossman / Comfort Shaba",
           "team_1_alias": "Siobhan, Debbie",
           "team_2_alias": "Carol, Comfort",
           "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 30 May 2026",
+          "team_1": "Venita Davidow / Angela Tyson",
+          "team_2": "Juanita Pienaar / Zanele Katende",
+          "team_1_alias": "Angela, Venita",
+          "team_2_alias": "Zanele, Juanita",
+          "score": "4-6 1-6",
+          "balls": "Venita Davidow / Angela Tyson",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 30 May 2026",
+          "team_1": "Sandrika Gajraj / Zane Jacobs (Zee)",
+          "team_2": "Kerryn Maralik/ Nicola Pratley",
+          "team_1_alias": "Sandrika, Zane",
+          "team_2_alias": "Nicola, Kerryn",
+          "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -2353,55 +2659,21 @@
           "team_1_alias": "Pauline, Janine",
           "team_2_alias": "Robyn, Monique",
           "score": "6-1 7-5",
-          "status": "Waiting Approval"
+          "balls": "Robyn Rondi / Monique Van Achterberg",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
           "division": "Honeydew Ladies Div 2",
           "season": "Season 2 (Current)",
           "date": "Saturday, 30 May 2026",
-          "team_1": "Venita Davidow / Angela Tyson",
-          "team_2": "Juanita Pienaar / Zanele Katende",
-          "team_1_alias": "Angela, Venita",
-          "team_2_alias": "Zanele, Juanita",
-          "score": "4-6 1-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
-          "team_1": "Venita Davidow / Angela Tyson",
+          "team_1": "Sharon Poyner/ Sam Page",
           "team_2": "Kerry Panczyk/ Annelore Wheeler",
-          "team_1_alias": "Angela, Venita",
+          "team_1_alias": "Sharon, Sam",
           "team_2_alias": "Kerry, Annelore",
-          "score": "4-6 2-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
-          "team_1": "Siobhan Chadinha / Debbie Fol",
-          "team_2": "Kerryn Maralik/ Nicola Pratley",
-          "team_1_alias": "Siobhan, Debbie",
-          "team_2_alias": "Nicola, Kerryn",
-          "score": "1-6 1-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
-          "team_1": "Janine john/Pauline Collinson",
-          "team_2": "Sandrika Gajraj / Zane Jacobs (Zee)",
-          "team_1_alias": "Pauline, Janine",
-          "team_2_alias": "Sandrika, Zane",
-          "score": "6-2 3-6 3-6",
-          "status": "Waiting Approval"
+          "score": "6-4 6-1",
+          "balls": "Sharon Poyner/ Sam Page",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2413,7 +2685,34 @@
           "team_1_alias": "Zanele, Juanita",
           "team_2_alias": "Carol, Comfort",
           "score": "",
+          "balls": "",
           "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Janine john/Pauline Collinson",
+          "team_2": "Sandrika Gajraj / Zane Jacobs (Zee)",
+          "team_1_alias": "Pauline, Janine",
+          "team_2_alias": "Sandrika, Zane",
+          "score": "6-2 3-6 3-6",
+          "balls": "Janine john/Pauline Collinson",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Siobhan Chadinha / Debbie Fol",
+          "team_2": "Kerryn Maralik/ Nicola Pratley",
+          "team_1_alias": "Siobhan, Debbie",
+          "team_2_alias": "Nicola, Kerryn",
+          "score": "1-6 1-6",
+          "balls": "Kerryn Maralik/ Nicola Pratley",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2425,55 +2724,21 @@
           "team_1_alias": "Sharon, Sam",
           "team_2_alias": "Robyn, Monique",
           "score": "6-3 6-2",
-          "status": "Waiting Approval"
+          "balls": "Sharon Poyner/ Sam Page",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
           "division": "Honeydew Ladies Div 2",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 2 May 2026",
+          "date": "Saturday, 16 May 2026",
           "team_1": "Venita Davidow / Angela Tyson",
-          "team_2": "Robyn Rondi / Monique Van Achterberg",
-          "team_1_alias": "Angela, Venita",
-          "team_2_alias": "Robyn, Monique",
-          "score": "0-6 6-3 2-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 2 May 2026",
-          "team_1": "Carol Gossman / Comfort Shaba",
           "team_2": "Kerry Panczyk/ Annelore Wheeler",
-          "team_1_alias": "Carol, Comfort",
+          "team_1_alias": "Angela, Venita",
           "team_2_alias": "Kerry, Annelore",
-          "score": "1-6 3-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 2 May 2026",
-          "team_1": "Siobhan Chadinha / Debbie Fol",
-          "team_2": "Sandrika Gajraj / Zane Jacobs (Zee)",
-          "team_1_alias": "Siobhan, Debbie",
-          "team_2_alias": "Sandrika, Zane",
-          "score": "1-6 0-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 2 May 2026",
-          "team_1": "Janine john/Pauline Collinson",
-          "team_2": "Sharon Poyner/ Sam Page",
-          "team_1_alias": "Pauline, Janine",
-          "team_2_alias": "Sharon, Sam",
-          "score": "6-3 6-3",
-          "status": "Waiting Approval"
+          "score": "4-6 2-6",
+          "balls": "Venita Davidow / Angela Tyson",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2485,7 +2750,60 @@
           "team_1_alias": "Zanele, Juanita",
           "team_2_alias": "Nicola, Kerryn",
           "score": "1-6 1-6",
-          "status": "Waiting Approval"
+          "balls": "Juanita Pienaar / Zanele Katende",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Siobhan Chadinha / Debbie Fol",
+          "team_2": "Sandrika Gajraj / Zane Jacobs (Zee)",
+          "team_1_alias": "Siobhan, Debbie",
+          "team_2_alias": "Sandrika, Zane",
+          "score": "1-6 0-6",
+          "balls": "Siobhan Chadinha / Debbie Fol",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Janine john/Pauline Collinson",
+          "team_2": "Sharon Poyner/ Sam Page",
+          "team_1_alias": "Pauline, Janine",
+          "team_2_alias": "Sharon, Sam",
+          "score": "6-3 6-3",
+          "balls": "Sharon Poyner/ Sam Page",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Carol Gossman / Comfort Shaba",
+          "team_2": "Kerry Panczyk/ Annelore Wheeler",
+          "team_1_alias": "Carol, Comfort",
+          "team_2_alias": "Kerry, Annelore",
+          "score": "1-6 3-6",
+          "balls": "Carol Gossman / Comfort Shaba",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Venita Davidow / Angela Tyson",
+          "team_2": "Robyn Rondi / Monique Van Achterberg",
+          "team_1_alias": "Angela, Venita",
+          "team_2_alias": "Robyn, Monique",
+          "score": "0-6 6-3 2-6",
+          "balls": "Venita Davidow / Angela Tyson",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2497,31 +2815,8 @@
           "team_1_alias": "Zanele, Juanita",
           "team_2_alias": "Sandrika, Zane",
           "score": "2-6 3-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 18 April 2026",
-          "team_1": "Carol Gossman / Comfort Shaba",
-          "team_2": "Robyn Rondi / Monique Van Achterberg",
-          "team_1_alias": "Carol, Comfort",
-          "team_2_alias": "Robyn, Monique",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 18 April 2026",
-          "team_1": "Janine john/Pauline Collinson",
-          "team_2": "Siobhan Chadinha / Debbie Fol",
-          "team_1_alias": "Pauline, Janine",
-          "team_2_alias": "Siobhan, Debbie",
-          "score": "",
-          "status": "Pending"
+          "balls": "Sandrika Gajraj / Zane Jacobs (Zee)",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2533,7 +2828,34 @@
           "team_1_alias": "Angela, Venita",
           "team_2_alias": "Sharon, Sam",
           "score": "2-6 5-7",
-          "status": "Waiting Approval"
+          "balls": "Venita Davidow / Angela Tyson",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 18 April 2026",
+          "team_1": "Janine john/Pauline Collinson",
+          "team_2": "Siobhan Chadinha / Debbie Fol",
+          "team_1_alias": "Pauline, Janine",
+          "team_2_alias": "Siobhan, Debbie",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 18 April 2026",
+          "team_1": "Carol Gossman / Comfort Shaba",
+          "team_2": "Robyn Rondi / Monique Van Achterberg",
+          "team_1_alias": "Carol, Comfort",
+          "team_2_alias": "Robyn, Monique",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Ladies",
@@ -2545,7 +2867,8 @@
           "team_1_alias": "Kerry, Annelore",
           "team_2_alias": "Nicola, Kerryn",
           "score": "6-4 1-6 6-1",
-          "status": "Waiting Approval"
+          "balls": "Kerry Panczyk/ Annelore Wheeler",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2557,7 +2880,8 @@
           "team_1_alias": "Nicola, Kerryn",
           "team_2_alias": "Robyn, Monique",
           "score": "6-0 6-3",
-          "status": "Waiting Approval"
+          "balls": "Kerryn Maralik/ Nicola Pratley",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2569,6 +2893,7 @@
           "team_1_alias": "Zanele, Juanita",
           "team_2_alias": "Siobhan, Debbie",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -2581,7 +2906,8 @@
           "team_1_alias": "Pauline, Janine",
           "team_2_alias": "Angela, Venita",
           "score": "6-1 6-4",
-          "status": "Waiting Approval"
+          "balls": "Janine john/Pauline Collinson",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2593,7 +2919,8 @@
           "team_1_alias": "Carol, Comfort",
           "team_2_alias": "Sharon, Sam",
           "score": "6-4 3-6 6-3",
-          "status": "Waiting Approval"
+          "balls": "Carol Gossman / Comfort Shaba",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2605,7 +2932,8 @@
           "team_1_alias": "Kerry, Annelore",
           "team_2_alias": "Sandrika, Zane",
           "score": "4-6 3-6",
-          "status": "Waiting Approval"
+          "balls": "Kerry Panczyk/ Annelore Wheeler",
+          "status": "Validated"
         }
       ]
     },
@@ -2618,13 +2946,27 @@
           "category": "Ladies",
           "division": "Honeydew ladies Div 3",
           "season": "Season 1 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Angela Finlay/ Tarryn Purdon",
-          "team_2": "Kayla Viljoen/ Charisca Meyer",
-          "team_1_alias": "Tarryn, Angela",
-          "team_2_alias": "Kayla, Charisca",
-          "score": "",
-          "status": "Pending"
+          "date": "Saturday, 6 June 2026",
+          "team_1": "Masego Gaorekwe / Hillary Lilford",
+          "team_2": "Debbie Lindeque / Natasha Levenderis",
+          "team_1_alias": "Hillary, Masego",
+          "team_2_alias": "Debbie, Debbie",
+          "score": "6-0 6-4",
+          "balls": "Masego Gaorekwe / Hillary Lilford",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 6 June 2026",
+          "team_1": "Kayla Viljoen/ Charisca Meyer",
+          "team_2": "Hanli de Coning / Carolyn Humphries",
+          "team_1_alias": "Kayla, Charisca",
+          "team_2_alias": "Hanli, Carolyn",
+          "score": "3-6 6-4 1-6",
+          "balls": "Kayla Viljoen/ Charisca Meyer",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2636,7 +2978,21 @@
           "team_1_alias": "Venushka, Printha",
           "team_2_alias": "Debbie, Debbie",
           "score": "1-6 6-2 5-7",
-          "status": "Waiting Approval"
+          "balls": "Printha G / Venushka Naidoo",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "team_2": "Bailey Maralik/ Jodie Trueman",
+          "team_1_alias": "Tracey, Lynn",
+          "team_2_alias": "Jodie, Bailey, Jodie",
+          "score": "1-6 3-6",
+          "balls": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2648,79 +3004,34 @@
           "team_1_alias": "Hillary, Masego",
           "team_2_alias": "Ginette, Sulona",
           "score": "6-2 1-6 6-4",
-          "status": "Waiting Approval"
+          "balls": "Masego Gaorekwe / Hillary Lilford",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
           "division": "Honeydew ladies Div 3",
           "season": "Season 1 (Current)",
           "date": "Saturday, 23 May 2026",
-          "team_1": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
-          "team_2": "Bailey Maralik/ Jodie Trueman",
-          "team_1_alias": "Tracey, Lynn",
-          "team_2_alias": "Jodie, Bailey, Jodie",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 23 May 2026",
-          "team_1": "Natasha Jansen / Cherize Fillmore",
-          "team_2": "Hanli de Coning / Carolyn Humphries",
-          "team_1_alias": "Cherize, Natasha",
-          "team_2_alias": "Hanli, Carolyn",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Bailey Maralik/ Jodie Trueman",
-          "team_2": "Debbie Lindeque / Natasha Levenderis",
-          "team_1_alias": "Jodie, Bailey, Jodie",
-          "team_2_alias": "Debbie, Debbie",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Printha G / Venushka Naidoo",
-          "team_2": "Ginette Bently/ Sulona Seebran",
-          "team_1_alias": "Venushka, Printha",
-          "team_2_alias": "Ginette, Sulona",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Natasha Jansen / Cherize Fillmore",
+          "team_1": "Angela Finlay/ Tarryn Purdon",
           "team_2": "Kayla Viljoen/ Charisca Meyer",
-          "team_1_alias": "Cherize, Natasha",
+          "team_1_alias": "Tarryn, Angela",
           "team_2_alias": "Kayla, Charisca",
-          "score": "1-6 3-6",
-          "status": "Waiting Approval"
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Ladies",
           "division": "Honeydew ladies Div 3",
           "season": "Season 1 (Current)",
-          "date": "Saturday, 9 May 2026",
-          "team_1": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "date": "Saturday, 23 May 2026",
+          "team_1": "Natasha Jansen / Cherize Fillmore",
           "team_2": "Hanli de Coning / Carolyn Humphries",
-          "team_1_alias": "Tracey, Lynn",
+          "team_1_alias": "Cherize, Natasha",
           "team_2_alias": "Hanli, Carolyn",
-          "score": "0-6 3-6",
-          "status": "Waiting Approval"
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Ladies",
@@ -2732,7 +3043,60 @@
           "team_1_alias": "Tarryn, Angela",
           "team_2_alias": "Hillary, Masego",
           "score": "6-3 6-7 1-6",
-          "status": "Waiting Approval"
+          "balls": "Angela Finlay/ Tarryn Purdon",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Printha G / Venushka Naidoo",
+          "team_2": "Ginette Bently/ Sulona Seebran",
+          "team_1_alias": "Venushka, Printha",
+          "team_2_alias": "Ginette, Sulona",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "team_2": "Hanli de Coning / Carolyn Humphries",
+          "team_1_alias": "Tracey, Lynn",
+          "team_2_alias": "Hanli, Carolyn",
+          "score": "0-6 3-6",
+          "balls": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Natasha Jansen / Cherize Fillmore",
+          "team_2": "Kayla Viljoen/ Charisca Meyer",
+          "team_1_alias": "Cherize, Natasha",
+          "team_2_alias": "Kayla, Charisca",
+          "score": "1-6 3-6",
+          "balls": "Natasha Jansen / Cherize Fillmore",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 9 May 2026",
+          "team_1": "Bailey Maralik/ Jodie Trueman",
+          "team_2": "Debbie Lindeque / Natasha Levenderis",
+          "team_1_alias": "Jodie, Bailey, Jodie",
+          "team_2_alias": "Debbie, Debbie",
+          "score": "6-2 6-4",
+          "balls": "Bailey Maralik/ Jodie Trueman",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2743,32 +3107,22 @@
           "team_2": "Ginette Bently/ Sulona Seebran",
           "team_1_alias": "Jodie, Bailey, Jodie",
           "team_2_alias": "Ginette, Sulona",
+          "score": "6-2 6-2",
+          "balls": "Bailey Maralik/ Jodie Trueman",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Angela Finlay/ Tarryn Purdon",
+          "team_2": "Natasha Jansen / Cherize Fillmore",
+          "team_1_alias": "Tarryn, Angela",
+          "team_2_alias": "Cherize, Natasha",
           "score": "",
+          "balls": "",
           "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Debbie Lindeque / Natasha Levenderis",
-          "team_2": "Hanli de Coning / Carolyn Humphries",
-          "team_1_alias": "Debbie, Debbie",
-          "team_2_alias": "Hanli, Carolyn",
-          "score": "1-6 2-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 25 April 2026",
-          "team_1": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
-          "team_2": "Kayla Viljoen/ Charisca Meyer",
-          "team_1_alias": "Tracey, Lynn",
-          "team_2_alias": "Kayla, Charisca",
-          "score": "6-1 4-6 6-4",
-          "status": "Waiting Approval"
         },
         {
           "category": "Ladies",
@@ -2780,19 +3134,47 @@
           "team_1_alias": "Venushka, Printha",
           "team_2_alias": "Hillary, Masego",
           "score": "2-6 0-6",
-          "status": "Waiting Approval"
+          "balls": "Printha G / Venushka Naidoo",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
           "division": "Honeydew ladies Div 3",
           "season": "Season 1 (Current)",
           "date": "Saturday, 25 April 2026",
-          "team_1": "Angela Finlay/ Tarryn Purdon",
-          "team_2": "Natasha Jansen / Cherize Fillmore",
-          "team_1_alias": "Tarryn, Angela",
-          "team_2_alias": "Cherize, Natasha",
-          "score": "",
-          "status": "Pending"
+          "team_1": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "team_2": "Kayla Viljoen/ Charisca Meyer",
+          "team_1_alias": "Tracey, Lynn",
+          "team_2_alias": "Kayla, Charisca",
+          "score": "6-1 4-6 6-4",
+          "balls": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 25 April 2026",
+          "team_1": "Debbie Lindeque / Natasha Levenderis",
+          "team_2": "Hanli de Coning / Carolyn Humphries",
+          "team_1_alias": "Debbie, Debbie",
+          "team_2_alias": "Hanli, Carolyn",
+          "score": "1-6 2-6",
+          "balls": "Debbie Lindeque / Natasha Levenderis",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Bailey Maralik/ Jodie Trueman",
+          "team_2": "Masego Gaorekwe / Hillary Lilford",
+          "team_1_alias": "Jodie, Bailey, Jodie",
+          "team_2_alias": "Hillary, Masego",
+          "score": "6-0 6-4",
+          "balls": "Masego Gaorekwe / Hillary Lilford",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2804,43 +3186,8 @@
           "team_1_alias": "Tracey, Lynn",
           "team_2_alias": "Cherize, Natasha",
           "score": "6-3 6-2",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Angela Finlay/ Tarryn Purdon",
-          "team_2": "Printha G / Venushka Naidoo",
-          "team_1_alias": "Tarryn, Angela",
-          "team_2_alias": "Venushka, Printha",
-          "score": "4-6 6-1 5-3",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Bailey Maralik/ Jodie Trueman",
-          "team_2": "Masego Gaorekwe / Hillary Lilford",
-          "team_1_alias": "Jodie, Bailey, Jodie",
-          "team_2_alias": "Hillary, Masego",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 11 April 2026",
-          "team_1": "Debbie Lindeque / Natasha Levenderis",
-          "team_2": "Kayla Viljoen/ Charisca Meyer",
-          "team_1_alias": "Debbie, Debbie",
-          "team_2_alias": "Kayla, Charisca",
-          "score": "3-6 1-6",
-          "status": "Waiting Approval"
+          "balls": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2852,55 +3199,34 @@
           "team_1_alias": "Hanli, Carolyn",
           "team_2_alias": "Ginette, Sulona",
           "score": "6-2 6-1",
-          "status": "Waiting Approval"
+          "balls": "Hanli de Coning / Carolyn Humphries",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
           "division": "Honeydew ladies Div 3",
           "season": "Season 1 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Bailey Maralik/ Jodie Trueman",
-          "team_2": "Printha G / Venushka Naidoo",
-          "team_1_alias": "Jodie, Bailey, Jodie",
-          "team_2_alias": "Venushka, Printha",
-          "score": "6-0 2-6 6-1",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Hanli de Coning / Carolyn Humphries",
-          "team_2": "Masego Gaorekwe / Hillary Lilford",
-          "team_1_alias": "Hanli, Carolyn",
-          "team_2_alias": "Hillary, Masego",
-          "score": "6-2 6-3",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew ladies Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 28 March 2026",
+          "date": "Saturday, 11 April 2026",
           "team_1": "Angela Finlay/ Tarryn Purdon",
-          "team_2": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "team_2": "Printha G / Venushka Naidoo",
           "team_1_alias": "Tarryn, Angela",
-          "team_2_alias": "Tracey, Lynn",
-          "score": "1-6 2-6",
-          "status": "Waiting Approval"
+          "team_2_alias": "Venushka, Printha",
+          "score": "4-6 6-1 5-3",
+          "balls": "Printha G / Venushka Naidoo",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
           "division": "Honeydew ladies Div 3",
           "season": "Season 1 (Current)",
-          "date": "Saturday, 28 March 2026",
-          "team_1": "Ginette Bently/ Sulona Seebran",
+          "date": "Saturday, 11 April 2026",
+          "team_1": "Debbie Lindeque / Natasha Levenderis",
           "team_2": "Kayla Viljoen/ Charisca Meyer",
-          "team_1_alias": "Ginette, Sulona",
+          "team_1_alias": "Debbie, Debbie",
           "team_2_alias": "Kayla, Charisca",
-          "score": "7-5 6-4",
-          "status": "Waiting Approval"
+          "score": "3-6 1-6",
+          "balls": "Kayla Viljoen/ Charisca Meyer",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2912,7 +3238,60 @@
           "team_1_alias": "Debbie, Debbie",
           "team_2_alias": "Cherize, Natasha",
           "score": "5-7 4-6",
-          "status": "Waiting Approval"
+          "balls": "Debbie Lindeque / Natasha Levenderis",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Hanli de Coning / Carolyn Humphries",
+          "team_2": "Masego Gaorekwe / Hillary Lilford",
+          "team_1_alias": "Hanli, Carolyn",
+          "team_2_alias": "Hillary, Masego",
+          "score": "6-2 6-3",
+          "balls": "Hanli de Coning / Carolyn Humphries",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Angela Finlay/ Tarryn Purdon",
+          "team_2": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "team_1_alias": "Tarryn, Angela",
+          "team_2_alias": "Tracey, Lynn",
+          "score": "1-6 2-6",
+          "balls": "Angela Finlay/ Tarryn Purdon",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Bailey Maralik/ Jodie Trueman",
+          "team_2": "Printha G / Venushka Naidoo",
+          "team_1_alias": "Jodie, Bailey, Jodie",
+          "team_2_alias": "Venushka, Printha",
+          "score": "6-0 2-6 6-1",
+          "balls": "Bailey Maralik/ Jodie Trueman",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew ladies Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 28 March 2026",
+          "team_1": "Ginette Bently/ Sulona Seebran",
+          "team_2": "Kayla Viljoen/ Charisca Meyer",
+          "team_1_alias": "Ginette, Sulona",
+          "team_2_alias": "Kayla, Charisca",
+          "score": "7-5 6-4",
+          "balls": "Ginette Bently/ Sulona Seebran",
+          "status": "Validated"
         }
       ]
     },
@@ -2926,12 +3305,26 @@
           "division": "Ladies Beginner League",
           "season": "Season 2 (Current)",
           "date": "Saturday, 30 May 2026",
+          "team_1": "Tyler Bartlett / Cayla Strauss",
+          "team_2": "Estea Kloppers / Henriette De Ridder",
+          "team_1_alias": "Cayla, Tyler",
+          "team_2_alias": "Estea, Henriette",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Ladies Beginner League",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 30 May 2026",
           "team_1": "Lauren De Freitas / Liane Budhram",
           "team_2": "Isabella Purdon / Nina Le Cordeur",
           "team_1_alias": "Lauren, Liane",
           "team_2_alias": "Isabella, Nina",
           "score": "6-4 4-6 6-0",
-          "status": "Waiting Approval"
+          "balls": "Lauren De Freitas / Liane Budhram",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2942,20 +3335,9 @@
           "team_2": "Vanessa Butler / Mariana Cornelius",
           "team_1_alias": "Sue, Candice",
           "team_2_alias": "Vanessa, Mariana",
-          "score": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Ladies Beginner League",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 30 May 2026",
-          "team_1": "Tyler Bartlett / Cayla Strauss",
-          "team_2": "Estea Kloppers / Henriette De Ridder",
-          "team_1_alias": "Cayla, Tyler",
-          "team_2_alias": "Estea, Henriette",
-          "score": "",
-          "status": "Pending"
+          "score": "6-4 7-6",
+          "balls": "Vanessa Butler / Mariana Cornelius",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2967,19 +3349,8 @@
           "team_1_alias": "Estea, Henriette",
           "team_2_alias": "Isabella, Nina",
           "score": "6-3 4-6 7-5",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Ladies Beginner League",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
-          "team_1": "Candice O Sullivan / Sue Cillers",
-          "team_2": "Lauren De Freitas / Liane Budhram",
-          "team_1_alias": "Sue, Candice",
-          "team_2_alias": "Lauren, Liane",
-          "score": "2-6 5-6",
-          "status": "Waiting Approval"
+          "balls": "Estea Kloppers / Henriette De Ridder",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2991,19 +3362,21 @@
           "team_1_alias": "Cayla, Tyler",
           "team_2_alias": "Vanessa, Mariana",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
           "category": "Ladies",
           "division": "Ladies Beginner League",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 2 May 2026",
-          "team_1": "Estea Kloppers / Henriette De Ridder",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Candice O Sullivan / Sue Cillers",
           "team_2": "Lauren De Freitas / Liane Budhram",
-          "team_1_alias": "Estea, Henriette",
+          "team_1_alias": "Sue, Candice",
           "team_2_alias": "Lauren, Liane",
-          "score": "3-6 2-6",
-          "status": "Waiting Approval"
+          "score": "2-6 5-6",
+          "balls": "Lauren De Freitas / Liane Budhram",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -3015,7 +3388,21 @@
           "team_1_alias": "Sue, Candice",
           "team_2_alias": "Cayla, Tyler",
           "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "balls": "Candice O Sullivan / Sue Cillers",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Ladies Beginner League",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 2 May 2026",
+          "team_1": "Estea Kloppers / Henriette De Ridder",
+          "team_2": "Lauren De Freitas / Liane Budhram",
+          "team_1_alias": "Estea, Henriette",
+          "team_2_alias": "Lauren, Liane",
+          "score": "3-6 2-6",
+          "balls": "Estea Kloppers / Henriette De Ridder",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -3027,6 +3414,7 @@
           "team_1_alias": "Isabella, Nina",
           "team_2_alias": "Vanessa, Mariana",
           "score": "",
+          "balls": "",
           "status": "Pending"
         }
       ]
@@ -3046,6 +3434,7 @@
           "team_1_alias": "Alex, Lea",
           "team_2_alias": "Meghan, Houston",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -3058,6 +3447,7 @@
           "team_1_alias": "Madison",
           "team_2_alias": "Liam, Lalique",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -3070,6 +3460,7 @@
           "team_1_alias": "Beverly, Wahldo",
           "team_2_alias": "Dean, Chantelle",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -3082,7 +3473,8 @@
           "team_1_alias": "Nicks, Richard",
           "team_2_alias": "Louise, Anthonetta",
           "score": "6-4 4-6 3-6",
-          "status": "Waiting Approval"
+          "balls": "Nicks Bothwell / Richard Garrard",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3094,7 +3486,8 @@
           "team_1_alias": "Alex, Lea",
           "team_2_alias": "Nicks, Richard",
           "score": "6-0 6-0",
-          "status": "Waiting Approval"
+          "balls": "Nicks Bothwell / Richard Garrard",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3106,7 +3499,8 @@
           "team_1_alias": "Dean, Chantelle",
           "team_2_alias": "Liam, Lalique",
           "score": "1-6 6-2 6-1",
-          "status": "Waiting Approval"
+          "balls": "Chantelle Usmar / Dean Lindecke",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3118,7 +3512,8 @@
           "team_1_alias": "Beverly, Wahldo",
           "team_2_alias": "Louise, Anthonetta",
           "score": "2-6 4-6",
-          "status": "Waiting Approval"
+          "balls": "Louise Nel / Anthonetta Nel",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3130,7 +3525,8 @@
           "team_1_alias": "Madison",
           "team_2_alias": "Meghan, Houston",
           "score": "7-6 6-4",
-          "status": "Waiting Approval"
+          "balls": "Noah Sked / Madison Sked",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3142,7 +3538,8 @@
           "team_1_alias": "Dean, Chantelle",
           "team_2_alias": "Meghan, Houston",
           "score": "6-4 6-3",
-          "status": "Waiting Approval"
+          "balls": "Chantelle Usmar / Dean Lindecke",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3154,7 +3551,8 @@
           "team_1_alias": "Beverly, Wahldo",
           "team_2_alias": "Nicks, Richard",
           "score": "6-3 6-3",
-          "status": "Waiting Approval"
+          "balls": "Beverly Stace / Wahldo Van der Merwe",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3166,7 +3564,8 @@
           "team_1_alias": "Alex, Lea",
           "team_2_alias": "Madison",
           "score": "6-2 6-4",
-          "status": "Waiting Approval"
+          "balls": "Alex Smith / Lea Smith",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3178,7 +3577,8 @@
           "team_1_alias": "Liam, Lalique",
           "team_2_alias": "Louise, Anthonetta",
           "score": "2-6 1-6",
-          "status": "Waiting Approval"
+          "balls": "Lalique Du Toit / Liam Du Toit",
+          "status": "Validated"
         }
       ]
     },
@@ -3197,7 +3597,8 @@
           "team_1_alias": "Hermanus, Eunita",
           "team_2_alias": "Kyle, Nadine",
           "score": "6-2 6-4",
-          "status": "Waiting Approval"
+          "balls": "Hermanus Du Preez / Eunita Du Preez",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3209,19 +3610,8 @@
           "team_1_alias": "Wolfi, Kerryn",
           "team_2_alias": "Nicole, Rowan",
           "score": "",
+          "balls": "",
           "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Tuesday, 2 June 2026",
-          "team_1": "Steven Sienart / Maryna Welman",
-          "team_2": "Karen Dengler / Malcom Dengler",
-          "team_1_alias": "Steven",
-          "team_2_alias": "Malcom, Karen",
-          "score": "6-7 0-6",
-          "status": "Waiting Approval"
         },
         {
           "category": "Mixed",
@@ -3233,7 +3623,21 @@
           "team_1_alias": "Ashwin, Sandrika",
           "team_2_alias": "Ziad, Liyah",
           "score": "6-4 6-7 3-6",
-          "status": "Waiting Approval"
+          "balls": "Sandrika Gajraj / Ashwin Naidu",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 2 June 2026",
+          "team_1": "Steven Sienart / Maryna Welman",
+          "team_2": "Karen Dengler / Malcom Dengler",
+          "team_1_alias": "Steven",
+          "team_2_alias": "Malcom, Karen",
+          "score": "6-7 0-6",
+          "balls": "Steven Sienart / Maryna Welman",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3245,6 +3649,7 @@
           "team_1_alias": "Hermanus, Eunita",
           "team_2_alias": "Ziad, Liyah",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -3257,19 +3662,8 @@
           "team_1_alias": "Kyle, Nadine",
           "team_2_alias": "Malcom, Karen",
           "score": "",
+          "balls": "",
           "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Tuesday, 19 May 2026",
-          "team_1": "Steven Sienart / Maryna Welman",
-          "team_2": "Rowan Budhram / Nicole Sheingold",
-          "team_1_alias": "Steven",
-          "team_2_alias": "Nicole, Rowan",
-          "score": "7-5 6-2",
-          "status": "Waiting Approval"
         },
         {
           "category": "Mixed",
@@ -3281,7 +3675,21 @@
           "team_1_alias": "Wolfi, Kerryn",
           "team_2_alias": "Ashwin, Sandrika",
           "score": "4-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Sandrika Gajraj / Ashwin Naidu",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 19 May 2026",
+          "team_1": "Steven Sienart / Maryna Welman",
+          "team_2": "Rowan Budhram / Nicole Sheingold",
+          "team_1_alias": "Steven",
+          "team_2_alias": "Nicole, Rowan",
+          "score": "7-5 6-2",
+          "balls": "Steven Sienart / Maryna Welman",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3293,6 +3701,7 @@
           "team_1_alias": "Malcom, Karen",
           "team_2_alias": "Ziad, Liyah",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -3305,6 +3714,20 @@
           "team_1_alias": "Wolfi, Kerryn",
           "team_2_alias": "Steven",
           "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 2 (Current)",
+          "date": "Tuesday, 5 May 2026",
+          "team_1": "Kyle Prescott /Nadine Mansour",
+          "team_2": "Rowan Budhram / Nicole Sheingold",
+          "team_1_alias": "Kyle, Nadine",
+          "team_2_alias": "Nicole, Rowan",
+          "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -3317,19 +3740,8 @@
           "team_1_alias": "Hermanus, Eunita",
           "team_2_alias": "Ashwin, Sandrika",
           "score": "2-6 3-6",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 2",
-          "season": "Season 2 (Current)",
-          "date": "Tuesday, 5 May 2026",
-          "team_1": "Kyle Prescott /Nadine Mansour",
-          "team_2": "Rowan Budhram / Nicole Sheingold",
-          "team_1_alias": "Kyle, Nadine",
-          "team_2_alias": "Nicole, Rowan",
-          "score": "",
-          "status": "Pending"
+          "balls": "Hermanus Du Preez / Eunita Du Preez",
+          "status": "Validated"
         }
       ]
     },
@@ -3348,7 +3760,8 @@
           "team_1_alias": "Marius, Zané",
           "team_2_alias": "Lee-Ann, Reenen",
           "score": "6-2 4-6 6-7",
-          "status": "Waiting Approval"
+          "balls": "Zané Jacobs / Marius Jacobs",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3360,6 +3773,7 @@
           "team_1_alias": "Matthew, Chloe",
           "team_2_alias": "Angela, Mops",
           "score": "",
+          "balls": "",
           "status": "Pending"
         },
         {
@@ -3372,7 +3786,8 @@
           "team_1_alias": "Lee-Ann, Reenen",
           "team_2_alias": "Ronel, Willie",
           "score": "6-4 4-6 2-6",
-          "status": "Waiting Approval"
+          "balls": "Ronel Laubscher/ Willie Vd",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3384,7 +3799,8 @@
           "team_1_alias": "Marius, Zané",
           "team_2_alias": "Ianthé, Warren",
           "score": "2-6 7-5 6-7",
-          "status": "Waiting Approval"
+          "balls": "Zané Jacobs / Marius Jacobs",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3396,7 +3812,8 @@
           "team_1_alias": "Hendriette, Morne",
           "team_2_alias": "Daniella, Martin, Nadine, Kyle",
           "score": "6-1 6-3",
-          "status": "Waiting Approval"
+          "balls": "Martin Miog / Daniella Mitchell",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3408,7 +3825,8 @@
           "team_1_alias": "Angela, Mops",
           "team_2_alias": "Ronel, Willie",
           "score": "6-2 6-1",
-          "status": "Waiting Approval"
+          "balls": "Mops / Angela Molomo",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3420,7 +3838,8 @@
           "team_1_alias": "Matthew, Chloe",
           "team_2_alias": "Ianthé, Warren",
           "score": "1-6 4-6",
-          "status": "Waiting Approval"
+          "balls": "Matthew Bower / Chloe Smith",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3432,7 +3851,8 @@
           "team_1_alias": "Lee-Ann, Reenen",
           "team_2_alias": "Daniella, Martin, Nadine, Kyle",
           "score": "6-2 6-1",
-          "status": "Waiting Approval"
+          "balls": "Lee-Ann Smith / Reenen Burger",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -3444,7 +3864,8 @@
           "team_1_alias": "Hendriette, Morne",
           "team_2_alias": "Marius, Zané",
           "score": "6-4 2-6 6-4",
-          "status": "Waiting Approval"
+          "balls": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "status": "Validated"
         }
       ]
     }
