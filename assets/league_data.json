@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-19T08:32:41.790320+00:00",
+  "generated_at_utc": "2026-06-20T07:02:11.755182+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -1260,23 +1260,23 @@
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
           "date": "Saturday, 23 May 2026",
-          "team_1": "Viven Keaton / Gavin Govender",
-          "team_2": "Wolfi Maralik / Richard Garrard",
-          "team_1_alias": "Viven, Gavin",
-          "team_2_alias": "Wolfi",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Pieter Bekker / Morne Venter",
+          "team_2": "Morne Glover / Yidher Chang",
+          "team_1_alias": "Morne, Pieter",
+          "team_2_alias": "Morne, Braam",
+          "score": "1-6 1-6",
+          "balls": "Pieter Bekker / Morne Venter",
+          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
           "date": "Saturday, 23 May 2026",
-          "team_1": "Pieter Bekker / Morne Venter",
-          "team_2": "Morne Glover / Yidher Chang",
-          "team_1_alias": "Morne, Pieter",
-          "team_2_alias": "Morne, Braam",
+          "team_1": "Viven Keaton / Gavin Govender",
+          "team_2": "Wolfi Maralik / Richard Garrard",
+          "team_1_alias": "Viven, Gavin",
+          "team_2_alias": "Wolfi",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2106,19 +2106,6 @@
           "division": "Krugersdorp",
           "season": "Season 1 (Current)",
           "date": "Saturday, 13 June 2026",
-          "team_1": "Erik Viviers/ Ruan Lategan",
-          "team_2": "Janu Pienaar / Joshua Drabble",
-          "team_1_alias": "Ruan, Erik",
-          "team_2_alias": "Janu, Joshua",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Krugersdorp",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 13 June 2026",
           "team_1": "Ebrahim Dindar/ Muhammad Dindar",
           "team_2": "Matthew Tarr / Johan Greylin",
           "team_1_alias": "Ebrahim, Muhhammad",
@@ -2126,6 +2113,19 @@
           "score": "6-1 6-2",
           "balls": "Matthew Tarr / Johan Greylin",
           "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Krugersdorp",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 13 June 2026",
+          "team_1": "Erik Viviers/ Ruan Lategan",
+          "team_2": "Janu Pienaar / Joshua Drabble",
+          "team_1_alias": "Ruan, Erik",
+          "team_2_alias": "Janu, Joshua",
+          "score": "4-6 3-6",
+          "balls": "Erik Viviers/ Ruan Lategan",
+          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
