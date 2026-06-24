@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-23T06:46:49.093451+00:00",
+  "generated_at_utc": "2026-06-24T06:43:16.322873+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -765,7 +765,7 @@
           "team_2_alias": "Tiaan, Rayno",
           "score": "0-6 2-6",
           "balls": "Morgan Wentzel / Steven",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1149,19 +1149,6 @@
           "division": "Honeydew DIV 2",
           "season": "Season 2 (Current)",
           "date": "Saturday, 4 April 2026",
-          "team_1": "Malcom Dengler / Noah Sked",
-          "team_2": "Garreth Raath / Brendan Beech",
-          "team_1_alias": "Malcom, Noah",
-          "team_2_alias": "Garreth, Brendan",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 2",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 4 April 2026",
           "team_1": "Peter Panczyk/ Alfred Visagie",
           "team_2": "Muzaffar Mohamed / Will Young",
           "team_1_alias": "Peter, Alfred",
@@ -1169,6 +1156,19 @@
           "score": "6-1 6-0",
           "balls": "Peter Panczyk/ Alfred Visagie",
           "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 2",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 4 April 2026",
+          "team_1": "Malcom Dengler / Noah Sked",
+          "team_2": "Garreth Raath / Brendan Beech",
+          "team_1_alias": "Malcom, Noah",
+          "team_2_alias": "Garreth, Brendan",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -1403,13 +1403,13 @@
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
           "date": "Saturday, 23 May 2026",
-          "team_1": "Viven Keaton / Gavin Govender",
-          "team_2": "Wolfi Maralik / Richard Garrard",
-          "team_1_alias": "Viven, Gavin",
-          "team_2_alias": "Wolfi",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Pieter Bekker / Morne Venter",
+          "team_2": "Morne Glover / Yidher Chang",
+          "team_1_alias": "Morne, Pieter",
+          "team_2_alias": "Morne, Braam",
+          "score": "1-6 1-6",
+          "balls": "Pieter Bekker / Morne Venter",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1455,12 +1455,12 @@
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
           "date": "Saturday, 23 May 2026",
-          "team_1": "Pieter Bekker / Morne Venter",
-          "team_2": "Morne Glover / Yidher Chang",
-          "team_1_alias": "Morne, Pieter",
-          "team_2_alias": "Morne, Braam",
+          "team_1": "Viven Keaton / Gavin Govender",
+          "team_2": "Wolfi Maralik / Richard Garrard",
+          "team_1_alias": "Viven, Gavin",
+          "team_2_alias": "Wolfi",
           "score": "1-6 1-6",
-          "balls": "Pieter Bekker / Morne Venter",
+          "balls": "Viven Keaton / Gavin Govender",
           "status": "Validated"
         },
         {
@@ -2588,6 +2588,19 @@
           "division": "Syringa",
           "season": "Season 1 (Current)",
           "date": "Saturday, 13 June 2026",
+          "team_1": "Tiaan Holtzhausen / Juann de Waal",
+          "team_2": "Riaz Varachia / Ayman Varachia",
+          "team_1_alias": "Tiaan, Juaan",
+          "team_2_alias": "Riaz, Ayman",
+          "score": "3-6 6-7",
+          "balls": "Tiaan Holtzhausen / Juann de Waal",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Syringa",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 13 June 2026",
           "team_1": "Adam Fillmore / Casey Fillmore",
           "team_2": "Steven Sienaert / Aaron Leach",
           "team_1_alias": "Adam, Casey",
@@ -2620,19 +2633,6 @@
           "team_2_alias": "Ian, Wian",
           "score": "2-6 2-6",
           "balls": "Brian Seymour / Dirk Loggerenberg",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Syringa",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 13 June 2026",
-          "team_1": "Tiaan Holtzhausen / Juann de Waal",
-          "team_2": "Riaz Varachia / Ayman Varachia",
-          "team_1_alias": "Tiaan, Juaan",
-          "team_2_alias": "Riaz, Ayman",
-          "score": "3-6 6-7",
-          "balls": "Tiaan Holtzhausen / Juann de Waal",
           "status": "Validated"
         },
         {
@@ -4756,13 +4756,13 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 22 June 2026",
-          "team_1": "Martin Miog / Daniella Mitchell",
-          "team_2": "Jerome / Comfort",
-          "team_1_alias": "Daniella, Martin, Nadine, Kyle",
-          "team_2_alias": "Jerome, Comfort",
-          "score": "2-6 3-6",
-          "balls": "Martin Miog / Daniella Mitchell",
-          "status": "Waiting Approval"
+          "team_1": "Zané Jacobs / Marius Jacobs",
+          "team_2": "Lee-Ann Smith / Reenen Burger",
+          "team_1_alias": "Marius, Zané",
+          "team_2_alias": "Lee-Ann, Reenen",
+          "score": "6-2 4-6 6-7",
+          "balls": "Zané Jacobs / Marius Jacobs",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -4782,13 +4782,13 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 22 June 2026",
-          "team_1": "Zané Jacobs / Marius Jacobs",
-          "team_2": "Lee-Ann Smith / Reenen Burger",
-          "team_1_alias": "Marius, Zané",
-          "team_2_alias": "Lee-Ann, Reenen",
-          "score": "6-2 4-6 6-7",
-          "balls": "Zané Jacobs / Marius Jacobs",
-          "status": "Validated"
+          "team_1": "Martin Miog / Daniella Mitchell",
+          "team_2": "Jerome / Comfort",
+          "team_1_alias": "Daniella, Martin, Nadine, Kyle",
+          "team_2_alias": "Jerome, Comfort",
+          "score": "2-6 3-6",
+          "balls": "Martin Miog / Daniella Mitchell",
+          "status": "Waiting Approval"
         },
         {
           "category": "Mixed",
@@ -4821,6 +4821,19 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 8 June 2026",
+          "team_1": "Martin Miog / Daniella Mitchell",
+          "team_2": "Ronel Laubscher/ Willie Vd",
+          "team_1_alias": "Daniella, Martin, Nadine, Kyle",
+          "team_2_alias": "Ronel, Willie",
+          "score": "2-6 2-6",
+          "balls": "Martin Miog / Daniella Mitchell",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 8 June 2026",
           "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
           "team_2": "Warren Melnick/ Ianthé Honiball",
           "team_1_alias": "Hendriette, Morne",
@@ -4841,19 +4854,6 @@
           "score": "6-3 5-7 1-6",
           "balls": "Zané Jacobs / Marius Jacobs",
           "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Monday, 8 June 2026",
-          "team_1": "Martin Miog / Daniella Mitchell",
-          "team_2": "Ronel Laubscher/ Willie Vd",
-          "team_1_alias": "Daniella, Martin, Nadine, Kyle",
-          "team_2_alias": "Ronel, Willie",
-          "score": "2-6 2-6",
-          "balls": "Martin Miog / Daniella Mitchell",
-          "status": "Waiting Approval"
         },
         {
           "category": "Mixed",
