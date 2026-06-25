@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-24T06:43:16.322873+00:00",
+  "generated_at_utc": "2026-06-25T06:47:04.181292+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -1602,9 +1602,9 @@
           "team_2": "Mohammed Rezaan / Muhammmed Rashid",
           "team_1_alias": "Wolfi",
           "team_2_alias": "Mohammed, Muhammmed",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "7-5 6-2",
+          "balls": "Wolfi Maralik / Richard Garrard",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -4326,19 +4326,6 @@
           "division": "Ruimsig Mixed Div 1",
           "season": "Season 2 (Current)",
           "date": "Monday, 15 June 2026",
-          "team_1": "Nicks Bothwell / Richard Garrard",
-          "team_2": "Chantelle Usmar / Dean Lindecke",
-          "team_1_alias": "Richard, Nicks",
-          "team_2_alias": "Dean, Chantelle",
-          "score": "3-6 3-6",
-          "balls": "Nicks Bothwell / Richard Garrard",
-          "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Monday, 15 June 2026",
           "team_1": "Alex Smith / Lea Smith",
           "team_2": "Louise Nel / Anthonetta Nel",
           "team_1_alias": "Alex, Lea",
@@ -4377,6 +4364,19 @@
           "category": "Mixed",
           "division": "Ruimsig Mixed Div 1",
           "season": "Season 2 (Current)",
+          "date": "Monday, 15 June 2026",
+          "team_1": "Nicks Bothwell / Richard Garrard",
+          "team_2": "Chantelle Usmar / Dean Lindecke",
+          "team_1_alias": "Richard, Nicks",
+          "team_2_alias": "Dean, Chantelle",
+          "score": "3-6 3-6",
+          "balls": "Nicks Bothwell / Richard Garrard",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 2 (Current)",
           "date": "Monday, 1 June 2026",
           "team_1": "Nicks Bothwell / Richard Garrard",
           "team_2": "Louise Nel / Anthonetta Nel",
@@ -4395,9 +4395,9 @@
           "team_2": "Chantelle Usmar / Dean Lindecke",
           "team_1_alias": "Beverly, Wahldo",
           "team_2_alias": "Dean, Chantelle",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "6-3 3-6 2-6",
+          "balls": "Beverly Stace / Wahldo Van der Merwe",
+          "status": "Waiting Approval"
         },
         {
           "category": "Mixed",
@@ -4424,19 +4424,6 @@
           "score": "",
           "balls": "",
           "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Monday, 18 May 2026",
-          "team_1": "Noah Sked / Madison Sked",
-          "team_2": "Meghan Warby / Houston Warby",
-          "team_1_alias": "Madison",
-          "team_2_alias": "Meghan, Houston",
-          "score": "7-6 6-4",
-          "balls": "Noah Sked / Madison Sked",
-          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -4481,13 +4468,13 @@
           "category": "Mixed",
           "division": "Ruimsig Mixed Div 1",
           "season": "Season 2 (Current)",
-          "date": "Monday, 4 May 2026",
-          "team_1": "Alex Smith / Lea Smith",
-          "team_2": "Noah Sked / Madison Sked",
-          "team_1_alias": "Alex, Lea",
-          "team_2_alias": "Madison",
-          "score": "6-2 6-4",
-          "balls": "Alex Smith / Lea Smith",
+          "date": "Monday, 18 May 2026",
+          "team_1": "Noah Sked / Madison Sked",
+          "team_2": "Meghan Warby / Houston Warby",
+          "team_1_alias": "Madison",
+          "team_2_alias": "Meghan, Houston",
+          "score": "7-6 6-4",
+          "balls": "Noah Sked / Madison Sked",
           "status": "Validated"
         },
         {
@@ -4495,12 +4482,12 @@
           "division": "Ruimsig Mixed Div 1",
           "season": "Season 2 (Current)",
           "date": "Monday, 4 May 2026",
-          "team_1": "Lalique Du Toit / Liam Du Toit",
-          "team_2": "Louise Nel / Anthonetta Nel",
-          "team_1_alias": "Liam, Lalique",
-          "team_2_alias": "Louise, Anthonetta",
-          "score": "2-6 1-6",
-          "balls": "Lalique Du Toit / Liam Du Toit",
+          "team_1": "Alex Smith / Lea Smith",
+          "team_2": "Noah Sked / Madison Sked",
+          "team_1_alias": "Alex, Lea",
+          "team_2_alias": "Madison",
+          "score": "6-2 6-4",
+          "balls": "Alex Smith / Lea Smith",
           "status": "Validated"
         },
         {
@@ -4527,6 +4514,19 @@
           "team_2_alias": "Richard, Nicks",
           "score": "6-3 6-3",
           "balls": "Beverly Stace / Wahldo Van der Merwe",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 2 (Current)",
+          "date": "Monday, 4 May 2026",
+          "team_1": "Lalique Du Toit / Liam Du Toit",
+          "team_2": "Louise Nel / Anthonetta Nel",
+          "team_1_alias": "Liam, Lalique",
+          "team_2_alias": "Louise, Anthonetta",
+          "score": "2-6 1-6",
+          "balls": "Lalique Du Toit / Liam Du Toit",
           "status": "Validated"
         }
       ]
@@ -4788,7 +4788,7 @@
           "team_2_alias": "Jerome, Comfort",
           "score": "2-6 3-6",
           "balls": "Martin Miog / Daniella Mitchell",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Mixed",
