@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-26T06:49:55.242447+00:00",
+  "generated_at_utc": "2026-06-27T06:28:01.534234+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -856,7 +856,7 @@
           "team_2_alias": "Matthew, Jason",
           "score": "6-3 3-6 4-6",
           "balls": "Pieter Venter / Hennie Erasmus",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1273,13 +1273,13 @@
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
           "date": "Saturday, 20 June 2026",
-          "team_1": "Pieter Bekker / Morne Venter",
-          "team_2": "Strini Govender / Dale Rouquette",
-          "team_1_alias": "Pieter, Morne",
-          "team_2_alias": "Strini, Dale",
-          "score": "2-6 2-6",
-          "balls": "Pieter Bekker / Morne Venter",
-          "status": "Waiting Approval"
+          "team_1": "Jarrod Rohland / Brad Edwards",
+          "team_2": "Wolfi Maralik / Richard Garrard",
+          "team_1_alias": "Brad, Jarrod",
+          "team_2_alias": "Wolfi",
+          "score": "4-6 6-3 6-3",
+          "balls": "Jarrod Rohland / Brad Edwards",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1325,12 +1325,12 @@
           "division": "Honeydew DIV 3",
           "season": "Season 2 (Current)",
           "date": "Saturday, 20 June 2026",
-          "team_1": "Jarrod Rohland / Brad Edwards",
-          "team_2": "Wolfi Maralik / Richard Garrard",
-          "team_1_alias": "Brad, Jarrod",
-          "team_2_alias": "Wolfi",
-          "score": "4-6 6-3 6-3",
-          "balls": "Jarrod Rohland / Brad Edwards",
+          "team_1": "Pieter Bekker / Morne Venter",
+          "team_2": "Strini Govender / Dale Rouquette",
+          "team_1_alias": "Pieter, Morne",
+          "team_2_alias": "Strini, Dale",
+          "score": "2-6 2-6",
+          "balls": "Pieter Bekker / Morne Venter",
           "status": "Validated"
         },
         {
@@ -1550,9 +1550,9 @@
           "team_2": "Rowan Baisley / Calvin King",
           "team_1_alias": "Wolfi",
           "team_2_alias": "Calvin, Rowan",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "3-6 6-1 6-4",
+          "balls": "Wolfi Maralik / Richard Garrard",
+          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
@@ -2424,6 +2424,19 @@
           "category": "Men's",
           "division": "Padel Lab",
           "season": "Season 2 (Current)",
+          "date": "Saturday, 27 June 2026",
+          "team_1": "Paul Jacobie / Keegan Van Den Heever",
+          "team_2": "Marius Jacobs / Andrew Fairlie",
+          "team_1_alias": "Paul, Keegan",
+          "team_2_alias": "Andrew, Marius",
+          "score": "6-2 6-2",
+          "balls": "Paul Jacobie / Keegan Van Den Heever",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Padel Lab",
+          "season": "Season 2 (Current)",
           "date": "Saturday, 13 June 2026",
           "team_1": "Reenen Burger / Gareth Dreyer",
           "team_2": "Michael Proctor / Brett Proctor",
@@ -2529,12 +2542,12 @@
           "division": "Padel Lab",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
-          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
-          "team_2": "Ruari Jansen / Noah Jansen",
-          "team_1_alias": "Johan, Lehlogonolo",
-          "team_2_alias": "Ruari",
-          "score": "6-4 6-3",
-          "balls": "Johan fourie / Lehlogonolo Jerome Mampane",
+          "team_1": "Johan Van Achterberg / Julian Achterberg",
+          "team_2": "Reenen Burger / Gareth Dreyer",
+          "team_1_alias": "Julian, Johan",
+          "team_2_alias": "Reenen, Gareth",
+          "score": "6-2 6-0",
+          "balls": "Johan Van Achterberg / Julian Achterberg",
           "status": "Validated"
         },
         {
@@ -2555,12 +2568,12 @@
           "division": "Padel Lab",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
-          "team_1": "Johan Van Achterberg / Julian Achterberg",
-          "team_2": "Reenen Burger / Gareth Dreyer",
-          "team_1_alias": "Julian, Johan",
-          "team_2_alias": "Reenen, Gareth",
-          "score": "6-2 6-0",
-          "balls": "Johan Van Achterberg / Julian Achterberg",
+          "team_1": "Marius Jacobs / Andrew Fairlie",
+          "team_2": "Michael Proctor / Brett Proctor",
+          "team_1_alias": "Andrew, Marius",
+          "team_2_alias": "Micheal, Brett",
+          "score": "6-3 6-4",
+          "balls": "Marius Jacobs / Andrew Fairlie",
           "status": "Validated"
         },
         {
@@ -2568,12 +2581,12 @@
           "division": "Padel Lab",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
-          "team_1": "Marius Jacobs / Andrew Fairlie",
-          "team_2": "Michael Proctor / Brett Proctor",
-          "team_1_alias": "Andrew, Marius",
-          "team_2_alias": "Micheal, Brett",
-          "score": "6-3 6-4",
-          "balls": "Marius Jacobs / Andrew Fairlie",
+          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
+          "team_2": "Ruari Jansen / Noah Jansen",
+          "team_1_alias": "Johan, Lehlogonolo",
+          "team_2_alias": "Ruari",
+          "score": "6-4 6-3",
+          "balls": "Johan fourie / Lehlogonolo Jerome Mampane",
           "status": "Validated"
         }
       ]
