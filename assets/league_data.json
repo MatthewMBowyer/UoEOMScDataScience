@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-09T06:46:17.073608+00:00",
+  "generated_at_utc": "2026-07-10T06:40:10.777124+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -2021,10 +2021,10 @@
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 27 June 2026",
-          "team_1": "Gysbert Groenwald/ Johan Dercksen",
-          "team_2": "Tony Ferguson / Mauritz Boshoff",
-          "team_1_alias": "Gys, Johan",
-          "team_2_alias": "Tony, Mauritz",
+          "team_1": "Akhil Naik / Akshay Ranchod",
+          "team_2": "Darryl Vince / Martin Kanka",
+          "team_1_alias": "Akhil, Akshay",
+          "team_2_alias": "Martin, Darryl",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2053,17 +2053,17 @@
           "team_2_alias": "Cam, Luke",
           "score": "6-0 6-0",
           "balls": "Dineshan Mariah / Brian Pillay",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 27 June 2026",
-          "team_1": "Akhil Naik / Akshay Ranchod",
-          "team_2": "Darryl Vince / Martin Kanka",
-          "team_1_alias": "Akhil, Akshay",
-          "team_2_alias": "Martin, Darryl",
+          "team_1": "Gysbert Groenwald/ Johan Dercksen",
+          "team_2": "Tony Ferguson / Mauritz Boshoff",
+          "team_1_alias": "Gys, Johan",
+          "team_2_alias": "Tony, Mauritz",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2099,26 +2099,13 @@
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 13 June 2026",
-          "team_1": "Matt Bowyer / Henk Slabber",
-          "team_2": "CamRondi /Luke Bailey",
-          "team_1_alias": "Matt, Henk",
-          "team_2_alias": "Cam, Luke",
-          "score": "4-6 6-4 5-7",
-          "balls": "Matt Bowyer / Henk Slabber",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 4",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 13 June 2026",
           "team_1": "Akhil Naik / Akshay Ranchod",
           "team_2": "Dineshan Mariah / Brian Pillay",
           "team_1_alias": "Akhil, Akshay",
           "team_2_alias": "Dineshan, Brian",
           "score": "0-6 0-6",
           "balls": "Dineshan Mariah / Brian Pillay",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -2137,13 +2124,13 @@
           "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
-          "date": "Saturday, 30 May 2026",
-          "team_1": "Moe Variave / Andriano Dello Lacono",
-          "team_2": "Darryl Vince / Martin Kanka",
-          "team_1_alias": "Moe, Jacques, Dello",
-          "team_2_alias": "Martin, Darryl",
-          "score": "6-2 6-1",
-          "balls": "Moe Variave / Andriano Dello Lacono",
+          "date": "Saturday, 13 June 2026",
+          "team_1": "Matt Bowyer / Henk Slabber",
+          "team_2": "CamRondi /Luke Bailey",
+          "team_1_alias": "Matt, Henk",
+          "team_2_alias": "Cam, Luke",
+          "score": "4-6 6-4 5-7",
+          "balls": "Matt Bowyer / Henk Slabber",
           "status": "Validated"
         },
         {
@@ -2157,6 +2144,32 @@
           "team_2_alias": "Tony, Mauritz",
           "score": "6-4 6-4",
           "balls": "Nelson De Freitas / Sholin Siva",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 4",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 30 May 2026",
+          "team_1": "Matt Bowyer / Henk Slabber",
+          "team_2": "Dineshan Mariah / Brian Pillay",
+          "team_1_alias": "Matt, Henk",
+          "team_2_alias": "Dineshan, Brian",
+          "score": "6-3 6-1",
+          "balls": "Matt Bowyer / Henk Slabber",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 4",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 30 May 2026",
+          "team_1": "Moe Variave / Andriano Dello Lacono",
+          "team_2": "Darryl Vince / Martin Kanka",
+          "team_1_alias": "Moe, Jacques, Dello",
+          "team_2_alias": "Martin, Darryl",
+          "score": "6-2 6-1",
+          "balls": "Moe Variave / Andriano Dello Lacono",
           "status": "Validated"
         },
         {
@@ -2183,19 +2196,6 @@
           "team_2_alias": "Cam, Luke",
           "score": "6-0 6-4",
           "balls": "Papatso Mopaka (Mr Mops) /Mthokozisi Dlamini",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 4",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 30 May 2026",
-          "team_1": "Matt Bowyer / Henk Slabber",
-          "team_2": "Dineshan Mariah / Brian Pillay",
-          "team_1_alias": "Matt, Henk",
-          "team_2_alias": "Dineshan, Brian",
-          "score": "6-3 6-1",
-          "balls": "Matt Bowyer / Henk Slabber",
           "status": "Validated"
         },
         {
@@ -2229,6 +2229,19 @@
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 16 May 2026",
+          "team_1": "Nelson De Freitas / Sholin Siva",
+          "team_2": "Darryl Vince / Martin Kanka",
+          "team_1_alias": "Sholin, Nelson",
+          "team_2_alias": "Martin, Darryl",
+          "score": "6-4 6-2",
+          "balls": "Nelson De Freitas / Sholin Siva",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 4",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 16 May 2026",
           "team_1": "Papatso Mopaka (Mr Mops) /Mthokozisi Dlamini",
           "team_2": "Dineshan Mariah / Brian Pillay",
           "team_1_alias": "Mthokozisi, Mops",
@@ -2254,19 +2267,6 @@
           "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
-          "date": "Saturday, 16 May 2026",
-          "team_1": "Nelson De Freitas / Sholin Siva",
-          "team_2": "Darryl Vince / Martin Kanka",
-          "team_1_alias": "Sholin, Nelson",
-          "team_2_alias": "Martin, Darryl",
-          "score": "6-4 6-2",
-          "balls": "Nelson De Freitas / Sholin Siva",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 4",
-          "season": "Season 1 (Current)",
           "date": "Saturday, 2 May 2026",
           "team_1": "Akhil Naik / Akshay Ranchod",
           "team_2": "Moe Variave / Andriano Dello Lacono",
@@ -2281,12 +2281,12 @@
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 2 May 2026",
-          "team_1": "Nelson De Freitas / Sholin Siva",
-          "team_2": "Gysbert Groenwald/ Johan Dercksen",
-          "team_1_alias": "Sholin, Nelson",
-          "team_2_alias": "Gys, Johan",
-          "score": "6-4 6-2",
-          "balls": "Gysbert Groenwald/ Johan Dercksen",
+          "team_1": "Tony Ferguson / Mauritz Boshoff",
+          "team_2": "Dineshan Mariah / Brian Pillay",
+          "team_1_alias": "Tony, Mauritz",
+          "team_2_alias": "Dineshan, Brian",
+          "score": "6-2 6-3",
+          "balls": "Tony Ferguson / Mauritz Boshoff",
           "status": "Validated"
         },
         {
@@ -2320,12 +2320,12 @@
           "division": "Honeydew DIV 4",
           "season": "Season 1 (Current)",
           "date": "Saturday, 2 May 2026",
-          "team_1": "Tony Ferguson / Mauritz Boshoff",
-          "team_2": "Dineshan Mariah / Brian Pillay",
-          "team_1_alias": "Tony, Mauritz",
-          "team_2_alias": "Dineshan, Brian",
-          "score": "6-2 6-3",
-          "balls": "Tony Ferguson / Mauritz Boshoff",
+          "team_1": "Nelson De Freitas / Sholin Siva",
+          "team_2": "Gysbert Groenwald/ Johan Dercksen",
+          "team_1_alias": "Sholin, Nelson",
+          "team_2_alias": "Gys, Johan",
+          "score": "6-4 6-2",
+          "balls": "Gysbert Groenwald/ Johan Dercksen",
           "status": "Validated"
         },
         {
@@ -5301,7 +5301,7 @@
           "team_2_alias": "Steven",
           "score": "6-3 2-6 5-7",
           "balls": "Sandrika Gajraj / Ashwin Naidu",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -5347,12 +5347,12 @@
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 2 (Current)",
           "date": "Tuesday, 16 June 2026",
-          "team_1": "Sandrika Gajraj / Ashwin Naidu",
-          "team_2": "Kyle Prescott /Nadine Mansour",
-          "team_1_alias": "Ashwin, Sandrika",
-          "team_2_alias": "Nadine, Kyle",
-          "score": "6-0 7-6",
-          "balls": "Sandrika Gajraj / Ashwin Naidu",
+          "team_1": "Steven Sienart / Maryna Welman",
+          "team_2": "Hermanus Du Preez / Eunita Du Preez",
+          "team_1_alias": "Steven",
+          "team_2_alias": "Eunita, Hermanus",
+          "score": "6-3 6-4",
+          "balls": "Steven Sienart / Maryna Welman",
           "status": "Validated"
         },
         {
@@ -5360,13 +5360,13 @@
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 2 (Current)",
           "date": "Tuesday, 16 June 2026",
-          "team_1": "Steven Sienart / Maryna Welman",
-          "team_2": "Hermanus Du Preez / Eunita Du Preez",
-          "team_1_alias": "Steven",
-          "team_2_alias": "Eunita, Hermanus",
-          "score": "6-3 6-4",
-          "balls": "Steven Sienart / Maryna Welman",
-          "status": "Waiting Approval"
+          "team_1": "Sandrika Gajraj / Ashwin Naidu",
+          "team_2": "Kyle Prescott /Nadine Mansour",
+          "team_1_alias": "Ashwin, Sandrika",
+          "team_2_alias": "Nadine, Kyle",
+          "score": "6-0 7-6",
+          "balls": "Sandrika Gajraj / Ashwin Naidu",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
