@@ -2,188 +2,937 @@
 <!--
 	Dopetrope by HTML5 UP
 	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Free for personal and commercial use under the CCA 3.0 license
 -->
-<html>
+<html lang="en">
 	<head>
-		<title>Matthew Bowyer E-Portfolio</title>
+		<title>Matthew Bowyer | Data Science Portfolio</title>
+
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, user-scalable=no"
+		/>
+
+		<meta
+			name="description"
+			content="The professional and academic portfolio of Matthew Bowyer, an Analytics and Data Science Manager specialising in business intelligence, automation, machine learning, telematics and applied artificial intelligence."
+		/>
+
+		<meta
+			name="keywords"
+			content="Matthew Bowyer, Data Scientist, Analytics Manager, Data Science, Machine Learning, Artificial Intelligence, Python, SQL, Tableau, Telematics"
+		/>
+
 		<link rel="stylesheet" href="assets/css/main.css" />
-	
+
+		<style>
+			:root {
+				--portfolio-dark: #252122;
+				--portfolio-red: #d52349;
+				--portfolio-light: #f7f7f7;
+				--portfolio-border: #e2e2e2;
+				--portfolio-text: #333333;
+				--portfolio-muted: #666666;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				color: var(--portfolio-text);
+			}
+
+			#header {
+				padding-bottom: 2rem;
+			}
+
+			#header h1 {
+				margin-bottom: 0.4rem;
+			}
+
+			.site-subtitle {
+				margin: 0 0 1.5rem 0;
+				color: var(--portfolio-muted);
+				font-size: 1rem;
+				font-weight: 500;
+				text-align: center;
+			}
+
+			#nav {
+				text-align: center;
+			}
+
+			#nav ul {
+				display: inline-flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.5rem;
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+
+			#nav ul li {
+				display: block;
+				margin: 0;
+			}
+
+			#nav ul li a {
+				display: inline-block;
+				padding: 0.65rem 1rem;
+				border-radius: 4px;
+				background-color: #f0f0f0;
+				color: #222222;
+				font-weight: 700;
+				text-decoration: none;
+				transition:
+					background-color 0.2s ease,
+					color 0.2s ease,
+					transform 0.2s ease;
+			}
+
+			#nav ul li a:hover,
+			#nav ul li a:focus {
+				background-color: var(--portfolio-red);
+				color: #ffffff;
+				transform: translateY(-2px);
+			}
+
+			#nav ul li a.external-link::after {
+				content: " ↗";
+				font-size: 0.85em;
+			}
+
+			.hero-image img {
+				width: 100%;
+				max-height: 440px;
+				object-fit: cover;
+			}
+
+			.intro-label {
+				display: inline-block;
+				margin-bottom: 0.85rem;
+				padding: 0.35rem 0.75rem;
+				border-radius: 999px;
+				background-color: rgba(213, 35, 73, 0.1);
+				color: var(--portfolio-red);
+				font-size: 0.8rem;
+				font-weight: 800;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+			}
+
+			.lead {
+				font-size: 1.08rem;
+				line-height: 1.8;
+			}
+
+			.content-copy,
+			.content-copy p,
+			.content-copy li {
+				color: var(--portfolio-text);
+			}
+
+			.profile-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				margin-top: 1.5rem;
+			}
+
+			.profile-actions .button {
+				margin: 0;
+			}
+
+			.section-heading {
+				margin-bottom: 1.75rem;
+				text-align: center;
+			}
+
+			.section-heading p {
+				max-width: 760px;
+				margin: 0.5rem auto 0;
+				color: var(--portfolio-muted);
+			}
+
+			.project-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.25rem;
+			}
+
+			.project-card {
+				display: flex;
+				flex-direction: column;
+				min-height: 100%;
+				padding: 1.5rem;
+				border: 1px solid var(--portfolio-border);
+				border-radius: 8px;
+				background-color: #ffffff;
+				box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+				transition:
+					transform 0.2s ease,
+					box-shadow 0.2s ease;
+			}
+
+			.project-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.09);
+			}
+
+			.project-card h3 {
+				margin-bottom: 0.35rem;
+			}
+
+			.project-card h3 a {
+				color: var(--portfolio-dark);
+				text-decoration: none;
+			}
+
+			.project-card h3 a:hover,
+			.project-card h3 a:focus {
+				color: var(--portfolio-red);
+			}
+
+			.project-card p {
+				flex-grow: 1;
+				margin-bottom: 1rem;
+				color: var(--portfolio-text);
+			}
+
+			.project-meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.45rem;
+				margin-bottom: 1rem;
+			}
+
+			.project-tag {
+				display: inline-block;
+				padding: 0.25rem 0.6rem;
+				border-radius: 999px;
+				background-color: #f2f2f2;
+				color: #444444;
+				font-size: 0.72rem;
+				font-weight: 700;
+			}
+
+			.project-tag.academic {
+				background-color: #e8f0ff;
+				color: #2454a6;
+			}
+
+			.project-tag.commercial {
+				background-color: #e8f7ed;
+				color: #257342;
+			}
+
+			.project-tag.personal {
+				background-color: #fff1df;
+				color: #945600;
+			}
+
+			.project-tag.private {
+				background-color: #f0e9f7;
+				color: #644181;
+			}
+
+			.project-link {
+				font-weight: 800;
+				text-decoration: none;
+			}
+
+			.project-link::after {
+				content: " →";
+			}
+
+			.private-project-note {
+				color: var(--portfolio-muted);
+				font-size: 0.85rem;
+				font-weight: 700;
+			}
+
+			.skills-list {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 0.75rem;
+				padding: 0;
+				margin: 1.25rem 0 0;
+				list-style: none;
+			}
+
+			.skills-list li {
+				padding: 0.8rem;
+				border-left: 4px solid var(--portfolio-red);
+				background-color: var(--portfolio-light);
+				font-weight: 700;
+			}
+
+			.side-card-text {
+				color: var(--portfolio-text);
+			}
+
+			.contact-list {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+
+			.contact-list li {
+				margin-bottom: 0.8rem;
+			}
+
+			.contact-list a {
+				font-weight: 700;
+				overflow-wrap: anywhere;
+			}
+
+			.quote {
+				margin-top: 0.4rem;
+				color: var(--portfolio-muted);
+				font-size: 0.95rem;
+				font-style: italic;
+			}
+
+			@media screen and (max-width: 980px) {
+				.project-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media screen and (max-width: 736px) {
+				#nav ul {
+					display: flex;
+					flex-direction: column;
+					width: 100%;
+				}
+
+				#nav ul li a {
+					width: 100%;
+				}
+
+				.skills-list {
+					grid-template-columns: 1fr;
+				}
+
+				.profile-actions {
+					flex-direction: column;
+				}
+
+				.profile-actions .button {
+					width: 100%;
+					text-align: center;
+				}
+			}
+		</style>
 	</head>
+
 	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
 
+			<!-- Header -->
 			<section id="header">
-    <style>
-	#nav {
-   	 	text-align: center; /* Centers the inline-block elements within the nav */
-		}
+				<h1>
+					<a href="index.html">Matthew Bowyer</a>
+				</h1>
 
-	#nav ul {
-    		display: inline-block; /* Allows the ul to be centered within the nav */
-    		padding: 0; /* Removes default padding */
-    		margin: 0; /* Adjust as necessary to align center */
-    		list-style: none; /* Removes default list styling */
-	}
-	#nav ul li {
-    		display: inline; /* Displays li elements in a row */
-		}
-        #nav ul li a {
-            color: #000; /* Make text darker */
-            font-weight: bold; /* Increase font weight */
-            padding: 5px 10px; /* Add some padding */
-            background-color: #f0f0f0; /* Light background */
-            display: inline-block; /* Adjust display for padding */
-            margin: 2px; /* Add a slight margin */
-            text-decoration: none; /* Remove underline */
-        }
-        #nav ul li a:hover {
-            background-color: #ddd; /* Change background on hover */
-        }
-    </style>
+				<p class="site-subtitle">
+					Analytics and Data Science Manager | MSc Data Science
+				</p>
 
-    <!-- Logo -->
-    <h1>Matthew Bowyer E-Portfolio</h1>
+				<nav id="nav" aria-label="Primary navigation">
+					<ul>
+						<li>
+							<a href="#about">About</a>
+						</li>
 
-    <!-- Nav -->
-    <nav id="nav">
-        <ul>
-	    <li><a href="Masters.html">Masters</a></li>
-            <li><a href="Honours.html">Honours</a></li>
-            <li><a href="https://www.linkedin.com/in/matthew-bowyer-535a6818a/recent-activity/all/" target="_blank">Articles</a></li>
-        </ul>
-    </nav>
-</section>
+						<li>
+							<a href="#projects">Projects</a>
+						</li>
+
+						<li>
+							<a href="Masters.html">Master's</a>
+						</li>
+
+						<li>
+							<a href="Honours.html">Honours</a>
+						</li>
+
+						<li>
+							<a
+								href="https://github.com/MatthewMBowyer?tab=repositories"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="external-link"
+							>
+								GitHub
+							</a>
+						</li>
+
+						<li>
+							<a
+								href="https://www.linkedin.com/in/matthew-bowyer-535a6818a/"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="external-link"
+							>
+								LinkedIn
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</section>
 
 			<!-- Main -->
-				<section id="main">
-					<div class="container">
-						<div class="row">
-							<div class="col-8 col-12-medium">
+			<section id="main">
+				<div class="container">
+					<div class="row">
 
-								<!-- Content -->
-									<article class="box post">
-										<a class="image featured"><img src="images/Banner" alt="" /></a>
-										<header>
-											<h2>About me</h2>
-											<h6>Qui ne tente rien n'a rien</h6>
-										</header>
-										<p style="color: black;">
-											Welcome to my professional e-portfolio. I am a dedicated Data Science professional currently enhancing my expertise with a Master's in Data Science from the University of Essex Online. 
-											With a foundational BSc (Hons) in Data Science from The Open University UK, my journey in this field is marked by a continuous pursuit of knowledge and the application of advanced analytics, machine 
-											learning, and data management to drive strategic decisions and operational excellence. Beyond my academic endeavors, I have applied my skills in dynamic roles ranging from Data Analyst at 
-											Cartrack to Data Scientist at Greendoor Group, addressing analytical challenges across various sectors and contributing to data-driven growth and efficiency.
+						<!-- Main content -->
+						<div class="col-8 col-12-medium">
+							<article id="about" class="box post content-copy">
+								<a class="image featured hero-image">
+									<img
+										src="images/Banner"
+										alt="Matthew Bowyer data science portfolio banner"
+									/>
+								</a>
+
+								<header>
+									<span class="intro-label">
+										Data, analytics and applied artificial intelligence
+									</span>
+
+									<h2>Building analytical systems that support better decisions</h2>
+
+									<p class="quote">
+										“Qui ne tente rien n'a rien.”
+									</p>
+								</header>
+
+								<p class="lead">
+									I am an Analytics and Data Science Manager with seven years
+									of experience across business intelligence, operational
+									analytics, financial analysis, data science and reporting
+									automation.
+								</p>
+
+								<p>
+									I currently lead global analytics and reporting delivery for
+									senior stakeholders across finance, operations, telematics,
+									research and development, and executive leadership. My work
+									involves translating complex business requirements into
+									scalable analytical solutions, managing analysts and
+									developing automated reporting, forecasting, anomaly
+									detection and machine learning applications.
+								</p>
+
+								<p>
+									My technical foundation includes Python, SQL, Tableau, AWS
+									and data pipeline development. I am particularly interested
+									in applied artificial intelligence, multimodal systems,
+									vision-language models, retrieval-augmented generation and
+									AI-enabled decision-support systems.
+								</p>
+
+								<p>
+									Alongside my professional work, I am completing an MSc in
+									Data Science through the University of Essex Online. My
+									dissertation explores a multimodal driver behaviour
+									evaluation system that combines telematics, vision-language
+									models and large language models.
+								</p>
+
+								<div class="profile-actions">
+									<a
+										href="https://github.com/MatthewMBowyer?tab=repositories"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="button"
+									>
+										View GitHub
+									</a>
+
+									<a href="#projects" class="button alt">
+										Explore Projects
+									</a>
+
+									<a href="Masters.html" class="button alt">
+										View Academic Work
+									</a>
+								</div>
+
+								<section>
+									<header>
+										<h2>Technical focus</h2>
+									</header>
+
+									<ul class="skills-list">
+										<li>Python and SQL</li>
+										<li>Business intelligence and Tableau</li>
+										<li>Machine learning and predictive analytics</li>
+										<li>Reporting and workflow automation</li>
+										<li>Telematics and operational analytics</li>
+										<li>Vision-language models and LLMs</li>
+										<li>Retrieval-augmented generation</li>
+										<li>AWS and data pipeline development</li>
+									</ul>
+								</section>
+							</article>
+
+							<!-- Projects -->
+							<section id="projects" class="box">
+								<header class="section-heading">
+									<h2>Selected projects</h2>
+
+									<p>
+										A collection of academic research, commercial websites,
+										data engineering tools and personal software projects.
+									</p>
+								</header>
+
+								<div class="project-grid">
+
+									<!-- E-Portfolio -->
+									<article class="project-card">
+										<div class="project-meta">
+											<span class="project-tag academic">Academic</span>
+											<span class="project-tag">HTML</span>
+											<span class="project-tag">Public</span>
+										</div>
+
+										<h3>
+											<a
+												href="https://github.com/MatthewMBowyer/UoEOMScDataScience"
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												UoEOMScDataScience
+											</a>
+										</h3>
+
+										<p>
+											My University of Essex Online e-portfolio, containing
+											my MSc work, previous Honours material, academic
+											reflections and published articles.
 										</p>
-										<p style="color: black;">
-											My career is a testament to the power of data in transforming businesses and operations. At Greendoor Group, I played a pivotal role in analytical projects spanning fleet operations to 
-											executive insights, while at Smith Yong and Associates, my focus was on leveraging data for in-depth auditing processes. These experiences underscore my belief in the synergy of scientific 
-											methods and cohesive teamwork in unlocking the transformative potential of data.
-										</p>
-										<section>
-											<header>
-												<h2>The website</h2>
-											</header>
-											<p style="color: black;">
-												This e-portfolio is a curated collection of my professional journey, academic achievements, and personal projects in the field of data science. It serves as a digital 
-												testament to my growth, showcasing:
-												
-												<ul>
-												<li><b>Articles:</b> Insights into my research, thoughts on emerging trends in data science, and tutorials that elucidate complex concepts.</li>
-												<li><b>Honours and Masters Details:</b> An overview of my academic pursuits, detailing the coursework, research, and practical applications that have shaped my understanding of data science.</li>
-												<li><b>Certifications and Awards:</b> Recognition of my commitment to excellence and continuous learning, from professional certifications to accolades in data science and beyond.</li>
-												</ul>
-											</p>
-											<p style="color: black;">
-												This website is designed not just as a portfolio but as a platform for connection and collaboration. Whether you're a fellow data science enthusiast, a potential employer, or someone 
-												curious about the field, I invite you to explore my work and reach out if you wish to discuss opportunities for collaboration or simply share insights. As I navigate through my Master's 
-												program and beyond, this e-portfolio will evolve, reflecting new learnings, projects, and milestones. <b>Thank you for joining me on this journey.</b>
-											
-											</p>
-										</section>
-										<section>
-											<header>
-												<h2>Myself in 10 years</h2>
-											</header>
-											<p style="color: black;">
-												Looking ahead to the next decade, I envision myself at the intersection of data science and sports, driving innovation with big data and artificial intelligence to tackle global challenges and enhance 
-												the world of sports. My journey is uniquely aligned with the dynamic field of Formula 1—a realm where precision, speed, efficiency and data analysis converge to redefine the limits of automotive engineering 
-												and racing strategy. This passion is reflected in my dedication to volunteering in sports like Lifesaving and then Olympic Weightlifting for the South African Weightlifting Association, laying the groundwork 
-												for my transition into the high-octane world of racing organizations.
-											</p>
 
-											<p style="color: black;">	
-												With a robust foundation in analytics and machine learning, I aspire to emerge as a pioneering force, introducing groundbreaking research and methodologies that influence not just the sports 
-												industry but also the broader field of data science. My ambition extends beyond the racetrack; it encompasses a commitment to lifelong learning, continuously advancing my expertise to stay at 
-												the forefront of technological innovation.
-											</p>
-
-											<p style="color: black;">	
-												In my professional journey, I seek to occupy a leadership role that transcends traditional boundaries, mentoring the next generation of data scientists and instilling in them a nuanced 
-												understanding of our discipline's potential to transform sports and, by extension, make a significant, positive impact on society and the environment. Whether it’s optimizing team strategies, 
-												improving vehicle performance, or enhancing fan engagement, my ultimate goal is to leverage data not just to win races but to inspire change, promote sustainability, and enrich lives across the globe.
-
-												
-											</p>
-										</section>
+										<a
+											href="https://github.com/MatthewMBowyer/UoEOMScDataScience"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="project-link"
+										>
+											View repository
+										</a>
 									</article>
 
-							</div>
-							<div class="col-4 col-12-medium">
+									<!-- Thesis -->
+									<article class="project-card">
+										<div class="project-meta">
+											<span class="project-tag academic">Research</span>
+											<span class="project-tag">Jupyter Notebook</span>
+											<span class="project-tag">Public</span>
+										</div>
 
-								<!-- Sidebar -->
-									<section class="box">
-										<a href="Masters.html" class="image featured"><img src="images/University_of_Essex_logo.jpg" alt="" /></a>
-										<header>
-											<h3>Jump to my Masters</h3>
-										</header>
-										<p style="color: black;">
-											Explore my journey through my Master's in Data Science at the University of Essex Online. This page details my advanced projects, 
-											research endeavors, and the innovative methodologies I've embraced.
-										</p>
-										
-										<footer>
-											<a href="Masters.html" class="button alt">Masters</a>
-										</footer>
-									</section>
-									<section class="box">
-										<a href="Honours.html" class="image featured"><img src="images/the-open-university.jpg" alt="" /></a>
-										<header>
-											<h3>Take a look at my Honours</h3>
-										</header>
-										<p style="color: black;">
-											This section provides a historical overview of my Honours work in Data Science, highlighting key academic achievements and foundational projects that paved my way into the field. 
-										</p>
-										
-										<footer>
-											<a href="Honours.html" class="button alt">Honours</a>
-										</footer>
-									</section>
+										<h3>
+											<a
+												href="https://github.com/MatthewMBowyer/Essex_MSC_DataScience_Thesis"
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												Essex MSc Data Science Thesis
+											</a>
+										</h3>
 
-							</div>
+										<p>
+											A multimodal driver behaviour evaluation system that
+											combines telematics data, vision-language models and
+											large language models to support richer behavioural
+											assessment.
+										</p>
+
+										<a
+											href="https://github.com/MatthewMBowyer/Essex_MSC_DataScience_Thesis"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="project-link"
+										>
+											View repository
+										</a>
+									</article>
+
+									<!-- Pringle Padel -->
+									<article class="project-card">
+										<div class="project-meta">
+											<span class="project-tag commercial">Commercial</span>
+											<span class="project-tag">HTML</span>
+											<span class="project-tag">Public</span>
+										</div>
+
+										<h3>
+											<a
+												href="https://github.com/MatthewMBowyer/PringlePadel"
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												Pringle Padel
+											</a>
+										</h3>
+
+										<p>
+											A company website developed for Pringle Padel, with a
+											focus on presenting the business, its services and its
+											brand through a responsive web interface.
+										</p>
+
+										<a
+											href="https://github.com/MatthewMBowyer/PringlePadel"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="project-link"
+										>
+											View repository
+										</a>
+									</article>
+
+									<!-- Bowyer Collective -->
+									<article class="project-card">
+										<div class="project-meta">
+											<span class="project-tag commercial">Commercial</span>
+											<span class="project-tag">CSS</span>
+											<span class="project-tag">Public</span>
+										</div>
+
+										<h3>
+											<a
+												href="https://github.com/MatthewMBowyer/The-Bowyer-collective"
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												The Bowyer Collective
+											</a>
+										</h3>
+
+										<p>
+											A photography portfolio website developed for Chloe's
+											Photography, designed to showcase visual work and
+											provide a professional online presence.
+										</p>
+
+										<a
+											href="https://github.com/MatthewMBowyer/The-Bowyer-collective"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="project-link"
+										>
+											View repository
+										</a>
+									</article>
+
+									<!-- Travelling Tutors -->
+									<article class="project-card">
+										<div class="project-meta">
+											<span class="project-tag commercial">Commercial</span>
+											<span class="project-tag">CSS</span>
+											<span class="project-tag">Public</span>
+										</div>
+
+										<h3>
+											<a
+												href="https://github.com/MatthewMBowyer/Chloes-Traveling-tutors"
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												Chloe's Travelling Tutors
+											</a>
+										</h3>
+
+										<p>
+											A business website created for Chloe's Travelling
+											Tutors, presenting its tutoring services and providing
+											a clear interface for prospective clients.
+										</p>
+
+										<a
+											href="https://github.com/MatthewMBowyer/Chloes-Traveling-tutors"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="project-link"
+										>
+											View repository
+										</a>
+									</article>
+
+									<!-- Padel scraper -->
+									<article class="project-card">
+										<div class="project-meta">
+											<span class="project-tag commercial">Commercial</span>
+											<span class="project-tag">Python</span>
+											<span class="project-tag private">Private</span>
+										</div>
+
+										<h3>Padel Scraper</h3>
+
+										<p>
+											A Python-based web scraping system that automatically
+											collects padel results across divisions and transforms
+											the extracted information into structured JSON.
+										</p>
+
+										<span class="private-project-note">
+											Private commercial repository
+										</span>
+									</article>
+
+									<!-- Industry Zero -->
+									<article class="project-card">
+										<div class="project-meta">
+											<span class="project-tag personal">Personal</span>
+											<span class="project-tag">C#</span>
+											<span class="project-tag private">Private</span>
+										</div>
+
+										<h3>Industry Zero</h3>
+
+										<p>
+											A private game-development project built in C#. The
+											project provides a practical environment for exploring
+											software architecture, game systems and interactive
+											application development.
+										</p>
+
+										<span class="private-project-note">
+											Private development repository
+										</span>
+									</article>
+
+									<!-- GitHub Skills -->
+									<article class="project-card">
+										<div class="project-meta">
+											<span class="project-tag personal">Learning</span>
+											<span class="project-tag">GitHub</span>
+											<span class="project-tag">Public</span>
+										</div>
+
+										<h3>GitHub Skills Repositories</h3>
+
+										<p>
+											Training repositories used to explore GitHub Pages,
+											repository management and foundational GitHub
+											workflows.
+										</p>
+
+										<a
+											href="https://github.com/MatthewMBowyer?tab=repositories"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="project-link"
+										>
+											View all repositories
+										</a>
+									</article>
+								</div>
+							</section>
+
+							<!-- Career direction -->
+							<section class="box post content-copy">
+								<header>
+									<h2>Professional direction</h2>
+								</header>
+
+								<p>
+									My long-term objective is to work at the intersection of
+									data science, artificial intelligence, telematics and sport.
+									I am particularly interested in environments such as
+									motorsport, where high-frequency data, engineering,
+									operational strategy and human performance converge.
+								</p>
+
+								<p>
+									I aim to contribute to analytical systems that improve
+									vehicle performance, driver safety, strategic decision-making
+									and operational efficiency. This includes research into
+									multimodal AI systems capable of combining numerical,
+									visual and textual information.
+								</p>
+
+								<p>
+									As my career develops, I intend to continue building and
+									leading high-performing analytical teams while mentoring
+									early-career data professionals and delivering practical,
+									responsible AI systems with measurable organisational value.
+								</p>
+							</section>
+						</div>
+
+						<!-- Sidebar -->
+						<div class="col-4 col-12-medium">
+
+							<section class="box">
+								<a
+									href="Masters.html"
+									class="image featured"
+								>
+									<img
+										src="images/University_of_Essex_logo.jpg"
+										alt="University of Essex logo"
+									/>
+								</a>
+
+								<header>
+									<h3>MSc Data Science</h3>
+								</header>
+
+								<p class="side-card-text">
+									Explore my University of Essex Online MSc work,
+									including module assignments, reflective pieces,
+									research and my multimodal driver behaviour thesis.
+								</p>
+
+								<footer>
+									<a href="Masters.html" class="button alt">
+										View Master's
+									</a>
+								</footer>
+							</section>
+
+							<section class="box">
+								<a
+									href="Honours.html"
+									class="image featured"
+								>
+									<img
+										src="images/the-open-university.jpg"
+										alt="The Open University logo"
+									/>
+								</a>
+
+								<header>
+									<h3>BSc Honours Data Science</h3>
+								</header>
+
+								<p class="side-card-text">
+									Review the foundational academic projects and
+									achievements completed during my Data Science degree
+									through The Open University.
+								</p>
+
+								<footer>
+									<a href="Honours.html" class="button alt">
+										View Honours
+									</a>
+								</footer>
+							</section>
+
+							<section class="box">
+								<header>
+									<h3>Professional profile</h3>
+								</header>
+
+								<ul class="contact-list">
+									<li>
+										<strong>Role:</strong><br />
+										Analytics and Data Science Manager
+									</li>
+
+									<li>
+										<strong>Location:</strong><br />
+										Gauteng, South Africa
+									</li>
+
+									<li>
+										<strong>GitHub:</strong><br />
+										<a
+											href="https://github.com/MatthewMBowyer"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											github.com/MatthewMBowyer
+										</a>
+									</li>
+
+									<li>
+										<strong>LinkedIn:</strong><br />
+										<a
+											href="https://www.linkedin.com/in/matthew-bowyer-535a6818a/"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											Matthew Bowyer
+										</a>
+									</li>
+
+									<li>
+										<strong>Email:</strong><br />
+										<a href="mailto:matthewmbowyer@gmail.com">
+											matthewmbowyer@gmail.com
+										</a>
+									</li>
+								</ul>
+							</section>
+
 						</div>
 					</div>
-				</section>
+				</div>
+			</section>
 
 			<!-- Footer -->
-			<div id="footer-placeholder"></div>
-				<script>
-					document.addEventListener('DOMContentLoaded', function() {
-  					fetch('footer.html')
-    					.then(response => response.text())
-    					.then(text => document.getElementById('footer-placeholder').innerHTML = text);
-					});
-				</script>
-
+			<div id="footer-placeholder">
+				<noscript>
+					<footer id="footer">
+						<div class="container">
+							<p>
+								&copy; Matthew Bowyer. All rights reserved.
+							</p>
+						</div>
+					</footer>
+				</noscript>
+			</div>
+		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const footerPlaceholder =
+					document.getElementById("footer-placeholder");
+
+				fetch("footer.html")
+					.then(function (response) {
+						if (!response.ok) {
+							throw new Error(
+								"Unable to load footer. HTTP status: " +
+									response.status
+							);
+						}
+
+						return response.text();
+					})
+					.then(function (html) {
+						footerPlaceholder.innerHTML = html;
+					})
+					.catch(function (error) {
+						console.error(error);
+
+						footerPlaceholder.innerHTML = `
+							<footer id="footer">
+								<div class="container">
+									<p>&copy; ${new Date().getFullYear()} Matthew Bowyer. All rights reserved.</p>
+								</div>
+							</footer>
+						`;
+					});
+			});
+		</script>
 	</body>
 </html>
