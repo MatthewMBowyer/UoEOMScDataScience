@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-19T05:49:09.031305+00:00",
+  "generated_at_utc": "2026-07-20T06:06:46.221070+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -4643,7 +4643,7 @@
           "team_2_alias": "Masego, Hillary",
           "score": "7-5 6-4",
           "balls": "Kayla Viljoen/ Charisca Meyer",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -6069,10 +6069,10 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 6 July 2026",
-          "team_1": "Warren Melnick/ Ianthé Honiball",
-          "team_2": "Lee-Ann Smith / Reenen Burger",
-          "team_1_alias": "Warren, Ianthé",
-          "team_2_alias": "Lee-Ann, Reenen",
+          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_2": "Mops / Angela Molomo",
+          "team_1_alias": "Hendriette, Morne",
+          "team_2_alias": "Angela, Mops",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -6082,13 +6082,13 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 6 July 2026",
-          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
-          "team_2": "Mops / Angela Molomo",
-          "team_1_alias": "Hendriette, Morne",
-          "team_2_alias": "Angela, Mops",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Warren Melnick/ Ianthé Honiball",
+          "team_2": "Lee-Ann Smith / Reenen Burger",
+          "team_1_alias": "Warren, Ianthé",
+          "team_2_alias": "Lee-Ann, Reenen",
+          "score": "7-5 6-2",
+          "balls": "Warren Melnick/ Ianthé Honiball",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -6160,6 +6160,19 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 8 June 2026",
+          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_2": "Warren Melnick/ Ianthé Honiball",
+          "team_1_alias": "Hendriette, Morne",
+          "team_2_alias": "Warren, Ianthé",
+          "score": "7-5 6-1",
+          "balls": "Warren Melnick/ Ianthé Honiball",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 8 June 2026",
           "team_1": "Zané Jacobs / Marius Jacobs",
           "team_2": "Mops / Angela Molomo",
           "team_1_alias": "Marius, Zané",
@@ -6186,25 +6199,25 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 8 June 2026",
-          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
-          "team_2": "Warren Melnick/ Ianthé Honiball",
-          "team_1_alias": "Hendriette, Morne",
-          "team_2_alias": "Warren, Ianthé",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Monday, 8 June 2026",
           "team_1": "Martin Miog / Daniella Mitchell",
           "team_2": "Ronel Laubscher/ Willie Vd",
           "team_1_alias": "Daniella, Kyle, Martin, Nadine",
           "team_2_alias": "Ronel, Willie",
           "score": "2-6 2-6",
           "balls": "Martin Miog / Daniella Mitchell",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 25 May 2026",
+          "team_1": "Lee-Ann Smith / Reenen Burger",
+          "team_2": "Ronel Laubscher/ Willie Vd",
+          "team_1_alias": "Lee-Ann, Reenen",
+          "team_2_alias": "Ronel, Willie",
+          "score": "6-4 4-6 2-6",
+          "balls": "Ronel Laubscher/ Willie Vd",
           "status": "Validated"
         },
         {
@@ -6219,19 +6232,6 @@
           "score": "",
           "balls": "",
           "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Monday, 25 May 2026",
-          "team_1": "Lee-Ann Smith / Reenen Burger",
-          "team_2": "Ronel Laubscher/ Willie Vd",
-          "team_1_alias": "Lee-Ann, Reenen",
-          "team_2_alias": "Ronel, Willie",
-          "score": "6-4 4-6 2-6",
-          "balls": "Ronel Laubscher/ Willie Vd",
-          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -6264,25 +6264,12 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 11 May 2026",
-          "team_1": "Jerome / Comfort",
-          "team_2": "Warren Melnick/ Ianthé Honiball",
-          "team_1_alias": "Jerome, Comfort",
-          "team_2_alias": "Warren, Ianthé",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 3",
-          "season": "Season 1 (Current)",
-          "date": "Monday, 11 May 2026",
-          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
-          "team_2": "Zané Jacobs / Marius Jacobs",
-          "team_1_alias": "Hendriette, Morne",
-          "team_2_alias": "Marius, Zané",
-          "score": "6-4 2-6 6-4",
-          "balls": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_1": "Lee-Ann Smith / Reenen Burger",
+          "team_2": "Martin Miog / Daniella Mitchell",
+          "team_1_alias": "Lee-Ann, Reenen",
+          "team_2_alias": "Daniella, Kyle, Martin, Nadine",
+          "score": "6-2 6-1",
+          "balls": "Lee-Ann Smith / Reenen Burger",
           "status": "Validated"
         },
         {
@@ -6303,12 +6290,25 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 11 May 2026",
-          "team_1": "Lee-Ann Smith / Reenen Burger",
-          "team_2": "Martin Miog / Daniella Mitchell",
-          "team_1_alias": "Lee-Ann, Reenen",
-          "team_2_alias": "Daniella, Kyle, Martin, Nadine",
-          "score": "6-2 6-1",
-          "balls": "Lee-Ann Smith / Reenen Burger",
+          "team_1": "Jerome / Comfort",
+          "team_2": "Warren Melnick/ Ianthé Honiball",
+          "team_1_alias": "Jerome, Comfort",
+          "team_2_alias": "Warren, Ianthé",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 1 (Current)",
+          "date": "Monday, 11 May 2026",
+          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_2": "Zané Jacobs / Marius Jacobs",
+          "team_1_alias": "Hendriette, Morne",
+          "team_2_alias": "Marius, Zané",
+          "score": "6-4 2-6 6-4",
+          "balls": "Hendriette Van der Merwe / Morne Van der Merwe",
           "status": "Validated"
         }
       ]
