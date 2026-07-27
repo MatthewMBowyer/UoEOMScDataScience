@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-26T05:57:50.192935+00:00",
+  "generated_at_utc": "2026-07-27T06:24:15.922750+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -12,32 +12,6 @@
       "division": "Africa Padel",
       "season": "Season 2 (Current)",
       "fixtures": [
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 July 2026",
-          "team_1": "Graeme Te Brake/ Shaun Te Brake",
-          "team_2": "Thabo Funani / Wandile Dube",
-          "team_1_alias": "Graeme, Shaun",
-          "team_2_alias": "Kurt, Gordon",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 July 2026",
-          "team_1": "Mikhail De Freitas / Dean Hoff",
-          "team_2": "Stanton Fredericks / Zaid Moihdin",
-          "team_1_alias": "Riaan, Liam",
-          "team_2_alias": "Zaid, Stanton",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
         {
           "category": "Men's",
           "division": "Africa Padel",
@@ -62,6 +36,45 @@
           "team_2_alias": "Amien, Wesley",
           "score": "0-6 1-6",
           "balls": "Divan Koekemoer / Stephan Olivier",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 July 2026",
+          "team_1": "Mikhail De Freitas / Dean Hoff",
+          "team_2": "Stanton Fredericks / Zaid Moihdin",
+          "team_1_alias": "Riaan, Liam",
+          "team_2_alias": "Zaid, Stanton",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 25 July 2026",
+          "team_1": "Graeme Te Brake/ Shaun Te Brake",
+          "team_2": "Thabo Funani / Wandile Dube",
+          "team_1_alias": "Graeme, Shaun",
+          "team_2_alias": "Kurt, Gordon",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 July 2026",
+          "team_1": "Charlie Castle / Chris Paton",
+          "team_2": "Graeme Te Brake/ Shaun Te Brake",
+          "team_1_alias": "Chris, Charlie",
+          "team_2_alias": "Graeme, Shaun",
+          "score": "6-0 6-2",
+          "balls": "Graeme Te Brake/ Shaun Te Brake",
           "status": "Waiting Approval"
         },
         {
@@ -82,36 +95,23 @@
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 11 July 2026",
-          "team_1": "Stanton Fredericks / Zaid Moihdin",
-          "team_2": "Wesley Visser / Amien Sarlie",
-          "team_1_alias": "Zaid, Stanton",
-          "team_2_alias": "Amien, Wesley",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 July 2026",
-          "team_1": "Charlie Castle / Chris Paton",
-          "team_2": "Graeme Te Brake/ Shaun Te Brake",
-          "team_1_alias": "Chris, Charlie",
-          "team_2_alias": "Graeme, Shaun",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 July 2026",
           "team_1": "Mikhail De Freitas / Dean Hoff",
           "team_2": "Thabo Funani / Wandile Dube",
           "team_1_alias": "Riaan, Liam",
           "team_2_alias": "Kurt, Gordon",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 11 July 2026",
+          "team_1": "Stanton Fredericks / Zaid Moihdin",
+          "team_2": "Wesley Visser / Amien Sarlie",
+          "team_1_alias": "Zaid, Stanton",
+          "team_2_alias": "Amien, Wesley",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -134,13 +134,13 @@
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 27 June 2026",
-          "team_1": "Stanton Fredericks / Zaid Moihdin",
-          "team_2": "Justin Weldon / Warren Melneck",
-          "team_1_alias": "Zaid, Stanton",
-          "team_2_alias": "Justin, Warren",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Mikhail De Freitas / Dean Hoff",
+          "team_2": "Graeme Te Brake/ Shaun Te Brake",
+          "team_1_alias": "Riaan, Liam",
+          "team_2_alias": "Graeme, Shaun",
+          "score": "0-6 3-6",
+          "balls": "Mikhail De Freitas / Dean Hoff",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -160,13 +160,13 @@
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 27 June 2026",
-          "team_1": "Mikhail De Freitas / Dean Hoff",
-          "team_2": "Graeme Te Brake/ Shaun Te Brake",
-          "team_1_alias": "Riaan, Liam",
-          "team_2_alias": "Graeme, Shaun",
-          "score": "0-6 3-6",
-          "balls": "Mikhail De Freitas / Dean Hoff",
-          "status": "Validated"
+          "team_1": "Stanton Fredericks / Zaid Moihdin",
+          "team_2": "Justin Weldon / Warren Melneck",
+          "team_1_alias": "Zaid, Stanton",
+          "team_2_alias": "Justin, Warren",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -180,19 +180,6 @@
           "score": "",
           "balls": "",
           "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 13 June 2026",
-          "team_1": "Wesley Visser / Amien Sarlie",
-          "team_2": "Graeme Te Brake/ Shaun Te Brake",
-          "team_1_alias": "Amien, Wesley",
-          "team_2_alias": "Graeme, Shaun",
-          "score": "6-1 6-0",
-          "balls": "Wesley Visser / Amien Sarlie",
-          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -219,6 +206,32 @@
           "score": "",
           "balls": "",
           "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 13 June 2026",
+          "team_1": "Wesley Visser / Amien Sarlie",
+          "team_2": "Graeme Te Brake/ Shaun Te Brake",
+          "team_1_alias": "Amien, Wesley",
+          "team_2_alias": "Graeme, Shaun",
+          "score": "6-1 6-0",
+          "balls": "Wesley Visser / Amien Sarlie",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 30 May 2026",
+          "team_1": "Charlie Castle / Chris Paton",
+          "team_2": "Stanton Fredericks / Zaid Moihdin",
+          "team_1_alias": "Chris, Charlie",
+          "team_2_alias": "Zaid, Stanton",
+          "score": "4-6 6-3 4-6",
+          "balls": "Stanton Fredericks / Zaid Moihdin",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -251,19 +264,6 @@
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 30 May 2026",
-          "team_1": "Charlie Castle / Chris Paton",
-          "team_2": "Stanton Fredericks / Zaid Moihdin",
-          "team_1_alias": "Chris, Charlie",
-          "team_2_alias": "Zaid, Stanton",
-          "score": "4-6 6-3 4-6",
-          "balls": "Stanton Fredericks / Zaid Moihdin",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 30 May 2026",
           "team_1": "Wesley Visser / Amien Sarlie",
           "team_2": "Mikhail De Freitas / Dean Hoff",
           "team_1_alias": "Amien, Wesley",
@@ -271,19 +271,6 @@
           "score": "",
           "balls": "",
           "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
-          "team_1": "Charlie Castle / Chris Paton",
-          "team_2": "Wesley Visser / Amien Sarlie",
-          "team_1_alias": "Chris, Charlie",
-          "team_2_alias": "Amien, Wesley",
-          "score": "4-6 6-7",
-          "balls": "Charlie Castle / Chris Paton",
-          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -303,19 +290,6 @@
           "division": "Africa Padel",
           "season": "Season 2 (Current)",
           "date": "Saturday, 16 May 2026",
-          "team_1": "Justin Weldon / Warren Melneck",
-          "team_2": "Mikhail De Freitas / Dean Hoff",
-          "team_1_alias": "Justin, Warren",
-          "team_2_alias": "Riaan, Liam",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Africa Padel",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 16 May 2026",
           "team_1": "Graeme Te Brake/ Shaun Te Brake",
           "team_2": "Divan Koekemoer / Stephan Olivier",
           "team_1_alias": "Graeme, Shaun",
@@ -323,8 +297,58 @@
           "score": "6-1 6-1",
           "balls": "Graeme Te Brake/ Shaun Te Brake",
           "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Charlie Castle / Chris Paton",
+          "team_2": "Wesley Visser / Amien Sarlie",
+          "team_1_alias": "Chris, Charlie",
+          "team_2_alias": "Amien, Wesley",
+          "score": "4-6 6-7",
+          "balls": "Charlie Castle / Chris Paton",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Africa Padel",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 16 May 2026",
+          "team_1": "Justin Weldon / Warren Melneck",
+          "team_2": "Mikhail De Freitas / Dean Hoff",
+          "team_1_alias": "Justin, Warren",
+          "team_2_alias": "Riaan, Liam",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         }
       ]
+    },
+    {
+      "category": "Men's",
+      "division": "Honeydew DIV 1",
+      "season": "Season 3 (Current)",
+      "fixtures": []
+    },
+    {
+      "category": "Men's",
+      "division": "Honeydew DIV 2",
+      "season": "Season 3 (Current)",
+      "fixtures": []
+    },
+    {
+      "category": "Men's",
+      "division": "Honeydew DIV 3",
+      "season": "Season 3 (Current)",
+      "fixtures": []
+    },
+    {
+      "category": "Men's",
+      "division": "Honeydew DIV 4",
+      "season": "Season 2 (Current)",
+      "fixtures": []
     },
     {
       "category": "Men's",
@@ -362,6 +386,19 @@
           "division": "Krugersdorp",
           "season": "Season 1 (Current)",
           "date": "Saturday, 25 July 2026",
+          "team_1": "Ebrahim Dindar/ Muhammad Dindar",
+          "team_2": "Janu Pienaar / Joshua Drabble",
+          "team_1_alias": "Ebrahim, Muhhammad",
+          "team_2_alias": "Janu, Joshua",
+          "score": "3-6 6-2 6-1",
+          "balls": "Ebrahim Dindar/ Muhammad Dindar",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Men's",
+          "division": "Krugersdorp",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 25 July 2026",
           "team_1": "Johan Wilters / Hano Taljard",
           "team_2": "Erik Viviers/ Ruan Lategan",
           "team_1_alias": "Hano, Johan",
@@ -369,19 +406,6 @@
           "score": "1-6 2-6",
           "balls": "Johan Wilters / Hano Taljard",
           "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Krugersdorp",
-          "season": "Season 1 (Current)",
-          "date": "Saturday, 25 July 2026",
-          "team_1": "Ebrahim Dindar/ Muhammad Dindar",
-          "team_2": "Janu Pienaar / Joshua Drabble",
-          "team_1_alias": "Ebrahim, Muhhammad",
-          "team_2_alias": "Janu, Joshua",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -2266,10 +2290,6 @@
     }
   ],
   "errors": [
-    "Failed division: Men's | A.M. Smashes Premier Division | No Current season found for A.M. Smashes Premier Division",
-    "Failed division: Men's | Honeydew DIV 1 | No Current season found for Honeydew DIV 1",
-    "Failed division: Men's | Honeydew DIV 2 | No Current season found for Honeydew DIV 2",
-    "Failed division: Men's | Honeydew DIV 3 | No Current season found for Honeydew DIV 3",
-    "Failed division: Men's | Honeydew DIV 4 | No Current season found for Honeydew DIV 4"
+    "Failed division: Men's | A.M. Smashes Premier Division | No Current season found for A.M. Smashes Premier Division"
   ]
 }
