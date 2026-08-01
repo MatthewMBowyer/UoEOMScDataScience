@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-31T06:04:17.761929+00:00",
+  "generated_at_utc": "2026-08-01T05:54:05.289515+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -1353,7 +1353,73 @@
       "category": "Mixed",
       "division": "MXD Honeydew Div 3",
       "season": "Season 2 (Current)",
-      "fixtures": []
+      "fixtures": [
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 31 July 2026",
+          "team_1": "Chloe Smith / Matthew Bowyer",
+          "team_2": "Vanessa Butler / Barry Butler",
+          "team_1_alias": "Chloe, Matthew",
+          "team_2_alias": "Vanessa, Barry",
+          "score": "6-0 6-0",
+          "balls": "Chloe Smith / Matthew Bowyer",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 31 July 2026",
+          "team_1": "Chene Erwee / Damien Erwee",
+          "team_2": "Ray Morgan / Wendy Morgan",
+          "team_1_alias": "Chene, Damien",
+          "team_2_alias": "Ray, Wandy",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 31 July 2026",
+          "team_1": "Ilse Muller / Damion Podges",
+          "team_2": "Rowan Budhram / Liane Budhram",
+          "team_1_alias": "Ilse, Damion",
+          "team_2_alias": "Rowan, Liane",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 31 July 2026",
+          "team_1": "Janine John / Chris John",
+          "team_2": "Pauline Collinson / Brett Collinson",
+          "team_1_alias": "Janine, Chris",
+          "team_2_alias": "No players",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 31 July 2026",
+          "team_1": "Mauritz Boshoff / Surika",
+          "team_2": "Mozel Van Niekerk / Gordon Beard",
+          "team_1_alias": "Mauritz, Surika",
+          "team_2_alias": "Mozel, Gordon",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        }
+      ]
     },
     {
       "category": "Mixed",
@@ -2380,12 +2446,12 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 11 May 2026",
-          "team_1": "Mops / Angela Molomo",
-          "team_2": "Ronel Laubscher/ Willie Vd",
-          "team_1_alias": "Angela, Mops",
-          "team_2_alias": "Willie, Ronel",
-          "score": "6-1 6-2",
-          "balls": "Mops / Angela Molomo",
+          "team_1": "Jerome / Comfort",
+          "team_2": "Warren Melnick/ Ianthé Honiball",
+          "team_1_alias": "Jerome, Comfort",
+          "team_2_alias": "Warren, Ianthé",
+          "score": "4-6 6-1 4-3",
+          "balls": "Jerome / Comfort",
           "status": "Validated"
         },
         {
@@ -2393,13 +2459,13 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 11 May 2026",
-          "team_1": "Jerome / Comfort",
-          "team_2": "Warren Melnick/ Ianthé Honiball",
-          "team_1_alias": "Jerome, Comfort",
-          "team_2_alias": "Warren, Ianthé",
-          "score": "4-6 6-1 4-3",
-          "balls": "Jerome / Comfort",
-          "status": "Waiting Approval"
+          "team_1": "Mops / Angela Molomo",
+          "team_2": "Ronel Laubscher/ Willie Vd",
+          "team_1_alias": "Angela, Mops",
+          "team_2_alias": "Willie, Ronel",
+          "score": "6-1 6-2",
+          "balls": "Mops / Angela Molomo",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
