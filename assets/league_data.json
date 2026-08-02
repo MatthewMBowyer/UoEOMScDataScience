@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-01T05:54:05.289515+00:00",
+  "generated_at_utc": "2026-08-02T05:54:58.773439+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -336,7 +336,73 @@
       "category": "Men's",
       "division": "Honeydew DIV 1",
       "season": "Season 3 (Current)",
-      "fixtures": []
+      "fixtures": [
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Alex Smith",
+          "team_2": "Ziad lambada / Trevor Smith",
+          "team_1_alias": "Trevor, Alex",
+          "team_2_alias": "Reece, Steven",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Garreth Raath / Brendan Beech",
+          "team_2": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "team_1_alias": "Brendan, Garreth",
+          "team_2_alias": "Tiaan, Rayno",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "J.C / Riaz Varachia",
+          "team_2": "Preash Govender / Preash Partner",
+          "team_1_alias": "J.C, Riaz",
+          "team_2_alias": "Preash, Reece",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Mark Rondi / Anton Davel",
+          "team_2": "Nadeem Amra/ Andres Varas",
+          "team_1_alias": "Mark, Anton",
+          "team_2_alias": "Preash, Andy",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Wesley Visser / Amien Sarlie",
+          "team_2": "Peter Panczyk/ Alfred Visagie",
+          "team_1_alias": "Amien, Wesley",
+          "team_2_alias": "Peter, Alfred",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        }
+      ]
     },
     {
       "category": "Men's",
@@ -348,7 +414,73 @@
       "category": "Men's",
       "division": "Honeydew DIV 3",
       "season": "Season 3 (Current)",
-      "fixtures": []
+      "fixtures": [
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Mias Moster / Chris Bornman",
+          "team_2": "Wolfi Maralik / Richard Harvey",
+          "team_1_alias": "Mias, Chris",
+          "team_2_alias": "Richard, Wolfi",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Ryan Purdon / Wes Bothwell",
+          "team_2": "Sean Crossland / Andre Kirsten",
+          "team_1_alias": "Wes, Ryan",
+          "team_2_alias": "Sean, Andre",
+          "score": "6-3 6-3",
+          "balls": "Ryan Purdon / Wes Bothwell",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Moe Variave / Andriano Dello Lacono",
+          "team_2": "Morgan Wentzel / Conor Prately",
+          "team_1_alias": "Moe, Dello",
+          "team_2_alias": "Conor, Morgan",
+          "score": "4-6 6-3 7-5",
+          "balls": "Moe Variave / Andriano Dello Lacono",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Rowan Baisley / Nelson de Freitas",
+          "team_2": "Sholin Siva / Gavin Govender",
+          "team_1_alias": "Nelson, Rowan",
+          "team_2_alias": "Sholin, Gavin",
+          "score": "6-4 7-6",
+          "balls": "Rowan Baisley / Nelson de Freitas",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Mohammed Rezaan / Muhammmed Rashid",
+          "team_2": "Strini Govender / Dale Rouquette",
+          "team_1_alias": "Mohammed, Muhammmed",
+          "team_2_alias": "Strini, Dale",
+          "score": "7-5 7-6",
+          "balls": "Mohammed Rezaan / Muhammmed Rashid",
+          "status": "Waiting Approval"
+        }
+      ]
     },
     {
       "category": "Men's",
@@ -1317,25 +1449,198 @@
       "category": "Ladies",
       "division": "Honeydew Ladies DIV 1",
       "season": "Season 3 (Current)",
-      "fixtures": []
+      "fixtures": [
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Sunette Atkins & Isabella Cardoso",
+          "team_2": "Team X",
+          "team_1_alias": "Isabela, Suenette",
+          "team_2_alias": "Player, Player",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Calli Fargi / Melanie Brimson",
+          "team_2": "Sandrika Gajraj / Irma Terbalanche",
+          "team_1_alias": "Melanie, Calli",
+          "team_2_alias": "Sandrika, Irma",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Chrisna Arnold / Renche Weideman",
+          "team_2": "Ruve Esterhuysen / Eunita du Preez",
+          "team_1_alias": "Chrisna, Renche",
+          "team_2_alias": "Ruve, Eunita",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Jamee Sampson / Nicks Bothwell",
+          "team_2": "Meghan Warby / Julie Timmers",
+          "team_1_alias": "Nicks, Jamee",
+          "team_2_alias": "Julie, Meghan",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Kerryn Maralik / Nicola Pratley",
+          "team_2": "Madison Sked / Karen Dengler",
+          "team_1_alias": "Nicola, Kerryn",
+          "team_2_alias": "Karen, Madison",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        }
+      ]
     },
     {
       "category": "Ladies",
       "division": "Honeydew Ladies Div 2",
       "season": "Season 3 (Current)",
-      "fixtures": []
+      "fixtures": [
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 8 August 2026",
+          "team_1": "Janine John / Pauline Collinson",
+          "team_2": "Monica Terblanche / Marita Degener",
+          "team_1_alias": "Janine, Pauline",
+          "team_2_alias": "Marita, Monica",
+          "score": "5-7 2-6",
+          "balls": "Janine John / Pauline Collinson",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 8 August 2026",
+          "team_1": "Bailey Maralik/ Jodie Trueman",
+          "team_2": "Steph Kotze / Debbie Wagner",
+          "team_1_alias": "Bailey, Jodie",
+          "team_2_alias": "Steph, Debbie",
+          "score": "6-1 6-2",
+          "balls": "Bailey Maralik/ Jodie Trueman",
+          "status": "Waiting Approval"
+        }
+      ]
     },
     {
       "category": "Ladies",
       "division": "Honeydew Ladies Div 3",
       "season": "Season 3 (Current)",
-      "fixtures": []
+      "fixtures": [
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Adrienne Donaldson / Stephanie Kotze",
+          "team_2": "Yolandi Van der Walt / Zanele Katende",
+          "team_1_alias": "Adrienne, Stephanie",
+          "team_2_alias": "Yolandi, Zanele",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Natasha Jansen / Cherize Fillmore",
+          "team_2": "Prebashnee Naidoo / Njabulo Nzimande",
+          "team_1_alias": "Cherize, Natasha",
+          "team_2_alias": "Prebashnee, Njabulo",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Comfort Shaba / Carol Gossman",
+          "team_2": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "team_1_alias": "Comfort, Carol",
+          "team_2_alias": "Tracey",
+          "score": "6-0 4-6 3-6",
+          "balls": "Comfort Shaba / Carol Gossman",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Kayla Viljoen/ Charisca Meyer",
+          "team_2": "Robin Booyens / Klarisa Lamprecht",
+          "team_1_alias": "Kayla, Charisca",
+          "team_2_alias": "Robin, Klarisa",
+          "score": "3-6 6-0 6-2",
+          "balls": "Kayla Viljoen/ Charisca Meyer",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "Ginette Bentley / Venushka Naidoo",
+          "team_2": "Siobhan Chadinha / Debbie Fol",
+          "team_1_alias": "Venushka, Ginette, Lynn",
+          "team_2_alias": "Siobhan, Debbie",
+          "score": "3-6 4-6",
+          "balls": "Ginette Bentley / Venushka Naidoo",
+          "status": "Validated"
+        }
+      ]
     },
     {
       "category": "Ladies",
       "division": "Honeydew Ladies Div 4",
       "season": "Season 4 (Current)",
-      "fixtures": []
+      "fixtures": [
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 4",
+          "season": "Season 4 (Current)",
+          "date": "Saturday, 8 August 2026",
+          "team_1": "Estea Kloppers / Jade Alves",
+          "team_2": "Roxanne Govender / Saiisha Naidu",
+          "team_1_alias": "Estea, Jade",
+          "team_2_alias": "Roxanne, Saiisha",
+          "score": "6-4 6-4",
+          "balls": "Estea Kloppers / Jade Alves",
+          "status": "Validated"
+        }
+      ]
     },
     {
       "category": "Mixed",
@@ -1359,49 +1664,10 @@
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
           "date": "Friday, 31 July 2026",
-          "team_1": "Chloe Smith / Matthew Bowyer",
-          "team_2": "Vanessa Butler / Barry Butler",
-          "team_1_alias": "Chloe, Matthew",
-          "team_2_alias": "Vanessa, Barry",
-          "score": "6-0 6-0",
-          "balls": "Chloe Smith / Matthew Bowyer",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 3",
-          "season": "Season 2 (Current)",
-          "date": "Friday, 31 July 2026",
-          "team_1": "Chene Erwee / Damien Erwee",
-          "team_2": "Ray Morgan / Wendy Morgan",
-          "team_1_alias": "Chene, Damien",
-          "team_2_alias": "Ray, Wandy",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 3",
-          "season": "Season 2 (Current)",
-          "date": "Friday, 31 July 2026",
           "team_1": "Ilse Muller / Damion Podges",
           "team_2": "Rowan Budhram / Liane Budhram",
           "team_1_alias": "Ilse, Damion",
           "team_2_alias": "Rowan, Liane",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 3",
-          "season": "Season 2 (Current)",
-          "date": "Friday, 31 July 2026",
-          "team_1": "Janine John / Chris John",
-          "team_2": "Pauline Collinson / Brett Collinson",
-          "team_1_alias": "Janine, Chris",
-          "team_2_alias": "No players",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -1418,6 +1684,45 @@
           "score": "",
           "balls": "",
           "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 31 July 2026",
+          "team_1": "Janine John / Chris John",
+          "team_2": "Pauline Collinson / Brett Collinson",
+          "team_1_alias": "Janine, Chris",
+          "team_2_alias": "Pauline, Brett",
+          "score": "5-7 5-7",
+          "balls": "Janine John / Chris John",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 31 July 2026",
+          "team_1": "Chene Erwee / Damien Erwee",
+          "team_2": "Ray Morgan / Wendy Morgan",
+          "team_1_alias": "Chene, Damien",
+          "team_2_alias": "Ray, Wendy",
+          "score": "0-6 1-6",
+          "balls": "Chene Erwee / Damien Erwee",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 31 July 2026",
+          "team_1": "Chloe Smith / Matthew Bowyer",
+          "team_2": "Vanessa Butler / Barry Butler",
+          "team_1_alias": "Chloe, Matthew",
+          "team_2_alias": "Vanessa, Barry",
+          "score": "6-0 6-0",
+          "balls": "Chloe Smith / Matthew Bowyer",
+          "status": "Validated"
         }
       ]
     },
