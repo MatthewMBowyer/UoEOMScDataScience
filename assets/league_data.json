@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-06T05:47:24.480791+00:00",
+  "generated_at_utc": "2026-08-07T04:55:49.335840+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -42,7 +42,7 @@
           "team_2_alias": "Kurt, Gordon",
           "score": "7-6 6-3",
           "balls": "Graeme Te Brake/ Shaun Te Brake",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -426,7 +426,7 @@
           "team_2_alias": "Peter, Alfred",
           "score": "6-4 6-4",
           "balls": "Wesley Visser / Amien Sarlie",
-          "status": "Waiting Approval"
+          "status": "Validated"
         }
       ]
     },
@@ -570,7 +570,7 @@
           "team_2_alias": "Neil, Calden",
           "score": "2-6 0-6",
           "balls": "Johan Wilters / Hano Taljard",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -603,12 +603,12 @@
           "division": "Krugersdorp",
           "season": "Season 1 (Current)",
           "date": "Saturday, 25 July 2026",
-          "team_1": "Johan Wilters / Hano Taljard",
-          "team_2": "Erik Viviers/ Ruan Lategan",
-          "team_1_alias": "Johan, Hano",
-          "team_2_alias": "Erik, Ruan",
-          "score": "1-6 2-6",
-          "balls": "Johan Wilters / Hano Taljard",
+          "team_1": "Matthew Tarr / Johan Greylin",
+          "team_2": "Neil Barnard Calden de Jager",
+          "team_1_alias": "Johan, Matthew",
+          "team_2_alias": "Neil, Calden",
+          "score": "0-6 0-6",
+          "balls": "Matthew Tarr / Johan Greylin",
           "status": "Validated"
         },
         {
@@ -616,13 +616,13 @@
           "division": "Krugersdorp",
           "season": "Season 1 (Current)",
           "date": "Saturday, 25 July 2026",
-          "team_1": "Matthew Tarr / Johan Greylin",
-          "team_2": "Neil Barnard Calden de Jager",
-          "team_1_alias": "Johan, Matthew",
-          "team_2_alias": "Neil, Calden",
-          "score": "0-6 0-6",
-          "balls": "Matthew Tarr / Johan Greylin",
-          "status": "Waiting Approval"
+          "team_1": "Johan Wilters / Hano Taljard",
+          "team_2": "Erik Viviers/ Ruan Lategan",
+          "team_1_alias": "Johan, Hano",
+          "team_2_alias": "Erik, Ruan",
+          "score": "1-6 2-6",
+          "balls": "Johan Wilters / Hano Taljard",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -646,9 +646,9 @@
           "team_2": "Erik Viviers/ Ruan Lategan",
           "team_1_alias": "Johan, Matthew",
           "team_2_alias": "Erik, Ruan",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "0-6 0-6",
+          "balls": "Matthew Tarr / Johan Greylin",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -694,12 +694,12 @@
           "division": "Krugersdorp",
           "season": "Season 1 (Current)",
           "date": "Saturday, 27 June 2026",
-          "team_1": "Matthew Tarr / Johan Greylin",
-          "team_2": "Johan Wilters / Hano Taljard",
-          "team_1_alias": "Johan, Matthew",
-          "team_2_alias": "Johan, Hano",
-          "score": "6-2 6-2",
-          "balls": "Matthew Tarr / Johan Greylin",
+          "team_1": "Neil Barnard Calden de Jager",
+          "team_2": "Janu Pienaar / Joshua Drabble",
+          "team_1_alias": "Neil, Calden",
+          "team_2_alias": "Joshua, Janu",
+          "score": "6-4 4-6 6-4",
+          "balls": "Neil Barnard Calden de Jager",
           "status": "Validated"
         },
         {
@@ -707,12 +707,12 @@
           "division": "Krugersdorp",
           "season": "Season 1 (Current)",
           "date": "Saturday, 27 June 2026",
-          "team_1": "Neil Barnard Calden de Jager",
-          "team_2": "Janu Pienaar / Joshua Drabble",
-          "team_1_alias": "Neil, Calden",
-          "team_2_alias": "Joshua, Janu",
-          "score": "6-4 4-6 6-4",
-          "balls": "Neil Barnard Calden de Jager",
+          "team_1": "Matthew Tarr / Johan Greylin",
+          "team_2": "Johan Wilters / Hano Taljard",
+          "team_1_alias": "Johan, Matthew",
+          "team_2_alias": "Johan, Hano",
+          "score": "6-2 6-2",
+          "balls": "Matthew Tarr / Johan Greylin",
           "status": "Validated"
         },
         {
@@ -1730,6 +1730,19 @@
           "category": "Mixed",
           "division": "MXD Honeydew Div 1",
           "season": "Season 1 (Current)",
+          "date": "Friday, 21 August 2026",
+          "team_1": "Isabella Cardoso & Eugene Cardoso",
+          "team_2": "Jeorge De Freitas / Tiffany De Freitas",
+          "team_1_alias": "Eugene, Isabella",
+          "team_2_alias": "Tiffany, Jeorge",
+          "score": "5-7 4-6",
+          "balls": "Isabella Cardoso & Eugene Cardoso",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 1",
+          "season": "Season 1 (Current)",
           "date": "Friday, 7 August 2026",
           "team_1": "Colleen Wilson / Wayne Wilson",
           "team_2": "Pieter Venter / Tess Venter",
@@ -2571,10 +2584,10 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 3 August 2026",
-          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
-          "team_2": "Lee-Ann Smith / Reenen Burger",
-          "team_1_alias": "Morne, Hendriette",
-          "team_2_alias": "Reenen, Lee-Ann",
+          "team_1": "Jerome / Comfort",
+          "team_2": "Zané Jacobs / Marius Jacobs",
+          "team_1_alias": "Comfort, Jerome",
+          "team_2_alias": "Marius, Zané",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2597,23 +2610,23 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 3 August 2026",
-          "team_1": "Ronel Laubscher/ Willie Vd",
-          "team_2": "Warren Melnick/ Ianthé Honiball",
-          "team_1_alias": "Willie, Ronel",
-          "team_2_alias": "Ianthé, Warren",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_2": "Lee-Ann Smith / Reenen Burger",
+          "team_1_alias": "Morne, Hendriette",
+          "team_2_alias": "Reenen, Lee-Ann",
+          "score": "6-2 6-1",
+          "balls": "Lee-Ann Smith / Reenen Burger",
+          "status": "Waiting Approval"
         },
         {
           "category": "Mixed",
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 1 (Current)",
           "date": "Monday, 3 August 2026",
-          "team_1": "Jerome / Comfort",
-          "team_2": "Zané Jacobs / Marius Jacobs",
-          "team_1_alias": "Comfort, Jerome",
-          "team_2_alias": "Marius, Zané",
+          "team_1": "Ronel Laubscher/ Willie Vd",
+          "team_2": "Warren Melnick/ Ianthé Honiball",
+          "team_1_alias": "Willie, Ronel",
+          "team_2_alias": "Ianthé, Warren",
           "score": "",
           "balls": "",
           "status": "Pending"
