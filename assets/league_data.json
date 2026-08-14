@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-13T04:52:44.151857+00:00",
+  "generated_at_utc": "2026-08-14T04:49:59.611675+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -75,7 +75,7 @@
           "team_2_alias": "Mondrean, Kagiso",
           "score": "5-7 0-6",
           "balls": "JJ / Garth Forsyth",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -486,6 +486,19 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 1 August 2026",
+          "team_1": "J.C / Riaz Varachia",
+          "team_2": "Preash Govender / David Samuel",
+          "team_1_alias": "J.C, Riaz",
+          "team_2_alias": "Preash, David",
+          "score": "6-3 5-7 2-6",
+          "balls": "J.C / Riaz Varachia",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
           "team_1": "Alex Smith / Trevor Smith",
           "team_2": "Steven Sienaert / Reese Shelver",
           "team_1_alias": "Trevor, Alex",
@@ -503,19 +516,6 @@
           "team_2": "Tiaan Van Niekerk / Rayno Dippenaar",
           "team_1_alias": "Brendan, Garreth",
           "team_2_alias": "Tiaan, Rayno",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 1 August 2026",
-          "team_1": "J.C / Riaz Varachia",
-          "team_2": "Preash Govender / David Samuel",
-          "team_1_alias": "J.C, Riaz",
-          "team_2_alias": "Preash, David",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -560,7 +560,7 @@
           "date": "Saturday, 5 September 2026",
           "team_1": "Iain Lindsay / Jason Lindsay",
           "team_2": "Pieter Venter / Hennie Erasmus",
-          "team_1_alias": "Wesley, Amien",
+          "team_1_alias": "Jason, Iain",
           "team_2_alias": "Hennie, Pieter",
           "score": "6-4 3-6 4-6",
           "balls": "Pieter Venter / Hennie Erasmus",
@@ -625,7 +625,7 @@
           "date": "Saturday, 8 August 2026",
           "team_1": "Iain Lindsay / Jason Lindsay",
           "team_2": "Stanton Fredericks / Zaid Mohidin",
-          "team_1_alias": "Wesley, Amien",
+          "team_1_alias": "Jason, Iain",
           "team_2_alias": "Zaid, Stanton",
           "score": "6-4 6-7 3-6",
           "balls": "Iain Lindsay / Jason Lindsay",
@@ -682,12 +682,12 @@
           "division": "Honeydew DIV 3",
           "season": "Season 3 (Current)",
           "date": "Saturday, 1 August 2026",
-          "team_1": "Moe Variave / Andriano Dello Lacono",
+          "team_1": "Mohammed Variave / Andriano Dello Lacono",
           "team_2": "Morgan Wentzel / Conor Prately",
           "team_1_alias": "Dello, Moe",
           "team_2_alias": "Conor, Morgan",
           "score": "4-6 6-3 7-5",
-          "balls": "Moe Variave / Andriano Dello Lacono",
+          "balls": "Mohammed Variave / Andriano Dello Lacono",
           "status": "Validated"
         },
         {
@@ -729,9 +729,9 @@
           "season": "Season 2 (Current)",
           "date": "Saturday, 8 August 2026",
           "team_1": "Andrew Prately / Adam Prately",
-          "team_2": "Tony Ferguson / Mauritz Boshoff",
+          "team_2": "Mauritz Boshoff/ Gordan Beard",
           "team_1_alias": "Adam",
-          "team_2_alias": "Tony, Mauritz",
+          "team_2_alias": "Gordan, Mauritz",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -742,9 +742,9 @@
           "season": "Season 2 (Current)",
           "date": "Saturday, 8 August 2026",
           "team_1": "Pieter Bekker / Morne Venter",
-          "team_2": "Renato Almedia / Steven Adelaine",
+          "team_2": "Hermanus Du Preez / Jason Du Preez",
           "team_1_alias": "Pieter, Morne",
-          "team_2_alias": "Steven, Renato",
+          "team_2_alias": "Jason, Hermanus",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2214,19 +2214,6 @@
           "division": "MXD Honeydew Div 1",
           "season": "Season 1 (Current)",
           "date": "Friday, 7 August 2026",
-          "team_1": "Isabella Cardoso & Eugene Cardoso",
-          "team_2": "Nathan Render / Lisa Jansen",
-          "team_1_alias": "Isabella, Eugene",
-          "team_2_alias": "Lisa, Nathan",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 1",
-          "season": "Season 1 (Current)",
-          "date": "Friday, 7 August 2026",
           "team_1": "Jeorge De Freitas / Tiffany De Freitas",
           "team_2": "Alex Smith / Lea Smith",
           "team_1_alias": "Jeorge, Tiffany",
@@ -2247,6 +2234,19 @@
           "score": "3-6 6-3 7-5",
           "balls": "Alan Browining / Arina Botes",
           "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 1",
+          "season": "Season 1 (Current)",
+          "date": "Friday, 7 August 2026",
+          "team_1": "Isabella Cardoso & Eugene Cardoso",
+          "team_2": "Nathan Render / Lisa Jansen",
+          "team_1_alias": "Isabella, Eugene",
+          "team_2_alias": "Lisa, Nathan",
+          "score": "7-6 4-6 4-6",
+          "balls": "Isabella Cardoso & Eugene Cardoso",
+          "status": "Waiting Approval"
         },
         {
           "category": "Mixed",
@@ -2353,6 +2353,19 @@
       "division": "MXD Honeydew Div 3",
       "season": "Season 2 (Current)",
       "fixtures": [
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 20 November 2026",
+          "team_1": "Ilse Muller / Damion Podges",
+          "team_2": "Ray Morgan / Wendy Morgan",
+          "team_1_alias": "Damion, Ilse",
+          "team_2_alias": "Ray, Wendy",
+          "score": "0-6 0-6",
+          "balls": "Ilse Muller / Damion Podges",
+          "status": "Waiting Approval"
+        },
         {
           "category": "Mixed",
           "division": "MXD Honeydew Div 3",
