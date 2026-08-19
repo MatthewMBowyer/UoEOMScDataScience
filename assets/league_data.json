@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-18T03:44:27.180365+00:00",
+  "generated_at_utc": "2026-08-19T03:46:00.354263+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -158,9 +158,9 @@
           "team_2": "Nadeem Amra/ Andres Varas",
           "team_1_alias": "J.C, Riaz",
           "team_2_alias": "Andy, Preash",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "2-6 3-6",
+          "balls": "Nadeem Amra/ Andres Varas",
+          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
@@ -186,6 +186,19 @@
           "team_2_alias": "Peter, Alfred",
           "score": "6-4 6-4",
           "balls": "Wesley Visser / Amien Sarlie",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 1 August 2026",
+          "team_1": "J.C / Riaz Varachia",
+          "team_2": "Preash Govender / David Samuel",
+          "team_1_alias": "J.C, Riaz",
+          "team_2_alias": "Preash, David",
+          "score": "6-3 5-7 2-6",
+          "balls": "J.C / Riaz Varachia",
           "status": "Validated"
         },
         {
@@ -225,19 +238,6 @@
           "team_2_alias": "Reese, Steven",
           "score": "6-2 7-5",
           "balls": "Alex Smith / Trevor Smith",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 1 August 2026",
-          "team_1": "J.C / Riaz Varachia",
-          "team_2": "Preash Govender / David Samuel",
-          "team_1_alias": "J.C, Riaz",
-          "team_2_alias": "Preash, David",
-          "score": "6-3 5-7 2-6",
-          "balls": "J.C / Riaz Varachia",
           "status": "Validated"
         }
       ]
@@ -292,9 +292,9 @@
           "season": "Season 3 (Current)",
           "date": "Saturday, 8 August 2026",
           "team_1": "Julian Van Actherbergh / Steven O'Sullivan",
-          "team_2": "Morne Glover / Yidher Chang",
+          "team_2": "Morne Glover / Yihder Chang",
           "team_1_alias": "Johan, Steven",
-          "team_2_alias": "Morne, YIdher",
+          "team_2_alias": "Morne, Yihder",
           "score": "6-4 6-3",
           "balls": "Julian Van Actherbergh / Steven O'Sullivan",
           "status": "Validated"
@@ -577,127 +577,15 @@
     },
     {
       "category": "Men's",
-      "division": "Ruimsig Mens Div 1",
+      "division": "Krugersdorp Mens Division 1",
       "season": "Season 2 (Current)",
-      "fixtures": [
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 8 August 2026",
-          "team_1": "Validated",
-          "team_2": "Paul Jacobie / Keegan Van Den Heever",
-          "team_1_alias": "No players",
-          "team_2_alias": "Keegan, Paul",
-          "score": "0-6 0-6",
-          "balls": "",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 25 July 2026",
-          "team_1": "Paul Jacobie / Keegan Van Den Heever",
-          "team_2": "Keegan, Paul",
-          "team_1_alias": "No players",
-          "team_2_alias": "6-3 7-6",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 11 July 2026",
-          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
-          "team_2": "Lehlogonolo, Johan",
-          "team_1_alias": "No players",
-          "team_2_alias": "6-2 3-6 7-6",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 27 June 2026",
-          "team_1": "Paul Jacobie / Keegan Van Den Heever",
-          "team_2": "Keegan, Paul",
-          "team_1_alias": "No players",
-          "team_2_alias": "6-2 6-2",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 27 June 2026",
-          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
-          "team_2": "Lehlogonolo, Johan",
-          "team_1_alias": "No players",
-          "team_2_alias": "6-3 6-3",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 13 June 2026",
-          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
-          "team_2": "Paul Jacobie / Keegan Van Den Heever",
-          "team_1_alias": "Lehlogonolo, Johan",
-          "team_2_alias": "Keegan, Paul",
-          "score": "2-6 4-6",
-          "balls": "Paul Jacobie / Keegan Van Den Heever",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 13 June 2026",
-          "team_1": "Validated",
-          "team_2": "No players",
-          "team_1_alias": "No players",
-          "team_2_alias": "7-5 4-6 3-6",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 13 June 2026",
-          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
-          "team_2": "Lehlogonolo, Johan",
-          "team_1_alias": "No players",
-          "team_2_alias": "6-4 6-1",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 13 June 2026",
-          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
-          "team_2": "Lehlogonolo, Johan",
-          "team_1_alias": "No players",
-          "team_2_alias": "6-4 6-3",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        }
-      ]
+      "fixtures": []
+    },
+    {
+      "category": "Men's",
+      "division": "Ruimsig Mens Div 1",
+      "season": "Season 3 (Current)",
+      "fixtures": []
     },
     {
       "category": "Ladies",
@@ -765,9 +653,9 @@
           "team_2": "Madison Sked / Karen Dengler",
           "team_1_alias": "Chrisna, Renche",
           "team_2_alias": "Karen, Madison",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "6-3 6-2",
+          "balls": "Madison Sked / Karen Dengler",
+          "status": "Waiting Approval"
         },
         {
           "category": "Ladies",
@@ -1454,13 +1342,77 @@
       "category": "Mixed",
       "division": "Ruimsig Mixed Div 2",
       "season": "Season 3 (Current)",
-      "fixtures": []
+      "fixtures": [
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 3 (Current)",
+          "date": "Tuesday, 18 August 2026",
+          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_2": "Wolfi Maralik / Kerryn Maralik",
+          "team_1_alias": "Morne, Hendriette",
+          "team_2_alias": "Wolfi, Kerryn",
+          "score": "4-6 6-3 3-6",
+          "balls": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 3 (Current)",
+          "date": "Tuesday, 18 August 2026",
+          "team_1": "Jerome / Comfort",
+          "team_2": "Matthew Phillips / Ashleigh Steed",
+          "team_1_alias": "Jerome, Comfort",
+          "team_2_alias": "No players",
+          "score": "6-4 6-3",
+          "balls": "Jerome / Comfort",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 3 (Current)",
+          "date": "Tuesday, 18 August 2026",
+          "team_1": "Jenine Vermaak / Awie Van Rensburg",
+          "team_2": "Warren Melnick/ Ianthé Honiball",
+          "team_1_alias": "No players",
+          "team_2_alias": "Ianthé, Warren",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 3 (Current)",
+          "date": "Tuesday, 18 August 2026",
+          "team_1": "Kyle Prescott / Nadine Mansour",
+          "team_2": "Monty / Monty partner",
+          "team_1_alias": "No players",
+          "team_2_alias": "Martin, Daniella, Nadine, Kyle",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 3 (Current)",
+          "date": "Tuesday, 18 August 2026",
+          "team_1": "Liam Du toit / Lalique Du toit",
+          "team_2": "Lee-Ann Smith / Reenen Burger",
+          "team_1_alias": "Bianca, Christoph",
+          "team_2_alias": "Reenen, Lee-Ann",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        }
+      ]
     }
   ],
   "errors": [
-    "Failed division: Men's | Krugersdorp | No Current season found for Krugersdorp",
     "Failed division: Men's | Ruimsig Mens Div 2 | No Current season found for Ruimsig Mens Div 2",
-    "Failed division: Men's | Syringa | No Current season found for Syringa",
     "Failed division: Ladies | Krugersdorp Ladies Division | No Current season found for Krugersdorp Ladies Division",
     "Failed division: Mixed | Ruimsig Ladies Division | No Current season found for Ruimsig Ladies Division",
     "Failed division: Mixed | Ruimsig Mixed Div 1 | No Current season found for Ruimsig Mixed Div 1",
