@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-19T03:46:00.354263+00:00",
+  "generated_at_utc": "2026-08-20T03:46:37.069826+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -160,7 +160,7 @@
           "team_2_alias": "Andy, Preash",
           "score": "2-6 3-6",
           "balls": "Nadeem Amra/ Andres Varas",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -527,9 +527,9 @@
           "season": "Season 2 (Current)",
           "date": "Saturday, 8 August 2026",
           "team_1": "Andrew Prately / Adam Prately",
-          "team_2": "Mauritz Boshoff/ Gordan Beard",
+          "team_2": "Mauritz Boshoff/ Gordon Beard",
           "team_1_alias": "Adam",
-          "team_2_alias": "Gordan, Mauritz",
+          "team_2_alias": "Gordon, Mauritz",
           "score": "1-6 5-7",
           "balls": "Andrew Prately / Adam Prately",
           "status": "Validated"
@@ -565,12 +565,12 @@
           "division": "Honeydew DIV 4",
           "season": "Season 2 (Current)",
           "date": "Saturday, 8 August 2026",
-          "team_1": "Grame Te Brake / Shaun Te Brake",
+          "team_1": "Graeme Te Brake / Shaun Te Brake",
           "team_2": "Shaylin Nundraj / Keetan Naidoo",
           "team_1_alias": "Shaun, Grame",
           "team_2_alias": "keetan, Shaylin",
           "score": "6-4 6-2",
-          "balls": "Grame Te Brake / Shaun Te Brake",
+          "balls": "Graeme Te Brake / Shaun Te Brake",
           "status": "Validated"
         }
       ]
@@ -655,7 +655,7 @@
           "team_2_alias": "Karen, Madison",
           "score": "6-3 6-2",
           "balls": "Madison Sked / Karen Dengler",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -1006,6 +1006,12 @@
       ]
     },
     {
+      "category": "Ladies",
+      "division": "Krugersdorp Ladies Division",
+      "season": "Season 1 (Current)",
+      "fixtures": []
+    },
+    {
       "category": "Mixed",
       "division": "MXD Honeydew Div 1",
       "season": "Season 1 (Current)",
@@ -1348,12 +1354,12 @@
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 3 (Current)",
           "date": "Tuesday, 18 August 2026",
-          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
-          "team_2": "Wolfi Maralik / Kerryn Maralik",
-          "team_1_alias": "Morne, Hendriette",
-          "team_2_alias": "Wolfi, Kerryn",
-          "score": "4-6 6-3 3-6",
-          "balls": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_1": "Kyle Prescott / Nadine Mansour",
+          "team_2": "Monty / Monty partner",
+          "team_1_alias": "No players",
+          "team_2_alias": "Martin, Daniella, Nadine, Kyle",
+          "score": "6-1 5-7 6-3",
+          "balls": "Kyle Prescott / Nadine Mansour",
           "status": "Waiting Approval"
         },
         {
@@ -1374,23 +1380,23 @@
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 3 (Current)",
           "date": "Tuesday, 18 August 2026",
-          "team_1": "Jenine Vermaak / Awie Van Rensburg",
-          "team_2": "Warren Melnick/ Ianthé Honiball",
-          "team_1_alias": "No players",
-          "team_2_alias": "Ianthé, Warren",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "team_2": "Wolfi Maralik / Kerryn Maralik",
+          "team_1_alias": "Morne, Hendriette",
+          "team_2_alias": "Wolfi, Kerryn",
+          "score": "4-6 6-3 3-6",
+          "balls": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 3 (Current)",
           "date": "Tuesday, 18 August 2026",
-          "team_1": "Kyle Prescott / Nadine Mansour",
-          "team_2": "Monty / Monty partner",
+          "team_1": "Jenine Vermaak / Awie Van Rensburg",
+          "team_2": "Warren Melnick/ Ianthé Honiball",
           "team_1_alias": "No players",
-          "team_2_alias": "Martin, Daniella, Nadine, Kyle",
+          "team_2_alias": "Ianthé, Warren",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -1413,7 +1419,6 @@
   ],
   "errors": [
     "Failed division: Men's | Ruimsig Mens Div 2 | No Current season found for Ruimsig Mens Div 2",
-    "Failed division: Ladies | Krugersdorp Ladies Division | No Current season found for Krugersdorp Ladies Division",
     "Failed division: Mixed | Ruimsig Ladies Division | No Current season found for Ruimsig Ladies Division",
     "Failed division: Mixed | Ruimsig Mixed Div 1 | No Current season found for Ruimsig Mixed Div 1",
     "Failed division: Mixed | Ruimsig Mixed Div 3 | No Current season found for Ruimsig Mixed Div 3"
