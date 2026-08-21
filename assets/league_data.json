@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-20T03:46:37.069826+00:00",
+  "generated_at_utc": "2026-08-21T03:49:50.637328+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -942,6 +942,19 @@
           "category": "Ladies",
           "division": "Honeydew Ladies Div 4",
           "season": "Season 4 (Current)",
+          "date": "Saturday, 22 August 2026",
+          "team_1": "Candice O Sullivan / Sue Cillers",
+          "team_2": "Lauren De Freitas / Liane Budhram",
+          "team_1_alias": "Sue, Candice",
+          "team_2_alias": "Mozel, Liane, Lauren",
+          "score": "6-4 6-4",
+          "balls": "Lauren De Freitas / Liane Budhram",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 4",
+          "season": "Season 4 (Current)",
           "date": "Saturday, 8 August 2026",
           "team_1": "Candice O Sullivan / Sue Cillers",
           "team_2": "Seshnie Naidoo / Neeloufah Alli",
@@ -1354,19 +1367,6 @@
           "division": "Ruimsig Mixed Div 2",
           "season": "Season 3 (Current)",
           "date": "Tuesday, 18 August 2026",
-          "team_1": "Kyle Prescott / Nadine Mansour",
-          "team_2": "Monty / Monty partner",
-          "team_1_alias": "No players",
-          "team_2_alias": "Martin, Daniella, Nadine, Kyle",
-          "score": "6-1 5-7 6-3",
-          "balls": "Kyle Prescott / Nadine Mansour",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 2",
-          "season": "Season 3 (Current)",
-          "date": "Tuesday, 18 August 2026",
           "team_1": "Jerome / Comfort",
           "team_2": "Matthew Phillips / Ashleigh Steed",
           "team_1_alias": "Jerome, Comfort",
@@ -1386,6 +1386,19 @@
           "team_2_alias": "Wolfi, Kerryn",
           "score": "4-6 6-3 3-6",
           "balls": "Hendriette Van der Merwe / Morne Van der Merwe",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 2",
+          "season": "Season 3 (Current)",
+          "date": "Tuesday, 18 August 2026",
+          "team_1": "Kyle Prescott / Nadine Mansour",
+          "team_2": "Monty / Monty partner",
+          "team_1_alias": "No players",
+          "team_2_alias": "Martin, Daniella, Nadine, Kyle",
+          "score": "6-1 5-7 6-3",
+          "balls": "Kyle Prescott / Nadine Mansour",
           "status": "Validated"
         },
         {
@@ -1415,12 +1428,17 @@
           "status": "Pending"
         }
       ]
+    },
+    {
+      "category": "Mixed",
+      "division": "Ruimsig Mixed Div 3",
+      "season": "Season 2 (Current)",
+      "fixtures": []
     }
   ],
   "errors": [
     "Failed division: Men's | Ruimsig Mens Div 2 | No Current season found for Ruimsig Mens Div 2",
     "Failed division: Mixed | Ruimsig Ladies Division | No Current season found for Ruimsig Ladies Division",
-    "Failed division: Mixed | Ruimsig Mixed Div 1 | No Current season found for Ruimsig Mixed Div 1",
-    "Failed division: Mixed | Ruimsig Mixed Div 3 | No Current season found for Ruimsig Mixed Div 3"
+    "Failed division: Mixed | Ruimsig Mixed Div 1 | No Current season found for Ruimsig Mixed Div 1"
   ]
 }
