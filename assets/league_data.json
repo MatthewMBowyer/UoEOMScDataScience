@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-26T03:53:08.401630+00:00",
+  "generated_at_utc": "2026-08-27T13:25:58.357088+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -747,7 +747,7 @@
     {
       "category": "Men's",
       "division": "Krugersdorp Div 2",
-      "season": "Season 1 (Current)",
+      "season": "Season 2 (Current)",
       "fixtures": []
     },
     {
@@ -786,10 +786,10 @@
           "division": "Krugersdorp Mens Division 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 22 August 2026",
-          "team_1": "Neil Barnard / Josh Petzer",
-          "team_2": "Ryno Arangies / HP Toerien",
-          "team_1_alias": "Josh, Neil",
-          "team_2_alias": "Hp, Ryno",
+          "team_1": "Reese Shelver / Johan Greylin",
+          "team_2": "Riaz Varachia / Ayman Varachia",
+          "team_1_alias": "Reese, Johan",
+          "team_2_alias": "Riaz, Ayman",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -799,13 +799,13 @@
           "division": "Krugersdorp Mens Division 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 22 August 2026",
-          "team_1": "Reese Shelver / Johan Greylin",
-          "team_2": "Riaz Varachia / Ayman Varachia",
-          "team_1_alias": "Reese, Johan",
-          "team_2_alias": "Riaz, Ayman",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Neil Barnard / Josh Petzer",
+          "team_2": "Ryno Arangies / HP Toerien",
+          "team_1_alias": "Josh, Neil",
+          "team_2_alias": "Hp, Ryno",
+          "score": "6-4 4-6 6-7",
+          "balls": "Neil Barnard / Josh Petzer",
+          "status": "Validated"
         }
       ]
     },
@@ -1351,9 +1351,9 @@
           "team_2": "Roxanne Govender / Saiisha Naidu",
           "team_1_alias": "Bella",
           "team_2_alias": "Saiisha, Roxanne",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "1-6 6-2 4-4",
+          "balls": "Roxanne Govender / Saiisha Naidu",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -1556,8 +1556,8 @@
           "division": "MXD Honeydew Div 1",
           "season": "Season 1 (Current)",
           "date": "Friday, 21 August 2026",
-          "team_1": "Sunette Atkins / Mike Atkins",
-          "team_2": "Nicks Bothwell & Ritchie Garrad",
+          "team_1": "Suenet Atkins / Mike Atkins",
+          "team_2": "Nicks Bothwell / Ritchie Garrad",
           "team_1_alias": "Suenette, Mike",
           "team_2_alias": "Nicks, Richard",
           "score": "",
@@ -1582,12 +1582,12 @@
           "division": "MXD Honeydew Div 1",
           "season": "Season 1 (Current)",
           "date": "Friday, 21 August 2026",
-          "team_1": "Isabella Cardoso & Eugene Cardoso",
+          "team_1": "Isabella Cardoso / Eugene Cardoso",
           "team_2": "Jeorge De Freitas / Tiffany De Freitas",
           "team_1_alias": "Isabella, Eugene",
           "team_2_alias": "Jeorge, Tiffany",
           "score": "5-7 4-6",
-          "balls": "Isabella Cardoso & Eugene Cardoso",
+          "balls": "Isabella Cardoso / Eugene Cardoso",
           "status": "Validated"
         },
         {
@@ -1596,7 +1596,7 @@
           "season": "Season 1 (Current)",
           "date": "Friday, 7 August 2026",
           "team_1": "Alan Browining / Arina Botes",
-          "team_2": "Sunette Atkins / Mike Atkins",
+          "team_2": "Suenet Atkins / Mike Atkins",
           "team_1_alias": "Alan, Arina",
           "team_2_alias": "Suenette, Mike",
           "score": "3-6 6-3 7-5",
@@ -1609,7 +1609,7 @@
           "season": "Season 1 (Current)",
           "date": "Friday, 7 August 2026",
           "team_1": "Dillan Parau / Lesinda Parau",
-          "team_2": "Nicks Bothwell & Ritchie Garrad",
+          "team_2": "Nicks Bothwell / Ritchie Garrad",
           "team_1_alias": "Lesinda, Dillian",
           "team_2_alias": "Nicks, Richard",
           "score": "6-1 6-2",
@@ -1621,12 +1621,12 @@
           "division": "MXD Honeydew Div 1",
           "season": "Season 1 (Current)",
           "date": "Friday, 7 August 2026",
-          "team_1": "Isabella Cardoso & Eugene Cardoso",
+          "team_1": "Isabella Cardoso / Eugene Cardoso",
           "team_2": "Nathan Render / Lisa Jansen",
           "team_1_alias": "Isabella, Eugene",
           "team_2_alias": "Lisa, Nathan",
           "score": "7-6 4-6 4-6",
-          "balls": "Isabella Cardoso & Eugene Cardoso",
+          "balls": "Isabella Cardoso / Eugene Cardoso",
           "status": "Validated"
         },
         {
@@ -1671,6 +1671,32 @@
           "team_2": "Juanita Pienaar / Lloyd Pienaar",
           "team_1_alias": "Claire, Lawrence",
           "team_2_alias": "Juanita, Lloyd",
+          "score": "5-7 2-6",
+          "balls": "Juanita Pienaar / Lloyd Pienaar",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 2",
+          "season": "Season 1 (Current)",
+          "date": "Friday, 21 August 2026",
+          "team_1": "Hermanus du Prez / Eunita du Prez",
+          "team_2": "Jamee Sampson / Sean Crossland",
+          "team_1_alias": "Eunita, Hermanus",
+          "team_2_alias": "Jamee, Sean",
+          "score": "4-6 2-6",
+          "balls": "Hermanus du Prez / Eunita du Prez",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 2",
+          "season": "Season 1 (Current)",
+          "date": "Friday, 21 August 2026",
+          "team_1": "Annelore Wheeler / Andre Brunacky",
+          "team_2": "Ryan Purdon/ Nicks Botwell",
+          "team_1_alias": "Andre, Annelore",
+          "team_2_alias": "Ryan, Nicks",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -1693,19 +1719,6 @@
           "division": "MXD Honeydew Div 2",
           "season": "Season 1 (Current)",
           "date": "Friday, 21 August 2026",
-          "team_1": "Hermanus du Prez / Eunita du Prez",
-          "team_2": "Jamee Sampson / Sean Crossland",
-          "team_1_alias": "Eunita, Hermanus",
-          "team_2_alias": "Jamee, Sean",
-          "score": "4-6 2-6",
-          "balls": "Hermanus du Prez / Eunita du Prez",
-          "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 2",
-          "season": "Season 1 (Current)",
-          "date": "Friday, 21 August 2026",
           "team_1": "Carolyn Humphries / Matthew Stevens",
           "team_2": "Kerry panzcyk / Peter Panzcyk",
           "team_1_alias": "Carolyn, Matthew",
@@ -1713,19 +1726,6 @@
           "score": "7-6 3-6 3-6",
           "balls": "Kerry panzcyk / Peter Panzcyk",
           "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 2",
-          "season": "Season 1 (Current)",
-          "date": "Friday, 21 August 2026",
-          "team_1": "Annelore Wheeler / Andre Brunacky",
-          "team_2": "Ryan Purdon/ Nicks Botwell",
-          "team_1_alias": "Andre, Annelore",
-          "team_2_alias": "Ryan, Nicks",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
         },
         {
           "category": "Mixed",
@@ -1758,19 +1758,6 @@
           "division": "MXD Honeydew Div 2",
           "season": "Season 1 (Current)",
           "date": "Friday, 7 August 2026",
-          "team_1": "Jamee Sampson / Sean Crossland",
-          "team_2": "Juanita Pienaar / Lloyd Pienaar",
-          "team_1_alias": "Jamee, Sean",
-          "team_2_alias": "Juanita, Lloyd",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 2",
-          "season": "Season 1 (Current)",
-          "date": "Friday, 7 August 2026",
           "team_1": "Hermanus du Prez / Eunita du Prez",
           "team_2": "Kerry panzcyk / Peter Panzcyk",
           "team_1_alias": "Eunita, Hermanus",
@@ -1778,6 +1765,19 @@
           "score": "6-4 6-2",
           "balls": "Hermanus du Prez / Eunita du Prez",
           "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 2",
+          "season": "Season 1 (Current)",
+          "date": "Friday, 7 August 2026",
+          "team_1": "Jamee Sampson / Sean Crossland",
+          "team_2": "Juanita Pienaar / Lloyd Pienaar",
+          "team_1_alias": "Jamee, Sean",
+          "team_2_alias": "Juanita, Lloyd",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Mixed",
@@ -2032,7 +2032,7 @@
           "team_2_alias": "Reenen, Lee-Ann",
           "score": "6-3 6-1",
           "balls": "Liam Du toit / Lalique Du toit",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -2124,10 +2124,10 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 2 (Current)",
           "date": "Monday, 24 August 2026",
-          "team_1": "Ingrid Lubke / johan Vander Merwe",
-          "team_2": "Martin Miog / Daniella Mitchell",
-          "team_1_alias": "Karel, Annemarie",
-          "team_2_alias": "Martin, Daniella",
+          "team_1": "Kobus Van Niekerk / Dionie Van Niekerk",
+          "team_2": "Marius Jacobs / Charmain Van Wyk",
+          "team_1_alias": "Kobus, Dionie",
+          "team_2_alias": "Marius, Charmain",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2137,13 +2137,13 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 2 (Current)",
           "date": "Monday, 24 August 2026",
-          "team_1": "Kobus Van Niekerk / Dionie Van Niekerk",
-          "team_2": "Marius Jacobs / Charmain Van Wyk",
-          "team_1_alias": "Kobus, Dionie",
-          "team_2_alias": "Marius, Charmain",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Ingrid Lubke / johan Vander Merwe",
+          "team_2": "Martin Miog / Daniella Mitchell",
+          "team_1_alias": "Karel, Annemarie",
+          "team_2_alias": "Martin, Daniella",
+          "score": "3-6 1-6",
+          "balls": "Ingrid Lubke / johan Vander Merwe",
+          "status": "Validated"
         }
       ]
     }
