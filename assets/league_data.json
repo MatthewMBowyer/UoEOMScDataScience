@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-30T08:47:25.819477+00:00",
+  "generated_at_utc": "2026-08-31T09:10:30.207957+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -30,26 +30,13 @@
           "division": "A.M. Smashes Premier Division",
           "season": "Season 2 (Current)",
           "date": "Saturday, 22 August 2026",
-          "team_1": "Chezerray Cornelissen / Wesley Coetzer",
-          "team_2": "Mondrean Hattingh / Kagiso leduma",
-          "team_1_alias": "Wesley, Chezerray",
-          "team_2_alias": "Mondrean, Kagiso",
-          "score": "3-6 4-6",
-          "balls": "Mondrean Hattingh / Kagiso leduma",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "A.M. Smashes Premier Division",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 22 August 2026",
           "team_1": "Andeebee / Juan De Villiers",
           "team_2": "Riaan du Toit / Liam du Toit",
           "team_1_alias": "Andeebee, Juan",
           "team_2_alias": "Liam, Riaan",
           "score": "6-2 6-4",
           "balls": "Riaan du Toit / Liam du Toit",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -69,7 +56,7 @@
           "division": "A.M. Smashes Premier Division",
           "season": "Season 2 (Current)",
           "date": "Saturday, 22 August 2026",
-          "team_1": "Dillian Parau / Donavan Parau",
+          "team_1": "Dillan Parau / Donovan Parau",
           "team_2": "Mike Atkins / Bradley Campbell",
           "team_1_alias": "Dillian, Donavan",
           "team_2_alias": "Mike, Bradley",
@@ -94,27 +81,14 @@
           "category": "Men's",
           "division": "A.M. Smashes Premier Division",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 8 August 2026",
+          "date": "Saturday, 22 August 2026",
           "team_1": "Chezerray Cornelissen / Wesley Coetzer",
-          "team_2": "Riaan du Toit / Liam du Toit",
+          "team_2": "Mondrean Hattingh / Kagiso leduma",
           "team_1_alias": "Wesley, Chezerray",
-          "team_2_alias": "Liam, Riaan",
-          "score": "5-7 6-7",
-          "balls": "Chezerray Cornelissen / Wesley Coetzer",
+          "team_2_alias": "Mondrean, Kagiso",
+          "score": "3-6 4-6",
+          "balls": "Mondrean Hattingh / Kagiso leduma",
           "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "A.M. Smashes Premier Division",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 8 August 2026",
-          "team_1": "Dillian Parau / Donavan Parau",
-          "team_2": "Reece Stander / Christian Pereira",
-          "team_1_alias": "Dillian, Donavan",
-          "team_2_alias": "Reece, Christian",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -128,6 +102,19 @@
           "score": "5-7 0-6",
           "balls": "JJ / Garth Forsyth",
           "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "A.M. Smashes Premier Division",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 8 August 2026",
+          "team_1": "Dillan Parau / Donovan Parau",
+          "team_2": "Reece Stander / Christian Pereira",
+          "team_1_alias": "Dillian, Donavan",
+          "team_2_alias": "Reece, Christian",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -153,6 +140,19 @@
           "team_2_alias": "Mike, Bradley",
           "score": "7-6 6-3",
           "balls": "Micheal Edwards / Junior Van Rooyen",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "A.M. Smashes Premier Division",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 8 August 2026",
+          "team_1": "Chezerray Cornelissen / Wesley Coetzer",
+          "team_2": "Riaan du Toit / Liam du Toit",
+          "team_1_alias": "Wesley, Chezerray",
+          "team_2_alias": "Liam, Riaan",
+          "score": "5-7 6-7",
+          "balls": "Chezerray Cornelissen / Wesley Coetzer",
           "status": "Validated"
         }
       ]
@@ -180,13 +180,13 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 29 August 2026",
-          "team_1": "Steven Sienaert / Reese Shelver",
-          "team_2": "Nadeem Amra/ Andres Varas",
-          "team_1_alias": "Reese, Steven",
-          "team_2_alias": "Andy, Nadeem",
-          "score": "2-6 0-6",
-          "balls": "Steven Sienaert / Reese Shelver",
-          "status": "Validated"
+          "team_1": "Alex Smith / Trevor Smith",
+          "team_2": "Preash Govender / David Samuel",
+          "team_1_alias": "Trevor, Alex",
+          "team_2_alias": "Preash, David",
+          "score": "4-6 6-4 6-3",
+          "balls": "Preash Govender / David Samuel",
+          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
@@ -206,13 +206,13 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 29 August 2026",
-          "team_1": "Alex Smith / Trevor Smith",
-          "team_2": "Preash Govender / David Samuel",
-          "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "Preash, David",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Garreth Raath / Brendan Beech",
+          "team_2": "Mark Rondi / Anton Davel",
+          "team_1_alias": "Brendan, Garreth",
+          "team_2_alias": "Mark, Anton",
+          "score": "6-1 5-7 6-2",
+          "balls": "Garreth Raath / Brendan Beech",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -232,13 +232,13 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 29 August 2026",
-          "team_1": "Garreth Raath / Brendan Beech",
-          "team_2": "Mark Rondi / Anton Davel",
-          "team_1_alias": "Brendan, Garreth",
-          "team_2_alias": "Mark, Anton",
-          "score": "6-1 5-7 6-2",
-          "balls": "Garreth Raath / Brendan Beech",
-          "status": "Waiting Approval"
+          "team_1": "Steven Sienaert / Reese Shelver",
+          "team_2": "Nadeem Amra/ Andres Varas",
+          "team_1_alias": "Reese, Steven",
+          "team_2_alias": "Andy, Nadeem",
+          "score": "2-6 0-6",
+          "balls": "Steven Sienaert / Reese Shelver",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -271,19 +271,6 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 15 August 2026",
-          "team_1": "Alex Smith / Trevor Smith",
-          "team_2": "Tiaan Van Niekerk / Rayno Dippenaar",
-          "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "Tiaan, Rayno",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 15 August 2026",
           "team_1": "J.C / Riaz Varachia",
           "team_2": "Nadeem Amra/ Andres Varas",
           "team_1_alias": "J.C, Riaz",
@@ -291,6 +278,19 @@
           "score": "2-6 3-6",
           "balls": "Nadeem Amra/ Andres Varas",
           "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 15 August 2026",
+          "team_1": "Alex Smith / Trevor Smith",
+          "team_2": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "team_1_alias": "Trevor, Alex",
+          "team_2_alias": "Tiaan, Rayno",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -955,6 +955,32 @@
           "category": "Men's",
           "division": "Krugersdorp Mens Division 1",
           "season": "Season 3 (Current)",
+          "date": "Saturday, 17 October 2026",
+          "team_1": "Ryno Arangies / HP Toerien",
+          "team_2": "Janu Pienaar / Joshua Drabble",
+          "team_1_alias": "Hp, Ryno",
+          "team_2_alias": "Janu, Joshua",
+          "score": "4-6 6-4 7-6",
+          "balls": "Ryno Arangies / HP Toerien",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Men's",
+          "division": "Krugersdorp Mens Division 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 19 September 2026",
+          "team_1": "Janu Pienaar / Joshua Drabble",
+          "team_2": "Neil Barnard / Josh Petzer",
+          "team_1_alias": "Janu, Joshua",
+          "team_2_alias": "Josh, Neil",
+          "score": "2-6 6-4 4-6",
+          "balls": "Janu Pienaar / Joshua Drabble",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Krugersdorp Mens Division 1",
+          "season": "Season 3 (Current)",
           "date": "Saturday, 22 August 2026",
           "team_1": "Janu Pienaar / Joshua Drabble",
           "team_2": "Steven Sienaert / Aaron Leach",
@@ -982,25 +1008,25 @@
           "division": "Krugersdorp Mens Division 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 22 August 2026",
-          "team_1": "Ebrahim Dindar/ Muhammad Dindar",
-          "team_2": "Tiaan Holtzhausen / Cian De Villiers",
-          "team_1_alias": "Muhhammad, Ebrahim",
-          "team_2_alias": "Cian, Tiaan",
-          "score": "6-4 4-6 6-4",
-          "balls": "Ebrahim Dindar/ Muhammad Dindar",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Men's",
-          "division": "Krugersdorp Mens Division 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 22 August 2026",
           "team_1": "Neil Barnard / Josh Petzer",
           "team_2": "Ryno Arangies / HP Toerien",
           "team_1_alias": "Josh, Neil",
           "team_2_alias": "Hp, Ryno",
           "score": "6-4 4-6 6-7",
           "balls": "Neil Barnard / Josh Petzer",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Krugersdorp Mens Division 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 22 August 2026",
+          "team_1": "Ebrahim Dindar/ Muhammad Dindar",
+          "team_2": "Tiaan Holtzhausen / Cian De Villiers",
+          "team_1_alias": "Muhhammad, Ebrahim",
+          "team_2_alias": "Cian, Tiaan",
+          "score": "6-4 4-6 6-4",
+          "balls": "Ebrahim Dindar/ Muhammad Dindar",
           "status": "Validated"
         }
       ]
@@ -1148,6 +1174,12 @@
           "status": "Pending"
         }
       ]
+    },
+    {
+      "category": "Ladies",
+      "division": "A.M. Smashes Ladies Premier Division",
+      "season": "Season 1 (Current)",
+      "fixtures": []
     },
     {
       "category": "Ladies",
@@ -1887,12 +1919,6 @@
       ]
     },
     {
-      "category": "Ladies",
-      "division": "Ladies Premier Division",
-      "season": "Season 1 (Current)",
-      "fixtures": []
-    },
-    {
       "category": "Mixed",
       "division": "MXD Honeydew Div 1",
       "season": "Season 1 (Current)",
@@ -2215,6 +2241,19 @@
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
           "date": "Friday, 28 August 2026",
+          "team_1": "Chloe Smith / Matthew Bowyer",
+          "team_2": "Mauritz Boshoff / Surika",
+          "team_1_alias": "Matthew, Chloe",
+          "team_2_alias": "Mauritz, Surika",
+          "score": "6-0 6-1",
+          "balls": "Chloe Smith / Matthew Bowyer",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 28 August 2026",
           "team_1": "Chene Erwee / Damien Erwee",
           "team_2": "Rowan Budhram / Liane Budhram",
           "team_1_alias": "Chene, Damien",
@@ -2253,19 +2292,6 @@
           "category": "Mixed",
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
-          "date": "Friday, 28 August 2026",
-          "team_1": "Chloe Smith / Matthew Bowyer",
-          "team_2": "Mauritz Boshoff / Surika",
-          "team_1_alias": "Matthew, Chloe",
-          "team_2_alias": "Mauritz, Surika",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 3",
-          "season": "Season 2 (Current)",
           "date": "Friday, 14 August 2026",
           "team_1": "Chloe Smith / Matthew Bowyer",
           "team_2": "Pauline Collinson / Brett Collinson",
@@ -2273,6 +2299,19 @@
           "team_2_alias": "Brett, Pauline",
           "score": "2-6 3-6",
           "balls": "Pauline Collinson / Brett Collinson",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 14 August 2026",
+          "team_1": "Chene Erwee / Damien Erwee",
+          "team_2": "Vanessa Butler / Barry Butler",
+          "team_1_alias": "Chene, Damien",
+          "team_2_alias": "Vanessa, Barry",
+          "score": "6-2 6-1",
+          "balls": "Vanessa Butler / Barry Butler",
           "status": "Validated"
         },
         {
@@ -2313,19 +2352,6 @@
           "score": "",
           "balls": "",
           "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 3",
-          "season": "Season 2 (Current)",
-          "date": "Friday, 14 August 2026",
-          "team_1": "Chene Erwee / Damien Erwee",
-          "team_2": "Vanessa Butler / Barry Butler",
-          "team_1_alias": "Chene, Damien",
-          "team_2_alias": "Vanessa, Barry",
-          "score": "6-2 6-1",
-          "balls": "Vanessa Butler / Barry Butler",
-          "status": "Validated"
         },
         {
           "category": "Mixed",
