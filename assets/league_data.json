@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-31T09:10:30.207957+00:00",
+  "generated_at_utc": "2026-09-01T08:13:43.099793+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -180,13 +180,13 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 29 August 2026",
-          "team_1": "Alex Smith / Trevor Smith",
-          "team_2": "Preash Govender / David Samuel",
-          "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "Preash, David",
-          "score": "4-6 6-4 6-3",
-          "balls": "Preash Govender / David Samuel",
-          "status": "Waiting Approval"
+          "team_1": "Tiaan Van Niekerk / Rayno Dippenaar",
+          "team_2": "Peter Panczyk/ Alfred Visagie",
+          "team_1_alias": "Tiaan, Rayno",
+          "team_2_alias": "Peter, Alfred",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -219,13 +219,13 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 29 August 2026",
-          "team_1": "Tiaan Van Niekerk / Rayno Dippenaar",
-          "team_2": "Peter Panczyk/ Alfred Visagie",
-          "team_1_alias": "Tiaan, Rayno",
-          "team_2_alias": "Peter, Alfred",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Alex Smith / Trevor Smith",
+          "team_2": "Preash Govender / David Samuel",
+          "team_1_alias": "Trevor, Alex",
+          "team_2_alias": "Preash, David",
+          "score": "4-6 6-4 6-3",
+          "balls": "Preash Govender / David Samuel",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -271,6 +271,19 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 15 August 2026",
+          "team_1": "Steven Sienaert / Reese Shelver",
+          "team_2": "Preash Govender / David Samuel",
+          "team_1_alias": "Reese, Steven",
+          "team_2_alias": "Preash, David",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 15 August 2026",
           "team_1": "J.C / Riaz Varachia",
           "team_2": "Nadeem Amra/ Andres Varas",
           "team_1_alias": "J.C, Riaz",
@@ -288,19 +301,6 @@
           "team_2": "Tiaan Van Niekerk / Rayno Dippenaar",
           "team_1_alias": "Trevor, Alex",
           "team_2_alias": "Tiaan, Rayno",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 15 August 2026",
-          "team_1": "Steven Sienaert / Reese Shelver",
-          "team_2": "Preash Govender / David Samuel",
-          "team_1_alias": "Reese, Steven",
-          "team_2_alias": "Preash, David",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -962,7 +962,7 @@
           "team_2_alias": "Janu, Joshua",
           "score": "4-6 6-4 7-6",
           "balls": "Ryno Arangies / HP Toerien",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1919,6 +1919,12 @@
       ]
     },
     {
+      "category": "Ladies",
+      "division": "Ruimsig Ladies Division",
+      "season": "Season 1 (Current)",
+      "fixtures": []
+    },
+    {
       "category": "Mixed",
       "division": "MXD Honeydew Div 1",
       "season": "Season 1 (Current)",
@@ -2241,19 +2247,6 @@
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
           "date": "Friday, 28 August 2026",
-          "team_1": "Chloe Smith / Matthew Bowyer",
-          "team_2": "Mauritz Boshoff / Surika",
-          "team_1_alias": "Matthew, Chloe",
-          "team_2_alias": "Mauritz, Surika",
-          "score": "6-0 6-1",
-          "balls": "Chloe Smith / Matthew Bowyer",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 3",
-          "season": "Season 2 (Current)",
-          "date": "Friday, 28 August 2026",
           "team_1": "Chene Erwee / Damien Erwee",
           "team_2": "Rowan Budhram / Liane Budhram",
           "team_1_alias": "Chene, Damien",
@@ -2292,13 +2285,13 @@
           "category": "Mixed",
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
-          "date": "Friday, 14 August 2026",
+          "date": "Friday, 28 August 2026",
           "team_1": "Chloe Smith / Matthew Bowyer",
-          "team_2": "Pauline Collinson / Brett Collinson",
+          "team_2": "Mauritz Boshoff / Surika",
           "team_1_alias": "Matthew, Chloe",
-          "team_2_alias": "Brett, Pauline",
-          "score": "2-6 3-6",
-          "balls": "Pauline Collinson / Brett Collinson",
+          "team_2_alias": "Mauritz, Surika",
+          "score": "6-0 6-1",
+          "balls": "Chloe Smith / Matthew Bowyer",
           "status": "Validated"
         },
         {
@@ -2306,12 +2299,12 @@
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
           "date": "Friday, 14 August 2026",
-          "team_1": "Chene Erwee / Damien Erwee",
-          "team_2": "Vanessa Butler / Barry Butler",
-          "team_1_alias": "Chene, Damien",
-          "team_2_alias": "Vanessa, Barry",
-          "score": "6-2 6-1",
-          "balls": "Vanessa Butler / Barry Butler",
+          "team_1": "Chloe Smith / Matthew Bowyer",
+          "team_2": "Pauline Collinson / Brett Collinson",
+          "team_1_alias": "Matthew, Chloe",
+          "team_2_alias": "Brett, Pauline",
+          "score": "2-6 3-6",
+          "balls": "Pauline Collinson / Brett Collinson",
           "status": "Validated"
         },
         {
@@ -2352,6 +2345,19 @@
           "score": "",
           "balls": "",
           "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 14 August 2026",
+          "team_1": "Chene Erwee / Damien Erwee",
+          "team_2": "Vanessa Butler / Barry Butler",
+          "team_1_alias": "Chene, Damien",
+          "team_2_alias": "Vanessa, Barry",
+          "score": "6-2 6-1",
+          "balls": "Vanessa Butler / Barry Butler",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -2422,15 +2428,87 @@
     },
     {
       "category": "Mixed",
-      "division": "Ruimsig Ladies Division",
-      "season": "Season 1 (Current)",
-      "fixtures": []
-    },
-    {
-      "category": "Mixed",
       "division": "Ruimsig Mixed Div 1",
       "season": "Season 3 (Current)",
       "fixtures": [
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 31 August 2026",
+          "team_1": "Steven Sienart / Maryna Welman",
+          "team_2": "Noah Sked / Madison Sked",
+          "team_1_alias": "Maryna, Steven",
+          "team_2_alias": "Madison",
+          "score": "2-6 2-6",
+          "balls": "Steven Sienart / Maryna Welman",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 31 August 2026",
+          "team_1": "Alex Smith / Lea Smith",
+          "team_2": "Sandrika Gajraj / Ashwin Naidu",
+          "team_1_alias": "Alex, Lea",
+          "team_2_alias": "Sandrika, Ashwin",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 31 August 2026",
+          "team_1": "Beverly Stace / Wahldo Van der Merwe",
+          "team_2": "Chrisna Arnold / Louis Prinsloo",
+          "team_1_alias": "Wahldo, Beverly",
+          "team_2_alias": "Chrisna, Chrisna",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 31 August 2026",
+          "team_1": "Chantelle Usmar / Dean Lindecke",
+          "team_2": "Meghan Warby / Houston Warby",
+          "team_1_alias": "Dean, Chantelle",
+          "team_2_alias": "Meghan, Houston",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 31 August 2026",
+          "team_1": "Karen Dengler / Malcom Dengler",
+          "team_2": "Louise Nel / Anthonetta Nel",
+          "team_1_alias": "Malcom, Karen",
+          "team_2_alias": "Anthonetta, Louise",
+          "score": "6-0 6-3",
+          "balls": "Karen Dengler / Malcom Dengler",
+          "status": "Waiting Approval"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 17 August 2026",
+          "team_1": "Chantelle Usmar / Dean Lindecke",
+          "team_2": "Noah Sked / Madison Sked",
+          "team_1_alias": "Dean, Chantelle",
+          "team_2_alias": "Madison",
+          "score": "6-7 6-2 6-1",
+          "balls": "Chantelle Usmar / Dean Lindecke",
+          "status": "Validated"
+        },
         {
           "category": "Mixed",
           "division": "Ruimsig Mixed Div 1",
@@ -2462,19 +2540,6 @@
           "division": "Ruimsig Mixed Div 1",
           "season": "Season 3 (Current)",
           "date": "Monday, 17 August 2026",
-          "team_1": "Karen Dengler / Malcom Dengler",
-          "team_2": "Chrisna Arnold / Louis Prinsloo",
-          "team_1_alias": "Malcom, Karen",
-          "team_2_alias": "Chrisna, Chrisna",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 1",
-          "season": "Season 3 (Current)",
-          "date": "Monday, 17 August 2026",
           "team_1": "Louise Nel / Anthonetta Nel",
           "team_2": "Meghan Warby / Houston Warby",
           "team_1_alias": "Anthonetta, Louise",
@@ -2488,13 +2553,13 @@
           "division": "Ruimsig Mixed Div 1",
           "season": "Season 3 (Current)",
           "date": "Monday, 17 August 2026",
-          "team_1": "Chantelle Usmar / Dean Lindecke",
-          "team_2": "Noah Sked / Madison Sked",
-          "team_1_alias": "Dean, Chantelle",
-          "team_2_alias": "Madison",
-          "score": "6-7 6-2 6-1",
-          "balls": "Chantelle Usmar / Dean Lindecke",
-          "status": "Validated"
+          "team_1": "Karen Dengler / Malcom Dengler",
+          "team_2": "Chrisna Arnold / Louis Prinsloo",
+          "team_1_alias": "Malcom, Karen",
+          "team_2_alias": "Chrisna, Chrisna",
+          "score": "0-6 2-6",
+          "balls": "Karen Dengler / Malcom Dengler",
+          "status": "Waiting Approval"
         }
       ]
     },
