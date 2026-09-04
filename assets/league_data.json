@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-03T07:37:47.260841+00:00",
+  "generated_at_utc": "2026-09-04T07:39:26.257993+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -222,7 +222,7 @@
           "team_1": "Alex Smith / Trevor Smith",
           "team_2": "Preash Govender / David Samuel",
           "team_1_alias": "Trevor, Alex",
-          "team_2_alias": "Preash, David",
+          "team_2_alias": "David, Preash",
           "score": "4-6 6-4 6-3",
           "balls": "Preash Govender / David Samuel",
           "status": "Validated"
@@ -274,7 +274,7 @@
           "team_1": "Steven Sienaert / Reese Shelver",
           "team_2": "Preash Govender / David Samuel",
           "team_1_alias": "Reese, Steven",
-          "team_2_alias": "Preash, David",
+          "team_2_alias": "David, Preash",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -326,7 +326,7 @@
           "team_1": "J.C / Riaz Varachia",
           "team_2": "Preash Govender / David Samuel",
           "team_1_alias": "J.C, Riaz",
-          "team_2_alias": "Preash, David",
+          "team_2_alias": "David, Preash",
           "score": "6-3 5-7 2-6",
           "balls": "J.C / Riaz Varachia",
           "status": "Validated"
@@ -384,7 +384,7 @@
           "date": "Saturday, 5 September 2026",
           "team_1": "Iain Lindsay / Jason Lindsay",
           "team_2": "Pieter Venter / Hennie Erasmus",
-          "team_1_alias": "Jason, Iain",
+          "team_1_alias": "Iain, Jason",
           "team_2_alias": "Hennie, Pieter",
           "score": "6-4 3-6 4-6",
           "balls": "Pieter Venter / Hennie Erasmus",
@@ -423,7 +423,7 @@
           "date": "Saturday, 22 August 2026",
           "team_1": "Stanton Fredericks / Zaid Mohidin",
           "team_2": "Pieter Venter / Hennie Erasmus",
-          "team_1_alias": "Zaid, Stanton",
+          "team_1_alias": "Stanton, Zaid",
           "team_2_alias": "Hennie, Pieter",
           "score": "2-6 4-6",
           "balls": "Stanton Fredericks / Zaid Mohidin",
@@ -436,7 +436,7 @@
           "date": "Saturday, 22 August 2026",
           "team_1": "Iain Lindsay / Jason Lindsay",
           "team_2": "Rowan Budhram / Willie Kompangie",
-          "team_1_alias": "Jason, Iain",
+          "team_1_alias": "Iain, Jason",
           "team_2_alias": "Willie, Rowy, Willie",
           "score": "3-6 6-3 5-7",
           "balls": "Rowan Budhram / Willie Kompangie",
@@ -462,8 +462,8 @@
           "date": "Saturday, 8 August 2026",
           "team_1": "Iain Lindsay / Jason Lindsay",
           "team_2": "Stanton Fredericks / Zaid Mohidin",
-          "team_1_alias": "Jason, Iain",
-          "team_2_alias": "Zaid, Stanton",
+          "team_1_alias": "Iain, Jason",
+          "team_2_alias": "Stanton, Zaid",
           "score": "6-4 6-7 3-6",
           "balls": "Iain Lindsay / Jason Lindsay",
           "status": "Validated"
@@ -477,7 +477,7 @@
           "team_2": "Rowan Budhram / Willie Kompangie",
           "team_1_alias": "Monty, Ashwin",
           "team_2_alias": "Willie, Rowy, Willie",
-          "score": "2-6 5-7",
+          "score": "2-6 6-7",
           "balls": "Ashwin Naidu / Monty Lowe",
           "status": "Validated"
         },
@@ -535,7 +535,7 @@
           "team_1": "Mias Moster / Chris Bornman",
           "team_2": "Ryan Purdon / Wes Bothwell",
           "team_1_alias": "Mias, Chris",
-          "team_2_alias": "Wes, Ryan",
+          "team_2_alias": "Ryan, Wes",
           "score": "5-7 7-6 3-3",
           "balls": "Mias Moster / Chris Bornman",
           "status": "Validated"
@@ -548,7 +548,7 @@
           "team_1": "Mohammed Variave / Andriano Dello Lacono",
           "team_2": "Ryan Purdon / Wes Bothwell",
           "team_1_alias": "Dello, Moe",
-          "team_2_alias": "Wes, Ryan",
+          "team_2_alias": "Ryan, Wes",
           "score": "6-4 1-6 6-7",
           "balls": "Mohammed Variave / Andriano Dello Lacono",
           "status": "Validated"
@@ -573,7 +573,7 @@
           "date": "Saturday, 29 August 2026",
           "team_1": "Morgan Wentzel / Conor Prately",
           "team_2": "Brandon Randall / Gavin Govender",
-          "team_1_alias": "Conor, Morgan",
+          "team_1_alias": "Morgan, Conor",
           "team_2_alias": "Brandon, Gavin",
           "score": "2-6 2-6",
           "balls": "Morgan Wentzel / Conor Prately",
@@ -626,7 +626,7 @@
           "team_1": "Mias Moster / Chris Bornman",
           "team_2": "Morgan Wentzel / Conor Prately",
           "team_1_alias": "Mias, Chris",
-          "team_2_alias": "Conor, Morgan",
+          "team_2_alias": "Morgan, Conor",
           "score": "5-7 3-6",
           "balls": "Morgan Wentzel / Conor Prately",
           "status": "Validated"
@@ -639,7 +639,7 @@
           "team_1": "Rowan Baisley / Nelson de Freitas",
           "team_2": "Ryan Purdon / Wes Bothwell",
           "team_1_alias": "Rowan, Nelson",
-          "team_2_alias": "Wes, Ryan",
+          "team_2_alias": "Ryan, Wes",
           "score": "6-3 6-7 7-5",
           "balls": "Rowan Baisley / Nelson de Freitas",
           "status": "Validated"
@@ -678,7 +678,7 @@
           "team_1": "Mohammed Variave / Andriano Dello Lacono",
           "team_2": "Morgan Wentzel / Conor Prately",
           "team_1_alias": "Dello, Moe",
-          "team_2_alias": "Conor, Morgan",
+          "team_2_alias": "Morgan, Conor",
           "score": "4-6 6-3 7-5",
           "balls": "Mohammed Variave / Andriano Dello Lacono",
           "status": "Validated"
@@ -690,7 +690,7 @@
           "date": "Saturday, 1 August 2026",
           "team_1": "Ryan Purdon / Wes Bothwell",
           "team_2": "Sean Crossland / Andre Kirsten",
-          "team_1_alias": "Wes, Ryan",
+          "team_1_alias": "Ryan, Wes",
           "team_2_alias": "Andre, Sean",
           "score": "6-3 6-3",
           "balls": "Ryan Purdon / Wes Bothwell",
@@ -749,7 +749,7 @@
           "date": "Saturday, 22 August 2026",
           "team_1": "Graeme Te Brake / Shaun Te Brake",
           "team_2": "Hermanus Du Preez / Jason Du Preez",
-          "team_1_alias": "Shaun, Grame",
+          "team_1_alias": "Grame, Shaun",
           "team_2_alias": "Jason, Hermanus",
           "score": "6-1 6-2",
           "balls": "Hermanus Du Preez / Jason Du Preez",
@@ -762,8 +762,8 @@
           "date": "Saturday, 22 August 2026",
           "team_1": "Darrell Vince / Martin Kanka",
           "team_2": "Shaheed Alli / Eugene Rorich",
-          "team_1_alias": "Darryl, Martin",
-          "team_2_alias": "Shaheed, Eugene",
+          "team_1_alias": "Martin, Darryl",
+          "team_2_alias": "Eugene, Shaheed",
           "score": "4-6 3-6",
           "balls": "Shaheed Alli / Eugene Rorich",
           "status": "Validated"
@@ -802,10 +802,10 @@
           "team_1": "Andrew Prately / Adam Prately",
           "team_2": "Tevin Hendricks / Zane Motan",
           "team_1_alias": "Adam",
-          "team_2_alias": "Zane, Tevin",
+          "team_2_alias": "Tevin, Zane",
           "score": "6-4 6-2",
           "balls": "Tevin Hendricks / Zane Motan",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -814,7 +814,7 @@
           "date": "Saturday, 8 August 2026",
           "team_1": "Graeme Te Brake / Shaun Te Brake",
           "team_2": "Shaylin Nundraj / Keetan Naidoo",
-          "team_1_alias": "Shaun, Grame",
+          "team_1_alias": "Grame, Shaun",
           "team_2_alias": "keetan, Shaylin",
           "score": "6-4 6-2",
           "balls": "Graeme Te Brake / Shaun Te Brake",
@@ -854,7 +854,7 @@
           "team_1": "Mikhail De Freitas / Dean Hoff",
           "team_2": "Shaheed Alli / Eugene Rorich",
           "team_1_alias": "Dean, Mikhail",
-          "team_2_alias": "Shaheed, Eugene",
+          "team_2_alias": "Eugene, Shaheed",
           "score": "3-6 4-6",
           "balls": "Mikhail De Freitas / Dean Hoff",
           "status": "Validated"
@@ -866,8 +866,8 @@
           "date": "Saturday, 8 August 2026",
           "team_1": "Darrell Vince / Martin Kanka",
           "team_2": "Tevin Hendricks / Zane Motan",
-          "team_1_alias": "Darryl, Martin",
-          "team_2_alias": "Zane, Tevin",
+          "team_1_alias": "Martin, Darryl",
+          "team_2_alias": "Tevin, Zane",
           "score": "6-0 6-4",
           "balls": "Darrell Vince / Martin Kanka",
           "status": "Validated"
@@ -890,7 +890,7 @@
           "team_2_alias": "Ruben, Dylan",
           "score": "6-4 6-4",
           "balls": "Paul Els / Johan Maritz",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -899,7 +899,7 @@
           "date": "Saturday, 21 November 2026",
           "team_1": "Kurt Garbacz / Ryan Rorrison",
           "team_2": "Awie Van Rensburg / Justin Hughhes",
-          "team_1_alias": "Kurt, Ryan",
+          "team_1_alias": "Ryan, Kurt",
           "team_2_alias": "Justin, Awie",
           "score": "6-0 3-6 6-4",
           "balls": "Kurt Garbacz / Ryan Rorrison",
@@ -939,7 +939,7 @@
           "team_1": "Jungqo Hennings / Aj Venter",
           "team_2": "Kurt Garbacz / Ryan Rorrison",
           "team_1_alias": "Aj, Jungqo",
-          "team_2_alias": "Kurt, Ryan",
+          "team_2_alias": "Ryan, Kurt",
           "score": "3-6 6-1 7-6",
           "balls": "Jungqo Hennings / Aj Venter",
           "status": "Validated"
@@ -955,7 +955,7 @@
           "team_2_alias": "Muhhamed, Muhammad",
           "score": "4-6 3-6",
           "balls": "Juan Botha / Werner Degener",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -985,7 +985,7 @@
           "team_1": "Ryno Arangies / HP Toerien",
           "team_2": "Janu Pienaar / Joshua Drabble",
           "team_1_alias": "Hp, Ryno",
-          "team_2_alias": "Janu, Joshua",
+          "team_2_alias": "Joshua, Janu",
           "score": "4-6 6-4 7-6",
           "balls": "Ryno Arangies / HP Toerien",
           "status": "Validated"
@@ -997,8 +997,8 @@
           "date": "Saturday, 19 September 2026",
           "team_1": "Janu Pienaar / Joshua Drabble",
           "team_2": "Neil Barnard / Josh Petzer",
-          "team_1_alias": "Janu, Joshua",
-          "team_2_alias": "Josh, Neil",
+          "team_1_alias": "Joshua, Janu",
+          "team_2_alias": "Neil, Josh",
           "score": "2-6 6-4 4-6",
           "balls": "Janu Pienaar / Joshua Drabble",
           "status": "Validated"
@@ -1010,7 +1010,7 @@
           "date": "Saturday, 22 August 2026",
           "team_1": "Janu Pienaar / Joshua Drabble",
           "team_2": "Steven Sienaert / Lourens Snyders",
-          "team_1_alias": "Janu, Joshua",
+          "team_1_alias": "Joshua, Janu",
           "team_2_alias": "Steven, Aaron",
           "score": "",
           "balls": "",
@@ -1023,7 +1023,7 @@
           "date": "Saturday, 22 August 2026",
           "team_1": "Neil Barnard / Josh Petzer",
           "team_2": "Ryno Arangies / HP Toerien",
-          "team_1_alias": "Josh, Neil",
+          "team_1_alias": "Neil, Josh",
           "team_2_alias": "Hp, Ryno",
           "score": "6-4 4-6 6-7",
           "balls": "Neil Barnard / Josh Petzer",
@@ -1036,7 +1036,7 @@
           "date": "Saturday, 22 August 2026",
           "team_1": "Ebrahim Dindar/ Nabeel Dindar",
           "team_2": "Tiaan Holtzhausen / Cian De Villiers",
-          "team_1_alias": "Muhhammad, Ebrahim",
+          "team_1_alias": "Ebrahim, Muhhammad",
           "team_2_alias": "Cian, Tiaan",
           "score": "6-4 4-6 6-4",
           "balls": "Ebrahim Dindar/ Nabeel Dindar",
@@ -1083,7 +1083,7 @@
           "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
           "team_2": "Malcom Dengler / Noah Sked",
           "team_1_alias": "Lehlogonolo, Johan",
-          "team_2_alias": "Malcolm, Noah",
+          "team_2_alias": "Noah, Malcolm",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -1096,7 +1096,7 @@
           "team_1": "Keegan Dempsey / Ruan Lategan",
           "team_2": "Lloyd Pienaar / Cade Smith",
           "team_1_alias": "keegan, Ruan",
-          "team_2_alias": "Cade, Lloyd",
+          "team_2_alias": "Lloyd, Cade",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -1181,10 +1181,10 @@
           "team_1": "Alwyn / Marnus Booyens",
           "team_2": "Thabo Funani / Wandile Dube",
           "team_1_alias": "Alwyn, Marnus",
-          "team_2_alias": "Wandile, Thabo",
+          "team_2_alias": "Thabo, Wandile",
           "score": "7-6 6-4",
           "balls": "Alwyn / Marnus Booyens",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -1194,7 +1194,7 @@
           "team_1": "Ian Visser / Wian Lamprech",
           "team_2": "Marius Jacobs / Andrew Fairlie",
           "team_1_alias": "Wian, Ian",
-          "team_2_alias": "Marius, Andrew",
+          "team_2_alias": "Andrew, Marius",
           "score": "6-4 7-6",
           "balls": "Ian Visser / Wian Lamprech",
           "status": "Validated"
@@ -1219,7 +1219,7 @@
           "date": "Saturday, 29 August 2026",
           "team_1": "Chrisna Arnold / Renche Weideman",
           "team_2": "Jamee Sampson / Nicks Bothwell",
-          "team_1_alias": "Chrisna, Renche",
+          "team_1_alias": "Renche, Chrisna",
           "team_2_alias": "Nicks, Jamee",
           "score": "4-6 2-6",
           "balls": "Chrisna Arnold / Renche Weideman",
@@ -1272,7 +1272,7 @@
           "team_1": "Sandrika Gajraj / Irma Terbalanche",
           "team_2": "Meghan Warby / Julie Timmers",
           "team_1_alias": "Sandrika, Irma",
-          "team_2_alias": "Julie, Meghan",
+          "team_2_alias": "Meghan, Julie",
           "score": "2-6 0-6",
           "balls": "Sandrika Gajraj / Irma Terbalanche",
           "status": "Validated"
@@ -1324,7 +1324,7 @@
           "team_1": "Calli Fargi / Melanie Bendixen",
           "team_2": "Meghan Warby / Julie Timmers",
           "team_1_alias": "Melanie, Calli",
-          "team_2_alias": "Julie, Meghan",
+          "team_2_alias": "Meghan, Julie",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -1336,7 +1336,7 @@
           "date": "Saturday, 15 August 2026",
           "team_1": "Chrisna Arnold / Renche Weideman",
           "team_2": "Madison Sked / Karen Dengler",
-          "team_1_alias": "Chrisna, Renche",
+          "team_1_alias": "Renche, Chrisna",
           "team_2_alias": "Karen, Madison",
           "score": "6-3 6-2",
           "balls": "Madison Sked / Karen Dengler",
@@ -1389,7 +1389,7 @@
           "team_1": "Jamee Sampson / Nicks Bothwell",
           "team_2": "Meghan Warby / Julie Timmers",
           "team_1_alias": "Nicks, Jamee",
-          "team_2_alias": "Julie, Meghan",
+          "team_2_alias": "Meghan, Julie",
           "score": "3-6 3-6",
           "balls": "Jamee Sampson / Nicks Bothwell",
           "status": "Validated"
@@ -1401,7 +1401,7 @@
           "date": "Saturday, 1 August 2026",
           "team_1": "Chrisna Arnold / Renche Weideman",
           "team_2": "Ruve Esterhuysen / Eunita du Preez",
-          "team_1_alias": "Chrisna, Renche",
+          "team_1_alias": "Renche, Chrisna",
           "team_2_alias": "Eunita, Ruve",
           "score": "6-1 6-4",
           "balls": "Chrisna Arnold / Renche Weideman",
@@ -1434,7 +1434,7 @@
           "date": "Saturday, 22 August 2026",
           "team_1": "Hanli de Coning / Carolyn Humphries",
           "team_2": "Kerry Panczyk/ Annelore Wheeler",
-          "team_1_alias": "Carolyn, Hanli",
+          "team_1_alias": "Hanli, Carolyn",
           "team_2_alias": "Annelore, Kerry",
           "score": "5-7 2-6",
           "balls": "Kerry Panczyk/ Annelore Wheeler",
@@ -1474,7 +1474,7 @@
           "team_1": "Janine John / Pauline Collinson",
           "team_2": "Juanita Pienaar / Monique Van Achterbergh",
           "team_1_alias": "Pauline, Janine",
-          "team_2_alias": "Juanita, Monique",
+          "team_2_alias": "Monique, Juanita",
           "score": "6-2 6-2",
           "balls": "Janine John / Pauline Collinson",
           "status": "Validated"
@@ -1486,7 +1486,7 @@
           "date": "Saturday, 8 August 2026",
           "team_1": "Juanita Pienaar / Monique Van Achterbergh",
           "team_2": "Kerry Panczyk/ Annelore Wheeler",
-          "team_1_alias": "Juanita, Monique",
+          "team_1_alias": "Monique, Juanita",
           "team_2_alias": "Annelore, Kerry",
           "score": "6-4 2-6 2-6",
           "balls": "Juanita Pienaar / Monique Van Achterbergh",
@@ -1525,7 +1525,7 @@
           "date": "Saturday, 8 August 2026",
           "team_1": "Hanli de Coning / Carolyn Humphries",
           "team_2": "Ronel Laubscher / Mariette Meyer",
-          "team_1_alias": "Carolyn, Hanli",
+          "team_1_alias": "Hanli, Carolyn",
           "team_2_alias": "Marriette, Ronel",
           "score": "0-6 5-7",
           "balls": "Hanli de Coning / Carolyn Humphries",
@@ -1560,9 +1560,9 @@
           "team_2": "Prebashnee Naidoo / Njabulo Nzimande",
           "team_1_alias": "Zanele, Yolandi",
           "team_2_alias": "Prebashnee, Njabulo",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "6-4 6-7",
+          "balls": "Yolandi Van der Walt / Zanele Katende",
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -1597,7 +1597,7 @@
           "date": "Saturday, 29 August 2026",
           "team_1": "Ginette Bentley / Venushka Naidoo",
           "team_2": "Kayla Viljoen/ Charisca Meyer",
-          "team_1_alias": "Ginette, Venushka, Lynn",
+          "team_1_alias": "Venushka, Ginette, Lynn",
           "team_2_alias": "Charisca, Kayla",
           "score": "3-6 4-6",
           "balls": "Ginette Bentley / Venushka Naidoo",
@@ -1662,7 +1662,7 @@
           "date": "Saturday, 15 August 2026",
           "team_1": "Ginette Bentley / Venushka Naidoo",
           "team_2": "Prebashnee Naidoo / Njabulo Nzimande",
-          "team_1_alias": "Ginette, Venushka, Lynn",
+          "team_1_alias": "Venushka, Ginette, Lynn",
           "team_2_alias": "Prebashnee, Njabulo",
           "score": "1-6 3-6",
           "balls": "Prebashnee Naidoo / Njabulo Nzimande",
@@ -1714,7 +1714,7 @@
           "date": "Saturday, 1 August 2026",
           "team_1": "Ginette Bentley / Venushka Naidoo",
           "team_2": "Siobhan Chadinha / Debbie Fol",
-          "team_1_alias": "Ginette, Venushka, Lynn",
+          "team_1_alias": "Venushka, Ginette, Lynn",
           "team_2_alias": "Siobhan, Debbie",
           "score": "3-6 4-6",
           "balls": "Ginette Bentley / Venushka Naidoo",
@@ -1799,7 +1799,7 @@
           "date": "Saturday, 22 August 2026",
           "team_1": "Estea Kloppers / Jade Alves",
           "team_2": "Isabella Purdon / Nina Le Cordeur",
-          "team_1_alias": "Estea, Jade",
+          "team_1_alias": "Jade, Estea",
           "team_2_alias": "Nina, Isabella",
           "score": "",
           "balls": "",
@@ -1838,7 +1838,7 @@
           "date": "Saturday, 8 August 2026",
           "team_1": "Estea Kloppers / Jade Alves",
           "team_2": "Roxanne Govender / Saiisha Naidu",
-          "team_1_alias": "Estea, Jade",
+          "team_1_alias": "Jade, Estea",
           "team_2_alias": "Saiisha, Roxanne",
           "score": "6-4 6-4",
           "balls": "Estea Kloppers / Jade Alves",
@@ -1948,7 +1948,21 @@
       "category": "Ladies",
       "division": "Ruimsig Ladies Division",
       "season": "Season 1 (Current)",
-      "fixtures": []
+      "fixtures": [
+        {
+          "category": "Ladies",
+          "division": "Ruimsig Ladies Division",
+          "season": "Season 1 (Current)",
+          "date": "Saturday, 17 October 2026",
+          "team_1": "Charmaine Van Wyk / Lee-anne Smith",
+          "team_2": "Bianca Da Silva / Daniella Mitchell",
+          "team_1_alias": "Charmaine, Lee-anne",
+          "team_2_alias": "Bianca, Daniella",
+          "score": "6-0 6-2",
+          "balls": "Charmaine Van Wyk / Lee-anne Smith",
+          "status": "Waiting Approval"
+        }
+      ]
     },
     {
       "category": "Mixed",
@@ -1979,7 +1993,7 @@
           "team_2_alias": "Lisa, Nathan",
           "score": "2-6 3-6",
           "balls": "Pieter Venter / Tess Venter",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -2002,7 +2016,7 @@
           "team_1": "Dillan Parau / Lesinda Parau",
           "team_2": "Alex Smith / Lea Smith",
           "team_1_alias": "Lesinda, Dillian",
-          "team_2_alias": "Lea, Alex",
+          "team_2_alias": "Alex, Lea",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2067,7 +2081,7 @@
           "team_1": "Jeorge De Freitas / Tiffany De Freitas",
           "team_2": "Alex Smith / Lea Smith",
           "team_1_alias": "Jeorge, Tiffany",
-          "team_2_alias": "Lea, Alex",
+          "team_2_alias": "Alex, Lea",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2263,7 +2277,7 @@
           "team_1": "Ilse Muller / Damion Podges",
           "team_2": "Ray Morgan / Wendy Morgan",
           "team_1_alias": "Damion, Ilse",
-          "team_2_alias": "Ray, Wendy",
+          "team_2_alias": "Wendy, Ray",
           "score": "0-6 0-6",
           "balls": "Ilse Muller / Damion Podges",
           "status": "Validated"
@@ -2301,7 +2315,7 @@
           "date": "Friday, 28 August 2026",
           "team_1": "Vanessa Butler / Barry Butler",
           "team_2": "Pauline Collinson / Brett Collinson",
-          "team_1_alias": "Vanessa, Barry",
+          "team_1_alias": "Barry, Vanessa",
           "team_2_alias": "Brett, Pauline",
           "score": "",
           "balls": "",
@@ -2315,7 +2329,7 @@
           "team_1": "Chloe Smith / Matthew Bowyer",
           "team_2": "Mauritz Boshoff / Surika",
           "team_1_alias": "Matthew, Chloe",
-          "team_2_alias": "Mauritz, Surika",
+          "team_2_alias": "Surika, Mauritz",
           "score": "6-0 6-1",
           "balls": "Chloe Smith / Matthew Bowyer",
           "status": "Validated"
@@ -2327,7 +2341,7 @@
           "date": "Friday, 28 August 2026",
           "team_1": "Ray Morgan / Wendy Morgan",
           "team_2": "Mozel Van Niekerk / Gordon Beard",
-          "team_1_alias": "Ray, Wendy",
+          "team_1_alias": "Wendy, Ray",
           "team_2_alias": "Mozel, Gordon",
           "score": "6-1 6-1",
           "balls": "Ray Morgan / Wendy Morgan",
@@ -2341,7 +2355,7 @@
           "team_1": "Chene Erwee / Damien Erwee",
           "team_2": "Vanessa Butler / Barry Butler",
           "team_1_alias": "Chene, Damien",
-          "team_2_alias": "Vanessa, Barry",
+          "team_2_alias": "Barry, Vanessa",
           "score": "6-2 6-1",
           "balls": "Vanessa Butler / Barry Butler",
           "status": "Validated"
@@ -2353,7 +2367,7 @@
           "date": "Friday, 14 August 2026",
           "team_1": "Ray Morgan / Wendy Morgan",
           "team_2": "Rowan Budhram / Liane Budhram",
-          "team_1_alias": "Ray, Wendy",
+          "team_1_alias": "Wendy, Ray",
           "team_2_alias": "Liane, Rowan",
           "score": "",
           "balls": "",
@@ -2380,7 +2394,7 @@
           "team_1": "Janine John / Chris John",
           "team_2": "Mauritz Boshoff / Surika",
           "team_1_alias": "Janine, Chris",
-          "team_2_alias": "Mauritz, Surika",
+          "team_2_alias": "Surika, Mauritz",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2405,7 +2419,7 @@
           "date": "Friday, 31 July 2026",
           "team_1": "Mauritz Boshoff / Surika",
           "team_2": "Mozel Van Niekerk / Gordon Beard",
-          "team_1_alias": "Mauritz, Surika",
+          "team_1_alias": "Surika, Mauritz",
           "team_2_alias": "Mozel, Gordon",
           "score": "0-6 2-6",
           "balls": "Mauritz Boshoff / Surika",
@@ -2419,7 +2433,7 @@
           "team_1": "Chene Erwee / Damien Erwee",
           "team_2": "Ray Morgan / Wendy Morgan",
           "team_1_alias": "Chene, Damien",
-          "team_2_alias": "Ray, Wendy",
+          "team_2_alias": "Wendy, Ray",
           "score": "0-6 1-6",
           "balls": "Chene Erwee / Damien Erwee",
           "status": "Validated"
@@ -2432,7 +2446,7 @@
           "team_1": "Chloe Smith / Matthew Bowyer",
           "team_2": "Vanessa Butler / Barry Butler",
           "team_1_alias": "Matthew, Chloe",
-          "team_2_alias": "Vanessa, Barry",
+          "team_2_alias": "Barry, Vanessa",
           "score": "6-0 6-0",
           "balls": "Chloe Smith / Matthew Bowyer",
           "status": "Validated"
@@ -2641,7 +2655,7 @@
           "team_1": "Jenine Vermaak / Awie Van Rensburg",
           "team_2": "Monty Lowe / Lisa Rowley",
           "team_1_alias": "No players",
-          "team_2_alias": "Martin, Daniella, Nadine, Kyle",
+          "team_2_alias": "Daniella, Martin, Nadine, Kyle",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -2719,7 +2733,7 @@
           "team_1": "Kyle Prescott / Nadine Mansour",
           "team_2": "Monty Lowe / Lisa Rowley",
           "team_1_alias": "No players",
-          "team_2_alias": "Martin, Daniella, Nadine, Kyle",
+          "team_2_alias": "Daniella, Martin, Nadine, Kyle",
           "score": "6-1 5-7 6-3",
           "balls": "Kyle Prescott / Nadine Mansour",
           "status": "Validated"
