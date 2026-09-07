@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-06T07:32:51.577090+00:00",
+  "generated_at_utc": "2026-09-07T07:48:12.110011+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -877,19 +877,6 @@
           "division": "Honeydew DIV 4",
           "season": "Season 2 (Current)",
           "date": "Saturday, 5 September 2026",
-          "team_1": "Graeme Te Brake / Shaun Te Brake",
-          "team_2": "Mikhail De Freitas / Dean Hoff",
-          "team_1_alias": "Grame, Shaun",
-          "team_2_alias": "Dean, Mikhail",
-          "score": "6-4 4-6 4-2",
-          "balls": "Graeme Te Brake / Shaun Te Brake",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 4",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 5 September 2026",
           "team_1": "Andrew Prately / Adam Prately",
           "team_2": "Shaylin Nundraj / Keetan Naidoo",
           "team_1_alias": "Adam",
@@ -903,26 +890,26 @@
           "division": "Honeydew DIV 4",
           "season": "Season 2 (Current)",
           "date": "Saturday, 5 September 2026",
-          "team_1": "Tevin Hendricks / Zane Motan",
-          "team_2": "Shaheed Alli / Eugene Rorich",
-          "team_1_alias": "Tevin, Zane",
-          "team_2_alias": "Eugene, Shaheed",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Graeme Te Brake / Shaun Te Brake",
+          "team_2": "Mikhail De Freitas / Dean Hoff",
+          "team_1_alias": "Grame, Shaun",
+          "team_2_alias": "Dean, Mikhail",
+          "score": "6-4 4-6 4-2",
+          "balls": "Graeme Te Brake / Shaun Te Brake",
+          "status": "Validated"
         },
         {
           "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 2 (Current)",
           "date": "Saturday, 5 September 2026",
-          "team_1": "Mauritz Boshoff/ Gordon Beard",
-          "team_2": "Hermanus Du Preez / Jason Du Preez",
-          "team_1_alias": "Gordon, Mauritz",
-          "team_2_alias": "Jason, Hermanus",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Tevin Hendricks / Zane Motan",
+          "team_2": "Shaheed Alli / Eugene Rorich",
+          "team_1_alias": "Tevin, Zane",
+          "team_2_alias": "Eugene, Shaheed",
+          "score": "0-6 0-6",
+          "balls": "Tevin Hendricks / Zane Motan",
+          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
@@ -941,27 +928,14 @@
           "category": "Men's",
           "division": "Honeydew DIV 4",
           "season": "Season 2 (Current)",
-          "date": "Saturday, 22 August 2026",
-          "team_1": "Graeme Te Brake / Shaun Te Brake",
+          "date": "Saturday, 5 September 2026",
+          "team_1": "Mauritz Boshoff/ Gordon Beard",
           "team_2": "Hermanus Du Preez / Jason Du Preez",
-          "team_1_alias": "Grame, Shaun",
+          "team_1_alias": "Gordon, Mauritz",
           "team_2_alias": "Jason, Hermanus",
-          "score": "6-1 6-2",
-          "balls": "Hermanus Du Preez / Jason Du Preez",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 4",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 22 August 2026",
-          "team_1": "Andrew Prately / Adam Prately",
-          "team_2": "Tevin Hendricks / Zane Motan",
-          "team_1_alias": "Adam",
-          "team_2_alias": "Tevin, Zane",
-          "score": "6-4 6-2",
-          "balls": "Tevin Hendricks / Zane Motan",
-          "status": "Validated"
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -974,6 +948,19 @@
           "team_2_alias": "Eugene, Shaheed",
           "score": "4-6 3-6",
           "balls": "Shaheed Alli / Eugene Rorich",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 4",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 22 August 2026",
+          "team_1": "Graeme Te Brake / Shaun Te Brake",
+          "team_2": "Hermanus Du Preez / Jason Du Preez",
+          "team_1_alias": "Grame, Shaun",
+          "team_2_alias": "Jason, Hermanus",
+          "score": "6-1 6-2",
+          "balls": "Hermanus Du Preez / Jason Du Preez",
           "status": "Validated"
         },
         {
@@ -1000,6 +987,32 @@
           "team_2_alias": "keetan, Shaylin",
           "score": "1-6 1-6",
           "balls": "Mauritz Boshoff/ Gordon Beard",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 4",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 22 August 2026",
+          "team_1": "Andrew Prately / Adam Prately",
+          "team_2": "Tevin Hendricks / Zane Motan",
+          "team_1_alias": "Adam",
+          "team_2_alias": "Tevin, Zane",
+          "score": "6-4 6-2",
+          "balls": "Tevin Hendricks / Zane Motan",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Honeydew DIV 4",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 8 August 2026",
+          "team_1": "Mikhail De Freitas / Dean Hoff",
+          "team_2": "Shaheed Alli / Eugene Rorich",
+          "team_1_alias": "Dean, Mikhail",
+          "team_2_alias": "Eugene, Shaheed",
+          "score": "3-6 4-6",
+          "balls": "Mikhail De Freitas / Dean Hoff",
           "status": "Validated"
         },
         {
@@ -1033,19 +1046,6 @@
           "division": "Honeydew DIV 4",
           "season": "Season 2 (Current)",
           "date": "Saturday, 8 August 2026",
-          "team_1": "Graeme Te Brake / Shaun Te Brake",
-          "team_2": "Shaylin Nundraj / Keetan Naidoo",
-          "team_1_alias": "Grame, Shaun",
-          "team_2_alias": "keetan, Shaylin",
-          "score": "6-4 6-2",
-          "balls": "Graeme Te Brake / Shaun Te Brake",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Honeydew DIV 4",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 8 August 2026",
           "team_1": "Andrew Prately / Adam Prately",
           "team_2": "Mauritz Boshoff/ Gordon Beard",
           "team_1_alias": "Adam",
@@ -1059,12 +1059,12 @@
           "division": "Honeydew DIV 4",
           "season": "Season 2 (Current)",
           "date": "Saturday, 8 August 2026",
-          "team_1": "Mikhail De Freitas / Dean Hoff",
-          "team_2": "Shaheed Alli / Eugene Rorich",
-          "team_1_alias": "Dean, Mikhail",
-          "team_2_alias": "Eugene, Shaheed",
-          "score": "3-6 4-6",
-          "balls": "Mikhail De Freitas / Dean Hoff",
+          "team_1": "Graeme Te Brake / Shaun Te Brake",
+          "team_2": "Shaylin Nundraj / Keetan Naidoo",
+          "team_1_alias": "Grame, Shaun",
+          "team_2_alias": "keetan, Shaylin",
+          "score": "6-4 6-2",
+          "balls": "Graeme Te Brake / Shaun Te Brake",
           "status": "Validated"
         }
       ]
@@ -1582,12 +1582,12 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 29 August 2026",
-          "team_1": "Chrisna Arnold / Renche Weideman",
-          "team_2": "Jamee Sampson / Nicks Bothwell",
-          "team_1_alias": "Renche, Chrisna",
-          "team_2_alias": "Nicks, Jamee",
-          "score": "4-6 2-6",
-          "balls": "Chrisna Arnold / Renche Weideman",
+          "team_1": "Marita Degener/Mariette Meyer",
+          "team_2": "Madison Sked / Karen Dengler",
+          "team_1_alias": "Mariette, Marita",
+          "team_2_alias": "Karen, Madison",
+          "score": "2-6 2-6",
+          "balls": "Marita Degener/Mariette Meyer",
           "status": "Validated"
         },
         {
@@ -1599,19 +1599,6 @@
           "team_2": "Ruve Esterhuysen / Eunita du Preez",
           "team_1_alias": "Isabela, Suenet",
           "team_2_alias": "Eunita, Ruve",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies DIV 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 29 August 2026",
-          "team_1": "Marita Degener/Mariette Meyer",
-          "team_2": "Madison Sked / Karen Dengler",
-          "team_1_alias": "Mariette, Marita",
-          "team_2_alias": "Karen, Madison",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -1640,6 +1627,19 @@
           "team_2_alias": "Meghan, Julie",
           "score": "2-6 0-6",
           "balls": "Sandrika Gajraj / Irma Terbalanche",
+          "status": "Validated"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies DIV 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 29 August 2026",
+          "team_1": "Chrisna Arnold / Renche Weideman",
+          "team_2": "Jamee Sampson / Nicks Bothwell",
+          "team_1_alias": "Renche, Chrisna",
+          "team_2_alias": "Nicks, Jamee",
+          "score": "4-6 2-6",
+          "balls": "Chrisna Arnold / Renche Weideman",
           "status": "Validated"
         },
         {
@@ -1712,12 +1712,12 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 1 August 2026",
-          "team_1": "Kerryn Maralik / Nicola Pratley",
-          "team_2": "Madison Sked / Karen Dengler",
-          "team_1_alias": "Nicola, Kerryn",
-          "team_2_alias": "Karen, Madison",
-          "score": "0-6 2-6",
-          "balls": "Kerryn Maralik / Nicola Pratley",
+          "team_1": "Chrisna Arnold / Renche Weideman",
+          "team_2": "Ruve Esterhuysen / Eunita du Preez",
+          "team_1_alias": "Renche, Chrisna",
+          "team_2_alias": "Eunita, Ruve",
+          "score": "6-1 6-4",
+          "balls": "Chrisna Arnold / Renche Weideman",
           "status": "Validated"
         },
         {
@@ -1764,12 +1764,12 @@
           "division": "Honeydew Ladies DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 1 August 2026",
-          "team_1": "Chrisna Arnold / Renche Weideman",
-          "team_2": "Ruve Esterhuysen / Eunita du Preez",
-          "team_1_alias": "Renche, Chrisna",
-          "team_2_alias": "Eunita, Ruve",
-          "score": "6-1 6-4",
-          "balls": "Chrisna Arnold / Renche Weideman",
+          "team_1": "Kerryn Maralik / Nicola Pratley",
+          "team_2": "Madison Sked / Karen Dengler",
+          "team_1_alias": "Nicola, Kerryn",
+          "team_2_alias": "Karen, Madison",
+          "score": "0-6 2-6",
+          "balls": "Kerryn Maralik / Nicola Pratley",
           "status": "Validated"
         }
       ]
@@ -1779,6 +1779,19 @@
       "division": "Honeydew Ladies Div 2",
       "season": "Season 3 (Current)",
       "fixtures": [
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 2",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 5 September 2026",
+          "team_1": "Hanli de Coning / Carolyn Humphries",
+          "team_2": "Janine John / Pauline Collinson",
+          "team_1_alias": "Hanli, Carolyn",
+          "team_2_alias": "Pauline, Janine",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
         {
           "category": "Ladies",
           "division": "Honeydew Ladies Div 2",
@@ -1816,20 +1829,7 @@
           "team_2_alias": "Monica, Marita",
           "score": "1-6 0-6",
           "balls": "Sharon Poyner/ Sam Page",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 2",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 5 September 2026",
-          "team_1": "Hanli de Coning / Carolyn Humphries",
-          "team_2": "Janine John / Pauline Collinson",
-          "team_1_alias": "Hanli, Carolyn",
-          "team_2_alias": "Pauline, Janine",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2044,7 +2044,7 @@
           "team_2_alias": "Klarisa, Robin",
           "score": "6-4 6-7",
           "balls": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2122,7 +2122,7 @@
           "team_2_alias": "Prebashnee, Njabulo",
           "score": "1-6 6-7",
           "balls": "Natasha Jansen / Cherize Fillmore",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2233,7 +2233,7 @@
           "team_2_alias": "Nina, Isabella",
           "score": "6-3 7-5",
           "balls": "Bella (Elizabeth) Steenkamp & Mozel Van Niekerk",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
