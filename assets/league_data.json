@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-28T09:13:34.080965+00:00",
+  "generated_at_utc": "2026-09-29T09:21:51.625413+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -1651,12 +1651,12 @@
           "division": "Krugersdorp Div 2",
           "season": "Season 2 (Current)",
           "date": "Saturday, 26 September 2026",
-          "team_1": "Divan Koekemoer / Stephan Olivier",
-          "team_2": "Juan Botha / Werner Degener",
-          "team_1_alias": "Stephan, Divan",
-          "team_2_alias": "Juan, Werner",
-          "score": "6-4 1-6 6-4",
-          "balls": "Divan Koekemoer / Stephan Olivier",
+          "team_1": "Ruben Tolmay / Dylan Watermeyer",
+          "team_2": "Muhammed Alyasa Moosa / Muhammad Bodhania",
+          "team_1_alias": "Ruben, Dylan",
+          "team_2_alias": "Muhammad, Muhhamed",
+          "score": "6-3 7-6",
+          "balls": "Ruben Tolmay / Dylan Watermeyer",
           "status": "Validated"
         },
         {
@@ -1664,13 +1664,13 @@
           "division": "Krugersdorp Div 2",
           "season": "Season 2 (Current)",
           "date": "Saturday, 26 September 2026",
-          "team_1": "Ruben Tolmay / Dylan Watermeyer",
-          "team_2": "Muhammed Alyasa Moosa / Muhammad Bodhania",
-          "team_1_alias": "Ruben, Dylan",
-          "team_2_alias": "Muhammad, Muhhamed",
-          "score": "6-3 7-6",
-          "balls": "Ruben Tolmay / Dylan Watermeyer",
-          "status": "Waiting Approval"
+          "team_1": "Divan Koekemoer / Stephan Olivier",
+          "team_2": "Juan Botha / Werner Degener",
+          "team_1_alias": "Stephan, Divan",
+          "team_2_alias": "Juan, Werner",
+          "score": "6-4 1-6 6-4",
+          "balls": "Divan Koekemoer / Stephan Olivier",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -2237,7 +2237,7 @@
           "team_2_alias": "Andrew, Marius",
           "score": "3-6 5-7",
           "balls": "Willie Vd / Johan Van Rooyen",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -2628,7 +2628,7 @@
           "team_2_alias": "Nicks, Jamee",
           "score": "2-6 4-6",
           "balls": "Ruve Esterhuysen / Eunita du Preez",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2908,7 +2908,7 @@
           "team_2_alias": "Hanli, Carolyn",
           "score": "3-6 4-6",
           "balls": "Sharon Poyner/ Sam Page",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -4922,6 +4922,71 @@
       "division": "Ruimsig Mixed Div 1",
       "season": "Season 3 (Current)",
       "fixtures": [
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 28 September 2026",
+          "team_1": "Noah Sked / Madison Sked",
+          "team_2": "Meghan Warby / Houston Warby",
+          "team_1_alias": "Madison",
+          "team_2_alias": "Meghan, Houston",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 28 September 2026",
+          "team_1": "Sandrika Gajraj / Ashwin Naidu",
+          "team_2": "Louise Nel / Anthonetta Nel",
+          "team_1_alias": "Ashwin, Sandrika",
+          "team_2_alias": "Anthonetta, Louise",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 28 September 2026",
+          "team_1": "Steven Sienart / Maryna Welman",
+          "team_2": "Karen Dengler / Malcom Dengler",
+          "team_1_alias": "Maryna, Steven",
+          "team_2_alias": "Malcom, Karen",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 28 September 2026",
+          "team_1": "Beverly Stace / Wahldo Van der Merwe",
+          "team_2": "Chantelle Usmar / Dean Lindecke",
+          "team_1_alias": "Wahldo, Beverly",
+          "team_2_alias": "Chantelle, Dean",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Monday, 28 September 2026",
+          "team_1": "Alex Smith / Lea Smith",
+          "team_2": "Chrisna Arnold / Louis Prinsloo",
+          "team_1_alias": "Alex, Lea",
+          "team_2_alias": "Chrisna, Chrisna",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
         {
           "category": "Mixed",
           "division": "Ruimsig Mixed Div 1",
