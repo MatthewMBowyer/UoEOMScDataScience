@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-01T09:43:09.021098+00:00",
+  "generated_at_utc": "2026-10-02T09:16:55.749278+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -2028,6 +2028,19 @@
           "category": "Men's",
           "division": "Ruimsig Mens Div 1",
           "season": "Season 3 (Current)",
+          "date": "Saturday, 17 October 2026",
+          "team_1": "Ricardo Dos Santos / Deon Kapp",
+          "team_2": "Arno Meeyer/ Tristan Dullisear",
+          "team_1_alias": "Ricardo, Adrian",
+          "team_2_alias": "Tristan, Arno",
+          "score": "3-6 6-3 3-6",
+          "balls": "Ricardo Dos Santos / Deon Kapp",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Ruimsig Mens Div 1",
+          "season": "Season 3 (Current)",
           "date": "Saturday, 19 September 2026",
           "team_1": "Paul Jacobie / Keegan Van Den Heever",
           "team_2": "Malcolm Dengler / Noah Sked",
@@ -2036,19 +2049,6 @@
           "score": "4-6 1-6",
           "balls": "Paul Jacobie / Keegan Van Den Heever",
           "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 19 September 2026",
-          "team_1": "Houston Warby / Lawrence Bartlett",
-          "team_2": "Johan fourie / Lehlogonolo Jerome Mampane",
-          "team_1_alias": "Houston, Lawrence",
-          "team_2_alias": "Johan, Lehlogonolo",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -2081,6 +2081,19 @@
           "division": "Ruimsig Mens Div 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 19 September 2026",
+          "team_1": "Houston Warby / Lawrence Bartlett",
+          "team_2": "Johan fourie / Lehlogonolo Jerome Mampane",
+          "team_1_alias": "Houston, Lawrence",
+          "team_2_alias": "Johan, Lehlogonolo",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Ruimsig Mens Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 19 September 2026",
           "team_1": "Arno Meeyer/ Tristan Dullisear",
           "team_2": "Tiaan Steyn / Ruan Lategan",
           "team_1_alias": "Tristan, Arno",
@@ -2088,32 +2101,6 @@
           "score": "6-1 6-0",
           "balls": "Arno Meeyer/ Tristan Dullisear",
           "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 5 September 2026",
-          "team_1": "Ricardo Dos Santos / Deon Kapp",
-          "team_2": "SP Opperman / Cian de Villiers",
-          "team_1_alias": "Ricardo, Adrian",
-          "team_2_alias": "Cian, Sp",
-          "score": "5-7 6-3 6-7",
-          "balls": "Ricardo Dos Santos / Deon Kapp",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 5 September 2026",
-          "team_1": "Rowan Budhram / Louis Nel",
-          "team_2": "Paul Jacobie / Keegan Van Den Heever",
-          "team_1_alias": "Rowan, Louis",
-          "team_2_alias": "Keegan, Paul",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -2133,6 +2120,19 @@
           "division": "Ruimsig Mens Div 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 5 September 2026",
+          "team_1": "Rowan Budhram / Louis Nel",
+          "team_2": "Paul Jacobie / Keegan Van Den Heever",
+          "team_1_alias": "Rowan, Louis",
+          "team_2_alias": "Keegan, Paul",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Ruimsig Mens Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 5 September 2026",
           "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
           "team_2": "Tiaan Steyn / Ruan Lategan",
           "team_1_alias": "Johan, Lehlogonolo",
@@ -2140,6 +2140,19 @@
           "score": "",
           "balls": "",
           "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "Ruimsig Mens Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 5 September 2026",
+          "team_1": "Ricardo Dos Santos / Deon Kapp",
+          "team_2": "SP Opperman / Cian de Villiers",
+          "team_1_alias": "Ricardo, Adrian",
+          "team_2_alias": "Cian, Sp",
+          "score": "5-7 6-3 6-7",
+          "balls": "Ricardo Dos Santos / Deon Kapp",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -2159,26 +2172,13 @@
           "division": "Ruimsig Mens Div 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 22 August 2026",
-          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
-          "team_2": "Malcolm Dengler / Noah Sked",
-          "team_1_alias": "Johan, Lehlogonolo",
-          "team_2_alias": "Malcolm, Noah",
-          "score": "6-2 7-6",
-          "balls": "Johan fourie / Lehlogonolo Jerome Mampane",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "Ruimsig Mens Div 1",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 22 August 2026",
-          "team_1": "Tiaan Steyn / Ruan Lategan",
-          "team_2": "Lloyd Pienaar / Cade Smith",
-          "team_1_alias": "keegan, Ruan",
-          "team_2_alias": "Cade, Lloyd",
-          "score": "1-6 1-6",
-          "balls": "Tiaan Steyn / Ruan Lategan",
-          "status": "Validated"
+          "team_1": "Houston Warby / Lawrence Bartlett",
+          "team_2": "SP Opperman / Cian de Villiers",
+          "team_1_alias": "Houston, Lawrence",
+          "team_2_alias": "Cian, Sp",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Men's",
@@ -2211,13 +2211,26 @@
           "division": "Ruimsig Mens Div 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 22 August 2026",
-          "team_1": "Houston Warby / Lawrence Bartlett",
-          "team_2": "SP Opperman / Cian de Villiers",
-          "team_1_alias": "Houston, Lawrence",
-          "team_2_alias": "Cian, Sp",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "Johan fourie / Lehlogonolo Jerome Mampane",
+          "team_2": "Malcolm Dengler / Noah Sked",
+          "team_1_alias": "Johan, Lehlogonolo",
+          "team_2_alias": "Malcolm, Noah",
+          "score": "6-2 7-6",
+          "balls": "Johan fourie / Lehlogonolo Jerome Mampane",
+          "status": "Validated"
+        },
+        {
+          "category": "Men's",
+          "division": "Ruimsig Mens Div 1",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 22 August 2026",
+          "team_1": "Tiaan Steyn / Ruan Lategan",
+          "team_2": "Lloyd Pienaar / Cade Smith",
+          "team_1_alias": "keegan, Ruan",
+          "team_2_alias": "Cade, Lloyd",
+          "score": "1-6 1-6",
+          "balls": "Tiaan Steyn / Ruan Lategan",
+          "status": "Validated"
         }
       ]
     },
@@ -2439,7 +2452,7 @@
           "team_2_alias": "Chantelle, Zinel",
           "score": "0-6 6-3 0-6",
           "balls": "Lindsay Gough / Therina Van Der Walt",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -2452,7 +2465,7 @@
           "team_2_alias": "Lindsay, Therina",
           "score": "6-7 5-7",
           "balls": "Inge Madden / Berenice Devereux",
-          "status": "Waiting Approval"
+          "status": "Validated"
         }
       ]
     },
@@ -3143,6 +3156,19 @@
           "division": "Honeydew Ladies Div 3",
           "season": "Season 3 (Current)",
           "date": "Saturday, 26 September 2026",
+          "team_1": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
+          "team_2": "Ginette Bentley / Venushka Naidoo",
+          "team_1_alias": "Tracey",
+          "team_2_alias": "Venushka, Ginette, Lynn",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
+        },
+        {
+          "category": "Ladies",
+          "division": "Honeydew Ladies Div 3",
+          "season": "Season 3 (Current)",
+          "date": "Saturday, 26 September 2026",
           "team_1": "Yolandi Van der Walt / Zanele Katende",
           "team_2": "Comfort Shaba / Carol Gossman",
           "team_1_alias": "Zanele, Yolandi",
@@ -3173,22 +3199,9 @@
           "team_2": "Natasha Jansen / Cherize Fillmore",
           "team_1_alias": "Klarisa, Robin",
           "team_2_alias": "Cherize, Natasha",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Ladies",
-          "division": "Honeydew Ladies Div 3",
-          "season": "Season 3 (Current)",
-          "date": "Saturday, 26 September 2026",
-          "team_1": "Tracey Hawkridge-Visser/ Lynn Du Plessis",
-          "team_2": "Ginette Bentley / Venushka Naidoo",
-          "team_1_alias": "Tracey",
-          "team_2_alias": "Venushka, Ginette, Lynn",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "6-2 6-2",
+          "balls": "Robin Booyens / Klarisa Lamprecht",
+          "status": "Waiting Approval"
         },
         {
           "category": "Ladies",
@@ -3481,7 +3494,7 @@
           "team_2_alias": "Mozel, Liane, Lauren",
           "score": "7-5 7-5",
           "balls": "Seshnie Naidoo / Neeloufah Alli",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -4334,7 +4347,7 @@
           "team_2_alias": "Lloyd, Juanita",
           "score": "4-6 2-6",
           "balls": "Sharon Poyner / Craig Poyner",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -4354,38 +4367,12 @@
           "division": "MXD Honeydew Div 2",
           "season": "Season 1 (Current)",
           "date": "Friday, 21 August 2026",
-          "team_1": "Sharon Poyner / Craig Poyner",
-          "team_2": "Comfort Shaba / Jerome Mampane",
-          "team_1_alias": "Sharon, Craig",
-          "team_2_alias": "Comfort, Jerome",
-          "score": "1-6 1-6",
-          "balls": "Sharon Poyner / Craig Poyner",
-          "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 2",
-          "season": "Season 1 (Current)",
-          "date": "Friday, 21 August 2026",
           "team_1": "Carolyn Humphries / Matthew Stevens",
           "team_2": "Kerry panzcyk / Peter Panzcyk",
           "team_1_alias": "Carolyn, Matthew",
           "team_2_alias": "Peter, Kerry",
           "score": "7-6 3-6 3-6",
           "balls": "Kerry panzcyk / Peter Panzcyk",
-          "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 2",
-          "season": "Season 1 (Current)",
-          "date": "Friday, 21 August 2026",
-          "team_1": "Annelore Wheeler / Andre Brunacky",
-          "team_2": "Ryan Purdon/ Nicks Botwell",
-          "team_1_alias": "Andre, Annelore",
-          "team_2_alias": "Ryan, Nicks",
-          "score": "1-6 4-6",
-          "balls": "Ryan Purdon/ Nicks Botwell",
           "status": "Validated"
         },
         {
@@ -4406,12 +4393,38 @@
           "division": "MXD Honeydew Div 2",
           "season": "Season 1 (Current)",
           "date": "Friday, 21 August 2026",
+          "team_1": "Annelore Wheeler / Andre Brunacky",
+          "team_2": "Ryan Purdon/ Nicks Botwell",
+          "team_1_alias": "Andre, Annelore",
+          "team_2_alias": "Ryan, Nicks",
+          "score": "1-6 4-6",
+          "balls": "Ryan Purdon/ Nicks Botwell",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 2",
+          "season": "Season 1 (Current)",
+          "date": "Friday, 21 August 2026",
           "team_1": "Claire Bartlett / Lawrence Bartlett",
           "team_2": "Juanita Pienaar / Lloyd Pienaar",
           "team_1_alias": "Claire, Lawrence",
           "team_2_alias": "Lloyd, Juanita",
           "score": "5-7 2-6",
           "balls": "Juanita Pienaar / Lloyd Pienaar",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 2",
+          "season": "Season 1 (Current)",
+          "date": "Friday, 21 August 2026",
+          "team_1": "Sharon Poyner / Craig Poyner",
+          "team_2": "Comfort Shaba / Jerome Mampane",
+          "team_1_alias": "Sharon, Craig",
+          "team_2_alias": "Comfort, Jerome",
+          "score": "1-6 1-6",
+          "balls": "Sharon Poyner / Craig Poyner",
           "status": "Validated"
         },
         {
@@ -4445,19 +4458,6 @@
           "division": "MXD Honeydew Div 2",
           "season": "Season 1 (Current)",
           "date": "Friday, 7 August 2026",
-          "team_1": "Jamee Sampson / Sean Crossland",
-          "team_2": "Juanita Pienaar / Lloyd Pienaar",
-          "team_1_alias": "Jamee, Sean",
-          "team_2_alias": "Lloyd, Juanita",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 2",
-          "season": "Season 1 (Current)",
-          "date": "Friday, 7 August 2026",
           "team_1": "Claire Bartlett / Lawrence Bartlett",
           "team_2": "Comfort Shaba / Jerome Mampane",
           "team_1_alias": "Claire, Lawrence",
@@ -4465,6 +4465,19 @@
           "score": "0-6 4-6",
           "balls": "Claire Bartlett / Lawrence Bartlett",
           "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 2",
+          "season": "Season 1 (Current)",
+          "date": "Friday, 7 August 2026",
+          "team_1": "Jamee Sampson / Sean Crossland",
+          "team_2": "Juanita Pienaar / Lloyd Pienaar",
+          "team_1_alias": "Jamee, Sean",
+          "team_2_alias": "Lloyd, Juanita",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Mixed",
@@ -4868,7 +4881,7 @@
           "team_2_alias": "Dean, Chantelle",
           "score": "3-6 4-6",
           "balls": "Beverly Stace / Wahldo Van der Merwe",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -5213,7 +5226,7 @@
           "team_2_alias": "No players",
           "score": "6-2 2-6 6-3",
           "balls": "Jerome / Comfort",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Mixed",
