@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-07T09:38:22.499193+00:00",
+  "generated_at_utc": "2026-10-08T09:49:24.179199+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -56,19 +56,6 @@
           "division": "A.M. Smashes Premier Division",
           "season": "Season 2 (Current)",
           "date": "Saturday, 3 October 2026",
-          "team_1": "Jeorge De Freitas / Kyle Deerans",
-          "team_2": "Chezerray Cornelissen / Nico Lux",
-          "team_1_alias": "Jeorge, Kyle",
-          "team_2_alias": "Chezerray, Wesley",
-          "score": "6-2 6-3",
-          "balls": "Jeorge De Freitas / Kyle Deerans",
-          "status": "Validated"
-        },
-        {
-          "category": "Men's",
-          "division": "A.M. Smashes Premier Division",
-          "season": "Season 2 (Current)",
-          "date": "Saturday, 3 October 2026",
           "team_1": "Riaan du Toit / Liam du Toit",
           "team_2": "Dillan Parau / Donovan Parau",
           "team_1_alias": "Liam, Riaan",
@@ -76,6 +63,19 @@
           "score": "",
           "balls": "",
           "status": "Pending"
+        },
+        {
+          "category": "Men's",
+          "division": "A.M. Smashes Premier Division",
+          "season": "Season 2 (Current)",
+          "date": "Saturday, 3 October 2026",
+          "team_1": "Jeorge De Freitas / Kyle Deerans",
+          "team_2": "Chezerray Cornelissen / Nico Lux",
+          "team_1_alias": "Jeorge, Kyle",
+          "team_2_alias": "Chezerray, Wesley",
+          "score": "6-2 6-3",
+          "balls": "Jeorge De Freitas / Kyle Deerans",
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -251,10 +251,10 @@
           "division": "A.M. Smashes Premier Division",
           "season": "Season 2 (Current)",
           "date": "Saturday, 22 August 2026",
-          "team_1": "JJ / Garth Forsyth",
-          "team_2": "Micheal Edwards / Junior Van Rooyen",
-          "team_1_alias": "JJ, Garth",
-          "team_2_alias": "Micheal, Junior",
+          "team_1": "Dillan Parau / Donovan Parau",
+          "team_2": "Mike Atkins / Bradley Campbell",
+          "team_1_alias": "Dillan, Donovan",
+          "team_2_alias": "Mike, Bradley",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -264,13 +264,13 @@
           "division": "A.M. Smashes Premier Division",
           "season": "Season 2 (Current)",
           "date": "Saturday, 22 August 2026",
-          "team_1": "Dillan Parau / Donovan Parau",
-          "team_2": "Mike Atkins / Bradley Campbell",
-          "team_1_alias": "Dillan, Donovan",
-          "team_2_alias": "Mike, Bradley",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "team_1": "JJ / Garth Forsyth",
+          "team_2": "Micheal Edwards / Junior Van Rooyen",
+          "team_1_alias": "JJ, Garth",
+          "team_2_alias": "Micheal, Junior",
+          "score": "4-6 6-4 6-3",
+          "balls": "JJ / Garth Forsyth",
+          "status": "Waiting Approval"
         },
         {
           "category": "Men's",
@@ -402,9 +402,9 @@
           "season": "Season 3 (Current)",
           "date": "Saturday, 26 September 2026",
           "team_1": "Julian Van Actherbergh / Steven O'Sullivan",
-          "team_2": "J.C / Riaz Varachia",
+          "team_2": "Keagan Dempsey/ Tiaan Van Niekerk",
           "team_1_alias": "Julian, Steven",
-          "team_2_alias": "J.C, Riaz",
+          "team_2_alias": "Keagan, Tiaan",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -480,9 +480,9 @@
           "season": "Season 3 (Current)",
           "date": "Saturday, 12 September 2026",
           "team_1": "Garreth Raath / Brendan Beech",
-          "team_2": "J.C / Riaz Varachia",
+          "team_2": "Keagan Dempsey/ Tiaan Van Niekerk",
           "team_1_alias": "Garreth, Brendan",
-          "team_2_alias": "J.C, Riaz",
+          "team_2_alias": "Keagan, Tiaan",
           "score": "",
           "balls": "",
           "status": "Pending"
@@ -545,9 +545,9 @@
           "season": "Season 3 (Current)",
           "date": "Saturday, 29 August 2026",
           "team_1": "Wesley Visser / Amien Sarlie",
-          "team_2": "J.C / Riaz Varachia",
+          "team_2": "Keagan Dempsey/ Tiaan Van Niekerk",
           "team_1_alias": "Amien, Wesley",
-          "team_2_alias": "J.C, Riaz",
+          "team_2_alias": "Keagan, Tiaan",
           "score": "6-4 5-7 7-5",
           "balls": "Wesley Visser / Amien Sarlie",
           "status": "Validated"
@@ -583,9 +583,9 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 15 August 2026",
-          "team_1": "J.C / Riaz Varachia",
+          "team_1": "Keagan Dempsey/ Tiaan Van Niekerk",
           "team_2": "Nadeem Amra/ Andres Varas",
-          "team_1_alias": "J.C, Riaz",
+          "team_1_alias": "Keagan, Tiaan",
           "team_2_alias": "Andy, Nadeem",
           "score": "2-6 3-6",
           "balls": "Nadeem Amra/ Andres Varas",
@@ -674,12 +674,12 @@
           "division": "Honeydew DIV 1",
           "season": "Season 3 (Current)",
           "date": "Saturday, 1 August 2026",
-          "team_1": "J.C / Riaz Varachia",
+          "team_1": "Keagan Dempsey/ Tiaan Van Niekerk",
           "team_2": "Preash Govender / David Samuel",
-          "team_1_alias": "J.C, Riaz",
+          "team_1_alias": "Keagan, Tiaan",
           "team_2_alias": "David, Preash",
           "score": "6-3 5-7 2-6",
-          "balls": "J.C / Riaz Varachia",
+          "balls": "Keagan Dempsey/ Tiaan Van Niekerk",
           "status": "Validated"
         }
       ]
@@ -4939,25 +4939,25 @@
           "division": "MXD Honeydew Div 2",
           "season": "Season 1 (Current)",
           "date": "Friday, 4 September 2026",
-          "team_1": "Carolyn Humphries / Matthew Stevens",
-          "team_2": "Jamee Sampson / Sean Crossland",
-          "team_1_alias": "Carolyn, Matthew",
-          "team_2_alias": "Jamee, Sean",
-          "score": "1-6 0-6",
-          "balls": "Carolyn Humphries / Matthew Stevens",
-          "status": "Waiting Approval"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 2",
-          "season": "Season 1 (Current)",
-          "date": "Friday, 4 September 2026",
           "team_1": "Annelore Wheeler / Andre Brunacky",
           "team_2": "Comfort Shaba / Jerome Mampane",
           "team_1_alias": "Andre, Annelore",
           "team_2_alias": "Comfort, Jerome",
           "score": "6-7 6-3 0-0",
           "balls": "Comfort Shaba / Jerome Mampane",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 2",
+          "season": "Season 1 (Current)",
+          "date": "Friday, 4 September 2026",
+          "team_1": "Carolyn Humphries / Matthew Stevens",
+          "team_2": "Jamee Sampson / Sean Crossland",
+          "team_1_alias": "Carolyn, Matthew",
+          "team_2_alias": "Jamee, Sean",
+          "score": "1-6 0-6",
+          "balls": "Carolyn Humphries / Matthew Stevens",
           "status": "Validated"
         },
         {
@@ -5069,19 +5069,6 @@
           "division": "MXD Honeydew Div 2",
           "season": "Season 1 (Current)",
           "date": "Friday, 7 August 2026",
-          "team_1": "Annelore Wheeler / Andre Brunacky",
-          "team_2": "Sharon Poyner / Craig Poyner",
-          "team_1_alias": "Andre, Annelore",
-          "team_2_alias": "Sharon, Craig",
-          "score": "3-6 7-5 1-6",
-          "balls": "Annelore Wheeler / Andre Brunacky",
-          "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 2",
-          "season": "Season 1 (Current)",
-          "date": "Friday, 7 August 2026",
           "team_1": "Claire Bartlett / Lawrence Bartlett",
           "team_2": "Comfort Shaba / Jerome Mampane",
           "team_1_alias": "Claire, Lawrence",
@@ -5101,6 +5088,19 @@
           "team_2_alias": "Ryan, Nicks",
           "score": "3-6 6-7",
           "balls": "Carolyn Humphries / Matthew Stevens",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 2",
+          "season": "Season 1 (Current)",
+          "date": "Friday, 7 August 2026",
+          "team_1": "Annelore Wheeler / Andre Brunacky",
+          "team_2": "Sharon Poyner / Craig Poyner",
+          "team_1_alias": "Andre, Annelore",
+          "team_2_alias": "Sharon, Craig",
+          "score": "3-6 7-5 1-6",
+          "balls": "Annelore Wheeler / Andre Brunacky",
           "status": "Validated"
         },
         {
@@ -6065,7 +6065,7 @@
           "team_2_alias": "Christoph, Bianca",
           "score": "6-1 6-0",
           "balls": "Ianthe / Johan Fourie",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -6076,9 +6076,9 @@
           "team_2": "Kobus Van Niekerk / Dionie Van Niekerk",
           "team_1_alias": "Daniella, Martin",
           "team_2_alias": "Kobus, Dionie",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "4-6 2-6",
+          "balls": "Martin Miog / Daniella Mitchell",
+          "status": "Waiting Approval"
         },
         {
           "category": "Mixed",
@@ -6089,9 +6089,9 @@
           "team_2": "Marius Jacobs / Charmain Van Wyk",
           "team_1_alias": "Alicia, Mark",
           "team_2_alias": "Charmain, Marius",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
+          "score": "3-6 1-6",
+          "balls": "Alicia Stirk / Mark Robertson",
+          "status": "Validated"
         },
         {
           "category": "Mixed",
@@ -6202,6 +6202,19 @@
           "division": "Ruimsig Mixed Div 3",
           "season": "Season 2 (Current)",
           "date": "Monday, 24 August 2026",
+          "team_1": "Ingrid Lubke / johan Vander Merwe",
+          "team_2": "Martin Miog / Daniella Mitchell",
+          "team_1_alias": "Annemarie, Karel",
+          "team_2_alias": "Daniella, Martin",
+          "score": "3-6 1-6",
+          "balls": "Ingrid Lubke / johan Vander Merwe",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "Ruimsig Mixed Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Monday, 24 August 2026",
           "team_1": "Alicia Stirk / Mark Robertson",
           "team_2": "Ianthe / Johan Fourie",
           "team_1_alias": "Alicia, Mark",
@@ -6234,19 +6247,6 @@
           "team_2_alias": "Samantha, Gerhard",
           "score": "1-6 2-6",
           "balls": "Bianca Da silva / Christoph van Der Linde",
-          "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "Ruimsig Mixed Div 3",
-          "season": "Season 2 (Current)",
-          "date": "Monday, 24 August 2026",
-          "team_1": "Ingrid Lubke / johan Vander Merwe",
-          "team_2": "Martin Miog / Daniella Mitchell",
-          "team_1_alias": "Annemarie, Karel",
-          "team_2_alias": "Daniella, Martin",
-          "score": "3-6 1-6",
-          "balls": "Ingrid Lubke / johan Vander Merwe",
           "status": "Validated"
         }
       ]
