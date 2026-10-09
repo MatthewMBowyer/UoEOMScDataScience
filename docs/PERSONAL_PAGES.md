@@ -183,6 +183,13 @@ Actions workflow runs once a day, builds a short digest, and emails it:
 - Digest: `scripts/personal_digest.py`
 - Sending: `scripts/send_digest_email.py`
 
+The email is **multipart/alternative**: a styled HTML version and a plain-text
+fallback, so it renders as a proper email in Gmail and still arrives readable
+anywhere. The HTML is rendered by `send_digest_email.py` from the same data the
+text version uses, so the two can never disagree, and the workflow needs no
+extra step. If the HTML render ever fails the mail falls back to plain text
+rather than not arriving.
+
 GitHub Actions is free at this volume, so this costs nothing. **This is the only
 reason the workflow directory exists**, and the AC-57 check was narrowed to
 allow it: the workflow may not build, bundle or deploy the site, and a test

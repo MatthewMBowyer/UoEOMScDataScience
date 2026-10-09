@@ -392,21 +392,26 @@ a stale report, a missing viewport, four-anchor shortfall) and for nothing else.
 
 ## 9. The daily email digest — when to expect it
 
-You asked when the next email arrives. Short answer: **not yet.** The site is
-pushed, but two things are still missing, and no email can be sent until both
-are done: the workflow file has to reach GitHub, and you have to add three
-secrets.
+You asked when the next email arrives. Short answer: **it is set up and it sends.**
+The workflow is on GitHub, the secrets are in place, and a test run has arrived.
+It runs daily at **05:00 SAST** from GitHub's scheduler — your PC does not need to
+be on.
 
-The workflow file is **not on GitHub yet**. The token used to push the site can
-write code but not workflow files — GitHub refuses it with "refusing to allow a
-Personal Access Token to create or update workflow
-`.github/workflows/personal-digest.yml` without `workflow` scope", and the API
-route fails the same way with 403. So the site is live and the reminder email is
-dormant. Add the file by hand (step 1 below); everything it needs
-(`scripts/personal_digest.py`, `scripts/send_digest_email.py`,
-`personal/data/*.json`) is already on GitHub.
+To see one immediately: repo → **Actions** → **personal-digest** → **Run
+workflow**. That is also the fastest way to check after any change.
 
-Once both are done:
+### What the email looks like
+
+It is sent as a styled HTML email with a plain-text fallback (multipart/
+alternative), so it renders properly rather than as a wall of monospaced text.
+It matches the site's colours and has one card per event, with the live one
+highlighted and "on now" or "in 2d" as a badge. The plain-text version is
+identical in content and is what any client that cannot render HTML shows.
+
+The HTML is built by `scripts/send_digest_email.py` from the same data as the
+text, so the two cannot drift apart, and no workflow change was needed to add it.
+
+How it runs:
 
 1. The workflow `.github/workflows/personal-digest.yml` runs on GitHub's own
    scheduler, not on your PC. Your machine does not need to be on.
@@ -415,43 +420,14 @@ Once both are done:
 3. It reads `personal/data/*.json`, builds the digest with
    `scripts/personal_digest.py`, and emails it directly via SMTP.
 
-**Step 1 — put the workflow file on GitHub.** The file already exists on your
-machine at:
+If you ever move to a different mail account, the three secrets are
+`MAIL_USERNAME` (the sending address), `MAIL_PASSWORD` (an **app password**, not
+the account password — Gmail needs 2-Step Verification on first, then Google
+Account → Security → App passwords), and `MAIL_TO` (where to send it; may be the
+same address). They live at Settings → Secrets and variables → Actions. Without
+them the job still runs and prints the digest into the run log.
 
-```
-C:\Users\matthewbo\Matthew B Python Projects\Masters\openhands-projects\conference-program\projects\eportfolio_rebuild\.github\workflows\personal-digest.yml
-```
-
-1. Open the repo → **Add file** → **Create new file**.
-2. Name it exactly `.github/workflows/personal-digest.yml` (typing the slashes
-   creates the folders).
-3. Paste the whole contents of that file.
-4. **Commit changes**, straight to `main`.
-
-**Step 2 — add the three secrets.** Settings → Secrets and variables → Actions
-→ **New secret** (one at a time; names are case-sensitive, no quotes):
-
-| Name | Value |
-|---|---|
-| `MAIL_USERNAME` | the sending address, e.g. `you@gmail.com` |
-| `MAIL_PASSWORD` | the **app password**, not your normal password |
-| `MAIL_TO` | where to send it (may be the same address) |
-
-For Gmail, `MAIL_PASSWORD` must be an App password: 2-Step Verification on first
-(Google Account → Security → 2-Step Verification), then Google Account →
-Security → App passwords. A normal account password is rejected. Sending is over
-`smtp.gmail.com:465` with implicit SSL, which is what this setup expects.
-
-Without those three the job still runs and prints the digest into the run log,
-so it degrades to "read the log" instead of failing silently — but no email is
-sent. Verified behaviour: no secrets → exit 0 with "Email is not configured";
-secrets present but wrong → exit 1 with the SMTP error, which is the red tick you
-want to see while debugging.
-
-**Step 3 — send one now.** Repo → **Actions** → **personal-digest** → **Run
-workflow**. That button only appears once step 1 is done. To check it worked,
-look for a green tick; a red tick means it failed and the log names the reason.
-To stop the emails, disable that workflow.
+To stop the emails, disable the `personal-digest` workflow in the Actions tab.
 
 ## Requirements
 

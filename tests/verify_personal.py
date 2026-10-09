@@ -249,6 +249,147 @@ def test_digest_with_frozen_clock() -> None:
           "Your reminders" in out and "SPORT" in out and "SPECIAL DAYS" in out)
 
 
+def test_html_email_is_a_real_alternative() -> None:
+    """The pretty version must be a genuine multipart/alternative part.
+
+    A mail client only shows the HTML version if the message is multipart AND
+    the HTML part comes after the text part; get that order wrong and the owner
+    silently keeps seeing plain text.
+    """
+    import email
+    from email.message import EmailMessage
+
+    html = subprocess.run(
+        [sys.executable, "scripts/personal_digest.py", "--today", "2026-10-05",
+         "--days", "10", "--html"],
+        capture_output=True, text=True, check=True,
+    ).stdout
+    text = run_digest("2026-10-05")
+
+    check("AC-P7 --html starts with a doctype", html.startswith("<!DOCTYPE html>"))
+    check("AC-P7 --html is a complete document", "</html>" in html)
+    check("AC-P7 --html carries no stray literal backslash-n",
+          "\\n" not in html)
+
+    # The same facts must appear in both renderings, or the two drift.
+    for fact in ("Shanghai Masters", "Bathurst 1000", "SuperSport"):
+        check(f"AC-P7 '{fact}' is in the HTML version", fact in html)
+        check(f"AC-P7 '{fact}' is in the text version", fact in text)
+
+    # Build the real message the way send_digest_email.py does and inspect it.
+    msg = EmailMessage()
+    msg["Subject"] = "s"
+    msg["From"] = "a@b.com"
+    msg["To"] = "c@d.com"
+    msg.set_content(text)
+    msg.add_alternative(html, subtype="html")
+    parsed = email.message_from_bytes(msg.as_bytes())
+    types = [p.get_content_type() for p in parsed.walk()]
+    check("AC-P7 the sent message is multipart/alternative",
+          parsed.get_content_type() == "multipart/alternative")
+    check("AC-P7 it carries a text/plain part", "text/plain" in types)
+    check("AC-P7 it carries a text/html part", "text/html" in types)
+    check("AC-P7 HTML is the LAST alternative, so clients prefer it",
+          types[-1] == "text/html")
+
+
+def test_html_email_escapes_owner_data() -> None:
+    """An '&' or '<' in an event name must not break the markup.
+
+    Every value comes from the owner's own JSON today, but a pasted event name
+    ('Bathurst 1000 & 12 Hour') would corrupt the email, so the escape is pinned.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "scripts"))
+    import personal_digest as PD
+
+    sports = dict(PD.load("sports.json"))
+    sports["events"] = [dict(sports["events"][0],
+                             name='<img src=x onerror=alert(1)> & "q"',
+                             series="A&B",
+                             start="2026-10-06", end="2026-10-07")]
+    hubby = PD.load("good_hubby.json")
+    out = PD.render_html(sports, hubby, dt.date(2026, 10, 5), 10)
+
+    check("AC-P7 a tag in an event name is escaped, not emitted",
+          "<img src=x" not in out and "&lt;img src=x" in out)
+    check("AC-P7 an ampersand in an event name is escaped", "A&amp;B" in out)
+    check("AC-P7 a quote in an event name is escaped", "&quot;q&quot;" in out)
+
+
+def test_sender_attaches_the_html_alternative() -> None:
+    """The sender must actually attach the HTML part, and survive a foreign cwd.
+
+    The workflow only writes digest.txt, so send_digest_email.py renders the HTML
+    itself. That render calls into personal_digest, which chdir()s to the repo
+    root as an import side effect - if the sender does not account for that, it
+    looks for digest.txt in the wrong place and the job fails.
+    """
+    import importlib.util
+    import smtplib
+    import tempfile
+
+    captured = {}
+
+    class FakeSMTP:
+        def __init__(self, *a, **k):
+            pass
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def ehlo(self):
+            return (250, "ok")
+
+        def login(self, u, p):
+            captured["login"] = u
+
+        def send_message(self, m):
+            captured["msg"] = m
+
+    real = smtplib.SMTP_SSL
+    real_env = {k: os.environ.get(k) for k in ("MAIL_USERNAME", "MAIL_PASSWORD", "MAIL_TO")}
+    smtplib.SMTP_SSL = FakeSMTP
+    os.environ.update(MAIL_USERNAME="me@gmail.com", MAIL_PASSWORD="pw",
+                      MAIL_TO="you@example.com")
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            # digest.txt/subject.txt live in the caller's cwd, as in the workflow.
+            with open(os.path.join(tmp, "digest.txt"), "w", encoding="utf-8") as f:
+                f.write("PLAIN BODY")
+            with open(os.path.join(tmp, "subject.txt"), "w", encoding="utf-8") as f:
+                f.write("A subject")
+            cwd = os.getcwd()
+            os.chdir(tmp)
+            try:
+                spec = importlib.util.spec_from_file_location(
+                    "sde", os.path.join(ROOT, "scripts", "send_digest_email.py"))
+                mod = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(mod)
+                rc = mod.main()
+                after = os.getcwd()
+            finally:
+                os.chdir(cwd)
+    finally:
+        smtplib.SMTP_SSL = real
+        for k, v in real_env.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+
+    check("AC-P10 the sender exits 0", rc == 0)
+    check("AC-P10 the sender leaves the working directory alone", after == tmp)
+    msg = captured.get("msg")
+    types = [p.get_content_type() for p in msg.iter_parts()] if msg else []
+    check("AC-P10 the sent mail is multipart/alternative", "text/html" in types)
+    check("AC-P10 the plain-text part survives for non-HTML clients",
+          "text/plain" in types)
+    check("AC-P10 HTML is the last alternative", types[-1] == "text/html" if types else False)
+
+
 def test_ics_files() -> None:
     # sports.ics now carries only the not-yet-expired events (pruned on build).
     as_of = BP._prune_as_of(SPORTS)
@@ -594,6 +735,9 @@ def main() -> int:
         test_chatting_derivations_consistent,
         test_checkin_reminders,
         test_digest_with_frozen_clock,
+        test_html_email_is_a_real_alternative,
+        test_html_email_escapes_owner_data,
+        test_sender_attaches_the_html_alternative,
         test_ics_files,
         test_pages_are_current,
         test_check_is_reproducible_without_a_clock,
