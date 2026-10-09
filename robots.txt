@@ -19,5 +19,8 @@ Disallow: /sports.html
 Disallow: /good_hubby.html
 Disallow: /sports.ics
 Disallow: /good_hubby.ics
+# The raw data behind those pages (dates, day counts). Build-time only: nothing
+# the browser loads reads it, so disallowing the folder costs nothing.
+Disallow: /personal/
 
 Sitemap: https://matthewmbowyer.github.io/UoEOMScDataScience/sitemap.xml
