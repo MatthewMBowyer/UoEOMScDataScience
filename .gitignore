@@ -1,0 +1,31 @@
+# The chatbot was scrapped (owner decision 2026-10-01) and replaced by the
+# offline ambient facts bot. There is no proxy, no key and no server-side code;
+# these ignores are retained only as defence in depth in case a stray local
+# secret file is ever created.
+.env
+*.key
+secrets.json
+
+# Local scratch
+.agent_tmp/
+.proof_tmp/
+
+# The knowledge generator is a REQUIRED deliverable (not a build artefact):
+# override the framework-level "build_*.py" ignore so it is committed.
+!build_knowledge.py
+!scripts/build_knowledge.py
+
+# The AC-133 evidence bundle is regenerated, not hand-written: this generator
+# re-runs the five delivered suites and re-derives every row, so a stale or
+# internally contradictory gen11_change_report.json cannot ship again. Required
+# deliverable, so the "build_*.py" ignore must not swallow it.
+!scripts/build_gen11_report.py
+
+# The personal-pages pass (2026-10-05). Same reasoning: these are deliverables,
+# not one-off maintenance tooling, so the framework-level "build_*.py" and
+# "verify_*.py" ignores must not swallow them.
+!scripts/build_personal.py
+!scripts/personal_digest.py
+!scripts/send_digest_email.py
+!tests/verify_personal.py
+!tests/verify_gen3.py

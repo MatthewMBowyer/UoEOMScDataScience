@@ -1,0 +1,74 @@
+[
+  {
+    "description": "",
+    "has_readme": false,
+    "language": "CSS",
+    "name": "Chloes-Traveling-tutors",
+    "private": false,
+    "source": "repo:Chloes-Traveling-tutors",
+    "url": "https://github.com/MatthewMBowyer/Chloes-Traveling-tutors"
+  },
+  {
+    "description": "This repository contains the code for my MSc Data Science thesis:",
+    "has_readme": true,
+    "language": "Jupyter Notebook",
+    "name": "Essex_MSC_DataScience_Thesis",
+    "private": false,
+    "source": "repo:Essex_MSC_DataScience_Thesis",
+    "url": "https://github.com/MatthewMBowyer/Essex_MSC_DataScience_Thesis"
+  },
+  {
+    "description": "A browser-only tutoring invoice app.",
+    "has_readme": true,
+    "language": "JavaScript",
+    "name": "Invoice_app",
+    "private": false,
+    "source": "repo:Invoice_app",
+    "url": "https://github.com/MatthewMBowyer/Invoice_app"
+  },
+  {
+    "description": "Massively by HTML5 UP",
+    "has_readme": true,
+    "language": "HTML",
+    "name": "PringlePadel",
+    "private": false,
+    "source": "repo:PringlePadel",
+    "url": "https://github.com/MatthewMBowyer/PringlePadel"
+  },
+  {
+    "description": "",
+    "has_readme": false,
+    "language": "CSS",
+    "name": "The-Bowyer-collective",
+    "private": false,
+    "source": "repo:The-Bowyer-collective",
+    "url": "https://github.com/MatthewMBowyer/The-Bowyer-collective"
+  },
+  {
+    "description": "Dopetrope by HTML5 UP",
+    "has_readme": true,
+    "language": "HTML",
+    "name": "UoEOMScDataScience",
+    "private": false,
+    "source": "repo:UoEOMScDataScience",
+    "url": "https://github.com/MatthewMBowyer/UoEOMScDataScience"
+  },
+  {
+    "description": "Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.",
+    "has_readme": true,
+    "language": "",
+    "name": "skills-github-pages",
+    "private": false,
+    "source": "repo:skills-github-pages",
+    "url": "https://github.com/MatthewMBowyer/skills-github-pages"
+  },
+  {
+    "description": "Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.",
+    "has_readme": true,
+    "language": "",
+    "name": "skills-introduction-to-github",
+    "private": false,
+    "source": "repo:skills-introduction-to-github",
+    "url": "https://github.com/MatthewMBowyer/skills-introduction-to-github"
+  }
+]

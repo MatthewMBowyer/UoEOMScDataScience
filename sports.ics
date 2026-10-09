@@ -1,0 +1,143 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Matthew Bowyer//Personal//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Sports
+X-WR-TIMEZONE:Africa/Johannesburg
+BEGIN:VEVENT
+UID:shanghai-masters-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261007
+DTEND;VALUE=DATE:20261019
+SUMMARY:Shanghai Masters (Tennis)
+DESCRIPTION:ATP Masters 1000. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:uci-gravel-worlds-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261010
+DTEND;VALUE=DATE:20261012
+SUMMARY:UCI Gravel World Championships (Cycling)
+DESCRIPTION:UCI. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:bathurst-1000-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261011
+DTEND;VALUE=DATE:20261012
+SUMMARY:Bathurst 1000 (Motorsport)
+DESCRIPTION:Supercars Championship. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:uci-track-worlds-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261019
+SUMMARY:UCI Track Cycling World Championships (Cycling)
+DESCRIPTION:UCI. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:artistic-gymnastics-worlds-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261017
+DTEND;VALUE=DATE:20261026
+SUMMARY:Artistic Gymnastics World Championships (Gymnastics)
+DESCRIPTION:FIG. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:motogp-australian-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261025
+DTEND;VALUE=DATE:20261026
+SUMMARY:MotoGP Australian Grand Prix (Motorsport)
+DESCRIPTION:MotoGP. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:nascar-talladega-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261025
+DTEND;VALUE=DATE:20261026
+SUMMARY:NASCAR at Talladega (Motorsport)
+DESCRIPTION:NASCAR Cup Series. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:weightlifting-worlds-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261027
+DTEND;VALUE=DATE:20261109
+SUMMARY:Weightlifting World Championships (Weightlifting)
+DESCRIPTION:IWF. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:paris-masters-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261109
+SUMMARY:Paris Masters (Tennis)
+DESCRIPTION:ATP Masters 1000. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:wec-bahrain-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261107
+DTEND;VALUE=DATE:20261108
+SUMMARY:World Endurance - 8 Hours of Bahrain (Motorsport)
+DESCRIPTION:FIA WEC. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:nascar-homestead-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
+SUMMARY:NASCAR at Homestead-Miami (Motorsport)
+DESCRIPTION:NASCAR Cup Series. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:wrc-saudi-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261115
+SUMMARY:World Rally Championship - Saudi Arabia (Motorsport)
+DESCRIPTION:WRC. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:motogp-portuguese-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261123
+SUMMARY:MotoGP Portuguese Grand Prix (Motorsport)
+DESCRIPTION:MotoGP. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:mexico-padel-major-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261123
+DTEND;VALUE=DATE:20261130
+SUMMARY:Mexico Padel Major (Padel)
+DESCRIPTION:Premier Padel. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+BEGIN:VEVENT
+UID:motogp-valencia-2026@eportfolio.personal
+DTSTAMP:20261129T000000Z
+DTSTART;VALUE=DATE:20261129
+DTEND;VALUE=DATE:20261130
+SUMMARY:MotoGP Valencian Grand Prix (season finale) (Motorsport)
+DESCRIPTION:MotoGP. Watch: SuperSport (DStv). Guide: https://supersport.com/tv-guide
+URL:https://supersport.com/tv-guide
+END:VEVENT
+END:VCALENDAR

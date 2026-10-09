@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Good Hubby</title>
+<style>
+:root{
+  --bg:#070A12; --card:#0D1222; --card2:#0B1020; --text:#E9EEFF; --muted:#A9B2D6;
+  --line:rgba(255,255,255,.08); --accent:#7c5cff; --accent2:#22d3ee;
+  --good:#28d17c; --warn:#f7c948; --radius:18px;
+  --shadow:0 14px 40px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(1000px 500px at 10% -10%, rgba(124,92,255,.30), transparent 55%),
+    radial-gradient(900px 450px at 110% 10%, rgba(34,211,238,.20), transparent 55%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.55;
+}
+a{color:var(--accent2);text-decoration:none}
+a:hover,a:focus-visible{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 16px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:6px}
+h1{font-size:clamp(1.5rem,3.4vw,2rem);margin:0;letter-spacing:-.02em}
+.sub{color:var(--muted);margin:6px 0 0;font-size:.95rem}
+nav.links{display:flex;gap:10px;flex-wrap:wrap}
+nav.links a{
+  border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.86rem;
+  color:var(--text);background:rgba(255,255,255,.03)
+}
+nav.links a[aria-current=page]{border-color:var(--accent);background:rgba(124,92,255,.16)}
+.card{
+  background:linear-gradient(180deg,var(--card),var(--card2));
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:20px;margin:18px 0
+}
+h2{font-size:1.1rem;margin:0 0 4px;letter-spacing:-.01em}
+h3{font-size:.95rem;margin:0}
+.muted{color:var(--muted)}
+.small{font-size:.84rem}
+.next{display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between}
+.next .big{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.count{display:flex;gap:18px;flex-wrap:wrap}
+.count div{text-align:center;min-width:64px}
+.count b{display:block;font-size:1.5rem;letter-spacing:-.02em}
+.count span{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.month{margin:22px 0 6px;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+ul.events{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.events li{
+  display:grid;grid-template-columns:104px 1fr auto;gap:14px;align-items:center;
+  border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.02)
+}
+ul.events li.past{opacity:.5}
+ul.events .when{font-variant-numeric:tabular-nums;font-size:.86rem;color:var(--muted)}
+ul.events .who{font-weight:600}
+ul.events .meta{font-size:.8rem;color:var(--muted);margin-top:2px}
+.tag{
+  display:inline-block;font-size:.72rem;padding:3px 9px;border-radius:999px;
+  border:1px solid var(--line);color:var(--muted);white-space:nowrap
+}
+.tag.live{border-color:rgba(40,209,124,.5);color:var(--good)}
+.tag.soon{border-color:rgba(247,201,72,.5);color:var(--warn)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.milestone{border:1px solid var(--line);border-radius:14px;padding:16px;background:rgba(255,255,255,.02)}
+.milestone .num{font-size:1.9rem;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.milestone .lbl{font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:8px}
+/* Row kind, so a long "coming up" list can be scanned at a glance. */
+.chip{
+  display:inline-block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--muted);border:1px solid var(--line);border-radius:999px;
+  padding:1px 8px;margin-right:2px;vertical-align:1px
+}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+footer.bot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
+.flag{
+  border-left:3px solid var(--warn);background:rgba(247,201,72,.07);
+  border-radius:0 12px 12px 0;padding:12px 16px;margin:16px 0;font-size:.88rem
+}
+@media (max-width:620px){
+  ul.events li{grid-template-columns:1fr;gap:6px}
+  .count{width:100%;justify-content:space-between}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <h1>Good Hubby</h1>
+    <p class="sub">Your special days, anniversaries and the cute holidays</p>
+  </div>
+  <nav class="links" aria-label="Personal pages">
+    <a href="sports.html">Sports</a>
+    <a href="good_hubby.html" aria-current="page">Good Hubby</a>
+  </nav>
+</header>
+
+<section class="card">
+  <h2>Your days</h2>
+  <p class="muted small">Counting runs in your browser from the dates you gave me, so it is always
+  right - no edits needed as time passes.</p>
+  <div class="grid"><div class="milestone" data-since="2017-03-22"><div class="lbl">Started chatting</div><div class="num" data-days>&nbsp;</div><div class="muted small">22 Mar 2017 &middot; <span data-years></span> together</div><div class="small" style="margin-top:8px">Next anniversary <span data-next></span></div></div><div class="milestone" data-since="2025-02-01"><div class="lbl">Started dating</div><div class="num" data-days>&nbsp;</div><div class="muted small">1 Feb 2025 &middot; <span data-years></span> together</div><div class="small" style="margin-top:8px">Next anniversary <span data-next></span></div></div><div class="milestone" data-since="2026-04-01"><div class="lbl">Engaged</div><div class="num" data-days>&nbsp;</div><div class="muted small">1 Apr 2026 &middot; <span data-years></span> together</div><div class="small" style="margin-top:8px">Next anniversary <span data-next></span></div></div></div>
+</section>
+
+
+<section class="card">
+  <h2>Birthdays</h2>
+  <div class="milestone" data-bday="10-30"><div class="lbl">Her birthday</div><div class="num">30 October</div><div class="muted small">Every year &middot; next <span data-bday-next></span></div><div class="muted small" style="margin-top:8px">Source: Owner, stated directly (2026-10-07)</div></div>
+</section>
+
+
+
+<section class="card">
+  <h2>Check-in</h2>
+  <p class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule. They land on the 1st and the 22nd of
+  the month - the 22nd is the day of the month you started chatting - plus the three
+  anniversaries above. That works out at roughly roughly weekly-to-fortnightly,
+  rather than something that nags you every day.</p>
+  <table>
+    <tr><th>Date</th><th>What to do</th></tr>
+    <tr><td class="num">22 Oct 2026</td><td>Name one thing your partner did well this week, and tell them - not just think it.</td></tr><tr><td class="num">1 Nov 2026</td><td>Ask how your partner is really doing, then listen before you answer.</td></tr><tr><td class="num">22 Nov 2026</td><td>Thank your partner for one specific thing they did, rather than a general &#x27;thanks&#x27;.</td></tr><tr><td class="num">1 Dec 2026</td><td>Check in on how your partner is feeling about the week, and name what they do well for you.</td></tr>
+  </table>
+  <p class="muted small" style="margin-top:12px">These are deliberately general. The name
+  options were &ldquo;Check-in&amp;rdquo; and &amp;ldquo;Us time&rdquo;; I went with
+  &ldquo;Check-in&rdquo; as the plainest. Tell me anything specific you would rather
+  they say and I will put it in.</p>
+</section>
+
+
+<section class="card">
+  <h2>Coming up</h2>
+  <p class="muted small">Everything worth planning for over the next 12 months - the cute days, the
+  South African public holidays, her birthday, the milestone anniversaries and the check-in days - in
+  one list, in date order. Every date carries its source. Days that move each year (Easter, World
+  Marriage Day, Mother's Day, Father's Day, Sweetest Day) are worked out from their rule rather than
+  written down, so this list does not rot.</p>
+  <p class="muted small">Next three: Sweetest Day (17 Oct 2026), Check-in (22 Oct 2026), Her birthday (30 Oct 2026).</p>
+  <table>
+    <tr><th>Date</th><th>When</th><th>What</th></tr>
+    <tr data-kind="Cute day"><td class="num">17 Oct 2026</td><td><span data-until="2026-10-17"></span></td><td><span class="chip">Cute day</span> <strong>Sweetest Day</strong><br /><span class="muted small">Third Saturday in October; romantic deeds in the US Midwest and beyond</span><br /><span class="muted small">Source: Wikipedia: Sweetest Day</span></td></tr><tr data-kind="Check-in"><td class="num">22 Oct 2026</td><td><span data-until="2026-10-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Birthday"><td class="num">30 Oct 2026</td><td><span data-until="2026-10-30"></span></td><td><span class="chip">Birthday</span> <strong>Her birthday</strong><br /><span class="muted small">Every year</span><br /><span class="muted small">Source: Owner, stated directly (2026-10-07)</span></td></tr><tr data-kind="Check-in"><td class="num">1 Nov 2026</td><td><span data-until="2026-11-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Cute day"><td class="num">11 Nov 2026</td><td><span data-until="2026-11-11"></span></td><td><span class="chip">Cute day</span> <strong>Pepero Day</strong><br /><span class="muted small">South Korea&#x27;s day for exchanging Pepero snacks - a second Valentine&#x27;s</span><br /><span class="muted small">Source: Wikipedia: Pepero Day</span></td></tr><tr data-kind="Check-in"><td class="num">22 Nov 2026</td><td><span data-until="2026-11-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Check-in"><td class="num">1 Dec 2026</td><td><span data-until="2026-12-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Public holiday"><td class="num">16 Dec 2026</td><td><span data-until="2026-12-16"></span></td><td><span class="chip">Public holiday</span> <strong>Day of Reconciliation</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Check-in"><td class="num">22 Dec 2026</td><td><span data-until="2026-12-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Public holiday"><td class="num">25 Dec 2026</td><td><span data-until="2026-12-25"></span></td><td><span class="chip">Public holiday</span> <strong>Christmas Day</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Public holiday"><td class="num">26 Dec 2026</td><td><span data-until="2026-12-26"></span></td><td><span class="chip">Public holiday</span> <strong>Day of Goodwill</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Check-in"><td class="num">1 Jan 2027</td><td><span data-until="2027-01-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Public holiday"><td class="num">1 Jan 2027</td><td><span data-until="2027-01-01"></span></td><td><span class="chip">Public holiday</span> <strong>New Year&#x27;s Day</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Cute day"><td class="num">21 Jan 2027</td><td><span data-until="2027-01-21"></span></td><td><span class="chip">Cute day</span> <strong>National Hugging Day</strong><br /><span class="muted small">Created by Kevin Zaborney</span><br /><span class="muted small">Source: Wikipedia: National Hugging Day</span></td></tr><tr data-kind="Check-in"><td class="num">22 Jan 2027</td><td><span data-until="2027-01-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Check-in"><td class="num">1 Feb 2027</td><td><span data-until="2027-02-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Anniversary"><td class="num">1 Feb 2027</td><td><span data-until="2027-02-01"></span></td><td><span class="chip">Anniversary</span> <strong>Started dating anniversary</strong><br /><span class="muted small">2 years since 1 Feb 2025</span><br /><span class="muted small">Source: Owner, stated directly</span></td></tr><tr data-kind="Cute day"><td class="num">7 Feb 2027</td><td><span data-until="2027-02-07"></span></td><td><span class="chip">Cute day</span> <strong>Rose Day</strong><br /><span class="muted small">First day of Valentine&#x27;s Week</span><br /><span class="muted small">Source: Wikipedia: Valentine&#x27;s Week</span></td></tr><tr data-kind="Cute day"><td class="num">8 Feb 2027</td><td><span data-until="2027-02-08"></span></td><td><span class="chip">Cute day</span> <strong>Propose Day</strong><br /><span class="muted small">Valentine&#x27;s Week</span><br /><span class="muted small">Source: Wikipedia: Valentine&#x27;s Week</span></td></tr><tr data-kind="Cute day"><td class="num">9 Feb 2027</td><td><span data-until="2027-02-09"></span></td><td><span class="chip">Cute day</span> <strong>Chocolate Day</strong><br /><span class="muted small">Valentine&#x27;s Week</span><br /><span class="muted small">Source: Wikipedia: Valentine&#x27;s Week</span></td></tr><tr data-kind="Cute day"><td class="num">10 Feb 2027</td><td><span data-until="2027-02-10"></span></td><td><span class="chip">Cute day</span> <strong>Teddy Day</strong><br /><span class="muted small">Valentine&#x27;s Week</span><br /><span class="muted small">Source: Wikipedia: Valentine&#x27;s Week</span></td></tr><tr data-kind="Cute day"><td class="num">11 Feb 2027</td><td><span data-until="2027-02-11"></span></td><td><span class="chip">Cute day</span> <strong>Promise Day</strong><br /><span class="muted small">Valentine&#x27;s Week</span><br /><span class="muted small">Source: Wikipedia: Valentine&#x27;s Week</span></td></tr><tr data-kind="Cute day"><td class="num">12 Feb 2027</td><td><span data-until="2027-02-12"></span></td><td><span class="chip">Cute day</span> <strong>Hug Day</strong><br /><span class="muted small">Valentine&#x27;s Week</span><br /><span class="muted small">Source: Wikipedia: Valentine&#x27;s Week</span></td></tr><tr data-kind="Cute day"><td class="num">13 Feb 2027</td><td><span data-until="2027-02-13"></span></td><td><span class="chip">Cute day</span> <strong>Kiss Day</strong><br /><span class="muted small">Valentine&#x27;s Week</span><br /><span class="muted small">Source: Wikipedia: Valentine&#x27;s Week</span></td></tr><tr data-kind="Cute day"><td class="num">14 Feb 2027</td><td><span data-until="2027-02-14"></span></td><td><span class="chip">Cute day</span> <strong>Valentine&#x27;s Day</strong><br /><span class="muted small">Also our dating anniversary month</span><br /><span class="muted small">Source: Wikipedia: Valentine&#x27;s Day</span></td></tr><tr data-kind="Check-in"><td class="num">22 Feb 2027</td><td><span data-until="2027-02-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Check-in"><td class="num">1 Mar 2027</td><td><span data-until="2027-03-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Cute day"><td class="num">14 Mar 2027</td><td><span data-until="2027-03-14"></span></td><td><span class="chip">Cute day</span> <strong>White Day</strong><br /><span class="muted small">Reciprocal gift day, one month after Valentine&#x27;s (Japan, 1978 onward)</span><br /><span class="muted small">Source: Wikipedia: White Day</span></td></tr><tr data-kind="Public holiday"><td class="num">21 Mar 2027</td><td><span data-until="2027-03-21"></span></td><td><span class="chip">Public holiday</span> <strong>Human Rights Day</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Check-in"><td class="num">22 Mar 2027</td><td><span data-until="2027-03-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Anniversary"><td class="num">22 Mar 2027</td><td><span data-until="2027-03-22"></span></td><td><span class="chip">Anniversary</span> <strong>Started chatting anniversary</strong><br /><span class="muted small">10 years since 22 Mar 2017</span><br /><span class="muted small">Source: Owner, stated directly (2026-10-07)</span></td></tr><tr data-kind="Check-in"><td class="num">1 Apr 2027</td><td><span data-until="2027-04-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Anniversary"><td class="num">1 Apr 2027</td><td><span data-until="2027-04-01"></span></td><td><span class="chip">Anniversary</span> <strong>Engaged anniversary</strong><br /><span class="muted small">1 years since 1 Apr 2026</span><br /><span class="muted small">Source: Owner, stated directly</span></td></tr><tr data-kind="Check-in"><td class="num">22 Apr 2027</td><td><span data-until="2027-04-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Public holiday"><td class="num">27 Apr 2027</td><td><span data-until="2027-04-27"></span></td><td><span class="chip">Public holiday</span> <strong>Freedom Day</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Check-in"><td class="num">1 May 2027</td><td><span data-until="2027-05-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Cute day"><td class="num">1 May 2027</td><td><span data-until="2027-05-01"></span></td><td><span class="chip">Cute day</span> <strong>Global Love Day</strong><br /><span class="muted small">A minor observance day for love, marked around the world</span><br /><span class="muted small">Source: Wikipedia: Global Love Day</span></td></tr><tr data-kind="Public holiday"><td class="num">1 May 2027</td><td><span data-until="2027-05-01"></span></td><td><span class="chip">Public holiday</span> <strong>Workers&#x27; Day</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Check-in"><td class="num">22 May 2027</td><td><span data-until="2027-05-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Check-in"><td class="num">1 Jun 2027</td><td><span data-until="2027-06-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Public holiday"><td class="num">16 Jun 2027</td><td><span data-until="2027-06-16"></span></td><td><span class="chip">Public holiday</span> <strong>Youth Day</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Check-in"><td class="num">22 Jun 2027</td><td><span data-until="2027-06-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Check-in"><td class="num">1 Jul 2027</td><td><span data-until="2027-07-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Cute day"><td class="num">6 Jul 2027</td><td><span data-until="2027-07-06"></span></td><td><span class="chip">Cute day</span> <strong>International Kissing Day</strong><br /><span class="muted small">World Kiss Day; adopted worldwide in the early 2000s</span><br /><span class="muted small">Source: Wikipedia: International Kissing Day</span></td></tr><tr data-kind="Cute day"><td class="num">7 Jul 2027</td><td><span data-until="2027-07-07"></span></td><td><span class="chip">Cute day</span> <strong>World Chocolate Day</strong><br /><span class="muted small">Celebrated globally</span><br /><span class="muted small">Source: Wikipedia: World Chocolate Day</span></td></tr><tr data-kind="Check-in"><td class="num">22 Jul 2027</td><td><span data-until="2027-07-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Check-in"><td class="num">1 Aug 2027</td><td><span data-until="2027-08-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Public holiday"><td class="num">9 Aug 2027</td><td><span data-until="2027-08-09"></span></td><td><span class="chip">Public holiday</span> <strong>National Women&#x27;s Day</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Check-in"><td class="num">22 Aug 2027</td><td><span data-until="2027-08-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Check-in"><td class="num">1 Sep 2027</td><td><span data-until="2027-09-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Check-in"><td class="num">22 Sep 2027</td><td><span data-until="2027-09-22"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Public holiday"><td class="num">24 Sep 2027</td><td><span data-until="2027-09-24"></span></td><td><span class="chip">Public holiday</span> <strong>Heritage Day</strong><br /><span class="muted small">Public holiday (South Africa)</span><br /><span class="muted small">Source: Public Holidays Act 36 of 1994</span></td></tr><tr data-kind="Check-in"><td class="num">1 Oct 2027</td><td><span data-until="2027-10-01"></span></td><td><span class="chip">Check-in</span> <strong>Check-in</strong><br /><span class="muted small">Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.</span><br /><span class="muted small">Source: Owner-set anchor: 1st and 22nd of the month</span></td></tr><tr data-kind="Cute day"><td class="num">3 Oct 2027</td><td><span data-until="2027-10-03"></span></td><td><span class="chip">Cute day</span> <strong>National Boyfriend Day</strong><br /><span class="muted small">Unofficial, observed in many countries</span><br /><span class="muted small">Source: Wikipedia: National Boyfriend Day</span></td></tr>
+  </table>
+</section>
+
+<section class="card">
+  <h2>Put it in your calendar</h2>
+  <p class="muted small">Download or subscribe, same as the sports page. Subscribing means your phone
+  reminds you - free, and no website to remember to check.</p>
+  <p><a href="good_hubby.ics" download>Download good_hubby.ics</a> &nbsp;&middot;&nbsp;
+     <a href="good_hubby.ics">Subscribe URL</a></p>
+</section>
+
+<footer class="bot">
+  <p><strong>Unlisted, not private.</strong> Nothing on the main site links here, and this page asks
+  search engines not to index it - but it is served from a public repository, so anyone who has the
+  address can read it. Keep that in mind before adding anything you would not want read.</p>
+  <p>Dates come from the list you supplied and from the cited sources in
+  <code>personal/data/</code>. Nothing here is invented; anything unverified is marked as such.</p>
+</footer>
+</div>
+<script>
+(function(){
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  function startOf(s){ var p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+  function dayDiff(a,b){ return Math.round((b-a)/86400000); }
+  function plural(n,w){ return n + ' ' + w + (n===1?'':'s'); }
+
+  // "days until" / "days since" labels
+  document.querySelectorAll('[data-until]').forEach(function(el){
+    var target = startOf(el.getAttribute('data-until'));
+    var diff = dayDiff(today, target);
+    el.textContent = diff === 0 ? 'today' : (diff > 0 ? 'in ' + plural(diff,'day') : plural(-diff,'day') + ' ago');
+  });
+  // Next birthday. Month/day only, so no age is computed: the owner gave the
+  // day, not a birth year, and an invented year would show a wrong age.
+  document.querySelectorAll('[data-bday]').forEach(function(el){
+    var p = el.getAttribute('data-bday').split('-');
+    var m = +p[0], dd = +p[1];
+    var when = new Date(today.getFullYear(), m-1, dd);
+    if (when < today) { when = new Date(today.getFullYear()+1, m-1, dd); }
+    var diff = dayDiff(today, when);
+    var out = el.querySelector('[data-bday-next]');
+    if (out) {
+      out.textContent = diff === 0 ? 'today'
+        : (diff === 1 ? 'tomorrow' : 'in ' + plural(diff,'day'));
+    }
+  });
+
+  document.querySelectorAll('[data-since]').forEach(function(el){
+    var from = startOf(el.getAttribute('data-since'));
+    var diff = dayDiff(from, today);
+    var years = today.getFullYear() - from.getFullYear();
+    var anniv = new Date(from.getFullYear()+years, from.getMonth(), from.getDate());
+    if (anniv < today) { years += 1; anniv = new Date(from.getFullYear()+years, from.getMonth(), from.getDate()); }
+    el.querySelector('[data-days]').textContent = plural(diff,'day');
+    el.querySelector('[data-years]').textContent = plural(years,'year');
+    var toAnniv = dayDiff(today, anniv);
+    el.querySelector('[data-next]').textContent =
+      toAnniv === 0 ? 'today' : (toAnniv === 1 ? 'tomorrow' : 'in ' + plural(toAnniv,'day'));
+  });
+
+  // Live "next up" countdown card
+  var box = document.getElementById('next-up');
+  if (box) {
+    var rows = [].slice.call(document.querySelectorAll('[data-start]'));
+    var upcoming = rows.filter(function(r){ return startOf(r.getAttribute('data-start')) >= today; })
+                       .sort(function(a,b){ return startOf(a.getAttribute('data-start')) - startOf(b.getAttribute('data-start')); });
+    if (upcoming.length) {
+      var ev = upcoming[0], t = startOf(ev.getAttribute('data-start'));
+      var diff = dayDiff(today, t);
+      box.querySelector('[data-name]').textContent = ev.getAttribute('data-name');
+      box.querySelector('[data-when]').textContent = ev.getAttribute('data-when');
+      box.querySelector('[data-watch]').textContent = ev.getAttribute('data-watch');
+      box.querySelector('[data-count]').textContent =
+        diff === 0 ? 'Today' : (diff === 1 ? 'Tomorrow' : plural(diff,'day'));
+      box.querySelector('[data-count-label]').textContent = diff === 0 ? '' : 'until it starts';
+    } else {
+      box.querySelector('[data-name]').textContent = 'Nothing left on the list';
+      box.querySelector('[data-count]').textContent = '-';
+    }
+  }
+
+  // Highlight rows that are live / imminent, using the real clock
+  document.querySelectorAll('[data-start][data-end]').forEach(function(r){
+    var s = startOf(r.getAttribute('data-start')), e = startOf(r.getAttribute('data-end'));
+    var tag = r.querySelector('.tag');
+    if (!tag) return;
+    if (today >= s && today <= e) { tag.textContent = 'On now'; tag.className = 'tag live'; }
+    else if (dayDiff(today, s) <= 7 && dayDiff(today, s) >= 0) { tag.textContent = 'This week'; tag.className = 'tag soon'; }
+  });
+})();
+</script>
+</body>
+</html>

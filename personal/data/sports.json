@@ -1,0 +1,293 @@
+{
+  "_note": "Owner-supplied event list (2026-10-05). The owner said 'Dont add any more' - this is the complete set, 16 events. Dates are 2026. Channel numbers are deliberately null: they could not be verified from an official source, and inventing one would breach the project's never-fabricate rule. See docs/PERSONAL_PAGES.md.",
+  "timezone": "Africa/Johannesburg",
+  "timezone_label": "SAST (UTC+2)",
+  "channel_status": "OWNER CONFIRMATION - channel numbers not verified, left blank on purpose",
+  "broadcasters": {
+    "supersport": {
+      "name": "SuperSport (DStv)",
+      "guide": "https://supersport.com/tv-guide"
+    },
+    "redbulltv": {
+      "name": "Red Bull TV",
+      "url": "https://www.redbull.com/int-en/tv"
+    },
+    "f1tv": {
+      "name": "F1 TV",
+      "url": "https://f1tv.formula1.com/"
+    }
+  },
+  "events": [
+    {
+      "id": "petit-le-mans-2026",
+      "name": "Petit Le Mans",
+      "series": "IMSA WeatherTech SportsCar Championship",
+      "sport": "Motorsport",
+      "start": "2026-10-03",
+      "end": "2026-10-03",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/motorsport",
+      "official": "https://www.imsa.com/",
+      "channel": null,
+      "description": "A 10-hour IMSA endurance classic at Road Atlanta — the American answer to Le Mans, decided as much by reliability as by outright pace."
+    },
+    {
+      "id": "shanghai-masters-2026",
+      "name": "Shanghai Masters",
+      "series": "ATP Masters 1000",
+      "sport": "Tennis",
+      "start": "2026-10-07",
+      "end": "2026-10-18",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/tennis",
+      "official": "https://www.atptour.com/",
+      "channel": null,
+      "description": "One of the nine ATP Masters 1000 hard-court events — a two-week, top-tier men's tennis tournament with a 96-player draw."
+    },
+    {
+      "id": "uci-gravel-worlds-2026",
+      "name": "UCI Gravel World Championships",
+      "series": "UCI",
+      "sport": "Cycling",
+      "start": "2026-10-10",
+      "end": "2026-10-11",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/cycling",
+      "official": "https://www.uci.org/",
+      "channel": null,
+      "description": "The world championships for gravel racing — a mass-start race over mixed on- and off-road terrain, run under the UCI banner."
+    },
+    {
+      "id": "bathurst-1000-2026",
+      "name": "Bathurst 1000",
+      "series": "Supercars Championship",
+      "sport": "Motorsport",
+      "start": "2026-10-11",
+      "end": "2026-10-11",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/motorsport",
+      "official": "https://www.supercars.com/",
+      "channel": null,
+      "description": "Australia's great race — 1,000 km around Mount Panorama with two-driver crews, the Supercars season's crown jewel."
+    },
+    {
+      "id": "uci-track-worlds-2026",
+      "name": "UCI Track Cycling World Championships",
+      "series": "UCI",
+      "sport": "Cycling",
+      "start": "2026-10-14",
+      "end": "2026-10-18",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/cycling",
+      "official": "https://www.uci.org/",
+      "channel": null,
+      "description": "The track cycling world championships — sprints, pursuit and bunch races on the velodrome, run by the UCI."
+    },
+    {
+      "id": "artistic-gymnastics-worlds-2026",
+      "name": "Artistic Gymnastics World Championships",
+      "series": "FIG",
+      "sport": "Gymnastics",
+      "start": "2026-10-17",
+      "end": "2026-10-25",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/gymnastics",
+      "official": "https://www.gymnastics.sport/",
+      "channel": null,
+      "description": "The FIG's flagship artistic gymnastics meet — apparatus and all-around titles across men's and women's competition."
+    },
+    {
+      "id": "motogp-australian-2026",
+      "name": "MotoGP Australian Grand Prix",
+      "series": "MotoGP",
+      "sport": "Motorsport",
+      "start": "2026-10-25",
+      "end": "2026-10-25",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/motorsport",
+      "official": "https://www.motogp.com/",
+      "channel": null,
+      "description": "The Australian round of MotoGP at Phillip Island — a fast, flowing circuit famous for close racing and changeable weather."
+    },
+    {
+      "id": "nascar-talladega-2026",
+      "name": "NASCAR at Talladega",
+      "series": "NASCAR Cup Series",
+      "sport": "Motorsport",
+      "start": "2026-10-25",
+      "end": "2026-10-25",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/motorsport",
+      "official": "https://www.nascar.com/",
+      "channel": null,
+      "description": "A NASCAR Cup Series superspeedway race at Talladega — pack racing and one of the series' biggest drafting tracks."
+    },
+    {
+      "id": "weightlifting-worlds-2026",
+      "name": "Weightlifting World Championships",
+      "series": "IWF",
+      "sport": "Weightlifting",
+      "start": "2026-10-27",
+      "end": "2026-11-08",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/weightlifting",
+      "official": "https://iwf.sport/",
+      "channel": null,
+      "description": "The IWF world championships — the sport's top Olympic-style event, with snatch and clean-and-jerk titles across weight classes."
+    },
+    {
+      "id": "paris-masters-2026",
+      "name": "Paris Masters",
+      "series": "ATP Masters 1000",
+      "sport": "Tennis",
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/tennis",
+      "official": "https://www.atptour.com/",
+      "channel": null,
+      "description": "The final ATP Masters 1000 of the season — a fast indoor hard-court event at Paris-Bercy."
+    },
+    {
+      "id": "wec-bahrain-2026",
+      "name": "World Endurance - 8 Hours of Bahrain",
+      "series": "FIA WEC",
+      "sport": "Motorsport",
+      "start": "2026-11-07",
+      "end": "2026-11-07",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/motorsport",
+      "official": "https://www.fiawec.com/",
+      "channel": null,
+      "description": "The FIA World Endurance Championship's Bahrain finale — an eight-hour race into the night for Hypercars, LMP2 and LMGT3."
+    },
+    {
+      "id": "nascar-homestead-2026",
+      "name": "NASCAR at Homestead-Miami",
+      "series": "NASCAR Cup Series",
+      "sport": "Motorsport",
+      "start": "2026-11-08",
+      "end": "2026-11-08",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/motorsport",
+      "official": "https://www.nascar.com/",
+      "channel": null,
+      "description": "A NASCAR Cup Series race at Homestead-Miami — the 1.5-mile oval that has hosted the season finale."
+    },
+    {
+      "id": "wrc-saudi-2026",
+      "name": "World Rally Championship - Saudi Arabia",
+      "series": "WRC",
+      "sport": "Motorsport",
+      "start": "2026-11-11",
+      "end": "2026-11-14",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/motorsport",
+      "official": "https://www.wrc.com/",
+      "channel": null,
+      "description": "A World Rally Championship round on desert gravel in Saudi Arabia — three days of special stages against the clock."
+    },
+    {
+      "id": "motogp-portuguese-2026",
+      "name": "MotoGP Portuguese Grand Prix",
+      "series": "MotoGP",
+      "sport": "Motorsport",
+      "start": "2026-11-20",
+      "end": "2026-11-22",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/motorsport",
+      "official": "https://www.motogp.com/",
+      "channel": null,
+      "description": "The Portuguese round of MotoGP at Portimao — an undulating circuit with big elevation changes and a long final corner."
+    },
+    {
+      "id": "mexico-padel-major-2026",
+      "name": "Mexico Padel Major",
+      "series": "Premier Padel",
+      "sport": "Padel",
+      "start": "2026-11-23",
+      "end": "2026-11-29",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/padel",
+      "official": "https://www.premierpadel.com/",
+      "channel": null,
+      "description": "A Premier Padel 'Major' — one of the sport's top-tier padel tournaments, played on the glass court in pairs."
+    },
+    {
+      "id": "motogp-valencia-2026",
+      "name": "MotoGP Valencian Grand Prix (season finale)",
+      "series": "MotoGP",
+      "sport": "Motorsport",
+      "start": "2026-11-29",
+      "end": "2026-11-29",
+      "broadcaster": "supersport",
+      "supersport_section": "https://supersport.com/motorsport",
+      "official": "https://www.motogp.com/",
+      "channel": null,
+      "description": "The MotoGP season finale at the Circuit Ricardo Tormo in Valencia — where the championship is decided."
+    }
+  ],
+  "preferences": {
+    "_derived_from": "the 16 supplied events (owner, 2026-10-05); no sport added",
+    "_rule": "Never add a sport the owner has not shown interest in.",
+    "sports": [
+      {
+        "sport": "Motorsport",
+        "event_count": 9,
+        "series": [
+          "IMSA WeatherTech SportsCar Championship",
+          "Supercars Championship",
+          "MotoGP",
+          "NASCAR Cup Series",
+          "FIA WEC",
+          "WRC"
+        ]
+      },
+      {
+        "sport": "Tennis",
+        "event_count": 2,
+        "series": [
+          "ATP Masters 1000"
+        ]
+      },
+      {
+        "sport": "Cycling",
+        "event_count": 2,
+        "series": [
+          "UCI"
+        ]
+      },
+      {
+        "sport": "Gymnastics",
+        "event_count": 1,
+        "series": [
+          "FIG"
+        ]
+      },
+      {
+        "sport": "Weightlifting",
+        "event_count": 1,
+        "series": [
+          "IWF"
+        ]
+      },
+      {
+        "sport": "Padel",
+        "event_count": 1,
+        "series": [
+          "Premier Padel"
+        ]
+      }
+    ],
+    "broadcasters": [
+      "f1tv",
+      "redbulltv",
+      "supersport"
+    ]
+  },
+  "pruning": {
+    "rule": "events whose end date has passed are dropped from the generated page and .ics; the source list keeps all 16",
+    "as_of": "2026-10-06",
+    "as_of_note": "the date the delivered page is pruned to; a later refresh re-derives this and records it in docs/PERSONAL_PAGES.md"
+  }
+}

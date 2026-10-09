@@ -1,0 +1,23 @@
+# robots.txt — Matthew Bowyer's professional e-portfolio.
+# Indexing is permitted: this is a public, recruiter-facing portfolio and the
+# whole point is to be findable. Nothing here blanket-disallows crawling.
+User-agent: *
+Allow: /
+Disallow: /docs/
+Disallow: /output/
+Disallow: /scripts/
+Disallow: /tests/
+Disallow: /work/
+Disallow: /inputs/
+
+# The owner's personal pages (sports calendar, reminders). Unlisted rather than
+# private: the files are served from this public repo, so this only keeps them
+# out of search results. They also carry a noindex meta tag of their own.
+# They sit at the site root (the owner wanted short addresses), so they are
+# named individually rather than by folder.
+Disallow: /sports.html
+Disallow: /good_hubby.html
+Disallow: /sports.ics
+Disallow: /good_hubby.ics
+
+Sitemap: https://matthewmbowyer.github.io/UoEOMScDataScience/sitemap.xml

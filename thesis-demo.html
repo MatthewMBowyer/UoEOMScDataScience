@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<!--
+	Dopetrope by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Thesis Demonstration | Multimodal Driver Behaviour (Telematics + VLM + LLM)</title>
+		<meta name="description" content="An offline, precomputed demonstration of Matthew Bowyer's MSc thesis method: a multimodal driver behaviour evaluation system combining telematics traces, vision-language models and large language models. Real scoring weights and a real base-vs-VLM ranking from the public thesis repository; representative scenarios; not live model output." />
+		<meta name="keywords" content="Matthew Bowyer, thesis, multimodal driver behaviour, telematics, VLM, LLM, data science" />
+		<link rel="canonical" href="https://matthewmbowyer.github.io/UoEOMScDataScience/thesis-demo.html" />
+		<link rel="icon" href="images/favicon.png" type="image/png" />
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/portfolio.css" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Matthew Bowyer" />
+		<meta property="og:title" content="Thesis Demonstration | Multimodal Driver Behaviour" />
+		<meta property="og:description" content="An offline, precomputed demonstration of a multimodal driver behaviour evaluation system: telematics + VLM + LLM, with the real base-vs-VLM ranking from the public thesis repository. Representative examples, not live model output." />
+		<meta property="og:url" content="https://matthewmbowyer.github.io/UoEOMScDataScience/thesis-demo.html" />
+		<meta property="og:image" content="https://matthewmbowyer.github.io/UoEOMScDataScience/images/social-card.png" />
+		<meta property="og:image:alt" content="Matthew Bowyer - multimodal driver behaviour thesis demonstration" />
+		<meta property="og:locale" content="en_GB" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Thesis Demonstration | Multimodal Driver Behaviour" />
+		<meta name="twitter:description" content="An offline, precomputed demonstration of a multimodal driver behaviour evaluation system: telematics + VLM + LLM. Representative examples, not live model output." />
+		<meta name="twitter:image" content="https://matthewmbowyer.github.io/UoEOMScDataScience/images/social-card.png" />
+		<meta name="twitter:image:alt" content="Matthew Bowyer - multimodal driver behaviour thesis demonstration" />
+	</head>
+	<body class="is-preload">
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<div id="page-wrapper">
+			<header class="site-header">
+				<div class="wrap">
+					<a class="brand" href="index.html">
+						<span class="brand-name">Matthew Bowyer</span>
+						<span class="brand-role">Analytics and Data Science Manager</span>
+					</a>
+				<nav id="nav" aria-label="Primary">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="skills.html">Skills &amp; Capabilities</a></li>
+						<li><a href="projects.html">Projects &amp; Modules</a></li>
+						<li><a href="experience.html">Experience</a></li>
+						<li><a href="evidence.html">Evidence</a></li>
+						<li><a href="thesis-demo.html">Thesis Demo</a></li>
+						<li><a href="cv.html">CV</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</nav>
+				</div>
+				<div class="wrap">
+					<ul class="header-cta" aria-label="Recruiter essentials">
+						<li><a class="button button--sm" href="assets/cv/Matthew-Bowyer-CV.pdf" download>Download CV</a></li>
+						<li><a class="button button--sm alt" href="contact.html">Contact</a></li>
+						<li><a class="button button--sm alt" href="https://www.linkedin.com/in/matthew-bowyer-535a6818a" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+						<li><a class="button button--sm alt" href="evidence.html">Evidence</a></li>
+					</ul>
+				</div>
+			</header>
+			<main id="main-content" class="site-main">
+				<div class="wrap">
+					<section class="section-head">
+						<p class="eyebrow">MSc thesis &middot; interactive demonstration</p>
+						<h1>Multimodal driver behaviour evaluation</h1>
+						<p class="thesis-problem" id="thesis-problem">A telematics box can see harsh braking and speeding, but it cannot see why — a driver who brakes hard to avoid a child looks identical to a driver who brakes hard because they were distracted. Adding the camera changes the verdict.</p>
+						<p>That is the whole idea behind my MSc thesis, <em>&ldquo;A Multimodal Driver Behaviour Evaluation System: Combining Telematics, VLMs and LLMs&rdquo;</em>. The demonstration below walks through how the method works, then lets you run three representative scenarios stage by stage and see the telematics-only score compared with the score once the camera evidence is added. <a href="https://github.com/MatthewMBowyer/Essex_MSC_DataScience_Thesis" target="_blank" rel="noopener noreferrer">The public thesis repository is here</a>.</p>
+					</section>
+
+					<section class="surface" aria-labelledby="demo-how">
+						<h2 id="demo-how">How the method works, stage by stage</h2>
+						<p>Each stage below says what went in, what came out, and what it changed about the verdict. Select a scenario further down to reveal the stages with that scenario&rsquo;s data.</p>
+						<ol class="demo-pipeline" id="demo-pipeline">
+								<li class="demo-stage" data-stage="telematics">
+									<h3>1. Telematics trace</h3>
+									<p class="demo-stage-help">What went in: the raw event stream from the telematics box. What came out: counts of harsh manoeuvres, speeding and fatigue events, aggregated into episodes. What it changed: nothing yet — this is the telematics-only view, the 'base' score.</p>
+									<p class="demo-stage-body demo-stage-placeholder">Select a scenario to reveal this stage.</p>
+								</li>
+								<li class="demo-stage" data-stage="vlm">
+									<h3>2. VLM observation</h3>
+									<p class="demo-stage-help">What went in: anonymised dashcam frames (faces blurred by an InsightFace step). What came out: a vision-language model's description of what is actually happening — following distance, pedestrians, lighting, road surface. What it changed: it can confirm, refine, contradict or add to the telematics events.</p>
+									<p class="demo-stage-body demo-stage-placeholder">Select a scenario to reveal this stage.</p>
+								</li>
+								<li class="demo-stage" data-stage="llm">
+									<h3>3. LLM risk narrative</h3>
+									<p class="demo-stage-help">What went in: the combined telematics + VLM signal. What came out: a plain-language risk narrative. What it changed: it turns the numbers into a reason a fleet manager can act on.</p>
+									<p class="demo-stage-body demo-stage-placeholder">Select a scenario to reveal this stage.</p>
+								</li>
+								<li class="demo-stage" data-stage="score">
+									<h3>4. Risk score (base vs VLM)</h3>
+									<p class="demo-stage-help">What went in: the same scoring weights, applied twice — once to telematics only (base) and once with the camera evidence folded in (VLM). What came out: two scores, their delta, and the driver's rank under each. What it changed: this comparison IS the thesis contribution — you can see the camera move a driver up or down the fleet ranking.</p>
+									<p class="demo-stage-body demo-stage-placeholder">Select a scenario to reveal this stage.</p>
+								</li>
+						</ol>
+					</section>
+
+					<section class="surface" aria-labelledby="demo-compare">
+						<h2 id="demo-compare">The point: the camera changes the ranking</h2>
+						<p>Every driver is scored twice with the <strong>same weights</strong> &mdash; once from telematics alone (<code>ubi_proxy_score_base</code>) and once with the camera evidence folded in (<code>ubi_proxy_score_vlm</code>). The difference between them is the thesis contribution. Here are three real rows from the public output file <code>final_monthly_rankings_vlm.csv</code> (January 2026 window):</p>
+						<div class="table-scroll">
+						<table class="thesis-table">
+							<caption>Real rows from the public thesis repository. Anonymised vehicle ids exactly as published.</caption>
+							<thead>
+								<tr><th scope="col">Vehicle</th><th scope="col">Score&nbsp;(base)</th><th scope="col">Score&nbsp;(VLM)</th><th scope="col">Score&nbsp;delta</th><th scope="col">Rank&nbsp;(base)</th><th scope="col">Rank&nbsp;(VLM)</th><th scope="col">Rank&nbsp;delta</th><th scope="col">Camera&nbsp;coverage</th></tr>
+							</thead>
+							<tbody>
+								<tr><th scope="row">429570713</th>
+									<td class="num">0.4143</td>
+									<td class="num">0.3947</td>
+									<td class="num">-0.0196</td>
+									<td class="num">166</td>
+									<td class="num">205</td>
+									<td class="num">-39</td>
+									<td class="num">100.0%</td></tr>
+								<tr><th scope="row">456979367</th>
+									<td class="num">0.4756</td>
+									<td class="num">0.5284</td>
+									<td class="num">+0.0529</td>
+									<td class="num">124</td>
+									<td class="num">90</td>
+									<td class="num">+34</td>
+									<td class="num">8.3%</td></tr>
+								<tr><th scope="row">507451763</th>
+									<td class="num">0.5691</td>
+									<td class="num">0.5231</td>
+									<td class="num">-0.0460</td>
+									<td class="num">64</td>
+									<td class="num">94</td>
+									<td class="num">-30</td>
+									<td class="num">3.0%</td></tr>
+							</tbody>
+						</table>
+						</div>
+						<p class="muted small">Read the top row as: &ldquo;the camera moved this driver <strong>down 39 places</strong> in the fleet ranking.&rdquo; A positive delta means the camera found the driver <em>more</em> at risk than the telematics alone; a negative delta means it found them less at risk. <code>covered_ratio</code> is the share of that driver&rsquo;s clips the camera actually saw &mdash; the first row is fully covered, the others only partly, which is itself part of the story.</p>
+					</section>
+
+					<section class="surface" aria-labelledby="demo-weights">
+						<h2 id="demo-weights">The scoring weights (real, from the public repo)</h2>
+						<p>These are the actual UBI-proxy weights used in the thesis, taken from the &ldquo;SCORING WEIGHTS&rdquo; cell of notebook 3. They sum to 1.00.</p>
+						<div class="table-scroll">
+						<table class="thesis-table">
+							<thead><tr><th scope="col">Behaviour category</th><th scope="col">Weight</th><th scope="col">Why</th></tr></thead>
+							<tbody>
+								<tr><th scope="row">Harsh manoeuvres (episode-based)</th>
+									<td class="num">20%</td>
+									<td>Cornering, braking, acceleration — the leading cause of fleet accidents</td></tr>
+								<tr><th scope="row">Long speeding episodes (&gt;1 event)</th>
+									<td class="num">18%</td>
+									<td>Sustained speeding suggests deliberate risk-taking</td></tr>
+								<tr><th scope="row">Driver distraction (phone, seatbelt)</th>
+									<td class="num">13%</td>
+									<td>Phone use and seatbelt non-compliance raise injury severity</td></tr>
+								<tr><th scope="row">Short speeding episodes (single event)</th>
+									<td class="num">12%</td>
+									<td>Isolated speed events — lower severity than sustained speeding</td></tr>
+								<tr><th scope="row">Fatigue (eye closed, yawn, fatigue)</th>
+									<td class="num">12%</td>
+									<td>Fatigue-related crashes are disproportionately fatal</td></tr>
+								<tr><th scope="row">Situational risk (headway, lane)</th>
+									<td class="num">10%</td>
+									<td>Forward-collision and lane-departure indicators</td></tr>
+								<tr><th scope="row">Power violations</th>
+									<td class="num">10%</td>
+									<td>External battery disconnect — tampering or avoidance</td></tr>
+								<tr><th scope="row">Camera obstruction</th>
+									<td class="num">5%</td>
+									<td>Monitoring integrity, not a direct driving behaviour</td></tr>
+							</tbody>
+						</table>
+						</div>
+						<p>The method also compares a telematics-only score against a telematics+VLM score and carries <code>score_delta</code>, <code>rank_base</code>, <code>rank_vlm</code>, <code>rank_delta</code> and <code>covered_ratio</code> &mdash; exactly the columns shown in the ranking table above.</p>
+					</section>
+
+					<section class="surface" aria-labelledby="demo-changes">
+						<h2 id="demo-changes">What the camera can change</h2>
+						<p>When the camera evidence is compared with the telematics events, each clip falls into one of these change types (from the thesis&rsquo;s own <code>event_change_audit.csv</code>):</p>
+						<div class="table-scroll">
+						<table class="thesis-table">
+							<thead><tr><th scope="col">Change type</th><th scope="col">What it means</th></tr></thead>
+							<tbody>
+								<tr><th scope="row"><code>confirmed</code></th>
+									<td>The VLM agreed with what the telematics flagged.</td></tr>
+								<tr><th scope="row"><code>refined</code></th>
+									<td>The VLM agreed AND found additional events — e.g. telematics said v_phone and the VLM also found SEATBELT_D_OFF.</td></tr>
+								<tr><th scope="row"><code>new_context_added</code></th>
+									<td>The VLM saw context the telematics had no event for.</td></tr>
+								<tr><th scope="row"><code>contradicted</code></th>
+									<td>The VLM evidence contradicted the flagged event.</td></tr>
+								<tr><th scope="row"><code>not_confirmed</code></th>
+									<td>The flagged event could not be confirmed from the camera.</td></tr>
+								<tr><th scope="row"><code>no_vlm_signal</code></th>
+									<td>No VLM signal was available for the clip.</td></tr>
+							</tbody>
+						</table>
+						</div>
+					</section>
+
+					<section class="surface" aria-labelledby="demo-scenarios">
+						<h2 id="demo-scenarios">Walk through a scenario</h2>
+						<p>Each scenario is a <strong>representative, precomputed example</strong> &mdash; not a real client record. Selecting one reveals the four stages above in order, with that scenario&rsquo;s data, and shows the base-vs-VLM score change at the end.</p>
+						<ul class="demo-scenario-picker" id="demo-scenarios-picker">
+							<li><button type="button" class="demo-scenario" data-scenario="city-stopstart" aria-pressed="false">
+								<span class="demo-scenario-title">Urban stop-start commute</span>
+								<span class="demo-scenario-meta">Representative example — dense traffic, frequent idling</span>
+							</button></li>
+							<li><button type="button" class="demo-scenario" data-scenario="highway-steady" aria-pressed="false">
+								<span class="demo-scenario-title">Motorway steady cruise</span>
+								<span class="demo-scenario-meta">Representative example — light traffic, consistent speed</span>
+							</button></li>
+							<li><button type="button" class="demo-scenario" data-scenario="rural-night" aria-pressed="false">
+								<span class="demo-scenario-title">Rural road at night</span>
+								<span class="demo-scenario-meta">Representative example — unlit road, poor visibility</span>
+							</button></li>
+						</ul>
+					</section>
+
+					<section class="callout">
+						<h2>What this is &mdash; and what it is not</h2>
+						<div class="demo-label" role="note">
+							<p><strong>What is real.</strong> The scoring weights, the change types and the ranking comparison are taken from my public thesis repository. The ranking rows shown are the thesis&rsquo;s own published numbers.</p>
+							<p><strong>What is illustrative.</strong> The three scenarios are representative examples. The frame observations are illustrative of what a vision-language model reports; they are not real client records.</p>
+							<p><strong>No live models.</strong> This page is a <em>precomputed demonstration</em>: no model runs when you interact with it, no data leaves your browser, and no API key or backend is used. Notebooks 1 and 2 of the thesis ship without stored outputs and need raw dashcam clips that are deliberately not public; notebooks 3 and 4 run from the processed outputs that are public. The real client data behind the underlying work is confidential and is not shown here.</p>
+						</div>
+						<p>For the research framing and the literature behind the method, see the <a href="evidence.html">Evidence</a> page and the <a href="projects.html">Projects &amp; Modules</a> index.</p>
+					</section>
+				</div>
+			</main>
+			<div id="footer-placeholder"></div>
+		</div>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/experience.js"></script>
+		<script src="assets/js/thesis-demo-data.js"></script>
+		<script src="assets/js/thesis-demo.js"></script>
+		<script>
+			jQuery(function ($) {
+				var toggle = document.querySelector('#titleBar .toggle');
+				var panel = document.getElementById('navPanel');
+				if (!toggle) { return; }
+				toggle.setAttribute('role', 'button');
+				toggle.setAttribute('aria-label', 'Open navigation menu');
+				toggle.setAttribute('aria-expanded', 'false');
+				if (panel) { toggle.setAttribute('aria-controls', 'navPanel'); }
+				var sync = function () {
+					var open = document.body.classList.contains('navPanel-visible');
+					toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+					toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+				};
+				toggle.addEventListener('click', function () { setTimeout(sync, 0); });
+				sync();
+			});
+		</script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				var slot = document.getElementById("footer-placeholder");
+				if (!slot) { return; }
+				fetch("footer.html")
+					.then(function (r) { if (!r.ok) { throw new Error("footer HTTP " + r.status); } return r.text(); })
+					.then(function (html) { slot.innerHTML = html; })
+					.catch(function (err) {
+						console.error(err);
+						slot.innerHTML = '<footer class="site-footer"><div class="wrap"><p>&copy; Matthew Bowyer. All rights reserved. Design: HTML5 UP.</p></div></footer>';
+					});
+			});
+		</script>
+	</body>
+</html>

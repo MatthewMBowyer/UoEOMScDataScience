@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Sports calendar</title>
+<style>
+:root{
+  --bg:#070A12; --card:#0D1222; --card2:#0B1020; --text:#E9EEFF; --muted:#A9B2D6;
+  --line:rgba(255,255,255,.08); --accent:#7c5cff; --accent2:#22d3ee;
+  --good:#28d17c; --warn:#f7c948; --radius:18px;
+  --shadow:0 14px 40px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(1000px 500px at 10% -10%, rgba(124,92,255,.30), transparent 55%),
+    radial-gradient(900px 450px at 110% 10%, rgba(34,211,238,.20), transparent 55%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.55;
+}
+a{color:var(--accent2);text-decoration:none}
+a:hover,a:focus-visible{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 16px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:6px}
+h1{font-size:clamp(1.5rem,3.4vw,2rem);margin:0;letter-spacing:-.02em}
+.sub{color:var(--muted);margin:6px 0 0;font-size:.95rem}
+nav.links{display:flex;gap:10px;flex-wrap:wrap}
+nav.links a{
+  border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.86rem;
+  color:var(--text);background:rgba(255,255,255,.03)
+}
+nav.links a[aria-current=page]{border-color:var(--accent);background:rgba(124,92,255,.16)}
+.card{
+  background:linear-gradient(180deg,var(--card),var(--card2));
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:20px;margin:18px 0
+}
+h2{font-size:1.1rem;margin:0 0 4px;letter-spacing:-.01em}
+h3{font-size:.95rem;margin:0}
+.muted{color:var(--muted)}
+.small{font-size:.84rem}
+.next{display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between}
+.next .big{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.count{display:flex;gap:18px;flex-wrap:wrap}
+.count div{text-align:center;min-width:64px}
+.count b{display:block;font-size:1.5rem;letter-spacing:-.02em}
+.count span{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.month{margin:22px 0 6px;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+ul.events{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.events li{
+  display:grid;grid-template-columns:104px 1fr auto;gap:14px;align-items:center;
+  border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.02)
+}
+ul.events li.past{opacity:.5}
+ul.events .when{font-variant-numeric:tabular-nums;font-size:.86rem;color:var(--muted)}
+ul.events .who{font-weight:600}
+ul.events .meta{font-size:.8rem;color:var(--muted);margin-top:2px}
+.tag{
+  display:inline-block;font-size:.72rem;padding:3px 9px;border-radius:999px;
+  border:1px solid var(--line);color:var(--muted);white-space:nowrap
+}
+.tag.live{border-color:rgba(40,209,124,.5);color:var(--good)}
+.tag.soon{border-color:rgba(247,201,72,.5);color:var(--warn)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.milestone{border:1px solid var(--line);border-radius:14px;padding:16px;background:rgba(255,255,255,.02)}
+.milestone .num{font-size:1.9rem;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.milestone .lbl{font-size:.8rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:8px}
+/* Row kind, so a long "coming up" list can be scanned at a glance. */
+.chip{
+  display:inline-block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--muted);border:1px solid var(--line);border-radius:999px;
+  padding:1px 8px;margin-right:2px;vertical-align:1px
+}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+footer.bot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
+.flag{
+  border-left:3px solid var(--warn);background:rgba(247,201,72,.07);
+  border-radius:0 12px 12px 0;padding:12px 16px;margin:16px 0;font-size:.88rem
+}
+@media (max-width:620px){
+  ul.events li{grid-template-columns:1fr;gap:6px}
+  .count{width:100%;justify-content:space-between}
+}
+</style>
+</head>
+<body data-as-of="2026-10-06">
+<div class="wrap">
+<header class="top">
+  <div>
+    <h1>Sports calendar</h1>
+    <p class="sub">15 events still to come, SAST (UTC+2)</p>
+  </div>
+  <nav class="links" aria-label="Personal pages">
+    <a href="sports.html" aria-current="page">Sports</a>
+    <a href="good_hubby.html">Good Hubby</a>
+  </nav>
+</header>
+
+
+<section class="card next" id="next-up">
+  <div>
+    <div class="lbl muted small" style="text-transform:uppercase;letter-spacing:.09em">Next up</div>
+    <div class="big" data-name>&nbsp;</div>
+    <div class="muted" data-when></div>
+    <div class="muted small" data-watch></div>
+  </div>
+  <div class="count">
+    <div><b data-count>&nbsp;</b><span data-count-label></span></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>The list</h2>
+  <p class="muted small">Exactly the 15 events you gave me that are still to come - nothing added.
+  Times are your local timezone, SAST (UTC+2). The countdown and the "on now"
+  labels are worked out by your browser when the page loads, so this stays correct without me editing it.
+  Events whose end date has passed are pruned on each build (1 dropped here).</p>
+  <div class="flag">
+    <strong>Channel numbers are blank on purpose.</strong> I could not confirm a channel number for these
+    from an official source, and guessing one would send you to the wrong channel. Each row links to the
+    relevant SuperSport section and the TV guide instead, where the number is shown live.
+    If you tell me the numbers, I will put them in.
+  </div>
+  <div class="month">October 2026</div><ul class="events"><li data-start="2026-10-07" data-end="2026-10-18" data-name="Shanghai Masters" data-when="7-18 Oct 2026" data-watch="SuperSport (DStv)"><span class="when">7-18 Oct 2026</span><span><span class="who">Shanghai Masters</span><span class="meta">ATP Masters 1000 &middot; Tennis<br /><span class="desc">One of the nine ATP Masters 1000 hard-court events — a two-week, top-tier men&#x27;s tennis tournament with a 96-player draw.</span><br />Watch: <a href="https://supersport.com/tennis" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-10-10" data-end="2026-10-11" data-name="UCI Gravel World Championships" data-when="10-11 Oct 2026" data-watch="SuperSport (DStv)"><span class="when">10-11 Oct 2026</span><span><span class="who">UCI Gravel World Championships</span><span class="meta">UCI &middot; Cycling<br /><span class="desc">The world championships for gravel racing — a mass-start race over mixed on- and off-road terrain, run under the UCI banner.</span><br />Watch: <a href="https://supersport.com/cycling" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-10-11" data-end="2026-10-11" data-name="Bathurst 1000" data-when="11 Oct 2026" data-watch="SuperSport (DStv)"><span class="when">11 Oct 2026</span><span><span class="who">Bathurst 1000</span><span class="meta">Supercars Championship &middot; Motorsport<br /><span class="desc">Australia&#x27;s great race — 1,000 km around Mount Panorama with two-driver crews, the Supercars season&#x27;s crown jewel.</span><br />Watch: <a href="https://supersport.com/motorsport" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-10-14" data-end="2026-10-18" data-name="UCI Track Cycling World Championships" data-when="14-18 Oct 2026" data-watch="SuperSport (DStv)"><span class="when">14-18 Oct 2026</span><span><span class="who">UCI Track Cycling World Championships</span><span class="meta">UCI &middot; Cycling<br /><span class="desc">The track cycling world championships — sprints, pursuit and bunch races on the velodrome, run by the UCI.</span><br />Watch: <a href="https://supersport.com/cycling" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-10-17" data-end="2026-10-25" data-name="Artistic Gymnastics World Championships" data-when="17-25 Oct 2026" data-watch="SuperSport (DStv)"><span class="when">17-25 Oct 2026</span><span><span class="who">Artistic Gymnastics World Championships</span><span class="meta">FIG &middot; Gymnastics<br /><span class="desc">The FIG&#x27;s flagship artistic gymnastics meet — apparatus and all-around titles across men&#x27;s and women&#x27;s competition.</span><br />Watch: <a href="https://supersport.com/gymnastics" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-10-25" data-end="2026-10-25" data-name="MotoGP Australian Grand Prix" data-when="25 Oct 2026" data-watch="SuperSport (DStv)"><span class="when">25 Oct 2026</span><span><span class="who">MotoGP Australian Grand Prix</span><span class="meta">MotoGP &middot; Motorsport<br /><span class="desc">The Australian round of MotoGP at Phillip Island — a fast, flowing circuit famous for close racing and changeable weather.</span><br />Watch: <a href="https://supersport.com/motorsport" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-10-25" data-end="2026-10-25" data-name="NASCAR at Talladega" data-when="25 Oct 2026" data-watch="SuperSport (DStv)"><span class="when">25 Oct 2026</span><span><span class="who">NASCAR at Talladega</span><span class="meta">NASCAR Cup Series &middot; Motorsport<br /><span class="desc">A NASCAR Cup Series superspeedway race at Talladega — pack racing and one of the series&#x27; biggest drafting tracks.</span><br />Watch: <a href="https://supersport.com/motorsport" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-10-27" data-end="2026-11-08" data-name="Weightlifting World Championships" data-when="27 Oct 2026 - 8 Nov 2026" data-watch="SuperSport (DStv)"><span class="when">27 Oct 2026 - 8 Nov 2026</span><span><span class="who">Weightlifting World Championships</span><span class="meta">IWF &middot; Weightlifting<br /><span class="desc">The IWF world championships — the sport&#x27;s top Olympic-style event, with snatch and clean-and-jerk titles across weight classes.</span><br />Watch: <a href="https://supersport.com/weightlifting" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li></ul><div class="month">November 2026</div><ul class="events"><li data-start="2026-11-02" data-end="2026-11-08" data-name="Paris Masters" data-when="2-8 Nov 2026" data-watch="SuperSport (DStv)"><span class="when">2-8 Nov 2026</span><span><span class="who">Paris Masters</span><span class="meta">ATP Masters 1000 &middot; Tennis<br /><span class="desc">The final ATP Masters 1000 of the season — a fast indoor hard-court event at Paris-Bercy.</span><br />Watch: <a href="https://supersport.com/tennis" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-11-07" data-end="2026-11-07" data-name="World Endurance - 8 Hours of Bahrain" data-when="7 Nov 2026" data-watch="SuperSport (DStv)"><span class="when">7 Nov 2026</span><span><span class="who">World Endurance - 8 Hours of Bahrain</span><span class="meta">FIA WEC &middot; Motorsport<br /><span class="desc">The FIA World Endurance Championship&#x27;s Bahrain finale — an eight-hour race into the night for Hypercars, LMP2 and LMGT3.</span><br />Watch: <a href="https://supersport.com/motorsport" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-11-08" data-end="2026-11-08" data-name="NASCAR at Homestead-Miami" data-when="8 Nov 2026" data-watch="SuperSport (DStv)"><span class="when">8 Nov 2026</span><span><span class="who">NASCAR at Homestead-Miami</span><span class="meta">NASCAR Cup Series &middot; Motorsport<br /><span class="desc">A NASCAR Cup Series race at Homestead-Miami — the 1.5-mile oval that has hosted the season finale.</span><br />Watch: <a href="https://supersport.com/motorsport" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-11-11" data-end="2026-11-14" data-name="World Rally Championship - Saudi Arabia" data-when="11-14 Nov 2026" data-watch="SuperSport (DStv)"><span class="when">11-14 Nov 2026</span><span><span class="who">World Rally Championship - Saudi Arabia</span><span class="meta">WRC &middot; Motorsport<br /><span class="desc">A World Rally Championship round on desert gravel in Saudi Arabia — three days of special stages against the clock.</span><br />Watch: <a href="https://supersport.com/motorsport" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-11-20" data-end="2026-11-22" data-name="MotoGP Portuguese Grand Prix" data-when="20-22 Nov 2026" data-watch="SuperSport (DStv)"><span class="when">20-22 Nov 2026</span><span><span class="who">MotoGP Portuguese Grand Prix</span><span class="meta">MotoGP &middot; Motorsport<br /><span class="desc">The Portuguese round of MotoGP at Portimao — an undulating circuit with big elevation changes and a long final corner.</span><br />Watch: <a href="https://supersport.com/motorsport" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-11-23" data-end="2026-11-29" data-name="Mexico Padel Major" data-when="23-29 Nov 2026" data-watch="SuperSport (DStv)"><span class="when">23-29 Nov 2026</span><span><span class="who">Mexico Padel Major</span><span class="meta">Premier Padel &middot; Padel<br /><span class="desc">A Premier Padel &#x27;Major&#x27; — one of the sport&#x27;s top-tier padel tournaments, played on the glass court in pairs.</span><br />Watch: <a href="https://supersport.com/padel" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li><li data-start="2026-11-29" data-end="2026-11-29" data-name="MotoGP Valencian Grand Prix (season finale)" data-when="29 Nov 2026" data-watch="SuperSport (DStv)"><span class="when">29 Nov 2026</span><span><span class="who">MotoGP Valencian Grand Prix (season finale)</span><span class="meta">MotoGP &middot; Motorsport<br /><span class="desc">The MotoGP season finale at the Circuit Ricardo Tormo in Valencia — where the championship is decided.</span><br />Watch: <a href="https://supersport.com/motorsport" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a></span></span><span class="tag">Scheduled</span></li></ul>
+  <p class="small muted">Pruned as already finished before this build: Petit Le Mans.</p>
+</section>
+
+<section class="card">
+  <h2>What you follow</h2>
+  <p class="muted small">This is the sports profile recorded from your own list, so a future refresh knows
+  what to look for without guessing. It adds nothing you have not shown an interest in.</p>
+  <table>
+    <tr><th>Sport</th><th>Events</th><th>Series</th></tr>
+    <tr><td>Motorsport</td><td class="num">9</td><td>IMSA WeatherTech SportsCar Championship, Supercars Championship, MotoGP, NASCAR Cup Series, FIA WEC, WRC</td></tr><tr><td>Tennis</td><td class="num">2</td><td>ATP Masters 1000</td></tr><tr><td>Cycling</td><td class="num">2</td><td>UCI</td></tr><tr><td>Gymnastics</td><td class="num">1</td><td>FIG</td></tr><tr><td>Weightlifting</td><td class="num">1</td><td>IWF</td></tr><tr><td>Padel</td><td class="num">1</td><td>Premier Padel</td></tr>
+  </table>
+</section>
+
+<section class="card">
+  <h2>Where to watch</h2>
+  <p class="muted small">SuperSport is the confirmed DStv carrier for this list. Red Bull TV and F1 TV are included because you named them - check the guide for live coverage.</p>
+  <table>
+    <tr><th>Source</th><th>What it is</th><th>Link</th></tr>
+    <tr><td>SuperSport</td><td>Your DStv sport channels, and the live TV guide</td>
+        <td><a href="https://supersport.com/tv-guide" target="_blank" rel="noopener noreferrer">TV guide</a></td></tr>
+    <tr><td>Red Bull TV</td><td>Free streaming, no subscription</td>
+        <td><a href="https://www.redbull.com/int-en/tv" target="_blank" rel="noopener noreferrer">redbull.com/tv</a></td></tr>
+    <tr><td>F1 TV</td><td>Formula 1's own streaming service</td>
+        <td><a href="https://f1tv.formula1.com/" target="_blank" rel="noopener noreferrer">f1tv.formula1.com</a></td></tr>
+  </table>
+  <p class="small muted" style="margin-top:12px">Guides: <a href="https://supersport.com/tv-guide" target="_blank" rel="noopener noreferrer">SuperSport (DStv)</a>, <a href="https://www.redbull.com/int-en/tv" target="_blank" rel="noopener noreferrer">Red Bull TV</a>, <a href="https://f1tv.formula1.com/" target="_blank" rel="noopener noreferrer">F1 TV</a></p>
+</section>
+
+<section class="card">
+  <h2>Put it in your calendar</h2>
+  <p class="muted small">This is the free way to get reminded. Download the file, or subscribe to the URL
+  and your phone will do the nagging - no server, no cost, and new events appear when the list changes.</p>
+  <p><a href="sports.ics" download>Download sports.ics</a> &nbsp;&middot;&nbsp;
+     <a href="sports.ics">Subscribe URL</a> (paste into Google/Apple Calendar &rarr; "From URL")</p>
+</section>
+
+<footer class="bot">
+  <p><strong>Unlisted, not private.</strong> Nothing on the main site links here, and this page asks
+  search engines not to index it - but it is served from a public repository, so anyone who has the
+  address can read it. Keep that in mind before adding anything you would not want read.</p>
+  <p>Dates come from the list you supplied and from the cited sources in
+  <code>personal/data/</code>. Nothing here is invented; anything unverified is marked as such.</p>
+</footer>
+</div>
+<script>
+(function(){
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  function startOf(s){ var p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+  function dayDiff(a,b){ return Math.round((b-a)/86400000); }
+  function plural(n,w){ return n + ' ' + w + (n===1?'':'s'); }
+
+  // "days until" / "days since" labels
+  document.querySelectorAll('[data-until]').forEach(function(el){
+    var target = startOf(el.getAttribute('data-until'));
+    var diff = dayDiff(today, target);
+    el.textContent = diff === 0 ? 'today' : (diff > 0 ? 'in ' + plural(diff,'day') : plural(-diff,'day') + ' ago');
+  });
+  // Next birthday. Month/day only, so no age is computed: the owner gave the
+  // day, not a birth year, and an invented year would show a wrong age.
+  document.querySelectorAll('[data-bday]').forEach(function(el){
+    var p = el.getAttribute('data-bday').split('-');
+    var m = +p[0], dd = +p[1];
+    var when = new Date(today.getFullYear(), m-1, dd);
+    if (when < today) { when = new Date(today.getFullYear()+1, m-1, dd); }
+    var diff = dayDiff(today, when);
+    var out = el.querySelector('[data-bday-next]');
+    if (out) {
+      out.textContent = diff === 0 ? 'today'
+        : (diff === 1 ? 'tomorrow' : 'in ' + plural(diff,'day'));
+    }
+  });
+
+  document.querySelectorAll('[data-since]').forEach(function(el){
+    var from = startOf(el.getAttribute('data-since'));
+    var diff = dayDiff(from, today);
+    var years = today.getFullYear() - from.getFullYear();
+    var anniv = new Date(from.getFullYear()+years, from.getMonth(), from.getDate());
+    if (anniv < today) { years += 1; anniv = new Date(from.getFullYear()+years, from.getMonth(), from.getDate()); }
+    el.querySelector('[data-days]').textContent = plural(diff,'day');
+    el.querySelector('[data-years]').textContent = plural(years,'year');
+    var toAnniv = dayDiff(today, anniv);
+    el.querySelector('[data-next]').textContent =
+      toAnniv === 0 ? 'today' : (toAnniv === 1 ? 'tomorrow' : 'in ' + plural(toAnniv,'day'));
+  });
+
+  // Live "next up" countdown card
+  var box = document.getElementById('next-up');
+  if (box) {
+    var rows = [].slice.call(document.querySelectorAll('[data-start]'));
+    var upcoming = rows.filter(function(r){ return startOf(r.getAttribute('data-start')) >= today; })
+                       .sort(function(a,b){ return startOf(a.getAttribute('data-start')) - startOf(b.getAttribute('data-start')); });
+    if (upcoming.length) {
+      var ev = upcoming[0], t = startOf(ev.getAttribute('data-start'));
+      var diff = dayDiff(today, t);
+      box.querySelector('[data-name]').textContent = ev.getAttribute('data-name');
+      box.querySelector('[data-when]').textContent = ev.getAttribute('data-when');
+      box.querySelector('[data-watch]').textContent = ev.getAttribute('data-watch');
+      box.querySelector('[data-count]').textContent =
+        diff === 0 ? 'Today' : (diff === 1 ? 'Tomorrow' : plural(diff,'day'));
+      box.querySelector('[data-count-label]').textContent = diff === 0 ? '' : 'until it starts';
+    } else {
+      box.querySelector('[data-name]').textContent = 'Nothing left on the list';
+      box.querySelector('[data-count]').textContent = '-';
+    }
+  }
+
+  // Highlight rows that are live / imminent, using the real clock
+  document.querySelectorAll('[data-start][data-end]').forEach(function(r){
+    var s = startOf(r.getAttribute('data-start')), e = startOf(r.getAttribute('data-end'));
+    var tag = r.querySelector('.tag');
+    if (!tag) return;
+    if (today >= s && today <= e) { tag.textContent = 'On now'; tag.className = 'tag live'; }
+    else if (dayDiff(today, s) <= 7 && dayDiff(today, s) >= 0) { tag.textContent = 'This week'; tag.className = 'tag soon'; }
+  });
+})();
+</script>
+</body>
+</html>

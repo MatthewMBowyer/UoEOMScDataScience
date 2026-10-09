@@ -1,0 +1,325 @@
+{
+  "_note": "Owner-supplied relationship dates. The 'chatting' date is the owner's direct statement of 2017-03-22 (2026-10-07), superseding the earlier 2969-day derivation (2016-11-01). Every day-count, countdown and anniversary is derived from these dates at render time; nothing is hardcoded. Holiday dates are only those verified against a cited source.",
+  "timezone": "Africa/Johannesburg",
+  "timezone_label": "SAST (UTC+2)",
+  "milestones": [
+    {
+      "id": "chatting",
+      "label": "Started chatting",
+      "date": "2017-03-22",
+      "source": "Owner (direct, 2026-10-07): started chatting 22 March 2017. This SUPERSEDES the earlier derivation of 2016-11-01 from '2969 days before 18 December 2024': 2017-03-22 is 2828 days before 2024-12-18, not 2969.",
+      "source_short": "Owner, stated directly (2026-10-07)"
+    },
+    {
+      "id": "dating",
+      "label": "Started dating",
+      "date": "2025-02-01",
+      "source": "Owner, stated directly",
+      "source_short": "Owner, stated directly"
+    },
+    {
+      "id": "engaged",
+      "label": "Engaged",
+      "date": "2026-04-01",
+      "source": "Owner, stated directly",
+      "source_short": "Owner, stated directly"
+    }
+  ],
+  "fixed_holidays": [
+    {
+      "name": "New Year's Day",
+      "month": 1,
+      "day": 1,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    },
+    {
+      "name": "National Hugging Day",
+      "month": 1,
+      "day": 21,
+      "note": "Created by Kevin Zaborney",
+      "source": "Wikipedia: National Hugging Day",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Rose Day",
+      "month": 2,
+      "day": 7,
+      "note": "First day of Valentine's Week",
+      "source": "Wikipedia: Valentine's Week",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Propose Day",
+      "month": 2,
+      "day": 8,
+      "note": "Valentine's Week",
+      "source": "Wikipedia: Valentine's Week",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Chocolate Day",
+      "month": 2,
+      "day": 9,
+      "note": "Valentine's Week",
+      "source": "Wikipedia: Valentine's Week",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Teddy Day",
+      "month": 2,
+      "day": 10,
+      "note": "Valentine's Week",
+      "source": "Wikipedia: Valentine's Week",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Promise Day",
+      "month": 2,
+      "day": 11,
+      "note": "Valentine's Week",
+      "source": "Wikipedia: Valentine's Week",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Hug Day",
+      "month": 2,
+      "day": 12,
+      "note": "Valentine's Week",
+      "source": "Wikipedia: Valentine's Week",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Kiss Day",
+      "month": 2,
+      "day": 13,
+      "note": "Valentine's Week",
+      "source": "Wikipedia: Valentine's Week",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Valentine's Day",
+      "month": 2,
+      "day": 14,
+      "note": "Also our dating anniversary month",
+      "source": "Wikipedia: Valentine's Day",
+      "kind": "Cute day"
+    },
+    {
+      "name": "White Day",
+      "month": 3,
+      "day": 14,
+      "note": "Reciprocal gift day, one month after Valentine's (Japan, 1978 onward)",
+      "source": "Wikipedia: White Day",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Human Rights Day",
+      "month": 3,
+      "day": 21,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    },
+    {
+      "name": "Freedom Day",
+      "month": 4,
+      "day": 27,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    },
+    {
+      "name": "Workers' Day",
+      "month": 5,
+      "day": 1,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    },
+    {
+      "name": "Global Love Day",
+      "kind": "Cute day",
+      "month": 5,
+      "day": 1,
+      "note": "A minor observance day for love, marked around the world",
+      "source": "Wikipedia: Global Love Day"
+    },
+    {
+      "name": "Youth Day",
+      "month": 6,
+      "day": 16,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    },
+    {
+      "name": "International Kissing Day",
+      "kind": "Cute day",
+      "month": 7,
+      "day": 6,
+      "note": "World Kiss Day; adopted worldwide in the early 2000s",
+      "source": "Wikipedia: International Kissing Day"
+    },
+    {
+      "name": "World Chocolate Day",
+      "month": 7,
+      "day": 7,
+      "note": "Celebrated globally",
+      "source": "Wikipedia: World Chocolate Day",
+      "kind": "Cute day"
+    },
+    {
+      "name": "National Women's Day",
+      "month": 8,
+      "day": 9,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    },
+    {
+      "name": "Heritage Day",
+      "month": 9,
+      "day": 24,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    },
+    {
+      "name": "National Boyfriend Day",
+      "month": 10,
+      "day": 3,
+      "note": "Unofficial, observed in many countries",
+      "source": "Wikipedia: National Boyfriend Day",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Pepero Day",
+      "kind": "Cute day",
+      "month": 11,
+      "day": 11,
+      "note": "South Korea's day for exchanging Pepero snacks - a second Valentine's",
+      "source": "Wikipedia: Pepero Day"
+    },
+    {
+      "name": "Day of Reconciliation",
+      "month": 12,
+      "day": 16,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    },
+    {
+      "name": "Christmas Day",
+      "month": 12,
+      "day": 25,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    },
+    {
+      "name": "Day of Goodwill",
+      "month": 12,
+      "day": 26,
+      "note": "Public holiday (South Africa)",
+      "source": "Public Holidays Act 36 of 1994",
+      "kind": "Public holiday"
+    }
+  ],
+  "moving_holidays": [
+    {
+      "name": "Easter Sunday",
+      "rule": "easter",
+      "dates": {
+        "2026": "2026-04-05",
+        "2027": "2027-03-28"
+      },
+      "note": "Date varies each year",
+      "source": "Wikipedia: List of dates for Easter",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Mother's Day",
+      "rule": "second_sunday_may",
+      "note": "Second Sunday in May (US and Canada since 1914)",
+      "source": "Wikipedia: Mother's Day (United States)",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Father's Day",
+      "rule": "third_sunday_june",
+      "note": "Third Sunday in June in many countries",
+      "source": "Wikipedia: Father's Day",
+      "kind": "Cute day"
+    },
+    {
+      "name": "Sweetest Day",
+      "rule": "third_saturday_october",
+      "note": "Third Saturday in October; romantic deeds in the US Midwest and beyond",
+      "source": "Wikipedia: Sweetest Day",
+      "kind": "Cute day"
+    },
+    {
+      "name": "World Marriage Day",
+      "kind": "Cute day",
+      "rule": "second_sunday_february",
+      "note": "Second Sunday in February; honours husband and wife",
+      "source": "Wikipedia: World Marriage Day"
+    }
+  ],
+  "checkins": {
+    "_purpose": "Event-anchored reminders to check in on each other, attached to occasions already on this page - NOT a fixed daily schedule.",
+    "name": "Check-in",
+    "name_options": [
+      "Check-in",
+      "Us time"
+    ],
+    "name_note": "'Check-in' is chosen: the plainest of the two. 'Us time' is the alternative. No jargon.",
+    "anchor": {
+      "day_of_month": [
+        1,
+        22
+      ],
+      "milestones": [
+        "chatting",
+        "dating",
+        "engaged"
+      ],
+      "explanation": "The 22nd is the day-of-month of the 'started chatting' milestone; the 1st is the start of the month. Together that is roughly fortnightly, plus the three milestone anniversaries already listed on the page."
+    },
+    "effective_frequency": "roughly weekly-to-fortnightly (1st and 22nd), plus the three milestone anniversaries",
+    "prompts": [
+      {
+        "id": "name_a_strength",
+        "text": "Name one thing your partner did well this week, and tell them - not just think it."
+      },
+      {
+        "id": "ask_and_listen",
+        "text": "Ask how your partner is really doing, then listen before you answer."
+      },
+      {
+        "id": "say_thanks_specifically",
+        "text": "Thank your partner for one specific thing they did, rather than a general 'thanks'."
+      },
+      {
+        "id": "check_in_on_them",
+        "text": "Check in on how your partner is feeling about the week, and name what they do well for you."
+      }
+    ],
+    "unsupported": [
+      "OWNER CONFIRMATION: the prompts above are warm but generic. If you want them to name specific things (a pet, a shared joke, a nickname), tell me the words and I will put them in - I will not invent details about your partner.",
+      "OWNER CONFIRMATION: 'Check-in' is the chosen label. Say the word if you prefer 'Us time' or something else."
+    ]
+  },
+  "birthdays": [
+    {
+      "name": "Her birthday",
+      "month": 10,
+      "day": 30,
+      "note": "Every year",
+      "source": "Owner (direct, 2026-10-07): 'Add her birthday - 30 October.'",
+      "source_short": "Owner, stated directly (2026-10-07)"
+    }
+  ]
+}

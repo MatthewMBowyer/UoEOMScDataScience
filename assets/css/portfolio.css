@@ -1,0 +1,1509 @@
+/* ==========================================================================
+   Matthew Bowyer — portfolio.css
+   The delivered design system for the rebuilt e-portfolio.
+
+   Layered AFTER the retained HTML5 UP "Dopetrope" stylesheet (main.css), which
+   is still linked because template code remains in use (LICENSE.txt retained).
+   This file:
+     1. defines the design tokens (type scale, palette, spacing, radii),
+     2. replaces the dated template chrome (body/header/nav/box/button/footer)
+        with a restrained, business-grade presentation layer,
+     3. provides the components used across every page (hero, cards, surfaces,
+        artefact blocks, contact blocks, evidence tables),
+     4. supplies the responsive behaviour down to 390px, including the template's
+        sliding mobile navigation panel,
+     5. neutralises four dead template background images referenced by main.css
+        whose files are not shipped with the template (bg01.png, bg02.png,
+        images/pic01.jpg) so no page requests a missing asset.
+
+   Plain CSS only: no preprocessor, no framework, no build step.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Palette — one confident accent over a neutral ink/grey scale. */
+  --ep-ink: #10161d;
+  --ep-ink-soft: #2b3642;
+  --ep-body: #3d4a57;
+  /* Muted text runs at normal body size (.eyebrow 12.48px, .section-head lede
+     16px) on both light canvases, so it must clear WCAG AA 4.5:1 on the darkest
+     of them; #556274 measures 6.20:1 on #ffffff, 5.73:1 on #f4f6f9 and 5.38:1 on
+     #eceff4 (tests/verify_site.py check_contrast fails if any pair drops below). */
+  --ep-muted: #556274;
+  --ep-line: #e2e7ed;
+  --ep-line-strong: #cbd3dc;
+  --ep-surface: #ffffff;
+  --ep-canvas: #f4f6f9;
+  --ep-canvas-alt: #eceff4;
+  --ep-accent: #13567f;
+  --ep-accent-ink: #0d3d5c;
+  --ep-accent-soft: #e8f1f8;
+  --ep-accent-line: #bcd6e8;
+  --ep-focus: #0b5fa5;
+
+  /* Type scale (fluid where it matters, fixed for small text). */
+  --ep-fs-xs: 0.78rem;
+  --ep-fs-sm: 0.875rem;
+  --ep-fs-md: 1rem;
+  --ep-fs-lg: 1.125rem;
+  --ep-fs-xl: 1.35rem;
+  --ep-fs-2xl: clamp(1.5rem, 1.2rem + 1.1vw, 1.9rem);
+  --ep-fs-3xl: clamp(1.9rem, 1.4rem + 1.9vw, 2.6rem);
+  --ep-fs-hero: clamp(2.1rem, 1.5rem + 2.6vw, 3.15rem);
+
+  --ep-font: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Spacing scale */
+  --ep-sp-1: 0.25rem;
+  --ep-sp-2: 0.5rem;
+  --ep-sp-3: 0.75rem;
+  --ep-sp-4: 1rem;
+  --ep-sp-5: 1.5rem;
+  --ep-sp-6: 2rem;
+  --ep-sp-7: 3rem;
+  --ep-sp-8: 4.5rem;
+
+  --ep-radius-sm: 4px;
+  --ep-radius: 8px;
+  --ep-radius-lg: 14px;
+  --ep-shadow: 0 1px 2px rgba(16, 22, 29, 0.06), 0 6px 20px rgba(16, 22, 29, 0.06);
+  --ep-shadow-hi: 0 2px 4px rgba(16, 22, 29, 0.08), 0 14px 34px rgba(16, 22, 29, 0.12);
+  --ep-wrap: 1140px;
+  --ep-wrap-narrow: 68ch;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base — override the template's dated body chrome and dead backgrounds
+   -------------------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--ep-font);
+  background: var(--ep-canvas);
+  /* main.css points at images/bg02.png, which the template does not ship. */
+  background-image: none;
+  color: var(--ep-body);
+  font-size: var(--ep-fs-md);
+  line-height: 1.7;
+  font-weight: 400;
+  margin: 0;
+}
+
+#page-wrapper {
+  background: var(--ep-canvas);
+  border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ep-ink);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+h1 { font-size: var(--ep-fs-3xl); }
+h2 { font-size: var(--ep-fs-2xl); }
+h3 { font-size: var(--ep-fs-xl); }
+h4 { font-size: var(--ep-fs-lg); }
+
+p { margin: 0 0 var(--ep-sp-4) 0; }
+
+a { color: var(--ep-accent); }
+a:hover, a:focus { color: var(--ep-accent-ink); }
+
+ul, ol { padding-left: 1.3em; }
+li { margin-bottom: var(--ep-sp-2); }
+/* The template strips list markers globally; restore them inside prose only. */
+#main ul, #main ol { list-style: disc; }
+#main ol { list-style: decimal; }
+
+strong, b { color: var(--ep-ink); font-weight: 700; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--ep-line);
+  margin: var(--ep-sp-6) 0;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* Visible keyboard focus everywhere. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--ep-focus);
+  outline-offset: 2px;
+  border-radius: var(--ep-radius-sm);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  padding: var(--ep-sp-3) var(--ep-sp-5);
+  background: var(--ep-ink);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.skip-link:focus {
+  left: 0;
+  color: #fff;
+}
+
+/* Visible to screen readers only. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.center-block { text-align: center; }
+
+/* Neutralise the remaining dead template background images (main.css).
+   The template references images/bg01.png and images/bg02.png under
+   assets/css/images/ but ships only bg.png, so those requests 404. Setting the
+   shorthand background-image to none on every affected component removes the
+   requests without touching the retained template stylesheet. */
+body,
+#main,
+#main:before,
+#main .major h2,
+#navPanel,
+#banner {
+  background-image: none;
+}
+
+#main {
+  background: var(--ep-surface);
+  padding: 0;
+}
+#navPanel .link, #navPanel .links a { background: transparent; }
+
+/* The mobile menu below 980px IS this template panel (#nav hides the desktop
+   nav), so the redesign must paint it, not just strip the dead background
+   image. Removing bg02.png left the panel transparent while main.css still
+   painted .depth-0 links #fff, i.e. white on the #f4f6f9 canvas at 1.08:1.
+   Give the panel the site's ink surface and repaint every link state to match,
+   with a visible focus ring and a tap target that meets the 44px minimum. */
+#navPanel {
+  background: var(--ep-ink);
+  box-shadow: inset -3px 0 5px 0 rgba(0, 0, 0, 0.35);
+}
+#navPanel .link,
+#navPanel .links a {
+  color: #e8edf3;
+  font-style: normal;
+  font-size: var(--ep-fs-md);
+  min-height: 44px;
+  display: block;
+  padding: 0 1em;
+  line-height: 44px;
+  text-decoration: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+#navPanel .link.depth-0,
+#navPanel .links a.depth-0 { color: #fff; }
+#navPanel .link:hover,
+#navPanel .link:focus-visible,
+#navPanel .links a:hover,
+#navPanel .links a:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+#navPanel .link:focus-visible,
+#navPanel .links a:focus-visible {
+  outline: 3px solid var(--ep-focus);
+  outline-offset: -3px;
+}
+#navPanel .link:first-child { border-top: 0; }
+
+/* The template's hamburger glyph is white on a translucent grey chip over the
+   now-white header, i.e. ~2.16:1 - below the 3:1 bar for a graphical control.
+   Repaint it on the accent, name it for assistive tech, and expand the 44px
+   tap box to the full title-bar height so the touch target is unambiguous. */
+#titleBar .toggle {
+  display: block;
+  width: 56px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+}
+#titleBar .toggle:before {
+  left: 8px;
+  top: 8px;
+  width: 44px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 20px;
+  color: #fff;
+  background: var(--ep-accent);
+  border-radius: var(--ep-radius-sm);
+}
+#titleBar .toggle:active:before { background: var(--ep-accent-ink); }
+#titleBar .toggle:focus-visible:before {
+  outline: 3px solid var(--ep-focus);
+  outline-offset: 2px;
+}
+
+#main:before { display: none; }
+
+#main .major h2 {
+  background: none;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout helpers
+   -------------------------------------------------------------------------- */
+
+.wrap {
+  width: 100%;
+  max-width: var(--ep-wrap);
+  margin: 0 auto;
+  padding: 0 var(--ep-sp-5);
+}
+
+.wrap-narrow {
+  max-width: var(--ep-wrap-narrow);
+}
+
+.site-main {
+  display: block;
+  padding: var(--ep-sp-7) 0;
+}
+
+.hero + .wrap,
+.site-main > .hero { margin-bottom: 0; }
+.site-main > .wrap > .section:first-child { margin-top: 0; }
+
+.section {
+  margin: 0 0 var(--ep-sp-8) 0;
+}
+.section > :last-child { margin-bottom: 0; }
+
+/* Section heading block: eyebrow + title + lede. */
+.section-head {
+  max-width: 62ch;
+  margin: 0 0 var(--ep-sp-6) 0;
+}
+.section-head--center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 var(--ep-sp-2) 0;
+  font-size: var(--ep-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ep-accent);
+}
+.section-head p { color: var(--ep-muted); margin-bottom: 0; }
+
+/* --------------------------------------------------------------------------
+   4. Site header + primary navigation
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: relative;
+  background: var(--ep-surface);
+  border-bottom: 1px solid var(--ep-line);
+  padding: var(--ep-sp-5) 0 0 0;
+  text-align: center;
+}
+
+.site-header .wrap { padding-top: var(--ep-sp-2); padding-bottom: var(--ep-sp-3); }
+
+.brand {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+.brand-name {
+  display: block;
+  font-size: var(--ep-fs-xl);
+  font-weight: 700;
+  color: var(--ep-ink);
+  letter-spacing: -0.015em;
+}
+.brand-role {
+  display: block;
+  margin-top: var(--ep-sp-1);
+  font-size: var(--ep-fs-sm);
+  color: var(--ep-muted);
+  letter-spacing: 0.02em;
+}
+
+/* Primary nav — the single canonical navigation block, identical on every page. */
+#nav {
+  margin: var(--ep-sp-4) 0 0 0;
+  text-align: center;
+}
+#nav > ul {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ep-sp-1);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+#nav > ul > li {
+  display: block;
+  margin: 0;
+  font-style: normal;
+}
+#nav > ul > li > a {
+  display: inline-block;
+  border-radius: var(--ep-radius);
+  padding: 0.7em 1.05em;
+  color: var(--ep-ink-soft);
+  font-weight: 600;
+  font-size: var(--ep-fs-md);
+  text-decoration: none;
+  background: transparent;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+#nav > ul > li > a:hover { background: var(--ep-canvas-alt); color: var(--ep-ink); }
+#nav > ul > li > a.is-current,
+#nav > ul > li.current > a {
+  background: var(--ep-accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* The template removes the browser focus ring on nav links (main.css sets
+   `outline: 0`), so restore a visible one for keyboard users. */
+#nav > ul > li > a:focus-visible {
+  outline: 3px solid var(--ep-focus);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero (landing page first screen)
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  background: var(--ep-ink);
+  color: #e8edf3;
+  padding: var(--ep-sp-8) 0;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(19, 86, 127, 0.55) 0%,
+    rgba(16, 22, 29, 0.9) 58%,
+    rgba(16, 22, 29, 0.98) 100%
+  );
+  pointer-events: none;
+}
+.hero .wrap { position: relative; z-index: 1; }
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--ep-sp-7);
+  align-items: center;
+  text-align: left;
+}
+.hero-copy { min-width: 0; }
+.hero-side { min-width: 0; }
+.hero-media {
+  margin: 0 0 var(--ep-sp-5) 0;
+  border-radius: var(--ep-radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(188, 214, 232, 0.28);
+}
+.hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+}
+.hero-eyebrow {
+  display: inline-block;
+  margin: 0 0 var(--ep-sp-4) 0;
+  padding: 0.35em 0.9em;
+  border: 1px solid rgba(188, 214, 232, 0.45);
+  border-radius: 999px;
+  font-size: var(--ep-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #bcd6e8;
+}
+.hero h1 {
+  margin: 0 0 var(--ep-sp-2) 0;
+  font-size: var(--ep-fs-hero);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.hero-role {
+  margin: 0 0 var(--ep-sp-4) 0;
+  font-size: var(--ep-fs-xl);
+  font-weight: 600;
+  color: #9fc4dd;
+}
+.hero-lede {
+  margin: 0 0 var(--ep-sp-5) 0;
+  font-size: var(--ep-fs-lg);
+  line-height: 1.65;
+  color: #dbe4ec;
+  max-width: 56ch;
+}
+.hero-side p { max-width: none; }
+.hero-side .hero-eyebrow { margin-bottom: var(--ep-sp-3); }
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ep-sp-2);
+  padding: 0;
+  margin: var(--ep-sp-2) 0 0 0;
+  list-style: none;
+}
+.skill-chips li {
+  margin: 0;
+  padding: 0.35em 0.8em;
+  border: 1px solid rgba(188, 214, 232, 0.35);
+  border-radius: 999px;
+  font-size: var(--ep-fs-sm);
+  font-weight: 600;
+  color: #cfe0ee;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ep-sp-3);
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.cta-row li { margin: 0; }
+
+/* AC-55: at 1440x900 the whole value proposition (name, role, positioning,
+   specialisms and all four calls to action) must sit inside the first
+   viewport. This desktop-only block tightens the two-column hero so the chips
+   and the CTA row clear the 900px fold with headroom. Tablet (<=980px) and
+   mobile keep the more generous rhythm that already fits 390x844. Measured by
+   tests/browser_evidence.py (output/evidence/hero_geometry_report.json) and
+   enforced by tests/verify_site.py check_hero_geometry(). Deliberately placed
+   after the base hero rules so it wins on source order. */
+@media screen and (min-width: 981px) {
+  .hero { padding: var(--ep-sp-6) 0; }
+  /* Top-align the two columns: centring added a ~48px vertical offset because
+     the copy column is shorter than the image column, which pushed the chips
+     and the calls to action past the fold. */
+  .hero-inner { align-items: start; }
+  .hero-eyebrow { margin-bottom: var(--ep-sp-3); }
+  .hero-role { margin-bottom: var(--ep-sp-3); }
+  .hero-lede { margin-bottom: var(--ep-sp-3); }
+  .skill-chips { margin-top: 0; }
+  .hero .cta-row { margin-top: var(--ep-sp-2); }
+}
+
+/* --------------------------------------------------------------------------
+   6. Buttons
+   -------------------------------------------------------------------------- */
+
+.button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: var(--ep-radius);
+  background: var(--ep-accent);
+  color: #fff !important;
+  font-family: inherit;
+  font-size: var(--ep-fs-md);
+  font-weight: 700;
+  line-height: 1.3;
+  padding: 0.72em 1.35em;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease,
+    border-color 0.18s ease;
+}
+.button:hover,
+.button:focus { background: var(--ep-accent-ink); color: #fff !important; }
+
+.button.alt,
+.button.ghost {
+  background: transparent;
+  color: var(--ep-accent) !important;
+  border-color: var(--ep-accent-line);
+}
+.button.alt:hover,
+.button.alt:focus,
+.button.ghost:hover,
+.button.ghost:focus {
+  background: var(--ep-accent-soft);
+  color: var(--ep-accent-ink) !important;
+  border-color: var(--ep-accent);
+}
+
+.hero .button {
+  background: #fff;
+  color: var(--ep-ink) !important;
+}
+.hero .button:hover,
+.hero .button:focus { background: #d9e6f0; color: var(--ep-ink) !important; }
+.hero .button.alt {
+  background: transparent;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+.hero .button.alt:hover,
+.hero .button.alt:focus {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   7. Cards (Projects/Modules index, skills, evidence summaries)
+   -------------------------------------------------------------------------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: var(--ep-sp-5);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.card-grid > li { margin: 0; }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--ep-surface);
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ep-shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+.card:hover,
+.card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: var(--ep-shadow-hi);
+  border-color: var(--ep-accent-line);
+}
+
+.card-media {
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--ep-canvas-alt);
+  overflow: hidden;
+}
+.card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-media--logo {
+  aspect-ratio: 3 / 1;
+  background: var(--ep-canvas);
+  padding: var(--ep-sp-4);
+}
+.card-media--logo img { object-fit: contain; }
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: var(--ep-sp-5);
+  border: 0;
+  background: transparent;
+}
+.card-body h3 {
+  margin: 0 0 var(--ep-sp-2) 0;
+  font-size: var(--ep-fs-xl);
+  border: 0;
+  padding: 0;
+}
+.card-body h3 a { color: var(--ep-ink); text-decoration: none; }
+.card-body h3 a:hover,
+.card-body h3 a:focus { color: var(--ep-accent); text-decoration: underline; }
+.card-body p { color: var(--ep-body); margin: 0 0 var(--ep-sp-4) 0; }
+.card-body > :last-child { margin-bottom: 0; }
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ep-sp-2);
+  padding: 0;
+  margin: 0 0 var(--ep-sp-4) 0;
+  list-style: none;
+}
+.card-meta li { margin: 0; }
+
+.badge {
+  display: inline-block;
+  padding: 0.22em 0.65em;
+  border-radius: 999px;
+  background: var(--ep-canvas-alt);
+  color: var(--ep-ink-soft);
+  font-size: var(--ep-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.badge--accent { background: var(--ep-accent-soft); color: var(--ep-accent-ink); }
+.badge--count { background: var(--ep-ink); color: #fff; }
+
+.card-link {
+  margin-top: auto;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ep-accent);
+}
+.card-link:hover,
+.card-link:focus { color: var(--ep-accent-ink); text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
+   8. Surfaces, panels, callouts
+   -------------------------------------------------------------------------- */
+
+.surface {
+  background: var(--ep-surface);
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius-lg);
+  padding: var(--ep-sp-6);
+  margin: 0 0 var(--ep-sp-5) 0;
+}
+.surface > :last-child { margin-bottom: 0; }
+
+.panel {
+  background: var(--ep-canvas);
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius-lg);
+  padding: var(--ep-sp-6);
+  margin: 0 0 var(--ep-sp-5) 0;
+}
+.panel > :last-child { margin-bottom: 0; }
+
+.callout {
+  border-left: 4px solid var(--ep-accent);
+  background: var(--ep-accent-soft);
+  border-radius: 0 var(--ep-radius) var(--ep-radius) 0;
+  padding: var(--ep-sp-5);
+  margin: 0 0 var(--ep-sp-5) 0;
+}
+.callout > :last-child { margin-bottom: 0; }
+.callout--note {
+  border-left-color: var(--ep-muted);
+  background: var(--ep-canvas-alt);
+}
+.callout h2, .callout h3 { margin-top: 0; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--ep-sp-5);
+  align-items: start;
+}
+
+.fact-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.fact-list li {
+  display: grid;
+  grid-template-columns: 12ch minmax(0, 1fr);
+  gap: var(--ep-sp-3);
+  margin: 0 0 var(--ep-sp-3) 0;
+  padding-bottom: var(--ep-sp-3);
+  border-bottom: 1px solid var(--ep-line);
+}
+.fact-list li:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+.fact-list dt,
+.fact-list .fact-label {
+  font-size: var(--ep-fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ep-muted);
+}
+
+/* --------------------------------------------------------------------------
+   9. Skills & capability groups
+   -------------------------------------------------------------------------- */
+
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: var(--ep-sp-5);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.cap-grid > li { margin: 0; }
+
+.cap-group {
+  height: 100%;
+  background: var(--ep-surface);
+  border: 1px solid var(--ep-line);
+  border-top: 4px solid var(--ep-accent);
+  border-radius: var(--ep-radius);
+  padding: var(--ep-sp-5);
+}
+.cap-group h2,
+.cap-group h3 { margin: 0 0 var(--ep-sp-3) 0; font-size: var(--ep-fs-lg); }
+.cap-group .cap-summary { color: var(--ep-muted); margin-bottom: var(--ep-sp-4); }
+
+.cap-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.cap-list > li {
+  margin: 0 0 var(--ep-sp-3) 0;
+  padding-bottom: var(--ep-sp-3);
+  border-bottom: 1px solid var(--ep-line);
+}
+.cap-list > li:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+.cap-name { display: block; font-weight: 700; color: var(--ep-ink); }
+.cap-evidence {
+  display: block;
+  font-size: var(--ep-fs-sm);
+  color: var(--ep-muted);
+}
+.cap-evidence a { font-weight: 600; }
+
+/* --------------------------------------------------------------------------
+   10. Artefact presentation (module pages + evidence surface)
+   -------------------------------------------------------------------------- */
+
+.artefact-block {
+  margin: var(--ep-sp-6) 0 0 0;
+  padding: var(--ep-sp-5);
+  background: var(--ep-canvas);
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius-lg);
+}
+.artefact-block h2 {
+  margin: 0 0 var(--ep-sp-2) 0;
+  font-size: var(--ep-fs-xl);
+}
+.artefact-block > p { color: var(--ep-muted); }
+
+.artefact-list {
+  padding: 0;
+  margin: var(--ep-sp-4) 0 0 0;
+  list-style: none;
+}
+.artefact-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ep-sp-2) var(--ep-sp-4);
+  align-items: baseline;
+  margin: 0 0 var(--ep-sp-3) 0;
+  padding-bottom: var(--ep-sp-3);
+  border-bottom: 1px solid var(--ep-line);
+}
+.artefact-list li:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.artefact-list a { font-weight: 700; text-decoration: none; }
+.artefact-list a:hover,
+.artefact-list a:focus { text-decoration: underline; }
+.artefact-kind {
+  font-size: var(--ep-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ep-muted);
+}
+
+/* Evidence surface table */
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 var(--ep-sp-6) 0;
+  font-size: var(--ep-fs-md);
+}
+.evidence-table caption {
+  text-align: left;
+  font-weight: 700;
+  color: var(--ep-ink);
+  padding: 0 0 var(--ep-sp-3) 0;
+}
+.evidence-table th,
+.evidence-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--ep-sp-3) var(--ep-sp-3);
+  border-bottom: 1px solid var(--ep-line);
+}
+.evidence-table th {
+  background: var(--ep-canvas);
+  font-size: var(--ep-fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ep-muted);
+}
+.evidence-table tbody tr:hover { background: var(--ep-canvas); }
+.evidence-table td a { font-weight: 700; }
+
+/* Grouped artefact sections on the evidence page */
+.artefact-group { margin: 0 0 var(--ep-sp-7) 0; }
+.artefact-group > h2 {
+  padding-bottom: var(--ep-sp-2);
+  border-bottom: 2px solid var(--ep-ink);
+  margin: 0 0 var(--ep-sp-4) 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. Contact
+   -------------------------------------------------------------------------- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--ep-sp-5);
+  align-items: start;
+}
+
+.contact-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.contact-list li {
+  display: grid;
+  grid-template-columns: 8ch minmax(0, 1fr);
+  gap: var(--ep-sp-3);
+  margin: 0 0 var(--ep-sp-4) 0;
+}
+.contact-list .contact-label {
+  font-size: var(--ep-fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ep-muted);
+}
+.contact-list a { font-weight: 700; overflow-wrap: anywhere; }
+
+.contact-form fieldset {
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius);
+  padding: var(--ep-sp-5);
+  margin: 0;
+}
+.contact-form legend {
+  padding: 0 var(--ep-sp-2);
+  font-weight: 700;
+  color: var(--ep-ink);
+}
+.contact-form label {
+  display: block;
+  margin: 0 0 var(--ep-sp-2) 0;
+  font-size: var(--ep-fs-sm);
+  font-weight: 700;
+  color: var(--ep-ink-soft);
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 var(--ep-sp-4) 0;
+  padding: 0.6em 0.75em;
+  border: 1px solid var(--ep-line-strong);
+  border-radius: var(--ep-radius-sm);
+  background: var(--ep-surface);
+  color: var(--ep-body);
+  font-family: inherit;
+  font-size: var(--ep-fs-md);
+}
+.contact-form textarea { min-height: 8em; }
+
+/* --------------------------------------------------------------------------
+   12. Module article content (kept academic pages)
+   -------------------------------------------------------------------------- */
+
+.module-figure {
+  margin: 0 0 var(--ep-sp-5) 0;
+  text-align: center;
+  padding: 0;
+}
+.module-figure img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: var(--ep-radius);
+  margin: 0 auto;
+}
+
+/* Module content: the coursework article, normalised to one consistent layout. */
+.module-content {
+  display: block;
+}
+.module-content > .center-block:first-child,
+.module-content > .module-figure:first-child { margin-top: 0; }
+.module-section img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 320px;
+  margin: 0 auto;
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius);
+  background: var(--ep-canvas-alt);
+  /* Coursework plots are evidence, not decoration: object-fit: contain
+     letterboxes them inside the fixed box so an axis label can never be
+     cropped away, while the box keeps every content image the same shape. */
+  object-fit: contain;
+}
+
+.module-meta { margin: 0 0 var(--ep-sp-5) 0; }
+
+/* The template's inline <center>/style="color: black" markup is normalised to
+   this class by the rebuild so coursework text keeps its original wording. */
+.lead-copy {
+  font-size: var(--ep-fs-lg);
+  line-height: 1.7;
+  color: var(--ep-ink-soft);
+  margin: 0 0 var(--ep-sp-5) 0;
+}
+
+.module-section {
+  margin: var(--ep-sp-6) 0 0 0;
+  padding-top: var(--ep-sp-5);
+  border-top: 1px solid var(--ep-line);
+}
+.module-section h2 {
+  margin: 0 0 var(--ep-sp-3) 0;
+  font-size: var(--ep-fs-xl);
+}
+.module-section > :last-child { margin-bottom: 0; }
+
+/* --------------------------------------------------------------------------
+   13. Site footer
+   -------------------------------------------------------------------------- */
+
+#footer-placeholder { min-height: 1px; }
+
+.site-footer,
+#footer {
+  background: var(--ep-ink);
+  color: #b9c3ce;
+  padding: var(--ep-sp-7) 0 var(--ep-sp-5) 0;
+  margin: 0;
+}
+.site-footer a,
+#footer a { color: #dbe4ec; }
+.site-footer a:hover,
+.site-footer a:focus,
+#footer a:hover,
+#footer a:focus { color: #fff; }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--ep-sp-6);
+  text-align: left;
+}
+.site-footer h2,
+#footer h2 {
+  color: #fff;
+  font-size: var(--ep-fs-md);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin: 0 0 var(--ep-sp-4) 0;
+}
+.site-footer ul,
+#footer ul { padding: 0; margin: 0; list-style: none; }
+.site-footer li,
+#footer li { margin: 0 0 var(--ep-sp-2) 0; }
+
+.site-footer .footer-links a { text-decoration: none; }
+.site-footer .footer-links a:hover,
+.site-footer .footer-links a:focus { text-decoration: underline; }
+
+#copyright {
+  margin: var(--ep-sp-6) 0 0 0;
+  padding-top: var(--ep-sp-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  text-align: left;
+  font-size: var(--ep-fs-sm);
+}
+#copyright ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ep-sp-4);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+#copyright li { margin: 0; }
+
+/* --------------------------------------------------------------------------
+   13b. Recruiter CTA rows (shared header + shared footer, every page)
+   -------------------------------------------------------------------------- */
+
+.header-cta,
+.footer-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ep-sp-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.header-cta {
+  margin-top: var(--ep-sp-3);
+  padding-top: var(--ep-sp-3);
+  border-top: 1px solid var(--ep-line);
+}
+.header-cta li,
+.footer-cta li { margin: 0; }
+
+.site-header .header-cta .button { font-size: var(--ep-fs-sm); padding: 0.55em 1.1em; }
+.footer-cta { margin-bottom: var(--ep-sp-6); }
+.footer-cta .button {
+  background: transparent;
+  color: #fff !important;
+  border-color: rgba(188, 214, 232, 0.5);
+}
+.footer-cta .button:hover,
+.footer-cta .button:focus { background: rgba(255, 255, 255, 0.12); border-color: #fff; }
+.footer-cta .button:not(.alt) { background: #fff; color: var(--ep-ink) !important; }
+.footer-cta .button:not(.alt):hover,
+.footer-cta .button:not(.alt):focus { background: #d9e6f0; color: var(--ep-ink) !important; }
+
+/* --------------------------------------------------------------------------
+   13c. Hero headline (name + outcome-led positioning)
+   -------------------------------------------------------------------------- */
+
+.hero h1 { display: block; }
+.hero-name { display: block; }
+.hero-outcome {
+  display: block;
+  margin-top: var(--ep-sp-2);
+  font-size: clamp(1.05rem, 0.85rem + 1.1vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: #a8cbe2;
+}
+
+/* --------------------------------------------------------------------------
+   13d. Impact grid (home page, evidenced outcomes)
+   -------------------------------------------------------------------------- */
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--ep-sp-5);
+  padding: 0;
+  margin: 0 0 var(--ep-sp-5) 0;
+  list-style: none;
+}
+.impact-grid > li { margin: 0; }
+.impact {
+  border: 1px solid var(--ep-line);
+  border-left: 4px solid var(--ep-accent);
+  border-radius: var(--ep-radius);
+  background: var(--ep-surface);
+  padding: var(--ep-sp-5);
+  box-shadow: var(--ep-shadow);
+}
+.impact-figure {
+  margin: 0 0 var(--ep-sp-1) 0;
+  font-size: var(--ep-fs-xl);
+  font-weight: 800;
+  color: var(--ep-accent-ink);
+  letter-spacing: -0.02em;
+}
+.impact-label {
+  margin: 0 0 var(--ep-sp-3) 0;
+  font-size: var(--ep-fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ep-muted);
+}
+.impact-body { margin: 0; color: var(--ep-body); }
+
+/* --------------------------------------------------------------------------
+   13e. CV page
+   -------------------------------------------------------------------------- */
+
+.cv-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.cv-list > li {
+  margin: 0;
+  padding: var(--ep-sp-4) 0;
+  border-bottom: 1px solid var(--ep-line);
+}
+.cv-list > li:first-child { padding-top: 0; }
+.cv-list > li:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+.cv-role h3 { margin: 0 0 var(--ep-sp-1) 0; }
+.cv-meta {
+  margin: 0 0 var(--ep-sp-3) 0;
+  font-size: var(--ep-fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ep-accent);
+}
+.cv-source {
+  margin: var(--ep-sp-3) 0 0 0;
+  font-size: var(--ep-fs-sm);
+  color: var(--ep-muted);
+}
+.card-private {
+  margin: auto 0 0 0;
+  font-size: var(--ep-fs-sm);
+  color: var(--ep-muted);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   14. Responsive — tablet, then mobile down to 390px
+   -------------------------------------------------------------------------- */
+
+@media screen and (max-width: 980px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--ep-sp-5);
+  }
+  .site-main { padding: var(--ep-sp-6) 0; }
+  .hero { padding: var(--ep-sp-7) 0; }
+  .hero-media img { max-height: 240px; }
+}
+
+@media screen and (max-width: 736px) {
+  :root { --ep-sp-8: 3rem; --ep-sp-7: 2.25rem; }
+  .wrap { padding: 0 var(--ep-sp-4); }
+  .card-grid,
+  .cap-grid,
+  .two-col,
+  .contact-grid,
+  .impact-grid { grid-template-columns: minmax(0, 1fr); }
+  .fact-list li,
+  .contact-list li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--ep-sp-1);
+  }
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .cta-row .button { width: 100%; }
+  .evidence-table { display: block; overflow-x: auto; white-space: nowrap; }
+  .evidence-table th,
+  .evidence-table td { white-space: normal; }
+  /* Module pages inherit coursework tables that are wider than a phone
+     viewport; let them scroll inside their own box instead of pushing the
+     whole page sideways. */
+  .module-page table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body { font-size: 0.95rem; }
+  .brand-name { font-size: var(--ep-fs-lg); }
+  .hero { padding: var(--ep-sp-5) 0; }
+  .hero h1 { font-size: clamp(1.75rem, 1.2rem + 5vw, 2.3rem); }
+  .hero-role { font-size: var(--ep-fs-lg); }
+  .hero-lede { font-size: var(--ep-fs-md); margin-bottom: var(--ep-sp-4); }
+  .hero-eyebrow { padding: 0.3em 0.7em; font-size: 0.7rem; margin-bottom: var(--ep-sp-3); }
+  .skill-chips li { padding: 0.28em 0.65em; font-size: var(--ep-fs-xs); }
+  .cta-row .button { padding: 0.62em 1.1em; font-size: var(--ep-fs-sm); }
+  .surface, .panel, .callout, .cap-group, .artefact-block, .impact {
+    padding: var(--ep-sp-4);
+  }
+  /* The hero image is decoration on a phone: the value proposition and the
+     calls to action must own the first viewport (AC-55), so the photograph is
+     dropped at the narrowest width rather than pushing them below the fold. */
+  .hero-media { display: none; }
+}
+
+/* Reduced motion: honour the user's preference. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Print: the artefacts list and profile should be readable on paper. */
+@media print {
+  .site-header, #titleBar, #navPanel, .hero::after { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card, .surface, .panel { box-shadow: none; border-color: #999; }
+}
+
+/* --------------------------------------------------------------------------
+   15. CV amendment surfaces (experience roles, thesis demo, chatbot)
+   Added 2026-10-01. Kept in the same tokenised system as the rest of the site;
+   no new palette or type scale is introduced.
+   -------------------------------------------------------------------------- */
+
+/* Role entries on experience.html / cv.html */
+.cv-list { list-style: none; margin: 0; padding: 0; }
+.cv-list > li {
+  padding: var(--ep-sp-4) 0;
+  border-bottom: 1px solid var(--ep-line);
+}
+.cv-list > li:first-child { padding-top: 0; }
+.cv-list > li:last-child { border-bottom: 0; padding-bottom: 0; }
+.cv-role h3 { margin: 0 0 var(--ep-sp-1) 0; }
+.cv-meta {
+  color: var(--ep-muted);
+  font-size: var(--ep-fs-sm);
+  margin: 0 0 var(--ep-sp-3) 0;
+}
+.role-kind {
+  display: inline-block;
+  margin-right: var(--ep-sp-2);
+  padding: 0.12em 0.55em;
+  border: 1px solid var(--ep-accent-line);
+  border-radius: var(--ep-radius-sm);
+  background: var(--ep-accent-soft);
+  color: var(--ep-accent-ink);
+  font-size: var(--ep-fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.role-bullets {
+  margin: var(--ep-sp-3) 0 0 0;
+  padding-left: 1.1em;
+}
+.role-bullets li { margin-bottom: var(--ep-sp-2); }
+.role-bullets li:last-child { margin-bottom: 0; }
+.role-artefact {
+  margin: var(--ep-sp-3) 0 0 0;
+  padding: var(--ep-sp-3) var(--ep-sp-4);
+  background: var(--ep-canvas);
+  border-left: 3px solid var(--ep-accent);
+  font-size: var(--ep-fs-sm);
+}
+.role-artefact--none { border-left-color: var(--ep-line-strong); color: var(--ep-muted); }
+.cv-source {
+  color: var(--ep-muted);
+  font-size: var(--ep-fs-xs);
+  margin: var(--ep-sp-2) 0 0 0;
+}
+
+/* CV capability group cards */
+.cv-cap-groups { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ep-sp-4); }
+.cv-cap-group {
+  padding: var(--ep-sp-4);
+  background: var(--ep-canvas);
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius);
+}
+.cv-cap-group h3 { margin: 0 0 var(--ep-sp-2) 0; }
+.cv-cap-group p { margin: 0; color: var(--ep-body); }
+
+/* Evidence surface: professional-role dimension (role -> artefact). */
+.role-evidence-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ep-sp-4); }
+.role-evidence {
+  padding: var(--ep-sp-4);
+  background: var(--ep-surface);
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius);
+}
+.role-evidence h3 { margin: 0 0 var(--ep-sp-1) 0; }
+.role-evidence .role-artefact { margin-top: var(--ep-sp-3); }
+
+/* Thesis demo (offline, precomputed). */
+.demo-stage-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ep-sp-3); }
+.demo-scenario-picker { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--ep-sp-3); }
+.demo-scenario-picker li { margin: 0; }
+.demo-scenario {
+  display: block; width: 100%; text-align: left;
+  padding: var(--ep-sp-4);
+  background: var(--ep-surface);
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius);
+  cursor: pointer;
+  font: inherit; color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.demo-scenario:hover { border-color: var(--ep-accent-line); box-shadow: var(--ep-shadow); }
+.demo-scenario[aria-pressed="true"] {
+  border-color: var(--ep-accent);
+  box-shadow: 0 0 0 1px var(--ep-accent) inset;
+}
+.demo-scenario .demo-scenario-title { display: block; font-weight: 700; color: var(--ep-ink); }
+.demo-scenario .demo-scenario-meta { display: block; color: var(--ep-muted); font-size: var(--ep-fs-sm); margin-top: 0.2em; }
+.demo-pipeline { list-style: none; margin: var(--ep-sp-5) 0 0 0; padding: 0; display: grid; gap: var(--ep-sp-3); }
+.demo-stage {
+  padding: var(--ep-sp-4);
+  background: var(--ep-canvas);
+  border: 1px solid var(--ep-line);
+  border-left: 3px solid var(--ep-line-strong);
+  border-radius: var(--ep-radius);
+  opacity: 0.55;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+.demo-stage.is-revealed { opacity: 1; border-left-color: var(--ep-accent); }
+.demo-stage h3 { margin: 0 0 var(--ep-sp-2) 0; font-size: var(--ep-fs-lg); }
+.demo-stage .demo-stage-help { margin: 0 0 var(--ep-sp-3) 0; color: var(--ep-muted); font-size: var(--ep-fs-sm); }
+.demo-stage .demo-stage-body { margin: 0; color: var(--ep-body); font-size: var(--ep-fs-sm); }
+.demo-stage .demo-stage-placeholder { color: var(--ep-muted); font-style: italic; }
+.demo-score {
+  display: inline-block; margin-top: var(--ep-sp-2);
+  font-size: var(--ep-fs-xl); font-weight: 700; color: var(--ep-accent-ink);
+}
+.thesis-problem {
+  font-size: var(--ep-fs-lg);
+  color: var(--ep-ink);
+  border-left: 3px solid var(--ep-accent);
+  padding-left: var(--ep-sp-4);
+  margin: var(--ep-sp-4) 0;
+}
+.table-scroll { overflow-x: auto; margin: var(--ep-sp-4) 0; }
+.thesis-table { width: 100%; border-collapse: collapse; font-size: var(--ep-fs-sm); }
+.thesis-table caption { text-align: left; color: var(--ep-muted); font-size: var(--ep-fs-xs); padding-bottom: var(--ep-sp-2); }
+.thesis-table th, .thesis-table td { text-align: left; padding: var(--ep-sp-2) var(--ep-sp-3); border-bottom: 1px solid var(--ep-line); vertical-align: top; }
+.thesis-table thead th { font-size: var(--ep-fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ep-muted); }
+.thesis-table td.num, .thesis-table th.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.thesis-table tbody tr:hover { background: var(--ep-canvas); }
+.demo-schematic {
+  margin: var(--ep-sp-4) 0 0 0;
+  padding: var(--ep-sp-4);
+  background: var(--ep-canvas);
+  border: 1px dashed var(--ep-line-strong);
+  border-radius: var(--ep-radius);
+  color: var(--ep-muted);
+  font-size: var(--ep-fs-sm);
+}
+.demo-label {
+  margin-top: var(--ep-sp-4);
+  padding: var(--ep-sp-3) var(--ep-sp-4);
+  background: var(--ep-accent-soft);
+  border-left: 3px solid var(--ep-accent);
+  border-radius: var(--ep-radius-sm);
+  font-size: var(--ep-fs-sm);
+  color: var(--ep-ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   16. Ambient facts bot (the guide character + its fact bubble)
+   Added 2026-10-01, replacing the scrapped chatbot. It reuses this file's tokens
+   (type scale, spacing, accent, radius) so it reads as part of the design system
+   rather than a bolted-on widget: restrained line art, no gradient, no drop
+   shadow on everything, no emoji.
+   -------------------------------------------------------------------------- */
+.guide-bot {
+  position: fixed;
+  z-index: 40;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--ep-sp-2);
+  pointer-events: none;
+  max-width: min(24rem, calc(100vw - 2 * var(--ep-sp-4)));
+  /* No positional transition: the widget must never SWEEP across content on its
+     way to a new resting spot. Each placement is instantaneous, so it only ever
+     occupies a spot that was hit-tested clear of the page's content. */
+  transition: none;
+}
+.guide-bot[hidden] { display: none; }
+.guide-bot__spacer { pointer-events: none; }
+.guide-bot__bubble,
+.guide-bot__btn { pointer-events: auto; }
+/* Drag handles for the harness: the JS moves .guide-bot with `transform`. */
+.guide-bot__bubble {
+  margin: 0;
+  padding: var(--ep-sp-3) var(--ep-sp-4);
+  background: var(--ep-surface);
+  color: var(--ep-ink);
+  border: 1px solid var(--ep-line);
+  border-radius: var(--ep-radius);
+  font-size: var(--ep-fs-sm);
+  line-height: 1.45;
+  box-shadow: var(--ep-shadow);
+  max-width: 20rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.guide-bot__bubble[hidden] { display: none; }
+/* The character: a small inline SVG drawn in restrained line art, sized in ems
+   so it scales with the page and works at 390x844. */
+.guide-bot__btn {
+  display: block;
+  flex: 0 0 auto;
+  padding: var(--ep-sp-2);
+  margin: 0;
+  background: var(--ep-surface);
+  border: 1px solid var(--ep-line-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 0;
+  color: var(--ep-accent);
+}
+.guide-bot__btn:hover, .guide-bot__btn:focus-visible { border-color: var(--ep-accent); color: var(--ep-accent-ink); }
+.guide-bot__svg { width: 2.25rem; height: 2.25rem; display: block; }
+.guide-bot__svg .guide-bot__badge { fill: var(--ep-accent-soft); }
+.guide-bot__svg .guide-bot__dot { fill: var(--ep-accent); }
+
+/* Reduced motion: no positional animation at all (the JS also checks the media
+   query, but the CSS is the belt to that brace). */
+@media (prefers-reduced-motion: reduce) {
+  .guide-bot { transition: none !important; }
+}
+
+/* Never cover the mobile navigation panel. */
+body.navPanel-visible .guide-bot { display: none !important; }
+
+@media screen and (max-width: 600px) {
+  /* NOTE: never set `bottom`/`right` here — with `top`/`left` also set the
+     fixed box would stretch instead of sizing to its content. Only the max
+     width shrinks. */
+  .guide-bot { max-width: calc(100vw - 2 * var(--ep-sp-3)); }
+  .guide-bot__bubble { max-width: min(15rem, calc(100vw - 5.5rem)); font-size: var(--ep-fs-xs); }
+}

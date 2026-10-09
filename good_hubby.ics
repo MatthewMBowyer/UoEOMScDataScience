@@ -1,0 +1,463 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Matthew Bowyer//Personal//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Good Hubby
+X-WR-TIMEZONE:Africa/Johannesburg
+BEGIN:VEVENT
+UID:milestone-chatting@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20170322
+DTEND;VALUE=DATE:20170323
+SUMMARY:Started chatting
+DESCRIPTION:Started chatting - Owner\, stated directly (2026-10-07)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:milestone-dating@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20250201
+DTEND;VALUE=DATE:20250202
+SUMMARY:Started dating
+DESCRIPTION:Started dating - Owner\, stated directly
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:milestone-engaged@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260401
+DTEND;VALUE=DATE:20260402
+SUMMARY:Engaged
+DESCRIPTION:Engaged - Owner\, stated directly
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:birthday-her-birthday@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+SUMMARY:Her birthday
+DESCRIPTION:Every year (Source: Owner\, stated directly (2026-10-07))
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-new-year's-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260101
+DTEND;VALUE=DATE:20260102
+SUMMARY:New Year's Day
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-national-hugging-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260121
+DTEND;VALUE=DATE:20260122
+SUMMARY:National Hugging Day
+DESCRIPTION:Created by Kevin Zaborney (Source: Wikipedia: National Hugging Day)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-rose-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260207
+DTEND;VALUE=DATE:20260208
+SUMMARY:Rose Day
+DESCRIPTION:First day of Valentine's Week (Source: Wikipedia: Valentine's Week)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-propose-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260208
+DTEND;VALUE=DATE:20260209
+SUMMARY:Propose Day
+DESCRIPTION:Valentine's Week (Source: Wikipedia: Valentine's Week)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-chocolate-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260209
+DTEND;VALUE=DATE:20260210
+SUMMARY:Chocolate Day
+DESCRIPTION:Valentine's Week (Source: Wikipedia: Valentine's Week)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-teddy-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260210
+DTEND;VALUE=DATE:20260211
+SUMMARY:Teddy Day
+DESCRIPTION:Valentine's Week (Source: Wikipedia: Valentine's Week)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-promise-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260211
+DTEND;VALUE=DATE:20260212
+SUMMARY:Promise Day
+DESCRIPTION:Valentine's Week (Source: Wikipedia: Valentine's Week)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-hug-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260212
+DTEND;VALUE=DATE:20260213
+SUMMARY:Hug Day
+DESCRIPTION:Valentine's Week (Source: Wikipedia: Valentine's Week)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-kiss-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260213
+DTEND;VALUE=DATE:20260214
+SUMMARY:Kiss Day
+DESCRIPTION:Valentine's Week (Source: Wikipedia: Valentine's Week)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-valentine's-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260214
+DTEND;VALUE=DATE:20260215
+SUMMARY:Valentine's Day
+DESCRIPTION:Also our dating anniversary month (Source: Wikipedia: Valentine's Day)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-white-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260314
+DTEND;VALUE=DATE:20260315
+SUMMARY:White Day
+DESCRIPTION:Reciprocal gift day\, one month after Valentine's (Japan\, 1978 onward) (Source: Wikipedia: White Day)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-human-rights-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260321
+DTEND;VALUE=DATE:20260322
+SUMMARY:Human Rights Day
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-freedom-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260427
+DTEND;VALUE=DATE:20260428
+SUMMARY:Freedom Day
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-workers'-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260502
+SUMMARY:Workers' Day
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-global-love-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260502
+SUMMARY:Global Love Day
+DESCRIPTION:A minor observance day for love\, marked around the world (Source: Wikipedia: Global Love Day)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-youth-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260616
+DTEND;VALUE=DATE:20260617
+SUMMARY:Youth Day
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-international-kissing-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260706
+DTEND;VALUE=DATE:20260707
+SUMMARY:International Kissing Day
+DESCRIPTION:World Kiss Day\; adopted worldwide in the early 2000s (Source: Wikipedia: International Kissing Day)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-world-chocolate-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260707
+DTEND;VALUE=DATE:20260708
+SUMMARY:World Chocolate Day
+DESCRIPTION:Celebrated globally (Source: Wikipedia: World Chocolate Day)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-national-women's-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260809
+DTEND;VALUE=DATE:20260810
+SUMMARY:National Women's Day
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-heritage-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260924
+DTEND;VALUE=DATE:20260925
+SUMMARY:Heritage Day
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-national-boyfriend-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20261003
+DTEND;VALUE=DATE:20261004
+SUMMARY:National Boyfriend Day
+DESCRIPTION:Unofficial\, observed in many countries (Source: Wikipedia: National Boyfriend Day)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-pepero-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+SUMMARY:Pepero Day
+DESCRIPTION:South Korea's day for exchanging Pepero snacks - a second Valentine's (Source: Wikipedia: Pepero Day)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-day-of-reconciliation@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20261216
+DTEND;VALUE=DATE:20261217
+SUMMARY:Day of Reconciliation
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-christmas-day@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20261225
+DTEND;VALUE=DATE:20261226
+SUMMARY:Christmas Day
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:holiday-day-of-goodwill@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20261226
+DTEND;VALUE=DATE:20261227
+SUMMARY:Day of Goodwill
+DESCRIPTION:Public holiday (South Africa) (Source: Public Holidays Act 36 of 1994)
+RRULE:FREQ=YEARLY
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-easter-sunday-2026@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260405
+DTEND;VALUE=DATE:20260406
+SUMMARY:Easter Sunday
+DESCRIPTION:Date varies each year (Source: Wikipedia: List of dates for Easter)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-easter-sunday-2027@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20270328
+DTEND;VALUE=DATE:20270329
+SUMMARY:Easter Sunday
+DESCRIPTION:Date varies each year (Source: Wikipedia: List of dates for Easter)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-mother's-day-2026@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260510
+DTEND;VALUE=DATE:20260511
+SUMMARY:Mother's Day
+DESCRIPTION:Second Sunday in May (US and Canada since 1914) (Source: Wikipedia: Mother's Day (United States))
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-mother's-day-2027@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20270509
+DTEND;VALUE=DATE:20270510
+SUMMARY:Mother's Day
+DESCRIPTION:Second Sunday in May (US and Canada since 1914) (Source: Wikipedia: Mother's Day (United States))
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-mother's-day-2028@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20280514
+DTEND;VALUE=DATE:20280515
+SUMMARY:Mother's Day
+DESCRIPTION:Second Sunday in May (US and Canada since 1914) (Source: Wikipedia: Mother's Day (United States))
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-mother's-day-2029@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20290513
+DTEND;VALUE=DATE:20290514
+SUMMARY:Mother's Day
+DESCRIPTION:Second Sunday in May (US and Canada since 1914) (Source: Wikipedia: Mother's Day (United States))
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-mother's-day-2030@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20300512
+DTEND;VALUE=DATE:20300513
+SUMMARY:Mother's Day
+DESCRIPTION:Second Sunday in May (US and Canada since 1914) (Source: Wikipedia: Mother's Day (United States))
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-father's-day-2026@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:Father's Day
+DESCRIPTION:Third Sunday in June in many countries (Source: Wikipedia: Father's Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-father's-day-2027@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20270620
+DTEND;VALUE=DATE:20270621
+SUMMARY:Father's Day
+DESCRIPTION:Third Sunday in June in many countries (Source: Wikipedia: Father's Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-father's-day-2028@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20280618
+DTEND;VALUE=DATE:20280619
+SUMMARY:Father's Day
+DESCRIPTION:Third Sunday in June in many countries (Source: Wikipedia: Father's Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-father's-day-2029@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20290617
+DTEND;VALUE=DATE:20290618
+SUMMARY:Father's Day
+DESCRIPTION:Third Sunday in June in many countries (Source: Wikipedia: Father's Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-father's-day-2030@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20300616
+DTEND;VALUE=DATE:20300617
+SUMMARY:Father's Day
+DESCRIPTION:Third Sunday in June in many countries (Source: Wikipedia: Father's Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-sweetest-day-2026@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20261017
+DTEND;VALUE=DATE:20261018
+SUMMARY:Sweetest Day
+DESCRIPTION:Third Saturday in October\; romantic deeds in the US Midwest and beyond (Source: Wikipedia: Sweetest Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-sweetest-day-2027@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20271016
+DTEND;VALUE=DATE:20271017
+SUMMARY:Sweetest Day
+DESCRIPTION:Third Saturday in October\; romantic deeds in the US Midwest and beyond (Source: Wikipedia: Sweetest Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-sweetest-day-2028@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20281021
+DTEND;VALUE=DATE:20281022
+SUMMARY:Sweetest Day
+DESCRIPTION:Third Saturday in October\; romantic deeds in the US Midwest and beyond (Source: Wikipedia: Sweetest Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-sweetest-day-2029@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20291020
+DTEND;VALUE=DATE:20291021
+SUMMARY:Sweetest Day
+DESCRIPTION:Third Saturday in October\; romantic deeds in the US Midwest and beyond (Source: Wikipedia: Sweetest Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-sweetest-day-2030@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20301019
+DTEND;VALUE=DATE:20301020
+SUMMARY:Sweetest Day
+DESCRIPTION:Third Saturday in October\; romantic deeds in the US Midwest and beyond (Source: Wikipedia: Sweetest Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-world-marriage-day-2026@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260208
+DTEND;VALUE=DATE:20260209
+SUMMARY:World Marriage Day
+DESCRIPTION:Second Sunday in February\; honours husband and wife (Source: Wikipedia: World Marriage Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-world-marriage-day-2027@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20270214
+DTEND;VALUE=DATE:20270215
+SUMMARY:World Marriage Day
+DESCRIPTION:Second Sunday in February\; honours husband and wife (Source: Wikipedia: World Marriage Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-world-marriage-day-2028@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20280213
+DTEND;VALUE=DATE:20280214
+SUMMARY:World Marriage Day
+DESCRIPTION:Second Sunday in February\; honours husband and wife (Source: Wikipedia: World Marriage Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-world-marriage-day-2029@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20290211
+DTEND;VALUE=DATE:20290212
+SUMMARY:World Marriage Day
+DESCRIPTION:Second Sunday in February\; honours husband and wife (Source: Wikipedia: World Marriage Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:moving-world-marriage-day-2030@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20300210
+DTEND;VALUE=DATE:20300211
+SUMMARY:World Marriage Day
+DESCRIPTION:Second Sunday in February\; honours husband and wife (Source: Wikipedia: World Marriage Day)
+END:VEVENT
+BEGIN:VEVENT
+UID:checkin-1@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260101
+DTEND;VALUE=DATE:20260102
+SUMMARY:Check-in - Name one thing your partner did well this week\, and tell them - not just think it.
+DESCRIPTION:Event-anchored reminders to check in on each other\, attached to occasions already on this page - NOT a fixed daily schedule.
+RRULE:FREQ=MONTHLY;BYMONTHDAY=1
+END:VEVENT
+BEGIN:VEVENT
+UID:checkin-22@eportfolio.personal
+DTSTAMP:20301019T000000Z
+DTSTART;VALUE=DATE:20260122
+DTEND;VALUE=DATE:20260123
+SUMMARY:Check-in - Name one thing your partner did well this week\, and tell them - not just think it.
+DESCRIPTION:Event-anchored reminders to check in on each other\, attached to occasions already on this page - NOT a fixed daily schedule.
+RRULE:FREQ=MONTHLY;BYMONTHDAY=22
+END:VEVENT
+END:VCALENDAR

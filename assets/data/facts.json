@@ -1,0 +1,525 @@
+{
+  "404.html": [],
+  "Algorithms, data structure and computability.html": [
+    {
+      "fact": "The Algorithms, data structure and computability module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: This module aimed to help me become a computational problem solver.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Analysing data.html": [
+    {
+      "fact": "The Analysing data module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: This module explored fundamental statistical techniques and ideas for analyzing and interpreting data.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Applied statistical modelling.html": [
+    {
+      "fact": "The Applied statistical modelling module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: What did wage rates depend on?",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Data Management and analysis.html": [
+    {
+      "fact": "The Data Management and analysis module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: This module addressed some of the key concepts required for the traditionally important area of data management and the increasingly important area of data analytics.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Deciphering Big Data.html": [
+    {
+      "fact": "The Deciphering Big Data module is part of the MSc Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: The Deciphering Big Data module introduces the underpinning concepts and skills of data wrangling, with an emphasis on big data.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Essential mathematics.html": [
+    {
+      "fact": "The Essential mathematics module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: This introductory module provided a broad and enjoyable foundation for university-level mathematics but required some prior knowledge.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Honours.html": [
+    {
+      "fact": "BSc (Hons) Data Science, The Open University (Mar 2020 - Jul 2023): twelve 30-credit modules.",
+      "source": "cv"
+    },
+    {
+      "fact": "The BSc foundations were statistics, mathematics, computing and machine learning.",
+      "source": "site"
+    },
+    {
+      "fact": "It directly preceded the MSc Data Science at University of Essex Online, which ran Jan 2024 - Jun 2026.",
+      "source": "cv"
+    }
+  ],
+  "Interactive design and user experience.html": [
+    {
+      "fact": "The Interactive design and user experience module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: From small apps to large business systems, smartphones to intelligent environments, wearables to ambient installations, and virtual reality to augmented reality – interactive computing technologies had become part of the fabric of everyday life.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Introduction to computers and technology 1.html": [
+    {
+      "fact": "The Introduction to computers and technology 1 module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: This module was the first of two introducing computing and information technology concepts, such as digital technologies, programming, and networking.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Introduction to computers and technology 2.html": [
+    {
+      "fact": "The Introduction to computers and technology 2 module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: This module built on Introduction to Computing and Information Technology 1 (TM111) and prepared me for further study of computing and IT modules.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Introduction to statistics.html": [
+    {
+      "fact": "The Introduction to statistics module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: This module taught me how to use basic statistical tools and quantitative methods useful in business, government, industry, medicine, the economy, and most academic subjects.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Machine Learning and Artificial Intelligence.html": [
+    {
+      "fact": "The Machine Learning and Artificial Intelligence module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: Intelligent assistants like Alexa and Siri, image searches that found the topic of a photo, and self-driving cars – these intelligent systems used machine learning to develop their expertise.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Machine Learning.html": [
+    {
+      "fact": "The Machine Learning module is part of the MSc Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: The Machine Learning module introduces machine learning with a practical approach, providing hands-on cases of real-world data analytics.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Masters.html": [
+    {
+      "fact": "MSc Data Science, University of Essex Online (Jan 2024 - Jun 2026) - completed Merit.",
+      "source": "cv"
+    },
+    {
+      "fact": "The programme is delivered in 30-credit modules and closed with an MSc Computing Project (completed 2026).",
+      "source": "site"
+    },
+    {
+      "fact": "The programme's research output is the thesis \"A Multimodal Driver Behaviour Evaluation System: Combining Telematics, VLMs and LLMs\".",
+      "source": "cv"
+    }
+  ],
+  "Mathematical methods.html": [
+    {
+      "fact": "The Mathematical methods module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: This module taught mathematical methods used in modelling through their application to solving real-world problems.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Numerical Analysis.html": [
+    {
+      "fact": "The Numerical Analysis module is part of the MSc Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: The Numerical Analysis module introduces key aspects of mathematics and statistics for data science and artificial intelligence.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Practical modern statistics.html": [
+    {
+      "fact": "The Practical modern statistics module is part of the BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: This module introduced four major topics of modern applied statistics: medical statistics, time series, multivariate analysis, and Bayesian statistics.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Research Methods and Professional Practice.html": [
+    {
+      "fact": "The Research Methods and Professional Practice module is part of the MSc Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: The Research Methods and Professional Practice module provides a practical foundation in research methods that enables research in practical settings.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "The Data Professional.html": [
+    {
+      "fact": "The The Data Professional module is part of the MSc Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: The Data Professional module explores and investigates the critical theoretical concepts in the discipline of data science, starting from data collection and then gradually leading to the stage where data is transformed into knowledge to support business decisions.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "Visualising Data.html": [
+    {
+      "fact": "The Visualising Data module is part of the MSc Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "What it covered: The Visualising Data module introduces the underpinning concepts for processing and analysing datasets.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's reflection on this module is written up with Gibbs' Reflective Cycle: an evaluation of each unit and what he would do differently.",
+      "source": "site"
+    },
+    {
+      "fact": "The module page links the coursework produced for it, where artefacts exist.",
+      "source": "site"
+    }
+  ],
+  "about.html": [
+    {
+      "fact": "Matthew completed his MSc Data Science at University of Essex Online (Jan 2024 - Jun 2026), with a Merit.",
+      "source": "cv"
+    },
+    {
+      "fact": "Earlier he completed a BSc (Hons) Data Science at The Open University (Mar 2020 - Jul 2023).",
+      "source": "cv"
+    },
+    {
+      "fact": "His MSc thesis is titled \"A Multimodal Driver Behaviour Evaluation System: Combining Telematics, VLMs and LLMs\".",
+      "source": "cv"
+    },
+    {
+      "fact": "His CV groups his capability into Leadership & Strategy; Data Science & AI; Engineering & Platforms.",
+      "source": "cv"
+    }
+  ],
+  "contact.html": [
+    {
+      "fact": "Reach Matthew at matthewmbowyer@gmail.com - email is the fastest route.",
+      "source": "site"
+    },
+    {
+      "fact": "LinkedIn: https://www.linkedin.com/in/matthew-bowyer-535a6818a.",
+      "source": "site"
+    },
+    {
+      "fact": "Based in Gauteng, South Africa.",
+      "source": "site"
+    },
+    {
+      "fact": "Additional public work is on GitHub at https://github.com/MatthewMBowyer.",
+      "source": "site"
+    }
+  ],
+  "cv.html": [
+    {
+      "fact": "Current role: Manager: Data Analytics & Global Reporting at Cartrack (Jun 2024 - Present).",
+      "source": "cv"
+    },
+    {
+      "fact": "The CV lists 7 roles with employers and dates, from Smith Yong and Associates (Jan 2019 - Feb 2023) to Cartrack (Jun 2024 - Present).",
+      "source": "cv"
+    },
+    {
+      "fact": "The downloadable CV is a real PDF linked from the header: assets/cv/Matthew-Bowyer-CV.pdf.",
+      "source": "site"
+    },
+    {
+      "fact": "Matthew's {years}+ years of analytics experience is counted from {career_start}, his first data role at Smith Yong and Associates.",
+      "source": "cv"
+    }
+  ],
+  "evidence.html": [
+    {
+      "fact": "This surface joins real academic artefacts - PDFs and XLSX worksheets - to the unit and role each belongs to.",
+      "source": "site"
+    },
+    {
+      "fact": "Public repository ‘Essex_MSC_DataScience_Thesis’: This repository contains the code for my MSc Data Science thesis:",
+      "source": "repo:Essex_MSC_DataScience_Thesis"
+    },
+    {
+      "fact": "Public repository ‘Invoice_app’: A browser-only tutoring invoice app.",
+      "source": "repo:Invoice_app"
+    },
+    {
+      "fact": "Public repository ‘PringlePadel’: Massively by HTML5 UP",
+      "source": "repo:PringlePadel"
+    },
+    {
+      "fact": "Public repository ‘UoEOMScDataScience’: Dopetrope by HTML5 UP",
+      "source": "repo:UoEOMScDataScience"
+    },
+    {
+      "fact": "Public repository ‘skills-github-pages’: Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.",
+      "source": "repo:skills-github-pages"
+    },
+    {
+      "fact": "Public repository ‘skills-introduction-to-github’: Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.",
+      "source": "repo:skills-introduction-to-github"
+    }
+  ],
+  "experience.html": [
+    {
+      "fact": "Matthew has held 7 CV roles and achievements: Cartrack (twice), Greendoor Group, Smith Yong and Associates, the Gauteng Weightlifting Association (twice) and the RLSS Commonwealth Festival of Lifesaving.",
+      "source": "cv"
+    },
+    {
+      "fact": "Vice Chairman & Athlete Representative at the Gauteng Weightlifting Association (Feb 2025 - Present).",
+      "source": "cv"
+    },
+    {
+      "fact": "Data Analyst at Smith Yong and Associates (Jan 2019 - Feb 2023) - the start of his analytics career.",
+      "source": "cv"
+    },
+    {
+      "fact": "Matthew's {years}+ years of analytics experience is counted from {career_start}, his first data role at Smith Yong and Associates.",
+      "source": "cv"
+    }
+  ],
+  "index.html": [
+    {
+      "fact": "Matthew Bowyer is a Analytics and Data Science Manager based in Gauteng, South Africa, specialising in business intelligence, automation, machine learning, telematics, applied artificial intelligence.",
+      "source": "site"
+    },
+    {
+      "fact": "The site spans 18 taught modules across an MSc in Data Science (University of Essex Online) and a BSc (Hons) Data Science (The Open University).",
+      "source": "site"
+    },
+    {
+      "fact": "Current role: Manager: Data Analytics & Global Reporting at Cartrack (Jun 2024 - Present).",
+      "source": "cv"
+    },
+    {
+      "fact": "Matthew's {years}+ years of analytics experience is counted from {career_start}, his first data role at Smith Yong and Associates.",
+      "source": "cv"
+    }
+  ],
+  "projects.html": [
+    {
+      "fact": "18 module pages are presented here across two programmes: an MSc in Data Science and a BSc (Hons) Data Science.",
+      "source": "site"
+    },
+    {
+      "fact": "The MSc Data Science, University of Essex Online ran Jan 2024 - Jun 2026; the BSc (Hons) Data Science, The Open University ran Mar 2020 - Jul 2023.",
+      "source": "cv"
+    },
+    {
+      "fact": "The MSc research output is the thesis \"A Multimodal Driver Behaviour Evaluation System: Combining Telematics, VLMs and LLMs\".",
+      "source": "cv"
+    },
+    {
+      "fact": "The commercial and research work is on GitHub at https://github.com/MatthewMBowyer.",
+      "source": "site"
+    }
+  ],
+  "skills.html": [
+    {
+      "fact": "Capability group ‘Data Science & AI’ covers Python SQL Machine learning Statistical modelling Predictive & prescriptive analytics Decision science Optimisation Feature engineering & selection Experimentation Hypothesis testing Model validation Tuning Calibration Performance benchmarking GenAI LLMs RAG VLMs.",
+      "source": "cv"
+    },
+    {
+      "fact": "Capability group ‘Engineering & Platforms’ covers Databricks MLflow Spark PySpark Delta Lake Feature Store MLOps ETL/ELT Data pipelines Data modelling Model monitoring & drift Data/model governance Data quality Lineage AWS MySQL Tableau.",
+      "source": "cv"
+    },
+    {
+      "fact": "Capability group ‘Leadership & Strategy’ covers Analytics strategy Data strategy AI/ML capability building Executive decision support Stakeholder management Cross-functional delivery Mentoring.",
+      "source": "cv"
+    },
+    {
+      "fact": "The CV tooling behind these groups includes Databricks, MLflow, Spark/PySpark, Delta Lake, Python, SQL, AWS, MySQL and Tableau.",
+      "source": "cv"
+    }
+  ],
+  "thesis-demo.html": [
+    {
+      "fact": "The demonstration illustrates the thesis \"A Multimodal Driver Behaviour Evaluation System: Combining Telematics, VLMs and LLMs\": telematics plus a vision-language model plus a language model, rather than telematics alone.",
+      "source": "cv"
+    },
+    {
+      "fact": "It is fully offline: the scenario data is precomputed and shipped statically, so the page makes no network request.",
+      "source": "site"
+    },
+    {
+      "fact": "The thesis is part of the MSc Data Science at University of Essex Online (Jan 2024 - Jun 2026).",
+      "source": "cv"
+    }
+  ]
+}
