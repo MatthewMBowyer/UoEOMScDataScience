@@ -1,0 +1,64 @@
+# Daily reminder email for the owner's personal pages (sports + good_hubby).
+#
+# The site is static, so it cannot send email itself. GitHub Actions can, for
+# free, and that is the whole reason this workflow exists: the owner asked for
+# reminders to arrive rather than to be looked up.
+#
+# It emails whatever `scripts/personal_digest.py` prints. Nothing else is needed.
+#
+# SETUP (one time, by the owner):
+#   1. Use a mail account that allows SMTP with an app password. Gmail needs an
+#      "App password" (Google Account -> Security -> 2-Step Verification -> App
+#      passwords); a normal password will not work.
+#   2. Repository -> Settings -> Secrets and variables -> Actions -> New secret:
+#        MAIL_USERNAME  = the sending address, e.g. you@gmail.com
+#        MAIL_PASSWORD  = the app password
+#        MAIL_TO        = where to send it (may be the same address)
+#   3. That is it. It runs daily at 05:00 SAST, and can also be triggered by hand
+#      from the Actions tab ("Run workflow").
+#
+# Without those secrets the job still runs and prints the digest into the run
+# log, so it degrades to "read the log" rather than failing silently.
+
+name: personal-digest
+
+on:
+  schedule:
+    # 03:00 UTC = 05:00 SAST. GitHub's scheduler is best-effort; a delay of a few
+    # minutes, occasionally more, is normal.
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days ahead to include"
+        required: false
+        default: "10"
+
+permissions:
+  contents: read
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build the digest
+        env:
+          DAYS: ${{ inputs.days || '10' }}
+        run: |
+          python3 scripts/personal_digest.py --days "$DAYS" > digest.txt
+          python3 scripts/personal_digest.py --days "$DAYS" --subject > subject.txt
+          echo "--- digest ---"
+          cat digest.txt
+
+      - name: Email it
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python3 scripts/send_digest_email.py
