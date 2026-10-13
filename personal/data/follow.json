@@ -1,0 +1,41 @@
+{
+  "_note": "WHO AND WHAT YOU FOLLOW, for the research section of the daily email. This is the one file to edit. Every entry is a thing YOU named - nothing here was inferred or invented. Edit it by hand, or double-click MANAGE_SPORTS.bat for a menu (on other systems: python3 scripts/follow_edit.py --show, then add-news / add-team / add-competition). Removing an entry removes it from the email. See docs/SPORTS_RESEARCH.md.",
+  "_rule": "Nothing is added here that the owner did not name. An empty list is correct and stays empty; the digest says so rather than guessing.",
+
+  "news": [
+    {
+      "label": "UEFA Champions League",
+      "query": "UEFA Champions League",
+      "sport": "Football",
+      "source": "Owner, 2026-10-12: 'UEFA CHAMOPIONS LEAGEU - Search' and 'whatever i am following i get news on'."
+    }
+  ],
+
+  "competitions": [
+    {
+      "label": "UEFA Champions League",
+      "league": "uefa.champions",
+      "teams": [],
+      "_teams_note": "EMPTY ON PURPOSE. The owner said 'UEFA i only want specific teams' but did not name them, so none are invented. Add them here, or run `python3 scripts/follow_edit.py add-team uefa.champions \"Arsenal\"` (option 3 on MANAGE_SPORTS.bat). While the list is empty the digest shows every fixture in the competition and says so. Run `python3 scripts/follow_edit.py --list-teams uefa.champions` to see the teams currently in it.",
+      "source": "Owner, 2026-10-12: 'UEFA i only want specific teams'."
+    }
+  ],
+
+  "tennis": {
+    "enabled": true,
+    "tours": ["atp", "wta"],
+    "top_n": 5,
+    "max_matches": 10,
+    "_note": "Owner, 2026-10-12: 'For tennis, only give me results of top 5. Make sure we follow any tennis the top 5 are in.' The top N is read live from the tour rankings, so it follows whoever is actually in the top 5 - it is not a fixed list of names. Only matches involving a top-N player are reported, and they are reported for whichever tournament those players are in, so a top-5 player is never missed.",
+    "source": "Owner, 2026-10-12."
+  },
+
+  "settings": {
+    "news_per_follow": 3,
+    "news_max_age_days": 3,
+    "weekly_news_max_age_days": 7,
+    "request_timeout_seconds": 12,
+    "total_budget_seconds": 90,
+    "_note": "news_max_age_days is widened automatically for the weekly run. total_budget_seconds stops the whole research step if the network is slow, so the email always goes out on time."
+  }
+}

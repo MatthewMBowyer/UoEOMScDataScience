@@ -202,8 +202,11 @@ def test_moving_holidays_are_computed() -> None:
 
 
 def run_digest(today: str, days: int = 10) -> str:
+    # --no-research keeps the suite offline and deterministic: the digest's own
+    # content is what these tests pin, and the research layer has its own tests.
     return subprocess.run(
-        [sys.executable, "scripts/personal_digest.py", "--today", today, "--days", str(days)],
+        [sys.executable, "scripts/personal_digest.py", "--today", today,
+         "--days", str(days), "--no-research"],
         capture_output=True, text=True, check=True,
     ).stdout
 
@@ -261,7 +264,7 @@ def test_html_email_is_a_real_alternative() -> None:
 
     html = subprocess.run(
         [sys.executable, "scripts/personal_digest.py", "--today", "2026-10-05",
-         "--days", "10", "--html"],
+         "--days", "10", "--html", "--no-research"],
         capture_output=True, text=True, check=True,
     ).stdout
     text = run_digest("2026-10-05")
@@ -542,7 +545,8 @@ def test_chatting_derivations_consistent() -> None:
     check("AC-125 no stale 2969-day figure in good_hubby.ics", "2969" not in ics_src)
     # The digest uses the same data (same source file), so it cannot disagree.
     digest = subprocess.run(
-        [sys.executable, "scripts/personal_digest.py", "--today", "2026-12-01", "--days", "60"],
+        [sys.executable, "scripts/personal_digest.py", "--today", "2026-12-01",
+         "--days", "60", "--no-research"],
         capture_output=True, text=True).stdout
     check("AC-125 the digest carries no stale chatting value",
           "2016-11-01" not in digest and "2969" not in digest)
@@ -597,7 +601,7 @@ def test_checkin_reminders() -> None:
     check("AC-126 the digest renders a check-in line",
           "CHECK-IN" in subprocess.run(
               [sys.executable, "scripts/personal_digest.py",
-               "--today", "2026-10-07", "--days", "20"],
+               "--today", "2026-10-07", "--days", "20", "--no-research"],
               capture_output=True, text=True).stdout)
 
 

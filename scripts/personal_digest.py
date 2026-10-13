@@ -28,6 +28,7 @@ os.chdir(ROOT)
 
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from build_personal import d, load, resolve_moving, nice, next_checkin_dates  # noqa: E402
+import follow_research as FR  # noqa: E402
 
 
 def collect(sports: dict, hubby: dict, today: dt.date, horizon: dt.date):
@@ -82,7 +83,10 @@ def collect(sports: dict, hubby: dict, today: dt.date, horizon: dt.date):
     return events, sorted(days), sorted(milestones)
 
 
-def render(sports: dict, hubby: dict, today: dt.date, days: int) -> str:
+def render(sports: dict, hubby: dict, today: dt.date, days: int,
+           research: dict | None = None) -> str:
+    """The plain-text digest. `research` is optional so the tests can render
+    without touching the network; pass None and the block is simply absent."""
     horizon = today + dt.timedelta(days=days)
     events, holidays, milestones = collect(sports, hubby, today, horizon)
     tz = hubby["timezone_label"]
@@ -106,6 +110,14 @@ def render(sports: dict, hubby: dict, today: dt.date, days: int) -> str:
     else:
         out.append("  Nothing in this window.")
     out.append("")
+
+    # Research: news on what you follow, fixtures, and the tennis top-5 results.
+    # Built before this call and passed in, so rendering stays pure and testable.
+    if research:
+        block = FR.render_text(research)
+        if block.strip():
+            out.append(block.rstrip())
+            out.append("")
 
     out.append("SPECIAL DAYS")
     if milestones:
@@ -179,7 +191,8 @@ def _section(title: str, rows: str, empty: str) -> str:
       </td></tr>"""
 
 
-def render_html(sports: dict, hubby: dict, today: dt.date, days: int) -> str:
+def render_html(sports: dict, hubby: dict, today: dt.date, days: int,
+                research: dict | None = None) -> str:
     """The same digest as `render()`, as an email-safe HTML alternative."""
     horizon = today + dt.timedelta(days=days)
     events, holidays, milestones = collect(sports, hubby, today, horizon)
@@ -220,6 +233,18 @@ def render_html(sports: dict, hubby: dict, today: dt.date, days: int) -> str:
                     f'Channel numbers are not shown: none could be verified. '
                     f'<a href="{esc(guide)}" style="color:{ACCENT}">Use the TV guide</a>.</p>')
     sport = _section("Sport", "".join(rows), "Nothing in this window.")
+
+    # Research: news, fixtures and the tennis top-5. Three separate sections so
+    # each can be scanned on its own, and so an empty one simply disappears.
+    follow = ""
+    if research:
+        blocks = FR.render_html(research, INK, MUTED, LINE, ACCENT, SURFACE, ACCENT_SOFT)
+        if blocks["news"]:
+            follow += _section("What you follow", blocks["news"], "")
+        if blocks["fixtures"]:
+            follow += _section("Fixtures", blocks["fixtures"], "")
+        if blocks["tennis"]:
+            follow += _section("Tennis", blocks["tennis"], "")
 
     # Special days
     rows = []
@@ -285,6 +310,7 @@ def render_html(sports: dict, hubby: dict, today: dt.date, days: int) -> str:
           <strong>{n}</strong> thing{'s' if n != 1 else ''} coming up</div>
       </td></tr>
       {sport}
+      {follow}
       {special}
       {checkin}
       <tr><td style="padding:26px 28px 24px">
@@ -311,23 +337,39 @@ def main() -> int:
     ap.add_argument("--today", help="freeze the clock (YYYY-MM-DD), for tests")
     ap.add_argument("--subject", action="store_true", help="print the email subject only")
     ap.add_argument("--html", action="store_true", help="print the HTML email body instead of text")
+    ap.add_argument("--weekly", action="store_true",
+                    help="widen the news window to a week (used by the weekly job)")
+    ap.add_argument("--no-research", action="store_true",
+                    help="skip the news/fixtures/tennis fetches (offline, fast)")
     args = ap.parse_args()
 
     today = dt.date.fromisoformat(args.today) if args.today else dt.date.today()
     sports = load("sports.json")
     hubby = load("good_hubby.json")
 
+    # The subject is a one-line summary and the workflow runs it as a separate
+    # invocation; gathering research here would repeat every fetch for a number
+    # in a subject line, so it counts the calendar only.
     if args.subject:
         events, holidays, _ = collect(sports, hubby, today, today + dt.timedelta(days=args.days))
         n = len(events) + len(holidays)
         print(f"Reminders: {n} thing{'s' if n != 1 else ''} in the next {args.days} days")
         return 0
 
+    # Research is best-effort and never fatal: gather() swallows every network
+    # error into a note, so a dead source cannot stop the email going out.
+    research = None
+    if not args.no_research:
+        try:
+            research = FR.gather(FR.load_follow(), weekly=args.weekly)
+        except Exception as exc:  # noqa: BLE001 - a reminder must still be sent
+            print(f"NOTE: research unavailable ({type(exc).__name__}: {exc})", file=sys.stderr)
+
     if args.html:
-        print(render_html(sports, hubby, today, args.days))
+        print(render_html(sports, hubby, today, args.days, research))
         return 0
 
-    print(render(sports, hubby, today, args.days))
+    print(render(sports, hubby, today, args.days, research))
     return 0
 
 

@@ -397,8 +397,15 @@ The workflow is on GitHub, the secrets are in place, and a test run has arrived.
 It runs daily at **05:00 SAST** from GitHub's scheduler — your PC does not need to
 be on.
 
+There is now also a **weekly** digest, Sundays at 07:00 SAST, which looks 14 days
+ahead instead of 10 and reaches back 7 days for news instead of 3. Same script,
+same follow list.
+
 To see one immediately: repo → **Actions** → **personal-digest** → **Run
-workflow**. That is also the fastest way to check after any change.
+workflow**. That is also the fastest way to check after any change. Or, to build
+it on your own PC right now without waiting for GitHub, double-click
+`RUN_DIGEST_NOW.bat` — it opens the result in your browser. That one does not
+send email.
 
 ### What the email looks like
 
@@ -408,6 +415,12 @@ It matches the site's colours and has one card per event, with the live one
 highlighted and "on now" or "in 2d" as a badge. The plain-text version is
 identical in content and is what any client that cannot render HTML shows.
 
+Below the calendar it reports on **what you follow** — headlines for the topics
+you named, fixtures for the competitions you follow, and the tennis top-5 results.
+See `docs/SPORTS_RESEARCH.md` for what that covers and how to add or remove the
+people and teams. Short version: edit `personal/data/follow.json`, or
+double-click `MANAGE_SPORTS.bat`.
+
 The HTML is built by `scripts/send_digest_email.py` from the same data as the
 text, so the two cannot drift apart, and no workflow change was needed to add it.
 
@@ -415,10 +428,14 @@ How it runs:
 
 1. The workflow `.github/workflows/personal-digest.yml` runs on GitHub's own
    scheduler, not on your PC. Your machine does not need to be on.
-2. It runs daily at **05:00 SAST** (03:00 UTC). GitHub's scheduler is
-   best-effort, so a few minutes' delay — occasionally more — is normal.
+2. It runs daily at **05:00 SAST** (03:00 UTC), and weekly at **07:00 SAST**
+   (05:00 UTC) on Sundays. GitHub's scheduler is best-effort, so a few minutes'
+   delay — occasionally more — is normal.
 3. It reads `personal/data/*.json`, builds the digest with
-   `scripts/personal_digest.py`, and emails it directly via SMTP.
+   `scripts/personal_digest.py`, and emails it directly via SMTP. The research
+   step takes 15-20 seconds and is capped at 90 seconds inside the script and
+   5 minutes per job; if a source is slow or down the email still goes out and
+   names the source that failed.
 
 If you ever move to a different mail account, the three secrets are
 `MAIL_USERNAME` (the sending address), `MAIL_PASSWORD` (an **app password**, not

@@ -29,3 +29,16 @@ secrets.json
 !scripts/send_digest_email.py
 !tests/verify_personal.py
 !tests/verify_gen3.py
+
+# The sports-research pass (2026-10-12). Same reasoning again: the follow-list
+# checks are a deliverable, not one-off maintenance tooling.
+!tests/verify_research.py
+
+# RUN_DIGEST_NOW.bat writes its preview here. It must not appear as a change in
+# the delivered site, and the file is regenerated on every double-click.
+output/
+
+# The workflow writes these in the runner and emails them; they are build
+# artefacts of one run, never part of the site.
+digest.txt
+subject.txt

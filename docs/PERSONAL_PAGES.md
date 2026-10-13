@@ -179,9 +179,12 @@ Two kinds of holiday, handled differently on purpose:
 A static site cannot send email, so the site does not try. Instead a GitHub
 Actions workflow runs once a day, builds a short digest, and emails it:
 
-- Workflow: `.github/workflows/personal-digest.yml` — daily at 05:00 SAST.
+- Workflow: `.github/workflows/personal-digest.yml` — daily at 05:00 SAST, plus a
+  weekly summary at 07:00 SAST on Sundays.
 - Digest: `scripts/personal_digest.py`
 - Sending: `scripts/send_digest_email.py`
+- Research: `scripts/follow_research.py` — headlines, fixtures and tennis for
+  whatever the owner follows. See `docs/SPORTS_RESEARCH.md`.
 
 The email is **multipart/alternative**: a styled HTML version and a plain-text
 fallback, so it renders as a proper email in Gmail and still arrives readable
@@ -189,6 +192,12 @@ anywhere. The HTML is rendered by `send_digest_email.py` from the same data the
 text version uses, so the two can never disagree, and the workflow needs no
 extra step. If the HTML render ever fails the mail falls back to plain text
 rather than not arriving.
+
+The digest carries the fixed 16 events, then whatever the owner follows, then the
+special days and the check-in line. The research half is best-effort: if a source
+is down the email still arrives and names the source that failed. It is never
+written into `sports.html`, because a committed page would be stale the moment it
+was built — live scores belong in a message, not a static file.
 
 GitHub Actions is free at this volume, so this costs nothing. **This is the only
 reason the workflow directory exists**, and the AC-57 check was narrowed to

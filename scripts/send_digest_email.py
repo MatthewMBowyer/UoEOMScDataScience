@@ -40,7 +40,23 @@ def build_html() -> str | None:
         os.chdir(os.path.dirname(_HERE))
         sports = PD.load("sports.json")
         hubby = PD.load("good_hubby.json")
-        return PD.render_html(sports, hubby, dt.date.today(), 10)
+        # The window must match the one the workflow used for digest.txt, or the
+        # two parts of the same email would disagree about what is coming up.
+        days = int(os.environ.get("DAYS", "10") or "10")
+        weekly = bool(os.environ.get("WEEKLY", "").strip())
+        # Gmail renders the HTML part, so research has to be gathered HERE too:
+        # rendering without it would send a styled body missing everything the
+        # plain-text part contains. Best-effort, exactly as in personal_digest.
+        research = None
+        try:
+            research = PD.FR.gather(PD.FR.load_follow(), weekly=weekly)
+        except Exception as exc:  # noqa: BLE001 - never block the email
+            print(
+                f"NOTE: research unavailable in the HTML body "
+                f"({type(exc).__name__}: {exc})",
+                flush=True,
+            )
+        return PD.render_html(sports, hubby, dt.date.today(), days, research)
     except Exception as exc:  # noqa: BLE001 - never block the email on cosmetics
         print(
             f"NOTE: HTML body unavailable ({type(exc).__name__}: {exc}); "
