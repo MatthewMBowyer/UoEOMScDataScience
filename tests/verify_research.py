@@ -44,6 +44,7 @@ import json
 import os
 import sys
 import tempfile
+import shutil
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
@@ -636,21 +637,29 @@ def test_workflow_supports_the_weekly_run() -> None:
               (daily, wk) == (want_daily, want_weekly),
               f"digest={daily} weekly={wk}")
 
-    # Both jobs must hand the sender a file, or the email would be empty.
+    # Both jobs must hand the sender a file, or the email would be empty. The
+    # build step now writes all three parts itself via --out-dir, so the names
+    # are checked against the script that writes them as well as the sender.
     sender = open("scripts/send_digest_email.py", encoding="utf-8").read()
-    check("AC-R12 the sender reads the digest the build step wrote",
-          "digest.txt" in sender and "digest.txt" in wf)
-    check("AC-R12 the sender reads the subject the build step wrote",
-          "subject.txt" in sender and "subject.txt" in wf)
+    script = open(os.path.join(ROOT, "scripts", "personal_digest.py"),
+                  encoding="utf-8").read()
+    check("AC-R12 the sender reads the digest and subject the build wrote",
+          all(n in sender for n in ("digest.txt", "subject.txt", "digest.html")),
+          "sender file reads")
+    check("AC-R12 the build step writes those same files",
+          all(f'"{n}"' in script for n in ("digest.txt", "subject.txt", "digest.html")),
+          "writes digest.txt, digest.html, subject.txt")
+    check("AC-R12 the workflow delegates all three to one pass",
+          wf.count("--out-dir .") == 2, f"count={wf.count('--out-dir .')}")
 
 
 def test_emailed_html_body_carries_the_research() -> None:
-    """Gmail renders the HTML part, so the sender must include research itself.
+    """The two parts of one email must be the same digest.
 
     This is the bug this test exists for: `send_digest_email.build_html()` called
     `render_html` without a research argument, so the styled body the owner
-    actually sees was missing every headline, fixture and tennis result that the
-    plain-text part carried.
+    actually sees (Gmail renders HTML) was missing every headline, fixture and
+    tennis result the plain-text part carried.
     """
     import importlib.util
 
@@ -660,27 +669,42 @@ def test_emailed_html_body_carries_the_research() -> None:
         "sde_probe", os.path.join(ROOT, "scripts", "send_digest_email.py"))
     mod = importlib.util.module_from_spec(spec)
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
-    spec.loader.exec_module(mod)
 
-    html = mod.build_html()
-    check("AC-R13 the sender builds an HTML body", bool(html), str(type(html)))
-    if not html:
-        return
-    # The follow block is populated only when research was actually gathered,
-    # and the shipped follow.json names UEFA, so a real run must show it.
-    check("AC-R13 the HTML body carries the research sections",
-          "What you follow" in html and "Fixtures" in html,
-          f"len={len(html)}")
-    check("AC-R13 the HTML body is not the research-less rendering",
-          "UEFA Champions League" in html, "UEFA named in the styled body")
+    prev = os.getcwd()
+    os.chdir(ROOT)
+    tmp = tempfile.mkdtemp()
+    try:
+        # 1. With no digest.html the sender renders one itself, with research.
+        os.chdir(tmp)
+        spec.loader.exec_module(mod)
+        html = mod.build_html()
+        check("AC-R13 the sender builds an HTML body", bool(html), str(type(html)))
+        if html:
+            check("AC-R13 the HTML body carries the research sections",
+                  "What you follow" in html and "Fixtures" in html,
+                  f"len={len(html)}")
+            check("AC-R13 the HTML body is not the research-less rendering",
+                  "UEFA Champions League" in html, "UEFA named in the styled body")
 
-    # The window comes from the environment so both parts of one email agree.
-    os.environ["DAYS"] = "14"
-    long_html = mod.build_html()
-    check("AC-R13 the sender honours the DAYS window", bool(long_html))
-    check("AC-R13 a wider window is not shorter than a narrow one",
-          len(long_html or "") >= len(html) - 200,
-          f"14d={len(long_html or '')} 10d={len(html)}")
+        # 2. A prebuilt digest.html wins, and is used verbatim, so the workflow
+        #    renders once and the two parts cannot disagree.
+        os.chdir(tmp)
+        marker = "<html><body>PREBUILT-DIGEST-MARKER</body></html>"
+        with open("digest.html", "w", encoding="utf-8") as f:
+            f.write(marker)
+        check("AC-R13 a prebuilt digest.html is used verbatim",
+              mod.build_html() == marker, "used verbatim")
+
+        # 3. A blank digest.html must NOT be sent: fall back to rendering.
+        with open("digest.html", "w", encoding="utf-8") as f:
+            f.write("   \n")
+        fallback = mod.build_html()
+        check("AC-R13 a blank digest.html falls back to rendering",
+              bool(fallback) and "PREBUILT" not in (fallback or ""),
+              "rendered instead")
+    finally:
+        os.chdir(prev)
+        shutil.rmtree(tmp, ignore_errors=True)
     os.environ["DAYS"] = "10"
 
 
@@ -691,8 +715,28 @@ def test_sender_does_not_hardcode_the_window() -> None:
           'os.environ.get("DAYS", "10")' in src)
     check("AC-R13 the sender never renders without research",
           "render_html(sports, hubby, dt.date.today(), 10)" not in src)
-    check("AC-R13 the sender gathers research best-effort",
+    check("AC-R13 the sender gathers research best-effort as a fallback",
           "gather(PD.FR.load_follow()" in src)
+    check("AC-R13 the sender prefers the prebuilt HTML",
+          "digest.html" in src)
+
+
+def test_workflow_renders_both_parts_from_one_gather() -> None:
+    """The email must not fetch everything twice, nor let the parts diverge."""
+    wf = open(os.path.join(ROOT, ".github", "workflows", "personal-digest.yml"),
+              encoding="utf-8").read()
+    check("AC-R13 both jobs build all three parts in one pass",
+          wf.count("--out-dir .") == 2, f"count={wf.count('--out-dir .')}")
+    # The daily job must use the same window for every part it writes.
+    check("AC-R13 the daily job uses one window for all parts",
+          '--days "$DAYS" $WEEKLY --out-dir .' in wf)
+    check("AC-R13 the weekly job uses one window for all parts",
+          "--days 14 --weekly --out-dir ." in wf)
+    # Fetching the feeds once is the point: three separate runs would double the
+    # network cost and could let the text and HTML parts disagree.
+    invocations = wf.count("python3 scripts/personal_digest.py")
+    check("AC-R13 the digest script is invoked once per job, not three times",
+          invocations == 2, f"invocations={invocations}")
 
 
 def test_public_logs_never_contain_the_digest_body() -> None:
@@ -741,6 +785,7 @@ def main() -> int:
         test_workflow_supports_the_weekly_run,
         test_sender_does_not_hardcode_the_window,
         test_emailed_html_body_carries_the_research,
+        test_workflow_renders_both_parts_from_one_gather,
         test_public_logs_never_contain_the_digest_body,
     ):
         fn()

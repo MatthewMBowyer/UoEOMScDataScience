@@ -432,8 +432,10 @@ How it runs:
    (05:00 UTC) on Sundays. GitHub's scheduler is best-effort, so a few minutes'
    delay — occasionally more — is normal.
 3. It reads `personal/data/*.json`, builds the digest with
-   `scripts/personal_digest.py`, and emails it directly via SMTP. The research
-   step takes 15-20 seconds and is capped at 90 seconds inside the script and
+   `scripts/personal_digest.py`, and emails it directly via SMTP. One pass
+   gathers the research and writes all three parts the email needs
+   (`digest.txt`, `digest.html`, `subject.txt`), so the feeds are fetched once
+   (~16 seconds). The fetch is capped at 90 seconds inside the script and
    5 minutes per job; if a source is slow or down the email still goes out and
    names the source that failed.
 

@@ -341,11 +341,42 @@ def main() -> int:
                     help="widen the news window to a week (used by the weekly job)")
     ap.add_argument("--no-research", action="store_true",
                     help="skip the news/fixtures/tennis fetches (offline, fast)")
+    ap.add_argument("--out-dir",
+                    help="write digest.txt, digest.html and subject.txt into this "
+                         "directory in one pass, gathering research exactly once "
+                         "(this is what the workflow uses)")
     args = ap.parse_args()
 
     today = dt.date.fromisoformat(args.today) if args.today else dt.date.today()
     sports = load("sports.json")
     hubby = load("good_hubby.json")
+
+    # The three files the email needs come from ONE gather. Running the script
+    # three times would fetch every feed again and, worse, could produce parts
+    # that disagree about what is coming up.
+    if args.out_dir:
+        os.makedirs(args.out_dir, exist_ok=True)
+        research = None
+        if not args.no_research:
+            try:
+                research = FR.gather(FR.load_follow(), weekly=args.weekly)
+            except Exception as exc:  # noqa: BLE001 - a reminder must still be sent
+                print(f"NOTE: research unavailable ({type(exc).__name__}: {exc})",
+                      file=sys.stderr)
+        events, holidays, _ = collect(
+            sports, hubby, today, today + dt.timedelta(days=args.days))
+        n = len(events) + len(holidays)
+        parts = {
+            "digest.txt": render(sports, hubby, today, args.days, research),
+            "digest.html": render_html(sports, hubby, today, args.days, research),
+            "subject.txt": (f"Reminders: {n} thing{'s' if n != 1 else ''} "
+                            f"in the next {args.days} days"),
+        }
+        for name, body in parts.items():
+            with open(os.path.join(args.out_dir, name), "w", encoding="utf-8") as f:
+                f.write(body if body.endswith("\n") else body + "\n")
+        print(f"wrote {', '.join(sorted(parts))} to {args.out_dir}")
+        return 0
 
     # The subject is a one-line summary and the workflow runs it as a separate
     # invocation; gathering research here would repeat every fetch for a number

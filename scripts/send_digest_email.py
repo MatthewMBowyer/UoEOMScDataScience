@@ -32,7 +32,24 @@ SMTP_PORT = 465
 
 
 def build_html() -> str | None:
-    """The styled version of the same digest, or None if it cannot be built."""
+    """The styled version of the same digest, or None if it cannot be built.
+
+    Prefers `digest.html`, which the workflow renders from the SAME research
+    gather that produced `digest.txt`. Rendering it here instead would fetch
+    everything a second time and could disagree with the plain-text part about
+    what is coming up, so the file wins when it is there.
+    """
+    try:
+        with open("digest.html", encoding="utf-8") as f:
+            candidate = f.read()
+        # An empty or whitespace-only file is treated as absent: a run that
+        # rendered nothing must fall back, not send a blank body.
+        if candidate.strip():
+            return candidate
+    except OSError:
+        pass
+
+    # Standalone use (RUN_DIGEST_NOW.bat, manual runs, the tests): render here.
     # PD.load() reads personal/data/*.json relative to the cwd, so the build runs
     # from the repo root and the caller's cwd is put back afterwards.
     prev = os.getcwd()
@@ -44,9 +61,9 @@ def build_html() -> str | None:
         # two parts of the same email would disagree about what is coming up.
         days = int(os.environ.get("DAYS", "10") or "10")
         weekly = bool(os.environ.get("WEEKLY", "").strip())
-        # Gmail renders the HTML part, so research has to be gathered HERE too:
-        # rendering without it would send a styled body missing everything the
-        # plain-text part contains. Best-effort, exactly as in personal_digest.
+        # Gmail renders the HTML part, so research has to be gathered HERE too
+        # when there is no prebuilt file: rendering without it would send a
+        # styled body missing everything the plain-text part contains.
         research = None
         try:
             research = PD.FR.gather(PD.FR.load_follow(), weekly=weekly)

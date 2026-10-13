@@ -191,8 +191,13 @@ with an optional day count and a "weekly" checkbox.
 
 You asked to check the time costs on GitHub, in case the runs ran out.
 
-- **Measured locally: 15-20 seconds** for a full run with research on. Most of
+- **Measured locally: ~16 seconds** for a full run with research on. Most of
   that is waiting on the news feed.
+- The email has two bodies (plain text and HTML) but the feeds are fetched
+  **once**: one `--out-dir` pass writes `digest.txt`, `digest.html` and
+  `subject.txt` together. Running the script separately for each part used to
+  cost about twice this, and could have let the two bodies disagree about what
+  is coming up.
 - Each job now has `timeout-minutes: 5`, so a hung source cannot burn the budget.
 - Inside the script, `total_budget_seconds` (90 by default) is a tighter cap: once
   it is spent, remaining fetches are skipped and reported as such.

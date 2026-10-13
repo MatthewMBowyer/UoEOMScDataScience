@@ -71,8 +71,10 @@ jobs:
           DAYS: ${{ inputs.days || '10' }}
           WEEKLY: ${{ inputs.weekly && '--weekly' || '' }}
         run: |
-          python3 scripts/personal_digest.py --days "$DAYS" $WEEKLY > digest.txt
-          python3 scripts/personal_digest.py --days "$DAYS" --subject > subject.txt
+          # One pass writes all three parts from a single research gather, so
+          # the text and HTML bodies are the same digest and the feeds are
+          # fetched once (~16s rather than ~32s).
+          python3 scripts/personal_digest.py --days "$DAYS" $WEEKLY --out-dir .
           # This repository is PUBLIC and Actions logs are readable by anyone, so
           # the digest body must never be echoed here: it carries the private
           # good_hubby reminders. Print shape only, enough to debug a failure.
@@ -84,8 +86,8 @@ jobs:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
-          # The HTML part is rendered by the sender, so it needs the same window
-          # as digest.txt above; otherwise the two parts of one email disagree.
+          # digest.html is already rendered above; these are the fallback window
+          # if that file is ever missing.
           DAYS: ${{ inputs.days || '10' }}
           WEEKLY: ${{ inputs.weekly && '--weekly' || '' }}
         run: python3 scripts/send_digest_email.py
@@ -104,8 +106,8 @@ jobs:
 
       - name: Build the weekly digest
         run: |
-          python3 scripts/personal_digest.py --days 14 --weekly > digest.txt
-          python3 scripts/personal_digest.py --days 14 --subject > subject.txt
+          # One pass, single research gather; see the daily job above.
+          python3 scripts/personal_digest.py --days 14 --weekly --out-dir .
           # Public repo, world-readable logs: shape only, never the body.
           echo "--- digest summary ---"
           echo "lines: $(wc -l < digest.txt), bytes: $(wc -c < digest.txt)"

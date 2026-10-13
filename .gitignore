@@ -42,3 +42,4 @@ output/
 # artefacts of one run, never part of the site.
 digest.txt
 subject.txt
+digest.html
