@@ -206,16 +206,20 @@ fails if one ever does.
 
 ### Turning the email on (one time, by the owner)
 
-Without this the job still runs and prints the digest into the run log — it just
-does not email it, and it does not fail.
+Without this the job still runs and reports the digest's line count — it just
+does not email it, and it does not fail. It deliberately does not print the
+digest itself: the repository is public and Actions logs are world-readable, so
+printing it would publish your `good_hubby` reminders. Run `RUN_DIGEST_NOW.bat`
+on your PC to read the digest without the email.
 
-0. Put the workflow file on GitHub first. It is **not there yet**: the token used
-   to publish the site can write code but not workflow files (GitHub rejects it
-   with "without `workflow` scope", and the API route returns 403), so
-   `.github/workflows/personal-digest.yml` exists on your PC but not on the
-   remote. Repo → Add file → Create new file, name it exactly
+0. The workflow file is already on GitHub — it has been running daily since
+   9 October 2026. The note below is kept only in case you ever need to restore
+   it: `.github/workflows/personal-digest.yml` must exist on the **default
+   branch** for GitHub to see it at all, and it must be at the repository
+   **root**; a copy nested inside a subfolder is ignored by Actions. If you ever
+   have to re-add it by hand: Repo → Add file → Create new file, name it exactly
    `.github/workflows/personal-digest.yml`, paste the file's contents, commit to
-   `main`. Everything the workflow calls is already pushed.
+   `main`. Everything the workflow calls is pushed with the site.
 1. Use a mail account that allows SMTP with an **app password**. For Gmail:
    Google Account → Security → 2-Step Verification → App passwords. A normal
    account password will not work.
@@ -234,7 +238,7 @@ To stop the emails, delete the workflow file or disable it in the Actions tab.
 
 ### If you would rather not set up email
 
-Nothing breaks. Either read the digest in the Actions run log, or just open the
+Nothing breaks. Either run `RUN_DIGEST_NOW.bat` on your PC, or just open the
 two pages — `good_hubby.html` already lists everything upcoming, in order, and
 the `.ics` files below subscribe into a real calendar.
 

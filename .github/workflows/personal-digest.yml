@@ -17,8 +17,11 @@
 #   3. That is it. It runs daily at 05:00 SAST, and can also be triggered by hand
 #      from the Actions tab ("Run workflow").
 #
-# Without those secrets the job still runs and prints the digest into the run
-# log, so it degrades to "read the log" rather than failing silently.
+# Without those secrets the job still runs, but it deliberately does NOT print
+# the digest: this repository is public and Actions logs are world-readable, and
+# the digest carries the private good_hubby reminders. The run reports a line
+# count instead. To read the digest without the email, run RUN_DIGEST_NOW.bat on
+# your own PC.
 
 name: personal-digest
 
@@ -70,8 +73,11 @@ jobs:
         run: |
           python3 scripts/personal_digest.py --days "$DAYS" $WEEKLY > digest.txt
           python3 scripts/personal_digest.py --days "$DAYS" --subject > subject.txt
-          echo "--- digest ---"
-          cat digest.txt
+          # This repository is PUBLIC and Actions logs are readable by anyone, so
+          # the digest body must never be echoed here: it carries the private
+          # good_hubby reminders. Print shape only, enough to debug a failure.
+          echo "--- digest summary ---"
+          echo "lines: $(wc -l < digest.txt), bytes: $(wc -c < digest.txt)"
 
       - name: Email it
         env:
@@ -100,8 +106,9 @@ jobs:
         run: |
           python3 scripts/personal_digest.py --days 14 --weekly > digest.txt
           python3 scripts/personal_digest.py --days 14 --subject > subject.txt
-          echo "--- digest ---"
-          cat digest.txt
+          # Public repo, world-readable logs: shape only, never the body.
+          echo "--- digest summary ---"
+          echo "lines: $(wc -l < digest.txt), bytes: $(wc -c < digest.txt)"
 
       - name: Email it
         env:

@@ -695,6 +695,25 @@ def test_sender_does_not_hardcode_the_window() -> None:
           "gather(PD.FR.load_follow()" in src)
 
 
+def test_public_logs_never_contain_the_digest_body() -> None:
+    """The site repo is public, so its Actions logs are world-readable.
+
+    The workflow used to `cat digest.txt` into the run log, which published the
+    private good_hubby reminders. The job must report shape, not content.
+    """
+    wf = open(os.path.join(ROOT, ".github", "workflows", "personal-digest.yml"),
+              encoding="utf-8").read()
+    check("AC-R14 the workflow never cats the digest body",
+          "cat digest.txt" not in wf)
+    check("AC-R14 the workflow reports only shape",
+          "bytes: $(wc -c < digest.txt)" in wf)
+    # A step that echoed the body some other way would defeat the fix.
+    check("AC-R14 no step dumps the digest via another command",
+          "cat digest.txt" not in wf and "cat subject.txt" not in wf)
+    check("AC-R14 the workflow says why the body is withheld",
+          "PUBLIC" in wf or "public" in wf)
+
+
 def main() -> int:
     print("=== research layer verification ===\n")
     for fn in (
@@ -722,6 +741,7 @@ def main() -> int:
         test_workflow_supports_the_weekly_run,
         test_sender_does_not_hardcode_the_window,
         test_emailed_html_body_carries_the_research,
+        test_public_logs_never_contain_the_digest_body,
     ):
         fn()
         print()

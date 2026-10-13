@@ -442,7 +442,10 @@ If you ever move to a different mail account, the three secrets are
 the account password — Gmail needs 2-Step Verification on first, then Google
 Account → Security → App passwords), and `MAIL_TO` (where to send it; may be the
 same address). They live at Settings → Secrets and variables → Actions. Without
-them the job still runs and prints the digest into the run log.
+them the job still runs and reports how many lines the digest has, but it does
+**not** print the digest itself: the repository is public, Actions logs are
+world-readable, and the digest contains your private `good_hubby` reminders. To
+read the digest without receiving the email, run `RUN_DIGEST_NOW.bat` on your PC.
 
 To stop the emails, disable the `personal-digest` workflow in the Actions tab.
 
