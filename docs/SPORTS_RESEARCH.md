@@ -79,6 +79,24 @@ python3 scripts/follow_edit.py --tennis enabled off
 Open `personal/data/follow.json` in any text editor. Every list has a comment
 explaining it. Save, and the next email uses it.
 
+### Making the change reach the email
+
+This matters, and it is easy to miss. The options above edit the copy of
+`follow.json` in your project folder on your PC. The daily email is built in the
+cloud, by GitHub Actions, from the copy in the `UoEOMScDataScience` repository.
+Editing your local file changes nothing about the email until that change is in
+the repository, so:
+
+- Your local copy and the emailed digest can disagree silently. You change a
+  team, see the old one in tomorrow's email, and nothing looks broken.
+- Ask whoever maintains the site to copy `personal/data/follow.json` into the
+  `UoEOMScDataScience` repository and commit it. That single file is the only
+  thing the cloud job reads to decide what to follow.
+
+`RUN_DIGEST_NOW.bat` (below) reads your **local** file, so it is the quickest way
+to see the effect of an edit before it is published. If the preview here and the
+emailed digest disagree, this is why.
+
 ### The competition ids
 
 Use these with `add-competition` and `add-team`:
