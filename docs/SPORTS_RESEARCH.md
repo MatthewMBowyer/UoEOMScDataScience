@@ -194,7 +194,7 @@ There are now two schedules, both in `.github/workflows/personal-digest.yml`:
 
 | When | What |
 |---|---|
-| Daily 05:00 SAST | The normal digest, 10 days ahead, 3 days of news |
+| Daily, set for 05:00 SAST (lands nearer 11:00-12:00) | The normal digest, 10 days ahead, 3 days of news |
 | Sunday 07:00 SAST | The weekly digest, 14 days ahead, 7 days of news |
 
 The weekly one looks further ahead and reaches back a week for news, so it is a
@@ -223,8 +223,12 @@ You asked to check the time costs on GitHub, in case the runs ran out.
   costs the sections that would otherwise have worked.
 - Both runs are well inside the free minutes for a public repository.
 
-GitHub's own scheduler is best-effort, so a delay of a few minutes is normal. It
-is not a precise alarm clock.
+GitHub's own scheduler is best-effort, and on this repository it is much later
+than the cron says. The job is set for 05:00 SAST, but the runs on 10-13 October
+all started between 11:21 and 12:10 SAST — six to seven hours late, consistently,
+not minutes. Treat the email as "sometime late morning", and use
+`RUN_DIGEST_NOW.bat` when you want it at a specific moment. The time is not a
+precise alarm clock.
 
 ---
 

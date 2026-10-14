@@ -27,8 +27,10 @@ name: personal-digest
 
 on:
   schedule:
-    # 03:00 UTC = 05:00 SAST, daily. GitHub's scheduler is best-effort; a delay
-    # of a few minutes, occasionally more, is normal.
+    # 03:00 UTC = 05:00 SAST, daily. GitHub's scheduler is best-effort and, in
+    # practice on this repository, runs land 6-7 hours late (around midday
+    # SAST) rather than minutes late. Treat the time as "sometime in the
+    # morning", not an alarm clock.
     - cron: "0 3 * * *"
     # 05:00 UTC = 07:00 SAST on Sundays. Same job, wider news window and a
     # 14-day look-ahead, so the weekly one is a summary rather than a repeat.
@@ -54,7 +56,7 @@ jobs:
     # manual weekly run sends one email rather than two.
     if: github.event.schedule != '0 5 * * 0' && !inputs.weekly
     runs-on: ubuntu-latest
-    # Research makes a handful of HTTP calls. Measured at ~18s locally, so 5
+    # Research makes a handful of HTTP calls. Measured at ~16s locally, so 5
     # minutes is generous headroom; the cap stops a hung source from burning
     # the job's time budget. Inside the script, total_budget_seconds is the
     # tighter bound.
@@ -80,6 +82,36 @@ jobs:
           # good_hubby reminders. Print shape only, enough to debug a failure.
           echo "--- digest summary ---"
           echo "lines: $(wc -l < digest.txt), bytes: $(wc -c < digest.txt)"
+
+      # A cheap connectivity probe: it turns "the email never arrived" into a
+      # clear DNS/TLS answer in the run log, without touching the mail account.
+      - name: Test Gmail SMTP connection
+        run: |
+          python3 - <<'PY'
+          import socket
+          import ssl
+
+          host = "smtp.gmail.com"
+
+          for port in (465, 587):
+              print(f"\nTesting {host}:{port}", flush=True)
+
+              try:
+                  with socket.create_connection((host, port), timeout=10) as sock:
+                      print(f"Port {port}: TCP connected", flush=True)
+
+                      if port == 465:
+                          context = ssl.create_default_context()
+
+                          with context.wrap_socket(
+                              sock, server_hostname=host
+                          ) as tls:
+                              print(f"Port {port}: TLS successful", flush=True)
+
+              except Exception as exc:
+                  print(f"Port {port}: {type(exc).__name__}: {exc}", flush=True)
+
+          PY
 
       - name: Email it
         env:

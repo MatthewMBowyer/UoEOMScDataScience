@@ -394,8 +394,9 @@ a stale report, a missing viewport, four-anchor shortfall) and for nothing else.
 
 You asked when the next email arrives. Short answer: **it is set up and it sends.**
 The workflow is on GitHub, the secrets are in place, and a test run has arrived.
-It runs daily at **05:00 SAST** from GitHub's scheduler — your PC does not need to
-be on.
+It is set for daily at **05:00 SAST** from GitHub's scheduler — your PC does not
+need to be on — but in practice it lands in the late morning (see the note under
+"How it runs" below).
 
 There is now also a **weekly** digest, Sundays at 07:00 SAST, which looks 14 days
 ahead instead of 10 and reaches back 7 days for news instead of 3. Same script,
@@ -428,9 +429,11 @@ How it runs:
 
 1. The workflow `.github/workflows/personal-digest.yml` runs on GitHub's own
    scheduler, not on your PC. Your machine does not need to be on.
-2. It runs daily at **05:00 SAST** (03:00 UTC), and weekly at **07:00 SAST**
-   (05:00 UTC) on Sundays. GitHub's scheduler is best-effort, so a few minutes'
-   delay — occasionally more — is normal.
+2. It is set to run daily at **05:00 SAST** (03:00 UTC), and weekly at
+   **07:00 SAST** (05:00 UTC) on Sundays. GitHub's scheduler is best-effort, and
+   in practice it is far later than that: the runs on 10-13 October started
+   between 11:21 and 12:10 SAST, six to seven hours after the cron time. Expect
+   the email in the late morning, not at 05:00.
 3. It reads `personal/data/*.json`, builds the digest with
    `scripts/personal_digest.py`, and emails it directly via SMTP. One pass
    gathers the research and writes all three parts the email needs
