@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-15T07:57:45.615400+00:00",
+  "generated_at_utc": "2026-10-16T07:46:44.438174+00:00",
   "source_url": "https://ampadel.co.za/results",
   "categories_requested": [
     "Men's",
@@ -1917,7 +1917,7 @@
           "team_2_alias": "Stephan, Divan",
           "score": "5-7 6-3 1-6",
           "balls": "Awie Van Rensburg / Justin Hughhes",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Men's",
@@ -3493,7 +3493,7 @@
           "team_2_alias": "Hanli, Carolyn",
           "score": "1-6 6-1 6-2",
           "balls": "Monica Terblanche / Marita Degener",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -4775,7 +4775,7 @@
           "team_2_alias": "Gabriella, Jade",
           "score": "6-2 6-2",
           "balls": "Charmaine Van Wyk / Lee-anne Smith",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Ladies",
@@ -5518,6 +5518,19 @@
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
           "date": "Friday, 20 November 2026",
+          "team_1": "Ilse Muller / Damion Podges",
+          "team_2": "Ray Morgan / Wendy Morgan",
+          "team_1_alias": "Damion, Ilse",
+          "team_2_alias": "Wendy, Ray",
+          "score": "0-6 0-6",
+          "balls": "Ilse Muller / Damion Podges",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 20 November 2026",
           "team_1": "Mozel Van Niekerk / Gordon Beard",
           "team_2": "Pauline Collinson / Brett Collinson",
           "team_1_alias": "Mozel, Gordon",
@@ -5543,13 +5556,13 @@
           "category": "Mixed",
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
-          "date": "Friday, 20 November 2026",
-          "team_1": "Ilse Muller / Damion Podges",
-          "team_2": "Ray Morgan / Wendy Morgan",
-          "team_1_alias": "Damion, Ilse",
-          "team_2_alias": "Wendy, Ray",
-          "score": "0-6 0-6",
-          "balls": "Ilse Muller / Damion Podges",
+          "date": "Friday, 23 October 2026",
+          "team_1": "Rowan Budhram / Liane Budhram",
+          "team_2": "Vanessa Butler / Barry Butler",
+          "team_1_alias": "Liane, Rowan",
+          "team_2_alias": "Barry, Vanessa",
+          "score": "6-2 7-5",
+          "balls": "Rowan Budhram / Liane Budhram",
           "status": "Validated"
         },
         {
@@ -5557,12 +5570,25 @@
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
           "date": "Friday, 9 October 2026",
-          "team_1": "Mozel Van Niekerk / Gordon Beard",
-          "team_2": "Janine John / Chris John",
-          "team_1_alias": "Mozel, Gordon",
-          "team_2_alias": "Janine, Chris",
-          "score": "4-6 0-6",
-          "balls": "Mozel Van Niekerk / Gordon Beard",
+          "team_1": "Vanessa Butler / Barry Butler",
+          "team_2": "Ray Morgan / Wendy Morgan",
+          "team_1_alias": "Barry, Vanessa",
+          "team_2_alias": "Wendy, Ray",
+          "score": "0-6 2-6",
+          "balls": "Vanessa Butler / Barry Butler",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 9 October 2026",
+          "team_1": "Pauline Collinson / Brett Collinson",
+          "team_2": "Ilse Muller / Damion Podges",
+          "team_1_alias": "Brett, Pauline",
+          "team_2_alias": "Damion, Ilse",
+          "score": "6-2 6-4",
+          "balls": "Pauline Collinson / Brett Collinson",
           "status": "Validated"
         },
         {
@@ -5583,6 +5609,19 @@
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
           "date": "Friday, 9 October 2026",
+          "team_1": "Mozel Van Niekerk / Gordon Beard",
+          "team_2": "Janine John / Chris John",
+          "team_1_alias": "Mozel, Gordon",
+          "team_2_alias": "Janine, Chris",
+          "score": "4-6 0-6",
+          "balls": "Mozel Van Niekerk / Gordon Beard",
+          "status": "Validated"
+        },
+        {
+          "category": "Mixed",
+          "division": "MXD Honeydew Div 3",
+          "season": "Season 2 (Current)",
+          "date": "Friday, 9 October 2026",
           "team_1": "Rowan Budhram / Liane Budhram",
           "team_2": "Chloe Smith / Matthew Bowyer",
           "team_1_alias": "Liane, Rowan",
@@ -5595,12 +5634,12 @@
           "category": "Mixed",
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
-          "date": "Friday, 9 October 2026",
+          "date": "Friday, 25 September 2026",
           "team_1": "Pauline Collinson / Brett Collinson",
-          "team_2": "Ilse Muller / Damion Podges",
+          "team_2": "Mauritz Boshoff / Surika",
           "team_1_alias": "Brett, Pauline",
-          "team_2_alias": "Damion, Ilse",
-          "score": "6-2 6-4",
+          "team_2_alias": "Surika, Mauritz",
+          "score": "6-0 6-1",
           "balls": "Pauline Collinson / Brett Collinson",
           "status": "Validated"
         },
@@ -5608,27 +5647,14 @@
           "category": "Mixed",
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
-          "date": "Friday, 9 October 2026",
-          "team_1": "Vanessa Butler / Barry Butler",
-          "team_2": "Ray Morgan / Wendy Morgan",
-          "team_1_alias": "Barry, Vanessa",
-          "team_2_alias": "Wendy, Ray",
-          "score": "0-6 2-6",
-          "balls": "Vanessa Butler / Barry Butler",
-          "status": "Validated"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 3",
-          "season": "Season 2 (Current)",
           "date": "Friday, 25 September 2026",
-          "team_1": "Ray Morgan / Wendy Morgan",
-          "team_2": "Chloe Smith / Matthew Bowyer",
-          "team_1_alias": "Wendy, Ray",
-          "team_2_alias": "Matthew, Chloe",
-          "score": "3-6 4-6",
-          "balls": "Ray Morgan / Wendy Morgan",
-          "status": "Validated"
+          "team_1": "Chene Erwee / Damien Erwee",
+          "team_2": "Mozel Van Niekerk / Gordon Beard",
+          "team_1_alias": "Chene, Damien",
+          "team_2_alias": "Mozel, Gordon",
+          "score": "",
+          "balls": "",
+          "status": "Pending"
         },
         {
           "category": "Mixed",
@@ -5661,25 +5687,12 @@
           "division": "MXD Honeydew Div 3",
           "season": "Season 2 (Current)",
           "date": "Friday, 25 September 2026",
-          "team_1": "Chene Erwee / Damien Erwee",
-          "team_2": "Mozel Van Niekerk / Gordon Beard",
-          "team_1_alias": "Chene, Damien",
-          "team_2_alias": "Mozel, Gordon",
-          "score": "",
-          "balls": "",
-          "status": "Pending"
-        },
-        {
-          "category": "Mixed",
-          "division": "MXD Honeydew Div 3",
-          "season": "Season 2 (Current)",
-          "date": "Friday, 25 September 2026",
-          "team_1": "Pauline Collinson / Brett Collinson",
-          "team_2": "Mauritz Boshoff / Surika",
-          "team_1_alias": "Brett, Pauline",
-          "team_2_alias": "Surika, Mauritz",
-          "score": "6-0 6-1",
-          "balls": "Pauline Collinson / Brett Collinson",
+          "team_1": "Ray Morgan / Wendy Morgan",
+          "team_2": "Chloe Smith / Matthew Bowyer",
+          "team_1_alias": "Wendy, Ray",
+          "team_2_alias": "Matthew, Chloe",
+          "score": "3-6 4-6",
+          "balls": "Ray Morgan / Wendy Morgan",
           "status": "Validated"
         },
         {
@@ -6305,7 +6318,7 @@
           "team_2_alias": "Jerome, Comfort",
           "score": "2-6 6-7",
           "balls": "Warren Melnick/ Ianthé Honiball",
-          "status": "Waiting Approval"
+          "status": "Validated"
         },
         {
           "category": "Mixed",
