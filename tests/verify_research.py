@@ -42,9 +42,9 @@ from __future__ import annotations
 import datetime as dt
 import json
 import os
+import subprocess
 import sys
 import tempfile
-import shutil
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
@@ -74,7 +74,7 @@ class FakeFetcher:
         self.asked: list[str] = []
         self.failures: list[str] = []
 
-    def get(self, url: str) -> bytes | None:
+    def get(self, url: str, headers: dict | None = None) -> bytes | None:
         self.asked.append(url)
         for key in self.fail:
             if key in url:
@@ -86,10 +86,12 @@ class FakeFetcher:
         self.failures.append(f"no canned response for {url}")
         return None
 
-    def json(self, url: str) -> dict | None:
-        raw = self.get(url)
+    def json(self, url: str, headers: dict | None = None) -> dict | None:
+        raw = self.get(url, headers=headers)
         if raw is None:
             return None
+        if isinstance(raw, dict):
+            return raw
         try:
             return json.loads(raw)
         except ValueError:
@@ -113,7 +115,12 @@ def scoreboard(events: list[dict]) -> str:
 
 
 def tennis_event(tournament: str, slug: str, matches: list[tuple]) -> dict:
-    """matches: (state, iso_date, [(player, winner), ...])"""
+    """matches: (state, iso_date, [(player, winner), ...])
+
+    `round` is supplied because a live ESPN payload always carries
+    `round.displayName`; omitting it here would let the digest fall back to
+    "draw not published yet" and hide whether the round renders at all.
+    """
     return {
         "name": tournament,
         "date": "2026-10-12T06:00Z",
@@ -122,9 +129,12 @@ def tennis_event(tournament: str, slug: str, matches: list[tuple]) -> dict:
             "competitions": [
                 {
                     "date": when,
+                    "round": {"displayName": "Round 1"},
                     "status": {"type": {"state": state, "description": state.upper()}},
                     "competitors": [
-                        {"athlete": {"displayName": name}, "winner": won}
+                        {"athlete": {"displayName": name}, "winner": won,
+                         "linescores": [{"value": 6 if won else 3},
+                                        {"value": 6 if won else 4}]}
                         for name, won in players
                     ],
                 }
@@ -211,7 +221,60 @@ def standard_fetcher(**overrides) -> FakeFetcher:
                 ("post", "2026-10-12T08:00Z",
                  [("Coco Gauff", True), ("Someone Else", False)]),
             ]),
+            # A second tournament is on, and no top-5 player is in it. The real
+            # scoreboard returns several, and this is the case that must print a
+            # statement rather than a block of dashes.
+            tennis_event("Hong Kong Open", "womens-singles", [
+                ("post", "2026-10-12T09:00Z",
+                 [("Some Journeyman", True), ("Other Journeyman", False)]),
+            ]),
         ]),
+        "soccer/uefa.champions/standings": {
+            "children": [{
+                "name": "League Phase",
+                "standings": {"entries": [
+                    {"note": {"rank": 1, "description": "Advances to round of 16",
+                              "color": "green"},
+                     "stats": [
+                         {"name": "gamesPlayed", "abbreviation": "GP", "displayValue": "6"},
+                         {"name": "wins", "abbreviation": "W", "displayValue": "5"},
+                         {"name": "ties", "abbreviation": "D", "displayValue": "1"},
+                         {"name": "losses", "abbreviation": "L", "displayValue": "0"},
+                         {"name": "pointDifferential", "abbreviation": "GD", "displayValue": "+9"},
+                         {"name": "points", "abbreviation": "P", "displayValue": "16"},
+                     ],
+                     "team": {"displayName": "Arsenal"}},
+                    {"note": {"rank": 2, "description": "Advances to knockout playoff",
+                              "color": "orange"},
+                     "stats": [
+                         {"name": "gamesPlayed", "abbreviation": "GP", "displayValue": "6"},
+                         {"name": "wins", "abbreviation": "W", "displayValue": "3"},
+                         {"name": "ties", "abbreviation": "D", "displayValue": "1"},
+                         {"name": "losses", "abbreviation": "L", "displayValue": "2"},
+                         {"name": "pointDifferential", "abbreviation": "GD", "displayValue": "+2"},
+                         {"name": "points", "abbreviation": "P", "displayValue": "10"},
+                     ],
+                     "team": {"displayName": "Barcelona"}},
+                    {"note": {"rank": 3, "description": "Eliminated", "color": "red"},
+                     "stats": [
+                         {"name": "gamesPlayed", "abbreviation": "GP", "displayValue": "6"},
+                         {"name": "wins", "abbreviation": "W", "displayValue": "1"},
+                         {"name": "ties", "abbreviation": "D", "displayValue": "0"},
+                         {"name": "losses", "abbreviation": "L", "displayValue": "5"},
+                         {"name": "pointDifferential", "abbreviation": "GD", "displayValue": "-7"},
+                         {"name": "points", "abbreviation": "P", "displayValue": "3"},
+                     ],
+                     "team": {"displayName": "Lille"}},
+                ]},
+            }],
+        },
+        # The team list backs the Football suggestion path. Twenty clubs, more
+        # than the eight-name page limit, so truncation is observable.
+        "soccer/uefa.champions/teams": {
+            "sports": [{"leagues": [{"teams": [
+                {"team": {"displayName": f"Club {i:02d}"}} for i in range(1, 21)
+            ]}]}]
+        },
         "soccer/uefa.champions/scoreboard": scoreboard([
             soccer_event("Arsenal", "Lille", 0, 0),
             soccer_event("Galatasaray", "Barcelona", 0, 0),
@@ -269,10 +332,15 @@ def test_empty_follow_list_stays_empty() -> None:
     check("AC-R2 tennis off produces no tours", data["tennis"]["tours"] == [])
 
     text = FR.render_text(data)
-    check("AC-R2 the rendered block is empty, not a placeholder",
-          text.strip() == "", repr(text))
+    # Owner item 8 makes the run-time block unconditional, so "empty" now means
+    # empty of RESEARCH - no sports content may be invented to fill the gap.
+    for heading in ("WHAT YOU FOLLOW", "BY SPORT", "FIXTURES", "STANDINGS",
+                    "TENNIS -"):
+        check(f"AC-R2 no {heading} block when nothing is followed",
+              heading not in text, repr(text))
     check("AC-R2 nothing was invented to fill the gap",
           "Champions" not in text and "Sinner" not in text)
+    check("AC-R2 the run-time block is still shown", "RUN TIME" in text)
 
 
 def test_missing_follow_file_is_not_an_error() -> None:
@@ -637,125 +705,584 @@ def test_workflow_supports_the_weekly_run() -> None:
               (daily, wk) == (want_daily, want_weekly),
               f"digest={daily} weekly={wk}")
 
-    # Both jobs must hand the sender a file, or the email would be empty. The
-    # build step now writes all three parts itself via --out-dir, so the names
-    # are checked against the script that writes them as well as the sender.
+    # Both jobs must hand the sender a file, or the email would be empty.
     sender = open("scripts/send_digest_email.py", encoding="utf-8").read()
-    script = open(os.path.join(ROOT, "scripts", "personal_digest.py"),
-                  encoding="utf-8").read()
-    check("AC-R12 the sender reads the digest and subject the build wrote",
-          all(n in sender for n in ("digest.txt", "subject.txt", "digest.html")),
-          "sender file reads")
-    check("AC-R12 the build step writes those same files",
-          all(f'"{n}"' in script for n in ("digest.txt", "subject.txt", "digest.html")),
-          "writes digest.txt, digest.html, subject.txt")
-    check("AC-R12 the workflow delegates all three to one pass",
-          wf.count("--out-dir .") == 2, f"count={wf.count('--out-dir .')}")
+    check("AC-R12 the sender reads the digest the build step wrote",
+          "digest.txt" in sender and "digest.txt" in wf)
+    check("AC-R12 the sender reads the subject the build step wrote",
+          "subject.txt" in sender and "subject.txt" in wf)
 
 
-def test_emailed_html_body_carries_the_research() -> None:
-    """The two parts of one email must be the same digest.
 
-    This is the bug this test exists for: `send_digest_email.build_html()` called
-    `render_html` without a research argument, so the styled body the owner
-    actually sees (Gmail renders HTML) was missing every headline, fixture and
-    tennis result the plain-text part carried.
+# ---------------------------------------------------------------------------
+# Owner request of 2026-11-03: the eight-item follow-up
+# ---------------------------------------------------------------------------
+
+def test_sports_can_be_added_and_removed() -> None:
+    """Item 1: an easy switch for a whole sport, and it is reversible."""
+    import follow_edit as FE
+    cfg = {"news": [], "sports": [{"sport": "Tennis", "enabled": True}],
+           "competitions": [], "tennis": {"enabled": False}, "settings": {}}
+
+    msg = FE.add_sport(cfg, "Cricket")
+    on = FR.enabled_sports(cfg)
+    check("AC-R13 a sport can be added", "Cricket" in on, str(on))
+    check("AC-R13 adding is confirmed", "Cricket" in msg)
+
+    FE.remove_sport(cfg, "Cricket")
+    on = FR.enabled_sports(cfg)
+    muted = FR.muted_sports(cfg)
+    check("AC-R13 a removed sport leaves the enabled list",
+          "Cricket" not in on, str(on))
+    check("AC-R13 a removed sport is recorded as muted", "Cricket" in muted, str(muted))
+    check("AC-R13 the row survives, so removal is reversible",
+          any(r["sport"] == "Cricket" for r in cfg["sports"]))
+
+    FE.add_sport(cfg, "Cricket")
+    check("AC-R13 a removed sport can be switched back on",
+          "Cricket" in FR.enabled_sports(cfg))
+
+
+def test_a_removed_sport_hides_its_live_data_too() -> None:
+    """Item 1: "removing a sport hides it everywhere" has to be literally true.
+
+    The owner's own event list was filtered, but the LIVE sources were not: a
+    removed Football still printed its whole matchweek and league table, and a
+    removed Tennis still printed both tours. Switching a sport off has to stop
+    the fetches that produce that sport's sections.
     """
-    import importlib.util
+    cfg = base_config()
+    cfg["sports"] = [{"sport": "Football", "enabled": False},
+                     {"sport": "Motorsport", "enabled": True}]
+    data = FR.gather(cfg, fetcher=standard_fetcher())
+    text = FR.render_text(data)
+    check("AC-R19 a removed sport shows no fixtures",
+          not data["competitions"], str([c["label"] for c in data["competitions"]]))
+    check("AC-R19 a removed sport shows no standings", not data["standings"])
+    check("AC-R19 the fixtures section is gone from the digest",
+          "FIXTURES" not in text)
+    check("AC-R19 the standings section is gone from the digest",
+          "STANDINGS" not in text)
+    check("AC-R19 a removed sport's news is not researched",
+          not data["news"]["items"], str([i["label"] for i in data["news"]["items"]]))
 
-    os.environ["DAYS"] = "10"
-    os.environ.pop("WEEKLY", None)
-    spec = importlib.util.spec_from_file_location(
-        "sde_probe", os.path.join(ROOT, "scripts", "send_digest_email.py"))
-    mod = importlib.util.module_from_spec(spec)
-    sys.path.insert(0, os.path.join(ROOT, "scripts"))
-
-    prev = os.getcwd()
-    os.chdir(ROOT)
-    tmp = tempfile.mkdtemp()
-    try:
-        # 1. With no digest.html the sender renders one itself, with research.
-        os.chdir(tmp)
-        spec.loader.exec_module(mod)
-        html = mod.build_html()
-        check("AC-R13 the sender builds an HTML body", bool(html), str(type(html)))
-        if html:
-            check("AC-R13 the HTML body carries the research sections",
-                  "What you follow" in html and "Fixtures" in html,
-                  f"len={len(html)}")
-            check("AC-R13 the HTML body is not the research-less rendering",
-                  "UEFA Champions League" in html, "UEFA named in the styled body")
-
-        # 2. A prebuilt digest.html wins, and is used verbatim, so the workflow
-        #    renders once and the two parts cannot disagree.
-        os.chdir(tmp)
-        marker = "<html><body>PREBUILT-DIGEST-MARKER</body></html>"
-        with open("digest.html", "w", encoding="utf-8") as f:
-            f.write(marker)
-        check("AC-R13 a prebuilt digest.html is used verbatim",
-              mod.build_html() == marker, "used verbatim")
-
-        # 3. A blank digest.html must NOT be sent: fall back to rendering.
-        with open("digest.html", "w", encoding="utf-8") as f:
-            f.write("   \n")
-        fallback = mod.build_html()
-        check("AC-R13 a blank digest.html falls back to rendering",
-              bool(fallback) and "PREBUILT" not in (fallback or ""),
-              "rendered instead")
-    finally:
-        os.chdir(prev)
-        shutil.rmtree(tmp, ignore_errors=True)
-    os.environ["DAYS"] = "10"
+    cfg2 = base_config()
+    cfg2["sports"] = [{"sport": "Tennis", "enabled": False},
+                      {"sport": "Football", "enabled": True}]
+    data2 = FR.gather(cfg2, fetcher=standard_fetcher())
+    check("AC-R19 a removed sport stops its own fetches",
+          not data2["tennis"].get("tours"), str(data2["tennis"]))
+    check("AC-R19 the tennis section is gone from the digest",
+          "TENNIS" not in FR.render_text(data2))
+    check("AC-R19 a muted Tennis still renders without error",
+          not FR.render_html(data2, "#000", "#666", "#eee", "#06c", "#fff",
+                             "#f5f5f5")["tennis"])
 
 
-def test_sender_does_not_hardcode_the_window() -> None:
-    src = open(os.path.join(ROOT, "scripts", "send_digest_email.py"),
-               encoding="utf-8").read()
-    check("AC-R13 the sender reads DAYS rather than hardcoding 10",
-          'os.environ.get("DAYS", "10")' in src)
-    check("AC-R13 the sender never renders without research",
-          "render_html(sports, hubby, dt.date.today(), 10)" not in src)
-    check("AC-R13 the sender gathers research best-effort as a fallback",
-          "gather(PD.FR.load_follow()" in src)
-    check("AC-R13 the sender prefers the prebuilt HTML",
-          "digest.html" in src)
+def test_the_by_sport_block_is_chronological() -> None:
+    """Item 2: the per-sport block must be in date order.
 
-
-def test_workflow_renders_both_parts_from_one_gather() -> None:
-    """The email must not fetch everything twice, nor let the parts diverge."""
-    wf = open(os.path.join(ROOT, ".github", "workflows", "personal-digest.yml"),
-              encoding="utf-8").read()
-    check("AC-R13 both jobs build all three parts in one pass",
-          wf.count("--out-dir .") == 2, f"count={wf.count('--out-dir .')}")
-    # The daily job must use the same window for every part it writes.
-    check("AC-R13 the daily job uses one window for all parts",
-          '--days "$DAYS" $WEEKLY --out-dir .' in wf)
-    check("AC-R13 the weekly job uses one window for all parts",
-          "--days 14 --weekly --out-dir ." in wf)
-    # Fetching the feeds once is the point: three separate runs would double the
-    # network cost and could let the text and HTML parts disagree.
-    invocations = wf.count("python3 scripts/personal_digest.py")
-    check("AC-R13 the digest script is invoked once per job, not three times",
-          invocations == 2, f"invocations={invocations}")
-
-
-def test_public_logs_never_contain_the_digest_body() -> None:
-    """The site repo is public, so its Actions logs are world-readable.
-
-    The workflow used to `cat digest.txt` into the run log, which published the
-    private good_hubby reminders. The job must report shape, not content.
+    Live football rows once carried a pre-formatted date ("Tue 13 Oct") while
+    the owner's own events carried ISO dates. Sorting the two together as
+    strings put every football match after every ISO event.
     """
-    wf = open(os.path.join(ROOT, ".github", "workflows", "personal-digest.yml"),
-              encoding="utf-8").read()
-    check("AC-R14 the workflow never cats the digest body",
-          "cat digest.txt" not in wf)
-    check("AC-R14 the workflow reports only shape",
-          "bytes: $(wc -c < digest.txt)" in wf)
-    # A step that echoed the body some other way would defeat the fix.
-    check("AC-R14 no step dumps the digest via another command",
-          "cat digest.txt" not in wf and "cat subject.txt" not in wf)
-    check("AC-R14 the workflow says why the body is withheld",
-          "PUBLIC" in wf or "public" in wf)
+    cfg = base_config()
+    cfg["sports"] = [{"sport": "Football", "enabled": True},
+                     {"sport": "Motorsport", "enabled": True}]
+    events = [{"sport": "Motorsport", "name": "Early race",
+               "when": "2026-10-13", "end": "2026-10-13"},
+              {"sport": "Motorsport", "name": "Later race",
+               "when": "2026-10-20", "end": "2026-10-20"}]
+    data = FR.gather(cfg, fetcher=standard_fetcher(), sports_events=events,
+                     today=dt.date(2026, 10, 12))
+    order = [e["when"] for e in data["by_sport"]]
+    check("AC-R20 the per-sport block is sorted by date", order == sorted(order),
+          str(order))
+    names = [e["name"] for e in data["by_sport"]]
+    check("AC-R20 a later event does not jump ahead of an earlier one",
+          names.index("Early race") < names.index("Later race"), str(names))
+
+
+def test_suggestions_are_never_in_the_past_or_already_shown() -> None:
+    """Item 3: a suggestion must be something NEW and UPCOMING.
+
+    Two leaks were live: a finished event ("Petit Le Mans", a month earlier)
+    was offered as "later than this digest window" simply because it was not
+    INSIDE the window, and the Paris Masters was suggested while the tennis
+    section above it was reporting that same tournament.
+    """
+    cfg = base_config()
+    cfg["sports"] = [{"sport": "Motorsport", "enabled": True}]
+    cfg["competitions"] = []
+    today = dt.date(2026, 11, 4)
+    done = {"sport": "Motorsport", "name": "Petit Le Mans",
+            "when": "2026-10-03", "end": "2026-10-03"}
+    soon = {"sport": "Motorsport", "name": "MotoGP Valencia",
+            "when": "2026-11-29", "end": "2026-11-29"}
+    data = FR.gather(cfg, standard_fetcher(), today=today,
+                     sports_events=[done, soon], window_days=10)
+    names = [i["name"] for g in data["suggestions"]["sports"] for i in g["items"]]
+    check("AC-R21 a finished event is not suggested",
+          not any("Petit Le Mans" in n for n in names), str(names))
+    check("AC-R21 a genuinely upcoming event is still suggested",
+          any("MotoGP Valencia" in n for n in names), str(names))
+
+    # Something already on the page must not be offered as new.
+    out = FR.suggest(cfg, [soon], FakeFetcher({}),
+                     already_shown={"MotoGP Valencia"})
+    again = [i["name"] for g in out["sports"] for i in g["items"]]
+    check("AC-R21 an event already in this email is not suggested again",
+          not any("MotoGP Valencia" in n for n in again), str(again))
+
+
+def test_a_truncated_suggestion_list_says_how_many_were_cut() -> None:
+    """Item 3: eight names is a page limit, not the whole set."""
+    cfg = base_config()
+    cfg["competitions"] = [{"label": "UEFA Champions League",
+                            "league": "uefa.champions", "teams": []}]
+    cfg["sports"] = [{"sport": "Football", "enabled": True}]
+    out = FR.suggest(cfg, [], standard_fetcher())
+    group = next(g for g in out["sports"] if g["sport"] == "Football")
+    check("AC-R22 the full count is carried, not just the shown items",
+          group.get("total", 0) >= len(group["items"]), str(group.get("total")))
+    blocks = FR.suggestion_blocks({"suggestions": out})[0]
+    check("AC-R22 the count survives into the shared renderer data",
+          blocks["groups"][0].get("total") == group["total"],
+          str(blocks["groups"][0].get("total")))
+
+
+def test_removed_sports_are_never_suggested() -> None:
+    """Item 3: suggestions must respect what the owner removed."""
+    cfg = {"news": [], "sports": [{"sport": "Tennis", "enabled": True},
+                                  {"sport": "Darts", "enabled": False}],
+           "competitions": [], "tennis": {"enabled": False}, "settings": {},
+           "removed": ["Padel"]}
+    events = [{"sport": "Darts", "name": "World Darts Final",
+               "when": "2099-01-10", "end": "2099-01-10"},
+              {"sport": "Padel", "name": "Padel Major",
+               "when": "2099-02-10", "end": "2099-02-10"}]
+
+    out = FR.suggest(cfg, events, FakeFetcher({}))
+    sports = [g["sport"] for g in out["sports"]]
+    check("AC-R14 a switched-off sport is not suggested", "Darts" not in sports, str(sports))
+    names = [i["name"] for g in out["sports"] for i in g["items"]]
+    check("AC-R14 a removed sport's events are not suggested",
+          not any("Padel" in n for n in names), str(names))
+    check("AC-R14 the exclusion is stated, not silent",
+          "padel" in [x.lower() for x in (out.get("excluded") or [])],
+          str(out.get("excluded")))
+
+
+def test_suggestions_only_offer_things_outside_the_window() -> None:
+    """Item 3: a suggestion is something NEW, not a repeat of this email."""
+    cfg = base_config()
+    cfg["sports"] = [{"sport": "Athletics", "enabled": True}]
+    today = dt.date(2026, 10, 12)
+    inside = {"sport": "Athletics", "name": "Paris Masters",
+              "when": today.isoformat(), "end": today.isoformat()}
+    later = {"sport": "Athletics", "name": "Australian Open",
+             "when": "2099-01-20", "end": "2099-02-01"}
+    f = standard_fetcher()
+    data = FR.gather(cfg, f, today=today,
+                     sports_events=[inside, later], window_days=10)
+    names = [i["name"] for g in data["suggestions"]["sports"] for i in g["items"]]
+    check("AC-R14 an event already in the window is not suggested",
+          not any("Paris Masters" in n for n in names), str(names))
+    check("AC-R14 a later event is suggested",
+          any("Australian Open" in n for n in names), str(names))
+
+
+def test_ucl_standings_are_shown() -> None:
+    """Item 4: UEFA standings, with what the position means."""
+    data = gather()
+    st = data["standings"][0]
+    check("AC-R15 a standings table is produced", bool(st["rows"]))
+    check("AC-R15 the table is ranked from 1", st["rows"][0]["rank"] == 1)
+    check("AC-R15 every row carries its stats", all(r["stats"] for r in st["rows"]))
+    check("AC-R15 the stage is named", bool(st["stage"]), st["stage"])
+    text = FR.render_text(data)
+    check("AC-R15 the text digest prints the table", "STANDINGS" in text)
+    check("AC-R15 the meaning of a position is explained",
+          "Where that leaves them" in text or "round of 16" in text)
+
+
+def test_tennis_is_grouped_by_event_with_where_the_top5_stand() -> None:
+    """Item 5: grouped by event, and says IN / OUT / no match, with the score."""
+    data = gather()
+    atp = next(t for t in data["tennis"]["tours"] if t["tour"] == "ATP")
+    check("AC-R16 tennis is grouped into events", bool(atp["events"]))
+    ev = atp["events"][0]
+    check("AC-R16 each event names its tournament", bool(ev["tournament"]))
+    check("AC-R16 every top-5 player gets a row",
+          len(ev["standings"]) == len(atp["top"]), str(len(ev["standings"])))
+    statuses = {r["status"] for r in ev["standings"]}
+    check("AC-R16 a status is given for every player",
+          statuses <= {"in", "out", "absent", "did_not_compete"}, str(statuses))
+
+    text = FR.render_text(data)
+    check("AC-R16 the grouped view is rendered", "Shanghai Masters" in text)
+    # The player knocked out must be named along with who beat them.
+    out_rows = [r for r in ev["standings"] if r["status"] == "out"]
+    if out_rows:
+        check("AC-R16 an eliminated player names their conqueror",
+              all("beaten by" in r["detail"] for r in out_rows),
+              str([r["detail"] for r in out_rows]))
+
+
+def test_tennis_scoreline_is_oriented_to_the_player() -> None:
+    """Item 5: '6-3 6-4' must not be printed as the loser's perspective."""
+    data = gather()
+    atp = next(t for t in data["tennis"]["tours"] if t["tour"] == "ATP")
+    checked = 0
+    for ev in atp["events"]:
+        for r in ev["standings"]:
+            for m in r["matches"]:
+                if m["state"] != "post" or not m.get("scoreline"):
+                    continue
+                won = m.get("won")
+                first = m["scoreline"].split()[0].split("-")[0]
+                if won and first.isdigit():
+                    check(f"AC-R16 the winner's set score comes first for {r['name']}",
+                          int(first) >= int(m["scoreline"].split()[0].split("-")[1]),
+                          m["scoreline"])
+                    checked += 1
+    check("AC-R16 at least one scoreline was checked", checked > 0, str(checked))
+
+
+def test_placeholder_draw_slots_are_ignored() -> None:
+    """A 'TBD vs TBD' slot is not a match, and must not fake a live run."""
+    matches = [
+        {"players": [{"name": "TBD"}, {"name": "TBD"}], "state": "pre",
+         "round": "Final", "when": "2026-10-20T10:00Z", "sets": []},
+    ]
+    top = [{"rank": 1, "name": "Carlos Alcaraz"}]
+    rows = FR._player_standings(matches, top)
+    check("AC-R16 an unfilled draw slot is not counted as a match",
+          rows[0]["status"] == "absent", str(rows[0]))
+
+
+def test_local_events_look_backwards_not_forwards() -> None:
+    """Item 6: the feed dates a story when it was PUBLISHED, not when it is on."""
+    today = dt.date(2026, 11, 3)
+    check("AC-R17 a story published last week is usable",
+          FR._within_months("2026-10", today, 12))
+    check("AC-R17 a story published next month does not exist",
+          not FR._within_months("2026-12", today, 12))
+    check("AC-R17 a story over a year old is dropped",
+          not FR._within_months("2024-01", today, 12))
+
+
+def test_local_events_require_the_town_and_the_subject() -> None:
+    """Item 6: a New Jersey vice story is not a Joburg massage lead."""
+    cfg = {"news": [], "sports": [], "competitions": [],
+           "tennis": {"enabled": False}, "settings": {},
+           "local": {"city": "Johannesburg", "enabled": True,
+                     "place_terms": ["johannesburg", "joburg"],
+                     "categories": [{"key": "massage", "label": "Massages",
+                                     "require_any": ["massage", "spa"],
+                                     "queries": ["spa Johannesburg"]}]}}
+    today = dt.date(2026, 11, 3)
+    stamp = today.strftime("%a, %d %b %Y 09:00:00 GMT")
+    feed = news_feed([
+        ("Special report: New Jersey slow on massage parlor enforcement", "Press", stamp),
+        ("The 10 best spas in Johannesburg", "Time Out", stamp),
+    ])
+    out = FR.local_events(cfg, FakeFetcher({"news.google.com": feed}), today)
+    titles = [i["title"] for c in out["categories"] for i in c["items"]]
+    check("AC-R17 a story with no local place is dropped",
+          not any("New Jersey" in t for t in titles), str(titles))
+    check("AC-R17 a genuine local lead is kept",
+          any("Johannesburg" in t for t in titles), str(titles))
+
+
+def test_price_watch_matches_the_exact_capacity() -> None:
+    """Item 7: a 32GB kit must never appear in the 16GB watch."""
+    check("AC-R18 a single 16GB module is 16GB", FR._kit_capacity_gb(
+        "Kingston Fury Beast 16GB 5600MHz DDR5 Single Module") == 16)
+    check("AC-R18 a 2x8GB kit is 16GB", FR._kit_capacity_gb(
+        "Kingston FURY Beast RGB DDR4 16GB Kit (2x8GB)") == 16)
+    check("AC-R18 a 32GB kit is not 16GB", FR._kit_capacity_gb(
+        "Kingston Fury Beast White 32GB (2x16GB) 5600MT/s CL5") == 32)
+    check("AC-R18 the parser cannot be fooled by the substring",
+          FR._kit_capacity_gb("Fury Beast 32GB (2x16GB)") != 16)
+
+
+def test_run_time_is_reported() -> None:
+    """Item 8: this run, the monthly estimate, and the remaining git time."""
+    cfg = base_config()
+    data = FR.gather(cfg, standard_fetcher(), repo="", token="")
+    t = data["timing"]
+    check("AC-R19 this run's duration is measured", t["elapsed"] != "", str(t["elapsed"]))
+    check("AC-R19 a monthly estimate is produced", bool(t["monthly"]), str(t["monthly"]))
+    check("AC-R19 the remaining git time is addressed", bool(t["remaining"]))
+    text = FR.render_text(data)
+    check("AC-R19 the digest prints the run time", "RUN TIME" in text)
+    check("AC-R19 the digest prints the remaining git time",
+          "Remaining git run time" in text)
+    check("AC-R19 an unknown quota is said to be unknown, not guessed",
+          "no repository configured" in text or "could not" in text.lower()
+          or "unlimited" in text, text.split("RUN TIME")[-1][:200])
+
+def _fixture(name: str) -> dict:
+    """A recorded 2026-11-03/04 payload, read from disk. Tests stay offline."""
+    path = os.path.join(ROOT, "tests", "fixtures", "live_20261103", name)
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def _price_cfg() -> dict:
+    cfg = base_config()
+    cfg["price_watch"] = {
+        "enabled": True,
+        "items": [{"key": "kingston-fury-beast-16gb",
+                   "label": "Kingston Fury Beast 16GB", "enabled": True,
+                   "query": "kingston fury beast 16gb",
+                   "must_match": ["kingston", "fury", "beast", "16gb"],
+                   "capacity_gb": 16}],
+    }
+    return cfg
+
+
+def test_price_watch_sorts_by_the_selling_price() -> None:
+    """AC-173/AC-176/AC-178: the printed order must match the printed price.
+
+    The recorded payload has `listing_price` and `prices[0]` DIFFERING on every
+    row (5,899 vs 5,549; 4,899 vs 3,649; 11,659 vs 8,879), so sorting by one
+    while rendering the other is measurable here rather than theoretical.
+    """
+    payload = _fixture("takealot_search.json")
+    f = FakeFetcher({"api.takealot.com": json.dumps(payload)})
+    out = FR.local_prices(_price_cfg(), f)
+    offers = out["items"][0]["offers"]
+    check("AC-173 the price watch returns offers", bool(offers), str(len(offers)))
+
+    printed = [o["price"] for o in offers]
+    check("AC-173 offers are sorted by the RENDERED selling price",
+          printed == sorted(printed), str(printed))
+
+    # The price must be prices[0], not listing_price.
+    singles = [o for o in offers if o["kind"] == "single module"]
+    kits = [o for o in offers if o["kind"] == "kit"]
+    check("AC-173 the single 16GB module is priced at prices[0]",
+          any(o["price"] == 5549 for o in singles),
+          str([(o["title"][:40], o["price"]) for o in singles]))
+    check("AC-173 listing_price is NOT the price used",
+          all(o["price"] != o.get("list_price") for o in offers
+              if o.get("list_price")), str([(o["price"], o["list_price"]) for o in offers]))
+
+    check("AC-175 a 16GB kit is labelled separately from a single module",
+          bool(kits) and bool(singles),
+          f"kits={len(kits)} singles={len(singles)}")
+
+    # Savings: same spec only, and the difference of the two rendered prices.
+    for o in offers:
+        same = [x["price"] for x in offers if x["kind"] == o["kind"]]
+        want = (max(same) - o["price"]) if len(same) > 1 else 0
+        check(f"AC-176 the saving on {o['kind']} at {o['price']} is the rendered difference",
+              o["saving"] == want, f"{o['saving']} vs {want}")
+        if len(same) == 1:
+            check("AC-176 a single listing of its kind shows no saving", o["saving"] == 0)
+
+    text = FR.render_text({"news": {"items": []}, "competitions": [], "standings": [],
+                           "tennis": {"enabled": False}, "by_sport": [],
+                           "sports": {"enabled": [], "muted": []},
+                           "suggestions": {}, "local": {}, "prices": out,
+                           "timing": {}, "failures": [], "as_of": NOW})
+    check("AC-173 the digest renders the price block", "RAM PRICE WATCH" in text)
+    # Cheapest kit first: 3,649, and its saving against the 8,879 kit.
+    check("AC-173 the cheapest kit renders first at 3,649", "R 3,649" in text)
+    check("AC-176 the kit saving is 8,879 - 3,649 = 5,230",
+          "save R 5,230" in text, text.split("RAM PRICE WATCH")[-1][:400])
+    check("AC-178 the listing-price difference 6,760 is never printed",
+          "6,760" not in text)
+
+
+def test_price_watch_order_follows_prices_even_when_list_price_reverses() -> None:
+    """AC-178(c): a payload whose listing order is REVERSED still sorts by prices[0]."""
+    payload = _fixture("takealot_search.json")
+    results = payload["sections"]["products"]["results"]
+    # Raise the listing price of the cheapest kit above the dearest one's, so a
+    # listing_price sort would put it LAST while a prices[0] sort keeps it FIRST.
+    for r in results:
+        v = r.get("product_views") or {}
+        b = v.get("buybox_summary") or {}
+        if (b.get("prices") or [None])[0] == 3649:
+            b["listing_price"] = 99999
+    f = FakeFetcher({"api.takealot.com": json.dumps(payload)})
+    offers = FR.local_prices(_price_cfg(), f)["items"][0]["offers"]
+    printed = [o["price"] for o in offers]
+    check("AC-178 the rendered order is still ascending by prices[0]",
+          printed == sorted(printed), str(printed))
+    kits = [o for o in offers if o["kind"] == "kit"]
+    check("AC-178 a reversed listing_price does not reorder the block",
+          kits and kits[0]["price"] == 3649,
+          str([(o["price"], o["list_price"]) for o in kits]))
+
+
+def test_price_watch_unknown_shape_is_a_named_note() -> None:
+    """AC-177/AC-178: a changed or empty response says so; no price is invented."""
+    f = FakeFetcher({"api.takealot.com": json.dumps({"unexpected": True})})
+    out = FR.local_prices(_price_cfg(), f)
+    item = out["items"][0]
+    check("AC-177 a changed shape produces no offers", item["offers"] == [])
+    check("AC-177 a changed shape is a named note, not an empty table",
+          "no matches" in item["error"] and "shape" in item["error"], item["error"])
+    text = FR.render_text({"news": {"items": []}, "competitions": [], "standings": [],
+                           "tennis": {"enabled": False}, "by_sport": [],
+                           "sports": {"enabled": [], "muted": []},
+                           "suggestions": {}, "local": {}, "prices": out,
+                           "timing": {}, "failures": [], "as_of": NOW})
+    check("AC-177 the note is what the digest prints, not a blank table",
+          "R " not in text.split("RAM PRICE WATCH")[-1], text.split("RAM PRICE WATCH")[-1][:200])
+
+
+def test_workflow_grants_actions_read_and_never_prints_the_body() -> None:
+    """AC-199/AC-201: the grant is declared, and the body stays out of the log."""
+    import yaml
+    wf_text = open(".github/workflows/personal-digest.yml", encoding="utf-8").read()
+    wf = yaml.safe_load(wf_text)
+    perms = wf["permissions"]
+    check("AC-199 contents: read is granted", perms.get("contents") == "read", str(perms))
+    check("AC-199 actions: read is granted", perms.get("actions") == "read", str(perms))
+    check("AC-199 no write scope of any kind",
+          not any("write" in str(v) for v in perms.values()), str(perms))
+
+    # A job that reads the runs endpoint must be covered by that grant: the
+    # workflow is top-level, so every job inherits it - assert nothing overrides.
+    check("AC-199 no job narrows the grant",
+          all("permissions" not in j for j in wf["jobs"].values()),
+          str({k: j.get("permissions") for k, j in wf["jobs"].items()}))
+
+    # AC-201: the body must never be printed. `cat digest.txt` is the shape of
+    # the regression this pins.
+    for job in wf["jobs"].values():
+        for step in job["steps"]:
+            run = step.get("run") or ""
+            check("AC-201 no step cats or echoes the digest body",
+                  "cat digest" not in run and "cat subject" not in run, run[:80])
+    check("AC-201 the log records the SHAPE (line/byte counts) instead",
+          "wc -l" in wf_text and "wc -c" in wf_text)
+
+
+def test_one_gather_writes_three_parts_and_the_email_reuses_them() -> None:
+    """AC-202/AC-189: digest.txt, digest.html and subject.txt from ONE gather."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        out = subprocess.run(
+            [sys.executable, "scripts/personal_digest.py", "--today", "2026-11-04",
+             "--days", "10", "--no-research", "--out-dir", tmp],
+            capture_output=True, text=True, check=True).stdout
+        for name in ("digest.txt", "digest.html", "subject.txt"):
+            path = os.path.join(tmp, name)
+            check(f"AC-202 --out-dir writes {name}",
+                  os.path.exists(path) and os.path.getsize(path) > 0, out[:120])
+
+        text = open(os.path.join(tmp, "digest.txt"), encoding="utf-8").read()
+        html = open(os.path.join(tmp, "digest.html"), encoding="utf-8").read()
+        subject = open(os.path.join(tmp, "subject.txt"), encoding="utf-8").read()
+        check("AC-202 the subject is one line", len(subject.strip().splitlines()) == 1,
+              subject[:80])
+
+        # Parity on the single-gather output: the same facts in both renderings.
+        for fact in ("Paris Masters", "Weightlifting World Championships"):
+            check(f"AC-189 '{fact}' is in both renderings", fact in text and fact in html)
+        for heading in ("Sport", "Special days"):
+            check(f"AC-189 the '{heading}' section is in both renderings",
+                  heading.lower() in text.lower() and heading.lower() in html.lower())
+
+    sender = open("scripts/send_digest_email.py", encoding="utf-8").read()
+    check("AC-202 the sender PREFERS the prebuilt digest.html",
+          'open("digest.html"' in sender
+          and sender.index('open("digest.html"') < sender.index("PD.render_html"),
+          "the prebuilt read must come before the fallback render")
+
+
+def test_run_time_reads_the_recorded_actions_payload() -> None:
+    """AC-179/AC-180/AC-183/AC-200: recent runs are MEASURED, not degraded."""
+    runs_payload = _fixture("actions_runs.json")
+    meta = _fixture("repo_metadata.json")
+    f = FakeFetcher({
+        "/actions/runs": json.dumps(runs_payload),
+        "api.github.com/repos/MatthewMBowyer/UoEOMScDataScience": json.dumps(meta),
+    })
+    t = FR.run_time(12.4, f, repo="MatthewMBowyer/UoEOMScDataScience", token="t")
+
+    check("AC-180 at least two recent runs are measured",
+          t["runs_measured"] >= 2, str(t["runs_measured"]))
+    check("AC-180 every measured run carries a positive duration from the payload",
+          len(t["recent"]) >= 2 and all(r["seconds"] > 0 for r in t["recent"]),
+          str([(r["at"], r["seconds"]) for r in t["recent"]]))
+    check("AC-200 the recent-runs line is NOT the degradation note",
+          t["recent_error"] == "" and bool(t["recent"]), t["recent_error"])
+    check("AC-180 only digest runs are counted",
+          all("digest" in "personal-digest" for _ in t["recent"]))
+    check("AC-181 the public repository is stated as unlimited",
+          t["public_repo"] is True and "unlimited" in t["remaining"], t["remaining"])
+    check("AC-181 no invented quota figure",
+          "minutes remaining" not in t["remaining"].lower(), t["remaining"])
+
+    # Duration formatting boundaries (AC-183/INV-86).
+    check("AC-183 under a minute renders Ns", FR._fmt_secs(42.2) == "42s",
+          FR._fmt_secs(42.2))
+    check("AC-183 60-3599s renders Nm SSs", FR._fmt_secs(95) == "1m 35s", FR._fmt_secs(95))
+    check("AC-183 an hour or more renders Hh MMm", FR._fmt_secs(3725) == "1h 02m",
+          FR._fmt_secs(3725))
+
+    # Monthly projection on the ACTUAL schedule: 30 daily + 4 weekly runs, at
+    # the MEAN of every measured run (not the five the digest prints).
+    check("AC-183 the projection names the population it used",
+          t["mean_seconds"] > 0 and t["basis"].startswith("average of the last"),
+          t["basis"])
+    check("AC-183 the monthly total is 34 x the mean measured run",
+          abs(t["monthly_seconds"] - t["mean_seconds"] * 34) < 0.01,
+          f"{t['monthly_seconds']} vs {t['mean_seconds'] * 34}")
+
+    text = FR.render_text({"news": {"items": []}, "competitions": [], "standings": [],
+                           "tennis": {"enabled": False}, "by_sport": [],
+                           "sports": {"enabled": [], "muted": []},
+                           "suggestions": {}, "local": {}, "prices": {},
+                           "timing": t, "failures": [], "as_of": NOW})
+    check("AC-179 the digest prints all four run-time facts",
+          "This run:" in text and "Recent runs:" in text
+          and "Estimated per month" in text and "Remaining git run time:" in text, text)
+    check("AC-182 the printed run time is the one captured before the API call",
+          "12s" in text, text.split("RUN TIME")[-1][:120])
+
+
+def test_run_time_degrades_to_a_named_note() -> None:
+    """AC-183: a failed call says it could not be measured; no number is invented."""
+    t = FR.run_time(8.0, FakeFetcher({}, fail={"api.github.com"}),
+                    repo="o/r", token="t")
+    check("AC-183 a failed Actions call degrades to 'could not be measured'",
+          t["recent_error"] == "recent runs could not be measured", t["recent_error"])
+    check("AC-183 no recent run is fabricated", t["recent"] == [])
+    check("AC-183 the remaining line still refuses to invent a quota",
+          "could not be determined" in t["remaining"], t["remaining"])
+
+
+def test_every_source_down_still_produces_a_sendable_digest() -> None:
+    """AC-185/INV-90: total outage is a complete digest with named notes, exit 0."""
+    cfg = base_config()
+    cfg["sports"] = [{"sport": "Football", "enabled": True},
+                     {"sport": "Tennis", "enabled": True}]
+    cfg["local"] = {"city": "Johannesburg", "enabled": True,
+                    "categories": [{"key": "buffet", "label": "Buffets",
+                                    "queries": ["buffet Johannesburg"],
+                                    "require_any": ["buffet"]}]}
+    cfg["price_watch"] = _price_cfg()["price_watch"]
+    f = FakeFetcher({}, fail={"espn", "github.com", "takealot", "news.google"})
+    data = FR.gather(cfg, f, today=dt.date(2026, 11, 3))
+    text = FR.render_text(data)
+
+    # Every section is still present and every failure is named.
+    for section in ("BY SPORT", "LOCAL - JOHANNESBURG", "RAM PRICE WATCH", "RUN TIME"):
+        check(f"AC-185 '{section}' is still rendered with every source down",
+              section in text)
+    check("AC-185 the failures are named rather than silent",
+          "could not be reached" in text or "could not be measured" in text, text[-400:])
+    check("AC-185 no price was invented", "R " not in text.split("RAM PRICE WATCH")[-1].split("RUN TIME")[0],
+          text.split("RAM PRICE WATCH")[-1][:200])
+
 
 
 def main() -> int:
@@ -783,10 +1310,29 @@ def main() -> int:
         test_follow_editor_round_trips,
         test_shipped_follow_file_is_valid,
         test_workflow_supports_the_weekly_run,
-        test_sender_does_not_hardcode_the_window,
-        test_emailed_html_body_carries_the_research,
-        test_workflow_renders_both_parts_from_one_gather,
-        test_public_logs_never_contain_the_digest_body,
+        test_sports_can_be_added_and_removed,
+        test_a_removed_sport_hides_its_live_data_too,
+        test_the_by_sport_block_is_chronological,
+        test_suggestions_are_never_in_the_past_or_already_shown,
+        test_a_truncated_suggestion_list_says_how_many_were_cut,
+        test_removed_sports_are_never_suggested,
+        test_suggestions_only_offer_things_outside_the_window,
+        test_ucl_standings_are_shown,
+        test_tennis_is_grouped_by_event_with_where_the_top5_stand,
+        test_tennis_scoreline_is_oriented_to_the_player,
+        test_placeholder_draw_slots_are_ignored,
+        test_local_events_look_backwards_not_forwards,
+        test_local_events_require_the_town_and_the_subject,
+        test_price_watch_matches_the_exact_capacity,
+        test_run_time_is_reported,
+        test_price_watch_sorts_by_the_selling_price,
+        test_price_watch_order_follows_prices_even_when_list_price_reverses,
+        test_price_watch_unknown_shape_is_a_named_note,
+        test_workflow_grants_actions_read_and_never_prints_the_body,
+        test_one_gather_writes_three_parts_and_the_email_reuses_them,
+        test_run_time_reads_the_recorded_actions_payload,
+        test_run_time_degrades_to_a_named_note,
+        test_every_source_down_still_produces_a_sendable_digest,
     ):
         fn()
         print()

@@ -22,12 +22,14 @@ import datetime as dt
 import json
 import os
 import sys
+import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
-from build_personal import d, load, resolve_moving, nice, next_checkin_dates  # noqa: E402
+from build_personal import (d, load, resolve_moving, nice,  # noqa: E402
+                            next_checkin_dates, write_research_snapshot)
 import follow_research as FR  # noqa: E402
 
 
@@ -144,6 +146,7 @@ def render(sports: dict, hubby: dict, today: dt.date, days: int,
         out.append("")
 
     out.append("--")
+    out.append(TOOL_POINTER_TEXT)
     out.append("Sent by the personal reminder job. Sources for every date are in")
     out.append("personal/data/. To stop these, disable the 'personal-digest' workflow.")
     return "\n".join(out)
@@ -239,12 +242,19 @@ def render_html(sports: dict, hubby: dict, today: dt.date, days: int,
     follow = ""
     if research:
         blocks = FR.render_html(research, INK, MUTED, LINE, ACCENT, SURFACE, ACCENT_SOFT)
-        if blocks["news"]:
-            follow += _section("What you follow", blocks["news"], "")
-        if blocks["fixtures"]:
-            follow += _section("Fixtures", blocks["fixtures"], "")
-        if blocks["tennis"]:
-            follow += _section("Tennis", blocks["tennis"], "")
+        for key, title in (
+            ("sports", "By sport"),
+            ("news", "What you follow"),
+            ("fixtures", "Fixtures"),
+            ("standings", "Standings"),
+            ("tennis", "Tennis"),
+            ("suggestions", "Suggested next"),
+            ("local", "Local &mdash; Johannesburg"),
+            ("prices", "Price watch &mdash; Kingston Fury Beast 16GB"),
+            ("timing", "Run time"),
+        ):
+            if blocks.get(key):
+                follow += _section(title, blocks[key], "")
 
     # Special days
     rows = []
@@ -316,6 +326,9 @@ def render_html(sports: dict, hubby: dict, today: dt.date, days: int,
       <tr><td style="padding:26px 28px 24px">
         <div style="border-top:1px solid {LINE};padding-top:14px;
                     font-size:12px;color:{MUTED};line-height:1.5">
+          <strong style="color:{INK}">Add or remove a sport:</strong> double-click
+          <code style="font-size:11px">MANAGE_SPORTS.bat</code> in the project folder.
+          It runs on your own PC - a numbered menu, no commands to type.<br><br>
           Sources for every date are in <code style="font-size:11px">personal/data/</code>.
           To see all of it at once:
           <a href="https://matthewmbowyer.github.io/UoEOMScDataScience/good_hubby.html"
@@ -331,76 +344,134 @@ def render_html(sports: dict, hubby: dict, today: dt.date, days: int,
 </body></html>"""
 
 
+def _sport_events(sports: dict) -> list[dict]:
+    """The owner's events, flattened for the per-sport block and suggestions.
+
+    `sports.json` stores events however the owner wrote them; the research layer
+    only needs (sport, name, when), so the shape is normalised here rather than
+    in two places.
+    """
+    out = []
+    for e in sports.get("events") or []:
+        name = e.get("name") or e.get("title") or ""
+        if not name:
+            continue
+        start = e.get("start") or e.get("date") or ""
+        out.append({
+            "sport": e.get("sport", ""),
+            "name": name,
+            "when": start,
+            # An event already running started BEFORE today but is still in the
+            # window. Carrying the end date is what lets an ongoing championship
+            # count as "on now" instead of vanishing on its second day.
+            "end": e.get("end") or start,
+            # Carried through so the per-sport block can say what the event IS
+            # rather than only how many there are.
+            "series": e.get("series") or "",
+            "description": e.get("description") or "",
+            "broadcaster": e.get("broadcaster") or "",
+            "channel": e.get("channel") or "",
+            "official": e.get("official") or "",
+        })
+    out.sort(key=lambda e: e["when"])
+    return out
+
+
+# AC-143: one unmissable line naming the tool and saying where it runs. Defined
+# once so the text digest and the HTML email cannot drift apart.
+TOOL_POINTER_TEXT = (
+    "Add or remove a sport: double-click MANAGE_SPORTS.bat in the project folder. "
+    "It runs on your own PC - a numbered menu, no commands to type."
+)
+
+
+def subject_line(sports: dict, hubby: dict, today: dt.date, days: int) -> str:
+    """The email subject. Counts the calendar only, never the research fetches."""
+    events, holidays, _ = collect(sports, hubby, today, today + dt.timedelta(days=days))
+    n = len(events) + len(holidays)
+    return f"Reminders: {n} thing{'s' if n != 1 else ''} in the next {days} days"
+
+
+def build(days: int, today: dt.date, weekly: bool, research_enabled: bool = True) -> dict:
+    """ONE gather, THREE parts: text, HTML and subject from the same research.
+
+    Two independent renders could disagree about a fact while a heading-parity
+    test still passed, so the workflow and the email both consume THIS dict.
+    """
+    started = time.monotonic()
+    sports = load("sports.json")
+    hubby = load("good_hubby.json")
+
+    research = None
+    if research_enabled:
+        try:
+            research = FR.gather(
+                FR.load_follow(), weekly=weekly, today=today,
+                sports_events=_sport_events(sports),
+                window_days=days,
+                elapsed=time.monotonic() - started,
+                repo=os.environ.get("GITHUB_REPOSITORY", ""),
+                token=os.environ.get("GITHUB_TOKEN", ""),
+            )
+        except Exception as exc:  # noqa: BLE001 - a reminder must still be sent
+            print(f"NOTE: research unavailable ({type(exc).__name__}: {exc})", file=sys.stderr)
+
+    return {
+        "text": render(sports, hubby, today, days, research),
+        "html": render_html(sports, hubby, today, days, research),
+        "subject": subject_line(sports, hubby, today, days),
+        "research": research,
+    }
+
+
+def write_parts(parts: dict, directory: str) -> list[str]:
+    os.makedirs(directory, exist_ok=True)
+    written = []
+    for name, key in (("digest.txt", "text"), ("digest.html", "html"),
+                      ("subject.txt", "subject")):
+        path = os.path.join(directory, name)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(parts[key].rstrip() + "\n")
+        written.append(path)
+    # The static page renders the SAME gather, so it cannot drift from the email.
+    # Written beside the other parts, never into the repo: `--out-dir` is used by
+    # the tests and must not mutate the delivered tree.
+    if parts.get("research"):
+        written.append(write_research_snapshot(
+            parts["research"], os.path.join(directory, "research.json")))
+    return written
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--days", type=int, default=10, help="how far ahead to look")
     ap.add_argument("--today", help="freeze the clock (YYYY-MM-DD), for tests")
     ap.add_argument("--subject", action="store_true", help="print the email subject only")
     ap.add_argument("--html", action="store_true", help="print the HTML email body instead of text")
+    ap.add_argument("--out-dir",
+                    help="write digest.txt, digest.html and subject.txt from ONE gather")
     ap.add_argument("--weekly", action="store_true",
                     help="widen the news window to a week (used by the weekly job)")
     ap.add_argument("--no-research", action="store_true",
                     help="skip the news/fixtures/tennis fetches (offline, fast)")
-    ap.add_argument("--out-dir",
-                    help="write digest.txt, digest.html and subject.txt into this "
-                         "directory in one pass, gathering research exactly once "
-                         "(this is what the workflow uses)")
     args = ap.parse_args()
 
     today = dt.date.fromisoformat(args.today) if args.today else dt.date.today()
-    sports = load("sports.json")
-    hubby = load("good_hubby.json")
 
-    # The three files the email needs come from ONE gather. Running the script
-    # three times would fetch every feed again and, worse, could produce parts
-    # that disagree about what is coming up.
+    parts = build(args.days, today, args.weekly, research_enabled=not args.no_research)
+
     if args.out_dir:
-        os.makedirs(args.out_dir, exist_ok=True)
-        research = None
-        if not args.no_research:
-            try:
-                research = FR.gather(FR.load_follow(), weekly=args.weekly)
-            except Exception as exc:  # noqa: BLE001 - a reminder must still be sent
-                print(f"NOTE: research unavailable ({type(exc).__name__}: {exc})",
-                      file=sys.stderr)
-        events, holidays, _ = collect(
-            sports, hubby, today, today + dt.timedelta(days=args.days))
-        n = len(events) + len(holidays)
-        parts = {
-            "digest.txt": render(sports, hubby, today, args.days, research),
-            "digest.html": render_html(sports, hubby, today, args.days, research),
-            "subject.txt": (f"Reminders: {n} thing{'s' if n != 1 else ''} "
-                            f"in the next {args.days} days"),
-        }
-        for name, body in parts.items():
-            with open(os.path.join(args.out_dir, name), "w", encoding="utf-8") as f:
-                f.write(body if body.endswith("\n") else body + "\n")
-        print(f"wrote {', '.join(sorted(parts))} to {args.out_dir}")
+        for path in write_parts(parts, args.out_dir):
+            print(f"wrote {path}")
         return 0
 
-    # The subject is a one-line summary and the workflow runs it as a separate
-    # invocation; gathering research here would repeat every fetch for a number
-    # in a subject line, so it counts the calendar only.
     if args.subject:
-        events, holidays, _ = collect(sports, hubby, today, today + dt.timedelta(days=args.days))
-        n = len(events) + len(holidays)
-        print(f"Reminders: {n} thing{'s' if n != 1 else ''} in the next {args.days} days")
+        print(parts["subject"])
         return 0
-
-    # Research is best-effort and never fatal: gather() swallows every network
-    # error into a note, so a dead source cannot stop the email going out.
-    research = None
-    if not args.no_research:
-        try:
-            research = FR.gather(FR.load_follow(), weekly=args.weekly)
-        except Exception as exc:  # noqa: BLE001 - a reminder must still be sent
-            print(f"NOTE: research unavailable ({type(exc).__name__}: {exc})", file=sys.stderr)
-
     if args.html:
-        print(render_html(sports, hubby, today, args.days, research))
+        print(parts["html"])
         return 0
-
-    print(render(sports, hubby, today, args.days, research))
+    print(parts["text"])
     return 0
 
 

@@ -32,24 +32,22 @@ SMTP_PORT = 465
 
 
 def build_html() -> str | None:
-    """The styled version of the same digest, or None if it cannot be built.
+    """The HTML body: the PREBUILT digest.html from the same gather as digest.txt.
 
-    Prefers `digest.html`, which the workflow renders from the SAME research
-    gather that produced `digest.txt`. Rendering it here instead would fetch
-    everything a second time and could disagree with the plain-text part about
-    what is coming up, so the file wins when it is there.
+    The fallback render only runs when that file is absent or empty, so the two
+    parts of the email can never disagree about a fact.
     """
     try:
-        with open("digest.html", encoding="utf-8") as f:
-            candidate = f.read()
-        # An empty or whitespace-only file is treated as absent: a run that
-        # rendered nothing must fall back, not send a blank body.
-        if candidate.strip():
-            return candidate
-    except OSError:
-        pass
+        with open("digest.html", encoding="utf-8") as fh:
+            prebuilt = fh.read()
+        if prebuilt.strip():
+            return prebuilt
+        print("NOTE: digest.html is empty; rendering the HTML body here instead.",
+              flush=True)
+    except FileNotFoundError:
+        print("NOTE: digest.html not found; rendering the HTML body here instead.",
+              flush=True)
 
-    # Standalone use (RUN_DIGEST_NOW.bat, manual runs, the tests): render here.
     # PD.load() reads personal/data/*.json relative to the cwd, so the build runs
     # from the repo root and the caller's cwd is put back afterwards.
     prev = os.getcwd()
@@ -57,23 +55,7 @@ def build_html() -> str | None:
         os.chdir(os.path.dirname(_HERE))
         sports = PD.load("sports.json")
         hubby = PD.load("good_hubby.json")
-        # The window must match the one the workflow used for digest.txt, or the
-        # two parts of the same email would disagree about what is coming up.
-        days = int(os.environ.get("DAYS", "10") or "10")
-        weekly = bool(os.environ.get("WEEKLY", "").strip())
-        # Gmail renders the HTML part, so research has to be gathered HERE too
-        # when there is no prebuilt file: rendering without it would send a
-        # styled body missing everything the plain-text part contains.
-        research = None
-        try:
-            research = PD.FR.gather(PD.FR.load_follow(), weekly=weekly)
-        except Exception as exc:  # noqa: BLE001 - never block the email
-            print(
-                f"NOTE: research unavailable in the HTML body "
-                f"({type(exc).__name__}: {exc})",
-                flush=True,
-            )
-        return PD.render_html(sports, hubby, dt.date.today(), days, research)
+        return PD.render_html(sports, hubby, dt.date.today(), 10)
     except Exception as exc:  # noqa: BLE001 - never block the email on cosmetics
         print(
             f"NOTE: HTML body unavailable ({type(exc).__name__}: {exc}); "

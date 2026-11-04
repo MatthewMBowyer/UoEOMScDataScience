@@ -25,6 +25,9 @@ Usage:
     python3 scripts/follow_edit.py add-competition uefa.champions
     python3 scripts/follow_edit.py remove-competition uefa.champions
     python3 scripts/follow_edit.py --list-teams uefa.champions
+    python3 scripts/follow_edit.py --list-sports
+    python3 scripts/follow_edit.py add-sport "Padel"
+    python3 scripts/follow_edit.py remove-sport "Weightlifting"
     python3 scripts/follow_edit.py --list-competitions
     python3 scripts/follow_edit.py --tennis top_n 10
     python3 scripts/follow_edit.py --tennis enabled off
@@ -46,7 +49,8 @@ PATH = os.path.join(ROOT, "personal", "data", "follow.json")
 
 def read() -> dict:
     if not os.path.exists(PATH):
-        return {"news": [], "competitions": [], "tennis": {"enabled": False}, "settings": {}}
+        return {"news": [], "sports": [], "competitions": [],
+                "tennis": {"enabled": False}, "settings": {}}
     with open(PATH, encoding="utf-8") as fh:
         return json.load(fh)
 
@@ -56,6 +60,61 @@ def write(cfg: dict) -> None:
     with open(PATH, "w", encoding="utf-8") as fh:
         json.dump(cfg, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
+
+
+def find_sport(cfg: dict, sport: str) -> dict | None:
+    for row in cfg.setdefault("sports", []):
+        if row.get("sport", "").lower() == sport.lower():
+            return row
+    return None
+
+
+def add_sport(cfg: dict, sport: str) -> str:
+    """Add a sport, or switch a muted one back on."""
+    sport = sport.strip()
+    if not sport:
+        return "A sport needs a name."
+    row = find_sport(cfg, sport)
+    if row is not None:
+        if row.get("enabled", True):
+            return f"'{row['sport']}' is already on."
+        row["enabled"] = True
+        return f"Switched '{row['sport']}' back on."
+    cfg.setdefault("sports", []).append({
+        "sport": sport, "enabled": True,
+        "source": "Added by you with MANAGE_SPORTS.bat",
+    })
+    return f"Added '{sport}'."
+
+
+def remove_sport(cfg: dict, sport: str) -> str:
+    """Mute a sport. The row stays, so this is reversible with add-sport."""
+    row = find_sport(cfg, sport)
+    if row is None:
+        return f"'{sport}' is not in the sport list."
+    if not row.get("enabled", True):
+        return f"'{row['sport']}' is already off."
+    row["enabled"] = False
+    return (f"Removed '{row['sport']}' - it is switched off and will not appear in "
+            f"events, suggestions or local matches. Add it back to undo.")
+
+
+def list_sports(cfg: dict) -> str:
+    rows = cfg.get("sports") or []
+    if not rows:
+        return "No sports listed yet. Add one with: --add-sport \"Tennis\""
+    return "\n".join(
+        f"  [{'on ' if r.get('enabled', True) else 'OFF'}] {r['sport']}"
+        for r in rows if r.get("sport"))
+
+
+def remember_removed(cfg: dict, name: str) -> None:
+    """Record a removal so suggestions can never re-propose it."""
+    if not name:
+        return
+    removed = cfg.setdefault("removed", [])
+    if not any(r.lower() == name.lower() for r in removed):
+        removed.append(name)
 
 
 def find_competition(cfg: dict, league: str) -> dict | None:
@@ -131,11 +190,15 @@ def add_competition(cfg: dict, league: str) -> str:
 
 def remove_competition(cfg: dict, league: str) -> str:
     before = len(cfg.get("competitions", []))
-    cfg["competitions"] = [e for e in cfg.get("competitions", [])
-                           if e.get("league") != league]
-    if len(cfg["competitions"]) == before:
+    kept = [e for e in cfg.get("competitions", []) if e.get("league") != league]
+    if len(kept) == before:
         return f"Not following {league}."
-    return f"Stopped following {league}."
+    # Remember it, so the suggestions block can never propose it back.
+    for e in cfg["competitions"]:
+        if e.get("league") == league:
+            remember_removed(cfg, e.get("label") or league)
+    cfg["competitions"] = kept
+    return f"Stopped following {league}. It will not be suggested back."
 
 
 # ---------------------------------------------------------------------------
@@ -146,6 +209,14 @@ def show(cfg: dict) -> None:
     print("WHO YOU FOLLOW")
     print(f"  file: {os.path.relpath(PATH, ROOT)}")
     print()
+    rows = cfg.get("sports") or []
+    print(f"Sports ({len(rows)})  <- ADD OR REMOVE A SPORT WITH --add-sport / --remove-sport")
+    for r in rows:
+        print(f"  [{'on ' if r.get('enabled', True) else 'OFF'}] {r.get('sport')}")
+    if not rows:
+        print("  (none listed - add one with --add-sport \"Tennis\")")
+    print()
+
     news = cfg.get("news", [])
     print(f"News ({len(news)})")
     for e in news:
@@ -213,6 +284,8 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--show", action="store_true", help="print the current follow list")
     ap.add_argument("--list-competitions", action="store_true", help="competition ids")
+    ap.add_argument("--list-sports", action="store_true",
+                    help="the sports you follow, and whether each is on")
     ap.add_argument("--list-teams", metavar="LEAGUE", help="teams playing in a competition now")
     ap.add_argument("--tennis", nargs=2, metavar=("KEY", "VALUE"),
                     help="set a tennis option, e.g. --tennis top_n 10")
@@ -222,6 +295,8 @@ def main() -> int:
     p = sub.add_parser("remove-news"); p.add_argument("label")
     p = sub.add_parser("add-team"); p.add_argument("league"); p.add_argument("team")
     p = sub.add_parser("remove-team"); p.add_argument("league"); p.add_argument("team")
+    p = sub.add_parser("add-sport"); p.add_argument("sport")
+    p = sub.add_parser("remove-sport"); p.add_argument("sport")
     p = sub.add_parser("add-competition"); p.add_argument("league")
     p = sub.add_parser("remove-competition"); p.add_argument("league")
 
@@ -230,6 +305,9 @@ def main() -> int:
 
     if args.list_competitions:
         list_competitions(); return 0
+    if args.list_sports:
+        print(list_sports(cfg))
+        return 0
     if args.list_teams:
         return list_teams(args.list_teams)
     if args.tennis:
@@ -259,6 +337,8 @@ def main() -> int:
         "remove-team": lambda: remove_team(cfg, args.league, args.team),
         "add-competition": lambda: add_competition(cfg, args.league),
         "remove-competition": lambda: remove_competition(cfg, args.league),
+        "add-sport": lambda: add_sport(cfg, args.sport),
+        "remove-sport": lambda: remove_sport(cfg, args.sport),
     }[args.cmd]()
 
     write(cfg)

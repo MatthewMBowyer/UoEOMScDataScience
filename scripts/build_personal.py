@@ -204,6 +204,40 @@ footer.bot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);col
   border-left:3px solid var(--warn);background:rgba(247,201,72,.07);
   border-radius:0 12px 12px 0;padding:12px 16px;margin:16px 0;font-size:.88rem
 }
+/* The tool pointer: unmissable, first thing on the page, and it uses the same
+   tokens as everything else rather than introducing a new visual language. */
+.pointer{
+  border-left:3px solid var(--accent);background:rgba(19,86,127,.16);
+  border-radius:0 12px 12px 0;padding:12px 16px;margin:0 0 18px;font-size:.9rem
+}
+.pointer code{font-size:.88em;padding:1px 6px;border-radius:6px;
+  background:rgba(255,255,255,.07)}
+/* Follow table: a management surface. A muted sport is dimmed, never hidden. */
+table.follow tr.off td{opacity:.62}
+.tag.on{border-color:rgba(40,209,124,.5);color:var(--good)}
+.tag.off{border-color:var(--line);color:var(--muted)}
+/* Research sections: BY SPORT detail, STANDINGS, TENNIS, SUGGESTED, LOCAL.
+   Suggested gets its own accent so it can never be mistaken for followed
+   content, which is the whole point of separating it. */
+.res{margin:12px 0 0}
+.res h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:16px 0 6px}
+.res ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.res li{border-left:2px solid var(--line);padding:0 0 0 10px;font-size:.9rem}
+.res .when{color:var(--muted);font-variant-numeric:tabular-nums}
+.res .note{color:var(--muted);font-size:.84rem}
+.res .sum{color:var(--muted);font-size:.84rem}
+.res .src{color:var(--muted);font-size:.8rem}
+.rank{border-left-color:var(--accent2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86rem}
+.mark{display:inline-block;min-width:30px;font-size:.7rem;font-weight:700;letter-spacing:.06em}
+.mark.in{color:var(--good)}
+.mark.out{color:#f87171}
+.mark.none{color:var(--muted)}
+.suggested{border-left:3px solid var(--accent2);background:rgba(34,211,238,.06);
+  border-radius:0 12px 12px 0;padding:4px 16px 14px;margin:18px 0}
+.suggested h2{color:var(--accent2)}
+.standings td,.standings th{padding:5px 8px;font-size:.82rem}
+.standings td.num{text-align:right}
+.qual{color:var(--good)}
 @media (max-width:620px){
   ul.events li{grid-template-columns:1fr;gap:6px}
   .count{width:100%;justify-content:space-between}
@@ -330,7 +364,248 @@ def page(title: str, heading: str, sub: str, body: str, active: str,
 # sports.html
 # ---------------------------------------------------------------------------
 
-def build_sports(data: dict, today: dt.date | None = None) -> str:
+def load_follow_file() -> dict:
+    """The owner's follow list, or an empty one if it has not been created.
+
+    sports.html must still build when follow.json is missing, because the page
+    predates the follow list; an absent file is an empty list, not an error.
+    """
+    path = os.path.join(DATA, "follow.json")
+    if not os.path.exists(path):
+        return {"sports": []}
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def follow_rows(follow: dict, data: dict, events: list[dict]) -> list[dict]:
+    """One row per sport in the follow list: state, events, next event, source.
+
+    This is a MANAGEMENT/STATE surface, not a content section: it is the only
+    place a MUTED sport is shown, because it is where the owner goes to switch
+    it back on (AC-147). The digest never lists a muted sport anywhere.
+    """
+    weights: dict[str, int] = {}
+    nexts: dict[str, dict] = {}
+    for ev in events:
+        sport = ev.get("sport") or ""
+        weights[sport] = weights.get(sport, 0) + 1
+        cur = nexts.get(sport)
+        if cur is None or ev["start"] < cur["start"]:
+            nexts[sport] = ev
+
+    # Sports a live source can report on even with no owner event (Football's
+    # fixtures come from the competition feed; Tennis from the tours' draws).
+    live_only = {"Football", "Tennis"}
+
+    rows = []
+    for s in follow.get("sports") or []:
+        sport = s.get("sport") or ""
+        if not sport:
+            continue
+        nxt = nexts.get(sport)
+        rows.append({
+            "sport": sport,
+            "enabled": bool(s.get("enabled", True)),
+            "events": weights.get(sport, 0),
+            "next": span(nxt) if nxt else "",
+            "next_name": nxt.get("name", "") if nxt else "",
+            "live_source": sport in live_only,
+            "source": s.get("source") or "",
+        })
+    return rows
+
+
+def load_research_snapshot() -> dict:
+    """The recorded research payload that sports.html renders.
+
+    sports.html is a static page, so it cannot fetch at view time. The research
+    layer writes this snapshot when it gathers (see `write_research_snapshot`),
+    and the page is rebuilt from THAT - the same data the digest used, through
+    the same `follow_research` block builders, so the two cannot disagree.
+    An absent or unreadable snapshot is an empty one: the page still builds.
+    """
+    path = os.path.join(DATA, "research.json")
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (ValueError, OSError):
+        return {}
+
+
+def write_research_snapshot(data: dict, path: str | None = None) -> str:
+    """Record what the research layer gathered, for the static page to render."""
+    import follow_research as FR
+
+    target = path or os.path.join(DATA, "research.json")
+    payload = {
+        "recorded_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "sports": data.get("sports") or {},
+        "standings": FR.standings_blocks(data),
+        "tennis": ({"enabled": data["tennis"]["enabled"],
+                    "top_n": data["tennis"].get("top_n", 5),
+                    "tours": [{"tour": t["tour"],
+                               "blocks": FR.tennis_tour_blocks(
+                                   t, data["tennis"].get("top_n", 5))}
+                              for t in data["tennis"].get("tours", [])]}
+                   if data.get("tennis") else {"enabled": False, "tours": []}),
+        "suggestions": (FR.suggestion_blocks(data) or [{}])[0],
+        "local": (FR.local_blocks(data) or [{}])[0],
+    }
+    os.makedirs(os.path.dirname(target) or ".", exist_ok=True)
+    with open(target, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, indent=1, sort_keys=False)
+        fh.write("\n")
+    return target
+
+
+def _esc(v) -> str:
+    return html.escape("" if v is None else str(v))
+
+
+def _standings_html(tables: list[dict]) -> str:
+    """ESPN's own numbers in a real table. Same data the digest renders."""
+    if not tables:
+        return ""
+    parts = []
+    for t in tables:
+        if t.get("error"):
+            parts.append(f'<p class="note">{_esc(t["label"])}: {_esc(t["error"])}</p>')
+            continue
+        stage = f' <span class="small muted">&middot; {_esc(t["stage"])}</span>' if t.get("stage") else ""
+        head = "".join(f"<th>{_esc(c)}</th>" for c in t["columns"])
+        body = []
+        for r in t["rows"]:
+            s = r["stats"]
+            note = (f' <span class="qual">{_esc(r["note"])}</span>' if r["note"] else "")
+            body.append(
+                f'<tr><td class="num">{_esc(r["position"])}</td>'
+                f'<td>{_esc(r["team"])}{note}</td>'
+                + "".join(f'<td class="num">{_esc(s[k])}</td>'
+                          for k in ("GP", "W", "D", "L", "GD", "P"))
+                + "</tr>")
+        parts.append(
+            f'<h4>{_esc(t["label"])}{stage}</h4>'
+            f'<table class="standings"><tr>{head}</tr>{"".join(body)}</table>')
+    return '<div class="res">' + "".join(parts) + "</div>"
+
+
+def _tennis_html(tennis: dict) -> str:
+    """Event-grouped tennis with the per-tour RANKING line, from shared blocks."""
+    if not tennis.get("enabled"):
+        return ""
+    parts = []
+    for tour in tennis.get("tours", []):
+        parts.append(f'<h4>Tennis &mdash; {_esc(tour["tour"])} top '
+                     f'{_esc(tennis.get("top_n", 5))}</h4>')
+        for b in tour.get("blocks", []):
+            kind = b.get("kind")
+            if kind == "ranking":
+                parts.append(f'<p class="rank"><strong>RANKING</strong> &middot; '
+                             f'{_esc(b["label"])}: {_esc(b["line"])}</p>')
+            elif kind == "summary":
+                parts.append(f'<p class="sum"><strong>{_esc(b["label"])}</strong>: '
+                             f'{_esc(b["line"])}</p>')
+            elif kind == "note":
+                parts.append(f'<p class="note">{_esc(b["text"])}</p>')
+            elif kind == "event":
+                stage = (f' <span class="small muted">&middot; {_esc(b["stage"])}</span>'
+                         if b.get("stage") else "")
+                parts.append(f'<p><strong>{_esc(b["tournament"])}</strong>{stage}</p>')
+                if b.get("empty_line"):
+                    parts.append(f'<p class="note">{_esc(b["empty_line"])}</p>')
+                    continue
+                rows = []
+                for r in b.get("rows", []):
+                    cls = {"in": "in", "out": "out"}.get(r["state"], "none")
+                    rows.append(
+                        f'<li><span class="mark {cls}">{_esc(r["mark"])}</span>'
+                        f'{_esc(r["position"])}. {_esc(r["name"])} '
+                        f'<span class="sum">&ndash; {_esc(r["detail"])}</span></li>')
+                parts.append(f'<ul>{"".join(rows)}</ul>')
+            elif kind == "matches":
+                parts.append(f'<p><strong>{_esc(b["label"])}</strong></p>')
+                rows = []
+                for m in b.get("rows", []):
+                    names = " ".join(
+                        (f'<strong>{_esc(p["label"])}</strong>' if p["winner"]
+                         else _esc(p["label"])) if i == 0 else
+                        _esc(m["sep"]) + (f'<strong>{_esc(p["label"])}</strong>'
+                                          if p["winner"] else _esc(p["label"]))
+                        for i, p in enumerate(m["players"]))
+                    score = f' <span class="small muted">{_esc(m["score"])}</span>' if m.get("score") else ""
+                    rows.append(f'<li><span class="when">{_esc(m["when"])}</span> '
+                                f'{names}{score}</li>')
+                parts.append(f'<ul>{"".join(rows)}</ul>')
+    return '<div class="res">' + "".join(parts) + "</div>"
+
+
+def _suggestions_html(sug: dict) -> str:
+    """The SUGGESTED section: its own heading and its own container."""
+    groups = sug.get("groups") or []
+    body = []
+    for g in groups:
+        items = "".join(
+            f'<li><strong>{_esc(i["name"])}</strong> '
+            f'<span class="src">&middot; {_esc(i["why"])}</span></li>'
+            for i in g["items"])
+        body.append(f'<p><strong>{_esc(g["sport"])}</strong> '
+                    f'<span class="src">&middot; from {_esc(g["source"])}</span></p>'
+                    f'<ul>{items}</ul>')
+    for err in sug.get("errors") or []:
+        body.append(f'<p class="note">{_esc(err)}</p>')
+    if sug.get("error"):
+        body.append(f'<p class="note">{_esc(sug["error"])}</p>')
+    if sug.get("excluded"):
+        body.append('<p class="note">Never suggested, because you removed them: '
+                    f'{_esc(", ".join(sug["excluded"]))}</p>')
+    if not body:
+        body.append('<p class="note">nothing new to suggest - you already follow '
+                    'what these sources list</p>')
+    return ('<section class="card suggested" id="suggested">'
+            '<h2>Suggested next (not followed yet)</h2>'
+            '<p class="small muted">Derived from what you follow, and never something you '
+            'removed. Each line names the source it came from and the follow that caused it.</p>'
+            + "".join(body) + "</section>")
+
+
+def _local_html(loc: dict) -> str:
+    """The LOCAL - JOHANNESBURG block, with the two-person label."""
+    if not loc:
+        return ""
+    body = []
+    for c in loc.get("categories") or []:
+        if c["items"]:
+            body.append(f'<h4>{_esc(c["label"])}</h4><ul>')
+            for i in c["items"]:
+                pair = (f' <span class="chip">{_esc(i["two_person_label"])}</span>'
+                        if i.get("two_person") and i.get("two_person_label") else "")
+                title = (f'<a href="{_esc(i["link"])}" target="_blank" '
+                         f'rel="noopener noreferrer">{_esc(i["title"])}</a>'
+                         if i["link"] else _esc(i["title"]))
+                who = f' <span class="small muted">&mdash; {_esc(i["publisher"])}</span>' if i["publisher"] else ""
+                body.append(f'<li><span class="when">{_esc(i["date"])}</span> '
+                            f'{title}{who}{pair}</li>')
+            body.append("</ul>")
+        else:
+            body.append(f'<p class="note">{_esc(c["label"])}: nothing found in this '
+                        f'window ({_esc(c["months"])} months)</p>')
+        if "two_person_found" in c and not c["two_person_found"]:
+            body.append(f'<p class="note">{_esc(c.get("two_person_label") or "Two-person")}: '
+                        'no two-person offers found in this window</p>')
+    if loc.get("error"):
+        body.append(f'<p class="note">{_esc(loc["error"])}</p>')
+    if loc.get("note"):
+        body.append(f'<p class="note">{_esc(loc["note"])}</p>')
+    return ('<section class="card" id="local">'
+            f'<h2>Local &mdash; {_esc(loc.get("city") or "Johannesburg")}</h2>'
+            '<div class="res">' + "".join(body) + "</div></section>")
+
+
+def build_sports(data: dict, today: dt.date | None = None,
+                 follow: dict | None = None,
+                 research: dict | None = None) -> str:
     """Render sports.html from the supplied events, pruning expired ones.
 
     `today` defaults to the stored `prune_as_of` reference date (falling back to
@@ -340,6 +615,16 @@ def build_sports(data: dict, today: dt.date | None = None) -> str:
     """
     today = today or _prune_as_of(data)
     events, pruned = prune_events(data["events"], today)
+
+    # AC-142 / INV-64: a muted sport produces NO row in any generated content
+    # section. The follow table below is the single exception, because that is
+    # the management surface where the owner re-enables it. The filter is
+    # applied ONCE here so the event list, the count and the per-sport table
+    # cannot disagree about what is being followed.
+    muted = {r.get("sport") for r in ((follow or {}).get("sports") or [])
+             if r.get("sport") and not r.get("enabled", True)}
+    if muted:
+        events = [e for e in events if e.get("sport") not in muted]
     b = data["broadcasters"]
 
     next_box = """
@@ -406,7 +691,53 @@ def build_sports(data: dict, today: dt.date | None = None) -> str:
         pruned_note = (f'<p class="small muted">Pruned as already finished before this build: '
                        f'{names}.</p>')
 
+    # AC-147: the per-sport table is driven by the FOLLOW LIST, not by the
+    # derived `preferences` block. A sport that is switched OFF still appears,
+    # marked off, because this table is where the owner turns it back on. It is
+    # the ONLY surface in the delivery permitted to show a muted sport.
+    follow_table = ""
+    rows_follow = follow_rows(follow or {}, data, events)
+    if rows_follow:
+        trs = []
+        for r in rows_follow:
+            state = ('<span class="tag on">On</span>' if r["enabled"]
+                     else '<span class="tag off">Off</span>')
+            if r["enabled"]:
+                if r["events"]:
+                    nxt = html.escape(f'{r["next_name"]} - {r["next"]}'.strip(" -"))
+                elif r["live_source"]:
+                    nxt = "live fixtures - see the digest"
+                else:
+                    nxt = "nothing in the window"
+            else:
+                nxt = "muted - no digest section shows this sport"
+            trs.append(
+                f'<tr{" class=\"off\"" if not r["enabled"] else ""}>'
+                f'<td>{html.escape(r["sport"])}</td>'
+                f'<td>{state}</td>'
+                f'<td class="num">{r["events"] if r["enabled"] else "-"}</td>'
+                f'<td>{nxt}</td>'
+                f'<td class="small muted">{html.escape(r["source"])}</td></tr>')
+        follow_table = (
+            '<table class="follow">'
+            '<tr><th>Sport</th><th>State</th><th>Events</th>'
+            '<th>Next event</th><th>Where the follow came from</th></tr>'
+            + "".join(trs) + '</table>')
+
+    pointer = (
+        '<p class="pointer"><strong>Add or remove a sport:</strong> double-click '
+        '<code>MANAGE_SPORTS.bat</code> in the project folder. It runs on your own PC - '
+        'no commands to type, just a numbered menu. Removing a sport mutes it everywhere '
+        'and can be undone the same way.</p>')
+
+    research = research if research is not None else load_research_snapshot()
+    standings_html = _standings_html(research.get("standings") or [])
+    tennis_html = _tennis_html(research.get("tennis") or {})
+    suggestions_html = _suggestions_html(research.get("suggestions") or {})
+    local_html = _local_html(research.get("local") or {})
+
     body = f"""
+{pointer}
 {next_box}
 <section class="card">
   <h2>The list</h2>
@@ -427,13 +758,36 @@ def build_sports(data: dict, today: dt.date | None = None) -> str:
 
 <section class="card">
   <h2>What you follow</h2>
-  <p class="muted small">This is the sports profile recorded from your own list, so a future refresh knows
-  what to look for without guessing. It adds nothing you have not shown an interest in.</p>
+  <p class="muted small">Every sport in your follow list, with whether it is on and where the follow came
+  from. This is the switchboard: a sport marked <strong>Off</strong> appears here and nowhere else, so you
+  can always see it and turn it back on with <code>MANAGE_SPORTS.bat</code>. Nothing here was added that
+  you did not ask for.</p>
+  {follow_table or '<p class="muted small">No sports are listed yet. Add one with <code>MANAGE_SPORTS.bat</code>.</p>'}
+  <h3>Series behind each sport</h3>
   <table>
     <tr><th>Sport</th><th>Events</th><th>Series</th></tr>
     {pref_rows}
   </table>
 </section>
+
+<section class="card" id="standings">
+  <h2>Standings</h2>
+  <p class="muted small">Your followed competition's table, exactly as ESPN publishes it - position,
+  played, won, drawn, lost, goal difference, points, and the qualification note for each row. Nothing
+  here is recalculated.</p>
+  {standings_html or '<p class="muted small">No standings were available for the competitions you follow.</p>'}
+</section>
+
+<section class="card" id="tennis">
+  <h2>Tennis &mdash; top 5 by event</h2>
+  <p class="muted small">The current ranking sits at the top of each tour, then each tournament the
+  top&nbsp;5 are in, with the round they reached and who beat them. Where the ranking could not be read
+  it says so rather than showing an old list.</p>
+  {tennis_html or '<p class="muted small">Tennis is switched off, or the tours could not be read.</p>'}
+</section>
+
+{suggestions_html}
+{local_html}
 
 <section class="card">
   <h2>Where to watch</h2>
@@ -866,6 +1220,11 @@ def main() -> int:
     ap.add_argument("--check", action="store_true",
                     help="verify the outputs are current; non-zero if stale")
     ap.add_argument("--today", help="freeze the clock (YYYY-MM-DD), for tests")
+    ap.add_argument("--research", action="store_true",
+                    help="gather the live research layer and record "
+                         "personal/data/research.json for sports.html")
+    ap.add_argument("--no-research", action="store_true",
+                    help="skip the research layer entirely (offline, fast)")
     args = ap.parse_args()
 
     sports = load("sports.json")
@@ -878,8 +1237,19 @@ def main() -> int:
     ref = dt.date.fromisoformat(args.today) if args.today else _prune_as_of(sports)
 
     ok = True
+    follow = load_follow_file()
+    if args.research:
+        import follow_research as FR
+        import personal_digest as PD
+
+        gathered = FR.gather(follow, today=ref,
+                             sports_events=PD._sport_events(sports),
+                             window_days=10)
+        print(f"wrote {write_research_snapshot(gathered)} "
+              f"({len(gathered.get('failures') or [])} source note(s))")
+    research = {} if args.no_research else None
     ok &= write(os.path.join(OUT, "sports.html"),
-                build_sports(sports, ref), args.check)
+                build_sports(sports, ref, follow, research=research), args.check)
     ok &= write(os.path.join(OUT, "good_hubby.html"),
                 build_hubby(hubby, ref), args.check)
     ok &= write(os.path.join(OUT, "sports.ics"),
