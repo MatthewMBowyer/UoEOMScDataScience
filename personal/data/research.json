@@ -1,0 +1,1133 @@
+{
+ "recorded_at": "2026-11-04T19:35:21Z",
+ "sports": {
+  "enabled": [
+   "Motorsport",
+   "Tennis",
+   "Football",
+   "Cycling",
+   "Gymnastics",
+   "Weightlifting",
+   "Padel"
+  ],
+  "muted": []
+ },
+ "standings": [
+  {
+   "label": "UEFA Champions League",
+   "stage": "League Phase",
+   "error": "",
+   "columns": [
+    "#",
+    "Team",
+    "P",
+    "W",
+    "D",
+    "L",
+    "GD",
+    "Pts"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "team": "Paris Saint-Germain",
+     "stats": {
+      "GP": "4",
+      "W": "4",
+      "D": "0",
+      "L": "0",
+      "GD": "+15",
+      "P": "12"
+     },
+     "note": "Qualifies for round of 16"
+    },
+    {
+     "position": 2,
+     "team": "Barcelona",
+     "stats": {
+      "GP": "4",
+      "W": "3",
+      "D": "0",
+      "L": "1",
+      "GD": "+8",
+      "P": "9"
+     },
+     "note": "Qualifies for round of 16"
+    },
+    {
+     "position": 3,
+     "team": "Aston Villa",
+     "stats": {
+      "GP": "4",
+      "W": "3",
+      "D": "0",
+      "L": "1",
+      "GD": "+6",
+      "P": "9"
+     },
+     "note": "Qualifies for round of 16"
+    },
+    {
+     "position": 4,
+     "team": "Liverpool",
+     "stats": {
+      "GP": "3",
+      "W": "3",
+      "D": "0",
+      "L": "0",
+      "GD": "+5",
+      "P": "9"
+     },
+     "note": "Qualifies for round of 16"
+    },
+    {
+     "position": 5,
+     "team": "Real Madrid",
+     "stats": {
+      "GP": "3",
+      "W": "3",
+      "D": "0",
+      "L": "0",
+      "GD": "+5",
+      "P": "9"
+     },
+     "note": "Qualifies for round of 16"
+    },
+    {
+     "position": 6,
+     "team": "Sporting CP",
+     "stats": {
+      "GP": "4",
+      "W": "3",
+      "D": "0",
+      "L": "1",
+      "GD": "+4",
+      "P": "9"
+     },
+     "note": "Qualifies for round of 16"
+    },
+    {
+     "position": 7,
+     "team": "Real Betis",
+     "stats": {
+      "GP": "3",
+      "W": "3",
+      "D": "0",
+      "L": "0",
+      "GD": "+3",
+      "P": "9"
+     },
+     "note": "Qualifies for round of 16"
+    },
+    {
+     "position": 8,
+     "team": "Bayern Munich",
+     "stats": {
+      "GP": "4",
+      "W": "2",
+      "D": "2",
+      "L": "0",
+      "GD": "+7",
+      "P": "8"
+     },
+     "note": "Qualifies for round of 16"
+    },
+    {
+     "position": 9,
+     "team": "Arsenal",
+     "stats": {
+      "GP": "3",
+      "W": "2",
+      "D": "1",
+      "L": "0",
+      "GD": "+4",
+      "P": "7"
+     },
+     "note": "Knockout phase playoffs - seeded"
+    },
+    {
+     "position": 10,
+     "team": "VfB Stuttgart",
+     "stats": {
+      "GP": "4",
+      "W": "2",
+      "D": "1",
+      "L": "1",
+      "GD": "+3",
+      "P": "7"
+     },
+     "note": "Knockout phase playoffs - seeded"
+    },
+    {
+     "position": 11,
+     "team": "Como",
+     "stats": {
+      "GP": "3",
+      "W": "2",
+      "D": "0",
+      "L": "1",
+      "GD": "+5",
+      "P": "6"
+     },
+     "note": "Knockout phase playoffs - seeded"
+    },
+    {
+     "position": 12,
+     "team": "Manchester City",
+     "stats": {
+      "GP": "3",
+      "W": "2",
+      "D": "0",
+      "L": "1",
+      "GD": "+4",
+      "P": "6"
+     },
+     "note": "Knockout phase playoffs - seeded"
+    },
+    {
+     "position": 13,
+     "team": "Club Brugge",
+     "stats": {
+      "GP": "3",
+      "W": "2",
+      "D": "0",
+      "L": "1",
+      "GD": "+3",
+      "P": "6"
+     },
+     "note": "Knockout phase playoffs - seeded"
+    },
+    {
+     "position": 14,
+     "team": "Internazionale",
+     "stats": {
+      "GP": "4",
+      "W": "2",
+      "D": "0",
+      "L": "2",
+      "GD": "+2",
+      "P": "6"
+     },
+     "note": "Knockout phase playoffs - seeded"
+    },
+    {
+     "position": 15,
+     "team": "LASK Linz",
+     "stats": {
+      "GP": "4",
+      "W": "2",
+      "D": "0",
+      "L": "2",
+      "GD": "+1",
+      "P": "6"
+     },
+     "note": "Knockout phase playoffs - seeded"
+    },
+    {
+     "position": 16,
+     "team": "Borussia Dortmund",
+     "stats": {
+      "GP": "3",
+      "W": "2",
+      "D": "0",
+      "L": "1",
+      "GD": "+1",
+      "P": "6"
+     },
+     "note": "Knockout phase playoffs - seeded"
+    },
+    {
+     "position": 17,
+     "team": "Manchester United",
+     "stats": {
+      "GP": "4",
+      "W": "2",
+      "D": "0",
+      "L": "2",
+      "GD": "0",
+      "P": "6"
+     },
+     "note": "Knockout phase playoffs - unseeded"
+    },
+    {
+     "position": 18,
+     "team": "Galatasaray",
+     "stats": {
+      "GP": "4",
+      "W": "2",
+      "D": "0",
+      "L": "2",
+      "GD": "-1",
+      "P": "6"
+     },
+     "note": "Knockout phase playoffs - unseeded"
+    },
+    {
+     "position": 19,
+     "team": "AS Roma",
+     "stats": {
+      "GP": "4",
+      "W": "1",
+      "D": "1",
+      "L": "2",
+      "GD": "+2",
+      "P": "4"
+     },
+     "note": "Knockout phase playoffs - unseeded"
+    },
+    {
+     "position": 20,
+     "team": "Shakhtar Donetsk",
+     "stats": {
+      "GP": "4",
+      "W": "1",
+      "D": "1",
+      "L": "2",
+      "GD": "0",
+      "P": "4"
+     },
+     "note": "Knockout phase playoffs - unseeded"
+    },
+    {
+     "position": 21,
+     "team": "PSV Eindhoven",
+     "stats": {
+      "GP": "3",
+      "W": "1",
+      "D": "1",
+      "L": "1",
+      "GD": "0",
+      "P": "4"
+     },
+     "note": "Knockout phase playoffs - unseeded"
+    },
+    {
+     "position": 22,
+     "team": "Atl\u00e9tico Madrid",
+     "stats": {
+      "GP": "4",
+      "W": "1",
+      "D": "1",
+      "L": "2",
+      "GD": "-1",
+      "P": "4"
+     },
+     "note": "Knockout phase playoffs - unseeded"
+    },
+    {
+     "position": 23,
+     "team": "Bodo/Glimt",
+     "stats": {
+      "GP": "4",
+      "W": "1",
+      "D": "1",
+      "L": "2",
+      "GD": "-5",
+      "P": "4"
+     },
+     "note": "Knockout phase playoffs - unseeded"
+    },
+    {
+     "position": 24,
+     "team": "Napoli",
+     "stats": {
+      "GP": "3",
+      "W": "1",
+      "D": "0",
+      "L": "2",
+      "GD": "-2",
+      "P": "3"
+     },
+     "note": "Knockout phase playoffs - unseeded"
+    },
+    {
+     "position": 25,
+     "team": "Sabah FK",
+     "stats": {
+      "GP": "3",
+      "W": "1",
+      "D": "0",
+      "L": "2",
+      "GD": "-3",
+      "P": "3"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 26,
+     "team": "Lens",
+     "stats": {
+      "GP": "3",
+      "W": "1",
+      "D": "0",
+      "L": "2",
+      "GD": "-4",
+      "P": "3"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 27,
+     "team": "AEK Athens",
+     "stats": {
+      "GP": "3",
+      "W": "1",
+      "D": "0",
+      "L": "2",
+      "GD": "-5",
+      "P": "3"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 28,
+     "team": "RB Leipzig",
+     "stats": {
+      "GP": "3",
+      "W": "1",
+      "D": "0",
+      "L": "2",
+      "GD": "-5",
+      "P": "3"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 29,
+     "team": "Villarreal",
+     "stats": {
+      "GP": "4",
+      "W": "1",
+      "D": "0",
+      "L": "3",
+      "GD": "-6",
+      "P": "3"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 30,
+     "team": "Feyenoord Rotterdam",
+     "stats": {
+      "GP": "4",
+      "W": "1",
+      "D": "0",
+      "L": "3",
+      "GD": "-7",
+      "P": "3"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 31,
+     "team": "Fenerbahce",
+     "stats": {
+      "GP": "3",
+      "W": "0",
+      "D": "2",
+      "L": "1",
+      "GD": "-6",
+      "P": "2"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 32,
+     "team": "Slavia Prague",
+     "stats": {
+      "GP": "3",
+      "W": "0",
+      "D": "1",
+      "L": "2",
+      "GD": "-3",
+      "P": "1"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 33,
+     "team": "Viking FK",
+     "stats": {
+      "GP": "3",
+      "W": "0",
+      "D": "1",
+      "L": "2",
+      "GD": "-4",
+      "P": "1"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 34,
+     "team": "Lille",
+     "stats": {
+      "GP": "4",
+      "W": "0",
+      "D": "1",
+      "L": "3",
+      "GD": "-6",
+      "P": "1"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 35,
+     "team": "FC Porto",
+     "stats": {
+      "GP": "3",
+      "W": "0",
+      "D": "0",
+      "L": "3",
+      "GD": "-4",
+      "P": "0"
+     },
+     "note": "Eliminated"
+    },
+    {
+     "position": 36,
+     "team": "Slovan Bratislava",
+     "stats": {
+      "GP": "4",
+      "W": "0",
+      "D": "0",
+      "L": "4",
+      "GD": "-16",
+      "P": "0"
+     },
+     "note": "Eliminated"
+    }
+   ]
+  }
+ ],
+ "tennis": {
+  "enabled": true,
+  "top_n": 5,
+  "tours": [
+   {
+    "tour": "ATP",
+    "blocks": [
+     {
+      "kind": "ranking",
+      "label": "ATP top 5 - current ranking",
+      "players": [
+       {
+        "position": 1,
+        "name": "Alexander Zverev"
+       },
+       {
+        "position": 2,
+        "name": "Jannik Sinner"
+       },
+       {
+        "position": 3,
+        "name": "Carlos Alcaraz"
+       },
+       {
+        "position": 4,
+        "name": "Ben Shelton"
+       },
+       {
+        "position": 5,
+        "name": "Daniil Medvedev"
+       }
+      ],
+      "line": "1. Alexander Zverev, 2. Jannik Sinner, 3. Carlos Alcaraz, 4. Ben Shelton, 5. Daniil Medvedev"
+     },
+     {
+      "kind": "summary",
+      "label": "How the top 5 are doing",
+      "line": "Rolex Paris Masters: still in - 3. Carlos Alcaraz, 4. Ben Shelton; out - 1. Alexander Zverev (out in the Round 2, beaten by Lorenzo Musetti), 5. Daniil Medvedev (out in the Round 2, beaten by Ignacio Buse); not placed yet - 2. Jannik Sinner"
+     },
+     {
+      "kind": "event",
+      "tournament": "Rolex Paris Masters",
+      "stage": "In progress - Round 3",
+      "rows": [
+       {
+        "position": 1,
+        "name": "Alexander Zverev",
+        "state": "out",
+        "mark": "OUT",
+        "detail": "out in the Round 2, beaten by Lorenzo Musetti"
+       },
+       {
+        "position": 2,
+        "name": "Jannik Sinner",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 3,
+        "name": "Carlos Alcaraz",
+        "state": "in",
+        "mark": "IN",
+        "detail": "still in - Round 2"
+       },
+       {
+        "position": 4,
+        "name": "Ben Shelton",
+        "state": "in",
+        "mark": "IN",
+        "detail": "still in - Round 3"
+       },
+       {
+        "position": 5,
+        "name": "Daniil Medvedev",
+        "state": "out",
+        "mark": "OUT",
+        "detail": "out in the Round 2, beaten by Ignacio Buse"
+       }
+      ],
+      "empty_line": ""
+     },
+     {
+      "kind": "matches",
+      "label": "Their matches",
+      "rows": [
+       {
+        "when": "Wed 04 Nov 16:00",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "Ignacio Buse",
+          "winner": true
+         },
+         {
+          "label": "[5] Daniil Medvedev",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "6-4 6-4",
+        "live": false,
+        "line": "Ignacio Buse beat [5] Daniil Medvedev  6-4 6-4"
+       },
+       {
+        "when": "Wed 04 Nov 14:40",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "Lorenzo Musetti",
+          "winner": true
+         },
+         {
+          "label": "[1] Alexander Zverev",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "7(7)-6(5) 6-2",
+        "live": false,
+        "line": "Lorenzo Musetti beat [1] Alexander Zverev  7(7)-6(5) 6-2"
+       },
+       {
+        "when": "Tue 03 Nov 20:05",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "[4] Ben Shelton",
+          "winner": true
+         },
+         {
+          "label": "Cameron Norrie",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "6-3 6-4",
+        "live": false,
+        "line": "[4] Ben Shelton beat Cameron Norrie  6-3 6-4"
+       },
+       {
+        "when": "Wed 04 Nov 20:10",
+        "winner_first": false,
+        "players": [
+         {
+          "label": "[3] Carlos Alcaraz",
+          "winner": false
+         },
+         {
+          "label": "Alex Michelsen",
+          "winner": false
+         }
+        ],
+        "sep": " vs ",
+        "score": "",
+        "live": true,
+        "line": "[3] Carlos Alcaraz vs Alex Michelsen"
+       },
+       {
+        "when": "Thu 05 Nov 13:30",
+        "winner_first": false,
+        "players": [
+         {
+          "label": "Arthur Rinderknech",
+          "winner": false
+         },
+         {
+          "label": "[4] Ben Shelton",
+          "winner": false
+         }
+        ],
+        "sep": " vs ",
+        "score": "",
+        "live": false,
+        "line": "Arthur Rinderknech vs [4] Ben Shelton"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "tour": "WTA",
+    "blocks": [
+     {
+      "kind": "ranking",
+      "label": "WTA top 5 - current ranking",
+      "players": [
+       {
+        "position": 1,
+        "name": "Elena Rybakina"
+       },
+       {
+        "position": 2,
+        "name": "Aryna Sabalenka"
+       },
+       {
+        "position": 3,
+        "name": "Mirra Andreeva"
+       },
+       {
+        "position": 4,
+        "name": "Coco Gauff"
+       },
+       {
+        "position": 5,
+        "name": "Jessica Pegula"
+       }
+      ],
+      "line": "1. Elena Rybakina, 2. Aryna Sabalenka, 3. Mirra Andreeva, 4. Coco Gauff, 5. Jessica Pegula"
+     },
+     {
+      "kind": "summary",
+      "label": "How the top 5 are doing",
+      "line": "no top-5 player is in the events being played right now"
+     },
+     {
+      "kind": "event",
+      "tournament": "Angola Ladies Open",
+      "stage": "Latest round played: Quarterfinal",
+      "rows": [
+       {
+        "position": 1,
+        "name": "Elena Rybakina",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 2,
+        "name": "Aryna Sabalenka",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 3,
+        "name": "Mirra Andreeva",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 4,
+        "name": "Coco Gauff",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 5,
+        "name": "Jessica Pegula",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       }
+      ],
+      "empty_line": "No top-5 match in this event."
+     },
+     {
+      "kind": "event",
+      "tournament": "Chennai Open",
+      "stage": "Latest round played: Quarterfinal",
+      "rows": [
+       {
+        "position": 1,
+        "name": "Elena Rybakina",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 2,
+        "name": "Aryna Sabalenka",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 3,
+        "name": "Mirra Andreeva",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 4,
+        "name": "Coco Gauff",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 5,
+        "name": "Jessica Pegula",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       }
+      ],
+      "empty_line": "No top-5 match in this event."
+     },
+     {
+      "kind": "event",
+      "tournament": "Prudential Hong Kong Tennis Open",
+      "stage": "Latest round played: Quarterfinal",
+      "rows": [
+       {
+        "position": 1,
+        "name": "Elena Rybakina",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 2,
+        "name": "Aryna Sabalenka",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 3,
+        "name": "Mirra Andreeva",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 4,
+        "name": "Coco Gauff",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 5,
+        "name": "Jessica Pegula",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       }
+      ],
+      "empty_line": "No top-5 match in this event."
+     },
+     {
+      "kind": "event",
+      "tournament": "Reto Win Tennis Cali Open",
+      "stage": "In progress - Quarterfinal",
+      "rows": [
+       {
+        "position": 1,
+        "name": "Elena Rybakina",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 2,
+        "name": "Aryna Sabalenka",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 3,
+        "name": "Mirra Andreeva",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 4,
+        "name": "Coco Gauff",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       },
+       {
+        "position": 5,
+        "name": "Jessica Pegula",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet"
+       }
+      ],
+      "empty_line": "No top-5 match in this event."
+     },
+     {
+      "kind": "note",
+      "text": "No top-5 match in the tournaments being played right now."
+     }
+    ]
+   }
+  ]
+ },
+ "suggestions": {
+  "groups": [
+   {
+    "sport": "Motorsport",
+    "source": "your own event list",
+    "items": [
+     {
+      "name": "MotoGP Australian Grand Prix (2026-10-25)",
+      "why": "you follow Motorsport, later than this digest window"
+     },
+     {
+      "name": "NASCAR at Talladega (2026-10-25)",
+      "why": "you follow Motorsport, later than this digest window"
+     },
+     {
+      "name": "World Endurance - 8 Hours of Bahrain (2026-11-07)",
+      "why": "you follow Motorsport, later than this digest window"
+     },
+     {
+      "name": "NASCAR at Homestead-Miami (2026-11-08)",
+      "why": "you follow Motorsport, later than this digest window"
+     },
+     {
+      "name": "World Rally Championship - Saudi Arabia (2026-11-11)",
+      "why": "you follow Motorsport, later than this digest window"
+     },
+     {
+      "name": "MotoGP Portuguese Grand Prix (2026-11-20)",
+      "why": "you follow Motorsport, later than this digest window"
+     },
+     {
+      "name": "MotoGP Valencian Grand Prix (season finale) (2026-11-29)",
+      "why": "you follow Motorsport, later than this digest window"
+     }
+    ],
+    "total": 7
+   },
+   {
+    "sport": "Tennis",
+    "source": "ESPN tennis calendar",
+    "items": [
+     {
+      "name": "American Tennis Open Miami",
+      "why": "you follow Tennis and the WTA top 5"
+     }
+    ],
+    "total": 1
+   },
+   {
+    "sport": "Football",
+    "source": "ESPN football competitions",
+    "items": [
+     {
+      "name": "AEK Athens",
+      "why": "in the UEFA Champions League, which you follow"
+     },
+     {
+      "name": "AS Roma",
+      "why": "in the UEFA Champions League, which you follow"
+     },
+     {
+      "name": "Arsenal",
+      "why": "in the UEFA Champions League, which you follow"
+     },
+     {
+      "name": "Aston Villa",
+      "why": "in the UEFA Champions League, which you follow"
+     },
+     {
+      "name": "Atl\u00e9tico Madrid",
+      "why": "in the UEFA Champions League, which you follow"
+     },
+     {
+      "name": "Barcelona",
+      "why": "in the UEFA Champions League, which you follow"
+     },
+     {
+      "name": "Bayern Munich",
+      "why": "in the UEFA Champions League, which you follow"
+     },
+     {
+      "name": "Bodo/Glimt",
+      "why": "in the UEFA Champions League, which you follow"
+     }
+    ],
+    "total": 36
+   },
+   {
+    "sport": "Gymnastics",
+    "source": "your own event list",
+    "items": [
+     {
+      "name": "Artistic Gymnastics World Championships (2026-10-17)",
+      "why": "you follow Gymnastics, later than this digest window"
+     }
+    ],
+    "total": 1
+   },
+   {
+    "sport": "Weightlifting",
+    "source": "your own event list",
+    "items": [
+     {
+      "name": "Weightlifting World Championships (2026-10-27)",
+      "why": "you follow Weightlifting, later than this digest window"
+     }
+    ],
+    "total": 1
+   },
+   {
+    "sport": "Padel",
+    "source": "your own event list",
+    "items": [
+     {
+      "name": "Mexico Padel Major (2026-11-23)",
+      "why": "you follow Padel, later than this digest window"
+     }
+    ],
+    "total": 1
+   }
+  ],
+  "errors": [],
+  "error": "",
+  "excluded": []
+ },
+ "local": {
+  "city": "Johannesburg",
+  "categories": [
+   {
+    "label": "Buffets & all-you-can-eat",
+    "months": 3,
+    "items": [
+     {
+      "date": "2026-08-31",
+      "title": "All you can eat sushi around Johannesburg for R200! - Time Out Worldwide",
+      "publisher": "Time Out Worldwide",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPQWNMMzRmMlBJcWZUckpQMGVaY2Q3cER5RDBNQURSamZxbG5VVDlhOXl1emtjLWNBY1RMbV9pSXlEM0R1a09JYUE1UXljTVZvNElHMGFJSm1ObTZ1SWI3WUNZaWQxNk52NnBpb3FUV2dWc1VZSHUzNGt2Y1lzbUpXSWN2eXR4dTNMMnFxSkJsQy04RVVkdi0wVHM5SUZwVDVD?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     },
+     {
+      "date": "2026-08-28",
+      "title": "\"Please give me the address\u201d: Gauteng buffet plug gets Mzansi talking - Briefly News",
+      "publisher": "Briefly News",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPMXF5al94dmdzMTBQODBXMC1QdExyd1hWOWZlb3VCejJSVUpOQnZlMi10eUYwTVR6M2JVMy1Ma2JSdVhJRHNHSWh1cmNwQUNBZG81QmVTWTdCUndUM0lKb1ZmQXhSRjN5MHhTTTRTdTBnRGJnUmFZNHRkbG1OSGJSYlFZOHl4UThE?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     }
+    ],
+    "two_person_found": 0,
+    "two_person_label": "For two / couples"
+   },
+   {
+    "label": "Massages & spa specials",
+    "months": 3,
+    "items": [
+     {
+      "date": "2026-10-19",
+      "title": "Pamper your Gogo/Ouma with spa and restaurant treatment in Johannesburg this month - Time Out Worldwide",
+      "publisher": "Time Out Worldwide",
+      "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5pMnlNUFBuWnJ4WDNqSXpmZjRCaEpGZVFnR1dQRmo2NWhyLW5WZTl1UnhVSFJudEpHNmJYWTNQbUNhSTBHUi1UX3R2eHNxYmZ6MTBYYjFxXy1oQnF1eTJGVk03UlZvc3A2QW5YMG9vLWN5X01hRnI0bUdtZHNTN3c?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     },
+     {
+      "date": "2026-10-23",
+      "title": "7 Johannesburg beauty and wellness spots worth treating yourself to experience - SAPeople",
+      "publisher": "SAPeople",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0taTRZOHZvQ256dUFqNDVRUVE2ekt6blc0bmYyS1JSd05Yb3dMYVJyWEs3ejdPNFVYU3F4MDI3YjFMbWZycWNXS1I2OWIzdHNuRlEteGxPU3I4TmE2dV9MR3FlNVgwWWFpdVVLY0V4YThVZkRzNFVGNlRR?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     }
+    ],
+    "two_person_found": 0,
+    "two_person_label": "For two / couples"
+   },
+   {
+    "label": "Great events",
+    "months": 12,
+    "items": [
+     {
+      "date": "2026-10-22",
+      "title": "Zee Nxumalo added to Milk + Cookies Festival\u2019s 2027 Johannesburg line-up - IOL",
+      "publisher": "IOL",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPbkNhYUJON01nTW05WGxUS3NoeHZhTmFsNG96Y2hQLTd2NG9GY3RYbGFVSTlVTkJlQmtLaV9qbTF4SkpwLXZwSUVUOERJQ3FRLThBMjI5VzlPUEtseFhwQWMyX2FSRGs5aWJ4UVB3Zkd6SkNKSE5hWE02QTdOTkUzVnBJaUNrblQ0blNrMXE4MnQ0dUhBMDJRZ08xZFIwUzY2TVpMUC1MVkF6Z2VHZ2h1REJMYVA2QTRURjg5X0d3TGxmTDdaVnlNMQ?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     },
+     {
+      "date": "2026-10-08",
+      "title": "Johannesburg October Gig Guide: The concerts and festivals to add to your calendar - Magic 828",
+      "publisher": "Magic 828",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQT0FaM1FnSWZBS2dOTHNmakRLMmtmTmJJN2d5UVRPV29PaUlmeFU3MWp3QnlGSDRKT05UVXF3TnBZRzlzUUlMRERXTFZDQzQ5d3NYR3hDZXhrSEFoSURpTzVYYTBWZGJKLWI2cVp2R3Nyd1gxZGNCNURIUkplVl9iOGJlUjdTbFJWZmYzcjhIS0xkT2tCaEFKdF9VTlp0Z2FuUWh1Ml9HWEY?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     },
+     {
+      "date": "2026-10-02",
+      "title": "Events and Festivals in Johannesburg : October 2026 - YoMzansi",
+      "publisher": "YoMzansi",
+      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5ZcWZnelpTYVFjY29xYWNqa0htRHQ3MV9yR0VIU2E3MkI3Ql9XUmhBUjVCRGNmenZOX2xMVW5zb1ZKeDNZTTRwSU9XNmZiQ00zWXEtV0llTDlCc1hMd2JQbmxfaHFSaGFpZzQyTlduamJDdVRSSWIzQzBNR0VKdw?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     },
+     {
+      "date": "2026-09-11",
+      "title": "Events and Festivals in Johannesburg : September 2026 - YoMzansi",
+      "publisher": "YoMzansi",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9aOE1wdUlhbVBNRndEZGdKQkNKWWVvUlB0UHlhV3lzRnpCZWp2dHBGTFVoVlhpQlJNeHlwQzl1Qkd1eDBELURPUUdPZ2JoSXNSRndNQTRLRW9QWkVhSzZfWHNEOVVlTVc4MUNIMTBrbVFRYWpBTlE?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     },
+     {
+      "date": "2026-07-31",
+      "title": "From the inaugural Scatterlings Music Festival to astronomy shows: Here's what's happening in Johannesburg this weekend - The Citizen",
+      "publisher": "The Citizen",
+      "link": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPbzJ1TmRQTnlRMVhJVmxRWW5JQXU4VzNUTFdjSWk0dzBxYUtVdEVSQkFEbzd4eXBCUngtTlRRUHJ4al9ZM2FnOXlCekhkWHAxOG5SQnhSa3h0TDFkUjhMZlpyNXpDXzZBVkVLN3pURm81R0NmTG1PbGlEUXB5VjY5RzNEV0R6YnZKX1BhX3pHanNOVjJWbnNJMUo5MXJYQlBsWGRRcW9XXzRxbXhGUm53UVlTNTRjcmVBRHJ0b3JtWnJpWGJvelNKRW5RTmNuSllWbk52RVVaMVJGU202TnU2eUZrdG91VlJXZkJncGxxMXZkaXRkSU1vakxnMA?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     },
+     {
+      "date": "2026-07-29",
+      "title": "The best music festivals in and around Johannesburg - Time Out Worldwide",
+      "publisher": "Time Out Worldwide",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPR0NudTB6SGNKOVQxOWcySy1nWTdHOWZtelVrYk9JUnc0X0pNX25adnkyTnZUbEZrR2h2V0VnUXdrNzJKVmtiXzBwT1FITFpIOXVaVVcyZXdidXBac214QnpyTC14T3NKd2VEVEFwUV9kVE95TEE4RzZLX1luX3YwM3UtS2RBeVVHWG5uWVVfa25mYWNxTlI4T3pWeXJLMmtYdEVB?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     }
+    ],
+    "two_person_found": null,
+    "two_person_label": ""
+   }
+  ],
+  "error": "",
+  "note": "These are headlines about local things to do, published in the last 12 months - not a verified event calendar. Check the venue and the current price before booking, and some may already be over."
+ }
+}
