@@ -86,6 +86,40 @@ footer.bot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);col
   border-left:3px solid var(--warn);background:rgba(247,201,72,.07);
   border-radius:0 12px 12px 0;padding:12px 16px;margin:16px 0;font-size:.88rem
 }
+/* The tool pointer: unmissable, first thing on the page, and it uses the same
+   tokens as everything else rather than introducing a new visual language. */
+.pointer{
+  border-left:3px solid var(--accent);background:rgba(19,86,127,.16);
+  border-radius:0 12px 12px 0;padding:12px 16px;margin:0 0 18px;font-size:.9rem
+}
+.pointer code{font-size:.88em;padding:1px 6px;border-radius:6px;
+  background:rgba(255,255,255,.07)}
+/* Follow table: a management surface. A muted sport is dimmed, never hidden. */
+table.follow tr.off td{opacity:.62}
+.tag.on{border-color:rgba(40,209,124,.5);color:var(--good)}
+.tag.off{border-color:var(--line);color:var(--muted)}
+/* Research sections: BY SPORT detail, STANDINGS, TENNIS, SUGGESTED, LOCAL.
+   Suggested gets its own accent so it can never be mistaken for followed
+   content, which is the whole point of separating it. */
+.res{margin:12px 0 0}
+.res h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:16px 0 6px}
+.res ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.res li{border-left:2px solid var(--line);padding:0 0 0 10px;font-size:.9rem}
+.res .when{color:var(--muted);font-variant-numeric:tabular-nums}
+.res .note{color:var(--muted);font-size:.84rem}
+.res .sum{color:var(--muted);font-size:.84rem}
+.res .src{color:var(--muted);font-size:.8rem}
+.rank{border-left-color:var(--accent2);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86rem}
+.mark{display:inline-block;min-width:30px;font-size:.7rem;font-weight:700;letter-spacing:.06em}
+.mark.in{color:var(--good)}
+.mark.out{color:#f87171}
+.mark.none{color:var(--muted)}
+.suggested{border-left:3px solid var(--accent2);background:rgba(34,211,238,.06);
+  border-radius:0 12px 12px 0;padding:4px 16px 14px;margin:18px 0}
+.suggested h2{color:var(--accent2)}
+.standings td,.standings th{padding:5px 8px;font-size:.82rem}
+.standings td.num{text-align:right}
+.qual{color:var(--good)}
 @media (max-width:620px){
   ul.events li{grid-template-columns:1fr;gap:6px}
   .count{width:100%;justify-content:space-between}
@@ -105,6 +139,7 @@ footer.bot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);col
   </nav>
 </header>
 
+<p class="pointer"><strong>Add or remove a sport:</strong> double-click <code>MANAGE_SPORTS.bat</code> in the project folder. It runs on your own PC - no commands to type, just a numbered menu. Removing a sport mutes it everywhere and can be undone the same way.</p>
 
 <section class="card next" id="next-up">
   <div>
@@ -136,13 +171,36 @@ footer.bot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);col
 
 <section class="card">
   <h2>What you follow</h2>
-  <p class="muted small">This is the sports profile recorded from your own list, so a future refresh knows
-  what to look for without guessing. It adds nothing you have not shown an interest in.</p>
+  <p class="muted small">Every sport in your follow list, with whether it is on and where the follow came
+  from. This is the switchboard: a sport marked <strong>Off</strong> appears here and nowhere else, so you
+  can always see it and turn it back on with <code>MANAGE_SPORTS.bat</code>. Nothing here was added that
+  you did not ask for.</p>
+  <table class="follow"><tr><th>Sport</th><th>State</th><th>Events</th><th>Next event</th><th>Where the follow came from</th></tr><tr><td>Motorsport</td><td><span class="tag on">On</span></td><td class="num">8</td><td>Bathurst 1000 - 11 Oct 2026</td><td class="small muted">Owner, 2026-10-05: 9 of the 16 supplied events are Motorsport.</td></tr><tr><td>Tennis</td><td><span class="tag on">On</span></td><td class="num">2</td><td>Shanghai Masters - 7-18 Oct 2026</td><td class="small muted">Owner, 2026-10-12: &#x27;For tennis, only give me results of top 5.&#x27;</td></tr><tr><td>Football</td><td><span class="tag on">On</span></td><td class="num">0</td><td>live fixtures - see the digest</td><td class="small muted">Owner, 2026-10-12: &#x27;UEFA CHAMOPIONS LEAGEU - Search&#x27;.</td></tr><tr><td>Cycling</td><td><span class="tag on">On</span></td><td class="num">2</td><td>UCI Gravel World Championships - 10-11 Oct 2026</td><td class="small muted">Owner, 2026-10-05: 2 of the 16 supplied events are Cycling.</td></tr><tr><td>Gymnastics</td><td><span class="tag on">On</span></td><td class="num">1</td><td>Artistic Gymnastics World Championships - 17-25 Oct 2026</td><td class="small muted">Owner, 2026-10-05: 1 of the 16 supplied events is Gymnastics.</td></tr><tr><td>Weightlifting</td><td><span class="tag on">On</span></td><td class="num">1</td><td>Weightlifting World Championships - 27 Oct 2026 - 8 Nov 2026</td><td class="small muted">Owner, 2026-10-05: 1 of the 16 supplied events is Weightlifting.</td></tr><tr><td>Padel</td><td><span class="tag on">On</span></td><td class="num">1</td><td>Mexico Padel Major - 23-29 Nov 2026</td><td class="small muted">Owner, 2026-10-05: 1 of the 16 supplied events is Padel.</td></tr></table>
+  <h3>Series behind each sport</h3>
   <table>
     <tr><th>Sport</th><th>Events</th><th>Series</th></tr>
     <tr><td>Motorsport</td><td class="num">9</td><td>IMSA WeatherTech SportsCar Championship, Supercars Championship, MotoGP, NASCAR Cup Series, FIA WEC, WRC</td></tr><tr><td>Tennis</td><td class="num">2</td><td>ATP Masters 1000</td></tr><tr><td>Cycling</td><td class="num">2</td><td>UCI</td></tr><tr><td>Gymnastics</td><td class="num">1</td><td>FIG</td></tr><tr><td>Weightlifting</td><td class="num">1</td><td>IWF</td></tr><tr><td>Padel</td><td class="num">1</td><td>Premier Padel</td></tr>
   </table>
 </section>
+
+<section class="card" id="standings">
+  <h2>Standings</h2>
+  <p class="muted small">Your followed competition's table, exactly as ESPN publishes it - position,
+  played, won, drawn, lost, goal difference, points, and the qualification note for each row. Nothing
+  here is recalculated.</p>
+  <p class="muted small">No standings were available for the competitions you follow.</p>
+</section>
+
+<section class="card" id="tennis">
+  <h2>Tennis &mdash; top 5 by event</h2>
+  <p class="muted small">The current ranking sits at the top of each tour, then each tournament the
+  top&nbsp;5 are in, with the round they reached and who beat them. Where the ranking could not be read
+  it says so rather than showing an old list.</p>
+  <p class="muted small">Tennis is switched off, or the tours could not be read.</p>
+</section>
+
+<section class="card suggested" id="suggested"><h2>Suggested next (not followed yet)</h2><p class="small muted">Derived from what you follow, and never something you removed. Each line names the source it came from and the follow that caused it.</p><p class="note">nothing new to suggest - you already follow what these sources list</p></section>
+
 
 <section class="card">
   <h2>Where to watch</h2>

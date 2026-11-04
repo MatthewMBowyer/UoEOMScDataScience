@@ -44,7 +44,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
+sys.path.insert(0, os.path.join(ROOT, "tests"))
 import build_personal as BP  # noqa: E402
+import follow_research as FR  # noqa: E402
+from verify_research import FakeFetcher  # noqa: E402
+
+NOW_DT = dt.datetime(2026, 11, 4, 9, 0, tzinfo=dt.timezone.utc)
+NOW_RFC = NOW_DT.strftime("%a, %d %b %Y %H:%M:%S GMT")
 
 FAILURES: list[str] = []
 
@@ -723,6 +729,456 @@ def test_no_secret_leaked() -> None:
     check("AC-P10 no credential is written into the workflow", not hard, str(hard))
 
 
+
+def test_sports_page_shows_the_follow_table_and_the_tool_pointer() -> None:
+    """AC-147/AC-143/INV-64: the follow table is a management surface."""
+    data = BP.load("sports.json")
+    follow = json.load(open("personal/data/follow.json", encoding="utf-8"))
+    page = open("sports.html", encoding="utf-8").read()
+
+    check("AC-143 sports.html names MANAGE_SPORTS.bat", "MANAGE_SPORTS.bat" in page)
+    check("AC-143 the pointer says it runs on the owner's own PC", "your own PC" in page)
+    check("AC-143 the pointer appears before the first content section",
+          page.index("MANAGE_SPORTS.bat") < page.index('id="next-up"'))
+    check("AC-143 it is rendered text, not an HTML comment", 'class="pointer"' in page)
+
+    rows = BP.follow_rows(follow, data, data["events"])
+    check("AC-147 the follow table covers every sport in the follow list",
+          len(rows) == len([r for r in follow["sports"] if r.get("sport")]),
+          f"{len(rows)} rows vs {len(follow['sports'])} sports")
+    check("AC-147 every row carries the source line it came from",
+          all(r["source"] for r in rows), str([r["sport"] for r in rows if not r["source"]]))
+    check("AC-147 the rendered table has a State column",
+          ">State<" in page and ">Where the follow came from<" in page)
+
+    muted = json.loads(json.dumps(follow))
+    for r in muted["sports"]:
+        if r["sport"] == "Padel":
+            r["enabled"] = False
+    muted_page = BP.build_sports(data, dt.date(2026, 10, 6), muted)
+    table = muted_page.split("What you follow")[1]
+    check("AC-147 a muted sport still appears in the follow table", "Padel" in table)
+    check("AC-147 a muted sport is marked off", 'class="tag off">Off' in table)
+    check("AC-147 a muted sport says no digest section shows it",
+          "no digest section shows this sport" in table)
+
+    body = muted_page.split("What you follow")[0]
+    check("AC-142 a muted sport produces no events in the event list",
+          "Mexico Padel Major" not in body, "Padel event still rendered")
+    check("AC-142 the event count drops with the mute", "14 events still to come" in body)
+
+
+def test_digest_footer_points_at_the_tool() -> None:
+    """AC-143: the same pointer is in the text digest AND the HTML email."""
+    import personal_digest as PD
+    text = subprocess.run(
+        [sys.executable, "scripts/personal_digest.py", "--today", "2026-11-04",
+         "--days", "10", "--no-research"], capture_output=True, text=True, check=True).stdout
+    check("AC-143 the text digest footer names MANAGE_SPORTS.bat",
+          "MANAGE_SPORTS.bat" in text)
+    check("AC-143 the text footer says it runs on the owner's own PC",
+          "your own PC" in text)
+
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        subprocess.run(
+            [sys.executable, "scripts/personal_digest.py", "--today", "2026-11-04",
+             "--days", "10", "--no-research", "--out-dir", tmp],
+            capture_output=True, text=True, check=True)
+        html = open(os.path.join(tmp, "digest.html"), encoding="utf-8").read()
+    check("AC-143 the HTML email carries the same pointer",
+          "MANAGE_SPORTS.bat" in html and "your own PC" in html)
+
+
+def test_local_category_config_is_complete() -> None:
+    """AC-195/AC-196/AC-198: priority, annual and two_person are CONFIGURATION."""
+    follow = json.load(open("personal/data/follow.json", encoding="utf-8"))
+    cats = follow["local"]["categories"]
+    by = {c["key"]: c for c in cats}
+
+    check("AC-195 every local category carries an integer priority",
+          all(isinstance(c.get("priority"), int) for c in cats),
+          str({c["key"]: c.get("priority") for c in cats}))
+    check("AC-195 the configured order is buffet, massage, events",
+          [c["key"] for c in FR.category_order(cats)] == ["buffet", "massage", "events"],
+          str([c["key"] for c in FR.category_order(cats)]))
+    shuffled = [by["events"], by["buffet"], by["massage"]]
+    check("AC-195 priority overrides the file order",
+          [c["key"] for c in FR.category_order(shuffled)] == ["buffet", "massage", "events"])
+
+    check("AC-196 every local category carries an annual boolean",
+          all(isinstance(c.get("annual"), bool) for c in cats),
+          str({c["key"]: c.get("annual") for c in cats}))
+
+    for key in ("massage", "buffet"):
+        tp = by[key].get("two_person") or {}
+        check(f"AC-198(a) the {key} category carries a two_person block", bool(tp))
+        check(f"AC-198(a) the {key} two_person block has a label", bool(tp.get("label")))
+        joined = " ".join(tp.get("queries") or []).lower()
+        check(f"AC-198(a) the {key} block searches the couples/for-two phrasing",
+              "couples" in joined or "for two" in joined, joined)
+        check(f"AC-198(a) the {key} existing queries are RETAINED, not replaced",
+              len(by[key].get("queries") or []) >= 3, str(by[key].get("queries")))
+
+    annual_cat = {"key": "events", "annual": True}
+    plain_cat = {"key": "buffet"}
+    check("AC-196 an annual category is annual",
+          FR.is_annual_item(annual_cat, "Anything", dt.date(2026, 11, 4)))
+    check("AC-196 a category with no flag is NOT annual",
+          not FR.is_annual_item(plain_cat, "Sunday buffet", dt.date(2026, 11, 4)))
+    check("AC-196 an explicit future year stamp makes an item annual",
+          FR.is_annual_item(plain_cat, "Comic Con 2027", dt.date(2026, 11, 4)))
+    check("AC-196 a past year stamp does not",
+          not FR.is_annual_item(plain_cat, "Comic Con 2025", dt.date(2026, 11, 4)))
+    check("AC-196 the annual horizon is 12 months and the default is 3",
+          FR.horizon_months(annual_cat, "x", follow["local"], dt.date(2026, 11, 4)) == 12
+          and FR.horizon_months(plain_cat, "x", follow["local"], dt.date(2026, 11, 4)) == 3)
+
+
+def test_local_ordering_is_deterministic() -> None:
+    """AC-195b/c + INV-97: the rendered order is the documented rule."""
+    # Both terms are followed, so every fixture headline names a followed thing
+    # and the DATE is what decides - that is the rule being isolated.
+    cat = {"key": "massage", "queries": ["couples spa Johannesburg",
+                                         "spa for two Johannesburg"],
+           "followed_terms": ["spa", "massage"]}
+    items = [
+        {"title": "Cheap massage special", "date": "2026-10-20",
+         "query": "spa for two Johannesburg"},
+        {"title": "Spa day for two in Sandton", "date": "2026-10-01",
+         "query": "couples spa Johannesburg"},
+        {"title": "Spa weekend deal", "date": "2026-10-25",
+         "query": "couples spa Johannesburg"},
+    ]
+    ordered = [i["title"] for i in FR.order_local_items(items, cat)]
+    check("AC-195(c) items are ordered newest first inside a category",
+          ordered == ["Spa weekend deal", "Cheap massage special",
+                      "Spa day for two in Sandton"], str(ordered))
+
+    mixed = [
+        {"title": "Random lunch special", "date": "2026-10-30", "query": "q"},
+        {"title": "Spa treatment sale", "date": "2026-10-01", "query": "q"},
+    ]
+    out = [i["title"] for i in FR.order_local_items(mixed, cat)]
+    check("AC-195(b) a followed-term headline sorts before a newer unrelated one",
+          out == ["Spa treatment sale", "Random lunch special"], str(out))
+
+    tie = [
+        {"title": "Zeta spa deal", "date": "2026-10-10",
+         "query": "spa for two Johannesburg"},
+        {"title": "Alpha spa deal", "date": "2026-10-10",
+         "query": "couples spa Johannesburg"},
+    ]
+    out = [i["title"] for i in FR.order_local_items(tie, cat)]
+    check("AC-195(c) a query-index tie falls through to the headline",
+          out == ["Alpha spa deal", "Zeta spa deal"], str(out))
+    check("AC-195 the ordering is stable across repeated calls",
+          [i["title"] for i in FR.order_local_items(items, cat)] == ordered)
+
+
+def test_two_person_offers_render_with_the_label() -> None:
+    """AC-198(b)/(c): a couple offer is labelled; an empty search says so."""
+    label = "For two / couples"
+    cat = {"key": "massage", "label": "Massage & spa", "priority": 2, "annual": False,
+           "queries": ["massage Johannesburg"],
+           "require_any": ["massage", "spa"],
+           "followed_terms": ["spa", "massage"],
+           "two_person": {"label": label,
+                          "queries": ["couples spa Johannesburg"]}}
+    cfg = {"local": {"city": "Johannesburg", "enabled": True, "months_ahead": 3,
+                     "annual_months_ahead": 12,
+                     "place_terms": ["johannesburg", "sandton"],
+                     "categories": [cat]},
+           "sports": []}
+
+    feed = ("<rss version='2.0'><channel>"
+            "<item><title>A couples spa day in Johannesburg</title><source>Example</source>"
+            f"<pubDate>{NOW_RFC}</pubDate><link>https://x/1</link></item>"
+            "<item><title>Massage sale in Sandton</title><source>Example</source>"
+            f"<pubDate>{NOW_RFC}</pubDate><link>https://x/2</link></item>"
+            "</channel></rss>")
+    from verify_research import FakeFetcher
+    out = FR.local_events(cfg, FakeFetcher({"news.google": feed}),
+                          today=dt.date(2026, 11, 4))
+    items = out["categories"][0]["items"]
+    labelled = [i for i in items if i.get("two_person")]
+    check("AC-198(b) the couples headline is marked two-person", bool(labelled),
+          str([(i["title"], i.get("two_person")) for i in items]))
+    check("AC-198(b) it carries the configured label",
+          bool(labelled) and labelled[0]["two_person_label"] == label,
+          str([i.get("two_person_label") for i in labelled]))
+    check("AC-198(c) the solo results are NOT suppressed",
+          any(not i.get("two_person") for i in items), str(len(items)))
+
+    base = {"news": {"items": []}, "competitions": [], "standings": [],
+            "tennis": {"enabled": False}, "by_sport": [],
+            "sports": {"enabled": [], "muted": []},
+            "suggestions": {}, "local": out, "prices": {},
+            "timing": {}, "failures": [], "as_of": NOW_DT}
+    text = FR.render_text(base)
+    check("AC-198(b) the label is visible in the text digest", f"[{label}]" in text, text)
+    html = "".join(str(v) for v in FR.render_html(
+        base, "#111", "#666", "#ddd", "#7c5cff", "#fff", "#f4f4f8").values())
+    check("AC-198(b) the label is visible in the HTML email", label in html)
+
+    solo_only = ("<rss version='2.0'><channel>"
+                 "<item><title>Massage sale in Sandton</title><source>Example</source>"
+                 f"<pubDate>{NOW_RFC}</pubDate><link>https://x/2</link></item>"
+                 "</channel></rss>")
+    out2 = FR.local_events(cfg, FakeFetcher({"news.google": solo_only}),
+                           today=dt.date(2026, 11, 4))
+    check("AC-198(c) an empty two-person result is recorded, not lost",
+          out2["categories"][0].get("two_person_found") == 0,
+          str(out2["categories"][0].get("two_person_found")))
+    text2 = FR.render_text(dict(base, local=out2))
+    check("AC-198(c) it says no two-person offers were found",
+          "no two-person offers found in this window" in text2, text2)
+    check("AC-198(d) no venue or price is invented for a two-person item",
+          "R " not in text2.split("LOCAL")[-1], text2.split("LOCAL")[-1][:300])
+
+
+def test_local_window_argument_and_empty_state() -> None:
+    """AC-167/INV-77/INV-79: 3-month default, 12-month annual, honest empty."""
+    annual_cat = {"key": "events", "label": "Big events", "priority": 3, "annual": True,
+                  "queries": ["festival Johannesburg"], "require_any": ["festival"],
+                  "followed_terms": ["festival"]}
+    plain_cat = {"key": "buffet", "label": "Buffets", "priority": 1, "annual": False,
+                 "queries": ["buffet Johannesburg"], "require_any": ["buffet"]}
+    base_loc = {"city": "Johannesburg", "enabled": True, "months_ahead": 3,
+                "annual_months_ahead": 12, "place_terms": ["johannesburg"]}
+
+    # The feed dates a story by PUBLICATION, and the horizon is a look-back (a
+    # buffet lead published in February is still the best one in November). So
+    # "9 months" here means a story published nine months ago.
+    old = (dt.date.today() - dt.timedelta(days=275)).strftime("%a, %d %b %Y 10:00:00 GMT")
+    feed = ("<rss version='2.0'><channel>"
+            "<item><title>Johannesburg festival roundup</title><source>Example</source>"
+            f"<pubDate>{old}</pubDate><link>https://x/1</link></item></channel></rss>")
+
+    from verify_research import FakeFetcher
+    got_annual = FR.local_events(
+        {"local": dict(base_loc, categories=[annual_cat]), "sports": []},
+        FakeFetcher({"news.google": feed}))
+    check("AC-167/AC-196 a 9-month-old item is INCLUDED in an annual category",
+          bool(got_annual["categories"][0]["items"]),
+          str(got_annual["categories"][0]))
+
+    got_plain = FR.local_events(
+        {"local": dict(base_loc, categories=[plain_cat]), "sports": []},
+        FakeFetcher({"news.google": feed}))
+    check("AC-167 the same 9-month-old item is EXCLUDED in a non-annual category",
+          not got_plain["categories"][0]["items"],
+          str(got_plain["categories"][0]["items"]))
+
+    empty = FR.local_events({"local": dict(base_loc, categories=[plain_cat]),
+                             "sports": []}, FakeFetcher({}))
+    check("AC-169/INV-79 an empty window says 'nothing found in this window'",
+          "nothing found" in empty["error"], empty["error"])
+    text = FR.render_text({"news": {"items": []}, "competitions": [], "standings": [],
+                           "tennis": {"enabled": False}, "by_sport": [],
+                           "sports": {"enabled": [], "muted": []},
+                           "suggestions": {}, "local": empty, "prices": {},
+                           "timing": {}, "failures": [], "as_of": NOW_DT})
+    check("AC-169 the rendered block states the empty window",
+          "nothing found in this window" in text, text.split("LOCAL")[-1][:300])
+    check("AC-169 it is not padded with a guess",
+          "*" not in text.split("LOCAL")[-1].split("RUN TIME")[0])
+
+
+def test_removed_category_is_excluded() -> None:
+    """AC-168/INV-78: the local block reuses the same exclusion machinery."""
+    cfg = {"local": {"city": "Johannesburg", "enabled": True, "months_ahead": 3,
+                     "place_terms": ["johannesburg"],
+                     "categories": [
+                         {"key": "buffet", "label": "Buffets", "priority": 1,
+                          "enabled": False, "queries": ["buffet Johannesburg"],
+                          "require_any": ["buffet"]},
+                         {"key": "massage", "label": "Massage", "priority": 2,
+                          "enabled": True, "queries": ["massage Johannesburg"],
+                          "require_any": ["massage"]}]},
+           "sports": []}
+    feed = ("<rss version='2.0'><channel>"
+            "<item><title>Buffet special in Johannesburg</title><source>Ex</source>"
+            f"<pubDate>{NOW_RFC}</pubDate><link>https://x/1</link></item>"
+            "<item><title>Massage special in Johannesburg</title><source>Ex</source>"
+            f"<pubDate>{NOW_RFC}</pubDate><link>https://x/2</link></item></channel></rss>")
+    from verify_research import FakeFetcher
+    out = FR.local_events(cfg, FakeFetcher({"news.google": feed}))
+    keys = [c["key"] for c in out["categories"]]
+    check("AC-168 a muted local category is not rendered at all",
+          "buffet" not in keys, str(keys))
+    check("AC-168 the other categories still render", "massage" in keys, str(keys))
+
+
+
+def test_sport_list_is_first_class_and_complete() -> None:
+    """AC-139/AC-194/INV-96: the follow list is the source both surfaces read."""
+    follow = json.load(open("personal/data/follow.json", encoding="utf-8"))
+    sports = follow.get("sports") or []
+    check("AC-139 follow.json carries a sports array", isinstance(sports, list) and bool(sports),
+          str(type(sports).__name__))
+    check("AC-139 every sport row has a name", all(s.get("sport") for s in sports))
+    check("AC-139 every sport row has an on/off flag",
+          all(isinstance(s.get("enabled"), bool) for s in sports),
+          str([s.get("sport") for s in sports if not isinstance(s.get("enabled"), bool)]))
+    check("AC-139 every sport row carries a source line",
+          all(str(s.get("source") or "").strip() for s in sports),
+          str([s.get("sport") for s in sports if not str(s.get("source") or "").strip()]))
+
+    # AC-194: POPULATED with every sport the owner's own supplied data evidences.
+    names = {s["sport"] for s in sports}
+    evidenced = {p["sport"] for p in json.load(
+        open("personal/data/sports.json", encoding="utf-8"))["preferences"]["sports"]}
+    evidenced |= {"Football"}   # his UEFA Champions League follow, news[0]
+    check("AC-194 every evidenced sport is in the delivered follow list",
+          evidenced <= names, f"missing {sorted(evidenced - names)}")
+    check("AC-194 all seven are present",
+          names == {"Motorsport", "Tennis", "Football", "Cycling",
+                    "Gymnastics", "Weightlifting", "Padel"}, str(sorted(names)))
+    check("AC-194 every row is enabled", all(s["enabled"] for s in sports))
+
+    # Both surfaces read THAT list, not a derived guess.
+    bp = open("scripts/build_personal.py", encoding="utf-8").read()
+    fr = open("scripts/follow_research.py", encoding="utf-8").read()
+    check("AC-139 sports.html reads follow.json",
+          "follow.json" in bp and "follow_rows" in bp)
+    check("AC-139 the digest reads follow.json",
+          "def load_follow" in fr and 'cfg.get("sports")' in fr
+          or "muted_sports(cfg)" in fr)
+
+
+def test_follow_edit_cli_contract() -> None:
+    """AC-141: add-sport, remove-sport, --list-sports and --show all work."""
+    def run(*args):
+        return subprocess.run([sys.executable, "scripts/follow_edit.py", *args],
+                              capture_output=True, text=True)
+
+    listed = run("--list-sports")
+    check("AC-141 --list-sports needs no other argument and exits 0",
+          listed.returncode == 0, listed.stderr[-300:])
+    check("AC-141 --list-sports prints the sports",
+          "Motorsport" in listed.stdout and "Padel" in listed.stdout, listed.stdout[:200])
+
+    shown = run("--show")
+    check("AC-141 --show exits 0", shown.returncode == 0, shown.stderr[-200:])
+    check("AC-141 --show prints the sport list with on/off state",
+          "Sports (7)" in shown.stdout and "[on ]" in shown.stdout, shown.stdout[:400])
+
+    check("AC-141 add-sport and remove-sport are real subcommands",
+          "add-sport" in run("--help").stdout and "remove-sport" in run("--help").stdout)
+
+
+def test_add_then_remove_a_sport_round_trips() -> None:
+    """AC-140/AC-144/INV-63: reversible mute; duplicates refused; unknown reported.
+
+    Runs against a THROWAWAY copy of follow.json so the delivered data is never
+    touched by the test, then asserts the copy returns to its exact prior state.
+    """
+    import shutil, tempfile
+    sys.path.insert(0, os.path.join(ROOT, "scripts"))
+    import follow_edit as FE
+
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "follow.json")
+        shutil.copy("personal/data/follow.json", path)
+        FE.PATH = path
+        before = json.load(open(path, encoding="utf-8"))
+        before_sports = json.loads(json.dumps(before.get("sports")))
+
+        cfg = FE.read()
+        FE.add_sport(cfg, "Snooker"); FE.write(cfg)
+        added = FE.read()
+        check("AC-141 add-sport adds a new row",
+              any(s["sport"] == "Snooker" and s["enabled"] for s in added["sports"]))
+        check("AC-141 an added sport carries a source line",
+              all(s.get("source") for s in added["sports"] if s["sport"] == "Snooker"))
+
+        # A second add must REPORT, not duplicate.
+        msg = FE.add_sport(added, "Snooker")
+        check("AC-140 adding an existing sport reports instead of duplicating",
+              "already on" in msg, msg)
+        check("AC-140 the duplicate did not create a second row",
+              len([s for s in added["sports"] if s["sport"] == "Snooker"]) == 1)
+
+        # Removing is a MUTE: the row stays, the flag flips.
+        FE.remove_sport(added, "Snooker"); FE.write(added)
+        muted = FE.read()
+        row = [s for s in muted["sports"] if s["sport"] == "Snooker"]
+        check("AC-144 a removal is a mute, not a delete", len(row) == 1, str(row))
+        check("AC-144 the muted row keeps enabled=false", row and row[0]["enabled"] is False)
+
+        # An unknown name is reported, not silently accepted.
+        msg = FE.remove_sport(muted, "NotASport")
+        check("AC-140 removing an unknown sport reports it",
+              "not in the sport list" in msg, msg)
+        check("AC-140 the unknown removal changed nothing",
+              len(muted["sports"]) == len(added["sports"]))
+
+        # Round trip: add it back and the row count is where it started + 0.
+        msg = FE.add_sport(muted, "Snooker"); FE.write(muted)
+        check("AC-144 add-sport re-enables a muted sport",
+              "back on" in msg, msg)
+        FE.remove_sport(muted, "Snooker")
+        muted["sports"] = [s for s in muted["sports"] if s["sport"] != "Snooker"]
+        FE.write(muted)
+        after = FE.read()
+        check("AC-144 add-then-remove round-trips the sport list",
+              after["sports"] == before_sports,
+              f"{len(after['sports'])} vs {len(before_sports)}")
+
+
+def test_empty_sport_list_is_legal_and_stays_empty() -> None:
+    """AC-144/INV-65: an empty list stays empty; nothing seeds a default."""
+    import tempfile
+    sys.path.insert(0, os.path.join(ROOT, "scripts"))
+    import follow_edit as FE
+
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "follow.json")
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump({"sports": [], "news": [], "competitions": []}, fh)
+        FE.PATH = path
+        cfg = FE.read()
+        check("AC-144 an empty sport list reads back empty",
+              (cfg.get("sports") or []) == [], str(cfg.get("sports")))
+        check("AC-144 --list-sports says there are none rather than inventing one",
+              "No sports listed" in FE.list_sports(cfg), FE.list_sports(cfg))
+
+    # ...and the digest invents no sport to fill the block.
+    cfg = {"sports": [], "news": [], "competitions": [],
+           "tennis": {"enabled": False}, "local": {"enabled": False}}
+    data = FR.gather(cfg, FakeFetcher({}), today=dt.date(2026, 11, 3))
+    check("AC-144/INV-65 the digest reports no followed sports",
+          not (data["sports"].get("enabled")), str(data["sports"]))
+    text = FR.render_text(data)
+    check("AC-144 the digest does not invent a sport block",
+          "nothing is followed yet" in text.lower() or "no sports" in text.lower(),
+          text[:500])
+
+
+def test_manage_sports_bat_is_double_clickable() -> None:
+    """AC-140: numbered menu, prints FIRST, CRLF, and the sports items are 1 and 2."""
+    raw = open("MANAGE_SPORTS.bat", encoding="utf-8", newline="").read()
+    check("AC-140 the .bat is CRLF (double-click safe on Windows)",
+          raw.count("\r\n") > 50 and raw.count("\n") == raw.count("\r\n"),
+          f"crlf={raw.count(chr(13)+chr(10))} lf={raw.count(chr(10))}")
+
+    menu_at = raw.index(":menu")
+    first_prompt = raw.index('set /p "CHOICE=')
+    seg = raw[menu_at:first_prompt]
+    check("AC-140 ADD a sport is numbered menu item 1", "1  ADD a sport" in seg)
+    check("AC-140 REMOVE a sport is numbered menu item 2", "2  REMOVE a sport" in seg)
+    check("AC-140 the menu prints BEFORE any sub-prompt",
+          "set /p \"SPORT_NAME" not in raw[:first_prompt])
+    check("AC-140 the menu is the first thing shown, before the current list",
+          raw.index("1  ADD a sport") < raw.index("--list-sports"))
+    check("AC-140 it names the file the owner double-clicks (itself)",
+          "Double-click THIS file" in raw)
+    check("AC-140 removing is described as reversible",
+          "switched back on" in raw or "reversible" in raw)
+    check("AC-140 it does not require the owner to type a command",
+          "no commands" in raw.lower() or "No file to open" in raw)
+
 def main() -> int:
     print("=== personal pages verification ===\n")
     for fn in (
@@ -749,6 +1205,18 @@ def main() -> int:
         test_cute_days_are_verified_and_kind_is_labelled,
         test_coming_up_covers_the_planning_surface,
         test_no_secret_leaked,
+        test_sports_page_shows_the_follow_table_and_the_tool_pointer,
+        test_digest_footer_points_at_the_tool,
+        test_local_category_config_is_complete,
+        test_local_ordering_is_deterministic,
+        test_two_person_offers_render_with_the_label,
+        test_local_window_argument_and_empty_state,
+        test_removed_category_is_excluded,
+        test_sport_list_is_first_class_and_complete,
+        test_follow_edit_cli_contract,
+        test_add_then_remove_a_sport_round_trips,
+        test_empty_sport_list_is_legal_and_stays_empty,
+        test_manage_sports_bat_is_double_clickable,
     ):
         fn()
         print()

@@ -1,7 +1,6 @@
 {
   "_note": "WHO AND WHAT YOU FOLLOW, for the research section of the daily email. This is the one file to edit. Every entry is a thing YOU named - nothing here was inferred or invented. Edit it by hand, or double-click MANAGE_SPORTS.bat for a menu (on other systems: python3 scripts/follow_edit.py --show, then add-news / add-team / add-competition). Removing an entry removes it from the email. See docs/SPORTS_RESEARCH.md.",
   "_rule": "Nothing is added here that the owner did not name. An empty list is correct and stays empty; the digest says so rather than guessing.",
-
   "news": [
     {
       "label": "UEFA Champions League",
@@ -10,7 +9,44 @@
       "source": "Owner, 2026-10-12: 'UEFA CHAMOPIONS LEAGEU - Search' and 'whatever i am following i get news on'."
     }
   ],
-
+  "sports": [
+    {
+      "sport": "Motorsport",
+      "enabled": true,
+      "source": "Owner, 2026-10-05: 9 of the 16 supplied events are Motorsport."
+    },
+    {
+      "sport": "Tennis",
+      "enabled": true,
+      "source": "Owner, 2026-10-12: 'For tennis, only give me results of top 5.'"
+    },
+    {
+      "sport": "Football",
+      "enabled": true,
+      "source": "Owner, 2026-10-12: 'UEFA CHAMOPIONS LEAGEU - Search'."
+    },
+    {
+      "sport": "Cycling",
+      "enabled": true,
+      "source": "Owner, 2026-10-05: 2 of the 16 supplied events are Cycling."
+    },
+    {
+      "sport": "Gymnastics",
+      "enabled": true,
+      "source": "Owner, 2026-10-05: 1 of the 16 supplied events is Gymnastics."
+    },
+    {
+      "sport": "Weightlifting",
+      "enabled": true,
+      "source": "Owner, 2026-10-05: 1 of the 16 supplied events is Weightlifting."
+    },
+    {
+      "sport": "Padel",
+      "enabled": true,
+      "source": "Owner, 2026-10-05: 1 of the 16 supplied events is Padel."
+    }
+  ],
+  "_sports_note": "THE ONE LIST THAT ADDS OR REMOVES A SPORT. Set enabled=false to mute a sport: it then disappears from the event list, the per-sport block, suggestions and the local-events matching. Muting is a switch, not a delete - the row stays so you can turn it back on. Edit it here, or double-click MANAGE_SPORTS.bat (menu items 1 and 2).",
   "competitions": [
     {
       "label": "UEFA Champions League",
@@ -20,16 +56,17 @@
       "source": "Owner, 2026-10-12: 'UEFA i only want specific teams'."
     }
   ],
-
   "tennis": {
     "enabled": true,
-    "tours": ["atp", "wta"],
+    "tours": [
+      "atp",
+      "wta"
+    ],
     "top_n": 5,
     "max_matches": 10,
     "_note": "Owner, 2026-10-12: 'For tennis, only give me results of top 5. Make sure we follow any tennis the top 5 are in.' The top N is read live from the tour rankings, so it follows whoever is actually in the top 5 - it is not a fixed list of names. Only matches involving a top-N player are reported, and they are reported for whichever tournament those players are in, so a top-5 player is never missed.",
     "source": "Owner, 2026-10-12."
   },
-
   "settings": {
     "news_per_follow": 3,
     "news_max_age_days": 3,
@@ -37,5 +74,149 @@
     "request_timeout_seconds": 12,
     "total_budget_seconds": 90,
     "_note": "news_max_age_days is widened automatically for the weekly run. total_budget_seconds stops the whole research step if the network is slow, so the email always goes out on time."
+  },
+  "local": {
+    "city": "Johannesburg",
+    "enabled": true,
+    "months_ahead": 3,
+    "annual_months_ahead": 12,
+    "categories": [
+      {
+        "key": "buffet",
+        "label": "Buffets & all-you-can-eat",
+        "enabled": true,
+        "queries": [
+          "all you can eat buffet Johannesburg",
+          "buffet special Johannesburg restaurants",
+          "best buffet restaurants Joburg",
+          "Sunday buffet Johannesburg"
+        ],
+        "require_any": [
+          "buffet",
+          "all you can eat",
+          "all-you-can-eat",
+          "eats",
+          "restaurant",
+          "brunch",
+          "carvery"
+        ],
+        "priority": 1,
+        "annual": false,
+        "followed_terms": [
+          "buffet",
+          "all you can eat",
+          "all-you-can-eat"
+        ],
+        "two_person": {
+          "label": "For two / couples",
+          "queries": [
+            "couples buffet Johannesburg",
+            "buffet for two Johannesburg",
+            "date night buffet Johannesburg"
+          ]
+        }
+      },
+      {
+        "key": "massage",
+        "label": "Massages & spa specials",
+        "enabled": true,
+        "queries": [
+          "massage special Johannesburg",
+          "spa special deal Johannesburg couples",
+          "couples spa Johannesburg",
+          "spa day special Joburg"
+        ],
+        "require_any": [
+          "massage",
+          "spa",
+          "pamper",
+          "wellness",
+          "beauty",
+          "treatment"
+        ],
+        "priority": 2,
+        "annual": false,
+        "followed_terms": [
+          "spa",
+          "massage"
+        ],
+        "two_person": {
+          "label": "For two / couples",
+          "queries": [
+            "couples spa Johannesburg",
+            "spa for two Johannesburg",
+            "massage for two Johannesburg"
+          ]
+        }
+      },
+      {
+        "key": "events",
+        "label": "Great events",
+        "enabled": true,
+        "queries": [
+          "events Johannesburg upcoming",
+          "what's on Johannesburg",
+          "festivals Johannesburg 2026",
+          "things to do Johannesburg this month"
+        ],
+        "require_any": [
+          "event",
+          "festival",
+          "concert",
+          "show",
+          "market",
+          "what's on",
+          "whats on",
+          "expo",
+          "fair",
+          "race"
+        ],
+        "priority": 3,
+        "annual": true,
+        "followed_terms": [
+          "festival",
+          "concert",
+          "gig"
+        ]
+      }
+    ],
+    "_note": "What to look for near you. Set a category's enabled=false to mute it - the same switch the sport list uses. `priority` is the owner's own preference order (lower first) and is the order the digest renders; absent means configured order. `annual` marks a category whose events come round once a year: those are judged against annual_months_ahead, everything else against months_ahead. `two_person` adds the couples / for-two search the owner asked for ('nice massage sale i can take Chloe and i, same with buffets'); it is additive and never suppresses the solo results. An empty category says so rather than inventing something.",
+    "source": "Owner, 2026-11-03: 'buffets in my area ... massages ... in my area. Joburg.'",
+    "place_terms": [
+      "johannesburg",
+      "joburg",
+      "jhb",
+      "gauteng",
+      "sandton",
+      "soweto",
+      "randburg",
+      "rosebank",
+      "fourways",
+      "melrose",
+      "parkhurst",
+      "bryanston",
+      "midrand",
+      "centurion"
+    ]
+  },
+  "price_watch": {
+    "enabled": true,
+    "items": [
+      {
+        "key": "kingston-fury-beast-16gb",
+        "label": "Kingston Fury Beast 16GB",
+        "enabled": true,
+        "query": "kingston fury beast 16gb",
+        "must_match": [
+          "kingston",
+          "fury",
+          "beast",
+          "16gb"
+        ],
+        "capacity_gb": 16
+      }
+    ],
+    "_note": "Products to price-watch. The owner asked specifically for Kingston Fury Beast 16GB. Prices come from Takealot's public search API; a price is only ever the retailer's own number, never an estimate.",
+    "source": "Owner, 2026-11-03: 'add a section showing me any Kingston Fury Beast 16GB at best prices'."
   }
 }
