@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CMi project status | Matthew Bowyer</title>
+<meta name="description" content="Live read-only status of Matthew Bowyer's CMi project engine: which projects are running, their stage, run time and cost." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="favicon.ico" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="assets/css/portfolio.css" />
+<style>
+  .cmi-wrap { max-width: 1180px; margin: 0 auto; padding: clamp(1.25rem, 3vw, 2.5rem) 1.15rem 4rem; }
+  .cmi-head { display: flex; flex-wrap: wrap; gap: 1rem; align-items: baseline; justify-content: space-between; margin-bottom: .35rem; }
+  .cmi-head h1 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.2rem); margin: 0; color: var(--ep-ink); }
+  .cmi-stamp { font-size: .82rem; color: var(--ep-muted); }
+  .cmi-lede { color: var(--ep-muted); max-width: 62ch; margin: 0 0 1.6rem; font-size: .95rem; line-height: 1.6; }
+  .cmi-lede a { color: var(--ep-accent); }
+
+  .cmi-banner { display: flex; gap: .7rem; align-items: flex-start; padding: .9rem 1.1rem;
+    border-radius: var(--ep-radius); font-size: .92rem; line-height: 1.5; margin-bottom: 1.6rem; }
+  .cmi-banner__dot { width: .6rem; height: .6rem; border-radius: 50%; margin-top: .45rem; flex: 0 0 auto; }
+  .cmi-banner__text { flex: 1 1 auto; min-width: 0; }
+  .cmi-banner code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .88em; }
+  .cmi-banner--ok { background: #edf7f0; border: 1px solid #c6e4d0; color: #1c4d31; }
+  .cmi-banner--ok .cmi-banner__dot { background: #2f8f52; }
+  .cmi-banner--warn { background: #fdf3e6; border: 1px solid #f0d8b0; color: #6b4413; }
+  .cmi-banner--warn .cmi-banner__dot { background: #c07d1e; }
+  .cmi-banner--muted { background: var(--ep-canvas-alt); border: 1px solid var(--ep-line-strong); color: var(--ep-body); }
+  .cmi-banner--muted .cmi-banner__dot { background: var(--ep-muted); }
+
+  .cmi-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: .9rem; margin-bottom: 2rem; }
+  .cmi-stat { background: var(--ep-surface); border: 1px solid var(--ep-line); border-radius: var(--ep-radius);
+    padding: 1rem 1.1rem; box-shadow: var(--ep-shadow); }
+  .cmi-stat__k { font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ep-muted); margin-bottom: .35rem; }
+  .cmi-stat__v { font-size: 1.55rem; font-weight: 600; color: var(--ep-ink); line-height: 1.1; }
+  .cmi-stat__v small { font-size: .8rem; font-weight: 400; color: var(--ep-muted); }
+
+  .cmi-section-title { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ep-muted); margin: 0 0 .85rem; font-weight: 600; }
+
+  .cmi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(288px, 1fr)); gap: 1rem; }
+  .cmi-card { background: var(--ep-surface); border: 1px solid var(--ep-line); border-left: 4px solid var(--ep-line-strong);
+    border-radius: var(--ep-radius); padding: 1rem 1.15rem 1.1rem; box-shadow: var(--ep-shadow); }
+  .cmi-card--live { border-left-color: #2f8f52; }
+  .cmi-card--attn { border-left-color: #c07d1e; }
+  .cmi-card--idle { border-left-color: var(--ep-line-strong); }
+  .cmi-card__top { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; margin-bottom: .55rem; }
+  .cmi-card__name { font-weight: 600; font-size: 1.02rem; color: var(--ep-ink); margin: 0; }
+  .cmi-chip { font-size: .71rem; letter-spacing: .05em; text-transform: uppercase; font-weight: 600;
+    padding: .16rem .5rem; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+  .cmi-chip--live { background: #e7f5ec; color: #1c6b39; border-color: #bde0c9; }
+  .cmi-chip--attn { background: #fdf3e6; color: #7a4c10; border-color: #f0d8b0; }
+  .cmi-chip--stage { background: var(--ep-accent-soft); color: var(--ep-accent-ink); border-color: var(--ep-accent-line); }
+  .cmi-chip--off { background: var(--ep-canvas-alt); color: var(--ep-muted); border-color: var(--ep-line-strong); }
+  .cmi-rows { display: grid; grid-template-columns: auto 1fr; gap: .3rem .8rem; font-size: .855rem; margin: 0; }
+  .cmi-rows dt { color: var(--ep-muted); }
+  .cmi-rows dd { margin: 0; color: var(--ep-body); }
+  .cmi-note { margin: .7rem 0 0; padding-top: .7rem; border-top: 1px dashed var(--ep-line);
+    font-size: .82rem; color: var(--ep-muted); line-height: 1.45; }
+
+  .cmi-table { width: 100%; border-collapse: collapse; font-size: .88rem; background: var(--ep-surface);
+    border: 1px solid var(--ep-line); border-radius: var(--ep-radius); overflow: hidden; }
+  .cmi-table th { text-align: left; font-size: .72rem; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--ep-muted); background: var(--ep-canvas-alt); padding: .6rem .8rem; border-bottom: 1px solid var(--ep-line); }
+  .cmi-table td { padding: .6rem .8rem; border-bottom: 1px solid var(--ep-line); color: var(--ep-body); }
+  .cmi-table tr:last-child td { border-bottom: 0; }
+  .cmi-code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .82rem; color: var(--ep-ink-soft); }
+  .cmi-empty { color: var(--ep-muted); font-size: .9rem; }
+  .cmi-foot { margin-top: 2.5rem; padding-top: 1.1rem; border-top: 1px solid var(--ep-line);
+    font-size: .82rem; color: var(--ep-muted); line-height: 1.6; }
+  .cmi-foot a { color: var(--ep-accent); }
+  .cmi-scroll { overflow-x: auto; }
+  @media (max-width: 560px) {
+    .cmi-rows { grid-template-columns: 1fr; gap: .1rem; }
+    .cmi-rows dt { margin-top: .4rem; }
+  }
+</style>
+</head>
+<body>
+<div class="cmi-wrap">
+  <div class="cmi-head">
+    <h1>CMi project status</h1>
+    <span class="cmi-stamp">Updated 05 Nov 2026, 18:48 UTC &middot; refreshes every 15 minutes while the engine runs</span>
+  </div>
+  <p class="cmi-lede">
+    A read-only view of the CMi project engine on my own machine: which projects exist, what stage each
+    one reached, what is running right now, how long it has been running and what it has cost.
+    This page is generated from local state and published as a flat file &mdash; it cannot start, stop or
+    change anything. <a href="projects.html">See the delivered projects &rarr;</a>
+  </p>
+
+  <div class="cmi-banner cmi-banner--muted"><span class="cmi-banner__dot"></span><span class="cmi-banner__text"><strong>Live state unavailable</strong> &mdash; the agent server could not be reached when this page was built, so run time is unknown. Project stage and cost below are still current.</span></div>
+
+  <div class="cmi-stats">
+    <div class="cmi-stat"><div class="cmi-stat__k">Live now</div><div class="cmi-stat__v">0 <small>of 16</small></div></div>
+    <div class="cmi-stat"><div class="cmi-stat__k">Enabled</div><div class="cmi-stat__v">0</div></div>
+    <div class="cmi-stat"><div class="cmi-stat__k">Live run time</div><div class="cmi-stat__v">0 min</div></div>
+    <div class="cmi-stat"><div class="cmi-stat__k">Total work</div><div class="cmi-stat__v">258 <small>h</small></div></div>
+    <div class="cmi-stat"><div class="cmi-stat__k">Total spend</div><div class="cmi-stat__v">$155.42</div></div>
+  </div>
+
+  <h2 class="cmi-section-title">Projects</h2>
+  <div class="cmi-grid">
+    <div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">amsmashers_website</p>
+        <span class="cmi-chip cmi-chip--stage">complete</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$45.08</dd><dt>Work</dt><dd>58.9 h</dd><dt>Requests</dt><dd>18,076</dd>
+      </dl>
+      <p class="cmi-note"><strong>Blocker:</strong> Independent review round limit reached (27) while the reviewer keeps returning NEEDS_WORK; the implementation/evidence/QA work requires internal repair.</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">eportfolio_rebuild</p>
+        <span class="cmi-chip cmi-chip--stage">complete</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$35.53</dd><dt>Work</dt><dd>45.9 h</dd><dt>Requests</dt><dd>10,498</dd>
+      </dl>
+      <p class="cmi-note">04 Nov, 18:02 — started reviewer b49db663-7db7-44e0-a122-77588cb8bab1</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">market_gap_pm</p>
+        <span class="cmi-chip cmi-chip--stage">working</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$24.50</dd><dt>Work</dt><dd>78.0 h</dd><dt>Requests</dt><dd>8,951</dd>
+      </dl>
+      <p class="cmi-note"><strong>Blocker:</strong> Independent review round limit reached (30) while the reviewer keeps returning NEEDS_WORK; the implementation/evidence/QA work requires internal repair.</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">model_watch</p>
+        <span class="cmi-chip cmi-chip--stage">waiting_for_budget</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$13.97</dd><dt>Work</dt><dd>14.2 h</dd><dt>Requests</dt><dd>4,995</dd>
+      </dl>
+      <p class="cmi-note">05 Nov, 16:49 — parked waiting_for_budget: requests</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">interview_intelligence</p>
+        <span class="cmi-chip cmi-chip--stage">reviewing</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Role</dt><dd>reviewer (unknown)</dd><dt>Cost</dt><dd>$7.37</dd><dt>Work</dt><dd>13.4 h</dd><dt>Requests</dt><dd>2,868</dd>
+      </dl>
+      <p class="cmi-note">24 Oct, 10:19 — project stopped and disabled by user</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">ctt_invoice_web</p>
+        <span class="cmi-chip cmi-chip--stage">complete</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$5.48</dd><dt>Work</dt><dd>4.6 h</dd><dt>Requests</dt><dd>1,571</dd>
+      </dl>
+      <p class="cmi-note">15 Oct, 07:15 — contract completion gate PASS; project complete</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">invoice_app</p>
+        <span class="cmi-chip cmi-chip--stage">complete</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$4.62</dd><dt>Work</dt><dd>5.0 h</dd><dt>Requests</dt><dd>1,778</dd>
+      </dl>
+      <p class="cmi-note">25 Sep, 20:42 — contract completion gate PASS; project complete</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">vlm_coach</p>
+        <span class="cmi-chip cmi-chip--stage">complete</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$4.44</dd><dt>Work</dt><dd>7.4 h</dd><dt>Requests</dt><dd>1,516</dd>
+      </dl>
+      <p class="cmi-note">08 Oct, 13:41 — contract completion gate PASS; project complete</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">za_sport_platform</p>
+        <span class="cmi-chip cmi-chip--stage">complete</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$3.44</dd><dt>Work</dt><dd>8.3 h</dd><dt>Requests</dt><dd>1,596</dd>
+      </dl>
+      <p class="cmi-note">12 Oct, 05:06 — contract completion gate PASS; project complete</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">next_role_hunt</p>
+        <span class="cmi-chip cmi-chip--stage">working</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Role</dt><dd>worker (unknown)</dd><dt>Cost</dt><dd>$2.83</dd><dt>Work</dt><dd>8.2 h</dd><dt>Requests</dt><dd>1,373</dd>
+      </dl>
+      <p class="cmi-note">23 Oct, 04:31 — started worker 3f5a7050-2055-4a98-b412-774748669185</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">sim_lab</p>
+        <span class="cmi-chip cmi-chip--stage">complete</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$2.55</dd><dt>Work</dt><dd>6.0 h</dd><dt>Requests</dt><dd>1,165</dd>
+      </dl>
+      <p class="cmi-note">14 Oct, 13:20 — contract completion gate PASS; project complete</p>
+    </div>
+<div class="cmi-card cmi-card--attn">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">am_contract_audit</p>
+        <span class="cmi-chip cmi-chip--attn">needs attention</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$2.21</dd><dt>Work</dt><dd>2.6 h</dd><dt>Requests</dt><dd>702</dd>
+      </dl>
+      <p class="cmi-note">04 Nov, 22:37 — stopped for human attention</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">ctt_website</p>
+        <span class="cmi-chip cmi-chip--stage">complete</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$1.89</dd><dt>Work</dt><dd>4.3 h</dd><dt>Requests</dt><dd>826</dd>
+      </dl>
+      <p class="cmi-note"><strong>Blocker:</strong> Automatic project Git checkpoint failed after the final gate PASS: no governed project named 'ctt_website'</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">bowyer_collective</p>
+        <span class="cmi-chip cmi-chip--stage">reviewing</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Role</dt><dd>reviewer (unknown)</dd><dt>Cost</dt><dd>$1.41</dd><dt>Work</dt><dd>1.8 h</dd><dt>Requests</dt><dd>703</dd>
+      </dl>
+      <p class="cmi-note">26 Sep, 03:26 — started reviewer 693943c3-e2c9-447f-b6ae-eb904a8532dd</p>
+    </div>
+<div class="cmi-card cmi-card--idle">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">utility_efficiency_smoke_20260909_143210</p>
+        <span class="cmi-chip cmi-chip--stage">complete</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$0.10</dd><dt>Work</dt><dd>0.0 h</dd><dt>Requests</dt><dd>16</dd>
+      </dl>
+      <p class="cmi-note">09 Sep, 12:36 — contract completion gate PASS; project complete</p>
+    </div>
+<div class="cmi-card cmi-card--attn">
+      <div class="cmi-card__top">
+        <p class="cmi-card__name">sim6</p>
+        <span class="cmi-chip cmi-chip--attn">needs attention</span><span class="cmi-chip cmi-chip--off">disabled</span>
+      </div>
+      <dl class="cmi-rows">
+        <dt>Cost</dt><dd>$0.00</dd><dt>Work</dt><dd>0.0 h</dd><dt>Requests</dt><dd>0</dd>
+      </dl>
+      <p class="cmi-note">09 Sep, 12:27 — stopped for human attention</p>
+    </div>
+  </div>
+
+  <h2 class="cmi-section-title" style="margin-top:2.2rem">Recent unattended runs</h2>
+  <div class="cmi-scroll">
+    <table class="cmi-table">
+      <thead><tr><th>Started (UTC)</th><th>Duration</th><th>Ended because</th><th>Heartbeat</th></tr></thead>
+      <tbody>
+<tr><td>24 Aug 2026, 07:37 UTC</td><td>30 min</td><td>ENVIRONMENTAL_BLOCKER</td><td>FAIL: a project was started during the OFF proof</td></tr>
+<tr><td>23 Aug 2026, 11:57 UTC</td><td>3h 20m</td><td>UNRESOLVED_AFTER_3_SAME_ROOT_CAUSE_REPAIRS</td><td>PASS</td></tr>
+<tr><td>23 Aug 2026, 06:59 UTC</td><td>1h 35m</td><td>UNRESOLVED_AFTER_3_SAME_ROOT_CAUSE_REPAIRS</td><td>PASS</td></tr>
+<tr><td>22 Aug 2026, 16:02 UTC</td><td>5h 32m</td><td>UNRESOLVED_AFTER_3_SAME_ROOT_CAUSE_REPAIRS</td><td>PASS</td></tr>
+<tr><td>22 Aug 2026, 11:48 UTC</td><td>2h 38m</td><td>UNRESOLVED_AFTER_3_SAME_ROOT_CAUSE_REPAIRS</td><td>PASS</td></tr>
+<tr><td>22 Aug 2026, 11:08 UTC</td><td>5 min</td><td>UNRESOLVED_AFTER_3_SAME_ROOT_CAUSE_REPAIRS</td><td>PASS</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cmi-foot">
+    <p>
+      Generated 05 Nov 2026, 18:48 UTC by <span class="cmi-code">cmi_status_page.py</span> &mdash;
+      no secrets, no keys and no transcripts are published here, only project names, stages, run times and cost.
+    </p>
+    <p>
+      Agent server: not reachable at build time.
+      If this page looks stale, the machine that generates it was off or asleep.
+    </p>
+  </div>
+</div>
+</body>
+</html>
