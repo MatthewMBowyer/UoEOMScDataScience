@@ -1,8 +1,8 @@
 {
- "generated_at": "2026-11-05T18:48:45+00:00",
+ "generated_at": "2026-11-05T18:54:03+00:00",
  "agent_server": {
-  "reachable": false,
-  "base_url": "http://127.0.0.1:59999"
+  "reachable": true,
+  "base_url": "http://localhost:8000"
  },
  "summary": {
   "projects": 16,
@@ -111,9 +111,9 @@
    "kind": "generic",
    "role": "reviewer",
    "conversation": "a95ce3e9-cc81-464a-b477-c15e7b9199a0",
-   "conversation_status": "unknown",
+   "conversation_status": "paused",
    "live": false,
-   "running_hours": 297.03,
+   "running_hours": 297.12,
    "started_at": "2026-10-24T09:46:49+00:00",
    "cost_usd": 7.37,
    "requests": 2868,
@@ -216,9 +216,9 @@
    "kind": "generic",
    "role": "worker",
    "conversation": "3f5a7050-2055-4a98-b412-774748669185",
-   "conversation_status": "unknown",
+   "conversation_status": "paused",
    "live": false,
-   "running_hours": 326.29,
+   "running_hours": 326.38,
    "started_at": "2026-10-23T04:31:23+00:00",
    "cost_usd": 2.83,
    "requests": 1373,
@@ -300,9 +300,9 @@
    "kind": "generic",
    "role": "reviewer",
    "conversation": "693943c3-e2c9-447f-b6ae-eb904a8532dd",
-   "conversation_status": "unknown",
+   "conversation_status": "paused",
    "live": false,
-   "running_hours": 975.37,
+   "running_hours": 975.46,
    "started_at": "2026-09-26T03:26:29+00:00",
    "cost_usd": 1.41,
    "requests": 703,
