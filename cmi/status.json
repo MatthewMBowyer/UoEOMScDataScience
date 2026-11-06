@@ -1,5 +1,10 @@
 {
- "generated_at": "2026-11-05T18:54:03+00:00",
+ "generated_at": "2026-11-06T07:41:44+00:00",
+ "freshness": {
+  "state": "fresh",
+  "age_minutes": 0,
+  "age_text": "just now"
+ },
  "agent_server": {
   "reachable": true,
   "base_url": "http://localhost:8000"
@@ -12,6 +17,28 @@
   "total_cost_usd": 155.42,
   "total_active_hours": 258.4,
   "live_hours": 0
+ },
+ "night": {
+  "running": 0,
+  "running_names": [],
+  "parked": 2,
+  "parked_names": [
+   "am_contract_audit",
+   "sim6"
+  ],
+  "runs_recorded": 6,
+  "last_run": {
+   "id": "heartbeat_off_failure_20260824-123835",
+   "started": "2026-08-24T07:37:01+00:00",
+   "ended": "2026-08-24T08:07:10+00:00",
+   "hours": 0.5,
+   "exit_reason": "ENVIRONMENTAL_BLOCKER",
+   "heartbeat": "FAIL: a project was started during the OFF proof",
+   "git": "synced"
+  },
+  "last_run_hours": 0.5,
+  "last_run_reason": "ENVIRONMENTAL_BLOCKER",
+  "last_run_started": "2026-08-24T07:37:01+00:00"
  },
  "queue": {
   "blocked": false,
@@ -31,6 +58,32 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "6bb35ae6-50a3-4350-bd1f-74d21f54aa9e",
+     "status": "finished",
+     "started_at": "2026-10-07T14:14:31+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "e3ba2a08-884a-4f32-9bf9-d21b80954d88",
+     "status": "finished",
+     "started_at": "2026-10-07T14:48:06+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "bd78f060-4745-485c-b081-229cd12c5422",
+     "status": "finished",
+     "started_at": "2026-10-07T19:58:50+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "3ed9ceb5-6970-4992-b417-09e29fe40842",
+     "status": "finished",
+     "started_at": "2026-10-07T20:49:08+00:00"
+    }
+   ],
    "cost_usd": 45.08,
    "requests": 18076,
    "active_hours": 58.85,
@@ -52,6 +105,32 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "c8ade365-8122-4f0a-9191-0c62cc0ad7e6",
+     "status": "finished",
+     "started_at": "2026-11-04T01:16:41+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "725e05c9-c9d0-4af3-974a-10b65f81af04",
+     "status": "finished",
+     "started_at": "2026-11-04T01:20:26+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "665050e9-4e3b-4916-8828-d42cf58554bf",
+     "status": "finished",
+     "started_at": "2026-11-04T03:03:42+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "b49db663-7db7-44e0-a122-77588cb8bab1",
+     "status": "finished",
+     "started_at": "2026-11-04T18:02:05+00:00"
+    }
+   ],
    "cost_usd": 35.53,
    "requests": 10498,
    "active_hours": 45.91,
@@ -73,6 +152,7 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [],
    "cost_usd": 24.5,
    "requests": 8951,
    "active_hours": 77.96,
@@ -94,6 +174,32 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "2fd0e2a3-1629-4475-bd43-2351c63251ee",
+     "status": "finished",
+     "started_at": "2026-11-04T23:06:37+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "a5ca7d2c-a7bb-4c17-b9b9-443bfc9d2a63",
+     "status": "finished",
+     "started_at": "2026-11-04T23:16:57+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "45097174-e64d-47c8-9e5d-690a6e684772",
+     "status": "finished",
+     "started_at": "2026-11-05T16:33:44+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "1464836c-8756-4930-a812-f5a5d5c9807a",
+     "status": "finished",
+     "started_at": "2026-11-05T16:38:52+00:00"
+    }
+   ],
    "cost_usd": 13.97,
    "requests": 4995,
    "active_hours": 14.16,
@@ -113,8 +219,34 @@
    "conversation": "a95ce3e9-cc81-464a-b477-c15e7b9199a0",
    "conversation_status": "paused",
    "live": false,
-   "running_hours": 297.12,
+   "running_hours": 309.92,
    "started_at": "2026-10-24T09:46:49+00:00",
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "c8085b20-cc57-46af-8032-9e15eb1c5cd1",
+     "status": "finished",
+     "started_at": "2026-10-23T23:24:04+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "1ba4eaae-ccf3-42e1-9af6-f9bba7bb5b3f",
+     "status": "finished",
+     "started_at": "2026-10-23T23:36:38+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "3005394d-5269-4b6b-bb34-634555fac101",
+     "status": "finished",
+     "started_at": "2026-10-24T05:46:53+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "a95ce3e9-cc81-464a-b477-c15e7b9199a0",
+     "status": "paused",
+     "started_at": "2026-10-24T09:46:49+00:00"
+    }
+   ],
    "cost_usd": 7.37,
    "requests": 2868,
    "active_hours": 13.37,
@@ -136,6 +268,32 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "1a772cf0-6b68-4f18-b71e-6c4357947bc8",
+     "status": "finished",
+     "started_at": "2026-09-28T14:04:36+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "20d610f7-4102-49fd-b78f-86675fffedfb",
+     "status": "finished",
+     "started_at": "2026-09-28T14:28:48+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "68e0e31a-f0ce-4a01-86c4-20e79afd3a99",
+     "status": "finished",
+     "started_at": "2026-09-29T15:47:05+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "4e0cf969-a827-41f2-96f1-eb54667e6034",
+     "status": "finished",
+     "started_at": "2026-10-15T06:19:37+00:00"
+    }
+   ],
    "cost_usd": 5.48,
    "requests": 1571,
    "active_hours": 4.64,
@@ -157,6 +315,32 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "aa062d78-9525-4ec6-835e-077420829849",
+     "status": "finished",
+     "started_at": "2026-09-25T17:57:04+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "756c2068-91bb-485f-a4c8-0f1f926a63cd",
+     "status": "finished",
+     "started_at": "2026-09-25T18:16:17+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "c7b9d798-6c85-42be-af8b-9810c16e35bd",
+     "status": "finished",
+     "started_at": "2026-09-25T18:52:11+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "90d116be-56e8-4356-987a-5f21148dd62e",
+     "status": "finished",
+     "started_at": "2026-09-25T20:29:43+00:00"
+    }
+   ],
    "cost_usd": 4.62,
    "requests": 1778,
    "active_hours": 5.01,
@@ -178,6 +362,32 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "f3635575-a55d-40cf-ac26-f6946dc7d245",
+     "status": "finished",
+     "started_at": "2026-10-08T08:24:16+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "c46205ac-4ecf-41e8-acfb-c338166672fd",
+     "status": "finished",
+     "started_at": "2026-10-08T08:37:16+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "3439e41e-0cf1-4a58-b5ea-de3327223eff",
+     "status": "finished",
+     "started_at": "2026-10-08T10:29:15+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "487e41b2-4b7b-4d79-9486-5192fd3c884b",
+     "status": "finished",
+     "started_at": "2026-10-08T13:29:16+00:00"
+    }
+   ],
    "cost_usd": 4.44,
    "requests": 1516,
    "active_hours": 7.37,
@@ -199,6 +409,7 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [],
    "cost_usd": 3.44,
    "requests": 1596,
    "active_hours": 8.35,
@@ -218,8 +429,28 @@
    "conversation": "3f5a7050-2055-4a98-b412-774748669185",
    "conversation_status": "paused",
    "live": false,
-   "running_hours": 326.38,
+   "running_hours": 339.17,
    "started_at": "2026-10-23T04:31:23+00:00",
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "d8c2182d-a2a1-49a4-a20c-add09d4d8fcd",
+     "status": "finished",
+     "started_at": "2026-10-23T00:30:41+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "33bb1be1-e39e-4b27-ac8d-9da3c7438461",
+     "status": "finished",
+     "started_at": "2026-10-23T01:44:54+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "3f5a7050-2055-4a98-b412-774748669185",
+     "status": "paused",
+     "started_at": "2026-10-23T04:31:23+00:00"
+    }
+   ],
    "cost_usd": 2.83,
    "requests": 1373,
    "active_hours": 8.15,
@@ -241,6 +472,7 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [],
    "cost_usd": 2.55,
    "requests": 1165,
    "active_hours": 5.96,
@@ -262,6 +494,20 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "worker",
+     "conversation": "6fade3ed-ba72-461e-8bad-c37c87e5647c",
+     "status": "finished",
+     "started_at": "2026-11-04T20:50:08+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "353b8dd2-ae32-48b8-a23e-5c90edd2e91f",
+     "status": "finished",
+     "started_at": "2026-11-04T22:13:40+00:00"
+    }
+   ],
    "cost_usd": 2.21,
    "requests": 702,
    "active_hours": 2.56,
@@ -283,6 +529,32 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "f05d70cf-6007-4bd0-93ee-3ec8d4394701",
+     "status": "finished",
+     "started_at": "2026-09-24T05:01:37+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "32da2f83-26c9-4e5d-8660-2b4cc1872b58",
+     "status": "finished",
+     "started_at": "2026-09-24T05:44:03+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "5d97921f-3e85-470d-bacc-ed85e8e7a8a8",
+     "status": "finished",
+     "started_at": "2026-09-24T08:34:18+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "aa47294a-791a-4b6f-b1e9-0c6a7ed15845",
+     "status": "finished",
+     "started_at": "2026-09-24T09:18:59+00:00"
+    }
+   ],
    "cost_usd": 1.89,
    "requests": 826,
    "active_hours": 4.33,
@@ -302,8 +574,34 @@
    "conversation": "693943c3-e2c9-447f-b6ae-eb904a8532dd",
    "conversation_status": "paused",
    "live": false,
-   "running_hours": 975.46,
+   "running_hours": 988.25,
    "started_at": "2026-09-26T03:26:29+00:00",
+   "chats": [
+    {
+     "role": "planner",
+     "conversation": "3a96f7c1-40c7-4bd8-9123-20d848974ba4",
+     "status": "finished",
+     "started_at": "2026-09-26T02:38:53+00:00"
+    },
+    {
+     "role": "contract reviewer",
+     "conversation": "a6a8472b-0001-4880-86e6-a23849922657",
+     "status": "finished",
+     "started_at": "2026-09-26T02:57:21+00:00"
+    },
+    {
+     "role": "worker",
+     "conversation": "17bc34f2-0509-442b-8b8d-7bf5313efc60",
+     "status": "finished",
+     "started_at": "2026-09-26T03:17:43+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "693943c3-e2c9-447f-b6ae-eb904a8532dd",
+     "status": "paused",
+     "started_at": "2026-09-26T03:26:29+00:00"
+    }
+   ],
    "cost_usd": 1.41,
    "requests": 703,
    "active_hours": 1.79,
@@ -325,6 +623,20 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "worker",
+     "conversation": "5fcdb911-31a7-457b-83e0-9dece9ef5983",
+     "status": "finished",
+     "started_at": "2026-09-09T12:32:51+00:00"
+    },
+    {
+     "role": "reviewer",
+     "conversation": "d71ddaa9-4a20-414a-8c43-b22f7a2dc069",
+     "status": "finished",
+     "started_at": "2026-09-09T12:34:51+00:00"
+    }
+   ],
    "cost_usd": 0.1,
    "requests": 16,
    "active_hours": 0.0,
@@ -346,6 +658,20 @@
    "live": false,
    "running_hours": null,
    "started_at": null,
+   "chats": [
+    {
+     "role": "worker",
+     "conversation": "w1",
+     "status": "finished",
+     "started_at": null
+    },
+    {
+     "role": "reviewer",
+     "conversation": "r1",
+     "status": "finished",
+     "started_at": null
+    }
+   ],
    "cost_usd": 0.0,
    "requests": 0,
    "active_hours": 0.0,

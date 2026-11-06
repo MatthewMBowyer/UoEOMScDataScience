@@ -28,6 +28,13 @@
   .cmi-banner--warn .cmi-banner__dot { background: #c07d1e; }
   .cmi-banner--muted { background: var(--ep-canvas-alt); border: 1px solid var(--ep-line-strong); color: var(--ep-body); }
   .cmi-banner--muted .cmi-banner__dot { background: var(--ep-muted); }
+  .cmi-banner--stale { background: #fdecec; border: 1px solid #f2c4c4; color: #7a2020; }
+  .cmi-banner--stale .cmi-banner__dot { background: #c0392b; }
+
+  .cmi-night { font-size: .93rem; line-height: 1.55; color: var(--ep-body);
+    background: var(--ep-surface); border: 1px solid var(--ep-line); border-left: 4px solid var(--ep-accent);
+    border-radius: var(--ep-radius); padding: .85rem 1.05rem; margin: 0 0 1.6rem; box-shadow: var(--ep-shadow); }
+  .cmi-night strong { color: var(--ep-ink); }
 
   .cmi-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: .9rem; margin-bottom: 2rem; }
   .cmi-stat { background: var(--ep-surface); border: 1px solid var(--ep-line); border-radius: var(--ep-radius);
@@ -59,6 +66,19 @@
   .cmi-note { margin: .7rem 0 0; padding-top: .7rem; border-top: 1px dashed var(--ep-line);
     font-size: .82rem; color: var(--ep-muted); line-height: 1.45; }
 
+  .cmi-chats { margin: .7rem 0 0; padding-top: .7rem; border-top: 1px dashed var(--ep-line); }
+  .cmi-chats__title { font-size: .68rem; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--ep-muted); margin: 0 0 .4rem; font-weight: 600; }
+  .cmi-chat-row { display: flex; align-items: center; gap: .45rem; font-size: .8rem;
+    color: var(--ep-body); padding: .12rem 0; }
+  .cmi-chat__role { flex: 1 1 auto; min-width: 0; }
+  .cmi-chat__when { color: var(--ep-muted); font-size: .75rem; }
+  .cmi-chat { font-size: .66rem; letter-spacing: .05em; text-transform: uppercase; font-weight: 600;
+    padding: .1rem .4rem; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+  .cmi-chat--live { background: #e7f5ec; color: #1c6b39; border-color: #bde0c9; }
+  .cmi-chat--done { background: var(--ep-canvas-alt); color: var(--ep-muted); border-color: var(--ep-line-strong); }
+  .cmi-chat--unk { background: var(--ep-canvas-alt); color: var(--ep-muted); border-color: var(--ep-line-strong); }
+
   .cmi-table { width: 100%; border-collapse: collapse; font-size: .88rem; background: var(--ep-surface);
     border: 1px solid var(--ep-line); border-radius: var(--ep-radius); overflow: hidden; }
   .cmi-table th { text-align: left; font-size: .72rem; letter-spacing: .07em; text-transform: uppercase;
@@ -81,7 +101,7 @@
 <div class="cmi-wrap">
   <div class="cmi-head">
     <h1>CMi project status</h1>
-    <span class="cmi-stamp">Updated 05 Nov 2026, 18:54 UTC &middot; refreshes every 15 minutes while the engine runs</span>
+    <span class="cmi-stamp">Updated 06 Nov 2026, 07:41 UTC &middot; refreshes every 15 minutes while the engine runs</span>
   </div>
   <p class="cmi-lede">
     A read-only view of the CMi project engine on my own machine: which projects exist, what stage each
@@ -90,7 +110,10 @@
     change anything. <a href="projects.html">See the delivered projects &rarr;</a>
   </p>
 
+  
   <div class="cmi-banner cmi-banner--ok"><span class="cmi-banner__dot"></span><span class="cmi-banner__text"><strong>Queue free</strong> &mdash; no managed conversation is running. Any enabled project can start on the next tick.</span></div>
+
+  <p class="cmi-night"><strong>Nothing running</strong> &middot; 2 parked for you (am_contract_audit, sim6) &middot; last unattended run 24 Aug 2026, 07:37 UTC, 30 min &mdash; ENVIRONMENTAL_BLOCKER</p>
 
   <div class="cmi-stats">
     <div class="cmi-stat"><div class="cmi-stat__k">Live now</div><div class="cmi-stat__v">0 <small>of 16</small></div></div>
@@ -111,6 +134,7 @@
         <dt>Cost</dt><dd>$45.08</dd><dt>Work</dt><dd>58.9 h</dd><dt>Requests</dt><dd>18,076</dd>
       </dl>
       <p class="cmi-note"><strong>Blocker:</strong> Independent review round limit reached (27) while the reviewer keeps returning NEEDS_WORK; the implementation/evidence/QA work requires internal repair.</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">07 Oct, 14:14</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">07 Oct, 14:48</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">07 Oct, 19:58</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">07 Oct, 20:49</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -121,6 +145,7 @@
         <dt>Cost</dt><dd>$35.53</dd><dt>Work</dt><dd>45.9 h</dd><dt>Requests</dt><dd>10,498</dd>
       </dl>
       <p class="cmi-note">04 Nov, 18:02 — started reviewer b49db663-7db7-44e0-a122-77588cb8bab1</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">04 Nov, 01:16</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">04 Nov, 01:20</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">04 Nov, 03:03</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">04 Nov, 18:02</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -131,6 +156,7 @@
         <dt>Cost</dt><dd>$24.50</dd><dt>Work</dt><dd>78.0 h</dd><dt>Requests</dt><dd>8,951</dd>
       </dl>
       <p class="cmi-note"><strong>Blocker:</strong> Independent review round limit reached (30) while the reviewer keeps returning NEEDS_WORK; the implementation/evidence/QA work requires internal repair.</p>
+      
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -141,6 +167,7 @@
         <dt>Cost</dt><dd>$13.97</dd><dt>Work</dt><dd>14.2 h</dd><dt>Requests</dt><dd>4,995</dd>
       </dl>
       <p class="cmi-note">05 Nov, 16:49 — parked waiting_for_budget: requests</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">04 Nov, 23:06</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">04 Nov, 23:16</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">05 Nov, 16:33</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">05 Nov, 16:38</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -151,6 +178,7 @@
         <dt>Role</dt><dd>reviewer (paused)</dd><dt>Cost</dt><dd>$7.37</dd><dt>Work</dt><dd>13.4 h</dd><dt>Requests</dt><dd>2,868</dd>
       </dl>
       <p class="cmi-note">24 Oct, 10:19 — project stopped and disabled by user</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">23 Oct, 23:24</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">23 Oct, 23:36</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">24 Oct, 05:46</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--unk">paused</span> <span class="cmi-chat__when">24 Oct, 09:46</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -161,6 +189,7 @@
         <dt>Cost</dt><dd>$5.48</dd><dt>Work</dt><dd>4.6 h</dd><dt>Requests</dt><dd>1,571</dd>
       </dl>
       <p class="cmi-note">15 Oct, 07:15 — contract completion gate PASS; project complete</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">28 Sep, 14:04</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">28 Sep, 14:28</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">29 Sep, 15:47</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">15 Oct, 06:19</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -171,6 +200,7 @@
         <dt>Cost</dt><dd>$4.62</dd><dt>Work</dt><dd>5.0 h</dd><dt>Requests</dt><dd>1,778</dd>
       </dl>
       <p class="cmi-note">25 Sep, 20:42 — contract completion gate PASS; project complete</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">25 Sep, 17:57</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">25 Sep, 18:16</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">25 Sep, 18:52</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">25 Sep, 20:29</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -181,6 +211,7 @@
         <dt>Cost</dt><dd>$4.44</dd><dt>Work</dt><dd>7.4 h</dd><dt>Requests</dt><dd>1,516</dd>
       </dl>
       <p class="cmi-note">08 Oct, 13:41 — contract completion gate PASS; project complete</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">08 Oct, 08:24</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">08 Oct, 08:37</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">08 Oct, 10:29</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">08 Oct, 13:29</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -191,6 +222,7 @@
         <dt>Cost</dt><dd>$3.44</dd><dt>Work</dt><dd>8.3 h</dd><dt>Requests</dt><dd>1,596</dd>
       </dl>
       <p class="cmi-note">12 Oct, 05:06 — contract completion gate PASS; project complete</p>
+      
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -201,6 +233,7 @@
         <dt>Role</dt><dd>worker (paused)</dd><dt>Cost</dt><dd>$2.83</dd><dt>Work</dt><dd>8.2 h</dd><dt>Requests</dt><dd>1,373</dd>
       </dl>
       <p class="cmi-note">23 Oct, 04:31 — started worker 3f5a7050-2055-4a98-b412-774748669185</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">23 Oct, 00:30</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">23 Oct, 01:44</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--unk">paused</span> <span class="cmi-chat__when">23 Oct, 04:31</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -211,6 +244,7 @@
         <dt>Cost</dt><dd>$2.55</dd><dt>Work</dt><dd>6.0 h</dd><dt>Requests</dt><dd>1,165</dd>
       </dl>
       <p class="cmi-note">14 Oct, 13:20 — contract completion gate PASS; project complete</p>
+      
     </div>
 <div class="cmi-card cmi-card--attn">
       <div class="cmi-card__top">
@@ -221,6 +255,7 @@
         <dt>Cost</dt><dd>$2.21</dd><dt>Work</dt><dd>2.6 h</dd><dt>Requests</dt><dd>702</dd>
       </dl>
       <p class="cmi-note">04 Nov, 22:37 — stopped for human attention</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">04 Nov, 20:50</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">04 Nov, 22:13</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -231,6 +266,7 @@
         <dt>Cost</dt><dd>$1.89</dd><dt>Work</dt><dd>4.3 h</dd><dt>Requests</dt><dd>826</dd>
       </dl>
       <p class="cmi-note"><strong>Blocker:</strong> Automatic project Git checkpoint failed after the final gate PASS: no governed project named 'ctt_website'</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">24 Sep, 05:01</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">24 Sep, 05:44</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">24 Sep, 08:34</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">24 Sep, 09:18</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -241,6 +277,7 @@
         <dt>Role</dt><dd>reviewer (paused)</dd><dt>Cost</dt><dd>$1.41</dd><dt>Work</dt><dd>1.8 h</dd><dt>Requests</dt><dd>703</dd>
       </dl>
       <p class="cmi-note">26 Sep, 03:26 — started reviewer 693943c3-e2c9-447f-b6ae-eb904a8532dd</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">planner</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">26 Sep, 02:38</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">contract reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">26 Sep, 02:57</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">26 Sep, 03:17</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--unk">paused</span> <span class="cmi-chat__when">26 Sep, 03:26</span></div></div>
     </div>
 <div class="cmi-card cmi-card--idle">
       <div class="cmi-card__top">
@@ -251,6 +288,7 @@
         <dt>Cost</dt><dd>$0.10</dd><dt>Work</dt><dd>0.0 h</dd><dt>Requests</dt><dd>16</dd>
       </dl>
       <p class="cmi-note">09 Sep, 12:36 — contract completion gate PASS; project complete</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">09 Sep, 12:32</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span> <span class="cmi-chat__when">09 Sep, 12:34</span></div></div>
     </div>
 <div class="cmi-card cmi-card--attn">
       <div class="cmi-card__top">
@@ -261,6 +299,7 @@
         <dt>Cost</dt><dd>$0.00</dd><dt>Work</dt><dd>0.0 h</dd><dt>Requests</dt><dd>0</dd>
       </dl>
       <p class="cmi-note">09 Sep, 12:27 — stopped for human attention</p>
+      <div class="cmi-chats"><p class="cmi-chats__title">Agent chats</p><div class="cmi-chat-row"><span class="cmi-chat__role">worker</span><span class="cmi-chat cmi-chat--done">done</span></div><div class="cmi-chat-row"><span class="cmi-chat__role">reviewer</span><span class="cmi-chat cmi-chat--done">done</span></div></div>
     </div>
   </div>
 
@@ -281,7 +320,7 @@
 
   <div class="cmi-foot">
     <p>
-      Generated 05 Nov 2026, 18:54 UTC by <span class="cmi-code">cmi_status_page.py</span> &mdash;
+      Generated 06 Nov 2026, 07:41 UTC by <span class="cmi-code">cmi_status_page.py</span> &mdash;
       no secrets, no keys and no transcripts are published here, only project names, stages, run times and cost.
     </p>
     <p>

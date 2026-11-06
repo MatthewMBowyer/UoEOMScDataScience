@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>CMi right now</title>
+<link rel="icon" href="favicon.ico" />
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f6f7f8; color: #16181d; padding: 1.5rem; }
+  .now { width: 100%; max-width: 30rem; background: #fff; border-radius: 18px;
+    border: 1px solid #e3e6ea; box-shadow: 0 8px 30px rgba(16,20,30,.07); padding: 1.9rem 1.7rem; }
+  .now-state { font-size: 3.1rem; line-height: 1; font-weight: 700; letter-spacing: -.02em; margin: 0 0 .5rem; }
+  .now-state--live { color: #1c7a43; }
+  .now-state--idle { color: #5c6470; }
+  .now-detail { font-size: 1.02rem; color: #454b55; margin: 0 0 1.5rem; line-height: 1.5; }
+  .now-parked { font-size: .98rem; margin: 0 0 .8rem; padding: .8rem .95rem; border-radius: 12px;
+    background: #fdf3e6; border: 1px solid #f0d8b0; color: #6b4413; line-height: 1.45; }
+  .now-ok { font-size: .98rem; margin: 0 0 .8rem; padding: .8rem .95rem; border-radius: 12px;
+    background: #edf7f0; border: 1px solid #c6e4d0; color: #1c4d31; }
+  .now-meta { margin: 1.3rem 0 0; padding-top: 1rem; border-top: 1px solid #e9ecf0;
+    font-size: .86rem; color: #6b7280; line-height: 1.7; }
+  .now-age--cold { color: #b4453a; font-weight: 600; }
+  .now-meta a { color: #2b5fa8; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #11141a; color: #e8eaee; }
+    .now { background: #1a1e26; border-color: #2a3038; box-shadow: none; }
+    .now-detail { color: #b6bdc8; }
+    .now-meta { color: #8f98a5; border-top-color: #2a3038; }
+    .now-state--idle { color: #98a1ad; }
+  }
+</style>
+</head>
+<body>
+<div class="now">
+  <p class="now-state now-state--idle">Idle</p>
+  <p class="now-detail">Nothing is running right now</p>
+  <p class="now-parked"><strong>Needs you:</strong> am_contract_audit, sim6</p>
+  <div class="now-meta">
+    Last night run: 30 min<br />
+    <span class="">Updated just now</span><br />
+    0 enabled &middot; 16 projects<br />
+    <a href="cmi.html">Full status &rarr;</a>
+  </div>
+</div>
+</body>
+</html>
