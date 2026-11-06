@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-06T07:41:44+00:00",
+ "generated_at": "2026-11-06T08:21:20+00:00",
  "freshness": {
   "state": "fresh",
   "age_minutes": 0,
@@ -219,7 +219,7 @@
    "conversation": "a95ce3e9-cc81-464a-b477-c15e7b9199a0",
    "conversation_status": "paused",
    "live": false,
-   "running_hours": 309.92,
+   "running_hours": 310.58,
    "started_at": "2026-10-24T09:46:49+00:00",
    "chats": [
     {
@@ -429,7 +429,7 @@
    "conversation": "3f5a7050-2055-4a98-b412-774748669185",
    "conversation_status": "paused",
    "live": false,
-   "running_hours": 339.17,
+   "running_hours": 339.83,
    "started_at": "2026-10-23T04:31:23+00:00",
    "chats": [
     {
@@ -574,7 +574,7 @@
    "conversation": "693943c3-e2c9-447f-b6ae-eb904a8532dd",
    "conversation_status": "paused",
    "live": false,
-   "running_hours": 988.25,
+   "running_hours": 988.91,
    "started_at": "2026-09-26T03:26:29+00:00",
    "chats": [
     {
