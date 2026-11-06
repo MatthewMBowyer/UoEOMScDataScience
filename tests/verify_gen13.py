@@ -778,7 +778,7 @@ def test_empty_follow_list_split() -> None:
           "LOCAL - JOHANNESBURG" in text, text[:600])
     check("AC-192 no content section is padded with a placeholder heading",
           all(k not in text for k in ("WHAT YOU FOLLOW", "BY SPORT", "FIXTURES",
-                                      "STANDINGS", "RAM PRICE WATCH")), text[:600])
+                                      "STANDINGS", "OTHER PARTS YOU WATCH")), text[:600])
 
 
 def test_no_fabricated_figure() -> None:
@@ -804,7 +804,7 @@ def test_no_fabricated_figure() -> None:
         "api.takealot.com": json.dumps(recorded)})
     data = FR.gather(cfg, f, today=TODAY)
     text = text_of(data)
-    block = text.split("RAM PRICE WATCH")[1].split("RUN TIME")[0]
+    block = text.split("OTHER PARTS YOU WATCH")[1].split("RUN TIME")[0]
     printed = [int(x.replace(",", "")) for x in re.findall(r"R ([\d,]+)", block)]
     # A "save R n" figure is a DERIVED difference of two printed prices, not a
     # price of its own (AC-176/AC-191), so it is checked against every pairwise
@@ -836,7 +836,7 @@ def test_docs_describe_the_new_surfaces() -> None:
     """AC-188: the owner can find every new section."""
     doc = open("docs/SPORTS_RESEARCH.md", encoding="utf-8").read()
     for section in ("BY SPORT", "SUGGESTED", "STANDINGS", "LOCAL",
-                    "RAM PRICE WATCH", "RUN TIME", "RANKING"):
+                    "OTHER PARTS YOU WATCH", "RUN TIME", "RANKING"):
         check(f"AC-188 docs/SPORTS_RESEARCH.md names {section}", section in doc, section)
     check("AC-188 it quotes the owner on 'final rankings'",
           "show final rankings" in doc)
@@ -943,7 +943,7 @@ def test_delivered_digest_still_sends_with_everything_down() -> None:
     f = VR.FakeFetcher({}, fail={"espn", "github.com", "takealot", "news.google"})
     data = FR.gather(cfg, f, today=TODAY)
     text = text_of(data)
-    for section in ("BY SPORT", "LOCAL - JOHANNESBURG", "RAM PRICE WATCH", "RUN TIME"):
+    for section in ("BY SPORT", "LOCAL - JOHANNESBURG", "OTHER PARTS YOU WATCH", "RUN TIME"):
         check(f"AC-185 '{section}' still renders with every source down",
               section in text)
     check("AC-185 the failures are named rather than silent",

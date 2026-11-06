@@ -51,11 +51,16 @@ great events. The spa and buffet searches also run a two-person query for you
 "For two / couples". These are news headlines with their publisher and date,
 clearly labelled as headlines rather than a verified event calendar.
 
-**RAM PRICE WATCH** — the cheapest current price for the memory kit you named,
+**KINGSTON FURY BEAST 16GB — BEST PRICES NOW** — the featured watch gets its own
+heading above the rest: the cheapest current price for the memory kit you named,
 cheapest first, with the retailer, whether it is a kit or a single module, and
-the saving against the dearest listing of the same kind. The price printed is the
-selling price the retailer displays; the saving is the difference between two
-printed prices.
+the saving against the dearest listing of the same kind.
+
+**OTHER PARTS YOU WATCH** — every other watched part, same rules. This heading
+used to read "RAM PRICE WATCH" while the rows beneath it were a GPU, a CPU, a PSU,
+an SSD, a cooler and a case, so it named memory that was not in the list. The price
+printed is the selling price the retailer displays; the saving is the difference
+between two printed prices.
 
 **RUN TIME** — four facts, every run: how long this run took, how long the recent
 runs took (measured from the Actions runs, not estimated), the projected monthly

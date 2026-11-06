@@ -1088,11 +1088,11 @@ def test_price_watch_sorts_by_the_selling_price() -> None:
                            "sports": {"enabled": [], "muted": []},
                            "suggestions": {}, "local": {}, "prices": out,
                            "timing": {}, "failures": [], "as_of": NOW})
-    check("AC-173 the digest renders the price block", "RAM PRICE WATCH" in text)
+    check("AC-173 the digest renders the price block", "OTHER PARTS YOU WATCH" in text)
     # Cheapest kit first: 3,649, and its saving against the 8,879 kit.
     check("AC-173 the cheapest kit renders first at 3,649", "R 3,649" in text)
     check("AC-176 the kit saving is 8,879 - 3,649 = 5,230",
-          "save R 5,230" in text, text.split("RAM PRICE WATCH")[-1][:400])
+          "save R 5,230" in text, text.split("OTHER PARTS YOU WATCH")[-1][:400])
     check("AC-178 the listing-price difference 6,760 is never printed",
           "6,760" not in text)
 
@@ -1133,7 +1133,7 @@ def test_price_watch_unknown_shape_is_a_named_note() -> None:
                            "suggestions": {}, "local": {}, "prices": out,
                            "timing": {}, "failures": [], "as_of": NOW})
     check("AC-177 the note is what the digest prints, not a blank table",
-          "R " not in text.split("RAM PRICE WATCH")[-1], text.split("RAM PRICE WATCH")[-1][:200])
+          "R " not in text.split("OTHER PARTS YOU WATCH")[-1], text.split("OTHER PARTS YOU WATCH")[-1][:200])
 
 
 def test_workflow_grants_actions_read_and_never_prints_the_body() -> None:
@@ -1275,13 +1275,13 @@ def test_every_source_down_still_produces_a_sendable_digest() -> None:
     text = FR.render_text(data)
 
     # Every section is still present and every failure is named.
-    for section in ("BY SPORT", "LOCAL - JOHANNESBURG", "RAM PRICE WATCH", "RUN TIME"):
+    for section in ("BY SPORT", "LOCAL - JOHANNESBURG", "OTHER PARTS YOU WATCH", "RUN TIME"):
         check(f"AC-185 '{section}' is still rendered with every source down",
               section in text)
     check("AC-185 the failures are named rather than silent",
           "could not be reached" in text or "could not be measured" in text, text[-400:])
-    check("AC-185 no price was invented", "R " not in text.split("RAM PRICE WATCH")[-1].split("RUN TIME")[0],
-          text.split("RAM PRICE WATCH")[-1][:200])
+    check("AC-185 no price was invented", "R " not in text.split("OTHER PARTS YOU WATCH")[-1].split("RUN TIME")[0],
+          text.split("OTHER PARTS YOU WATCH")[-1][:200])
 
 
 

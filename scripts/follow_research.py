@@ -2787,7 +2787,11 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
                 out.append(f"    ({item['all_count']} listings with a price were "
                            f"compared, cheapest first)")
             out.append("")
-        out.append("RAM PRICE WATCH")
+        # Only the featured watch above is memory. This heading used to read
+        # "RAM PRICE WATCH" while the rows under it were a GPU, a CPU, a PSU,
+        # an SSD, a cooler and a case, so it named a thing that was not there.
+        if rest:
+            out.append("OTHER PARTS YOU WATCH")
         for item in rest:
             n = prices.get("top_n") or 3
             out.append(f"  {item['label']} - the {n} cheapest found")
