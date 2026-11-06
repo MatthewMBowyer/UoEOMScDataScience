@@ -2738,7 +2738,11 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
                     pair = (f"  [{it['two_person_label']}]"
                             if it.get("two_person") and it.get("two_person_label") else "")
                     place = f"  {it['venue']}" if it.get("venue") else ""
-                    out.append(f"    * {it['date']}  {it['title']}{place}{who}{pair}")
+                    # The date is when the story was PUBLISHED, not when the
+                    # thing is on. Printed bare it reads as an event date, and
+                    # an August publish stamp looked like an August booking.
+                    stamp = f"published {it['date']}" if it["date"] else "undated"
+                    out.append(f"    * {stamp}  {it['title']}{place}{who}{pair}")
                     if it.get("limits"):
                         out.append(f"      Conditions found: {', '.join(it['limits'])}")
                     if not it.get("venue"):

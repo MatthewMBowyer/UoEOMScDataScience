@@ -1,5 +1,5 @@
 {
- "recorded_at": "2026-11-06T03:19:23Z",
+ "recorded_at": "2026-11-06T03:31:30Z",
  "sports": {
   "enabled": [
    "Motorsport",
@@ -2086,8 +2086,8 @@
   }
  ],
  "timing": {
-  "elapsed": "1m 27s",
-  "elapsed_seconds": 87.03692329698242,
+  "elapsed": "1m 13s",
+  "elapsed_seconds": 73.06687113302178,
   "recent": [
    {
     "seconds": 25.0,
@@ -2116,12 +2116,12 @@
    }
   ],
   "recent_error": "",
-  "monthly": "10m 20s",
-  "basis": "average of the last 9 measured digest runs",
+  "monthly": "10m 38s",
+  "basis": "average of the last 8 measured digest runs",
   "remaining": "unlimited - this repository is public, and GitHub does not bill Actions minutes for public repositories",
-  "minutes_used": 9.0,
-  "minutes_left": 1991.0,
-  "runs_measured": 9
+  "minutes_used": 9.7,
+  "minutes_left": 1990.3,
+  "runs_measured": 8
  },
  "suggestions": {
   "groups": [

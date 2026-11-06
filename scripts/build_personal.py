@@ -724,7 +724,10 @@ def _local_html(loc: dict) -> str:
                          f'rel="noopener noreferrer">{_esc(i["title"])}</a>'
                          if i["link"] else _esc(i["title"]))
                 who = f' <span class="small muted">&mdash; {_esc(i["publisher"])}</span>' if i["publisher"] else ""
-                body.append(f'<li><span class="when">{_esc(i["date"])}</span> '
+                # Publish stamp, said out loud: the feed dates a story by when it
+                # was written, not when the event is on.
+                stamp = (f'published {_esc(i["date"])}' if i["date"] else "undated")
+                body.append(f'<li><span class="when">{stamp}</span> '
                             f'{title}{who}{pair}</li>')
             body.append("</ul>")
         else:
