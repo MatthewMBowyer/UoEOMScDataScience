@@ -442,6 +442,10 @@ def write_research_snapshot(data: dict, path: str | None = None) -> str:
     payload = {
         "recorded_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "sports": data.get("sports") or {},
+        # Item 2: every followed sport gets its own detail, not just UEFA and
+        # tennis. The briefs and the next-up row are what make the other sports
+        # show anything at all on this page.
+        "sports_detail": FR.sport_detail_blocks(data),
         "standings": FR.standings_blocks(data),
         "tennis": ({"enabled": data["tennis"]["enabled"],
                     "top_n": data["tennis"].get("top_n", 5),
@@ -450,6 +454,8 @@ def write_research_snapshot(data: dict, path: str | None = None) -> str:
                                    t, data["tennis"].get("top_n", 5))}
                               for t in data["tennis"].get("tours", [])]}
                    if data.get("tennis") else {"enabled": False, "tours": []}),
+        "prices": FR.price_blocks(data),
+        "timing": FR.timing_blocks(data),
         "suggestions": (FR.suggestion_blocks(data) or [{}])[0],
         "local": (FR.local_blocks(data) or [{}])[0],
     }
@@ -464,17 +470,76 @@ def _esc(v) -> str:
     return html.escape("" if v is None else str(v))
 
 
+def _sport_detail_html(blocks: list[dict]) -> str:
+    """One row per followed sport: next event, headline brief, window count."""
+    if not blocks:
+        return ""
+    parts = []
+    for b in blocks:
+        up = b.get("next_up") or {}
+        bits = []
+        if up.get("when"):
+            series = f' ({_esc(up["series"])})' if up.get("series") else ""
+            bits.append(f'<p class="small">Next up: <strong>{_esc(up["name"])}</strong>'
+                        f'{series} &middot; {_esc(up["display"])}</p>')
+        elif not b.get("stories"):
+            bits.append('<p class="small muted">Nothing on your own list and no '
+                        'recent story in the news window.</p>')
+        else:
+            bits.append('<p class="small muted">Nothing on your own event list in '
+                        'this window.</p>')
+        if b.get("events"):
+            items = "".join(
+                f'<li>{_esc(ev["name"])}'
+                f'{" (" + _esc(ev["series"]) + ")" if ev.get("series") else ""}'
+                f' &middot; {_esc(ev["when"])}</li>'
+                for ev in b["events"])
+            bits.append(f'<ul>{items}</ul>')
+        if b.get("stories"):
+            items = []
+            for s in b["stories"]:
+                who = (f' <span class="small muted">&mdash; {_esc(s["publisher"])}</span>'
+                       if s.get("publisher") else "")
+                title = (f'<a href="{_esc(s["link"])}" target="_blank" '
+                         f'rel="noopener noreferrer">{_esc(s["title"])}</a>'
+                         if s.get("link") else _esc(s["title"]))
+                items.append(f'<li>{title}{who}</li>')
+            source = (f' <span class="small muted">&middot; {_esc(b["source"])}</span>'
+                      if b.get("source") else "")
+            bits.append(f'<p class="small"><strong>In the news</strong>{source}</p>'
+                        f'<ul>{"".join(items)}</ul>')
+        count = (f' &middot; {b["window_count"]} on your list in the window'
+                 if b.get("window_count") else "")
+        parts.append(f'<h4>{_esc(b["sport"])}<span class="small muted">{count}</span>'
+                     f'</h4>{"".join(bits)}')
+    return "".join(parts)
+
+
 def _standings_html(tables: list[dict]) -> str:
     """ESPN's own numbers in a real table. Same data the digest renders."""
     if not tables:
         return ""
+    import follow_research as FR
     parts = []
     for t in tables:
         if t.get("error"):
             parts.append(f'<p class="note">{_esc(t["label"])}: {_esc(t["error"])}</p>')
             continue
         stage = f' <span class="small muted">&middot; {_esc(t["stage"])}</span>' if t.get("stage") else ""
-        head = "".join(f"<th>{_esc(c)}</th>" for c in t["columns"])
+        # The stat keys travel WITH the columns, so the header and the cells
+        # cannot drift apart. Reading a fixed tuple here printed two empty
+        # cells per row (F and A) and left the points column out, because ESPN
+        # does not publish those three for this competition. A column no row
+        # supplies is dropped from BOTH, so a competition that publishes
+        # different stats gets a table that matches its own data.
+        keys = t.get("keys") or ["rank", "team", "GP", "W", "D", "L", "GD", "P"]
+        labels = dict(zip(keys, t["columns"]))
+        rows = t["rows"]
+        shown = [k for k in keys[2:]
+                 if any(str(r["stats"].get(k, "")) != "" for r in rows)]
+        head = ("".join(f"<th>{_esc(labels.get(k, k))}</th>"
+                        for k in keys[:2])
+                + "".join(f"<th>{_esc(labels[k])}</th>" for k in shown))
         body = []
         for r in t["rows"]:
             s = r["stats"]
@@ -482,12 +547,15 @@ def _standings_html(tables: list[dict]) -> str:
             body.append(
                 f'<tr><td class="num">{_esc(r["position"])}</td>'
                 f'<td>{_esc(r["team"])}{note}</td>'
-                + "".join(f'<td class="num">{_esc(s[k])}</td>'
-                          for k in ("GP", "W", "D", "L", "GD", "P"))
+                + "".join(f'<td class="num">{_esc(s.get(k, ""))}</td>'
+                          for k in shown)
                 + "</tr>")
+        bands = (f'<p class="note">In brief: {_esc(t["bands"])}</p>'
+                 if t.get("bands") else "")
         parts.append(
             f'<h4>{_esc(t["label"])}{stage}</h4>'
-            f'<table class="standings"><tr>{head}</tr>{"".join(body)}</table>')
+            f'<table class="standings"><tr>{head}</tr>{"".join(body)}</table>'
+            f'{bands}')
     return '<div class="res">' + "".join(parts) + "</div>"
 
 
@@ -513,16 +581,18 @@ def _tennis_html(tennis: dict) -> str:
                 stage = (f' <span class="small muted">&middot; {_esc(b["stage"])}</span>'
                          if b.get("stage") else "")
                 parts.append(f'<p><strong>{_esc(b["tournament"])}</strong>{stage}</p>')
-                if b.get("empty_line"):
-                    parts.append(f'<p class="note">{_esc(b["empty_line"])}</p>')
-                    continue
+                if b.get("outcome_line"):
+                    parts.append(f'<p class="sum">{_esc(b["outcome_line"])}</p>')
                 rows = []
                 for r in b.get("rows", []):
                     cls = {"in": "in", "out": "out"}.get(r["state"], "none")
+                    reached = (f' <span class="small muted">({_esc(r["reached"])})</span>'
+                               if r.get("reached") and r["state"] == "out" else "")
                     rows.append(
                         f'<li><span class="mark {cls}">{_esc(r["mark"])}</span>'
                         f'{_esc(r["position"])}. {_esc(r["name"])} '
-                        f'<span class="sum">&ndash; {_esc(r["detail"])}</span></li>')
+                        f'<span class="sum">&ndash; {_esc(r["detail"])}{reached}'
+                        f'</span></li>')
                 parts.append(f'<ul>{"".join(rows)}</ul>')
             elif kind == "matches":
                 parts.append(f'<p><strong>{_esc(b["label"])}</strong></p>')
@@ -568,6 +638,75 @@ def _suggestions_html(sug: dict) -> str:
             '<p class="small muted">Derived from what you follow, and never something you '
             'removed. Each line names the source it came from and the follow that caused it.</p>'
             + "".join(body) + "</section>")
+
+
+def _prices_html(blocks: list[dict]) -> str:
+    """Item 7: the watched parts with their cheapest real listings."""
+    if not blocks:
+        return ""
+    cards = []
+    for b in blocks:
+        if b["error"]:
+            cards.append(f'<div class="price res"><h4>{_esc(b["label"])}</h4>'
+                         f'<p class="note">{_esc(b["error"])}</p></div>')
+            continue
+        rows = []
+        for o in b["offers"]:
+            title = (f' &middot; <span class="small muted">{_esc(o["title"])}</span>'
+                     if o.get("title") else "")
+            extra = " ".join(x for x in (
+                f'<span class="small muted">[{_esc(o["condition"])}]</span>'
+                if o.get("condition") else "",
+                f'<span class="good">{_esc(o["save"])}</span>'
+                if o.get("save") else "") if x)
+            rows.append(
+                f'<li><strong>{_esc(o["pretty"])}</strong> '
+                f'<span class="src">{_esc(o["retailer"])}</span>{title} {extra}'
+                + (f'<br><a href="{_esc(o["url"])}" target="_blank" rel="noopener noreferrer">'
+                   f'{_esc(o["url"])}</a>' if o.get("url") else "")
+                + "</li>")
+        below = "".join(
+            f'<li>{_esc(x["pretty"])} - {_esc(str(x["pct"]))}% under the median at '
+            f'{_esc(x["retailer"])}</li>' for x in (b["below_market"] or []))
+        cards.append(
+            f'<div class="price res"><h4>{_esc(b["label"])}'
+            + (' <span class="small muted">&middot; the one you asked for</span>'
+               if b["featured"] else "")
+            + "</h4><ul>" + "".join(rows) + "</ul>"
+            + (f'<p class="small"><strong>Below market:</strong></p><ul>{below}</ul>'
+               if below else "")
+            + f'<p class="small muted">({b["count"]} listings with a price were compared, '
+              f'cheapest first. New and second-hand both counted; a saving is only ever '
+              f'the difference between two listed prices.)</p></div>')
+    return ('<section class="card prices" id="prices">'
+            '<h2>Best prices right now</h2>'
+            '<p class="small muted">The parts you are watching, cheapest real listing first. '
+            'Nothing here is estimated - a saving is the difference between two prices that '
+            'were actually published.</p>' + "".join(cards) + "</section>")
+
+
+def _timing_html(t: dict) -> str:
+    """Item 8: run time, the monthly projection, and the git headroom."""
+    if not t:
+        return ""
+    bits = [f'<li><strong>This run:</strong> {_esc(t["elapsed"])}</li>']
+    if t.get("recent"):
+        recent = ", ".join(f'{float(r["seconds"]):.0f}s' for r in t["recent"])
+        bits.append(f'<li><strong>Recent runs:</strong> {_esc(recent)}</li>')
+    elif t.get("recent_error"):
+        bits.append(f'<li><strong>Recent runs:</strong> {_esc(t["recent_error"])}</li>')
+    if t.get("monthly"):
+        bits.append(f'<li><strong>Estimated per month</strong> (daily + Sunday weekly): '
+                    f'{_esc(t["monthly"])} <span class="small muted">&middot; from '
+                    f'{_esc(t.get("basis", "this run"))}</span></li>')
+    if t.get("remaining"):
+        bits.append(f'<li><strong>Remaining git run time:</strong> '
+                    f'{_esc(t["remaining"])}</li>')
+    return ('<section class="card timing" id="run-time">'
+            '<h2>Run time</h2>'
+            '<p class="small muted">Measured, not estimated. The monthly figure is the '
+            'average of the real run durations GitHub returns, projected over a daily run '
+            'plus the extra Sunday weekly run.</p><ul>' + "".join(bits) + "</ul></section>")
 
 
 def _local_html(loc: dict) -> str:
@@ -725,16 +864,22 @@ def build_sports(data: dict, today: dt.date | None = None,
             + "".join(trs) + '</table>')
 
     pointer = (
-        '<p class="pointer"><strong>Add or remove a sport:</strong> double-click '
-        '<code>MANAGE_SPORTS.bat</code> in the project folder. It runs on your own PC - '
-        'no commands to type, just a numbered menu. Removing a sport mutes it everywhere '
-        'and can be undone the same way.</p>')
+        '<div class="pointer"><strong>Add or remove a sport - the easy switch</strong>'
+        '<p style="margin:6px 0 0">Double-click <code>MANAGE_SPORTS.bat</code> in the '
+        '<code>eportfolio_rebuild</code> project folder. It runs on your own PC and opens a '
+        'numbered menu - nothing to type. <b>1</b> adds a sport, <b>2</b> removes one. '
+        'Removing is reversible '
+        'and mutes the sport everywhere: the event list, the result detail, the suggestions '
+        'and the local matching.</p></div>')
 
     research = research if research is not None else load_research_snapshot()
+    sports_detail_html = _sport_detail_html(research.get("sports_detail") or [])
     standings_html = _standings_html(research.get("standings") or [])
     tennis_html = _tennis_html(research.get("tennis") or {})
     suggestions_html = _suggestions_html(research.get("suggestions") or {})
     local_html = _local_html(research.get("local") or {})
+    prices_html = _prices_html(research.get("prices") or [])
+    timing_html = _timing_html(research.get("timing") or {})
 
     body = f"""
 {pointer}
@@ -770,6 +915,14 @@ def build_sports(data: dict, today: dt.date | None = None,
   </table>
 </section>
 
+<section class="card" id="by-sport">
+  <h2>Every sport you follow</h2>
+  <p class="muted small">Each sport switched on in your follow list, with its next event and the news
+  brief gathered for it. Uefa and tennis get their own deeper sections below; the rest are here so no
+  sport is silently missing.</p>
+  {sports_detail_html or '<p class="muted small">No sports are switched on.</p>'}
+</section>
+
 <section class="card" id="standings">
   <h2>Standings</h2>
   <p class="muted small">Your followed competition's table, exactly as ESPN publishes it - position,
@@ -788,6 +941,8 @@ def build_sports(data: dict, today: dt.date | None = None,
 
 {suggestions_html}
 {local_html}
+{prices_html}
+{timing_html}
 
 <section class="card">
   <h2>Where to watch</h2>
@@ -1242,9 +1397,14 @@ def main() -> int:
         import follow_research as FR
         import personal_digest as PD
 
+        # Same repo/token the delivered digest uses. Without them the run-time
+        # section on this page said "no repository configured" and "GitHub did
+        # not answer" - two facts about the build, not about the job the owner
+        # was asking about.
         gathered = FR.gather(follow, today=ref,
                              sports_events=PD._sport_events(sports),
-                             window_days=10)
+                             window_days=10, repo=PD._repo_slug(),
+                             token=PD._github_token())
         print(f"wrote {write_research_snapshot(gathered)} "
               f"({len(gathered.get('failures') or [])} source note(s))")
     research = {} if args.no_research else None

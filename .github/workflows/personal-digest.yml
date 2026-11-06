@@ -47,8 +47,13 @@ on:
         type: boolean
         default: false
 
+# Both read scopes are GRANTED, not assumed. `actions: read` is what lets the
+# run-time block read /repos/<owner>/<repo>/actions/runs with the workflow's own
+# GITHUB_TOKEN; a contents-only token is refused there, so the honest "recent
+# runs" figure needs this grant. No write scope of any kind.
 permissions:
   contents: read
+  actions: read
 
 jobs:
   digest:
@@ -72,6 +77,10 @@ jobs:
         env:
           DAYS: ${{ inputs.days || '10' }}
           WEEKLY: ${{ inputs.weekly && '--weekly' || '' }}
+          # Read-only, and used only to read this repo's own run history and
+          # visibility so the run-time section can report real figures.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           # One pass writes all three parts from a single research gather, so
           # the text and HTML bodies are the same digest and the feeds are
@@ -81,7 +90,9 @@ jobs:
           # the digest body must never be echoed here: it carries the private
           # good_hubby reminders. Print shape only, enough to debug a failure.
           echo "--- digest summary ---"
-          echo "lines: $(wc -l < digest.txt), bytes: $(wc -c < digest.txt)"
+          echo "digest shape (lines, then bytes):"
+          wc -l digest.txt digest.html subject.txt
+          wc -c digest.txt digest.html subject.txt
 
       # A cheap connectivity probe: it turns "the email never arrived" into a
       # clear DNS/TLS answer in the run log, without touching the mail account.
@@ -137,12 +148,17 @@ jobs:
           python-version: "3.12"
 
       - name: Build the weekly digest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           # One pass, single research gather; see the daily job above.
           python3 scripts/personal_digest.py --days 14 --weekly --out-dir .
           # Public repo, world-readable logs: shape only, never the body.
           echo "--- digest summary ---"
-          echo "lines: $(wc -l < digest.txt), bytes: $(wc -c < digest.txt)"
+          echo "digest shape (lines, then bytes):"
+          wc -l digest.txt digest.html subject.txt
+          wc -c digest.txt digest.html subject.txt
 
       - name: Email it
         env:

@@ -459,8 +459,16 @@ def test_sports_descriptions() -> None:
     as_of = BP._prune_as_of(SPORTS)
     kept, _ = BP.prune_events(SPORTS["events"], as_of)
     page_descs = page.count('class="desc"')
+    # Only events whose sport is still on are rendered. Counting every kept
+    # event made this fail the moment the owner switched Cycling and Gymnastics
+    # off (15 kept, 3 of them muted, 12 on the page) - the page was right.
+    _follow = json.load(open("personal/data/follow.json", encoding="utf-8"))
+    _on = {r["sport"] for r in _follow["sports"] if r.get("enabled", True)}
+    expected_shown = [e for e in kept if e.get("sport") in _on]
     check("AC-121 the page surfaces a description per kept event",
-          page_descs == len(kept), f"page={page_descs} kept={len(kept)}")
+          page_descs == len(expected_shown),
+          f"page={page_descs} shown={len(expected_shown)} kept={len(kept)} "
+          f"(a muted sport is not rendered)")
 
 
 def test_sports_preferences() -> None:
@@ -765,7 +773,18 @@ def test_sports_page_shows_the_follow_table_and_the_tool_pointer() -> None:
     body = muted_page.split("What you follow")[0]
     check("AC-142 a muted sport produces no events in the event list",
           "Mexico Padel Major" not in body, "Padel event still rendered")
-    check("AC-142 the event count drops with the mute", "14 events still to come" in body)
+    # The count has to DROP, which is the actual requirement. Pinning a literal
+    # number here made the check fail whenever the owner's own sport list
+    # changed (it went 14 -> 11 when Cycling and Gymnastics were switched off),
+    # which is a stale test rather than a broken feature.
+    def _count(pg: str) -> int:
+        m = re.search(r"(\d+) events still to come", pg)
+        return int(m.group(1)) if m else -1
+
+    unmuted = BP.build_sports(data, dt.date(2026, 10, 6), follow)
+    check("AC-142 the event count drops with the mute",
+          0 <= _count(muted_page) < _count(unmuted),
+          f"muted={_count(muted_page)} unmuted={_count(unmuted)}")
 
 
 def test_digest_footer_points_at_the_tool() -> None:
@@ -1032,10 +1051,18 @@ def test_sport_list_is_first_class_and_complete() -> None:
     evidenced |= {"Football"}   # his UEFA Champions League follow, news[0]
     check("AC-194 every evidenced sport is in the delivered follow list",
           evidenced <= names, f"missing {sorted(evidenced - names)}")
-    check("AC-194 all seven are present",
+    check("AC-194 all nine are present",
           names == {"Motorsport", "Tennis", "Football", "Cycling",
-                    "Gymnastics", "Weightlifting", "Padel"}, str(sorted(names)))
-    check("AC-194 every row is enabled", all(s["enabled"] for s in sports))
+                    "Gymnastics", "Weightlifting", "Padel", "Rugby", "F1"},
+          str(sorted(names)))
+    # Not "every row is enabled": the owner switched Cycling and Gymnastics off
+    # on 2026-11-05 ("I never wanna see cycling and gymnastics"), so requiring
+    # all-on would be asserting the opposite of what he asked for.
+    check("AC-194 every row still carries its own state",
+          all(isinstance(s["enabled"], bool) for s in sports))
+    check("AC-194 the sports he switched off are off",
+          {s["sport"] for s in sports if not s["enabled"]} == {"Cycling", "Gymnastics"},
+          str(sorted(s["sport"] for s in sports if not s["enabled"])))
 
     # Both surfaces read THAT list, not a derived guess.
     bp = open("scripts/build_personal.py", encoding="utf-8").read()
@@ -1062,7 +1089,7 @@ def test_follow_edit_cli_contract() -> None:
     shown = run("--show")
     check("AC-141 --show exits 0", shown.returncode == 0, shown.stderr[-200:])
     check("AC-141 --show prints the sport list with on/off state",
-          "Sports (7)" in shown.stdout and "[on ]" in shown.stdout, shown.stdout[:400])
+          "Sports (9)" in shown.stdout and "[on ]" in shown.stdout, shown.stdout[:400])
 
     check("AC-141 add-sport and remove-sport are real subcommands",
           "add-sport" in run("--help").stdout and "remove-sport" in run("--help").stdout)

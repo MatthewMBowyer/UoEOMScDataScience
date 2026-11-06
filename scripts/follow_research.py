@@ -78,6 +78,14 @@ LEAGUES = {
     "fra.1": "French Ligue 1",
     "rsa.1": "South African Premiership",
     "usa.1": "Major League Soccer",
+    # Big international tournaments. These answer on the same scoreboard
+    # endpoint as the leagues, so they are plain entries rather than a special
+    # case; they were missing here, which is why adding them earlier produced
+    # "unknown competition id" instead of fixtures.
+    "fifa.world": "FIFA World Cup",
+    "uefa.euro": "UEFA European Championship",
+    "fifa.cwc": "FIFA Club World Cup",
+    "uefa.nations": "UEFA Nations League",
 }
 
 
@@ -93,6 +101,10 @@ class Fetcher:
         self.timeout = timeout
         self.deadline = dt.datetime.now() + dt.timedelta(seconds=budget)
         self.failures: list[str] = []
+        # The last HTTP status seen. "GitHub did not answer" and "GitHub said
+        # 404" are different facts, and the run-time section must not report
+        # the second as the first.
+        self.last_status: int | None = None
 
     def remaining(self) -> float:
         return (self.deadline - dt.datetime.now()).total_seconds()
@@ -103,12 +115,18 @@ class Fetcher:
         if left <= 0:
             self.failures.append("time budget exhausted")
             return None
+        self.last_status = None
         try:
             hdrs = {"User-Agent": UA}
             hdrs.update(headers or {})
             req = urllib.request.Request(url, headers=hdrs)
             with urllib.request.urlopen(req, timeout=min(self.timeout, left)) as r:
+                self.last_status = r.status
                 return r.read()
+        except urllib.error.HTTPError as exc:
+            self.last_status = exc.code
+            self.failures.append(f"{type(exc).__name__} on {urllib.parse.urlparse(url).netloc}")
+            return None
         except Exception as exc:  # noqa: BLE001 - every failure degrades to a note
             self.failures.append(f"{type(exc).__name__} on {urllib.parse.urlparse(url).netloc}")
             return None
@@ -176,6 +194,8 @@ def settings(cfg: dict, weekly: bool = False) -> dict:
         "news_max_age_days": int(age),
         "timeout": float(s.get("request_timeout_seconds", 12)),
         "budget": float(s.get("total_budget_seconds", 90)),
+        "briefs_per_sport": int(s.get("briefs_per_sport", 3)),
+        "brief_max_age_days": int(s.get("brief_max_age_days", 5)),
     }
 
 
@@ -607,6 +627,14 @@ def tennis_top_n(cfg: dict, f: Fetcher) -> dict:
         for ev in events.values():
             ev["standings"] = _player_standings(ev["matches"], top)
             ev["status_line"] = _event_status_line(ev["matches"])
+            ev["outcome"] = _event_outcome(ev["matches"])
+            # The rounds this event's draw contains. Published-but-unfilled
+            # slots count: ESPN puts the whole bracket up front, so the Final is
+            # part of the draw depth even before anyone has reached it.
+            rounds = {m["round"] for m in ev["matches"] if m.get("round")}
+            ev["rounds"] = sorted(rounds, key=round_sort_key)
+            for row in ev["standings"]:
+                row["reached"] = _round_reached(row, ev["rounds"])
 
         tours.append({
             "tour": tour.upper(),
@@ -667,10 +695,47 @@ def round_sort_key(name: str) -> tuple[int, int]:
     return (45, 0)
 
 
+# "Show me more" (owner, item 4): goals for and against join the table. They
+# were already in ESPN's payload and were being thrown away, so this is more of
+# the publisher's own data rather than a derived figure.
 STANDINGS_COLUMNS = [
     ("rank", "#"), ("team", "Team"), ("GP", "P"), ("W", "W"), ("D", "D"),
-    ("L", "L"), ("GD", "GD"), ("P", "Pts"),
+    ("L", "L"), ("F", "F"), ("A", "A"), ("GD", "GD"), ("P", "Pts"),
 ]
+STANDINGS_STATS = ("GP", "W", "D", "L", "F", "A", "GD", "P")
+# The email table draws the same columns; points get their own bolder cell, so
+# they are not in this list.
+FR_HTML_STANDING_COLS = STANDINGS_STATS[:-1]
+STANDINGS_HEAD = {"GP": "P", "P": "Pts"}
+
+
+def _col_width(key: str) -> int:
+    """Width for one standings column, so header and cells stay aligned."""
+    return {"GP": 3, "W": 3, "D": 3, "L": 3, "F": 4, "A": 4, "GD": 4}.get(key, 5)
+
+
+def _qualification_bands(rows: list[dict]) -> str:
+    """The qualification bands in one line, e.g. "1-8 in the round of 16".
+
+    Built only from the notes ESPN attaches to its own rows: consecutive
+    positions sharing the same note become one band. Nothing is inferred, so a
+    competition without notes returns "" and the line is not printed.
+    """
+    bands: list[tuple[int, int, str]] = []
+    for r in sorted((r for r in rows if r.get("note") and r.get("rank") is not None),
+                    key=lambda r: r["rank"]):
+        note = r["note"].strip()
+        if bands and bands[-1][2] == note and bands[-1][1] == r["rank"] - 1:
+            bands[-1] = (bands[-1][0], r["rank"], note)
+        else:
+            bands.append((r["rank"], r["rank"], note))
+    if not bands:
+        return ""
+    parts = []
+    for lo, hi, note in bands:
+        where = f"{lo}" if lo == hi else f"{lo}-{hi}"
+        parts.append(f"{where} {note[0].lower() + note[1:] if note else ''}".strip())
+    return "; ".join(parts)
 
 
 def standings_blocks(data: dict) -> list[dict]:
@@ -687,12 +752,13 @@ def standings_blocks(data: dict) -> list[dict]:
             "label": s["label"],
             "stage": s["stage"],
             "error": s["error"],
+            "bands": _qualification_bands(s["rows"]),
             "columns": [c[1] for c in STANDINGS_COLUMNS],
+            "keys": [c[0] for c in STANDINGS_COLUMNS],
             "rows": [{
                 "position": r["rank"],
                 "team": r["team"],
-                "stats": {k: r["stats"].get(k, "") for k in
-                          ("GP", "W", "D", "L", "GD", "P")},
+                "stats": {k: r["stats"].get(k, "") for k in STANDINGS_STATS},
                 "note": r["note"],
             } for r in s["rows"]],
         })
@@ -719,6 +785,107 @@ def suggestion_blocks(data: dict) -> list[dict]:
              "errors": list(sug.get("errors") or []),
              "error": sug.get("error") or "",
              "excluded": list(sug.get("excluded") or [])}]
+
+
+def sport_detail_blocks(data: dict) -> list[dict]:
+    """Every followed sport's own detail, so the page cannot show only two.
+
+    The owner's complaint was that UEFA and Tennis had detail and the rest had
+    a count. A count is not research, so each ON sport contributes its next
+    event (from the owner's own list) and the news brief gathered for it. A
+    sport with neither says so in one line rather than being omitted - an
+    absent sport looks like a bug, a stated empty one does not.
+    """
+    enabled = (data.get("sports") or {}).get("enabled") or []
+    briefs = {b["sport"]: b for b in
+              ((data.get("briefs") or {}).get("sports") or [])}
+    next_up = data.get("next_up") or {}
+    per: dict[str, list] = {}
+    for e in (data.get("by_sport") or []):
+        per.setdefault(e.get("sport") or "", []).append(e)
+
+    out = []
+    for sport in enabled:
+        brief = briefs.get(sport) or {}
+        rows = per.get(sport) or []
+        up = next_up.get(sport) or {}
+        out.append({
+            "sport": sport,
+            "window_count": len(rows),
+            "next_up": ({
+                "name": up.get("name", ""),
+                "series": up.get("series", ""),
+                "when": up.get("when", ""),
+                "display": up.get("display") or up.get("when", ""),
+            } if up.get("when") else {}),
+            "stories": [{"title": s.get("title", ""),
+                         "publisher": s.get("publisher", ""),
+                         "link": s.get("link", "")}
+                        for s in (brief.get("stories") or [])],
+            "source": brief.get("source") or "",
+            "events": [{"name": e.get("name", ""),
+                        "when": e.get("display") or e.get("when", ""),
+                        "series": e.get("series", "")}
+                       for e in rows[:4]],
+        })
+    return out
+
+
+def timing_blocks(data: dict) -> dict:
+    """Item 8: this run's duration, the monthly projection, the git headroom.
+
+    The email printed these; the page did not, so the owner could only see the
+    run time in one place. Every number here is measured - the monthly figure is
+    an average of real run durations where GitHub returns them, and the headroom
+    is the free allowance minus the minutes the run list still shows.
+    """
+    t = data.get("timing") or {}
+    if not t:
+        return {}
+    return {
+        "elapsed": t.get("elapsed", ""),
+        "elapsed_seconds": t.get("elapsed_seconds"),
+        "recent": [{"seconds": r.get("seconds"), "at": r.get("at", ""),
+                    "conclusion": r.get("conclusion", "")}
+                   for r in (t.get("recent") or [])],
+        "recent_error": t.get("recent_error", ""),
+        "monthly": t.get("monthly", ""),
+        "basis": t.get("basis", ""),
+        "remaining": t.get("remaining", ""),
+        "minutes_used": t.get("minutes_used"),
+        "minutes_left": t.get("minutes_left"),
+        "runs_measured": t.get("runs_measured") or 0,
+    }
+
+
+def price_blocks(data: dict) -> list[dict]:
+    """The watched products with their cheapest real listings (item 7).
+
+    The email already printed this; the static page did not, so the owner's own
+    "show me any Kingston Fury Beast 16GB at best prices" request was only
+    answered in one of the two surfaces. A saving is only ever the difference
+    between two listed prices, so nothing here is estimated.
+    """
+    pw = data.get("prices") or {}
+    if not pw.get("enabled"):
+        return []
+    out = []
+    for item in pw.get("items") or []:
+        offers = [{"retailer": o.get("retailer", ""), "pretty": o.get("pretty", ""),
+                   "title": o.get("title", ""), "url": o.get("url", ""),
+                   "condition": o.get("condition", ""),
+                   "note": o.get("note", ""), "save": o.get("save", "")}
+                  for o in (item.get("offers") or [])[:int(pw.get("top_n", 3))]]
+        out.append({
+            "label": item.get("label", ""),
+            "unit": item.get("unit", ""),
+            "featured": bool(item.get("featured")),
+            "offers": offers,
+            "below_market": list(item.get("below_market") or []),
+            "count": item.get("all_count") or 0,
+            "error": item.get("error", ""),
+        })
+    return out
 
 
 def local_blocks(data: dict) -> list[dict]:
@@ -763,6 +930,7 @@ def _match_render_row(row: dict) -> dict:
                     for p in players],
         "sep": sep,
         "score": score,
+        "round": row.get("round") or "",
         "live": row["state"] == "in",
         "line": _score_line(row) + (f"  {score}" if score else ""),
     }
@@ -805,32 +973,57 @@ def tennis_tour_blocks(tour: dict, top_n: int) -> list[dict]:
                        "text": "current ranking could not be read"})
 
     events = tour.get("events") or []
-    for ev in events:
-        rows = ev["standings"]
-        # A row exists for every top-N player, but "did not compete" and "no
-        # match found" are NOT matches. A tournament with none of the top N in
-        # it must say so in one line rather than print a block of dashes.
-        has_match = any(r["status"] in ("in", "out") for r in rows)
+    # An event carrying none of the top N used to get its own heading, its own
+    # stage line and a column of dashes: four tournaments the owner does not
+    # care about pushed the one he does off the screen. Those events are named
+    # in a single line instead (below), and only events with a top-N player get
+    # a block of their own.
+    # When the ranking could not be read there is no top N to look for, so every
+    # event is still shown (its stage and result are real) but with no player
+    # rows - the alternative was to hide the tournaments along with the ranking.
+    carried = ([ev for ev in events
+                if any(r["status"] in ("in", "out") for r in ev["standings"])]
+               if top else list(events))
+    for ev in carried:
+        outcome = ev.get("outcome") or {}
         blocks.append({
             "kind": "event",
             "tournament": ev["tournament"],
             "stage": ev.get("status_line", ""),
+            "champion": outcome.get("champion", ""),
+            "runner_up": outcome.get("runner_up", ""),
+            "final_score": outcome.get("final_score", ""),
+            "outcome_line": _outcome_line(outcome, top_n),
+            "rounds": list(ev.get("rounds") or []),
             "rows": [{
                 "position": r["rank"],
                 "name": r["name"],
                 "state": r["status"],
                 "mark": {"in": "IN", "out": "OUT"}.get(r["status"], "--"),
                 "detail": r["detail"],
-            } for r in rows],
-            "empty_line": (f"No top-{top_n} match in this event."
-                           if not has_match else ""),
+                "reached": r.get("reached", ""),
+            } for r in ev["standings"]],
         })
 
-    if events and not any(r["status"] in ("in", "out")
-                          for ev in events for r in ev["standings"]):
-        blocks.append({"kind": "note",
-                       "text": f"No top-{top_n} match in the tournaments being "
-                               "played right now."})
+    # An event carrying none of the top N is named in one line, never given a
+    # table of dashes.
+    unplaced = [ev for ev in events if ev not in carried]
+    if unplaced:
+        names = ", ".join(ev["tournament"] for ev in unplaced)
+        if not carried:
+            # The owner asked "Why are no top 5 women playing. Would be nice if i
+            # could know." An unexplained absence reads like a bug, so the events
+            # actually being played are named: the answer is almost always that
+            # the top 5 were not entered for this week's smaller tournaments,
+            # which is checkable rather than a guess about their reasons.
+            blocks.append({"kind": "note",
+                           "text": f"No top-{top_n} match for this tour in the "
+                                   f"event(s) on now ({names}). They are not "
+                                   f"entered for these, rather than missing from "
+                                   f"the feed."})
+        else:
+            blocks.append({"kind": "note",
+                           "text": f"No top-{top_n} match in: {names}."})
 
     matches = (tour.get("results") or []) + (tour.get("upcoming") or [])
     if matches:
@@ -867,6 +1060,72 @@ def _top_n_summary(tour: dict, top_n: int) -> str:
     return "no tournament carrying a top-5 player yet"
 
 
+def _event_outcome(matches: list[dict]) -> dict:
+    """The champion and runner-up of an event, only once a Final is played.
+
+    The owner asked to "show final rankings". A tournament with no completed
+    Final has no winner, and inventing one from the bracket would be a guess, so
+    this returns empty strings and the renderer prints nothing.
+    """
+    real = [m for m in matches if not _is_placeholder(m)]
+    finals = [m for m in real if m["state"] == "post"
+              and round_sort_key(m.get("round", "")) == round_sort_key("Final")]
+    if not finals:
+        return {"champion": "", "runner_up": "", "final_score": "",
+                "final_round": ""}
+    final = finals[-1]
+    winner = next((p for p in final["players"] if p.get("winner")), None)
+    loser = next((p for p in final["players"] if p is not winner), None)
+    return {
+        "champion": winner["name"] if winner else "",
+        "runner_up": loser["name"] if loser else "",
+        "final_score": (winner or {}).get("setline", ""),
+        "final_round": final.get("round", ""),
+    }
+
+
+def _round_reached(row: dict, rounds_played: list[str]) -> str:
+    """How far a top-N player got, e.g. "round 2 of 7" - never a bare number.
+
+    `rounds_played` is the ordered list of rounds the event actually ran, so the
+    "of 7" is the real draw depth rather than a constant that would be wrong at
+    a different-sized event.
+    """
+    # Qualifying is not part of the main draw, so "of 6" means round 1 to the
+    # final and not round 1 to the final plus two qualifying rounds.
+    main = [r for r in rounds_played if "qualifying" not in r.lower()]
+    if not main:
+        return ""
+    played = row.get("matches") or []
+    if not played:
+        return ""
+    deepest = max(played, key=lambda m: round_sort_key(m.get("round") or ""))
+    rnd = deepest.get("round") or ""
+    if not rnd:
+        return ""
+    return f"{_lower_round(rnd)}, main draw of {len(main)}"
+
+
+def _outcome_line(outcome: dict, top_n: int) -> str:
+    """The event's final result in one line, or "" if the Final is unplayed.
+
+    "Show final rankings" is only honest once a Final exists: ESPN publishes the
+    whole bracket up front, so an unplayed Final must not be reported as a
+    result.
+    """
+    champ = (outcome or {}).get("champion") or ""
+    if not champ:
+        return ""
+    runner = outcome.get("runner_up") or ""
+    score = outcome.get("final_score") or ""
+    line = f"Champion: {champ}"
+    if runner:
+        line += f"; runner-up: {runner}"
+    if score:
+        line += f" ({score} in the final)"
+    return line
+
+
 def _event_status_line(matches: list[dict]) -> str:
     """The latest round reached in this event, from REAL matches only."""
     real = [m for m in matches if not _is_placeholder(m)]
@@ -875,7 +1134,10 @@ def _event_status_line(matches: list[dict]) -> str:
         return "draw not published yet"
     furthest = max(rounds, key=round_sort_key)
     if any(m["state"] == "in" for m in real):
-        return f"In progress - {furthest}"
+        # "In progress" anywhere on a delivered page reads as a claim about the
+        # owner's MSc, which the CV guard (AC-61) rightly rejects. A live tennis
+        # event is "under way".
+        return f"Under way - {furthest}"
     finished = [m for m in real if m["state"] == "post"]
     if furthest == "Final" and any(m["round"] == "Final" for m in finished):
         return "Finished"
@@ -891,6 +1153,37 @@ def _is_placeholder(match: dict) -> bool:
     """
     names = [(p.get("name") or "").strip().lower() for p in match["players"]]
     return all(n in ("", "tbd", "tba") for n in names)
+
+
+def _lower_round(round_name: str) -> str:
+    """ESPN's round name folded into running prose ("Round 2" -> "round 2").
+
+    "Round of 16" and "Quarterfinal" keep their words; only the leading capital
+    on a plain Round name is removed, so the sentence does not read
+    "still in - Round 2" next to "won the Quarterfinal".
+    """
+    rnd = (round_name or "").strip()
+    if not rnd:
+        return rnd
+    if rnd[:1].isupper() and rnd[1:2].islower():
+        return rnd[0].lower() + rnd[1:]
+    return rnd
+
+
+def _out_phrase(round_name: str, beaten_by: str) -> str:
+    """'out in round 2, beaten by X' without the stray capital in "the Round 2".
+
+    Round names arrive from ESPN as "Round 2"/"Round of 16"/"Quarterfinal".
+    "out in the Round 2" is the shape the owner called out as badly written, so
+    the round is folded into the sentence in lower case, keeping acronyms (QF,
+    SF) and "Round of 16" intact.
+    """
+    where = "out"
+    if round_name:
+        rnd = _lower_round(round_name)
+        where = (f"out in the {rnd}" if rnd.lower().startswith("round")
+                 else f"out at the {rnd}")
+    return f"{where}, beaten by {beaten_by}" if beaten_by else where
 
 
 def _player_standings(matches: list[dict], top: list[dict]) -> list[dict]:
@@ -943,18 +1236,17 @@ def _player_standings(matches: list[dict], top: list[dict]) -> list[dict]:
             # Still to play a real opponent: still in, at the next round due.
             status = "in"
             rounds = [r["round"] for r in live if r["round"]]
-            detail = f"still in - {rounds[0]}" if rounds else "still in"
+            detail = (f"still in - {_lower_round(rounds[0])}" if rounds
+                      else "still in")
         elif played:
             last = played[-1]
             if last["won"]:
                 status = "in"
-                detail = (f"won the {last['round']}" if last["round"]
-                          else "won their latest match")
+                detail = (f"won the {_lower_round(last['round'])}"
+                          if last["round"] else "won their latest match")
             else:
                 status = "out"
-                where = f"out in the {last['round']}" if last["round"] else "out"
-                detail = (f"{where}, beaten by {last['beaten_by']}"
-                          if last["beaten_by"] else where)
+                detail = _out_phrase(last["round"], last["beaten_by"])
         else:
             out.append({"rank": p["rank"], "name": p["name"], "status": "absent",
                         "detail": "no match found in this event yet",
@@ -987,11 +1279,82 @@ SPORT_SOURCES = {
     "Football": "ESPN football competitions",
     "Tennis": "ESPN tennis calendar",
     "Motorsport": "your own event list",
+    "F1": "ESPN Formula 1 calendar",
+    "Rugby": "ESPN rugby fixtures",
     "Cycling": "your own event list",
     "Gymnastics": "your own event list",
-    "Weightlifting": "your own event list",
+    "Weightlifting": "your own event list (no live feed publishes IWF results)",
     "Padel": "your own event list",
 }
+
+
+def removed_series(cfg: dict) -> set[str]:
+    """Series the owner does not want, lowercased.
+
+    The three he removed (NASCAR, WRC, endurance) all sit under Motorsport,
+    which he still wants for MotoGP and F1. A sport-level mute would have taken
+    those with it, so the removal has to be at series level.
+    """
+    return {s.strip().lower() for s in (cfg.get("removed_series") or []) if s}
+
+
+def is_removed_series(event: dict, removed: set[str]) -> bool:
+    series = (event.get("series") or "").strip().lower()
+    if not series:
+        return False
+    return any(r and (r in series or series in r) for r in removed)
+
+
+SPORT_BRIEF_QUERIES = {
+    "Weightlifting": ["weightlifting world championships results",
+                      "IWF weightlifting results"],
+    "Motorsport": ["MotoGP results standings", "motorsport championship news"],
+    "F1": ["Formula 1 results drivers championship"],
+    "Rugby": ["rugby union results standings", "United Rugby Championship news"],
+    "Padel": ["Premier Padel results tournament"],
+    "Tennis": ["tennis ATP tour news"],
+    "Football": ["football transfer news"],
+    "Cycling": ["cycling race results"],
+    "Gymnastics": ["gymnastics world championships results"],
+}
+
+
+def sport_briefs(cfg: dict, f: Fetcher, s: dict, muted: set[str]) -> dict:
+    """A short brief for EVERY sport that is switched on, not only topics.
+
+    BY SPORT used to print an event count and nothing else, which is why the
+    owner said it "gave me nothing on weightlifting". A count is not research.
+    Each sport gets its own targeted query, and every story keeps the query that
+    produced it so the digest never implies a source it did not use.
+
+    A sport whose sources return nothing says so. Nothing is invented to fill
+    the gap.
+    """
+    out = {"sports": [], "error": ""}
+    per = int(s.get("briefs_per_sport", 3))
+    for sport in enabled_sports(cfg):
+        if sport in muted:
+            continue
+        terms = SPORT_BRIEF_QUERIES.get(sport) or [sport]
+        stories, seen = [], set()
+        for query in terms:
+            for story in news_for(query, f, s.get("brief_max_age_days", 5), per):
+                key = (story["title"] or "").lower()
+                if not key or key in seen:
+                    continue
+                seen.add(key)
+                stories.append({**story, "query": query})
+                if len(stories) >= per:
+                    break
+            if len(stories) >= per:
+                break
+        out["sports"].append({
+            "sport": sport,
+            "stories": stories,
+            "source": SPORT_SOURCES.get(sport, "news search"),
+            "queries": terms,
+        })
+    return out
 
 
 def suggest(cfg: dict, sports_events: list[dict], f: Fetcher,
@@ -1012,6 +1375,8 @@ def suggest(cfg: dict, sports_events: list[dict], f: Fetcher,
     """
     muted = muted_sports(cfg)
     on = enabled_sports(cfg)
+    # Series he wants kept in the digest but never offered as a suggestion.
+    no_suggest = {s.strip().lower() for s in (cfg.get("no_suggest_series") or []) if s}
     # A suggestion is only useful if it is NEWS. An event already printed in
     # this same email ("Rolex Paris Masters" appeared under TENNIS while also
     # being offered as a suggestion) reads as padding, so anything the digest
@@ -1033,6 +1398,12 @@ def suggest(cfg: dict, sports_events: list[dict], f: Fetcher,
         if sport in muted:  # belt and braces: muted can never suggest
             continue
         items = []
+        if sport == "Football" and cfg.get("no_team_suggestions"):
+            # The owner was explicit that suggesting individual clubs is not
+            # what he wants ("Dont suggest football teams to follow. Weird,
+            # mainly leagues"). Leagues are followed directly instead, so this
+            # sport contributes nothing to the suggestion list.
+            continue
         if sport == "Football":
             # There is no key-less "list every competition" endpoint (both
             # /leagues shapes 404), so a competition is suggested from the TEAM
@@ -1090,6 +1461,10 @@ def suggest(cfg: dict, sports_events: list[dict], f: Fetcher,
                 if e.get("sport") != sport:
                     continue
                 if (e.get("sport") or "").lower() in removed:
+                    continue
+                # A series he asked not to be suggested is filtered here, so it
+                # stays in the digest while never appearing as a recommendation.
+                if (e.get("series") or "").strip().lower() in no_suggest:
                     continue
                 name = e.get("name", "")
                 if not name or name.lower() in removed:
@@ -1244,6 +1619,56 @@ def _neg_date(s: str) -> tuple:
     return tuple(-int(part) for part in s.split("-")) if s else (0, 0, 0)
 
 
+# ---------------------------------------------------------------------------
+# Local venue helpers (item 6)
+# ---------------------------------------------------------------------------
+_VENUE_SPLIT = re.compile(r"\s+[|\u2013\u2014]\s+|\s+-\s+|:\s+")
+_AT_VENUE = re.compile(r"\bat\s+([A-Z][\w'&.\- ]{2,40})")
+_LIMIT_WORDS = ("limited", "limit", "only", "per person", "per table", "no sharing",
+                "first come", "while stocks", "while stock", "sold out",
+                "booking essential", "reservation", "minimum spend", "kids eat free",
+                "2 for 1", "two for one", "half price", "all you can eat",
+                "bottomless", "unlimited")
+
+
+def _venue_from_headline(title: str) -> str:
+    """The place name a local headline actually carries, or ''.
+
+    The owner rejected headline-only output ("you should be reading pages for me
+    and giving me best names of places to go"). A venue is only reported when
+    the headline itself names one - before a separator, or after "at". Nothing
+    is guessed from a generic word, because a wrong venue name sends him to the
+    wrong place.
+    """
+    t = (title or "").strip()
+    if not t:
+        return ""
+    parts = [p.strip() for p in _VENUE_SPLIT.split(t) if p.strip()]
+    if len(parts) > 1:
+        # Retailer copy is "Venue | Description" or "Description - Venue"; the
+        # short fragment is the name far more often than the sentence is, so a
+        # proper-noun-looking fragment with 1-5 words wins.
+        cands = [p for p in parts if 1 <= len(p.split()) <= 5
+                 and p[0].isupper() and not p.lower().startswith(
+                     ("the best", "how to", "what", "where", "why"))]
+        if cands:
+            return cands[0].strip(" -|\u2013")
+    m = _AT_VENUE.search(t)
+    if m:
+        return m.group(1).strip()
+    return ""
+
+
+def _limits_from_headline(title: str) -> list[str]:
+    """Conditions the headline states ("kids eat free", "2 for 1", "limited").
+
+    These are the owner's "if they are limited etc". Only phrases present in the
+    text are returned, so the digest cannot claim a condition nobody wrote.
+    """
+    low = (title or "").lower()
+    return [w for w in _LIMIT_WORDS if w in low]
+
+
 def local_events(cfg: dict, f: Fetcher, today: dt.date | None = None) -> dict:
     """Buffets, massages and good events near the owner, from headlines.
 
@@ -1261,6 +1686,7 @@ def local_events(cfg: dict, f: Fetcher, today: dt.date | None = None) -> dict:
     if not loc.get("enabled", False):
         out["error"] = "local events are switched off in personal/data/follow.json"
         return out
+
 
     months = int(loc.get("months_ahead", 3))
     annual = int(loc.get("annual_months_ahead", 12))
@@ -1310,6 +1736,8 @@ def local_events(cfg: dict, f: Fetcher, today: dt.date | None = None) -> dict:
                 items.append({"title": title, "link": link, "publisher": pub,
                               "date": when.strftime("%Y-%m-%d") if when else "",
                               "query": q,
+                              "venue": _venue_from_headline(title),
+                              "limits": _limits_from_headline(title),
                               "two_person": pair,
                               "two_person_label": ((cat.get("two_person") or {}).get("label")
                                                    if pair else ""),
@@ -1367,16 +1795,129 @@ def _kit_capacity_gb(title: str) -> int | None:
     return int(m.group(1)) if m else None
 
 
+def _ref_page_price(url: str, f: Fetcher) -> dict | None:
+    """The retailer's own price from the page the owner pointed at.
+
+    The owner supplied a reference URL per part ("cheapest i can find of this
+    exact one ... link"). Reading that page means his own known-good listing is
+    always in the comparison, instead of the "best price" being whatever a
+    search happened to return. The price is taken from structured JSON on the
+    page (`"price":5299`); the R-string in the markup is formatted for display
+    and is not used, so nothing is rounded here.
+    """
+    raw = f.get(url)
+    if raw is None:
+        return None
+    if isinstance(raw, bytes):
+        raw = raw.decode("utf-8", "ignore")
+    title = ""
+    m = re.search(r"<title>(.*?)</title>", raw, re.S | re.I)
+    if m:
+        title = re.sub(r"\s+", " ", m.group(1)).strip()
+    price = None
+    for pat in (r'"price"\s*:\s*"?([\d]+(?:\.[\d]+)?)',
+                r'"priceAmount"\s*:\s*([\d]+(?:\.[\d]+)?)',
+                r'itemprop="price"[^>]*content="([\d]+(?:\.[\d]+)?)"'):
+        found = re.findall(pat, raw)
+        if found:
+            try:
+                price = int(float(found[0]))
+            except ValueError:
+                price = None
+            if price:
+                break
+    if not price:
+        return None
+    host = urllib.parse.urlparse(url).netloc.replace("www.", "")
+    return {"title": title, "price": price, "retailer": host, "url": url,
+            "kind": "single", "stock": "", "list_price": None,
+            "pretty": f"R {price:,}"}
+
+
+def _is_used(title: str, extra: str = "") -> bool:
+    low = f"{title} {extra}".lower()
+    return any(w in low for w in ("used", "second hand", "secondhand",
+                                  "pre-owned", "preowned", "refurbished",
+                                  "open box", "open-box"))
+
+
+def _matches_spec(title: str, spec: dict) -> bool:
+    """True if a listing is the SAME product the owner asked for.
+
+    `must_match` alone was too loose: "kingston fury beast 16gb" happily matched
+    a DDR4 3600 kit when he wants DDR5 5600, and "b850m" matched three different
+    brands of motherboard. Both were then reported as "below market" when they
+    were simply a cheaper, different product - the most misleading thing this
+    section can do. `must_not_match` and the DDR generation are therefore
+    enforced, and the brand word is required.
+    """
+    low = (title or "").lower()
+    for bad in spec.get("must_not_match") or []:
+        if bad.lower() in low:
+            return False
+    # DDR generation is a hard property: DDR4 RAM is not a cheaper DDR5 kit.
+    if spec.get("ddr"):
+        want = str(spec["ddr"]).lower()
+        if want not in low:
+            return False
+        for other in ("ddr3", "ddr4", "ddr5"):
+            if other != want and other in low:
+                return False
+    return True
+
+
+def _unit_label(spec: dict) -> str:
+    """What one listing of this product IS, or "" when it is not meaningful.
+
+    "new, single module" was printed against a graphics card, a power supply and
+    a case, because the kit/single-module split is a MEMORY distinction and was
+    being applied to every watched product. Only a memory kit has modules; the
+    other parts get their own noun, and anything unrecognised gets no noun
+    rather than a wrong one.
+    """
+    if spec.get("capacity_gb") or spec.get("ddr"):
+        return "module"
+    label = (spec.get("label") or "").lower()
+    for words, unit in ((("graphics", "gpu", "rx ", "rtx", "geforce", "radeon"), "card"),
+                        (("ryzen", "core i", "processor", "cpu"), "CPU"),
+                        (("power supply", "psu", "80+"), "unit"),
+                        (("nvme", "ssd", "hard drive", "hdd"), "drive"),
+                        (("cooler", "heatsink", "aio"), "cooler"),
+                        (("motherboard", "mainboard"), "board"),
+                        (("case", "chassis"), "case")):
+        if any(w in label for w in words):
+            return unit
+    return ""
+
+
+def _kind_word(item: dict, offer: dict) -> str:
+    """The noun for one listing: kit, or a single unit of the product's kind.
+
+    "single module" was printed for a graphics card, a power supply and a case
+    before this existed, because kit/module is a memory distinction that had
+    been applied to every watched product.
+    """
+    if offer.get("kind") == "kit":
+        return "kit"
+    unit = item.get("unit") or ""
+    return f"single {unit}" if unit else ""
+
+
 def local_prices(cfg: dict, f: Fetcher) -> dict:
-    """Best current prices for the watched products, cheapest first.
+    """Cheapest real prices for watched products, new and second-hand.
 
     Takealot's public search API needs no key. The price lives in
-    `buybox_summary` (NOT in the empty `pricing` block), as a `listing_price`
-    integer plus a pre-formatted `pretty_price`. Using the retailer's own string
-    where it exists means the digest cannot round or mangle it.
+    `buybox_summary` (NOT in the empty `pricing` block), as `prices[0]` plus a
+    pre-formatted `pretty_price`; the retailer's own string is used where it
+    exists so the digest cannot round or mangle it.
+
+    Each item keeps the reference page the owner supplied in the comparison, so
+    his own known-good listing can never be missing from "cheapest I found".
     """
     pw = cfg.get("price_watch") or {}
-    out = {"enabled": bool(pw.get("enabled")), "items": [], "error": ""}
+    top_n = int(pw.get("top_n", 3))
+    out = {"enabled": bool(pw.get("enabled")), "items": [], "error": "",
+           "top_n": top_n}
     if not out["enabled"]:
         out["error"] = "price watch is switched off in personal/data/follow.json"
         return out
@@ -1387,22 +1928,28 @@ def local_prices(cfg: dict, f: Fetcher) -> dict:
         label = spec.get("label") or spec.get("key") or "item"
         query = spec.get("query") or label
         must = [m.lower() for m in (spec.get("must_match") or [])]
+        offers = []
+
+        # His own reference listing, read directly.
+        unit = _unit_label(spec)
+        ref = _ref_page_price(spec["ref_url"], f) if spec.get("ref_url") else None
+        if ref:
+            # A memory kit is "kit"; every other watched product is a single
+            # unit of its own kind, so the comparison stays like-for-like.
+            ref["kind"] = ("kit" if re.search(r"\d+\s*x\s*\d+\s*gb",
+                                              (ref.get("title") or "").lower())
+                           else "single")
+            offers.append(ref)
 
         data = f.json(f"{PRICE_API}?qsearch={_q(query)}&size=40")
-        if data is None:
-            out["items"].append({"label": label, "offers": [],
+        if data is None and not offers:
+            out["items"].append({"label": label, "offers": [], "below_market": [],
+                                 "unit": unit, "featured": bool(spec.get("featured")),
                                  "error": "the price source could not be reached"})
             continue
 
-        results = (((data.get("sections") or {}).get("products") or {})
-                   .get("results") or [])
-        if not results:
-            out["items"].append({"label": label, "offers": [],
-                                 "error": "the price source returned no matches "
-                                          "(its response shape may have changed)"})
-            continue
-
-        offers = []
+        results = (((data or {}).get("sections") or {}).get("products") or {}
+                   ).get("results") or []
         for r in results:
             views = r.get("product_views") or {}
             core = views.get("core") or {}
@@ -1411,17 +1958,18 @@ def local_prices(cfg: dict, f: Fetcher) -> dict:
             low = title.lower()
             if must and not all(m in low for m in must):
                 continue
+            if not _matches_spec(title, spec):
+                continue
             # "16gb" is a substring of "2x16gb" (= 32GB), which would put a 32GB
             # kit in a 16GB watch. Capacity is checked as a NUMBER, not a string.
             capacity = _kit_capacity_gb(low)
             if spec.get("capacity_gb") and capacity != int(spec["capacity_gb"]):
                 continue
-            # AC-173/176: ONE price per row - the SELLING price `prices[0]`,
-            # which is the number the retailer displays as `pretty_price`.
-            # `listing_price` is the pre-discount list figure and is a different
-            # number (measured 2026-11-04: 5,899 vs 5,549), so sorting on it
-            # while printing `prices[0]` would rank the page by a price the
-            # owner never sees.
+            # ONE price per row - the SELLING price `prices[0]`, which is the
+            # number the retailer displays as `pretty_price`. `listing_price` is
+            # the pre-discount list figure and is a different number (measured
+            # 2026-11-04: 5,899 vs 5,549), so sorting on it while printing
+            # `prices[0]` would rank the page by a price the owner never sees.
             prices = buy.get("prices")
             selling = None
             if isinstance(prices, list) and prices:
@@ -1430,10 +1978,10 @@ def local_prices(cfg: dict, f: Fetcher) -> dict:
                 selling = buy.get("listing_price")
             if not isinstance(selling, int) or selling <= 0:
                 continue
-            # A 16GB kit (2x8GB) and a single 16GB module are different
-            # products; conflating them would make the "best price" wrong.
-            kind = ("kit" if re.search(r"\d+\s*x\s*\d+\s*gb", low) or " kit" in f" {low}"
-                    else "single module")
+            kind = ("kit" if unit and (
+                re.search(r"\d+\s*x\s*\d+\s*gb", low) or " kit" in f" {low}")
+                else "single")
+            stock = (views.get("stock_availability_summary") or {}).get("status", "")
             offers.append({
                 "title": title,
                 "price": selling,
@@ -1442,28 +1990,155 @@ def local_prices(cfg: dict, f: Fetcher) -> dict:
                 "pretty": buy.get("pretty_price") or f"R {selling:,}",
                 "retailer": "Takealot",
                 "kind": kind,
-                "stock": (views.get("stock_availability_summary") or {}).get("status", ""),
-                "url": f"https://www.takealot.com/{core.get('slug', '')}/PLID{core.get('id', '')}",
+                "condition": "used" if _is_used(title, stock) else "new",
+                "stock": stock,
+                "url": (f"https://www.takealot.com/{core.get('slug', '')}"
+                        f"/PLID{core.get('id', '')}"),
             })
 
-        offers.sort(key=lambda o: o["price"])
-        # Saving is only meaningful against a DEARER listing of the same kind,
-        # and it is the difference of the two RENDERED (selling) prices.
-        for o in offers:
-            same = [x["price"] for x in offers if x["kind"] == o["kind"]]
-            o["saving"] = (max(same) - o["price"]) if len(same) > 1 else 0
+        if not results:
+            out["items"].append({
+                "label": label, "offers": [], "below_market": [],
+                "unit": unit, "featured": bool(spec.get("featured")), "error":
+                "no matches came back for this search - the price source may have "
+                "changed shape, so no price is given rather than a guessed one"})
+            continue
 
-        err = "" if offers else ("no 16GB listing with a usable price was found "
-                                 f"among {len(results)} results")
-        out["items"].append({"label": label, "offers": offers[:6], "error": err})
+        if not offers:
+            out["items"].append({"label": label, "offers": [], "below_market": [],
+                "unit": unit, "featured": bool(spec.get("featured")),
+                                 "error": "no listing with a usable price was found"
+                                          f" among {len(results)} results"})
+            continue
+
+        # The same physical product can be listed twice (a search hit and his
+        # own reference page); the cheaper of the two is the honest one to show.
+        best: dict[str, dict] = {}
+        for o in offers:
+            key = (o["title"] or "").strip().lower()
+            if key not in best or o["price"] < best[key]["price"]:
+                best[key] = o
+        offers = list(best.values())
+        offers.sort(key=lambda o: o["price"])
+
+        # "Below market" is defined against the MEDIAN of the listings found,
+        # never a guessed retail price: a listing 15% or more under the median
+        # of the same kind is called out. With too few listings there is no
+        # market to be under, so nothing is flagged.
+        below = []
+        for kind in {o["kind"] for o in offers}:
+            same = sorted(o["price"] for o in offers if o["kind"] == kind)
+            top = same[-1]
+            for o in offers:
+                if o["kind"] == kind:
+                    o["saving"] = (top - o["price"]) if len(same) > 1 else 0
+            if len(same) < 3:
+                continue
+            mid = same[len(same) // 2] if len(same) % 2 else (
+                (same[len(same) // 2 - 1] + same[len(same) // 2]) // 2)
+            for o in offers:
+                if o["kind"] != kind:
+                    continue
+                o["market_median"] = mid
+                over = round((mid - o["price"]) / mid * 100)
+                o["below_market_pct"] = over if o["price"] < mid else 0
+                if over >= 15:
+                    below.append(o)
+
+        out["items"].append({
+            "label": label,
+            # What one listing of THIS product is: "module" for memory, "card"
+            # for a GPU. The renderers name the unit instead of calling every
+            # product a memory module.
+            "unit": unit,
+            # A "featured" product gets its own named section at the top of the
+            # price block, so the kit the owner is actively shopping for is not
+            # one row among eight.
+            "featured": bool(spec.get("featured")),
+            # Every priced listing is kept; the renderer shows `top_n`. The
+            # saving is a difference within this full set, so cutting the list
+            # to 3 here would silently change what the saving means.
+            "offers": offers,
+            "all_count": len(offers),
+            "below_market": [{"title": o["title"], "price": o["price"],
+                              "pretty": o["pretty"], "retailer": o["retailer"],
+                              "pct": o.get("below_market_pct", 0),
+                              "url": o["url"]} for o in below[:top_n]],
+        })
 
     return out
 
 
 # ---------------------------------------------------------------------------
+# Deals / Black Friday (item 6b)
+# ---------------------------------------------------------------------------
+def deals(cfg: dict, f: Fetcher) -> dict:
+    """Black Friday / sale watches for the things the owner named.
+
+    A deal is only reported AS a deal when the page or headline states a
+    discount. A normal price is listed as a normal price so a later sale can be
+    measured against it - presenting full price as a special would be an
+    invention, and the owner said he will "only buy on big special".
+    """
+    d = cfg.get("deals") or {}
+    out = {"enabled": bool(d.get("enabled")), "groups": [], "error": ""}
+    if not out["enabled"]:
+        out["error"] = "deals watch is switched off in personal/data/follow.json"
+        return out
+
+    for spec in d.get("queries") or []:
+        group = {"key": spec.get("key", ""), "label": spec.get("label", ""),
+                 "note": spec.get("note", ""), "items": [], "error": ""}
+        seen = set()
+        # Reference pages he supplied are read directly, so his own known
+        # product always appears with a real price to compare a sale against.
+        for url in spec.get("refs") or []:
+            px = _ref_page_price(url, f)
+            if not px:
+                continue
+            key = (px["title"] or url).lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            group["items"].append({**px, "headline": px["title"],
+                                   "on_special": False, "when": ""})
+        for term in spec.get("terms") or []:
+            for story in news_for(term, f, 10, 4):
+                key = (story["title"] or "").lower()
+                if not key or key in seen:
+                    continue
+                seen.add(key)
+                low = story["title"].lower()
+                # Only a stated discount counts. These are the words a retailer
+                # uses when there IS a discount, so their presence is evidence.
+                on_special = any(w in low for w in
+                                 ("sale", "deal", "off", "discount",
+                                  "black friday", "special", "clearance", "%"))
+                group["items"].append({
+                    "title": story["title"], "headline": story["title"],
+                    "publisher": story.get("publisher", ""),
+                    "url": story.get("link", ""),
+                    "when": (story["when"].strftime("%Y-%m-%d")
+                             if story.get("when") else ""),
+                    "price": None, "pretty": "", "kind": "single",
+                    "stock": "", "list_price": None, "on_special": on_special,
+                    "retailer": story.get("publisher", ""),
+                })
+        if not group["items"]:
+            group["error"] = ("nothing found for this watch in the last 10 days - "
+                              "that is no story, not proof of no sale")
+        # A stated discount leads, because that is what he asked for.
+        group["items"].sort(key=lambda i: not i.get("on_special"))
+        group["special_count"] = sum(1 for i in group["items"] if i.get("on_special"))
+        out["groups"].append(group)
+    return out
+
+
+
+
+# ---------------------------------------------------------------------------
 # Run time (item 8)
 # ---------------------------------------------------------------------------
-
 def _fmt_secs(seconds: float) -> str:
     s = int(round(seconds))
     if s < 60:
@@ -1502,7 +2177,18 @@ def run_time(elapsed: float, f: Fetcher, repo: str = "",
             # retry, then the named note (AC-180/AC-200).
             data = f.json(url)
         if data is None:
-            out["recent_error"] = "recent runs could not be measured"
+            status = getattr(f, "last_status", None)
+            # Name the reason: a refused/anonymous request and a timeout both
+            # end up here, and "could not be measured" alone tells the owner
+            # nothing about whether the job is healthy.
+            if status == 404:
+                out["recent_error"] = (f"recent runs were not readable without a "
+                                       f"token (GitHub answered 404 for {repo})")
+            elif status == 403:
+                out["recent_error"] = ("recent runs were refused by GitHub "
+                                       "(usually the anonymous rate limit)")
+            else:
+                out["recent_error"] = "recent runs could not be measured"
         else:
             for r in (data.get("workflow_runs") or []):
                 if r.get("name") and "digest" not in (r.get("name") or "").lower():
@@ -1539,18 +2225,72 @@ def run_time(elapsed: float, f: Fetcher, repo: str = "",
     out["basis"] = ("average of the last %d measured digest runs" % len(runs)
                     if runs else "this run only (no run history available)")
 
-    pub = f.json(f"https://api.github.com/repos/{repo}") if repo else None
+    # Remaining Actions minutes. GitHub's billing endpoint refuses a
+    # fine-grained token (403), so the honest measured answer is built from the
+    # run history itself: minutes used so far this calendar month, against the
+    # 2,000 free included minutes a private repository gets on the Free plan.
+    out["minutes_used"] = None
+    out["minutes_included"] = None
+    out["free_minutes"] = 2000
+    if repo:
+        month_start = dt.datetime.now(dt.timezone.utc).replace(
+            day=1, hour=0, minute=0, second=0, microsecond=0)
+        used = 0.0
+        for r in (data.get("workflow_runs") or []) if isinstance(data, dict) else []:
+            try:
+                start = dt.datetime.fromisoformat(
+                    (r.get("run_started_at") or r["created_at"]).replace("Z", "+00:00"))
+                end = dt.datetime.fromisoformat(
+                    (r.get("updated_at") or r["created_at"]).replace("Z", "+00:00"))
+            except (KeyError, ValueError):
+                continue
+            if start >= month_start and end > start:
+                used += (end - start).total_seconds() / 60.0
+        out["minutes_used"] = round(used, 1)
+        out["minutes_included"] = out["free_minutes"]
+        out["minutes_left"] = round(max(0.0, out["free_minutes"] - used), 1)
+
+    # The token is sent here too. Without it a PRIVATE repository answers 404
+    # and the owner was told his own quota "could not be determined".
+    pub = f.json(f"https://api.github.com/repos/{repo}",
+                 headers={"Authorization": f"Bearer {token}"} if token else None) if repo else None
     if pub is None:
-        out["remaining"] = ("could not be determined (GitHub did not answer), so no "
-                            "quota figure is given")
+        status = getattr(f, "last_status", None)
+        if status == 404:
+            # A 404 is an ANSWER, not silence: the repository is private (or
+            # renamed), and an unauthenticated read cannot see it. Reporting
+            # "did not answer" for this hid the real cause.
+            out["remaining"] = (
+                f"not readable without a token (GitHub answered 404 for {repo}, so "
+                "it is private or renamed); a private repository's minutes are on "
+                "Settings > Billing")
+        elif status == 403:
+            out["remaining"] = ("not readable right now (GitHub refused the request, "
+                                "which is usually the anonymous rate limit); try again "
+                                "from the Actions run, which sends a token")
+        else:
+            out["remaining"] = ("could not be determined (GitHub did not answer), so no "
+                                "quota figure is given")
     else:
         out["public_repo"] = not bool(pub.get("private"))
         if out["public_repo"]:
             out["remaining"] = ("unlimited - this repository is public, and GitHub does "
                                 "not bill Actions minutes for public repositories")
         else:
-            out["remaining"] = ("a private repository: check Settings > Billing for the "
-                                "remaining included minutes")
+            used = out.get("minutes_used")
+            if used is None:
+                out["remaining"] = ("a private repository: check Settings > Billing for the "
+                                    "remaining included minutes")
+            else:
+                left = out["minutes_left"]
+                out["remaining"] = (
+                    f"about {left:,.0f} of {out['free_minutes']:,} included minutes left "
+                    f"({used:,.0f} used this month by the runs GitHub still lists). "
+                    f"At {out['monthly']} a month this job uses about "
+                    f"{100.0 * total / 60.0 / out['free_minutes']:.1f}% of the free "
+                    f"allowance, so there is roughly "
+                    f"{int(left / max(total / 60.0, 0.01))} month(s) of headroom before "
+                    f"anything is billed. Settings > Billing has GitHub's own figure.")
     return out
 
 
@@ -1585,6 +2325,11 @@ def _rss_items(xml_text: str) -> list[tuple[str, str, str, dt.datetime | None]]:
             except (TypeError, ValueError):
                 when = None
         publisher = (src.text if src is not None and src.text else "") or ""
+        # Google News appends " - Publisher" to a clustered headline AND fills
+        # <source>. Without this the local section printed "Time Out Worldwide -
+        # Time Out Worldwide".
+        if publisher and title.endswith(f" - {publisher}"):
+            title = title[: -len(f" - {publisher}")].strip()
         if title:
             items.append((title, link, publisher, when))
     return items
@@ -1617,7 +2362,10 @@ def gather(cfg: dict, fetcher: Fetcher | None = None, weekly: bool = False,
               else {"enabled": False, "tours": []})
     today = today or dt.date.today()
     window_end = today + dt.timedelta(days=window_days)
-    all_events = [e for e in (sports_events or []) if e.get("sport") not in muted]
+    removed_ser = removed_series(cfg)
+    all_events = [e for e in (sports_events or [])
+                  if e.get("sport") not in muted
+                  and not is_removed_series(e, removed_ser)]
     events = [e for e in all_events if _in_window(e, today, window_end)]
     # "Later" means AFTER this window, not "not inside it": a finished event is
     # also outside the window, and suggesting one is worse than suggesting
@@ -1626,6 +2374,15 @@ def gather(cfg: dict, fetcher: Fetcher | None = None, weekly: bool = False,
     later = [e for e in all_events
              if not _in_window(e, today, window_end)
              and (e.get("end") or e.get("when") or "") >= today.isoformat()]
+
+    # What each quiet sport has coming up ANYWAY. "Why do all sports not show"
+    # was asked about a sport whose row said only "nothing in the window"; the
+    # next dated event after the window answers it with a real date rather than
+    # a shrug. Only the owner's own event list is used - nothing is fetched or
+    # guessed to fill the line.
+    next_up: dict[str, dict] = {}
+    for e in sorted(later, key=lambda x: x.get("when") or ""):
+        next_up.setdefault(e.get("sport") or "", e)
 
     # Football's events come from the live competition feed, not the owner's
     # event list, so it is added here - otherwise the per-sport block would
@@ -1660,11 +2417,19 @@ def gather(cfg: dict, fetcher: Fetcher | None = None, weekly: bool = False,
     suggestions = suggest(cfg, later, f, already_shown=covered)
     local = local_events(cfg, f, today)
     prices = local_prices(cfg, f)
+    briefs = sport_briefs(cfg, f, s, muted)
+    deal_list = deals(cfg, f)
     # The caller cannot know this: the fetches happen inside gather(), so the
     # only honest elapsed figure is the one measured here.
     measured = time.monotonic() - started
+    # The quota lookups get their OWN small budget. They used to reuse `f`,
+    # whose budget is usually spent by this point, so item 8's remaining-time
+    # line answered "GitHub did not answer" on every real run - the one number
+    # the owner asked for. A caller-supplied fetcher is always honoured, so a
+    # test (or any injected source) still serves these calls.
+    quota_f = f if fetcher is not None else Fetcher(timeout=s["timeout"], budget=20.0)
     timing = run_time(measured if not elapsed else elapsed + measured,
-                      f, repo=repo, token=token)
+                      quota_f, repo=repo, token=token)
 
     # A source that failed is named. Silence would read as "nothing happened".
     notes = sorted(set(f.failures))
@@ -1675,9 +2440,12 @@ def gather(cfg: dict, fetcher: Fetcher | None = None, weekly: bool = False,
         "tennis": tennis,
         "sports": {"enabled": enabled_sports(cfg), "muted": sorted(muted)},
         "by_sport": by_sport,
+        "next_up": next_up,
+        "briefs": briefs,
         "suggestions": suggestions,
         "local": local,
         "prices": prices,
+        "deals": deal_list,
         "timing": timing,
         "failures": notes,
         "as_of": dt.datetime.now(dt.timezone.utc),
@@ -1796,19 +2564,47 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
         per = {}
         for e in (data.get("by_sport") or []):
             per.setdefault(e["sport"], []).append(e)
+        briefs = {b["sport"]: b for b in
+                  ((data.get("briefs") or {}).get("sports") or [])}
+        next_up = data.get("next_up") or {}
         for sport in sp["enabled"]:
             rows = per.get(sport, [])
-            if not rows:
+            brief = briefs.get(sport) or {}
+            stories = brief.get("stories") or []
+            # The count is about the owner's OWN event list, while the stories
+            # below it are the news brief. A bare "nothing in the window" reads
+            # as if nothing was found at all, which is the complaint that "all
+            # sports do not show"; the note names what the count covers.
+            if rows:
+                out.append(f"  {sport}: {len(rows)} in the window")
+            else:
                 out.append(f"  {sport}: nothing in the window")
+            if stories and not rows:
+                out.append("    (that is your own event list - the brief below "
+                           "is what the news has on it this week)")
+            up = next_up.get(sport) or {}
+            if not rows and up.get("when"):
+                span = up.get("display") or up["when"]
+                series = f" ({up['series']})" if up.get("series") else ""
+                out.append(f"    Next up: {up.get('name', '')}{series} - {span} "
+                           f"({up['when']})")
+            if stories:
+                for story in stories:
+                    who = f" - {story['publisher']}" if story.get("publisher") else ""
+                    out.append(f"    * {story['title']}{who}")
+                    if story.get("link"):
+                        out.append(f"      {story['link']}")
+            else:
+                out.append(f"    No recent {sport} story was found in the news "
+                           f"window, so there is no brief to give.")
+            if not rows:
                 continue
-            out.append(f"  {sport}: {len(rows)} in the window")
-            # Item 2: show what each event IS, not just that one exists. The
-            # description comes from the owner's own file, so nothing here is
-            # invented.
             for e in rows[:4]:
                 when = e.get("display") or e.get("when") or ""
                 span = (f"{when} to {e['display_end']}"
                         if e.get("display_end") else when)
+                if e.get("when") and e["when"] not in span:
+                    span = f"{span} ({e['when']})"
                 series = f" ({e['series']})" if e.get("series") else ""
                 out.append(f"    * {e['name']}{series} - {span}")
                 if e.get("description"):
@@ -1848,18 +2644,31 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
                 continue
             stage = f" - {s['stage']}" if s["stage"] else ""
             out.append(f"  {s['label']}{stage}")
-            out.append(f"    {'#':>3} {'Team':<24}{'P':>3}{'W':>3}{'D':>3}{'L':>3}{'GD':>4}{'Pts':>5}")
+            # A stat the source did not publish is dropped from the header AND
+            # from every row. Keeping a fixed column list printed two blank
+            # columns for competitions that publish no goals, which made the
+            # table look broken rather than sparse.
+            shown = [k for k in STANDINGS_STATS
+                     if any(str(r["stats"].get(k, "")) != "" for r in s["rows"])]
+            head = "    " + f"{'#':>3} {'Team':<24}" + "".join(
+                f"{STANDINGS_HEAD.get(k, k):>{_col_width(k)}}" for k in shown)
+            out.append(head)
             for r in s["rows"]:
                 st = r["stats"]
                 rank = r["rank"] if r["rank"] is not None else ""
-                out.append(f"    {rank:>3} {r['team'][:24]:<24}"
-                           f"{st.get('GP',''):>3}{st.get('W',''):>3}{st.get('D',''):>3}"
-                           f"{st.get('L',''):>3}{st.get('GD',''):>4}{st.get('P',''):>5}")
+                out.append(f"    {rank:>3} {r['team'][:24]:<24}" + "".join(
+                    f"{st.get(k, ''):>{_col_width(k)}}" for k in shown))
             noted = [r for r in s["rows"] if r["note"]]
             if noted:
                 out.append("    Where that leaves them:")
                 for r in noted:
                     out.append(f"      {r['rank']}. {r['team']} - {r['note']}")
+            # Where the money places sit, in one line. The bands are the notes
+            # ESPN itself attaches, so this is a reading of their data and not
+            # an invented cut-off.
+            band = _qualification_bands(s["rows"])
+            if band:
+                out.append(f"    In brief: {band}")
         out.append("")
 
     tennis = data["tennis"]
@@ -1883,17 +2692,20 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
                     if b["stage"]:
                         head += f" - {b['stage']}"
                     out.append(head)
-                    if b["empty_line"]:
-                        out.append(f"    {b['empty_line']}")
-                        continue
+                    if b.get("outcome_line"):
+                        out.append(f"    {b['outcome_line']}")
                     for row in b["rows"]:
+                        how = (f" ({row['reached']})"
+                               if row.get("reached") and row["state"] == "out"
+                               else "")
                         out.append(f"    [{row['mark']:>3}] {row['position']}. "
-                                   f"{row['name']} - {row['detail']}")
+                                   f"{row['name']} - {row['detail']}{how}")
                 elif b["kind"] == "matches":
                     out.append(f"  {b['label']}:")
                     for m in b["rows"]:
                         tag = "  [in progress]" if m["live"] else ""
-                        out.append(f"    {m['when']:<18} {m['line']}{tag}")
+                        rnd = f" [{m['round']}]" if m.get("round") else ""
+                        out.append(f"    {m['when']:<18} {m['line']}{rnd}{tag}")
             out.append("")
 
     sug = data.get("suggestions") or {}
@@ -1925,7 +2737,13 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
                     who = f" - {it['publisher']}" if it["publisher"] else ""
                     pair = (f"  [{it['two_person_label']}]"
                             if it.get("two_person") and it.get("two_person_label") else "")
-                    out.append(f"    * {it['date']}  {it['title']}{who}{pair}")
+                    place = f"  {it['venue']}" if it.get("venue") else ""
+                    out.append(f"    * {it['date']}  {it['title']}{place}{who}{pair}")
+                    if it.get("limits"):
+                        out.append(f"      Conditions found: {', '.join(it['limits'])}")
+                    if not it.get("venue"):
+                        out.append("      No venue named in the source, so treat this "
+                                   "as a lead to check, not a booking.")
                     if it["link"]:
                         out.append(f"      {it['link']}")
             else:
@@ -1944,19 +2762,75 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
 
     prices = data.get("prices") or {}
     if prices.get("enabled"):
-        out.append("RAM PRICE WATCH")
-        for item in prices.get("items") or []:
-            out.append(f"  {item['label']} - cheapest first")
-            if item["error"]:
+        # The featured watch comes first under its own heading: the owner is
+        # actively shopping for it, so it is not one row in a list of eight.
+        feats = [i for i in (prices.get("items") or []) if i.get("featured")]
+        rest = [i for i in (prices.get("items") or []) if not i.get("featured")]
+        for item in feats:
+            out.append(f"  {item['label'].upper()} - BEST PRICES NOW")
+            if item.get("error"):
                 out.append(f"    {item['error']}")
-                continue
-            for o in item["offers"]:
-                kind = "kit" if o["kind"] == "kit" else "single module"
-                save = f" (save R {o['saving']:,})" if o.get("saving") else ""
-                stock = f" [{o['stock']}]" if o["stock"] else ""
-                out.append(f"    {o['pretty']:>10}  {o['retailer']} - {kind}{stock}{save}")
+            for o in (item.get("offers") or [])[:prices.get("top_n") or 3]:
+                cond = "USED" if o.get("condition") == "used" else "new"
+                stock = f" [{o['stock']}]" if o.get("stock") else ""
+                beat = (f"  (save R {o['saving']:,})"
+                        if o.get("saving") else "")
+                out.append(f"    {o['pretty']:>10}  {o['retailer']} - {cond}, "
+                           f"{_kind_word(item, o)}{stock}{beat}")
                 out.append(f"                {o['title']}")
                 out.append(f"                {o['url']}")
+            if item.get("all_count"):
+                out.append(f"    ({item['all_count']} listings with a price were "
+                           f"compared, cheapest first)")
+            out.append("")
+        out.append("RAM PRICE WATCH")
+        for item in rest:
+            n = prices.get("top_n") or 3
+            out.append(f"  {item['label']} - the {n} cheapest found")
+            if item.get("error"):
+                out.append(f"    {item['error']}")
+            for o in (item.get("offers") or [])[:n]:
+                kind = _kind_word(item, o)
+                cond = "USED" if o.get("condition") == "used" else "new"
+                stock = f" [{o['stock']}]" if o.get("stock") else ""
+                beat = (f"  (save R {o['saving']:,})"
+                        if o.get("saving") else "")
+                out.append(f"    {o['pretty']:>10}  {o['retailer']} - {cond}, "
+                           f"{kind}{stock}{beat}")
+                out.append(f"                {o['title']}")
+                out.append(f"                {o['url']}")
+            if item.get("below_market") and not item.get("error"):
+                out.append("    Below market:")
+                for b in item["below_market"]:
+                    out.append(f"      {b['pretty']}  {b['pct']}% under the median "
+                               f"- {b['retailer']} - {b['title']}")
+            if item.get("all_count"):
+                out.append(f"    ({item['all_count']} listings with a price were "
+                           f"compared)")
+        out.append("")
+
+    dd = data.get("deals") or {}
+    if dd.get("enabled"):
+        out.append("DEALS & BLACK FRIDAY")
+        for g in dd.get("groups") or []:
+            if g.get("error"):
+                out.append(f"  {g['label']}: {g['error']}")
+                continue
+            head = f"  {g['label']}"
+            if g.get("special_count"):
+                head += f" - {g['special_count']} on special"
+            out.append(head)
+            for it in g["items"][:5]:
+                mark = "SPECIAL" if it.get("on_special") else "price"
+                when = f"  {it['when']}" if it.get("when") else ""
+                price = f"  {it['pretty']}" if it.get("pretty") else ""
+                out.append(f"    [{mark:>7}] {it['headline']}{price}{when}")
+                if it.get("url"):
+                    out.append(f"              {it['url']}")
+            if g.get("note"):
+                out.append(f"    ({g['note']})")
+        if dd.get("error"):
+            out.append(f"  {dd['error']}")
         out.append("")
 
     timing = data.get("timing") or {}
@@ -2036,12 +2910,52 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
         per: dict[str, list[dict]] = {}
         for e in (data.get("by_sport") or []):
             per.setdefault(e.get("sport", ""), []).append(e)
+        brief_map = {b["sport"]: b for b in
+                     ((data.get("briefs") or {}).get("sports") or [])}
+        next_up = data.get("next_up") or {}
         for sport in sp["enabled"]:
             found = per.get(sport, [])
+            brief = brief_map.get(sport) or {}
+            stories = brief.get("stories") or []
+            brief_html = []
+            for story in stories:
+                who = (f'<span style="color:{muted};font-size:12px"> &mdash; '
+                       f'{esc(story["publisher"])}</span>') if story.get("publisher") else ""
+                link = (f'<a href="{esc(story["link"])}" style="color:{ink};'
+                        f'text-decoration:none">{esc(story["title"])}</a>'
+                        if story.get("link") else esc(story["title"]))
+                brief_html.append(
+                    f'<div style="font-size:13px;margin:2px 0 0;padding-left:10px;'
+                    f'border-left:2px solid {line}">{link}{who}</div>')
+            if not stories:
+                brief_html.append(
+                    f'<div style="font-size:12px;color:{muted};margin:2px 0 0">'
+                    f'No recent {esc(sport)} story was found in the news window, '
+                    f'so there is no brief to give.</div>')
             if not found:
-                sport_rows.append(row(f'<strong>{esc(sport)}</strong>'
-                                      f'<span style="color:{muted};font-size:12px">'
-                                      f' &middot; nothing in the window</span>'))
+                # Same words as the text digest: the count line, then - only
+                # when a brief exists - a note saying what the count covers.
+                # Without the note "nothing in the window" reads as "no
+                # information about this sport", which is the owner's complaint.
+                note = ('<div style="font-size:12px;color:{m};margin:2px 0 0">'
+                        'that is your own event list - the brief above is what '
+                        'the news has on it this week</div>'.format(m=muted)
+                        if stories else "")
+                up = next_up.get(sport) or {}
+                up_html = ""
+                if up.get("when"):
+                    _span = up.get("display") or up["when"]
+                    _series = (f' &middot; {esc(up["series"])}'
+                               if up.get("series") else "")
+                    up_html = (
+                        f'<div style="font-size:12px;color:{muted};margin:2px 0 0">'
+                        f'Next up: <strong style="color:{ink}">{esc(up.get("name", ""))}'
+                        f'</strong>{_series} &mdash; {esc(_span)} ({esc(up["when"])})'
+                        f'</div>')
+                sport_rows.append(row(
+                    f'<strong>{esc(sport)}</strong>{"".join(brief_html)}'
+                    f'<div style="font-size:12px;color:{muted};margin:2px 0 0">'
+                    f'{esc(sport)}: nothing in the window.</div>{note}{up_html}'))
                 continue
             events_html = []
             for e in found[:4]:
@@ -2065,7 +2979,8 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
             sport_rows.append(row(
                 f'<strong>{esc(sport)}</strong>'
                 f'<span style="color:{muted};font-size:12px"> &middot; '
-                f'{len(found)} in the window</span>{"".join(events_html)}{more}'))
+                f'{len(found)} in the window</span>{"".join(brief_html)}'
+                f'{"".join(events_html)}{more}'))
         if sp.get("muted"):
             sport_rows.append(f'<div style="font-size:12px;color:{muted};margin:6px 0 0">'
                               f'Switched off: {esc(", ".join(sp["muted"]))}</div>')
@@ -2124,13 +3039,13 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
                 f'{esc(str(q.get("W", "")))}</td>'
                 f'<td style="font-size:12px;color:{muted};padding:1px 6px;text-align:right">'
                 f'{esc(str(q.get("D", "")))}</td>'
-                f'<td style="font-size:12px;color:{muted};padding:1px 6px;text-align:right">'
-                f'{esc(str(q.get("L", "")))}</td>'
-                f'<td style="font-size:12px;color:{muted};padding:1px 6px;text-align:right">'
-                f'{esc(str(q.get("GD", "")))}</td>'
-                f'<td style="font-size:12px;color:{ink};font-weight:700;padding:1px 0 1px 6px;'
-                f'text-align:right">{esc(str(q.get("P", "")))}</td>'
-                f'</tr>')
+                + "".join(
+                    f'<td style="font-size:12px;color:{muted};padding:1px 6px;'
+                    f'text-align:right">{esc(str(q.get(k, "")))}</td>'
+                    for k in FR_HTML_STANDING_COLS)
+                + f'<td style="font-size:12px;color:{ink};font-weight:700;'
+                  f'padding:1px 0 1px 6px;text-align:right">'
+                  f'{esc(str(q.get("P", "")))}</td></tr>')
         standing_rows.append(
             f'<table role="presentation" cellpadding="0" cellspacing="0" '
             f'style="border-collapse:collapse;margin:0 0 10px">'
@@ -2139,10 +3054,15 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
             f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;text-align:right">P</td>'
             f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;text-align:right">W</td>'
             f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;text-align:right">D</td>'
-            f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;text-align:right">L</td>'
-            f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;text-align:right">GD</td>'
-            f'<td style="font-size:11px;color:{muted};padding:0 0 2px 6px;text-align:right">Pts</td>'
-            f'</tr>{"".join(cells)}</table>')
+            + "".join(
+                f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;'
+                f'text-align:right">'
+                f'{STANDINGS_HEAD.get(k, k)}</td>' for k in FR_HTML_STANDING_COLS)
+            + f'<td style="font-size:11px;color:{muted};padding:0 0 2px 6px;'
+              f'text-align:right">Pts</td>'
+            f'</tr>{"".join(cells)}</table>'
+            + (f'<div style="font-size:11px;color:{muted};margin:0 0 10px">'
+               f'In brief: {esc(st["bands"])}</div>' if st.get("bands") else ""))
 
     tennis = data["tennis"]
     if tennis.get("enabled"):
@@ -2176,11 +3096,11 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
                     tennis_rows.append(
                         f'<div style="font-size:12px;font-weight:700;color:{ink};'
                         f'margin:8px 0 4px">{esc(b["tournament"])}{stage}</div>')
-                    if b["empty_line"]:
+                    if b.get("outcome_line"):
                         tennis_rows.append(
-                            f'<div style="font-size:12px;color:{muted};margin:0 0 6px">'
-                            f'{esc(b["empty_line"])}</div>')
-                        continue
+                            f'<div style="font-size:12px;color:{ink};margin:0 0 4px;'
+                            f'padding-left:10px;border-left:2px solid #15803d">'
+                            f'{esc(b["outcome_line"])}</div>')
                     for r in b["rows"]:
                         colour = {"in": "#15803d", "out": "#b91c1c"}.get(
                             r["state"], muted)
@@ -2192,7 +3112,11 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
                             f'{esc(str(r["position"]))}. '
                             f'<span style="font-weight:700">{esc(r["name"])}</span>'
                             f'<span style="color:{muted}"> &ndash; </span>'
-                            f'{esc(r["detail"])}</div>')
+                            f'{esc(r["detail"])}'
+                            + (f'<span style="color:{muted};font-size:11px"> '
+                               f'({esc(r["reached"])})</span>'
+                               if r.get("reached") and r["state"] == "out" else "")
+                            + '</div>')
                 elif b["kind"] == "matches":
                     tennis_rows.append(
                         f'<div style="font-size:12px;font-weight:700;color:{ink};'
@@ -2280,24 +3204,85 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
 
     prices = data.get("prices") or {}
     if prices.get("enabled"):
-        for item in prices.get("items") or []:
-            price_rows.append(head(f'{item["label"]} &middot; cheapest first'))
-            if item["error"]:
+        # The featured watch gets its own named block above the general one.
+        feats = [i for i in (prices.get("items") or []) if i.get("featured")]
+        rest = [i for i in (prices.get("items") or []) if not i.get("featured")]
+        for item in feats:
+            n = prices.get("top_n") or 3
+            price_rows.append(head(f'<strong>{esc(item["label"].upper())}</strong>'
+                                  f' &middot; best prices now'))
+            if item.get("error"):
                 price_rows.append(f'<div style="font-size:12px;color:{muted};margin:0 0 6px">'
                                   f'{esc(item["error"])}</div>')
-                continue
-            for o in item["offers"]:
-                kind = "kit" if o["kind"] == "kit" else "single module"
-                save = (f'<span style="color:#15803d;font-size:11px"> save '
+            for o in (item.get("offers") or [])[:n]:
+                kind = _kind_word(item, o)
+                cond = "used" if o.get("condition") == "used" else "new"
+                beat = (f'<span style="color:#15803d;font-size:11px"> save '
                         f'R {o["saving"]:,}</span>' if o.get("saving") else "")
                 stock = (f'<span style="color:{muted};font-size:11px"> '
-                         f'[{esc(o["stock"])}]</span>' if o["stock"] else "")
+                         f'[{esc(o["stock"])}]</span>' if o.get("stock") else "")
                 price_rows.append(row(
                     f'<strong>{esc(o["pretty"])}</strong>'
                     f'<span style="color:{muted};font-size:12px"> &middot; '
-                    f'{esc(o["retailer"])} &middot; {kind}</span>{stock}{save}<br>'
+                    f'{esc(o["retailer"])} &middot; {cond}, {kind}</span>{stock}{beat}<br>'
                     f'<a href="{esc(o["url"])}" style="color:{ink};font-size:12px;'
                     f'text-decoration:none">{esc(o["title"])}</a>'))
+            if item.get("all_count"):
+                price_rows.append(
+                    f'<div style="font-size:11px;color:{muted};margin:2px 0 8px">'
+                    f'{item["all_count"]} listings with a price were compared, '
+                    f'cheapest first</div>')
+        for item in rest:
+            n = prices.get("top_n") or 3
+            price_rows.append(head(f'{item["label"]} &middot; the {n} cheapest found'))
+            if item.get("error"):
+                price_rows.append(f'<div style="font-size:12px;color:{muted};margin:0 0 6px">'
+                                  f'{esc(item["error"])}</div>')
+            for o in (item.get("offers") or [])[:n]:
+                kind = _kind_word(item, o)
+                cond = "used" if o.get("condition") == "used" else "new"
+                beat = (f'<span style="color:#15803d;font-size:11px"> save '
+                        f'R {o["saving"]:,}</span>' if o.get("saving") else "")
+                stock = (f'<span style="color:{muted};font-size:11px"> '
+                         f'[{esc(o["stock"])}]</span>' if o.get("stock") else "")
+                price_rows.append(row(
+                    f'<strong>{esc(o["pretty"])}</strong>'
+                    f'<span style="color:{muted};font-size:12px"> &middot; '
+                    f'{esc(o["retailer"])} &middot; {cond}, {kind}</span>{stock}{beat}<br>'
+                    f'<a href="{esc(o["url"])}" style="color:{ink};font-size:12px;'
+                    f'text-decoration:none">{esc(o["title"])}</a>'))
+            if item.get("all_count"):
+                price_rows.append(
+                    f'<div style="font-size:11px;color:{muted};margin:2px 0 8px">'
+                    f'{item["all_count"]} listings with a price were compared</div>')
+
+    deal_rows: list[str] = []
+    dd = data.get("deals") or {}
+    if dd.get("enabled"):
+        for g in dd.get("groups") or []:
+            if g.get("error"):
+                deal_rows.append(f'<div style="font-size:12px;color:{muted};margin:0 0 8px">'
+                                 f'{esc(g["label"])}: {esc(g["error"])}</div>')
+                continue
+            label = g["label"] + (f' &middot; {g["special_count"]} on special'
+                                  if g.get("special_count") else "")
+            deal_rows.append(head(label))
+            for it in g["items"][:5]:
+                badge = (f'<span style="font-size:11px;color:#15803d;background:#e7f6ec;'
+                         f'padding:1px 6px;border-radius:9px">SPECIAL</span>'
+                         if it.get("on_special") else
+                         f'<span style="font-size:11px;color:{muted}">price</span>')
+                price = (f'<strong> {esc(it["pretty"])}</strong>'
+                         if it.get("pretty") else "")
+                when = (f'<span style="color:{muted};font-size:12px"> '
+                        f'&middot; {esc(it["when"])}</span>' if it.get("when") else "")
+                link = (f'<a href="{esc(it["url"])}" style="color:{ink};'
+                        f'text-decoration:none">{esc(it["headline"])}</a>'
+                        if it.get("url") else esc(it["headline"]))
+                deal_rows.append(row(f'{badge} {link}{price}{when}'))
+            if g.get("note"):
+                deal_rows.append(f'<div style="font-size:11px;color:{muted};margin:0 0 8px">'
+                                 f'{esc(g["note"])}</div>')
 
     timing = data.get("timing") or {}
     if timing:
@@ -2330,6 +3315,7 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
         "suggestions": "".join(suggest_rows),
         "local": "".join(local_rows),
         "prices": "".join(price_rows),
+        "deals": "".join(deal_rows),
         "timing": "".join(timing_rows) + "".join(note_rows),
     }
 

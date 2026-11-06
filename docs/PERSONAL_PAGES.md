@@ -206,20 +206,20 @@ fails if one ever does.
 
 ### Turning the email on (one time, by the owner)
 
-Without this the job still runs and reports the digest's line count — it just
+Without this the job still runs and reports the digest's shape — it just
 does not email it, and it does not fail. It deliberately does not print the
-digest itself: the repository is public and Actions logs are world-readable, so
+digest body: the repository is public and Actions logs are world-readable, so
 printing it would publish your `good_hubby` reminders. Run `RUN_DIGEST_NOW.bat`
 on your PC to read the digest without the email.
 
-0. The workflow file is already on GitHub — it has been running daily since
+0. The workflow file is already on GitHub and has been running daily since
    9 October 2026. The note below is kept only in case you ever need to restore
    it: `.github/workflows/personal-digest.yml` must exist on the **default
    branch** for GitHub to see it at all, and it must be at the repository
    **root**; a copy nested inside a subfolder is ignored by Actions. If you ever
-   have to re-add it by hand: Repo → Add file → Create new file, name it exactly
-   `.github/workflows/personal-digest.yml`, paste the file's contents, commit to
-   `main`. Everything the workflow calls is pushed with the site.
+   have to re-add it by hand: Repo → Add file → Create new file, name it
+   exactly `.github/workflows/personal-digest.yml`, paste the contents, commit to
+   `main`. Everything the workflow calls is already pushed.
 1. Use a mail account that allows SMTP with an **app password**. For Gmail:
    Google Account → Security → 2-Step Verification → App passwords. A normal
    account password will not work.
@@ -238,7 +238,7 @@ To stop the emails, delete the workflow file or disable it in the Actions tab.
 
 ### If you would rather not set up email
 
-Nothing breaks. Either run `RUN_DIGEST_NOW.bat` on your PC, or just open the
+Nothing breaks. Either read the digest in the Actions run log, or just open the
 two pages — `good_hubby.html` already lists everything upcoming, in order, and
 the `.ics` files below subscribe into a real calendar.
 
@@ -261,6 +261,32 @@ The pages are **generated**, not hand-written. Edit the data, not the HTML:
 |---|---|
 | `personal/data/sports.json` | the event list, broadcasters, the "no channel number" note |
 | `personal/data/good_hubby.json` | milestones, fixed and moving holidays, the timezone label |
+| `personal/data/follow.json` | what is followed: the sports switch list, the competitions, the tennis tours, the local categories, the price watch |
+| `personal/data/research.json` | the last gathered research snapshot that `sports.html` renders |
+
+### The menu: `MANAGE_SPORTS.bat`
+
+`MANAGE_SPORTS.bat` sits in the project folder, beside `sports.html`. Double-click
+it and answer the numbered menu — there is no command to type. It is a `.bat` on
+purpose: on a default Windows install double-clicking a `.ps1` opens it in a text
+editor instead of running it.
+
+The first two menu items are the ones you will use most:
+
+1. **ADD a sport** — turns a sport on in `personal/data/follow.json`. If a row for
+   that sport was switched off earlier, this turns the same row back on, so the
+   history is kept rather than duplicated.
+2. **REMOVE a sport** — switches a sport off. This is a **mute, not a delete**: the
+   row stays in the file with `enabled` set to false, so adding it back later
+   restores it exactly, and nothing else about the sport has to be re-entered.
+
+A switched-off sport then appears nowhere: not in the event list, not in the BY
+SPORT block, not in suggestions, and not in local matching. The two rules are
+proven by tests against a throwaway copy of `follow.json`, never the delivered
+file.
+
+The remaining menu items cover the other follow lists (news topics, competitions,
+teams, local categories) and printing the current lists.
 
 Then rebuild and verify:
 

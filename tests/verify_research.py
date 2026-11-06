@@ -1061,7 +1061,7 @@ def test_price_watch_sorts_by_the_selling_price() -> None:
           printed == sorted(printed), str(printed))
 
     # The price must be prices[0], not listing_price.
-    singles = [o for o in offers if o["kind"] == "single module"]
+    singles = [o for o in offers if o["kind"] == "single"]
     kits = [o for o in offers if o["kind"] == "kit"]
     check("AC-173 the single 16GB module is priced at prices[0]",
           any(o["price"] == 5549 for o in singles),

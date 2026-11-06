@@ -21,6 +21,8 @@ import argparse
 import datetime as dt
 import json
 import os
+import re
+import subprocess
 import sys
 import time
 
@@ -31,6 +33,44 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from build_personal import (d, load, resolve_moving, nice,  # noqa: E402
                             next_checkin_dates, write_research_snapshot)
 import follow_research as FR  # noqa: E402
+
+
+def _github_token() -> str:
+    """A token for the run-time quota lookup: the env var, else the gh CLI.
+
+    Actions sets GITHUB_TOKEN; a run on the owner's PC does not. Without one the
+    digest said it "could not be determined" about his own repository, which is
+    the one number item 8 exists to show. `gh auth token` is the CLI's own
+    credential, so nothing new is stored here.
+    """
+    token = os.environ.get("GITHUB_TOKEN", "").strip()
+    if token:
+        return token
+    try:
+        out = subprocess.run(["gh", "auth", "token"], capture_output=True,
+                             text=True, timeout=15)
+    except (OSError, subprocess.SubprocessError):
+        return ""
+    return out.stdout.strip() if out.returncode == 0 else ""
+
+
+def _repo_slug() -> str:
+    """`owner/name` for the run-time quota lookup, from CI or from git.
+
+    Actions sets GITHUB_REPOSITORY; a run on the owner's PC does not, and the
+    digest then said "could not be determined" about its own repository. The
+    git remote says the same thing, so it is used as the fallback.
+    """
+    slug = os.environ.get("GITHUB_REPOSITORY", "").strip()
+    if slug:
+        return slug
+    try:
+        url = subprocess.run(["git", "remote", "get-url", "origin"],
+                             capture_output=True, text=True, timeout=10).stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        return ""
+    m = re.search(r"github\.com[/:]([^/]+/[^/\s]+?)(?:\.git)?$", url)
+    return m.group(1) if m else ""
 
 
 def collect(sports: dict, hubby: dict, today: dt.date, horizon: dt.date):
@@ -249,8 +289,9 @@ def render_html(sports: dict, hubby: dict, today: dt.date, days: int,
             ("standings", "Standings"),
             ("tennis", "Tennis"),
             ("suggestions", "Suggested next"),
-            ("local", "Local &mdash; Johannesburg"),
-            ("prices", "Price watch &mdash; Kingston Fury Beast 16GB"),
+            ("local", "Local &mdash; Wilgeheuwel &amp; Roodepoort"),
+            ("prices", "Price watch &mdash; the parts you listed"),
+            ("deals", "Deals &amp; Black Friday"),
             ("timing", "Run time"),
         ):
             if blocks.get(key):
@@ -410,8 +451,8 @@ def build(days: int, today: dt.date, weekly: bool, research_enabled: bool = True
                 sports_events=_sport_events(sports),
                 window_days=days,
                 elapsed=time.monotonic() - started,
-                repo=os.environ.get("GITHUB_REPOSITORY", ""),
-                token=os.environ.get("GITHUB_TOKEN", ""),
+                repo=_repo_slug(),
+                token=_github_token(),
             )
         except Exception as exc:  # noqa: BLE001 - a reminder must still be sent
             print(f"NOTE: research unavailable ({type(exc).__name__}: {exc})", file=sys.stderr)
