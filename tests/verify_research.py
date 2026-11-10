@@ -52,6 +52,11 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
 import follow_research as FR  # noqa: E402
 
+# The canned payloads are dated to this week. Every digest assertion is made
+# against it, so the suite does not start failing because the wall clock moved
+# past the fixture dates - only the real run may use today's date.
+FIXTURE_TODAY = dt.date(2026, 10, 13)
+
 FAILURES: list[str] = []
 
 
@@ -293,7 +298,8 @@ def standard_fetcher(**overrides) -> FakeFetcher:
 
 def gather(cfg: dict | None = None, f: FakeFetcher | None = None,
            weekly: bool = False) -> dict:
-    return FR.gather(cfg or base_config(), fetcher=f or standard_fetcher(), weekly=weekly)
+    return FR.gather(cfg or base_config(), fetcher=f or standard_fetcher(),
+                     weekly=weekly, today=FIXTURE_TODAY)
 
 
 # ---------------------------------------------------------------------------
@@ -550,8 +556,17 @@ def test_publisher_is_not_repeated() -> None:
     check("AC-R8 the publisher suffix is stripped from the title",
           story["title"] == "Arsenal team news", story["title"])
     check("AC-R8 the publisher is still attributed", story["publisher"] == "BBC")
+    # The standalone news block is switched off (the by-sport brief carries the
+    # same stories), so it is turned on here to keep checking the de-duplication
+    # in the place that used to print the publisher twice.
+    was = FR.SHOW_NEWS_SECTION
+    FR.SHOW_NEWS_SECTION = True
+    try:
+        rendered = FR.render_text(data)
+    finally:
+        FR.SHOW_NEWS_SECTION = was
     check("AC-R8 the publisher appears once in the rendered line",
-          FR.render_text(data).count("BBC") == 1)
+          rendered.count("BBC") == 1, rendered)
 
 
 def test_html_matches_text() -> None:
@@ -1285,6 +1300,91 @@ def test_every_source_down_still_produces_a_sendable_digest() -> None:
 
 
 
+def test_stale_fixtures_are_dropped_not_shown() -> None:
+    """AC-R11: a months-old result is history, not a fixture.
+
+    The owner complained the digest carried "months-old events". ESPN's
+    scoreboard keeps serving last season's finals, so a finished match older
+    than LOOKBACK_DAYS must be dropped rather than printed under FIXTURES.
+    """
+    cfg = base_config()
+    cfg["competitions"][0]["teams"] = []
+    f = standard_fetcher(**{
+        "soccer/uefa.champions/scoreboard": scoreboard([
+            soccer_event("Arsenal", "Lille", 2, 1, state="post"),
+            # A real 2024 final, sitting in the same feed.
+            {**soccer_event("Spain", "England", 2, 1, state="post"),
+             "date": "2024-07-14T19:00Z"},
+        ]),
+    })
+    comp = FR.gather(cfg, f, today=FIXTURE_TODAY)["competitions"][0]
+    names = [t["name"] for r in comp["rows"] for t in r["teams"]]
+    check("AC-R11 a current result is kept", "Arsenal" in names, str(names))
+    check("AC-R11 a two-year-old result is dropped",
+          "Spain" not in names and "England" not in names, str(names))
+    check("AC-R11 the drop is counted, not silent", comp.get("dropped_stale") == 1,
+          str(comp.get("dropped_stale")))
+
+    # Everything stale: the competition says so instead of vanishing.
+    f2 = standard_fetcher(**{
+        "soccer/uefa.champions/scoreboard": scoreboard([
+            {**soccer_event("Spain", "England", 2, 1, state="post"),
+             "date": "2024-07-14T19:00Z"},
+        ]),
+    })
+    stale = FR.gather(cfg, f2, today=FIXTURE_TODAY)["competitions"][0]
+    check("AC-R11 an all-stale competition reports why it is empty",
+          bool(stale.get("dropped_stale")) and bool(stale.get("note")), str(stale))
+    check("AC-R11 that reason reaches the digest", "older than that" in FR.render_text(
+        FR.gather(cfg, f2, today=FIXTURE_TODAY)))
+
+
+def test_top_n_competition_keeps_the_leaders_and_the_named_team() -> None:
+    """AC-R14: MLS shows the top 5 plus Inter Miami wherever it sits."""
+    cfg = base_config()
+    cfg["competitions"] = [{"league": "usa.1", "label": "MLS (Messi)",
+                            "teams": [], "standings": True, "top_n": 2,
+                            "always": ["Inter Miami CF"]}]
+    table = {"league": "usa.1", "rows": [
+        {"rank": 1, "team": "Philadelphia Union", "stats": {}, "note": ""},
+        {"rank": 2, "team": "FC Cincinnati", "stats": {}, "note": ""},
+        {"rank": 3, "team": "Columbus Crew", "stats": {}, "note": ""},
+        {"rank": 9, "team": "Inter Miami CF", "stats": {}, "note": ""},
+    ]}
+    f = FakeFetcher({
+        "soccer/usa.1/scoreboard": scoreboard([
+            soccer_event("Philadelphia Union", "Columbus Crew", 0, 0),
+            soccer_event("FC Cincinnati", "Inter Miami CF", 0, 0),
+            # Neither side is in scope, so this match must not appear.
+            soccer_event("Chicago Fire", "New York Red Bulls", 0, 0),
+        ]),
+        "soccer/usa.1/standings": json.dumps({"children": [
+            {"name": "Regular Season", "standings": {"entries": [
+                {"note": {"rank": r["rank"], "description": ""},
+                 "stats": [], "team": {"displayName": r["team"]}}
+                for r in table["rows"]]}}]}),
+    })
+    comp = FR.gather(cfg, f, today=FIXTURE_TODAY)["competitions"][0]
+    names = [t["name"] for r in comp["rows"] for t in r["teams"]]
+    check("AC-R14 a top-2 club is kept", "Philadelphia Union" in names, str(names))
+    # A kept fixture is a whole match, so the opponent comes with it. What must
+    # not happen is a match with no in-scope side at all.
+    check("AC-R14 a match with no in-scope side is dropped",
+          "Chicago Fire" not in names and "New York Red Bulls" not in names,
+          str(names))
+    check("AC-R14 the always-kept club is kept", "Inter Miami CF" in names, str(names))
+    check("AC-R14 the scope is stated rather than claiming every team",
+          "top 2" in FR.render_text(FR.gather(cfg, f, today=FIXTURE_TODAY)))
+
+
+def test_the_standalone_news_block_is_off_by_default() -> None:
+    """AC-R15: the by-sport brief replaced the duplicated news block."""
+    check("AC-R15 the news block is switched off", FR.SHOW_NEWS_SECTION is False)
+    text = FR.render_text(gather())
+    check("AC-R15 WHAT YOU FOLLOW is gone from the digest",
+          "WHAT YOU FOLLOW" not in text, text[:200])
+
+
 def main() -> int:
     print("=== research layer verification ===\n")
     for fn in (
@@ -1306,6 +1406,9 @@ def main() -> int:
         test_html_matches_text,
         test_team_filter,
         test_team_name_matching_is_loose_but_bounded,
+        test_stale_fixtures_are_dropped_not_shown,
+        test_top_n_competition_keeps_the_leaders_and_the_named_team,
+        test_the_standalone_news_block_is_off_by_default,
         test_timezone_conversion,
         test_follow_editor_round_trips,
         test_shipped_follow_file_is_valid,

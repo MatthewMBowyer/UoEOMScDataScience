@@ -66,6 +66,15 @@ ESPN_V2 = "https://site.web.api.espn.com/apis/v2/sports"
 # Regenerated locally each run; the API needs no key. See `local_prices`.
 PRICE_API = "https://api.takealot.com/rest/v-1-10-0/searches/products"
 
+# How far back a competition feed may reach and still count as a fixture.
+# ESPN's scoreboard happily returns last season's finals; a finished match
+# older than this is history, not a fixture, and is dropped.
+LOOKBACK_DAYS = 10
+
+# The standalone news block duplicates what BY SPORT already reports for every
+# sport, so it is off. Flip to True to bring the block back.
+SHOW_NEWS_SECTION = False
+
 # ESPN's competition ids. A followed competition names one of these, so adding a
 # competition is a data edit, not a code change.
 LEAGUES = {
@@ -354,13 +363,25 @@ def _fixture_rows(events: list[dict]) -> list[dict]:
     return rows
 
 
-def competition_fixtures(entry: dict, f: Fetcher) -> dict:
-    """The current matchweek for one competition, filtered to followed teams."""
+def competition_fixtures(entry: dict, f: Fetcher,
+                         table: dict | None = None,
+                         today: dt.date | None = None) -> dict:
+    """The current matchweek for one competition, filtered to followed teams.
+
+    `table` is that competition's already-fetched standings. It lets a
+    `top_n` competition (MLS) keep only the sides near the top, which is what
+    the owner asked for: "mainly show top 5 there". `always` names a team that
+    stays in view even when it is outside that cut (Inter Miami).
+    """
     league = entry.get("league", "")
     label = entry.get("label") or LEAGUES.get(league, league)
     followed = [t for t in (entry.get("teams") or []) if str(t).strip()]
+    top_n = int(entry.get("top_n") or 0)
+    always = [t for t in (entry.get("always") or []) if str(t).strip()]
+    today = today or dt.date.today()
     out = {"label": label, "league": league, "followed": followed,
-           "rows": [], "filtered": bool(followed), "error": ""}
+           "rows": [], "filtered": bool(followed or top_n or always),
+           "scope_note": "", "error": ""}
 
     if league not in LEAGUES:
         out["error"] = f"unknown competition id '{league}' (see scripts/follow_research.py LEAGUES)"
@@ -381,8 +402,63 @@ def competition_fixtures(entry: dict, f: Fetcher) -> dict:
             if any(w == n or w in n or n in w for w in wanted for n in names):
                 kept.append(r)
         rows = kept
-    out["rows"] = rows
+
+    if top_n and table and table.get("rows"):
+        ordered = [r["team"] for r in table["rows"]]
+        wanted = ordered[:top_n] + [t for t in always if t not in ordered[:top_n]]
+        out["scope_note"] = (f"top {top_n} in the table"
+                             + (f" plus {' and '.join(always)}" if always else ""))
+        out["ranked"] = {_norm(t): i + 1
+                         for i, t in enumerate(ordered)}
+        wanted_n = {_norm(t) for t in wanted}
+        rows = [r for r in rows
+                if any(_same_team(n, w) for w in wanted_n
+                       for n in (_norm(t["name"]) for t in r["teams"]))]
+
+    # A result from months ago is not a fixture. Showing "Sun 14 Jul Spain 2 vs
+    # England 1" under FIXTURES in November is what the owner called
+    # "months-old events" - the score is real, the relevance is not.
+    cutoff = today - dt.timedelta(days=LOOKBACK_DAYS)
+    fresh = []
+    for r in rows:
+        day = _iso_date(r.get("when"))
+        if day is not None and day < cutoff:
+            continue
+        fresh.append(r)
+    if len(fresh) != len(rows):
+        out["dropped_stale"] = len(rows) - len(fresh)
+    out["rows"] = fresh
+    if not fresh and out.get("dropped_stale"):
+        # Say it rather than letting the competition disappear: the feed HAS
+        # matches, they are just history. Silence would look like a broken source.
+        out["note"] = (f"nothing in the last {LOOKBACK_DAYS} days or the next "
+                       f"window - the feed's most recent match is older than that")
     return out
+
+
+def _same_team(a: str, b: str) -> bool:
+    """Loose team-name match: 'inter miami' should meet 'Inter Miami CF'."""
+    return bool(a) and bool(b) and (a == b or a in b or b in a)
+
+
+def _iso_date(iso: str) -> dt.date | None:
+    """The date part of an ESPN ISO timestamp, or None if it cannot be read."""
+    try:
+        return dt.date.fromisoformat((iso or "")[:10])
+    except ValueError:
+        return None
+
+
+def _stage_repeats_label(stage: str, label: str) -> bool:
+    """True when the stage name adds nothing to the competition label.
+
+    ESPN calls the Serie A group "2026-2027 Italian Serie A", so the table headed
+    "Italian Serie A - 2026-2027 Italian Serie A" said the same thing twice.
+    """
+    s, l = (stage or "").strip().lower(), (label or "").strip().lower()
+    if not s or not l:
+        return False
+    return s == l or s.endswith(l) or l.endswith(s)
 
 
 def league_standings(entry: dict, f: Fetcher) -> dict:
@@ -2354,13 +2430,17 @@ def gather(cfg: dict, fetcher: Fetcher | None = None, weekly: bool = False,
     muted = muted_sports(cfg)
 
     news = research_news(cfg, f, s, muted)
-    comps = [competition_fixtures(e, f) for e in cfg.get("competitions", [])
-             if not _entry_muted(e, muted)]
+    today = today or dt.date.today()
+    # Standings first: a `top_n` competition (MLS) filters its fixtures against
+    # the table, so the table has to exist before the fixtures are cut.
     standings = [league_standings(e, f) for e in cfg.get("competitions", [])
                  if (e.get("standings", True)) and not _entry_muted(e, muted)]
+    by_league = {t["league"]: t for t in standings}
+    comps = [competition_fixtures(e, f, by_league.get(e.get("league", "")), today)
+             for e in cfg.get("competitions", [])
+             if not _entry_muted(e, muted)]
     tennis = (tennis_top_n(cfg, f) if "Tennis" not in muted
               else {"enabled": False, "tours": []})
-    today = today or dt.date.today()
     window_end = today + dt.timedelta(days=window_days)
     removed_ser = removed_series(cfg)
     all_events = [e for e in (sports_events or [])
@@ -2546,6 +2626,11 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
     out: list[str] = []
 
     items = [i for i in data["news"]["items"] if i["stories"]]
+    if items and not SHOW_NEWS_SECTION:
+        # Owner, 2026-11-06: "Remove news - keep only the 'by sport' section at
+        # top." The by-sport briefs below carry the same stories per sport, so
+        # this block only duplicated them under a second heading.
+        items = []
     if items:
         out.append("WHAT YOU FOLLOW")
         for item in items:
@@ -2586,8 +2671,10 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
             if not rows and up.get("when"):
                 span = up.get("display") or up["when"]
                 series = f" ({up['series']})" if up.get("series") else ""
-                out.append(f"    Next up: {up.get('name', '')}{series} - {span} "
-                           f"({up['when']})")
+                # `display` already contains the date when the source supplied
+                # one, so appending the raw ISO date printed it twice.
+                tail = "" if up["when"] in span else f" ({up['when']})"
+                out.append(f"    Next up: {up.get('name', '')}{series} - {span}{tail}")
             if stories:
                 for story in stories:
                     who = f" - {story['publisher']}" if story.get("publisher") else ""
@@ -2619,20 +2706,24 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
             out.append(f"  Muted (removed): {', '.join(sp['muted'])}")
         out.append("")
 
-    comps = [c for c in data["competitions"] if c["rows"] or c["error"]]
+    comps = [c for c in data["competitions"]
+             if c["rows"] or c["error"] or c.get("note")]
     if comps:
         out.append("FIXTURES")
         for c in comps:
             if c["error"]:
                 out.append(f"  {c['label']}: {c['error']}")
                 continue
-            scope = (", ".join(c["followed"]) if c["filtered"]
-                     else "every team (no team filter set)")
+            scope = (", ".join(c["followed"]) if c["followed"]
+                     else c.get("scope_note")
+                     or "every team (no team filter set)")
             out.append(f"  {c['label']} - {scope}")
             for r in c["rows"]:
                 teams = " vs ".join(_team_label(t, r["state"]) for t in r["teams"])
                 state = "" if r["state"] == "pre" else f"  [{r['detail']}]"
                 out.append(f"    {_fmt_when(r['when']):<18} {teams}{state}")
+            if c.get("note"):
+                out.append(f"    ({c['note']})")
         out.append("")
 
     standings = [s for s in (data.get("standings") or []) if s["rows"] or s["error"]]
@@ -2642,7 +2733,9 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
             if s["error"]:
                 out.append(f"  {s['label']}: {s['error']}")
                 continue
-            stage = f" - {s['stage']}" if s["stage"] else ""
+            stage = (" - " + s["stage"]
+                     if s["stage"] and not _stage_repeats_label(s["stage"], s["label"])
+                     else "")
             out.append(f"  {s['label']}{stage}")
             # A stat the source did not publish is dropped from the header AND
             # from every row. Keeping a fixed column list printed two blank
@@ -2893,14 +2986,20 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
     note_rows: list[str] = []
 
     def head(label: str) -> str:
+        # `label` arrives as MARKUP, not text: callers embed &middot; and already
+        # escape the dynamic parts themselves. Escaping it whole printed literal
+        # "&amp;middot;" in the email.
         return (f'<div style="font-size:13px;font-weight:700;color:{ink};'
-                f'margin:0 0 4px">{esc(label)}</div>')
+                f'margin:0 0 4px">{label}</div>')
 
     def row(body: str) -> str:
         return (f'<div style="font-size:13px;color:{ink};margin:0 0 6px;'
                 f'padding-left:10px;border-left:2px solid {line}">{body}</div>')
 
     items = [i for i in data["news"]["items"] if i["stories"]]
+    if not SHOW_NEWS_SECTION:
+        # Owner, 2026-11-06: "Remove news - keep only the 'by sport' section."
+        items = []
     for item in items:
         news_rows.append(f'<div style="font-size:13px;font-weight:700;color:{ink};'
                          f'margin:0 0 4px">{esc(item["label"])}</div>')
@@ -2955,10 +3054,13 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
                     _span = up.get("display") or up["when"]
                     _series = (f' &middot; {esc(up["series"])}'
                                if up.get("series") else "")
+                    # `display` already carries the date when the source gave
+                    # one, so appending the raw ISO date printed it twice.
+                    _tail = "" if up["when"] in _span else f' ({esc(up["when"])})'
                     up_html = (
                         f'<div style="font-size:12px;color:{muted};margin:2px 0 0">'
                         f'Next up: <strong style="color:{ink}">{esc(up.get("name", ""))}'
-                        f'</strong>{_series} &mdash; {esc(_span)} ({esc(up["when"])})'
+                        f'</strong>{_series} &mdash; {esc(_span)}{_tail}'
                         f'</div>')
                 sport_rows.append(row(
                     f'<strong>{esc(sport)}</strong>{"".join(brief_html)}'
@@ -2993,14 +3095,17 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
             sport_rows.append(f'<div style="font-size:12px;color:{muted};margin:6px 0 0">'
                               f'Switched off: {esc(", ".join(sp["muted"]))}</div>')
 
-    comps = [c for c in data["competitions"] if c["rows"] or c["error"]]
+    comps = [c for c in data["competitions"]
+             if c["rows"] or c["error"] or c.get("note")]
     for c in comps:
         if c["error"]:
             fixture_rows.append(f'<div style="font-size:13px;color:{muted};margin:0 0 6px">'
                                 f'{esc(c["label"])}: {esc(c["error"])}</div>')
             continue
-        scope = (", ".join(c["followed"]) if c["filtered"]
-                 else "every team &mdash; no team filter set")
+        # `scope` is escaped below, so it must be plain text - no entities here.
+        scope = (", ".join(c["followed"]) if c["followed"]
+                 else c.get("scope_note")
+                 or "every team - no team filter set")
         fixture_rows.append(f'<div style="font-size:13px;font-weight:700;color:{ink};'
                             f'margin:0 0 4px">{esc(c["label"])}'
                             f'<span style="font-weight:400;color:{muted};font-size:12px">'
@@ -3016,13 +3121,18 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
             fixture_rows.append(f'<div style="font-size:13px;color:{ink};margin:0 0 6px">'
                                 f'<span style="color:{muted};font-size:12px">'
                                 f'{esc(_fmt_when(r["when"]))}</span> &nbsp;{teams}{badge}</div>')
+        if c.get("note"):
+            fixture_rows.append(f'<div style="font-size:12px;color:{muted};margin:0 0 6px">'
+                                f'{esc(c["note"])}</div>')
 
     for st in [x for x in (data.get("standings") or []) if x["rows"] or x["error"]]:
         if st["error"]:
             standing_rows.append(f'<div style="font-size:13px;color:{muted};margin:0 0 6px">'
                                  f'{esc(st["label"])}: {esc(st["error"])}</div>')
             continue
-        stage = f' &middot; {esc(st["stage"])}' if st["stage"] else ""
+        stage = (f' &middot; {esc(st["stage"])}'
+                 if st["stage"] and not _stage_repeats_label(st["stage"], st["label"])
+                 else "")
         standing_rows.append(head(f'{st["label"]}{stage}'))
         cells = []
         for r in st["rows"]:

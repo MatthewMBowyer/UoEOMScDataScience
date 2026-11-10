@@ -1,451 +1,448 @@
 {
-    "_note": "WHO AND WHAT YOU FOLLOW, for the research section of the daily email. This is the one file to edit. Every entry is a thing YOU named - nothing here was inferred or invented. Edit it by hand, or double-click MANAGE_SPORTS.bat for a menu (on other systems: python3 scripts/follow_edit.py --show, then add-news / add-team / add-competition). Removing an entry removes it from the email. See docs/SPORTS_RESEARCH.md.",
-    "_rule": "Nothing is added here that the owner did not name. An empty list is correct and stays empty; the digest says so rather than guessing.",
-    "news": [
-        {
-            "label": "UEFA Champions League",
-            "query": "UEFA Champions League",
-            "sport": "Football",
-            "source": "Owner, 2026-10-12: 'UEFA CHAMOPIONS LEAGEU - Search' and 'whatever i am following i get news on'."
-        }
-    ],
-    "sports": [
-        {
-            "sport": "Motorsport",
-            "enabled": true,
-            "source": "Owner, 2026-11-05: keep MotoGP and F1; remove NASCAR, rally (WRC) and endurance (WEC/IMSA)."
-        },
-        {
-            "sport": "Tennis",
-            "enabled": true,
-            "source": "Owner, 2026-10-12: 'For tennis, only give me results of top 5.'"
-        },
-        {
-            "sport": "Football",
-            "enabled": true,
-            "source": "Owner, 2026-10-12: 'UEFA CHAMOPIONS LEAGEU - Search'."
-        },
-        {
-            "sport": "Cycling",
-            "enabled": false,
-            "source": "Owner, 2026-11-05: 'I never wanna see cycling and gymnastics.'"
-        },
-        {
-            "sport": "Gymnastics",
-            "enabled": false,
-            "source": "Owner, 2026-11-05: 'I never wanna see cycling and gymnastics.'"
-        },
-        {
-            "sport": "Weightlifting",
-            "enabled": true,
-            "source": "Owner, 2026-10-05: 1 of the 16 supplied events is Weightlifting."
-        },
-        {
-            "sport": "Padel",
-            "enabled": true,
-            "source": "Owner, 2026-10-05: 1 of the 16 supplied events is Padel."
-        },
-        {
-            "sport": "Rugby",
-            "enabled": true,
-            "source": "Owner, 2026-11-05: 'Please add rugby to it. I want to follow that.'"
-        },
-        {
-            "sport": "F1",
-            "enabled": true,
-            "source": "Owner, 2026-11-05: 'follow all top P1 or i think its F1 ... Dont suggest just add automatically.'"
-        }
-    ],
-    "_sports_note": "THE ONE LIST THAT ADDS OR REMOVES A SPORT. Set enabled=false to mute a sport: it then disappears from the event list, the per-sport block, suggestions and the local-events matching. Muting is a switch, not a delete - the row stays so you can turn it back on. Edit it here, or double-click MANAGE_SPORTS.bat (menu items 1 and 2).",
-    "competitions": [
-        {
-            "label": "UEFA Champions League",
-            "league": "uefa.champions",
-            "teams": [],
-            "_teams_note": "EMPTY ON PURPOSE. The owner said 'UEFA i only want specific teams' but did not name them, so none are invented. Add them here, or run `python3 scripts/follow_edit.py add-team uefa.champions \"Arsenal\"` (option 3 on MANAGE_SPORTS.bat). While the list is empty the digest shows every fixture in the competition and says so. Run `python3 scripts/follow_edit.py --list-teams uefa.champions` to see the teams currently in it.",
-            "source": "Owner, 2026-10-12: 'UEFA i only want specific teams'."
-        },
-        {
-            "label": "MLS (Messi)",
-            "league": "usa.1",
-            "teams": [],
-            "standings": true,
-            "_teams_note": "EMPTY ON PURPOSE: show every fixture in this competition. The owner asked for league-level coverage ('mainly show top 5 there and just some general info'), not a team filter.",
-            "source": "Owner, 2026-11-05: 'give me all football. I want to follow messie league, international football big tournaments and then Series A. Mainly show top 5 there and just some general info as that can get very big.'"
-        },
-        {
-            "label": "Italian Serie A",
-            "league": "ita.1",
-            "teams": [],
-            "standings": true,
-            "_teams_note": "EMPTY ON PURPOSE: show every fixture in this competition. The owner asked for league-level coverage ('mainly show top 5 there and just some general info'), not a team filter.",
-            "source": "Owner, 2026-11-05: 'give me all football. I want to follow messie league, international football big tournaments and then Series A. Mainly show top 5 there and just some general info as that can get very big.'"
-        },
-        {
-            "label": "International - FIFA World Cup",
-            "league": "fifa.world",
-            "teams": [],
-            "standings": true,
-            "_teams_note": "EMPTY ON PURPOSE: show every fixture in this competition. The owner asked for league-level coverage ('mainly show top 5 there and just some general info'), not a team filter.",
-            "source": "Owner, 2026-11-05: 'give me all football. I want to follow messie league, international football big tournaments and then Series A. Mainly show top 5 there and just some general info as that can get very big.'"
-        },
-        {
-            "label": "International - UEFA Euro",
-            "league": "uefa.euro",
-            "teams": [],
-            "standings": true,
-            "_teams_note": "EMPTY ON PURPOSE: show every fixture in this competition. The owner asked for league-level coverage ('mainly show top 5 there and just some general info'), not a team filter.",
-            "source": "Owner, 2026-11-05: 'give me all football. I want to follow messie league, international football big tournaments and then Series A. Mainly show top 5 there and just some general info as that can get very big.'"
-        }
-    ],
-    "tennis": {
-        "enabled": true,
-        "tours": [
-            "atp",
-            "wta"
-        ],
-        "top_n": 5,
-        "max_matches": 10,
-        "_note": "Owner, 2026-10-12: 'For tennis, only give me results of top 5. Make sure we follow any tennis the top 5 are in.' The top N is read live from the tour rankings, so it follows whoever is actually in the top 5 - it is not a fixed list of names. Only matches involving a top-N player are reported, and they are reported for whichever tournament those players are in, so a top-5 player is never missed.",
-        "source": "Owner, 2026-10-12."
+  "_note": "WHO AND WHAT YOU FOLLOW, for the research section of the daily email. This is the one file to edit. Every entry is a thing YOU named - nothing here was inferred or invented. Edit it by hand, or double-click MANAGE_SPORTS.bat for a menu (on other systems: python3 scripts/follow_edit.py --show, then add-news / add-team / add-competition). Removing an entry removes it from the email. See docs/SPORTS_RESEARCH.md.",
+  "_rule": "Nothing is added here that the owner did not name. An empty list is correct and stays empty; the digest says so rather than guessing.",
+  "news": [
+    {
+      "label": "UEFA Champions League",
+      "query": "UEFA Champions League",
+      "sport": "Football",
+      "source": "Owner, 2026-10-12: 'UEFA CHAMOPIONS LEAGEU - Search' and 'whatever i am following i get news on'."
+    }
+  ],
+  "sports": [
+    {
+      "sport": "Motorsport",
+      "enabled": true,
+      "source": "Owner, 2026-11-05: keep MotoGP and F1; remove NASCAR, rally (WRC) and endurance (WEC/IMSA)."
     },
-    "settings": {
-        "news_per_follow": 3,
-        "news_max_age_days": 3,
-        "weekly_news_max_age_days": 7,
-        "request_timeout_seconds": 12,
-        "total_budget_seconds": 90,
-        "_note": "news_max_age_days is widened automatically for the weekly run. total_budget_seconds stops the whole research step if the network is slow, so the email always goes out on time."
+    {
+      "sport": "Tennis",
+      "enabled": true,
+      "source": "Owner, 2026-10-12: 'For tennis, only give me results of top 5.'"
     },
-    "local": {
-        "city": "Wilgeheuwel, Roodepoort",
-        "enabled": true,
-        "months_ahead": 3,
-        "annual_months_ahead": 12,
-        "categories": [
-            {
-                "key": "buffet",
-                "label": "Buffets & all-you-can-eat",
-                "enabled": true,
-                "queries": [
-                    "all you can eat buffet Johannesburg",
-                    "buffet special Johannesburg restaurants",
-                    "best buffet restaurants Joburg",
-                    "Sunday buffet Johannesburg"
-                ],
-                "require_any": [
-                    "buffet",
-                    "all you can eat",
-                    "all-you-can-eat",
-                    "eats",
-                    "restaurant",
-                    "brunch",
-                    "carvery"
-                ],
-                "priority": 1,
-                "annual": false,
-                "followed_terms": [
-                    "buffet",
-                    "all you can eat",
-                    "all-you-can-eat"
-                ],
-                "two_person": {
-                    "label": "For two / couples",
-                    "queries": [
-                        "couples buffet Johannesburg",
-                        "buffet for two Johannesburg",
-                        "date night buffet Johannesburg"
-                    ]
-                }
-            },
-            {
-                "key": "massage",
-                "label": "Massages & spa specials",
-                "enabled": true,
-                "queries": [
-                    "massage special Johannesburg",
-                    "spa special deal Johannesburg couples",
-                    "couples spa Johannesburg",
-                    "spa day special Joburg"
-                ],
-                "require_any": [
-                    "massage",
-                    "spa",
-                    "pamper",
-                    "wellness",
-                    "beauty",
-                    "treatment"
-                ],
-                "priority": 2,
-                "annual": false,
-                "followed_terms": [
-                    "spa",
-                    "massage"
-                ],
-                "two_person": {
-                    "label": "For two / couples",
-                    "queries": [
-                        "couples spa Johannesburg",
-                        "spa for two Johannesburg",
-                        "massage for two Johannesburg"
-                    ]
-                }
-            },
-            {
-                "key": "events",
-                "label": "Great events",
-                "enabled": true,
-                "queries": [
-                    "events Johannesburg upcoming",
-                    "what's on Johannesburg",
-                    "festivals Johannesburg 2026",
-                    "things to do Johannesburg this month"
-                ],
-                "require_any": [
-                    "event",
-                    "festival",
-                    "concert",
-                    "show",
-                    "market",
-                    "what's on",
-                    "whats on",
-                    "expo",
-                    "fair",
-                    "race"
-                ],
-                "priority": 3,
-                "annual": true,
-                "followed_terms": [
-                    "festival",
-                    "concert",
-                    "gig"
-                ]
-            }
-        ],
-        "_note": "What to look for near you. Set a category's enabled=false to mute it - the same switch the sport list uses. `priority` is the owner's own preference order (lower first) and is the order the digest renders; absent means configured order. `annual` marks a category whose events come round once a year: those are judged against annual_months_ahead, everything else against months_ahead. `two_person` adds the couples / for-two search the owner asked for ('nice massage sale i can take Chloe and i, same with buffets'); it is additive and never suppresses the solo results. An empty category says so rather than inventing something.",
-        "source": "Owner, 2026-11-05: 'I am in Wilgeheuwel.' and 'you should be reading pages for me and giving me best names of places to go for buffets and if they are limited etc. Also nice date night specials around me.'",
-        "place_terms": [
-            "wilgeheuwel",
-            "roodepoort",
-            "little falls",
-            "ruimsig",
-            "honeydew",
-            "northgate",
-            "randburg",
-            "fourways",
-            "krugersdorp",
-            "johannesburg",
-            "joburg",
-            "soweto",
-            "sandton",
-            "gauteng"
-        ],
-        "_read_pages_note": "The owner rejected headline-only output ('lazy to just give news headlines'). Each item now carries the venue/place name where one can be read from the page, plus any limits or conditions found on it. Where nothing can be read the item says so rather than dressing a headline up as a recommendation."
+    {
+      "sport": "Football",
+      "enabled": true,
+      "source": "Owner, 2026-10-12: 'UEFA CHAMOPIONS LEAGEU - Search'."
     },
-    "price_watch": {
-        "enabled": true,
-        "items": [
-            {
-                "key": "xfx-swift-rx-9060-xt",
-                "label": "XFX Swift RX 9060 XT OC 16GB",
-                "enabled": true,
-                "query": "XFX Swift RX 9060 XT OC 16GB",
-                "must_match": [
-                    "xfx",
-                    "9060"
-                ],
-                "ref_url": "https://www.evetech.co.za/xfx-swift-rx-9060-xt-oc-16gb/best-deal/23117",
-                "must_not_match": [
-                    "8gb",
-                    "rx 9060 (non",
-                    "9060 non"
-                ]
-            },
-            {
-                "key": "ryzen-5-9600x",
-                "label": "AMD Ryzen 5 9600X",
-                "enabled": true,
-                "query": "AMD Ryzen 5 9600X",
-                "must_match": [
-                    "9600x"
-                ],
-                "ref_url": "https://www.evetech.co.za/amd-ryzen-5-9600x-processor/best-deal/20993",
-                "must_not_match": [
-                    "9600 non",
-                    "7600",
-                    "9600x3d"
-                ]
-            },
-            {
-                "key": "kingston-fury-beast-16gb",
-                "label": "Kingston Fury Beast 16GB DDR5 5600 CL40",
-                "enabled": true,
-                "query": "Kingston Fury Beast 16GB DDR5 5600 CL40",
-                "must_match": [
-                    "kingston",
-                    "fury",
-                    "beast",
-                    "16gb"
-                ],
-                "ref_url": "https://www.evetech.co.za/kingston-fury-beast-16gb-5600mhz-ddr5-cl40-memory/best-deal/18012",
-                "capacity_gb": 16,
-                "ddr": "ddr5",
-                "speed": "5600",
-                "must_not_match": [
-                    "rgb",
-                    "ddr4",
-                    "2x8gb",
-                    "2x16gb",
-                    "32gb"
-                ],
-                "featured": true
-            },
-            {
-                "key": "msi-mag-a650bn",
-                "label": "MSI MAG A650BN 650W 80+ Bronze",
-                "enabled": true,
-                "query": "MSI MAG A650BN 650W 80+ Bronze",
-                "must_match": [
-                    "a650bn"
-                ],
-                "ref_url": "https://www.wootware.co.za/msi-mag-a650bn-650w-80-plus-bronze-non-modular-black-desktop-power-supply.html",
-                "must_not_match": [
-                    "750w",
-                    "850w",
-                    "1000w"
-                ]
-            },
-            {
-                "key": "wd-blue-sn5000-1tb",
-                "label": "WD Blue SN5000 1TB NVMe",
-                "enabled": true,
-                "query": "WD Blue SN5000 1TB NVMe",
-                "must_match": [
-                    "sn5000"
-                ],
-                "ref_url": "https://www.evetech.co.za/wd-blue-sn5000-1tb-m2-nvme-ssd/best-deal/22563",
-                "must_not_match": [
-                    "2tb",
-                    "4tb",
-                    "500gb"
-                ]
-            },
-            {
-                "key": "einarex-glide-g100",
-                "label": "Einarex Glide G100 CPU Cooler",
-                "enabled": true,
-                "query": "Einarex Glide G100 CPU Cooler",
-                "must_match": [
-                    "glide",
-                    "g100"
-                ],
-                "ref_url": "https://www.evetech.co.za/einarex-glide-g100-white-cpu-cooler/best-deal/24589",
-                "must_not_match": [
-                    "black",
-                    "240mm",
-                    "360mm"
-                ]
-            },
-            {
-                "key": "asus-prime-b850m-f-wifi",
-                "label": "ASUS Prime B850M-F WiFi AM5",
-                "enabled": true,
-                "query": "ASUS Prime B850M-F WiFi AM5",
-                "must_match": [
-                    "b850m"
-                ],
-                "ref_url": "https://www.evetech.co.za/asus-prime-b850m-f-wifi-am5-motherboard/best-deal/25543",
-                "must_not_match": [
-                    "gigabyte",
-                    "msi",
-                    "asrock",
-                    "biostar"
-                ]
-            },
-            {
-                "key": "cooler-master-td300-mesh",
-                "label": "Cooler Master TD300 Mesh Case",
-                "enabled": true,
-                "query": "Cooler Master TD300 Mesh Case",
-                "must_match": [
-                    "td300"
-                ],
-                "ref_url": "https://www.evetech.co.za/cooler-master-td300-mesh-gaming-case/best-deal/19587",
-                "must_not_match": [
-                    "td500",
-                    "atx mid tower rgb"
-                ]
-            }
-        ],
-        "top_n": 3,
-        "include_used": true,
-        "_note": "Exactly the items the owner listed, with the reference page he gave for each. `ref_url` is the page he considers the product: it is fetched directly for his own cheapest-known price, and Takealot's search supplies competing offers. `top_n` is how many cheapest to show. `include_used` asks the sources for second-hand listings too. A saving is only ever the difference between two REAL listed prices, never an estimate.",
-        "source": "Owner, 2026-11-05: 'Show me top 3 cheapest you can find of exact things i need as well as highlight if any below market price. Look for new and 2nd hand please. Black friday specials would be apprecaited.'",
-        "_strict_note": "`must_not_match` and `ddr` exist because a loose match reported a cheaper DIFFERENT product as 'below market': a DDR4 3600 kit showed as 59% under a DDR5 5600 watch, and three other motherboard brands matched 'b850m'. A wrong-product price is worse than no price."
+    {
+      "sport": "Cycling",
+      "enabled": false,
+      "source": "Owner, 2026-11-05: 'I never wanna see cycling and gymnastics.'"
     },
-    "removed_series": [
-        "NASCAR Cup Series",
-        "WRC",
-        "FIA WEC",
-        "IMSA WeatherTech SportsCar Championship"
+    {
+      "sport": "Gymnastics",
+      "enabled": false,
+      "source": "Owner, 2026-11-05: 'I never wanna see cycling and gymnastics.'"
+    },
+    {
+      "sport": "Weightlifting",
+      "enabled": true,
+      "source": "Owner, 2026-10-05: 1 of the 16 supplied events is Weightlifting."
+    },
+    {
+      "sport": "Padel",
+      "enabled": true,
+      "source": "Owner, 2026-10-05: 1 of the 16 supplied events is Padel."
+    },
+    {
+      "sport": "Rugby",
+      "enabled": true,
+      "source": "Owner, 2026-11-05: 'Please add rugby to it. I want to follow that.'"
+    },
+    {
+      "sport": "F1",
+      "enabled": true,
+      "source": "Owner, 2026-11-05: 'follow all top P1 or i think its F1 ... Dont suggest just add automatically.'"
+    }
+  ],
+  "_sports_note": "THE ONE LIST THAT ADDS OR REMOVES A SPORT. Set enabled=false to mute a sport: it then disappears from the event list, the per-sport block, suggestions and the local-events matching. Muting is a switch, not a delete - the row stays so you can turn it back on. Edit it here, or double-click MANAGE_SPORTS.bat (menu items 1 and 2).",
+  "competitions": [
+    {
+      "label": "UEFA Champions League",
+      "league": "uefa.champions",
+      "teams": [],
+      "_teams_note": "EMPTY ON PURPOSE. The owner said 'UEFA i only want specific teams' but did not name them, so none are invented. Add them here, or run `python3 scripts/follow_edit.py add-team uefa.champions \"Arsenal\"` (option 3 on MANAGE_SPORTS.bat). While the list is empty the digest shows every fixture in the competition and says so. Run `python3 scripts/follow_edit.py --list-teams uefa.champions` to see the teams currently in it.",
+      "source": "Owner, 2026-10-12: 'UEFA i only want specific teams'."
+    },
+    {
+      "label": "MLS (Messi)",
+      "league": "usa.1",
+      "teams": [],
+      "standings": true,
+      "_teams_note": "Owner, 2026-11-06: 'MLS fixtures: only top 5 teams + Inter Miami if outside top 5'. top_n keeps the five clubs at the top of the fetched standings; `always` keeps Inter Miami in view even when it sits lower.",
+      "source": "Owner, 2026-11-05: 'give me all football. I want to follow messie league, international football big tournaments and then Series A. Mainly show top 5 there and just some general info as that can get very big.'",
+      "top_n": 5,
+      "always": [
+        "Inter Miami CF"
+      ]
+    },
+    {
+      "label": "International - FIFA World Cup",
+      "league": "fifa.world",
+      "teams": [],
+      "standings": true,
+      "_teams_note": "EMPTY ON PURPOSE: show every fixture in this competition. The owner asked for league-level coverage ('mainly show top 5 there and just some general info'), not a team filter.",
+      "source": "Owner, 2026-11-05: 'give me all football. I want to follow messie league, international football big tournaments and then Series A. Mainly show top 5 there and just some general info as that can get very big.'"
+    },
+    {
+      "label": "International - UEFA Euro",
+      "league": "uefa.euro",
+      "teams": [],
+      "standings": true,
+      "_teams_note": "EMPTY ON PURPOSE: show every fixture in this competition. The owner asked for league-level coverage ('mainly show top 5 there and just some general info'), not a team filter.",
+      "source": "Owner, 2026-11-05: 'give me all football. I want to follow messie league, international football big tournaments and then Series A. Mainly show top 5 there and just some general info as that can get very big.'"
+    }
+  ],
+  "tennis": {
+    "enabled": true,
+    "tours": [
+      "atp",
+      "wta"
     ],
-    "_removed_series_note": "Series the owner does not want. Matched case-insensitively against an event's `series`. This exists because the three he removed all sit under Motorsport, which he still wants for MotoGP and F1 - a sport-level mute would have taken those with it.",
-    "no_team_suggestions": true,
-    "_no_team_suggestions_note": "Owner, 2026-11-05: 'Dont suggest football teams to follow. Weird, mainly leagues.' Suppresses the per-team football suggestion loop in follow_research.suggest().",
-    "deals": {
+    "top_n": 5,
+    "max_matches": 10,
+    "_note": "Owner, 2026-10-12: 'For tennis, only give me results of top 5. Make sure we follow any tennis the top 5 are in.' The top N is read live from the tour rankings, so it follows whoever is actually in the top 5 - it is not a fixed list of names. Only matches involving a top-N player are reported, and they are reported for whichever tournament those players are in, so a top-5 player is never missed.",
+    "source": "Owner, 2026-10-12."
+  },
+  "settings": {
+    "news_per_follow": 3,
+    "news_max_age_days": 3,
+    "weekly_news_max_age_days": 7,
+    "request_timeout_seconds": 12,
+    "total_budget_seconds": 90,
+    "_note": "news_max_age_days is widened automatically for the weekly run. total_budget_seconds stops the whole research step if the network is slow, so the email always goes out on time."
+  },
+  "local": {
+    "city": "Wilgeheuwel, Roodepoort",
+    "enabled": true,
+    "months_ahead": 3,
+    "annual_months_ahead": 12,
+    "categories": [
+      {
+        "key": "buffet",
+        "label": "Buffets & all-you-can-eat",
         "enabled": true,
         "queries": [
-            {
-                "key": "gta6",
-                "label": "GTA 6 (normal + best edition)",
-                "terms": [
-                    "GTA 6",
-                    "Grand Theft Auto VI",
-                    "GTA VI collector"
-                ],
-                "note": "Owner, 2026-11-05: 'Will only buy on big special'. Only a listed discount is reported; no pre-order at full price is treated as a deal."
-            },
-            {
-                "key": "shoes",
-                "label": "Running / gym / takkies (men + women)",
-                "terms": [
-                    "running shoes sale",
-                    "gym shoes sale",
-                    "sneaker sale South Africa",
-                    "takkies sale"
-                ],
-                "note": "Owner, 2026-11-05: 'I gym alot, dont need best of best but would be nice to find specials'."
-            },
-            {
-                "key": "gymwear",
-                "label": "Gym clothes",
-                "terms": [
-                    "gym clothing sale South Africa",
-                    "activewear sale"
-                ],
-                "note": "Owner, 2026-11-05: 'Nothing fancy, anything will do.'"
-            },
-            {
-                "key": "monitors",
-                "label": "Monitors",
-                "terms": [
-                    "monitor special South Africa",
-                    "gaming monitor sale",
-                    "27 QHD monitor deal"
-                ],
-                "refs": [
-                    "https://www.evetech.co.za/aoc-q27b36x-27-qhd-144hz-monitor/best-deal/25201",
-                    "https://www.evetech.co.za/aoc-q27g4-d-27-inch-gaming-monitor/best-deal/24103",
-                    "https://www.evetech.co.za/aoc-q27g4z-27-qhd-260hz-gaming-monitor/best-deal/25197"
-                ],
-                "note": "Owner gave three reference monitors (Good/Better/Best). Cheaper is fine - he said 'I dont need best of best at all. My gaming is stardew valley.'"
-            }
+          "all you can eat buffet Johannesburg",
+          "buffet special Johannesburg restaurants",
+          "best buffet restaurants Joburg",
+          "Sunday buffet Johannesburg"
         ],
-        "_note": "Black Friday and general sale watches. Every entry names the retailer page it came from. An item is only 'on special' if the page states a discount; otherwise it is listed as a normal price so a sale can be spotted against it later.",
-        "source": "Owner, 2026-11-05: 'i want to know black Friday specials on Gta 6 ... Shoe sales ... Anywhere doing big sales ... and Monitors'."
-    },
-    "no_suggest_series": [
-        "MotoGP"
+        "require_any": [
+          "buffet",
+          "all you can eat",
+          "all-you-can-eat",
+          "eats",
+          "restaurant",
+          "brunch",
+          "carvery"
+        ],
+        "priority": 1,
+        "annual": false,
+        "followed_terms": [
+          "buffet",
+          "all you can eat",
+          "all-you-can-eat"
+        ],
+        "two_person": {
+          "label": "For two / couples",
+          "queries": [
+            "couples buffet Johannesburg",
+            "buffet for two Johannesburg",
+            "date night buffet Johannesburg"
+          ]
+        }
+      },
+      {
+        "key": "massage",
+        "label": "Massages & spa specials",
+        "enabled": true,
+        "queries": [
+          "massage special Johannesburg",
+          "spa special deal Johannesburg couples",
+          "couples spa Johannesburg",
+          "spa day special Joburg"
+        ],
+        "require_any": [
+          "massage",
+          "spa",
+          "pamper",
+          "wellness",
+          "beauty",
+          "treatment"
+        ],
+        "priority": 2,
+        "annual": false,
+        "followed_terms": [
+          "spa",
+          "massage"
+        ],
+        "two_person": {
+          "label": "For two / couples",
+          "queries": [
+            "couples spa Johannesburg",
+            "spa for two Johannesburg",
+            "massage for two Johannesburg"
+          ]
+        }
+      },
+      {
+        "key": "events",
+        "label": "Great events",
+        "enabled": true,
+        "queries": [
+          "events Johannesburg upcoming",
+          "what's on Johannesburg",
+          "festivals Johannesburg 2026",
+          "things to do Johannesburg this month"
+        ],
+        "require_any": [
+          "event",
+          "festival",
+          "concert",
+          "show",
+          "market",
+          "what's on",
+          "whats on",
+          "expo",
+          "fair",
+          "race"
+        ],
+        "priority": 3,
+        "annual": true,
+        "followed_terms": [
+          "festival",
+          "concert",
+          "gig"
+        ]
+      }
     ],
-    "_no_suggest_series_note": "Owner, 2026-11-05: 'Dont give me anything on motoGP in suggested.' These series stay in the digest (he still follows them) but are never offered as a suggestion."
+    "_note": "What to look for near you. Set a category's enabled=false to mute it - the same switch the sport list uses. `priority` is the owner's own preference order (lower first) and is the order the digest renders; absent means configured order. `annual` marks a category whose events come round once a year: those are judged against annual_months_ahead, everything else against months_ahead. `two_person` adds the couples / for-two search the owner asked for ('nice massage sale i can take Chloe and i, same with buffets'); it is additive and never suppresses the solo results. An empty category says so rather than inventing something.",
+    "source": "Owner, 2026-11-05: 'I am in Wilgeheuwel.' and 'you should be reading pages for me and giving me best names of places to go for buffets and if they are limited etc. Also nice date night specials around me.'",
+    "place_terms": [
+      "wilgeheuwel",
+      "roodepoort",
+      "little falls",
+      "ruimsig",
+      "honeydew",
+      "northgate",
+      "randburg",
+      "fourways",
+      "krugersdorp",
+      "johannesburg",
+      "joburg",
+      "soweto",
+      "sandton",
+      "gauteng"
+    ],
+    "_read_pages_note": "The owner rejected headline-only output ('lazy to just give news headlines'). Each item now carries the venue/place name where one can be read from the page, plus any limits or conditions found on it. Where nothing can be read the item says so rather than dressing a headline up as a recommendation."
+  },
+  "price_watch": {
+    "enabled": true,
+    "items": [
+      {
+        "key": "xfx-swift-rx-9060-xt",
+        "label": "XFX Swift RX 9060 XT OC 16GB",
+        "enabled": true,
+        "query": "XFX Swift RX 9060 XT OC 16GB",
+        "must_match": [
+          "xfx",
+          "9060"
+        ],
+        "ref_url": "https://www.evetech.co.za/xfx-swift-rx-9060-xt-oc-16gb/best-deal/23117",
+        "must_not_match": [
+          "8gb",
+          "rx 9060 (non",
+          "9060 non"
+        ]
+      },
+      {
+        "key": "ryzen-5-9600x",
+        "label": "AMD Ryzen 5 9600X",
+        "enabled": true,
+        "query": "AMD Ryzen 5 9600X",
+        "must_match": [
+          "9600x"
+        ],
+        "ref_url": "https://www.evetech.co.za/amd-ryzen-5-9600x-processor/best-deal/20993",
+        "must_not_match": [
+          "9600 non",
+          "7600",
+          "9600x3d"
+        ]
+      },
+      {
+        "key": "kingston-fury-beast-16gb",
+        "label": "Kingston Fury Beast 16GB DDR5 5600 CL40",
+        "enabled": true,
+        "query": "Kingston Fury Beast 16GB DDR5 5600 CL40",
+        "must_match": [
+          "kingston",
+          "fury",
+          "beast",
+          "16gb"
+        ],
+        "ref_url": "https://www.evetech.co.za/kingston-fury-beast-16gb-5600mhz-ddr5-cl40-memory/best-deal/18012",
+        "capacity_gb": 16,
+        "ddr": "ddr5",
+        "speed": "5600",
+        "must_not_match": [
+          "rgb",
+          "ddr4",
+          "2x8gb",
+          "2x16gb",
+          "32gb"
+        ],
+        "featured": true
+      },
+      {
+        "key": "msi-mag-a650bn",
+        "label": "MSI MAG A650BN 650W 80+ Bronze",
+        "enabled": true,
+        "query": "MSI MAG A650BN 650W 80+ Bronze",
+        "must_match": [
+          "a650bn"
+        ],
+        "ref_url": "https://www.wootware.co.za/msi-mag-a650bn-650w-80-plus-bronze-non-modular-black-desktop-power-supply.html",
+        "must_not_match": [
+          "750w",
+          "850w",
+          "1000w"
+        ]
+      },
+      {
+        "key": "wd-blue-sn5000-1tb",
+        "label": "WD Blue SN5000 1TB NVMe",
+        "enabled": true,
+        "query": "WD Blue SN5000 1TB NVMe",
+        "must_match": [
+          "sn5000"
+        ],
+        "ref_url": "https://www.evetech.co.za/wd-blue-sn5000-1tb-m2-nvme-ssd/best-deal/22563",
+        "must_not_match": [
+          "2tb",
+          "4tb",
+          "500gb"
+        ]
+      },
+      {
+        "key": "einarex-glide-g100",
+        "label": "Einarex Glide G100 CPU Cooler",
+        "enabled": true,
+        "query": "Einarex Glide G100 CPU Cooler",
+        "must_match": [
+          "glide",
+          "g100"
+        ],
+        "ref_url": "https://www.evetech.co.za/einarex-glide-g100-white-cpu-cooler/best-deal/24589",
+        "must_not_match": [
+          "black",
+          "240mm",
+          "360mm"
+        ]
+      },
+      {
+        "key": "asus-prime-b850m-f-wifi",
+        "label": "ASUS Prime B850M-F WiFi AM5",
+        "enabled": true,
+        "query": "ASUS Prime B850M-F WiFi AM5",
+        "must_match": [
+          "b850m"
+        ],
+        "ref_url": "https://www.evetech.co.za/asus-prime-b850m-f-wifi-am5-motherboard/best-deal/25543",
+        "must_not_match": [
+          "gigabyte",
+          "msi",
+          "asrock",
+          "biostar"
+        ]
+      },
+      {
+        "key": "cooler-master-td300-mesh",
+        "label": "Cooler Master TD300 Mesh Case",
+        "enabled": true,
+        "query": "Cooler Master TD300 Mesh Case",
+        "must_match": [
+          "td300"
+        ],
+        "ref_url": "https://www.evetech.co.za/cooler-master-td300-mesh-gaming-case/best-deal/19587",
+        "must_not_match": [
+          "td500",
+          "atx mid tower rgb"
+        ]
+      }
+    ],
+    "top_n": 3,
+    "include_used": true,
+    "_note": "Exactly the items the owner listed, with the reference page he gave for each. `ref_url` is the page he considers the product: it is fetched directly for his own cheapest-known price, and Takealot's search supplies competing offers. `top_n` is how many cheapest to show. `include_used` asks the sources for second-hand listings too. A saving is only ever the difference between two REAL listed prices, never an estimate.",
+    "source": "Owner, 2026-11-05: 'Show me top 3 cheapest you can find of exact things i need as well as highlight if any below market price. Look for new and 2nd hand please. Black friday specials would be apprecaited.'",
+    "_strict_note": "`must_not_match` and `ddr` exist because a loose match reported a cheaper DIFFERENT product as 'below market': a DDR4 3600 kit showed as 59% under a DDR5 5600 watch, and three other motherboard brands matched 'b850m'. A wrong-product price is worse than no price."
+  },
+  "removed_series": [
+    "NASCAR Cup Series",
+    "WRC",
+    "FIA WEC",
+    "IMSA WeatherTech SportsCar Championship"
+  ],
+  "_removed_series_note": "Series the owner does not want. Matched case-insensitively against an event's `series`. This exists because the three he removed all sit under Motorsport, which he still wants for MotoGP and F1 - a sport-level mute would have taken those with it.",
+  "no_team_suggestions": true,
+  "_no_team_suggestions_note": "Owner, 2026-11-05: 'Dont suggest football teams to follow. Weird, mainly leagues.' Suppresses the per-team football suggestion loop in follow_research.suggest().",
+  "deals": {
+    "enabled": true,
+    "queries": [
+      {
+        "key": "gta6",
+        "label": "GTA 6 (normal + best edition)",
+        "terms": [
+          "GTA 6",
+          "Grand Theft Auto VI",
+          "GTA VI collector"
+        ],
+        "note": "Owner, 2026-11-05: 'Will only buy on big special'. Only a listed discount is reported; no pre-order at full price is treated as a deal."
+      },
+      {
+        "key": "shoes",
+        "label": "Running / gym / takkies (men + women)",
+        "terms": [
+          "running shoes sale",
+          "gym shoes sale",
+          "sneaker sale South Africa",
+          "takkies sale"
+        ],
+        "note": "Owner, 2026-11-05: 'I gym alot, dont need best of best but would be nice to find specials'."
+      },
+      {
+        "key": "gymwear",
+        "label": "Gym clothes",
+        "terms": [
+          "gym clothing sale South Africa",
+          "activewear sale"
+        ],
+        "note": "Owner, 2026-11-05: 'Nothing fancy, anything will do.'"
+      },
+      {
+        "key": "monitors",
+        "label": "Monitors",
+        "terms": [
+          "monitor special South Africa",
+          "gaming monitor sale",
+          "27 QHD monitor deal"
+        ],
+        "refs": [
+          "https://www.evetech.co.za/aoc-q27b36x-27-qhd-144hz-monitor/best-deal/25201",
+          "https://www.evetech.co.za/aoc-q27g4-d-27-inch-gaming-monitor/best-deal/24103",
+          "https://www.evetech.co.za/aoc-q27g4z-27-qhd-260hz-gaming-monitor/best-deal/25197"
+        ],
+        "note": "Owner gave three reference monitors (Good/Better/Best). Cheaper is fine - he said 'I dont need best of best at all. My gaming is stardew valley.'"
+      }
+    ],
+    "_note": "Black Friday and general sale watches. Every entry names the retailer page it came from. An item is only 'on special' if the page states a discount; otherwise it is listed as a normal price so a sale can be spotted against it later.",
+    "source": "Owner, 2026-11-05: 'i want to know black Friday specials on Gta 6 ... Shoe sales ... Anywhere doing big sales ... and Monitors'."
+  },
+  "no_suggest_series": [
+    "MotoGP"
+  ],
+  "_no_suggest_series_note": "Owner, 2026-11-05: 'Dont give me anything on motoGP in suggested.' These series stay in the digest (he still follows them) but are never offered as a suggestion.",
+  "_removed_competitions_note": "Italian Serie A was removed on the owner's instruction (2026-11-06: 'Remove Italian Serie A'). Run `python3 scripts/follow_edit.py add-competition ita.1 \"Italian Serie A\"` to put it back."
 }

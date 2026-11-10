@@ -222,12 +222,17 @@ def _pill(text: str, bg: str, fg: str) -> str:
 
 
 def _section(title: str, rows: str, empty: str) -> str:
-    """One titled block. A table rather than a list: email clients are stuck in 2003."""
+    """One titled block. A table rather than a list: email clients are stuck in 2003.
+
+    `title` is markup, not text - several callers pass &mdash; and &amp; - so it is
+    deliberately NOT escaped here. Escaping it printed "Local &amp;mdash; ..." in
+    the email.
+    """
     return f"""
       <tr><td style="padding:26px 28px 0">
         <div style="font-size:11px;font-weight:700;letter-spacing:.11em;
                     text-transform:uppercase;color:{ACCENT};
-                    border-bottom:1px solid {LINE};padding-bottom:8px">{esc(title)}</div>
+                    border-bottom:1px solid {LINE};padding-bottom:8px">{title}</div>
       </td></tr>
       <tr><td style="padding:12px 28px 0">
         {rows if rows else f'<p style="margin:0;color:{MUTED};font-size:14px">{esc(empty)}</p>'}
@@ -335,7 +340,7 @@ def render_html(sports: dict, hubby: dict, today: dt.date, days: int,
             <td style="font-size:14px;color:{INK}">{esc(prompt)}</td>
           </tr>
         </table>""")
-        checkin = _section(ck["name"], "".join(rows), "Nothing in this window.")
+        checkin = _section(esc(ck["name"]), "".join(rows), "Nothing in this window.")
 
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
