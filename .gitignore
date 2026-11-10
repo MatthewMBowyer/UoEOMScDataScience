@@ -43,3 +43,7 @@ output/
 digest.txt
 subject.txt
 digest.html
+
+# Byte-code: an artefact of running the tests, never a deliverable.
+__pycache__/
+*.pyc
