@@ -1385,10 +1385,73 @@ def test_the_standalone_news_block_is_off_by_default() -> None:
           "WHAT YOU FOLLOW" not in text, text[:200])
 
 
+def test_a_removed_series_is_not_suggested() -> None:
+    """AC-R16: removal has to mean the same thing in every section.
+
+    WRC was in `removed_series`, yet "World Rally Championship - Saudi Arabia"
+    still appeared at the top of the delivered email as "on now". The digest
+    filtered removed series and the suggestion path did not, so removal looked
+    broken exactly where the owner looks first.
+    """
+    cfg = base_config()
+    cfg["sports"] = [{"sport": "Motorsport", "enabled": True}]
+    cfg["removed_series"] = ["WRC"]
+    events = [
+        {"sport": "Motorsport", "series": "WRC",
+         "name": "World Rally Championship - Saudi Arabia",
+         "when": "2026-12-01", "end": "2026-12-04"},
+        {"sport": "Motorsport", "series": "MotoGP",
+         "name": "Portuguese Grand Prix", "when": "2026-12-20", "end": "2026-12-22"},
+    ]
+    out = FR.suggest(cfg, events, standard_fetcher(), already_shown=set())
+    names = [s["name"] for sport in out["sports"] for s in (sport.get("items") or [])]
+    check("AC-R16 a removed series is never suggested",
+          not any("Rally" in n for n in names), str(names))
+    check("AC-R16 a kept series of the same sport still is",
+          any("Portuguese" in n for n in names), str(names))
+
+
+def test_standings_have_no_duplicated_columns() -> None:
+    """AC-R17: the header and every row must cover each stat exactly once.
+
+    The HTML table hard-coded P/W/D and then emitted them again from
+    FR_HTML_STANDING_COLS, so every table read "P W D P W D L F A GD Pts" with
+    the cells shifted against their headings.
+    """
+    cols = list(FR.FR_HTML_STANDING_COLS)
+    check("AC-R17 no stat column is repeated",
+          len(cols) == len(set(cols)), str(cols))
+    check("AC-R17 the header is team, each stat, then points",
+          [FR.STANDINGS_HEAD.get(k, k) for k in cols]
+          == ["P", "W", "D", "L", "F", "A", "GD"], str(cols))
+
+    data = gather()
+    parts = FR.render_html(data, "#10161d", "#556274", "#e2e7ed", "#13567f",
+                           "#ffffff", "#e8f1f8")
+    html = parts["standings"]
+    check("AC-R17 a rendered standings header appears once per table",
+          html.count(">Team</td>") == len(
+              [s for s in (data.get("standings") or []) if s["rows"]]),
+          str(html.count(">Team</td>")))
+    # Count the header cells between "Team" and the final "Pts" in the first
+    # table: it must be exactly one per stat column, not one-and-a-bit more.
+    first = html.split(">Team</td>", 1)
+    if len(first) > 1:
+        tail = first[1].split(">Pts</td>", 1)[0]
+        # The slice runs up to the Pts heading, so it covers one cell per stat
+        # column PLUS the Pts cell itself.
+        cells = tail.count("<td")
+        check("AC-R17 the header carries one cell per stat column",
+              cells == len(cols) + 1,
+              f"{cells} header cells for {len(cols)} columns + points")
+
+
 def main() -> int:
     print("=== research layer verification ===\n")
     for fn in (
         test_follow_list_is_honoured,
+        test_a_removed_series_is_not_suggested,
+        test_standings_have_no_duplicated_columns,
         test_empty_follow_list_stays_empty,
         test_missing_follow_file_is_not_an_error,
         test_tennis_follows_the_live_top_n,

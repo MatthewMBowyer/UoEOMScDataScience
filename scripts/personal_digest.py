@@ -77,8 +77,19 @@ def collect(sports: dict, hubby: dict, today: dt.date, horizon: dt.date):
     """Upcoming sports events and special days inside the window."""
     watch = sports["broadcasters"]
 
+    # The reminders list is the first thing the owner reads, so it has to obey
+    # the same follow rules as the research layer. It did not: a switched-off
+    # sport and a deliberately removed series still appeared at the top of the
+    # email ("World Rally Championship - Saudi Arabia" sat under "on now" after
+    # WRC was removed), which made removal look broken.
+    cfg = FR.load_follow()
+    muted = FR.muted_sports(cfg)
+    removed_ser = FR.removed_series(cfg)
+
     events = []
     for e in sorted(sports["events"], key=lambda x: x["start"]):
+        if e.get("sport") in muted or FR.is_removed_series(e, removed_ser):
+            continue
         start, end = d(e["start"]), d(e["end"])
         # Include anything still running, plus anything starting in the window.
         if end < today or start > horizon:
@@ -252,8 +263,10 @@ def render_html(sports: dict, hubby: dict, today: dt.date, days: int,
     rows = []
     for start, end, e, watch in events:
         live = start <= today <= end
+        # An en dash, as a real character. The entity form was escaped by
+        # `esc()` below and reached the reader as the literal text "&ndash;".
         when = (nice(e["start"]) if e["start"] == e["end"]
-                else f'{nice(e["start"])} &ndash; {nice(e["end"])}')
+                else f'{nice(e["start"])} \u2013 {nice(e["end"])}')
         status = ("on now" if live else f'{(start - today).days}d')
         rows.append(f"""
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0"

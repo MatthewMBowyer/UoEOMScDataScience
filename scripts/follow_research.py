@@ -1470,6 +1470,8 @@ def suggest(cfg: dict, sports_events: list[dict], f: Fetcher,
                         "is nothing to suggest from")
         return out
 
+    removed_ser = removed_series(cfg)
+
     for sport in on:
         if sport in muted:  # belt and braces: muted can never suggest
             continue
@@ -1541,6 +1543,11 @@ def suggest(cfg: dict, sports_events: list[dict], f: Fetcher,
                 # A series he asked not to be suggested is filtered here, so it
                 # stays in the digest while never appearing as a recommendation.
                 if (e.get("series") or "").strip().lower() in no_suggest:
+                    continue
+                # A series he REMOVED must not be offered either - the same
+                # predicate the digest uses, so removal means the same thing
+                # everywhere.
+                if is_removed_series(e, removed_ser):
                     continue
                 name = e.get("name", "")
                 if not name or name.lower() in removed:
@@ -3151,12 +3158,8 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
                 + (f'<span style="font-size:11px;color:{muted}"> &middot; '
                    f'{esc(tag)}</span>' if tag else "")
                 + '</td>'
-                f'<td style="font-size:12px;color:{muted};padding:1px 6px;text-align:right">'
-                f'{esc(str(q.get("GP", "")))}</td>'
-                f'<td style="font-size:12px;color:{muted};padding:1px 6px;text-align:right">'
-                f'{esc(str(q.get("W", "")))}</td>'
-                f'<td style="font-size:12px;color:{muted};padding:1px 6px;text-align:right">'
-                f'{esc(str(q.get("D", "")))}</td>'
+                # GP/W/D were emitted here as well as through the loop below,
+                # which duplicated the first three stat cells on every row.
                 + "".join(
                     f'<td style="font-size:12px;color:{muted};padding:1px 6px;'
                     f'text-align:right">{esc(str(q.get(k, "")))}</td>'
@@ -3169,9 +3172,9 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
             f'style="border-collapse:collapse;margin:0 0 10px">'
             f'<tr><td></td>'
             f'<td style="font-size:11px;color:{muted};padding:0 8px 2px 0">Team</td>'
-            f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;text-align:right">P</td>'
-            f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;text-align:right">W</td>'
-            f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;text-align:right">D</td>'
+            # The first three stat columns used to be hard-coded here AND come
+            # round again through FR_HTML_STANDING_COLS below, so every table
+            # printed "P W D P W D L ..." with the cells misaligned.
             + "".join(
                 f'<td style="font-size:11px;color:{muted};padding:0 6px 2px;'
                 f'text-align:right">'

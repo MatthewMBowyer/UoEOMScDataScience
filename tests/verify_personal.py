@@ -226,10 +226,14 @@ def test_digest_with_frozen_clock() -> None:
     check("AC-P7 5 Oct digest omits Petit Le Mans (already run)", "Petit Le Mans" not in out)
     check("AC-P7 5 Oct digest flags no special days", "Nothing in this window" in out)
 
-    # 24 Oct 2026: MotoGP Australia and Talladega on the 25th.
+    # 24 Oct 2026: MotoGP Australia and Talladega on the 25th. Talladega is a
+    # NASCAR round and NASCAR is in `removed_series`, so the reminder list must
+    # NOT carry it: asserting its presence was pinning the bug that let a
+    # removed series sit at the top of the email.
     out = run_digest("2026-10-24")
     check("AC-P7 24 Oct digest includes the MotoGP Australian GP", "MotoGP Australian Grand Prix" in out)
-    check("AC-P7 24 Oct digest includes NASCAR at Talladega", "NASCAR at Talladega" in out)
+    check("AC-R16 24 Oct digest omits the removed NASCAR round",
+          "NASCAR at Talladega" not in out, "removed series leaked")
 
     # 27 Oct 2026: the weightlifting worlds start - a multi-day event, so it
     # must appear on its start date.
@@ -300,6 +304,62 @@ def test_html_email_is_a_real_alternative() -> None:
     check("AC-P7 it carries a text/html part", "text/html" in types)
     check("AC-P7 HTML is the LAST alternative, so clients prefer it",
           types[-1] == "text/html")
+
+
+def test_reminders_obey_the_follow_list() -> None:
+    """AC-P31: the top of the email must honour removal, not just the research.
+
+    A delivered digest showed "World Rally Championship - Saudi Arabia" under
+    "on now" although WRC is in `removed_series`, and carried a switched-off
+    sport's events too: `collect()` never consulted follow.json at all. Removing
+    something and still being reminded of it is the worst kind of bug here,
+    because it makes the removal button look broken.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "scripts"))
+    import personal_digest as PD
+
+    sports = dict(PD.load("sports.json"))
+    cfg = PD.FR.load_follow()
+    muted = PD.FR.muted_sports(cfg)
+    removed = PD.FR.removed_series(cfg)
+    today = dt.date(2026, 10, 5)
+    events, _, _ = PD.collect(sports, PD.load("good_hubby.json"),
+                              today, today + dt.timedelta(days=10))
+    check("AC-P31 the fixture set actually exercises exclusion",
+          bool(muted or removed), f"muted={muted} removed={removed}")
+    for _, _, e, _ in events:
+        check(f"AC-P31 {e['name']} is not a removed series",
+              not PD.FR.is_removed_series(e, removed), e.get("series", ""))
+        check(f"AC-P31 {e['name']} is not a switched-off sport",
+              e.get("sport") not in muted, e.get("sport", ""))
+
+
+def test_an_event_date_range_renders_a_real_dash() -> None:
+    """AC-P32: a date range must show an en dash, not the text "&ndash;".
+
+    The range was built with the HTML entity and then passed through `esc()`,
+    which turned the ampersand into `&amp;`, so two reminder rows per email read
+    "11 Nov &ndash; 14 Nov" as literal characters.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "scripts"))
+    import personal_digest as PD
+
+    sports = dict(PD.load("sports.json"))
+    cfg = PD.FR.load_follow()
+    muted = PD.FR.muted_sports(cfg)
+    removed = PD.FR.removed_series(cfg)
+    # A kept event, not index 0: the first entry is a removed series and the
+    # reminder list now correctly drops it.
+    kept = next(e for e in sports["events"]
+                if e.get("sport") not in muted and not PD.FR.is_removed_series(e, removed))
+    sports["events"] = [dict(kept, start="2026-10-06", end="2026-10-09")]
+    out = PD.render_html(sports, PD.load("good_hubby.json"),
+                         dt.date(2026, 10, 5), 10)
+    check("AC-P32 the escaped entity never reaches the reader",
+          "&amp;ndash;" not in out)
+    check("AC-P32 the range carries a real en dash", "\u2013" in out)
+    check("AC-P32 both ends of the range are present",
+          "6 Oct" in out and "9 Oct" in out)
 
 
 def test_html_email_escapes_owner_data() -> None:
@@ -1223,6 +1283,8 @@ def main() -> int:
         test_checkin_reminders,
         test_digest_with_frozen_clock,
         test_html_email_is_a_real_alternative,
+        test_reminders_obey_the_follow_list,
+        test_an_event_date_range_renders_a_real_dash,
         test_html_email_escapes_owner_data,
         test_sender_attaches_the_html_alternative,
         test_ics_files,
