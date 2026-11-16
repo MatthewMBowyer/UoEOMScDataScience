@@ -26,6 +26,9 @@ Usage:
     python3 scripts/follow_edit.py remove-competition uefa.champions
     python3 scripts/follow_edit.py --list-teams uefa.champions
     python3 scripts/follow_edit.py --list-sports
+    python3 scripts/follow_edit.py add-event Motorsport "Trackmania Nations Forever" 2026-11-20
+    python3 scripts/follow_edit.py remove-event "Trackmania Nations Forever"
+    python3 scripts/follow_edit.py --list-events
     python3 scripts/follow_edit.py add-sport "Padel"
     python3 scripts/follow_edit.py remove-sport "Weightlifting"
     python3 scripts/follow_edit.py --list-competitions
@@ -35,8 +38,10 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +50,7 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 import follow_research as FR  # noqa: E402
 
 PATH = os.path.join(ROOT, "personal", "data", "follow.json")
+EVENTS_PATH = os.path.join(ROOT, "personal", "data", "sports.json")
 
 
 def read() -> dict:
@@ -97,6 +103,86 @@ def remove_sport(cfg: dict, sport: str) -> str:
     row["enabled"] = False
     return (f"Removed '{row['sport']}' - it is switched off and will not appear in "
             f"events, suggestions or local matches. Add it back to undo.")
+
+
+def _slug(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", (text or "").lower()).strip("-")
+
+
+def read_events() -> dict:
+    if not os.path.exists(EVENTS_PATH):
+        return {"events": []}
+    with open(EVENTS_PATH, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def write_events(data: dict) -> None:
+    with open(EVENTS_PATH, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+
+
+def add_event(sport: str, name: str, start: str, end: str = "",
+              series: str = "", url: str = "") -> str:
+    """Add one event to the owner's own event list (sports.json).
+
+    The sport switch alone only says "research this sport". An event the owner
+    wants on the calendar - a Trackmania Nations Forever cup, a local race - has
+    no feed behind it, so it has to be a row in his own list. Without this there
+    was no way to add one short of hand-editing JSON.
+    """
+    if not (sport and name and start):
+        return "An event needs a sport, a name and a start date (YYYY-MM-DD)."
+    try:
+        dt.date.fromisoformat(start)
+        if end:
+            dt.date.fromisoformat(end)
+    except ValueError:
+        return f"'{start}' is not a date. Use YYYY-MM-DD, e.g. 2026-12-01."
+    if end and end < start:
+        return f"The end date {end} is before the start date {start}."
+    data = read_events()
+    events = data.setdefault("events", [])
+    key = _slug(f"{name}-{start[:4]}")
+    if any(e.get("id") == key for e in events):
+        return f"'{name}' ({start[:4]}) is already in your event list."
+    events.append({
+        "id": key,
+        "name": name,
+        "series": series or sport,
+        "sport": sport,
+        "start": start,
+        "end": end or start,
+        "broadcaster": "",
+        "supersport_section": "",
+        "official": url,
+        "channel": None,
+        "description": "",
+    })
+    write_events(data)
+    return f"Added '{name}' ({start}) to {sport}. It will appear in your reminders."
+
+
+def remove_event(name: str) -> str:
+    data = read_events()
+    events = data.get("events") or []
+    low = (name or "").strip().lower()
+    keep = [e for e in events if (e.get("name") or "").strip().lower() != low]
+    if len(keep) == len(events):
+        return f"No event called '{name}' in your list."
+    data["events"] = keep
+    write_events(data)
+    return f"Removed '{name}'. It will no longer appear in your reminders."
+
+
+def list_events() -> str:
+    events = read_events().get("events") or []
+    if not events:
+        return "Your event list is empty. Add one with: add-event Sport \"Name\" 2026-12-01"
+    rows = sorted(events, key=lambda e: (e.get("start") or "", e.get("name") or ""))
+    return "\n".join(
+        f"  {e.get('start','?'):<10} {e.get('name','?')}  [{e.get('sport','?')}]"
+        for e in rows)
 
 
 def list_sports(cfg: dict) -> str:
@@ -286,6 +372,8 @@ def main() -> int:
     ap.add_argument("--list-competitions", action="store_true", help="competition ids")
     ap.add_argument("--list-sports", action="store_true",
                     help="the sports you follow, and whether each is on")
+    ap.add_argument("--list-events", action="store_true",
+                    help="the events in your own list")
     ap.add_argument("--list-teams", metavar="LEAGUE", help="teams playing in a competition now")
     ap.add_argument("--tennis", nargs=2, metavar=("KEY", "VALUE"),
                     help="set a tennis option, e.g. --tennis top_n 10")
@@ -295,6 +383,11 @@ def main() -> int:
     p = sub.add_parser("remove-news"); p.add_argument("label")
     p = sub.add_parser("add-team"); p.add_argument("league"); p.add_argument("team")
     p = sub.add_parser("remove-team"); p.add_argument("league"); p.add_argument("team")
+    p = sub.add_parser("add-event")
+    p.add_argument("sport"); p.add_argument("name"); p.add_argument("start")
+    p.add_argument("--end", default=""); p.add_argument("--series", default="")
+    p.add_argument("--url", default="")
+    p = sub.add_parser("remove-event"); p.add_argument("name")
     p = sub.add_parser("add-sport"); p.add_argument("sport")
     p = sub.add_parser("remove-sport"); p.add_argument("sport")
     p = sub.add_parser("add-competition"); p.add_argument("league")
@@ -307,6 +400,9 @@ def main() -> int:
         list_competitions(); return 0
     if args.list_sports:
         print(list_sports(cfg))
+        return 0
+    if args.list_events:
+        print(list_events())
         return 0
     if args.list_teams:
         return list_teams(args.list_teams)
@@ -328,6 +424,13 @@ def main() -> int:
 
     if args.cmd is None:
         show(cfg)
+        return 0
+
+    if args.cmd in ("add-event", "remove-event"):
+        msg = (add_event(args.sport, args.name, args.start, args.end,
+                         args.series, args.url)
+               if args.cmd == "add-event" else remove_event(args.name))
+        print(msg)
         return 0
 
     message = {

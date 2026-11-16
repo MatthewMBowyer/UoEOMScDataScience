@@ -793,7 +793,10 @@ def build_sports(data: dict, today: dt.date | None = None,
         rows.append('<ul class="events">')
         for ev in evs:
             ch = ev.get("channel")
-            watch = b[ev["broadcaster"]]["name"]
+            # A hand-added event carries no broadcaster key; indexing straight
+            # into `b` raised KeyError('') and took the whole page build down.
+            watch = (b.get(ev.get("broadcaster") or "") or {}).get(
+                "name", "no channel listed")
             if ch:
                 watch += f' ch {ch}'
             desc = html.escape(ev.get("description", ""))
@@ -1271,15 +1274,18 @@ def sports_ics(data: dict, today: dt.date | None = None) -> str:
     b = data["broadcasters"]
     evs = []
     for e in kept:
-        watch = b[e["broadcaster"]]["name"]
+        watch = (b.get(e.get("broadcaster") or "") or {}).get(
+            "name", "no channel listed")
         if e.get("channel"):
             watch += f" ch {e['channel']}"
+        guide = (b.get(e.get("broadcaster") or "") or {}).get("guide", "")
         evs.append({
             "uid": f"{e['id']}@eportfolio.personal",
             "start": e["start"], "end": e["end"],
             "summary": f"{e['name']} ({e['sport']})",
-            "description": f"{e['series']}. Watch: {watch}. Guide: {b[e['broadcaster']]['guide']}",
-            "url": b[e["broadcaster"]]["guide"],
+            "description": (f"{e.get('series','')}. Watch: {watch}. "
+                            f"Guide: {guide}"),
+            "url": guide,
         })
     return ics(evs, "Sports")
 

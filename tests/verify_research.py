@@ -758,6 +758,109 @@ def test_sports_can_be_added_and_removed() -> None:
           "Cricket" in FR.enabled_sports(cfg))
 
 
+def test_an_event_can_be_added_and_removed_by_the_owner() -> None:
+    """Item 1 + the owner's own example: "Trackmania nations forever should be here".
+
+    Adding a SPORT only switches research on. An event no feed publishes - the
+    owner's own words - had no way in at all short of hand-editing JSON, which
+    is exactly what he asked not to have to do.
+    """
+    import follow_edit as FE
+    import tempfile, os, json as _json
+    tmp = tempfile.mkdtemp()
+    old = FE.EVENTS_PATH
+    FE.EVENTS_PATH = os.path.join(tmp, "sports.json")
+    try:
+        with open(FE.EVENTS_PATH, "w", encoding="utf-8") as fh:
+            _json.dump({"broadcasters": {}, "events": []}, fh)
+
+        msg = FE.add_event("Motorsport", "Trackmania Nations Forever", "2026-11-20")
+        check("AC-R31 an event can be added", "Trackmania" in msg, msg)
+        data = _json.load(open(FE.EVENTS_PATH, encoding="utf-8"))
+        check("AC-R31 the event is really in the file",
+              [e["name"] for e in data["events"]] == ["Trackmania Nations Forever"],
+              str([e["name"] for e in data["events"]]))
+        check("AC-R31 the event keeps its sport and date",
+              data["events"][0]["sport"] == "Motorsport"
+              and data["events"][0]["start"] == "2026-11-20")
+        check("AC-R31 a one-day event ends when it starts",
+              data["events"][0]["end"] == "2026-11-20")
+
+        again = FE.add_event("Motorsport", "Trackmania Nations Forever", "2026-11-20")
+        check("AC-R31 adding the same event twice is refused, not duplicated",
+              "already" in again.lower()
+              and len(_json.load(open(FE.EVENTS_PATH, encoding="utf-8"))["events"]) == 1,
+              again)
+
+        bad = FE.add_event("Motorsport", "Nonsense", "next tuesday")
+        check("AC-R31 a date that is not a date is refused", "YYYY-MM-DD" in bad, bad)
+        check("AC-R31 nothing was written for the refused event",
+              len(_json.load(open(FE.EVENTS_PATH, encoding="utf-8"))["events"]) == 1)
+
+        rev = FE.add_event("Motorsport", "Backwards", "2026-12-05", "2026-12-01")
+        check("AC-R31 an end before the start is refused", "before" in rev.lower(), rev)
+
+        msg = FE.remove_event("Trackmania Nations Forever")
+        check("AC-R31 an event can be removed", "Removed" in msg, msg)
+        check("AC-R31 the removal really empties the list",
+              _json.load(open(FE.EVENTS_PATH, encoding="utf-8"))["events"] == [])
+        check("AC-R31 removing an event that is not there says so",
+              "No event" in FE.remove_event("Nope"))
+    finally:
+        FE.EVENTS_PATH = old
+
+
+def test_a_hand_added_event_does_not_break_the_digest() -> None:
+    """The owner's own event has no broadcaster row.
+
+    Indexing `broadcasters[""]` raised KeyError('') and took the WHOLE digest
+    down, so one hand-added event would have stopped the email entirely.
+    """
+    import personal_digest as PD
+    sports = {"broadcasters": {"supersport": {"name": "SuperSport (DStv)",
+                                              "guide": "https://x"}},
+              "events": [{"id": "tm", "name": "Trackmania Nations Forever",
+                          "series": "Trackmania", "sport": "Motorsport",
+                          "start": "2026-11-20", "end": "2026-11-20",
+                          "broadcaster": "", "channel": None,
+                          "supersport_section": ""}]}
+    hubby = {"fixed_holidays": [], "moving_holidays": [], "birthdays": [],
+             "milestones": [], "timezone_label": "SAST"}
+    today = dt.date(2026, 11, 16)
+    try:
+        events, _days, _ms = PD.collect(sports, hubby, today, today + dt.timedelta(days=10))
+    except KeyError as exc:
+        check("AC-R32 an event with no broadcaster does not crash collect", False, repr(exc))
+        return
+    check("AC-R32 an event with no broadcaster does not crash collect", len(events) == 1)
+    check("AC-R32 the missing channel is stated, not blank",
+          "no channel" in events[0][3].lower(), events[0][3])
+
+
+def test_multi_word_stages_are_folded_and_badges_do_not_collide() -> None:
+    """Two defects the owner could see in the email he pasted.
+
+    "still in - group Stage" carried a stray capital, and the HTML put the IN
+    badge straight against the rank so it read "IN1. Alexander Zverev".
+    """
+    check("AC-R33 a two-word stage is folded", FR._lower_round("Group Stage") == "group stage",
+          FR._lower_round("Group Stage"))
+    check("AC-R33 a plain round still folds", FR._lower_round("Round 2") == "round 2")
+    check("AC-R33 'Round of 16' folds only its first word",
+          FR._lower_round("Round of 16") == "round of 16",
+          FR._lower_round("Round of 16"))
+    check("AC-R33 an acronym is left alone", FR._lower_round("QF") == "QF")
+    check("AC-R33 an already-lower stage is untouched",
+          FR._lower_round("group stage") == "group stage")
+    # The badge is rendered by the tennis block, so a real gathered payload is
+    # used rather than a hand-built one that drifts from the real shape.
+    blocks = FR.render_html(gather(), "#000", "#666", "#eee", "#06c", "#fff", "#eef")
+    tennis = blocks["tennis"]
+    check("AC-R33 the badge is separated from the rank", "IN</span>1." not in tennis)
+    check("AC-R33 a space really follows the badge",
+          "&nbsp;" in tennis or "</span> 1." in tennis, tennis[:200])
+
+
 def test_a_removed_sport_hides_its_live_data_too() -> None:
     """Item 1: "removing a sport hides it everywhere" has to be literally true.
 
@@ -1477,6 +1580,9 @@ def main() -> int:
         test_shipped_follow_file_is_valid,
         test_workflow_supports_the_weekly_run,
         test_sports_can_be_added_and_removed,
+        test_an_event_can_be_added_and_removed_by_the_owner,
+        test_multi_word_stages_are_folded_and_badges_do_not_collide,
+        test_a_hand_added_event_does_not_break_the_digest,
         test_a_removed_sport_hides_its_live_data_too,
         test_the_by_sport_block_is_chronological,
         test_suggestions_are_never_in_the_past_or_already_shown,
