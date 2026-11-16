@@ -1402,6 +1402,45 @@ SPORT_BRIEF_QUERIES = {
 }
 
 
+# Words that name a DIFFERENT sport. A search for one sport returns headlines
+# that merely mention another ("Judo. LIVE results..." sat under Weightlifting
+# because the page carried the word), and printing that under the wrong heading
+# reads as if the digest had researched the wrong thing.
+OTHER_SPORT_WORDS = {
+    "judo", "karate", "taekwondo", "boxing", "wrestling", "fencing",
+    "swimming", "athletics", "marathon", "cricket", "rugby", "tennis",
+    "football", "soccer", "golf", "darts", "snooker", "cycling", "rowing",
+    "sailing", "triathlon", "netball", "hockey", "badminton", "squash",
+    "padel", "basketball", "baseball", "nfl", "nba", "formula 1", "motogp",
+    "weightlifting", "powerlifting", "gymnastics", "equestrian", "archery",
+}
+
+
+# A sport's own sub-disciplines and series are NOT other sports. Without this,
+# a MotoGP headline filed under Motorsport was dropped for naming "motogp".
+RELATED_SPORT_WORDS = {
+    "Motorsport": {"motogp", "formula 1", "f1", "nascar", "wrc", "rally",
+                   "supercars", "indycar", "le mans", "karting"},
+    "F1": {"motorsport", "formula 1"},
+    "Rugby": {"sevens", "six nations", "urc"},
+    "Tennis": {"atp", "wta", "davis cup"},
+    "Cycling": {"tour de france", "giro", "vuelta", "uci"},
+    "Gymnastics": {"artistic", "rhythmic", "trampoline"},
+    "Weightlifting": {"powerlifting", "iwf"},
+}
+
+
+def _off_sport(title: str, sport: str) -> bool:
+    """True when a headline is plainly about a different sport than `sport`."""
+    low = (title or "").lower()
+    if sport.lower() in low:
+        return False
+    if any(w in low for w in RELATED_SPORT_WORDS.get(sport, ())):
+        return False
+    words = set(re.findall(r"[a-z0-9]+", low))
+    return any(w in words or w in low for w in OTHER_SPORT_WORDS)
+
+
 def sport_briefs(cfg: dict, f: Fetcher, s: dict, muted: set[str]) -> dict:
     """A short brief for EVERY sport that is switched on, not only topics.
 
@@ -1429,6 +1468,8 @@ def sport_briefs(cfg: dict, f: Fetcher, s: dict, muted: set[str]) -> dict:
             for story in news_for(query, f, s.get("brief_max_age_days", 5), per):
                 key = (story["title"] or "").lower()
                 if not key or key in seen:
+                    continue
+                if _off_sport(story["title"], sport):
                     continue
                 seen.add(key)
                 stories.append({**story, "query": query})

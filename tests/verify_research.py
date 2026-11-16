@@ -861,6 +861,28 @@ def test_multi_word_stages_are_folded_and_badges_do_not_collide() -> None:
           "&nbsp;" in tennis or "</span> 1." in tennis, tennis[:200])
 
 
+def test_a_story_about_another_sport_is_not_filed_under_this_one() -> None:
+    """Item 2: "Why do all sports not show as well as UEFA and Tennis?"
+
+    The Weightlifting brief carried "Judo. LIVE results of the Zagreb Grand
+    Prix", which reads as if the digest had researched the wrong sport. A
+    headline that names a different sport is now left out, while a sport's own
+    sub-disciplines (MotoGP under Motorsport) are still kept.
+    """
+    check("AC-R34 a Judo story is not Weightlifting",
+          FR._off_sport("Judo. LIVE results of the Zagreb Grand Prix", "Weightlifting"))
+    check("AC-R34 a MotoGP story IS Motorsport",
+          not FR._off_sport("MotoGP Portuguese Grand Prix preview", "Motorsport"))
+    check("AC-R34 IWF results are Weightlifting",
+          not FR._off_sport("IWF World Championships results", "Weightlifting"))
+    check("AC-R34 the sport's own name always keeps a story",
+          not FR._off_sport("Rugby union title race", "Rugby"))
+    check("AC-R34 an unrelated headline is dropped",
+          FR._off_sport("Cricket test match abandoned", "Weightlifting"))
+    check("AC-R34 a neutral headline is kept",
+          not FR._off_sport("Champions crowned after final day", "Weightlifting"))
+
+
 def test_a_removed_sport_hides_its_live_data_too() -> None:
     """Item 1: "removing a sport hides it everywhere" has to be literally true.
 
@@ -1582,6 +1604,7 @@ def main() -> int:
         test_sports_can_be_added_and_removed,
         test_an_event_can_be_added_and_removed_by_the_owner,
         test_multi_word_stages_are_folded_and_badges_do_not_collide,
+        test_a_story_about_another_sport_is_not_filed_under_this_one,
         test_a_hand_added_event_does_not_break_the_digest,
         test_a_removed_sport_hides_its_live_data_too,
         test_the_by_sport_block_is_chronological,
