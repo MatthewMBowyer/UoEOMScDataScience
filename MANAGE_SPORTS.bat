@@ -43,17 +43,20 @@ echo.
 echo   SPORTS - the easy switch
 echo   1  ADD a sport              (e.g. Cricket, Rugby, Darts)
 echo   2  REMOVE a sport            (hides it everywhere, reversible)
+echo   3  ADD one event            (e.g. Trackmania Nations Forever)
+echo   4  REMOVE one event
+echo   5  SHOW my event list
 echo.
 echo   WHAT TO RESEARCH
-echo   3  Add news to follow        (e.g. Formula 1, Springboks)
-echo   4  Remove news
-echo   5  Add a team to a competition
-echo   6  Remove a team
-echo   7  Add a competition        (see the ids first)
-echo   8  Remove a competition
-echo   9  Change the tennis top N
-echo  10  Show teams playing in a competition right now
-echo  11  Show the competition ids
+echo   6  Add news to follow        (e.g. Formula 1, Springboks)
+echo   7  Remove news
+echo   8  Add a team to a competition
+echo   9  Remove a team
+echo  10  Add a competition        (see the ids first)
+echo  11  Remove a competition
+echo  12  Change the tennis top N
+echo  13  Show teams playing in a competition right now
+echo  14  Show the competition ids
 echo   0  Exit
 echo ------------------------------------------------------------
 echo   What you follow right now:
@@ -65,15 +68,18 @@ set /p "CHOICE=Type a number and press Enter: "
 
 if "!CHOICE!"=="1" goto add_sport
 if "!CHOICE!"=="2" goto remove_sport
-if "!CHOICE!"=="3" goto add_news
-if "!CHOICE!"=="4" goto remove_news
-if "!CHOICE!"=="5" goto add_team
-if "!CHOICE!"=="6" goto remove_team
-if "!CHOICE!"=="7" goto add_comp
-if "!CHOICE!"=="8" goto remove_comp
-if "!CHOICE!"=="9" goto top_n
-if "!CHOICE!"=="10" goto list_teams
-if "!CHOICE!"=="11" goto list_comps
+if "!CHOICE!"=="3" goto add_event
+if "!CHOICE!"=="4" goto remove_event
+if "!CHOICE!"=="5" goto list_events
+if "!CHOICE!"=="6" goto add_news
+if "!CHOICE!"=="7" goto remove_news
+if "!CHOICE!"=="8" goto add_team
+if "!CHOICE!"=="9" goto remove_team
+if "!CHOICE!"=="10" goto add_comp
+if "!CHOICE!"=="11" goto remove_comp
+if "!CHOICE!"=="12" goto top_n
+if "!CHOICE!"=="13" goto list_teams
+if "!CHOICE!"=="14" goto list_comps
 if "!CHOICE!"=="0" goto done
 echo.
 echo Please type one of the numbers shown.
@@ -198,6 +204,46 @@ goto pause_menu
 :list_comps
 echo.
 %PY% scripts\follow_edit.py --list-competitions
+goto pause_menu
+
+:add_event
+echo.
+echo Add ONE event to your own list - for anything no feed publishes,
+echo such as Trackmania Nations Forever or a local race.
+echo.
+set "EV_SPORT="
+set /p "EV_SPORT=Which sport is it under? (e.g. Motorsport) "
+if "!EV_SPORT!"=="" goto menu
+set "EV_NAME="
+set /p "EV_NAME=Event name: "
+if "!EV_NAME!"=="" goto menu
+set "EV_START="
+set /p "EV_START=Start date (YYYY-MM-DD): "
+if "!EV_START!"=="" goto menu
+set "EV_END="
+set /p "EV_END=End date (YYYY-MM-DD, or Enter if one day): "
+echo.
+if "!EV_END!"=="" (
+    %PY% scripts\follow_edit.py add-event "!EV_SPORT!" "!EV_NAME!" "!EV_START!"
+) else (
+    %PY% scripts\follow_edit.py add-event "!EV_SPORT!" "!EV_NAME!" "!EV_START!" --end "!EV_END!"
+)
+goto pause_menu
+
+:remove_event
+echo.
+%PY% scripts\follow_edit.py --list-events
+echo.
+set "EV_NAME="
+set /p "EV_NAME=Which event do you want to remove? "
+if "!EV_NAME!"=="" goto menu
+echo.
+%PY% scripts\follow_edit.py remove-event "!EV_NAME!"
+goto pause_menu
+
+:list_events
+echo.
+%PY% scripts\follow_edit.py --list-events
 goto pause_menu
 
 :pause_menu

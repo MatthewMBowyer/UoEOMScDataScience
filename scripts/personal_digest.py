@@ -94,7 +94,11 @@ def collect(sports: dict, hubby: dict, today: dt.date, horizon: dt.date):
         # Include anything still running, plus anything starting in the window.
         if end < today or start > horizon:
             continue
-        events.append((start, end, e, watch[e["broadcaster"]]["name"]))
+        # An event the owner added by hand has no broadcaster row, and indexing
+        # it straight into `watch` raised KeyError('') - one unlabelled event
+        # took the whole digest down. A missing channel is not a failure.
+        chan = watch.get(e.get("broadcaster") or "") or {}
+        events.append((start, end, e, chan.get("name", "no channel listed")))
 
     days = []
     for h in hubby["fixed_holidays"]:
@@ -156,7 +160,10 @@ def render(sports: dict, hubby: dict, today: dt.date, days: int,
             when = nice(e["start"]) if e["start"] == e["end"] else f"{nice(e['start'])} - {nice(e['end'])}"
             status = "on now" if start <= today <= end else f"in {(start - today).days}d"
             out.append(f"  {when:<28} {e['name']}  [{status}]")
-            out.append(f"  {'':<28} {e['series']} | watch: {watch} | {e['supersport_section']}")
+            tail = " | ".join(x for x in (e.get("series") or "",
+                                          f"watch: {watch}",
+                                          e.get("supersport_section") or "") if x)
+            out.append(f"  {'':<28} {tail}")
         out.append("")
         out.append("  Channel numbers are not shown: none could be verified. Use the TV guide:")
         out.append(f"  {sports['broadcasters']['supersport']['guide']}")

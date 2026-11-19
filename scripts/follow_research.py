@@ -1241,9 +1241,16 @@ def _lower_round(round_name: str) -> str:
     rnd = (round_name or "").strip()
     if not rnd:
         return rnd
-    if rnd[:1].isupper() and rnd[1:2].islower():
-        return rnd[0].lower() + rnd[1:]
-    return rnd
+    head, _, tail = rnd.partition(" ")
+    if not (head[:1].isupper() and head[1:].islower()):
+        return rnd
+    # A multi-word stage name ("Group Stage", "Semi Final") is a proper noun in
+    # ESPN's payload, so folding only the first letter left "group Stage". Fold
+    # every word, but leave acronyms (QF, SF, R16) and "of" untouched.
+    words = [head.lower()] + [
+        w if (w.isupper() or w.lower() in ("of", "the")) else w.lower()
+        for w in tail.split() if w]
+    return " ".join(words)
 
 
 def _out_phrase(round_name: str, beaten_by: str) -> str:
@@ -1395,6 +1402,45 @@ SPORT_BRIEF_QUERIES = {
 }
 
 
+# Words that name a DIFFERENT sport. A search for one sport returns headlines
+# that merely mention another ("Judo. LIVE results..." sat under Weightlifting
+# because the page carried the word), and printing that under the wrong heading
+# reads as if the digest had researched the wrong thing.
+OTHER_SPORT_WORDS = {
+    "judo", "karate", "taekwondo", "boxing", "wrestling", "fencing",
+    "swimming", "athletics", "marathon", "cricket", "rugby", "tennis",
+    "football", "soccer", "golf", "darts", "snooker", "cycling", "rowing",
+    "sailing", "triathlon", "netball", "hockey", "badminton", "squash",
+    "padel", "basketball", "baseball", "nfl", "nba", "formula 1", "motogp",
+    "weightlifting", "powerlifting", "gymnastics", "equestrian", "archery",
+}
+
+
+# A sport's own sub-disciplines and series are NOT other sports. Without this,
+# a MotoGP headline filed under Motorsport was dropped for naming "motogp".
+RELATED_SPORT_WORDS = {
+    "Motorsport": {"motogp", "formula 1", "f1", "nascar", "wrc", "rally",
+                   "supercars", "indycar", "le mans", "karting"},
+    "F1": {"motorsport", "formula 1"},
+    "Rugby": {"sevens", "six nations", "urc"},
+    "Tennis": {"atp", "wta", "davis cup"},
+    "Cycling": {"tour de france", "giro", "vuelta", "uci"},
+    "Gymnastics": {"artistic", "rhythmic", "trampoline"},
+    "Weightlifting": {"powerlifting", "iwf"},
+}
+
+
+def _off_sport(title: str, sport: str) -> bool:
+    """True when a headline is plainly about a different sport than `sport`."""
+    low = (title or "").lower()
+    if sport.lower() in low:
+        return False
+    if any(w in low for w in RELATED_SPORT_WORDS.get(sport, ())):
+        return False
+    words = set(re.findall(r"[a-z0-9]+", low))
+    return any(w in words or w in low for w in OTHER_SPORT_WORDS)
+
+
 def sport_briefs(cfg: dict, f: Fetcher, s: dict, muted: set[str]) -> dict:
     """A short brief for EVERY sport that is switched on, not only topics.
 
@@ -1411,12 +1457,19 @@ def sport_briefs(cfg: dict, f: Fetcher, s: dict, muted: set[str]) -> dict:
     for sport in enabled_sports(cfg):
         if sport in muted:
             continue
-        terms = SPORT_BRIEF_QUERIES.get(sport) or [sport]
+        # A sport the owner adds himself has no entry in the map above, and a
+        # bare name is a poor search: "Trackmania" alone returned nothing while
+        # "Trackmania news" returned real stories. The generic forms are tried
+        # after the sport's own terms, never instead of them.
+        terms = SPORT_BRIEF_QUERIES.get(sport) or [
+            f"{sport} news", sport, f"{sport} results", f"{sport} championship"]
         stories, seen = [], set()
         for query in terms:
             for story in news_for(query, f, s.get("brief_max_age_days", 5), per):
                 key = (story["title"] or "").lower()
                 if not key or key in seen:
+                    continue
+                if _off_sport(story["title"], sport):
                     continue
                 seen.add(key)
                 stories.append({**story, "query": query})
@@ -2804,7 +2857,11 @@ def render_text(data: dict, today: dt.date | None = None) -> str:
                     out.append(f"  {b['label']}:")
                     for m in b["rows"]:
                         tag = "  [in progress]" if m["live"] else ""
-                        rnd = f" [{m['round']}]" if m.get("round") else ""
+                        # Same fold as the standings block: one email was
+                        # showing "group stage" on one line and "[Group Stage]"
+                        # on the next.
+                        rnd = (f" [{_lower_round(m['round'])}]"
+                               if m.get("round") else "")
                         out.append(f"    {m['when']:<18} {m['line']}{rnd}{tag}")
             out.append("")
 
@@ -3229,7 +3286,7 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
                             f'<div style="font-size:12px;color:{ink};margin:0 0 3px">'
                             f'<span style="display:inline-block;min-width:26px;'
                             f'font-size:10px;font-weight:700;color:{colour}">'
-                            f'{esc(r["mark"])}</span>'
+                            f'{esc(r["mark"])}</span>&nbsp;'
                             f'{esc(str(r["position"]))}. '
                             f'<span style="font-weight:700">{esc(r["name"])}</span>'
                             f'<span style="color:{muted}"> &ndash; </span>'
@@ -3254,11 +3311,16 @@ def render_html(data: dict, ink: str, muted: str, line: str, accent: str,
                                  f'{esc(m["score"])}</span>' if m["score"] else "")
                         live = ('<span style="color:{muted};font-size:11px"> '
                                 '[in progress]</span>') if m["live"] else ""
+                        # The text version prints the round; the HTML dropped it,
+                        # so the two renderings disagreed.
+                        rnd = (f' <span style="color:{muted};font-size:11px">'
+                               f'[{esc(_lower_round(m["round"]))}]</span>'
+                               if m.get("round") else "")
                         tennis_rows.append(
                             f'<div style="font-size:13px;color:{ink};margin:0 0 6px">'
                             f'<span style="color:{muted};font-size:12px">'
                             f'{esc(m["when"])}</span> &nbsp;'
-                            f'{"".join(parts)}{score}{live}</div>')
+                            f'{"".join(parts)}{score}{rnd}{live}</div>')
             tennis_rows.append('<div style="height:6px"></div>')
 
     sug = data.get("suggestions") or {}
