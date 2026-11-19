@@ -589,7 +589,7 @@ def _tennis_html(tennis: dict) -> str:
                     reached = (f' <span class="small muted">({_esc(r["reached"])})</span>'
                                if r.get("reached") and r["state"] == "out" else "")
                     rows.append(
-                        f'<li><span class="mark {cls}">{_esc(r["mark"])}</span>'
+                        f'<li><span class="mark {cls}">{_esc(r["mark"])}</span> '
                         f'{_esc(r["position"])}. {_esc(r["name"])} '
                         f'<span class="sum">&ndash; {_esc(r["detail"])}{reached}'
                         f'</span></li>')
