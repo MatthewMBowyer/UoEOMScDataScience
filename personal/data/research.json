@@ -1,5 +1,5 @@
 {
- "recorded_at": "2026-11-10T16:01:49Z",
+ "recorded_at": "2026-11-19T19:02:12Z",
  "sports": {
   "enabled": [
    "Motorsport",
@@ -20,102 +20,113 @@
    "sport": "Motorsport",
    "window_count": 1,
    "next_up": {
-    "name": "MotoGP Valencian Grand Prix (season finale)",
+    "name": "MotoGP Australian Grand Prix",
     "series": "MotoGP",
-    "when": "2026-11-29",
-    "display": "2026-11-29"
+    "when": "2026-10-25",
+    "display": "2026-10-25"
    },
    "stories": [
     {
-     "title": "Marc Marquez 14 points from glory after chaotic Qatar weekend",
-     "publisher": "GPblog",
-     "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNZnNYWEp0WjBXMjhkN04td2RtaHBxTmF1Wlg4bnFsQWR3bDZQa2hFLVNONmVZMTltSTkweWppdlNzZkdoenpyMDhfdGt5bERrVm5vT1hEcGdfOGRseFdmOVF0cjFtTlprVURzaUFUTEtydHFvVXdWZnlnaW9oOFBlaV9OTUM0M0E5VnBybEtZaGtOQQ?oc=5"
+     "title": "Aurora Motorsport set for racing debut in GB3 Championship",
+     "publisher": "GB3",
+     "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNWXBBMldhQzJaMEt5NzgzY2NTS2hjMl91SE5sUkRwSC1URG94NEVyRlFubHZfaHA4bFhuQ050ZmV5QUpReHU4UFRMU2lDTFljUV9Dcm9rc3NQNkh1ZkRfdVBjZkhhcl95bURQc1VneDY2TWJUQlV3alhjNm4zMk1PYkM0UW9pMjlLTl95bktSQjJjSHJaOV9kZHJ4b2s?oc=5"
     },
     {
-     "title": "Results",
-     "publisher": "motogp.com",
-     "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5zN3hhalhsRG1IcTFKT29NRm9MdzBpaFk4SWFGbl9Na2g1WjJ4UWNzN280U015cEx5aUdwSmRWRHREV0pnbDA0T3c5alpIOXFmbjNRWDJvX3JCOXlfc2ZRS3dQWDdKalRKSEQ4SG1KaWpUa2l4SHlFdlRjZw?oc=5"
+     "title": "PTV. . #PTVNewsTonight | Axel Nocom claims runner-up finish at COTFA 2026",
+     "publisher": "Facebook",
+     "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNY2VSM042R25OQkowY3R3NU1IVm1hM2pVZXhzaGx0WkNuUkt0SnFCM0pLUjNyV01mRS1ZZWV5cHRqOUZhczZfelZERC1pM0NRazg0RXBRQkltQ2REZ2FaaWxyam13MFZHdlc4SnFrRWdMZmh4NjlyZzBiRDNWZ2FGUFBHTkIyc25ZLXY5SEF3RjJPcDFLZ1lOTDhNa3RFSE5OSE4xOTdPMk9hb0RzNGNodUNjX0o4X0VEX0hR?oc=5"
     },
     {
-     "title": "Qatar: New 2026 MotoGP World Championship standings",
-     "publisher": "Crash.net",
-     "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPMFBUUFJtRzFoaG5NaVJtcnNyU25aUzlITWpaQVBySkVGZ1JXX2gxXzQxd0IzeG8xdDJRZlhGUFJhUTdzUVFiVzBrZVhkTEZUYjdvbk93SkJmT2hsN01SbUpZNnZ4bTEwVHRtdkxzUlZKQ3lfaFJtNWYyRjRLM054b0p5LUJSVkN2SS1RZFJ3eERJN2dUVmZvNjZPYVQzdw?oc=5"
+     "title": "Mallala set for largest state championship round in a decade",
+     "publisher": "Speedcafe.com",
+     "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxObGFqQy1WMGJ5RXJQWkFTT0Q2RXdyWFdBdUw1Z1ZiM1hZQTF0X0JvR0lkcFBhbVhWT3VoWEJVOW94cm5abTBFZzBldTA1akI1R2NRekVmSlFKUFg5QkNVYlhxeEY5T1dWVXBQTG5CUHNTS0ZtOEFHOHV3RXVvdU51UWh0bnJKaXhrRjdFMnpjdUg4eFhmR1hwY3RzZTN6bHZYNFFaeEIwNVdHMzBpXzBR?oc=5"
     }
    ],
    "source": "your own event list",
    "events": [
     {
-     "name": "MotoGP Portuguese Grand Prix",
-     "when": "Fri 20 Nov",
-     "series": "MotoGP"
+     "name": "Bathurst 1000",
+     "when": "Sun 11 Oct",
+     "series": "Supercars Championship"
     }
    ]
   },
   {
    "sport": "Tennis",
-   "window_count": 0,
-   "next_up": {},
+   "window_count": 1,
+   "next_up": {
+    "name": "Paris Masters",
+    "series": "ATP Masters 1000",
+    "when": "2026-11-02",
+    "display": "2026-11-02"
+   },
    "stories": [
     {
-     "title": "ATP Masters 1000: Tournaments, Records, Stats | ATP Tour | Tennis",
+     "title": "James Bond style: ATP Tour stars dressed to impress | ATP Tour | Tennis",
      "publisher": "ATP Tour",
-     "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1wOGhpQlhLcVdnV3hKeDhvaGRTNElaN09zdHVua1VNNXNHQkFOUlJoWmwwcjJKbFJpZDRkZzVvbjlXWEFhY09BLVBaRHRLSV9NN29Ib0xHeFlMX0hBdmhDZUNQN1NqMEVPY1VpUTFCekZZNXM0cnd6aXVPNWN5N0E?oc=5"
+     "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1uZGR4WVo5Nnd4bkdKNVJuUjJoSkxndGFZbF9aWmNMOWEwTE9obmtzVWxrWWVWdU9tRWpPVGxjS0prZ2JuSHlFWGphS1ZoUFFPYU5wbks2NmFSVWo3elFUN2hXWjcyRjJpSzBua1ZZMmNsQURrY1RKMXFBZw?oc=5"
     },
     {
-     "title": "BeIN Sports France to air ATP Tour tennis tournaments from 2028",
-     "publisher": "Telecompaper",
-     "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQMXVVamF0RUNCZGdZOUVrNGFzNngzb2lIMFI4N3lrV01yMi1lVmVDdFdvWk52NE1tNWx5MUxFbDBPVXR0X2ZCR0hlT2pheHQwV2VsVzA5YXppal93TURuMVhuaENfV1RKa2ZsLWlSTzNTOUdrQmVFS2hHdWJGLVRPRWI5TVhzaFU3MW52UUJmOTVkYmJmNGFnNGZQV0RPbnRGSHhxem5zWmUtZw?oc=5"
+     "title": "What were the Nitto ATP Finals results?",
+     "publisher": "ATP Tour",
+     "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9pMnRNaHdpX1o4b3BFNGJvTDJHT2ExLWsyaV9GRWpKbWpxQWVtQmZIb0VKYzdBU3A4Wm5UVElhemswSXRiOFVlYUJ4S2NRZlNFU0p2cTlBOHpRM0E4M0k4bkF3MUExazg3QXBfbFFB?oc=5"
     },
     {
-     "title": "ATP Tour back on BeIN Sports in France from 2028",
-     "publisher": "Sportcal",
-     "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPNUhZV3U3ZTdFTTJGTHE4MWRCLUlBVlVrOUhTVDlfcVRUcGg5X3gtTkh0ME1YbEh1VjZ6bXJfUHI2M0NFekVLRTJUcnlqRWhZVUlTUnh0dDBPZXNvMjhwTFVIMnNGWUtGUHZwQTJrWEtPVTlLdndvNUtmUXRMOE9FTFFVVUNodw?oc=5"
+     "title": "Why Arthur Fils\u2019 ideal plans for 2027 should concern the ATP Tour",
+     "publisher": "Yahoo Sports",
+     "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQX1N5Mzc1VzNkZG5xZXBwVm96RmRzRGpWbEpHa1g5TGllVFlqeFYtNjVjSXVvZWVTWFpMMHR2VHBib2Q2VmVaZzNDVjU0NUNHRHUwTFdIT0dCcWQtQjZUdkZjTmszRnhJTk01QzkwWl9sM1F5aG85Sm1YNXE2OEM0OEZn?oc=5"
     }
    ],
    "source": "ESPN tennis calendar",
-   "events": []
+   "events": [
+    {
+     "name": "Shanghai Masters",
+     "when": "Wed 07 Oct",
+     "series": "ATP Masters 1000"
+    }
+   ]
   },
   {
    "sport": "Football",
-   "window_count": 13,
+   "window_count": 9,
    "next_up": {},
    "stories": [
     {
-     "title": "EXCLUSIVE: Man Utd hold transfer talks for El Hilali at Carrington",
+     "title": "Man Utd still paying the price for Ten Hag's transfer failure: \u20ac140m evaporates",
      "publisher": "FootballTransfers.com",
-     "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOODI4cEdWX1h4THVmRnpRMnk5ZWF3TG8yNk9RZUIybFBIV3VaSzRZNHhMdTZqTlZEbk1Sa3djNkE0RkZ6Wm5LSjJGd09BZ3VQelpmUjk1NS1paVlQMFFJZHBFa1p3QWI2UTVpVVE4djRFU0xxTXI2Zng5Z1JfZmhpUld2ckNrY0txckNfeGk0UDhpbDFiODc3RWFQSzEyb3lmQ05aa2tMZDhoa25IVGFRUS0tZDRFb1c0OV85bzJ6YXhuTjJBSVJ1ZDBmSlgyMV81UUFibHZoX1NlUQ?oc=5"
+     "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxObkZiNFRkMWdOOVdtbERqQ29xejNWMzQxZnZTSzdFeUVrLWhFOU1wSjg3NXBCNDY3U2IzMXVqTDFGMjFIS29fVHE4N2diaUhwT1pmUmdHaVg0NXJzVlcwLXVLdnN1LXZGVTRBWldXaVhGODBveThKMjdCUlZURTJDZGhQOGFITFktU2VleUxoSVdDNEptWUdNeExYTzhPMmtuZUVlNDk0ekNvZkFYckRLd1EyNEx3V05XdXNIV3Vhc3NBakQwV2VmTHZiV09HM0E?oc=5"
     },
     {
-     "title": "Chelsea ready to open talks with \u20ac63m star as January plan revealed",
-     "publisher": "FootballTransfers.com",
-     "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxONF9MVnV1eXFxZDZTcFhRSmQ0QjJuR2h0RWRKVk9sU1F3UE9Dc0M0YjF3UzM5eFNrQWFqWXY2bks0YkV3OF8tNllBMGpQVGo5MnlOZHFxdHJUcHJ3RGVxU3lpeFNuQ0JPVmhQem5wSVg3WUs2ZEhZTzh3NWpVaEFSeXNGNlUtT0dDZmFWdHkyQmNJdDdhcE9kOTR6d0JlVkk3YUFrMlA3UEdBTUs2MnJIQmVpNmJ2RnFXQzFNU25EbDVJc0YxOFlPMXB2WkwxOFEyMVdfd0QzTFIzQjVXVk1oLXM3Q3dNWUZPV3Q5R1pFbTY?oc=5"
-    },
-    {
-     "title": "Mauricio Pochettino would consider Manchester United job if Michael Carrick is sacked - Paper Talk | Football News",
+     "title": "Transfer news: Your Premier League club's unfinished business ahead of January window",
      "publisher": "Sky Sports",
-     "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOcmRUUUtDRzcwbmpQMFc3M3l6RmpQTjlrMkNzbVRzd0V2UXAyQVRWdGdmWTlzLXZHb0cwZE9CNkZ2RzlhMjdaQWJsSFJQOTNrNUs3bkNaLWd2blVPV1ZXVC11RXNMWTk3THdXRGFwdWh1dzRMajdFUVhRZWNGU0d1dHhsQUl2Ul9vMnZkU0tTbEt3d2N2MlQtVnJNYUdIQWktZnRGSWJDVE45M2k2SWJnOGVkZHY3YnozU3hYUzJfallIOFI1cHhReFhWUWlIWGxGNF8tUWlVVndKUmdRTkE?oc=5"
+     "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOUzQ0WmRXTHdQWkZQVm5QX3ZOdWU3b1VLRXp4Wl9lR2xrY2hkR21xQkdTX1FqVVExVEpSUWRPVUR0TmZBR2NnN3B0cE13SkVHLWRGWEJlOVFYRy01UmNYa2ZDQlNXaDVHMXYySWQ0b2FqdEZsdG5sTnZXcFVSbG9NcF9BX3Bhb2NNMVhQa2FiYVVjelh2dmhDUV9GT2MwLXpBR05yeUFTaU1jcE1ObUxhWXk1VHFMVHQ4aHI5c1JhYVBzS1E0ZWFjMnZrd2Y?oc=5"
+    },
+    {
+     "title": "Transfer news LIVE: Arsenal in Vinicius talks; Man Utd deal confirmed",
+     "publisher": "London Evening Standard",
+     "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOcUJRODIwSlpsbmNLdXlXYng4X1ZFTjQwM3FzSHpiX002Z19QdHNKaEJxdjBpY2tvZHk1c0ZpWUI4bU5Ob0MwRWpSMHQ3WWVVRXJFczBPY0h3WlNjUHdyYVQtUmNNN3pMaHpydWtaeVYyMnRWNm5Pam9XMFQ0TGVMaUZ0bmFkMlZGMU5jVzNWUEItQTJDcE05alZRa0ZOMzdQOWNZa3RLME1FRDZPOXVDQXFENVd3WlM0NUowdkJTTUstZ1k0TnJ3LXZqY2NXLWU1?oc=5"
     }
    ],
    "source": "ESPN football competitions",
    "events": [
     {
-     "name": "AEK Athens 2 vs Real Madrid 3",
-     "when": "Wed 04 Nov 19:45",
+     "name": "Bodo/Glimt vs LASK Linz",
+     "when": "Tue 24 Nov 19:45",
      "series": "UEFA Champions League"
     },
     {
-     "name": "Fenerbahce 3 vs Liverpool 2",
-     "when": "Wed 04 Nov 19:45",
+     "name": "Galatasaray vs Aston Villa",
+     "when": "Tue 24 Nov 19:45",
      "series": "UEFA Champions League"
     },
     {
-     "name": "Borussia Dortmund 2 vs Real Betis 1",
-     "when": "Wed 04 Nov 22:00",
+     "name": "Arsenal vs Borussia Dortmund",
+     "when": "Tue 24 Nov 22:00",
      "series": "UEFA Champions League"
     },
     {
-     "name": "FC Porto 4 vs Napoli 1",
-     "when": "Wed 04 Nov 22:00",
+     "name": "Como vs AEK Athens",
+     "when": "Tue 24 Nov 22:00",
      "series": "UEFA Champions League"
     }
    ]
@@ -123,14 +134,13 @@
   {
    "sport": "Weightlifting",
    "window_count": 0,
-   "next_up": {},
-   "stories": [
-    {
-     "title": "Weightlifting - 2026 IWF World Championships: Stars in action, schedule, all results",
-     "publisher": "Olympics",
-     "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNV3lUR21FdFRlRDlLcE1pMUtoS3E0MGdpaXFyemNDX3hCdHpLaTlkTXBmNFViZENQTVNhcEc3Z0lLZjA2SVlLWUh4LTgydWRtWVRlR2lXZnYtM3ZKQzJwWVVJMzNRbXF3Q2NMZk9EUlpxX0hRQU5UUWpORHR4SHdJdjkwX2dqeUN3N2Z5UDgyNGJEaWdxOERv?oc=5"
-    }
-   ],
+   "next_up": {
+    "name": "Weightlifting World Championships",
+    "series": "IWF",
+    "when": "2026-10-27",
+    "display": "2026-10-27"
+   },
+   "stories": [],
    "source": "your own event list (no live feed publishes IWF results)",
    "events": []
   },
@@ -143,7 +153,13 @@
     "when": "2026-11-23",
     "display": "2026-11-23"
    },
-   "stories": [],
+   "stories": [
+    {
+     "title": "Best moments and winners from a high-stakes Premier Padel event in Dubai",
+     "publisher": "Red Bull",
+     "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBtc09vdy1PWEtyNERwZlNHRi1yaXAwQmlDQmdXajhrSE5zcncyRy1rYm1OR09Pc25jSkJocGdPdnRSRHo4UllvM0dhR05ZRm1udmM4WjBpY2dxRWQ5ZVVmSlVoVGVUdzN1TXFtbWhDcUFyOWFhLXduMm5B?oc=5"
+    }
+   ],
    "source": "your own event list",
    "events": []
   },
@@ -153,19 +169,19 @@
    "next_up": {},
    "stories": [
     {
-     "title": "2026 Nations Championship: Fixtures, Results, Teams & Standings",
-     "publisher": "SportPesa Blog",
-     "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFA2cWppRmU5YW1zZ09mMWVTWDN0X3REdnJNMnRQbDd2NUEtYmRUeXJFVkpQTUlxamMyTFJLanYwdjNnWEZJZ2hpVFU5eVc2SnBRUkZWTjdkMjNTQ0FtVFVjTnA0WXAtajROSzFZRnFVZWEwNlNTbUE?oc=5"
+     "title": "Women's and Men's Rankings",
+     "publisher": "World Rugby",
+     "link": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE5QSU5pX1A4NjNKQnZRVGp0bjdCYVhOS2xtcnVJSjBDZFVUa2xDTzFWdWQ0QTVqbml2aklJTG1KU2RUYzZZV2Fv?oc=5"
     },
     {
-     "title": "England claim record win over Australia to go second",
-     "publisher": "Six Nations",
-     "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQTUZaVWRyVFJkN00xZkJkNXBMVFFfVW5yUXA5X2J4WVFSRkdxRU5ZRGNCZEZ1YVZkdlk0Q1ZVWmh5UHFCZ2V6Q3psUUgwV1JkTDR0eFlMUUI4aXd5UFRUN3VuTHlsRlJoZ3ZnbzlnZVFwa1ZMYkZEWHpNSmZxTTBLRHU0Z2VEUDY3TzZ6aDdUTjdDYloxbUt0d3pRTi0?oc=5"
-    },
-    {
-     "title": "Scotland vs. All Blacks Rugby Score: New Zealand Wins 43-21",
+     "title": "2027 Rugby World Cup Rankings: France Rugby Climbs To No. 3",
      "publisher": "FloRugby",
-     "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQTFlaUkpFSEI3aGZMN09NNnFXbmRBYnUtTXJ6SzhrT2FwRm9NalMwaTdqb0tOZzU5d2tnYndFZ1VlZG1PcnRGdXJQd1pva0Z0Y0g3dEo5Z3JQWFhVbGZQaTh1Y3QyOTFETkZhSTBHOWFhakQzRGpDZWEzbkc0bDJJLW5IYzZ3ZGtJZ1JvVW9tYnlOM3dLT3JibUgxR3k5VVcwUGc?oc=5"
+     "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNampGNVRJUnE5MVpNTlk0RHFVeHIwZTR3U09FMkNrUDlGNDRKM2psV0VzLXV1X0tERkVoMzNWczh1Z2VVbkd3SlB3UmtFODZMT09DZGpqUE9ORnVIdGRFV3lZUmZQVl9PRmZGX210aThBTzBRc0RnNGVHV29OcUtKQzJXSmVHZXRPMThzOS01MDNfRndpZGt1MlRCdnROSElmTXc?oc=5"
+    },
+    {
+     "title": "South Africa coach Rassie Erasmus plans online watchalong vs. Ireland after six-match ban",
+     "publisher": "The New York Times",
+     "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNWDV4d3hWS2gwVE9MaTVqMDhWMmppamZ4TUUzOGFJVXVpTGFXandlRk40RU5DYWp0Ujc1X05zZDhGcWFhX2NBMHJpWW5BQzdMQURvMEhDWTFKWTBldTB4bmcxX0dKUDdubzNFZjhQSXZZU3Q1NmhYMXhYVDdtR1dBOXlid3diSDMzWllOZ3dmVEtGbzUxTDU2dk5Tb0tGQ0ZH?oc=5"
     }
    ],
    "source": "ESPN rugby fixtures",
@@ -182,14 +198,14 @@
      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPclFMR1QwQXN2S044SDZUWkExN3h0ZkVWYXZ3YjhKeWxNUmNkLVFHc2RhY1NkQTdmaTJrNURLX0hPN0tUYlBGajNkY25uSURhal8wZHBjanVDQ3AtZ3Noa3c2cFNKR0tORXJvWDZZV0p6MFBSaUxxejk2UkJUdVZPQ0JfUk1jS055V3ViYzB4VkdFeWdvWW9JOHRxQjNzTVBBQk5pb2tpSDhjQllaWGJvMkU3dHpJWjkxYVZrQmlQVTJWNF9ORjVpUGR1WURYelF0Q0xyd1YyaHpFNWlhbHlTSFhFYw?oc=5"
     },
     {
-     "title": "2026 F1 standings after Sao Paulo Grand Prix: Verstappen benefits as Mercedes celebrates",
-     "publisher": "RacingNews365",
-     "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQd3Y1a0lkY0dueDhDRHpkMGdBWGJUMGl1U196ZklMM24xV1hLY0lPWm1WbFdxd2E0cjM2SklCOVEzaVk0NHR0T3ZLRjFnMjcyRjdPMUtuNThiRnA3bnpuZXZPN1RuZWxzelNSOVdCZHhFT194M1Rha3RsTjVTcHRMSGJUWG5BaWRWZXlj?oc=5"
+     "title": "Lewis Hamilton: Ferrari driver says there are no trust issues between himself and team",
+     "publisher": "BBC",
+     "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1qTHRwRFl1bHNTVkFkRVVKVUktX3kyTEgtNGJXWFh0WWhaV2kwRWl3VE1xRFNSM2ZsUzhOeXh0SmplWXVoMUQxVEZvRTE1cFFVTGkteU95THVtX1B5al9DUTlrcjlYWm5T?oc=5"
     },
     {
-     "title": "Norris wins Sao Paulo GP thriller as Mercedes claim title",
-     "publisher": "Formula 1",
-     "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOSGphQlU5RE4ya2tzWG9GSllhRnVPUEJSSXlFRG5kV3Q2eV9jVjVyNzVxSk1Mc3U0RG14elhFbHNRUElsUGNYZklBVGdHV3QxdGJwYzgxQmdPb1VWVWhMMXpBeUdxUFdscFYzQ2U5OGxOdjhLYTc3dnU4T1ZiYlpvbXl4TjFybEczdERGVDVCY2FjLTBwbHF3c1BJcDhrcHlNYm12UGhSaDhOOUtnSEdBc1hjM0RIbVdXdEswOVRMZ283ZEVETFlHUGtrSHJvSHN5cVA0VkRZalljbkFKZzNlUVFxYWJrbmF2OHF4QW9mdjh2dw?oc=5"
+     "title": "Expensive fiasco in Las Vegas results in worst F1 track - Throwback",
+     "publisher": "RacingNews365",
+     "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOcndMcy1KWmFpekVlamV4ZXljcC1jTWhzRkhibm5nXzk2LVNYaXY0a3FFTnRvYldTZUVUc2lWcXJodHZCUEIxeHlkaU1QSFdlOGRTY0RwYmNzcFhXTWQteGpWRXNHcVdEUElwZ2E1Wm9uM3l4aS1CSEp1UVF1dmUxcHlReDVKYlhmZDFtdjFPSEVPdVM4SWZSNw?oc=5"
     }
    ],
    "source": "ESPN Formula 1 calendar",
@@ -1248,11 +1264,259 @@
      {
       "kind": "summary",
       "label": "How the top 5 are doing",
-      "line": "no top-5 player is in the events being played right now"
+      "line": "Nitto ATP Finals: still in - 1. Alexander Zverev, 3. Carlos Alcaraz, 4. Ben Shelton, 5. Daniil Medvedev; out - none; not placed yet - 2. Jannik Sinner"
      },
      {
-      "kind": "note",
-      "text": "No top-5 match for this tour in the event(s) on now (Bybit Stockholm Open). They are not entered for these, rather than missing from the feed."
+      "kind": "event",
+      "tournament": "Nitto ATP Finals",
+      "stage": "Latest round played: Group Stage",
+      "champion": "",
+      "runner_up": "",
+      "final_score": "",
+      "outcome_line": "",
+      "rounds": [
+       "Group Stage",
+       "Semifinal",
+       "Final"
+      ],
+      "rows": [
+       {
+        "position": 1,
+        "name": "Alexander Zverev",
+        "state": "in",
+        "mark": "IN",
+        "detail": "still in - group stage",
+        "reached": "group stage, main draw of 3"
+       },
+       {
+        "position": 2,
+        "name": "Jannik Sinner",
+        "state": "absent",
+        "mark": "--",
+        "detail": "no match found in this event yet",
+        "reached": ""
+       },
+       {
+        "position": 3,
+        "name": "Carlos Alcaraz",
+        "state": "in",
+        "mark": "IN",
+        "detail": "still in - group stage",
+        "reached": "group stage, main draw of 3"
+       },
+       {
+        "position": 4,
+        "name": "Ben Shelton",
+        "state": "in",
+        "mark": "IN",
+        "detail": "won the group stage",
+        "reached": "group stage, main draw of 3"
+       },
+       {
+        "position": 5,
+        "name": "Daniil Medvedev",
+        "state": "in",
+        "mark": "IN",
+        "detail": "still in - group stage",
+        "reached": "group stage, main draw of 3"
+       }
+      ]
+     },
+     {
+      "kind": "matches",
+      "label": "Their matches",
+      "rows": [
+       {
+        "when": "Thu 19 Nov 15:10",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "[4] Ben Shelton",
+          "winner": true
+         },
+         {
+          "label": "Rafael Jodar",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "7(10)-6(8) 7-5",
+        "round": "Group Stage",
+        "live": false,
+        "line": "[4] Ben Shelton beat Rafael Jodar  7(10)-6(8) 7-5"
+       },
+       {
+        "when": "Wed 18 Nov 15:10",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "[3] Carlos Alcaraz",
+          "winner": true
+         },
+         {
+          "label": "[5] Daniil Medvedev",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "6-2 6-4",
+        "round": "Group Stage",
+        "live": false,
+        "line": "[3] Carlos Alcaraz beat [5] Daniil Medvedev  6-2 6-4"
+       },
+       {
+        "when": "Tue 17 Nov 21:40",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "[1] Alexander Zverev",
+          "winner": true
+         },
+         {
+          "label": "[4] Ben Shelton",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "6-2 7(7)-6(4)",
+        "round": "Group Stage",
+        "live": false,
+        "line": "[1] Alexander Zverev beat [4] Ben Shelton  6-2 7(7)-6(4)"
+       },
+       {
+        "when": "Mon 16 Nov 21:55",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "[5] Daniil Medvedev",
+          "winner": true
+         },
+         {
+          "label": "Flavio Cobolli",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "7(7)-6(4) 6-3",
+        "round": "Group Stage",
+        "live": false,
+        "line": "[5] Daniil Medvedev beat Flavio Cobolli  7(7)-6(4) 6-3"
+       },
+       {
+        "when": "Mon 16 Nov 15:10",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "[3] Carlos Alcaraz",
+          "winner": true
+         },
+         {
+          "label": "Frances Tiafoe",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "6-2 6-2",
+        "round": "Group Stage",
+        "live": false,
+        "line": "[3] Carlos Alcaraz beat Frances Tiafoe  6-2 6-2"
+       },
+       {
+        "when": "Sun 15 Nov 21:40",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "[4] Ben Shelton",
+          "winner": true
+         },
+         {
+          "label": "Arthur Fils",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "6-2 3-6 6-3",
+        "round": "Group Stage",
+        "live": false,
+        "line": "[4] Ben Shelton beat Arthur Fils  6-2 3-6 6-3"
+       },
+       {
+        "when": "Sun 15 Nov 15:25",
+        "winner_first": true,
+        "players": [
+         {
+          "label": "[1] Alexander Zverev",
+          "winner": true
+         },
+         {
+          "label": "Rafael Jodar",
+          "winner": false
+         }
+        ],
+        "sep": " beat ",
+        "score": "6-4 6-4",
+        "round": "Group Stage",
+        "live": false,
+        "line": "[1] Alexander Zverev beat Rafael Jodar  6-4 6-4"
+       },
+       {
+        "when": "Thu 19 Nov 21:30",
+        "winner_first": false,
+        "players": [
+         {
+          "label": "Arthur Fils",
+          "winner": false
+         },
+         {
+          "label": "[1] Alexander Zverev",
+          "winner": false
+         }
+        ],
+        "sep": " vs ",
+        "score": "",
+        "round": "Group Stage",
+        "live": false,
+        "line": "Arthur Fils vs [1] Alexander Zverev"
+       },
+       {
+        "when": "Fri 20 Nov 15:00",
+        "winner_first": false,
+        "players": [
+         {
+          "label": "Flavio Cobolli",
+          "winner": false
+         },
+         {
+          "label": "[3] Carlos Alcaraz",
+          "winner": false
+         }
+        ],
+        "sep": " vs ",
+        "score": "",
+        "round": "Group Stage",
+        "live": false,
+        "line": "Flavio Cobolli vs [3] Carlos Alcaraz"
+       },
+       {
+        "when": "Fri 20 Nov 21:30",
+        "winner_first": false,
+        "players": [
+         {
+          "label": "Frances Tiafoe",
+          "winner": false
+         },
+         {
+          "label": "[5] Daniil Medvedev",
+          "winner": false
+         }
+        ],
+        "sep": " vs ",
+        "score": "",
+        "round": "Group Stage",
+        "live": false,
+        "line": "Frances Tiafoe vs [5] Daniil Medvedev"
+       }
+      ]
      }
     ]
    },
@@ -1269,11 +1533,11 @@
        },
        {
         "position": 2,
-        "name": "Aryna Sabalenka"
+        "name": "Mirra Andreeva"
        },
        {
         "position": 3,
-        "name": "Mirra Andreeva"
+        "name": "Aryna Sabalenka"
        },
        {
         "position": 4,
@@ -1284,268 +1548,16 @@
         "name": "Jessica Pegula"
        }
       ],
-      "line": "1. Elena Rybakina, 2. Aryna Sabalenka, 3. Mirra Andreeva, 4. Coco Gauff, 5. Jessica Pegula"
+      "line": "1. Elena Rybakina, 2. Mirra Andreeva, 3. Aryna Sabalenka, 4. Coco Gauff, 5. Jessica Pegula"
      },
      {
       "kind": "summary",
       "label": "How the top 5 are doing",
-      "line": "FAGE WTA Finals Indian Wells: still in - 2. Aryna Sabalenka, 3. Mirra Andreeva, 4. Coco Gauff, 5. Jessica Pegula; out - none; not placed yet - 1. Elena Rybakina"
-     },
-     {
-      "kind": "event",
-      "tournament": "FAGE WTA Finals Indian Wells",
-      "stage": "Latest round played: Group Stage",
-      "champion": "",
-      "runner_up": "",
-      "final_score": "",
-      "outcome_line": "",
-      "rounds": [
-       "Group Stage",
-       "Semifinal",
-       "Final"
-      ],
-      "rows": [
-       {
-        "position": 1,
-        "name": "Elena Rybakina",
-        "state": "absent",
-        "mark": "--",
-        "detail": "no match found in this event yet",
-        "reached": ""
-       },
-       {
-        "position": 2,
-        "name": "Aryna Sabalenka",
-        "state": "in",
-        "mark": "IN",
-        "detail": "still in - group Stage",
-        "reached": "group Stage, main draw of 3"
-       },
-       {
-        "position": 3,
-        "name": "Mirra Andreeva",
-        "state": "in",
-        "mark": "IN",
-        "detail": "still in - group Stage",
-        "reached": "group Stage, main draw of 3"
-       },
-       {
-        "position": 4,
-        "name": "Coco Gauff",
-        "state": "in",
-        "mark": "IN",
-        "detail": "still in - group Stage",
-        "reached": "group Stage, main draw of 3"
-       },
-       {
-        "position": 5,
-        "name": "Jessica Pegula",
-        "state": "in",
-        "mark": "IN",
-        "detail": "still in - group Stage",
-        "reached": "group Stage, main draw of 3"
-       }
-      ]
+      "line": "no top-5 player is in the events being played right now"
      },
      {
       "kind": "note",
-      "text": "No top-5 match in: DIRECTV Open Presentado por Compesar."
-     },
-     {
-      "kind": "matches",
-      "label": "Their matches",
-      "rows": [
-       {
-        "when": "Tue 10 Nov 00:30",
-        "winner_first": true,
-        "players": [
-         {
-          "label": "[3] Mirra Andreeva",
-          "winner": true
-         },
-         {
-          "label": "Elina Svitolina",
-          "winner": false
-         }
-        ],
-        "sep": " beat ",
-        "score": "6-4 6-0",
-        "round": "Group Stage",
-        "live": false,
-        "line": "[3] Mirra Andreeva beat Elina Svitolina  6-4 6-0"
-       },
-       {
-        "when": "Mon 09 Nov 22:15",
-        "winner_first": true,
-        "players": [
-         {
-          "label": "[2] Aryna Sabalenka",
-          "winner": true
-         },
-         {
-          "label": "Karolina Muchova",
-          "winner": false
-         }
-        ],
-        "sep": " beat ",
-        "score": "7(7)-6(2) 7-5",
-        "round": "Group Stage",
-        "live": false,
-        "line": "[2] Aryna Sabalenka beat Karolina Muchova  7(7)-6(2) 7-5"
-       },
-       {
-        "when": "Mon 09 Nov 00:05",
-        "winner_first": true,
-        "players": [
-         {
-          "label": "[4] Coco Gauff",
-          "winner": true
-         },
-         {
-          "label": "[5] Jessica Pegula",
-          "winner": false
-         }
-        ],
-        "sep": " beat ",
-        "score": "6-4 6(5)-7(7) 6-2",
-        "round": "Group Stage",
-        "live": false,
-        "line": "[4] Coco Gauff beat [5] Jessica Pegula  6-4 6(5)-7(7) 6-2"
-       },
-       {
-        "when": "Tue 10 Nov 22:00",
-        "winner_first": false,
-        "players": [
-         {
-          "label": "[5] Jessica Pegula",
-          "winner": false
-         },
-         {
-          "label": "Marta Kostyuk",
-          "winner": false
-         }
-        ],
-        "sep": " vs ",
-        "score": "",
-        "round": "Group Stage",
-        "live": false,
-        "line": "[5] Jessica Pegula vs Marta Kostyuk"
-       },
-       {
-        "when": "Tue 10 Nov 23:30",
-        "winner_first": false,
-        "players": [
-         {
-          "label": "Linda Noskova",
-          "winner": false
-         },
-         {
-          "label": "[4] Coco Gauff",
-          "winner": false
-         }
-        ],
-        "sep": " vs ",
-        "score": "",
-        "round": "Group Stage",
-        "live": false,
-        "line": "Linda Noskova vs [4] Coco Gauff"
-       },
-       {
-        "when": "Wed 11 Nov 23:30",
-        "winner_first": false,
-        "players": [
-         {
-          "label": "[3] Mirra Andreeva",
-          "winner": false
-         },
-         {
-          "label": "[2] Aryna Sabalenka",
-          "winner": false
-         }
-        ],
-        "sep": " vs ",
-        "score": "",
-        "round": "Group Stage",
-        "live": false,
-        "line": "[3] Mirra Andreeva vs [2] Aryna Sabalenka"
-       },
-       {
-        "when": "Thu 12 Nov 07:00",
-        "winner_first": false,
-        "players": [
-         {
-          "label": "Elina Svitolina",
-          "winner": false
-         },
-         {
-          "label": "[2] Aryna Sabalenka",
-          "winner": false
-         }
-        ],
-        "sep": " vs ",
-        "score": "",
-        "round": "Group Stage",
-        "live": false,
-        "line": "Elina Svitolina vs [2] Aryna Sabalenka"
-       },
-       {
-        "when": "Thu 12 Nov 07:00",
-        "winner_first": false,
-        "players": [
-         {
-          "label": "[4] Coco Gauff",
-          "winner": false
-         },
-         {
-          "label": "Marta Kostyuk",
-          "winner": false
-         }
-        ],
-        "sep": " vs ",
-        "score": "",
-        "round": "Group Stage",
-        "live": false,
-        "line": "[4] Coco Gauff vs Marta Kostyuk"
-       },
-       {
-        "when": "Thu 12 Nov 07:00",
-        "winner_first": false,
-        "players": [
-         {
-          "label": "Linda Noskova",
-          "winner": false
-         },
-         {
-          "label": "[5] Jessica Pegula",
-          "winner": false
-         }
-        ],
-        "sep": " vs ",
-        "score": "",
-        "round": "Group Stage",
-        "live": false,
-        "line": "Linda Noskova vs [5] Jessica Pegula"
-       },
-       {
-        "when": "Thu 12 Nov 07:00",
-        "winner_first": false,
-        "players": [
-         {
-          "label": "Karolina Muchova",
-          "winner": false
-         },
-         {
-          "label": "[3] Mirra Andreeva",
-          "winner": false
-         }
-        ],
-        "sep": " vs ",
-        "score": "",
-        "round": "Group Stage",
-        "live": false,
-        "line": "Karolina Muchova vs [3] Mirra Andreeva"
-       }
-      ]
+      "text": "No top-5 match for this tour in the event(s) on now (LP Open by IND). They are not entered for these, rather than missing from the feed."
      }
     ]
    }
@@ -1559,7 +1571,7 @@
    "offers": [
     {
      "retailer": "evetech.co.za",
-     "pretty": "R 9,999",
+     "pretty": "R 10,999",
      "title": "XFX SWIFT RX 9060 XT OC 16GB Dual Fan Graphics Card | Evetech",
      "url": "https://www.evetech.co.za/xfx-swift-rx-9060-xt-oc-16gb/best-deal/23117",
      "condition": "",
@@ -1578,16 +1590,7 @@
    "offers": [
     {
      "retailer": "Takealot",
-     "pretty": "From R 4,359",
-     "title": "AMD Ryzen 5 9600X 6-Core 3.9GHz AM5 CPU for Gaming & Overclocking",
-     "url": "https://www.takealot.com/amd-ryzen-5-9600x-6-core-3-9ghz-am5-cpu-for-gaming-overclocking/PLID101501213",
-     "condition": "new",
-     "note": "",
-     "save": ""
-    },
-    {
-     "retailer": "Takealot",
-     "pretty": "From R 4,388",
+     "pretty": "From R 4,202",
      "title": "AMD Ryzen 5 9600X 6-Core 3.9GHz AM5 CPU",
      "url": "https://www.takealot.com/amd-ryzen-5-9600x-6-core-3-9ghz-am5-cpu/PLID95872438",
      "condition": "new",
@@ -1596,16 +1599,25 @@
     },
     {
      "retailer": "evetech.co.za",
-     "pretty": "R 4,699",
+     "pretty": "R 4,299",
      "title": "AMD Ryzen 5 9600X 6-Core 3.9GHz (5.4GHz Boost) CPU | Evetech",
      "url": "https://www.evetech.co.za/amd-ryzen-5-9600x-processor/best-deal/20993",
      "condition": "",
      "note": "",
      "save": ""
+    },
+    {
+     "retailer": "Takealot",
+     "pretty": "From R 4,319",
+     "title": "AMD Ryzen 5 9600X 6-Core 3.9GHz AM5 CPU for Gaming & Overclocking",
+     "url": "https://www.takealot.com/amd-ryzen-5-9600x-6-core-3-9ghz-am5-cpu-for-gaming-overclocking/PLID101501213",
+     "condition": "new",
+     "note": "",
+     "save": ""
     }
    ],
    "below_market": [],
-   "count": 3,
+   "count": 5,
    "error": ""
   },
   {
@@ -1633,7 +1645,7 @@
     },
     {
      "retailer": "Takealot",
-     "pretty": "R 8,879",
+     "pretty": "R 9,239",
      "title": "Kingston FURY BEAST 16GB DDR5 Desktop Gaming Memory Kit (2x 8GB)",
      "url": "https://www.takealot.com/kingston-fury-beast-16gb-ddr5-desktop-gaming-memory-kit-2x-8gb/PLID95960279",
      "condition": "new",
@@ -1769,52 +1781,52 @@
   }
  ],
  "timing": {
-  "elapsed": "1m 21s",
-  "elapsed_seconds": 81.21879605398863,
+  "elapsed": "1m 16s",
+  "elapsed_seconds": 75.53076064400375,
   "recent": [
    {
-    "seconds": 30.0,
-    "at": "2026-11-10T10:44:06Z",
+    "seconds": 31.0,
+    "at": "2026-11-19T11:04:40Z",
     "conclusion": "success"
    },
    {
-    "seconds": 44.0,
-    "at": "2026-11-09T10:51:50Z",
+    "seconds": 34.0,
+    "at": "2026-11-18T11:03:39Z",
     "conclusion": "success"
    },
    {
-    "seconds": 106.0,
-    "at": "2026-11-08T11:46:54Z",
+    "seconds": 32.0,
+    "at": "2026-11-17T11:26:56Z",
     "conclusion": "success"
    },
    {
-    "seconds": 41.0,
-    "at": "2026-11-08T09:49:52Z",
+    "seconds": 42.0,
+    "at": "2026-11-16T10:34:57Z",
     "conclusion": "success"
    },
    {
-    "seconds": 38.0,
-    "at": "2026-11-07T09:35:19Z",
+    "seconds": 33.0,
+    "at": "2026-11-15T12:33:52Z",
     "conclusion": "success"
    }
   ],
   "recent_error": "",
-  "monthly": "28m 14s",
-  "basis": "average of the last 6 measured digest runs",
+  "monthly": "18m 39s",
+  "basis": "average of the last 10 measured digest runs",
   "remaining": "unlimited - this repository is public, and GitHub does not bill Actions minutes for public repositories",
-  "minutes_used": 25.7,
-  "minutes_left": 1974.3,
-  "runs_measured": 6
+  "minutes_used": 14.1,
+  "minutes_left": 1986.0,
+  "runs_measured": 10
  },
  "suggestions": {
   "groups": [
    {
-    "sport": "Tennis",
-    "source": "ESPN tennis calendar",
+    "sport": "Weightlifting",
+    "source": "your own event list (no live feed publishes IWF results)",
     "items": [
      {
-      "name": "Austin 125",
-      "why": "you follow Tennis and the WTA top 5"
+      "name": "Weightlifting World Championships (2026-10-27)",
+      "why": "you follow Weightlifting, later than this digest window"
      }
     ],
     "total": 1
@@ -1884,6 +1896,14 @@
       "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0taTRZOHZvQ256dUFqNDVRUVE2ekt6blc0bmYyS1JSd05Yb3dMYVJyWEs3ejdPNFVYU3F4MDI3YjFMbWZycWNXS1I2OWIzdHNuRlEteGxPU3I4TmE2dV9MR3FlNVgwWWFpdVVLY0V4YThVZkRzNFVGNlRR?oc=5",
       "two_person": false,
       "two_person_label": ""
+     },
+     {
+      "date": "2026-07-15",
+      "title": "The art of Winter Wellness and the Ubusika Ritual that invites Joburg to slow down...",
+      "publisher": "Glamour South Africa",
+      "link": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQYzM4TS1wckJRaVA4aTJtNUJNTnNhbGxwM1VGSW5XUkZ2Z2Q4MlR1OThSQUt3S3VaMHpMRnJKUTJuOE44bElSWlRSU0xfTHY1YjZOOTBRWlIyc1NsdlJnMDBkUGd6d09qU0U0ZzRYeUVhc05YX1FjM0lyR1k4ZDNHVkNjbktzaC0xaHltWFZDRWtNUTJLVlhkQ1hVVEY0TVRJdnBTVV9qR1JDczFBSFdZUlZyR2pBV204cXdqWXNIOWVTVTBBWVFJZ0V2am5JLTBjTWkwNElVUmQ0RmlwSlBpY094S2RMMTljRlE?oc=5",
+      "two_person": false,
+      "two_person_label": ""
      }
     ],
     "two_person_found": 0,
@@ -1902,18 +1922,18 @@
       "two_person_label": ""
      },
      {
-      "date": "2026-10-08",
-      "title": "Johannesburg October Gig Guide: The concerts and festivals to add to your calendar",
-      "publisher": "Magic 828",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQT0FaM1FnSWZBS2dOTHNmakRLMmtmTmJJN2d5UVRPV29PaUlmeFU3MWp3QnlGSDRKT05UVXF3TnBZRzlzUUlMRERXTFZDQzQ5d3NYR3hDZXhrSEFoSURpTzVYYTBWZGJKLWI2cVp2R3Nyd1gxZGNCNURIUkplVl9iOGJlUjdTbFJWZmYzcjhIS0xkT2tCaEFKdF9VTlp0Z2FuUWh1Ml9HWEY?oc=5",
-      "two_person": false,
-      "two_person_label": ""
-     },
-     {
       "date": "2026-10-02",
       "title": "Events and Festivals in Johannesburg : October 2026",
       "publisher": "YoMzansi",
       "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5ZcWZnelpTYVFjY29xYWNqa0htRHQ3MV9yR0VIU2E3MkI3Ql9XUmhBUjVCRGNmenZOX2xMVW5zb1ZKeDNZTTRwSU9XNmZiQ00zWXEtV0llTDlCc1hMd2JQbmxfaHFSaGFpZzQyTlduamJDdVRSSWIzQzBNR0VKdw?oc=5",
+      "two_person": false,
+      "two_person_label": ""
+     },
+     {
+      "date": "2026-09-30",
+      "title": "Johannesburg October Gig Guide: The concerts and festivals to add to your calendar",
+      "publisher": "IOL",
+      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOY3JBUkhZZ2FTSzhROGRzZGJlM0hnUVFtS0Jma3dBRGNEZWRxZXpfemd6RTRPQS1ObnFDcEhOZktDaS1mQm9peTE2T245d3lFVkFWZ3N5LUVJVl9CaWFQcW0tZERxbEdRd3daTHJZa1NTdlZqOTJtRnRveGt1ZWFhUjNHNHJhWDl6amc5N3hISU1NQ1dyODllVzBISEFzU0dpX1VpS29JTnpmWWZjd1BBX1dwbTFCZEhXTEswQ3lHa3E0OVFrZEJybURDQkRTWkk?oc=5",
       "two_person": false,
       "two_person_label": ""
      },

@@ -306,6 +306,29 @@ def test_html_email_is_a_real_alternative() -> None:
           types[-1] == "text/html")
 
 
+def test_tennis_status_badge_does_not_collide_with_the_rank() -> None:
+    """AC-P38: the IN/OUT badge must not be glued to the position number.
+
+    The page and the email both render the badge span immediately before the
+    ranking ("IN" then "1. Name"). Without a space between the closing span and
+    the digit, the delivered HTML read "IN1. Alexander Zverev" - the badge and
+    the rank fused into one token.
+    """
+    import build_personal as BP
+
+    row = {"mark": "IN", "position": 1, "name": "Alexander Zverev",
+           "detail": "still in - group stage", "state": "in", "reached": None}
+    html = BP._tennis_html({"enabled": True, "top_n": 5, "tours": [{
+        "tour": "ATP",
+        "blocks": [{"kind": "event", "tournament": "Nitto ATP Finals",
+                    "rows": [row]}],
+    }]})
+    check("AC-P38 the badge is separated from the rank",
+          "IN</span> 1." in html, html[:300])
+    check("AC-P38 the badge is not fused to the rank",
+          "IN</span>1." not in html, html[:300])
+
+
 def test_reminders_obey_the_follow_list() -> None:
     """AC-P31: the top of the email must honour removal, not just the research.
 
@@ -1283,6 +1306,7 @@ def main() -> int:
         test_checkin_reminders,
         test_digest_with_frozen_clock,
         test_html_email_is_a_real_alternative,
+        test_tennis_status_badge_does_not_collide_with_the_rank,
         test_reminders_obey_the_follow_list,
         test_an_event_date_range_renders_a_real_dash,
         test_html_email_escapes_owner_data,
